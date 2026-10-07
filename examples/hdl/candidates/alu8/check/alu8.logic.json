@@ -1,0 +1,1643 @@
+{
+  "schema": 1,
+  "top": "alu8",
+  "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "inputs": {
+    "a": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      },
+      {
+        "index": 2,
+        "net": "n4"
+      },
+      {
+        "index": 3,
+        "net": "n5"
+      },
+      {
+        "index": 4,
+        "net": "n6"
+      },
+      {
+        "index": 5,
+        "net": "n7"
+      },
+      {
+        "index": 6,
+        "net": "n8"
+      },
+      {
+        "index": 7,
+        "net": "n9"
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "net": "n10"
+      },
+      {
+        "index": 1,
+        "net": "n11"
+      },
+      {
+        "index": 2,
+        "net": "n12"
+      },
+      {
+        "index": 3,
+        "net": "n13"
+      },
+      {
+        "index": 4,
+        "net": "n14"
+      },
+      {
+        "index": 5,
+        "net": "n15"
+      },
+      {
+        "index": 6,
+        "net": "n16"
+      },
+      {
+        "index": 7,
+        "net": "n17"
+      }
+    ],
+    "op": [
+      {
+        "index": 0,
+        "net": "n18"
+      },
+      {
+        "index": 1,
+        "net": "n19"
+      }
+    ]
+  },
+  "outputs": {
+    "carry_borrow": [
+      {
+        "index": 0,
+        "net": "port:carry_borrow:0"
+      }
+    ],
+    "result": [
+      {
+        "index": 0,
+        "net": "port:result:0"
+      },
+      {
+        "index": 1,
+        "net": "port:result:1"
+      },
+      {
+        "index": 2,
+        "net": "port:result:2"
+      },
+      {
+        "index": 3,
+        "net": "port:result:3"
+      },
+      {
+        "index": 4,
+        "net": "port:result:4"
+      },
+      {
+        "index": 5,
+        "net": "port:result:5"
+      },
+      {
+        "index": 6,
+        "net": "port:result:6"
+      },
+      {
+        "index": 7,
+        "net": "port:result:7"
+      }
+    ],
+    "zero": [
+      {
+        "index": 0,
+        "net": "port:zero:0"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$178",
+      "op": "XOR",
+      "inputs": [
+        "n10",
+        "n18"
+      ],
+      "output": "n32",
+      "origin": "design.v:31.24-31.41"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$179",
+      "op": "XOR",
+      "inputs": [
+        "n11",
+        "n18"
+      ],
+      "output": "n36",
+      "origin": "design.v:31.24-31.41"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$180",
+      "op": "XOR",
+      "inputs": [
+        "n12",
+        "n18"
+      ],
+      "output": "n42",
+      "origin": "design.v:31.24-31.41"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$181",
+      "op": "XOR",
+      "inputs": [
+        "n13",
+        "n18"
+      ],
+      "output": "n48",
+      "origin": "design.v:31.24-31.41"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$182",
+      "op": "XOR",
+      "inputs": [
+        "n14",
+        "n18"
+      ],
+      "output": "n54",
+      "origin": "design.v:31.24-31.41"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$183",
+      "op": "XOR",
+      "inputs": [
+        "n15",
+        "n18"
+      ],
+      "output": "n60",
+      "origin": "design.v:31.24-31.41"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$184",
+      "op": "XOR",
+      "inputs": [
+        "n16",
+        "n18"
+      ],
+      "output": "n66",
+      "origin": "design.v:31.24-31.41"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$185",
+      "op": "XOR",
+      "inputs": [
+        "n17",
+        "n18"
+      ],
+      "output": "n72",
+      "origin": "design.v:31.24-31.41"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$186",
+      "op": "XOR",
+      "inputs": [
+        "n2",
+        "n10"
+      ],
+      "output": "n79",
+      "origin": "design.v:41.22-41.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$187",
+      "op": "XOR",
+      "inputs": [
+        "n3",
+        "n11"
+      ],
+      "output": "n80",
+      "origin": "design.v:41.22-41.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$188",
+      "op": "XOR",
+      "inputs": [
+        "n4",
+        "n12"
+      ],
+      "output": "n81",
+      "origin": "design.v:41.22-41.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$189",
+      "op": "XOR",
+      "inputs": [
+        "n5",
+        "n13"
+      ],
+      "output": "n82",
+      "origin": "design.v:41.22-41.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$190",
+      "op": "XOR",
+      "inputs": [
+        "n6",
+        "n14"
+      ],
+      "output": "n83",
+      "origin": "design.v:41.22-41.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$191",
+      "op": "XOR",
+      "inputs": [
+        "n7",
+        "n15"
+      ],
+      "output": "n84",
+      "origin": "design.v:41.22-41.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$192",
+      "op": "XOR",
+      "inputs": [
+        "n8",
+        "n16"
+      ],
+      "output": "n85",
+      "origin": "design.v:41.22-41.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$193",
+      "op": "XOR",
+      "inputs": [
+        "n9",
+        "n17"
+      ],
+      "output": "n86",
+      "origin": "design.v:41.22-41.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$194",
+      "op": "AND",
+      "inputs": [
+        "n2",
+        "n10"
+      ],
+      "output": "n87",
+      "origin": "design.v:40.22-40.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$195",
+      "op": "AND",
+      "inputs": [
+        "n3",
+        "n11"
+      ],
+      "output": "n88",
+      "origin": "design.v:40.22-40.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$196",
+      "op": "AND",
+      "inputs": [
+        "n4",
+        "n12"
+      ],
+      "output": "n89",
+      "origin": "design.v:40.22-40.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$197",
+      "op": "AND",
+      "inputs": [
+        "n5",
+        "n13"
+      ],
+      "output": "n90",
+      "origin": "design.v:40.22-40.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$198",
+      "op": "AND",
+      "inputs": [
+        "n6",
+        "n14"
+      ],
+      "output": "n91",
+      "origin": "design.v:40.22-40.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$199",
+      "op": "AND",
+      "inputs": [
+        "n7",
+        "n15"
+      ],
+      "output": "n92",
+      "origin": "design.v:40.22-40.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$200",
+      "op": "AND",
+      "inputs": [
+        "n8",
+        "n16"
+      ],
+      "output": "n93",
+      "origin": "design.v:40.22-40.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$201",
+      "op": "AND",
+      "inputs": [
+        "n9",
+        "n17"
+      ],
+      "output": "n94",
+      "origin": "design.v:40.22-40.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$125:select",
+      "op": "NOT",
+      "inputs": [
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$125:s",
+      "origin": "design.v:63.27-63.57"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$125:b",
+      "op": "AND",
+      "inputs": [
+        "const0",
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$125:b",
+      "origin": "design.v:63.27-63.57"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$202:select",
+      "op": "NOT",
+      "inputs": [
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$202:s",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$203:select",
+      "op": "NOT",
+      "inputs": [
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$203:s",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$204:select",
+      "op": "NOT",
+      "inputs": [
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$204:s",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$205:select",
+      "op": "NOT",
+      "inputs": [
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$205:s",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$206:select",
+      "op": "NOT",
+      "inputs": [
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$206:s",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$207:select",
+      "op": "NOT",
+      "inputs": [
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$207:s",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$208:select",
+      "op": "NOT",
+      "inputs": [
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$208:s",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$209:select",
+      "op": "NOT",
+      "inputs": [
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$209:s",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$210:select",
+      "op": "NOT",
+      "inputs": [
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$210:s",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$211:select",
+      "op": "NOT",
+      "inputs": [
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$211:s",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$212:select",
+      "op": "NOT",
+      "inputs": [
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$212:s",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$213:select",
+      "op": "NOT",
+      "inputs": [
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$213:s",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$214:select",
+      "op": "NOT",
+      "inputs": [
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$214:s",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$215:select",
+      "op": "NOT",
+      "inputs": [
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$215:s",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$216:select",
+      "op": "NOT",
+      "inputs": [
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$216:s",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$217:select",
+      "op": "NOT",
+      "inputs": [
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$217:s",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$138",
+      "op": "AND",
+      "inputs": [
+        "n2",
+        "n32"
+      ],
+      "output": "n33",
+      "origin": "design.v:18.34-18.45"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$141",
+      "op": "XOR",
+      "inputs": [
+        "n3",
+        "n36"
+      ],
+      "output": "n37",
+      "origin": "design.v:16.32-16.43"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$143",
+      "op": "AND",
+      "inputs": [
+        "n3",
+        "n36"
+      ],
+      "output": "n39",
+      "origin": "design.v:18.34-18.45"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$146",
+      "op": "XOR",
+      "inputs": [
+        "n4",
+        "n42"
+      ],
+      "output": "n43",
+      "origin": "design.v:16.32-16.43"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$148",
+      "op": "AND",
+      "inputs": [
+        "n4",
+        "n42"
+      ],
+      "output": "n45",
+      "origin": "design.v:18.34-18.45"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$151",
+      "op": "XOR",
+      "inputs": [
+        "n5",
+        "n48"
+      ],
+      "output": "n49",
+      "origin": "design.v:16.32-16.43"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$153",
+      "op": "AND",
+      "inputs": [
+        "n5",
+        "n48"
+      ],
+      "output": "n51",
+      "origin": "design.v:18.34-18.45"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$156",
+      "op": "XOR",
+      "inputs": [
+        "n6",
+        "n54"
+      ],
+      "output": "n55",
+      "origin": "design.v:16.32-16.43"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$158",
+      "op": "AND",
+      "inputs": [
+        "n6",
+        "n54"
+      ],
+      "output": "n57",
+      "origin": "design.v:18.34-18.45"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$161",
+      "op": "XOR",
+      "inputs": [
+        "n7",
+        "n60"
+      ],
+      "output": "n61",
+      "origin": "design.v:16.32-16.43"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$163",
+      "op": "AND",
+      "inputs": [
+        "n7",
+        "n60"
+      ],
+      "output": "n63",
+      "origin": "design.v:18.34-18.45"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$166",
+      "op": "XOR",
+      "inputs": [
+        "n8",
+        "n66"
+      ],
+      "output": "n67",
+      "origin": "design.v:16.32-16.43"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$168",
+      "op": "AND",
+      "inputs": [
+        "n8",
+        "n66"
+      ],
+      "output": "n69",
+      "origin": "design.v:18.34-18.45"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$171",
+      "op": "XOR",
+      "inputs": [
+        "n9",
+        "n72"
+      ],
+      "output": "n73",
+      "origin": "design.v:16.32-16.43"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$173",
+      "op": "AND",
+      "inputs": [
+        "n9",
+        "n72"
+      ],
+      "output": "n75",
+      "origin": "design.v:18.34-18.45"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$177",
+      "op": "XOR",
+      "inputs": [
+        "n2",
+        "n32"
+      ],
+      "output": "n30",
+      "origin": "design.v:16.32-16.43"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$210:a",
+      "op": "AND",
+      "inputs": [
+        "n87",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$210:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$210:a",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$210:b",
+      "op": "AND",
+      "inputs": [
+        "n79",
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$210:b",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$211:a",
+      "op": "AND",
+      "inputs": [
+        "n88",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$211:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$211:a",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$211:b",
+      "op": "AND",
+      "inputs": [
+        "n80",
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$211:b",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$212:a",
+      "op": "AND",
+      "inputs": [
+        "n89",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$212:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$212:a",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$212:b",
+      "op": "AND",
+      "inputs": [
+        "n81",
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$212:b",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$213:a",
+      "op": "AND",
+      "inputs": [
+        "n90",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$213:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$213:a",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$213:b",
+      "op": "AND",
+      "inputs": [
+        "n82",
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$213:b",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$214:a",
+      "op": "AND",
+      "inputs": [
+        "n91",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$214:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$214:a",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$214:b",
+      "op": "AND",
+      "inputs": [
+        "n83",
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$214:b",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$215:a",
+      "op": "AND",
+      "inputs": [
+        "n92",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$215:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$215:a",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$215:b",
+      "op": "AND",
+      "inputs": [
+        "n84",
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$215:b",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$216:a",
+      "op": "AND",
+      "inputs": [
+        "n93",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$216:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$216:a",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$216:b",
+      "op": "AND",
+      "inputs": [
+        "n85",
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$216:b",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$217:a",
+      "op": "AND",
+      "inputs": [
+        "n94",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$217:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$217:a",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$217:b",
+      "op": "AND",
+      "inputs": [
+        "n86",
+        "n18"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$217:b",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$137",
+      "op": "XOR",
+      "inputs": [
+        "n30",
+        "n18"
+      ],
+      "output": "n31",
+      "origin": "design.v:17.29-17.49"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$139",
+      "op": "AND",
+      "inputs": [
+        "n30",
+        "n18"
+      ],
+      "output": "n34",
+      "origin": "design.v:18.50-18.70"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$210",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$210:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$210:b"
+      ],
+      "output": "n102",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$211",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$211:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$211:b"
+      ],
+      "output": "n103",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$212",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$212:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$212:b"
+      ],
+      "output": "n104",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$213",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$213:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$213:b"
+      ],
+      "output": "n105",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$214",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$214:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$214:b"
+      ],
+      "output": "n106",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$215",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$215:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$215:b"
+      ],
+      "output": "n107",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$216",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$216:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$216:b"
+      ],
+      "output": "n108",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$217",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$217:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$217:b"
+      ],
+      "output": "n109",
+      "origin": "design.v:49.30-49.55"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$140",
+      "op": "OR",
+      "inputs": [
+        "n33",
+        "n34"
+      ],
+      "output": "n35",
+      "origin": "design.v:18.33-18.71"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$202:a",
+      "op": "AND",
+      "inputs": [
+        "n31",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$202:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$202:a",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$202:b",
+      "op": "AND",
+      "inputs": [
+        "n102",
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$202:b",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$203:b",
+      "op": "AND",
+      "inputs": [
+        "n103",
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$203:b",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$204:b",
+      "op": "AND",
+      "inputs": [
+        "n104",
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$204:b",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$205:b",
+      "op": "AND",
+      "inputs": [
+        "n105",
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$205:b",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$206:b",
+      "op": "AND",
+      "inputs": [
+        "n106",
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$206:b",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$207:b",
+      "op": "AND",
+      "inputs": [
+        "n107",
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$207:b",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$208:b",
+      "op": "AND",
+      "inputs": [
+        "n108",
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$208:b",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$209:b",
+      "op": "AND",
+      "inputs": [
+        "n109",
+        "n19"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$209:b",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$142",
+      "op": "XOR",
+      "inputs": [
+        "n37",
+        "n35"
+      ],
+      "output": "n38",
+      "origin": "design.v:17.29-17.49"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$144",
+      "op": "AND",
+      "inputs": [
+        "n37",
+        "n35"
+      ],
+      "output": "n40",
+      "origin": "design.v:18.50-18.70"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$202",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$202:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$202:b"
+      ],
+      "output": "n20",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$145",
+      "op": "OR",
+      "inputs": [
+        "n39",
+        "n40"
+      ],
+      "output": "n41",
+      "origin": "design.v:18.33-18.71"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$203:a",
+      "op": "AND",
+      "inputs": [
+        "n38",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$203:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$203:a",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "port:result:0",
+      "op": "BUF",
+      "inputs": [
+        "n20"
+      ],
+      "output": "port:result:0",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$147",
+      "op": "XOR",
+      "inputs": [
+        "n43",
+        "n41"
+      ],
+      "output": "n44",
+      "origin": "design.v:17.29-17.49"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$149",
+      "op": "AND",
+      "inputs": [
+        "n43",
+        "n41"
+      ],
+      "output": "n46",
+      "origin": "design.v:18.50-18.70"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$203",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$203:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$203:b"
+      ],
+      "output": "n21",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$150",
+      "op": "OR",
+      "inputs": [
+        "n45",
+        "n46"
+      ],
+      "output": "n47",
+      "origin": "design.v:18.33-18.71"
+    },
+    {
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$127",
+      "op": "OR",
+      "inputs": [
+        "n20",
+        "n21"
+      ],
+      "output": "n95",
+      "origin": "design.v:64.19-64.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$204:a",
+      "op": "AND",
+      "inputs": [
+        "n44",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$204:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$204:a",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "port:result:1",
+      "op": "BUF",
+      "inputs": [
+        "n21"
+      ],
+      "output": "port:result:1",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$152",
+      "op": "XOR",
+      "inputs": [
+        "n49",
+        "n47"
+      ],
+      "output": "n50",
+      "origin": "design.v:17.29-17.49"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$154",
+      "op": "AND",
+      "inputs": [
+        "n49",
+        "n47"
+      ],
+      "output": "n52",
+      "origin": "design.v:18.50-18.70"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$204",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$204:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$204:b"
+      ],
+      "output": "n22",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$155",
+      "op": "OR",
+      "inputs": [
+        "n51",
+        "n52"
+      ],
+      "output": "n53",
+      "origin": "design.v:18.33-18.71"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$205:a",
+      "op": "AND",
+      "inputs": [
+        "n50",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$205:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$205:a",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "port:result:2",
+      "op": "BUF",
+      "inputs": [
+        "n22"
+      ],
+      "output": "port:result:2",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$157",
+      "op": "XOR",
+      "inputs": [
+        "n55",
+        "n53"
+      ],
+      "output": "n56",
+      "origin": "design.v:17.29-17.49"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$159",
+      "op": "AND",
+      "inputs": [
+        "n55",
+        "n53"
+      ],
+      "output": "n58",
+      "origin": "design.v:18.50-18.70"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$205",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$205:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$205:b"
+      ],
+      "output": "n23",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$160",
+      "op": "OR",
+      "inputs": [
+        "n57",
+        "n58"
+      ],
+      "output": "n59",
+      "origin": "design.v:18.33-18.71"
+    },
+    {
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$128",
+      "op": "OR",
+      "inputs": [
+        "n22",
+        "n23"
+      ],
+      "output": "n96",
+      "origin": "design.v:64.19-64.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$206:a",
+      "op": "AND",
+      "inputs": [
+        "n56",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$206:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$206:a",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "port:result:3",
+      "op": "BUF",
+      "inputs": [
+        "n23"
+      ],
+      "output": "port:result:3",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$162",
+      "op": "XOR",
+      "inputs": [
+        "n61",
+        "n59"
+      ],
+      "output": "n62",
+      "origin": "design.v:17.29-17.49"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$164",
+      "op": "AND",
+      "inputs": [
+        "n61",
+        "n59"
+      ],
+      "output": "n64",
+      "origin": "design.v:18.50-18.70"
+    },
+    {
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$132",
+      "op": "OR",
+      "inputs": [
+        "n95",
+        "n96"
+      ],
+      "output": "n99",
+      "origin": "design.v:64.19-64.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$206",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$206:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$206:b"
+      ],
+      "output": "n24",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$165",
+      "op": "OR",
+      "inputs": [
+        "n63",
+        "n64"
+      ],
+      "output": "n65",
+      "origin": "design.v:18.33-18.71"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$207:a",
+      "op": "AND",
+      "inputs": [
+        "n62",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$207:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$207:a",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "port:result:4",
+      "op": "BUF",
+      "inputs": [
+        "n24"
+      ],
+      "output": "port:result:4",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$167",
+      "op": "XOR",
+      "inputs": [
+        "n67",
+        "n65"
+      ],
+      "output": "n68",
+      "origin": "design.v:17.29-17.49"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$169",
+      "op": "AND",
+      "inputs": [
+        "n67",
+        "n65"
+      ],
+      "output": "n70",
+      "origin": "design.v:18.50-18.70"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$207",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$207:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$207:b"
+      ],
+      "output": "n25",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$170",
+      "op": "OR",
+      "inputs": [
+        "n69",
+        "n70"
+      ],
+      "output": "n71",
+      "origin": "design.v:18.33-18.71"
+    },
+    {
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$129",
+      "op": "OR",
+      "inputs": [
+        "n24",
+        "n25"
+      ],
+      "output": "n97",
+      "origin": "design.v:64.19-64.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$208:a",
+      "op": "AND",
+      "inputs": [
+        "n68",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$208:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$208:a",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "port:result:5",
+      "op": "BUF",
+      "inputs": [
+        "n25"
+      ],
+      "output": "port:result:5",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$172",
+      "op": "XOR",
+      "inputs": [
+        "n73",
+        "n71"
+      ],
+      "output": "n74",
+      "origin": "design.v:17.29-17.49"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$174",
+      "op": "AND",
+      "inputs": [
+        "n73",
+        "n71"
+      ],
+      "output": "n76",
+      "origin": "design.v:18.50-18.70"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$208",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$208:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$208:b"
+      ],
+      "output": "n26",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$175",
+      "op": "OR",
+      "inputs": [
+        "n75",
+        "n76"
+      ],
+      "output": "n77",
+      "origin": "design.v:18.33-18.71"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$209:a",
+      "op": "AND",
+      "inputs": [
+        "n74",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$209:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$209:a",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "port:result:6",
+      "op": "BUF",
+      "inputs": [
+        "n26"
+      ],
+      "output": "port:result:6",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$176",
+      "op": "XOR",
+      "inputs": [
+        "n77",
+        "n18"
+      ],
+      "output": "n78",
+      "origin": "design.v:33.27-33.43"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$209",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$209:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$209:b"
+      ],
+      "output": "n27",
+      "origin": "design.v:49.21-49.69"
+    },
+    {
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$130",
+      "op": "OR",
+      "inputs": [
+        "n26",
+        "n27"
+      ],
+      "output": "n98",
+      "origin": "design.v:64.19-64.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$125:a",
+      "op": "AND",
+      "inputs": [
+        "n78",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$125:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$125:a",
+      "origin": "design.v:63.27-63.57"
+    },
+    {
+      "id": "port:result:7",
+      "op": "BUF",
+      "inputs": [
+        "n27"
+      ],
+      "output": "port:result:7",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$133",
+      "op": "OR",
+      "inputs": [
+        "n97",
+        "n98"
+      ],
+      "output": "n100",
+      "origin": "design.v:64.19-64.27"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$125",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$125:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$125:b"
+      ],
+      "output": "n28",
+      "origin": "design.v:63.27-63.57"
+    },
+    {
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$135",
+      "op": "OR",
+      "inputs": [
+        "n99",
+        "n100"
+      ],
+      "output": "n101",
+      "origin": "design.v:64.19-64.27"
+    },
+    {
+      "id": "port:carry_borrow:0",
+      "op": "BUF",
+      "inputs": [
+        "n28"
+      ],
+      "output": "port:carry_borrow:0",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:227:simplemap_lognot$136",
+      "op": "NOT",
+      "inputs": [
+        "n101"
+      ],
+      "output": "n29",
+      "origin": "design.v:64.19-64.27"
+    },
+    {
+      "id": "port:zero:0",
+      "op": "BUF",
+      "inputs": [
+        "n29"
+      ],
+      "output": "port:zero:0",
+      "origin": null
+    }
+  ],
+  "scopes": [
+    {
+      "name": "u_arithmetic",
+      "module": "alu8_arithmetic",
+      "source": "design.v:23.1-34.10",
+      "instance_source": "design.v:60.21-60.75"
+    },
+    {
+      "name": "u_arithmetic.u_add",
+      "module": "alu8_add",
+      "source": "design.v:3.1-21.10",
+      "instance_source": "design.v:32.14-32.58"
+    },
+    {
+      "name": "u_logic",
+      "module": "alu8_logic",
+      "source": "design.v:36.1-42.10",
+      "instance_source": "design.v:61.16-61.47"
+    },
+    {
+      "name": "u_select",
+      "module": "alu8_select",
+      "source": "design.v:44.1-50.10",
+      "instance_source": "design.v:62.17-62.67"
+    }
+  ]
+}

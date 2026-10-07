@@ -1,0 +1,71 @@
+test_all_types_rotations_and_reflections_roundtrip (test_arrowasm.CodecTests.test_all_types_rotations_and_reflections_roundtrip) ... ok
+test_bad_saves (test_arrowasm.CodecTests.test_bad_saves) ... ok
+test_empty_map (test_arrowasm.CodecTests.test_empty_map) ... ok
+test_full_chunk (test_arrowasm.CodecTests.test_full_chunk) ... ok
+test_identity_uses_source_target (test_arrowasm.CodecTests.test_identity_uses_source_target) ... ok
+test_invalid_inputs (test_arrowasm.CodecTests.test_invalid_inputs) ... ok
+test_known_external_save (test_arrowasm.CodecTests.test_known_external_save) ... ok
+test_negative_coordinate_encoding (test_arrowasm.CodecTests.test_negative_coordinate_encoding) ... ok
+test_source_target_external_encoding (test_arrowasm.CodecTests.test_source_target_external_encoding) ... ok
+test_user_TEST_sample (test_arrowasm.CodecTests.test_user_TEST_sample) ... ok
+test_strip_flag_does_not_silently_change_disassembly (test_assembly_modes.AssemblyModeTests.test_strip_flag_does_not_silently_change_disassembly) ... ok
+test_test_and_production_builds (test_assembly_modes.AssemblyModeTests.test_test_and_production_builds) ... ok
+test_compressed_scenario_matches_tick_trace_and_rejects_bad_hold (test_compact_layout.CompactTests.test_compressed_scenario_matches_tick_trace_and_rejects_bad_hold) ... ok
+test_deterministic_generic_layout_and_validated_options (test_compact_layout.CompactTests.test_deterministic_generic_layout_and_validated_options) ... ok
+test_fanout_and_output_aliases_through_crossings (test_compact_layout.CompactTests.test_fanout_and_output_aliases_through_crossings) ... ok
+test_hdl_plus_and_rapid_carry_transitions (test_compact_layout.CompactTests.test_hdl_plus_and_rapid_carry_transitions) ... ok
+test_unchanged_graph_size_and_exhaustive_adder8 (test_compact_layout.CompactTests.test_unchanged_graph_size_and_exhaustive_adder8) ... ok
+test_adjacent_operators_need_no_intermediate_arrow (test_connected_layout.ConnectedTests.test_adjacent_operators_need_no_intermediate_arrow) ... ok
+test_default_port_banks_stay_fixed_while_the_core_grows (test_connected_layout.ConnectedTests.test_default_port_banks_stay_fixed_while_the_core_grows) ... ok
+test_native_pair_shares_three_physical_input_contacts (test_connected_layout.ConnectedTests.test_native_pair_shares_three_physical_input_contacts) ... ok
+test_scopeinfo_with_electrical_connections_is_rejected (test_hierarchy.HierarchyTests.test_scopeinfo_with_electrical_connections_is_rejected) ... ok
+test_two_child_modules_synthesize_and_simulate (test_hierarchy.HierarchyTests.test_two_child_modules_synthesize_and_simulate) ... ok
+test_astar_cannot_route_behind_external_ports (test_logic_first_layout.LogicFirstTests.test_astar_cannot_route_behind_external_ports) ... ok
+test_astar_shortest_routes_with_jumps_and_obstacles (test_logic_first_layout.LogicFirstTests.test_astar_shortest_routes_with_jumps_and_obstacles) ... ok
+test_conflicting_nets_do_not_repeat_until_global_budget (test_logic_first_layout.LogicFirstTests.test_conflicting_nets_do_not_repeat_until_global_budget) ... ok
+test_fixed_ports_across_core_candidates_and_nonadder_truth_table (test_logic_first_layout.LogicFirstTests.test_fixed_ports_across_core_candidates_and_nonadder_truth_table) ... ok
+test_io_retry_restores_a_partially_routed_map (test_logic_first_layout.LogicFirstTests.test_io_retry_restores_a_partially_routed_map) ... ok
+test_isolated_sink_is_rejected_without_flooding_the_board (test_logic_first_layout.LogicFirstTests.test_isolated_sink_is_rejected_without_flooding_the_board) ... ok
+test_long_io_tails_do_not_change_logic_core_or_its_timing (test_logic_first_layout.LogicFirstTests.test_long_io_tails_do_not_change_logic_core_or_its_timing) ... ok
+test_auto_bus_spacing_preserves_order_and_exterior (test_native_mux_layout.NativeMuxTests.test_auto_bus_spacing_preserves_order_and_exterior) ... ok
+test_auto_separate_buses_and_generic_spacing (test_native_mux_layout.NativeMuxTests.test_auto_separate_buses_and_generic_spacing) ... ok
+test_cli_and_generic_graph_grouping (test_native_mux_layout.NativeMuxTests.test_cli_and_generic_graph_grouping) ... ok
+test_exhaustive_saved_maps_and_total_size (test_native_mux_layout.NativeMuxTests.test_exhaustive_saved_maps_and_total_size) ... ok
+test_explicit_groups_gap_validation_and_free_inputs (test_native_mux_layout.NativeMuxTests.test_explicit_groups_gap_validation_and_free_inputs) ... ok
+test_names_and_reversed_data_indices_are_not_templates (test_native_mux_layout.NativeMuxTests.test_names_and_reversed_data_indices_are_not_templates) ... ok
+test_non_mux_and_observed_internal_nodes_are_rejected (test_native_mux_layout.NativeMuxTests.test_non_mux_and_observed_internal_nodes_are_rejected) ... ok
+test_rotated_candidates_and_optional_two_row_strip (test_native_mux_layout.NativeMuxTests.test_rotated_candidates_and_optional_two_row_strip) ... ok
+test_three_by_two_blocks_and_touching_stages (test_native_mux_layout.NativeMuxTests.test_three_by_two_blocks_and_touching_stages) ... ok
+test_image_reconstruction_and_register_transitions (test_reference_and_native_mapping.ReferenceTests.test_image_reconstruction_and_register_transitions) ... ok
+test_observed_propagate_net_cannot_be_removed (test_reference_and_native_mapping.ReferenceTests.test_observed_propagate_net_cannot_be_removed) ... ok
+test_reference_core_is_an_exact_subset (test_reference_and_native_mapping.ReferenceTests.test_reference_core_is_an_exact_subset) ... ok
+test_three_bit_adder_is_not_a_fixed_eight_bit_template (test_reference_and_native_mapping.ReferenceTests.test_three_bit_adder_is_not_a_fixed_eight_bit_template) ... ok
+test_variable_frames_match_full_tick_simulation (test_reference_and_native_mapping.ReferenceTests.test_variable_frames_match_full_tick_simulation) ... ok
+test_constant_only_view_uses_board_bounds_when_core_is_empty (test_signal_view.SignalViewTests.test_constant_only_view_uses_board_bounds_when_core_is_empty) ... ok
+test_duplicate_inversions_share_logic_but_retain_output_contacts (test_signal_view.SignalViewTests.test_duplicate_inversions_share_logic_but_retain_output_contacts) ... ok
+test_each_input_bit_has_its_own_colour_and_neutral_sprites_keep_shape (test_signal_view.SignalViewTests.test_each_input_bit_has_its_own_colour_and_neutral_sprites_keep_shape) ... ok
+test_net_colour_changes_at_operator_but_input_dependency_survives (test_signal_view.SignalViewTests.test_net_colour_changes_at_operator_but_input_dependency_survives) ... ok
+test_red_splitter_has_three_outputs_and_one_shared_source (test_signal_view.SignalViewTests.test_red_splitter_has_three_outputs_and_one_shared_source) ... ok
+test_delay_detector_and_blocker (test_simulator.SimulatorTests.test_delay_detector_and_blocker) ... ok
+test_identity_and_failure_exit (test_simulator.SimulatorTests.test_identity_and_failure_exit) ... ok
+test_input_port_not_bypassed_by_ring_optimizer (test_simulator.SimulatorTests.test_input_port_not_bypassed_by_ring_optimizer) ... ok
+test_no_silent_unknown_elements_or_invalid_tests (test_simulator.SimulatorTests.test_no_silent_unknown_elements_or_invalid_tests) ... ok
+test_random_grid_against_scalar_simulation (test_simulator.SimulatorTests.test_random_grid_against_scalar_simulation) ... ok
+test_ring_optimization (test_simulator.SimulatorTests.test_ring_optimization) ... ok
+test_ring_write_clear_and_xor (test_simulator.SimulatorTests.test_ring_write_clear_and_xor) ... ok
+test_seeded_randomizer_is_reproducible (test_simulator.SimulatorTests.test_seeded_randomizer_is_reproducible) ... ok
+test_constants_and_parameterized_vector (test_verilog_compiler.CompilerTests.test_constants_and_parameterized_vector) ... ok
+test_determinism_and_explicit_cell_limit (test_verilog_compiler.CompilerTests.test_determinism_and_explicit_cell_limit) ... ok
+test_full_adder_table_and_every_transition (test_verilog_compiler.CompilerTests.test_full_adder_table_and_every_transition) ... ok
+test_half_adder_source_production_and_fixture (test_verilog_compiler.CompilerTests.test_half_adder_source_production_and_fixture) ... ok
+test_json_model_roundtrip_and_invalid_data (test_verilog_compiler.CompilerTests.test_json_model_roundtrip_and_invalid_data) ... ok
+test_masks_must_include_a_real_check_and_cannot_mask_inputs (test_verilog_compiler.CompilerTests.test_masks_must_include_a_real_check_and_cannot_mask_inputs) ... ok
+test_mux_bus_inversion_and_aliases (test_verilog_compiler.CompilerTests.test_mux_bus_inversion_and_aliases) ... ok
+test_reject_unsupported_and_undriven_verilog (test_verilog_compiler.CompilerTests.test_reject_unsupported_and_undriven_verilog) ... ok
+
+----------------------------------------------------------------------
+Ran 64 tests in 99.889s
+
+OK
+cells 411 counts {1: 105, 4: 8, 6: 4, 7: 21, 10: 36, 11: 3, 12: 84, 13: 5, 14: 10, 16: 56, 17: 16, 18: 24, 19: 18, 24: 21}
+lowest confidence [([0, 1], 'flipflop', 0.0), ([2, 1], 'flipflop', 0.0), ([4, 1], 'flipflop', 0.0), ([6, 1], 'flipflop', 0.0), ([8, 1], 'flipflop', 0.0), ([10, 1], 'flipflop', 0.0), ([12, 1], 'flipflop', 0.0), ([14, 1], 'flipflop', 0.0), ([-1, 2], 'blue_splitter_up_up', 0.0), ([1, 2], 'blue_splitter_up_up', 0.0), ([3, 2], 'blue_splitter_up_up', 0.0), ([5, 2], 'blue_splitter_up_up', 0.0), ([7, 2], 'blue_splitter_up_up', 0.0), ([9, 2], 'blue_splitter_up_up', 0.0), ([11, 2], 'blue_splitter_up_up', 0.0), ([15, 4], 'blue_splitter_up_up', 0.0), ([17, 4], 'blue_splitter_up_up', 0.0), ([19, 4], 'blue_splitter_up_up', 0.0), ([21, 4], 'blue_splitter_up_up', 0.0), ([23, 4], 'blue_splitter_up_up', 0.0)]

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "top": "alu8",
+  "source_sha256": "5e98717334e12b686906a7812ee93be53449ca0b99b1f86e8d183a9095e72fc0",
+  "compatible_with_current_frontend": true,
+  "modules": [
+    "alu8_add",
+    "alu8_arithmetic",
+    "alu8_logic",
+    "alu8_select",
+    "alu8"
+  ],
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "input_bits": 18,
+  "output_bits": 10,
+  "logic_nodes_including_output_buffers": 151,
+  "operations": {
+    "XOR": 33,
+    "AND": 58,
+    "NOT": 18,
+    "OR": 32,
+    "BUF": 10
+  },
+  "all_input_combinations": 262144,
+  "specification_proved_for_all_inputs": true,
+  "proof_method": "Yosys SAT, combinational",
+  "physical_arrow_map_built": false
+}

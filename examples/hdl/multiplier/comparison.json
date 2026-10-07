@@ -1,0 +1,74 @@
+[
+  {
+    "name": "mul2",
+    "input_bits": 2,
+    "values_per_input": 4,
+    "unique_pairs": 16,
+    "cells": 103,
+    "bounds": {
+      "min": [
+        -3,
+        -1
+      ],
+      "max": [
+        19,
+        8
+      ],
+      "width": 23,
+      "height": 10,
+      "area": 230
+    },
+    "settle_ticks": 31,
+    "passed": true,
+    "vectors": 32,
+    "checked_samples": 128
+  },
+  {
+    "name": "mul3",
+    "input_bits": 3,
+    "values_per_input": 8,
+    "unique_pairs": 64,
+    "cells": 359,
+    "bounds": {
+      "min": [
+        -4,
+        -3
+      ],
+      "max": [
+        35,
+        16
+      ],
+      "width": 40,
+      "height": 20,
+      "area": 800
+    },
+    "settle_ticks": 60,
+    "passed": true,
+    "vectors": 128,
+    "checked_samples": 768
+  },
+  {
+    "name": "mul4",
+    "input_bits": 4,
+    "values_per_input": 16,
+    "unique_pairs": 256,
+    "cells": 992,
+    "bounds": {
+      "min": [
+        -5,
+        -3
+      ],
+      "max": [
+        59,
+        31
+      ],
+      "width": 65,
+      "height": 35,
+      "area": 2275
+    },
+    "settle_ticks": 115,
+    "passed": true,
+    "vectors": 512,
+    "checked_samples": 4096
+  }
+]

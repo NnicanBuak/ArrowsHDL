@@ -1,0 +1,705 @@
+{
+  "schema": 1,
+  "top": "adder8",
+  "map_hash": "bd2fd2eba8da7e32cb6014b2e11ebb85586adf63adaa49ac53f5e1890d5f11cb",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "inputs": {
+    "a": [
+      {
+        "index": 0,
+        "contact": [
+          0,
+          0
+        ],
+        "fixture": [
+          0,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 1,
+        "contact": [
+          2,
+          0
+        ],
+        "fixture": [
+          2,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 2,
+        "contact": [
+          4,
+          0
+        ],
+        "fixture": [
+          4,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 3,
+        "contact": [
+          6,
+          0
+        ],
+        "fixture": [
+          6,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 4,
+        "contact": [
+          8,
+          0
+        ],
+        "fixture": [
+          8,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 5,
+        "contact": [
+          10,
+          0
+        ],
+        "fixture": [
+          10,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 6,
+        "contact": [
+          12,
+          0
+        ],
+        "fixture": [
+          12,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 7,
+        "contact": [
+          14,
+          0
+        ],
+        "fixture": [
+          14,
+          -1
+        ],
+        "rotation": 2
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "contact": [
+          0,
+          3
+        ],
+        "fixture": [
+          0,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          2,
+          3
+        ],
+        "fixture": [
+          2,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          4,
+          3
+        ],
+        "fixture": [
+          4,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "contact": [
+          6,
+          3
+        ],
+        "fixture": [
+          6,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 4,
+        "contact": [
+          8,
+          3
+        ],
+        "fixture": [
+          8,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 5,
+        "contact": [
+          10,
+          3
+        ],
+        "fixture": [
+          10,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 6,
+        "contact": [
+          12,
+          3
+        ],
+        "fixture": [
+          12,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 7,
+        "contact": [
+          14,
+          3
+        ],
+        "fixture": [
+          14,
+          4
+        ],
+        "rotation": 0
+      }
+    ],
+    "cin": [
+      {
+        "index": 0,
+        "contact": [
+          -1,
+          2
+        ],
+        "fixture": [
+          -2,
+          2
+        ],
+        "rotation": 1
+      }
+    ]
+  },
+  "outputs": {
+    "cout": [
+      {
+        "index": 0,
+        "contact": [
+          16,
+          2
+        ],
+        "fixture": [
+          17,
+          2
+        ],
+        "rotation": 0
+      }
+    ],
+    "sum": [
+      {
+        "index": 0,
+        "contact": [
+          1,
+          3
+        ],
+        "fixture": [
+          1,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          3,
+          3
+        ],
+        "fixture": [
+          3,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          5,
+          3
+        ],
+        "fixture": [
+          5,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "contact": [
+          7,
+          3
+        ],
+        "fixture": [
+          7,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 4,
+        "contact": [
+          9,
+          3
+        ],
+        "fixture": [
+          9,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 5,
+        "contact": [
+          11,
+          3
+        ],
+        "fixture": [
+          11,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 6,
+        "contact": [
+          13,
+          3
+        ],
+        "fixture": [
+          13,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 7,
+        "contact": [
+          15,
+          3
+        ],
+        "fixture": [
+          15,
+          4
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "settle_ticks": 20,
+  "cells": 58,
+  "layout": "compact-native-adder-v1",
+  "port_layout": "parallel-bit-slices",
+  "bounds": {
+    "min": [
+      -1,
+      0
+    ],
+    "max": [
+      16,
+      3
+    ],
+    "width": 18,
+    "height": 4,
+    "area": 72
+  },
+  "adder_bits": 8,
+  "logic_core": {
+    "cells": 23,
+    "gates": 16,
+    "bounds": {
+      "min": [
+        0,
+        1
+      ],
+      "max": [
+        14,
+        2
+      ],
+      "width": 15,
+      "height": 2,
+      "area": 30
+    },
+    "ticks": 15,
+    "excluded_io_cells": 35
+  },
+  "gate_labels": [
+    {
+      "at": [
+        0,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$113"
+    },
+    {
+      "at": [
+        0,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$116"
+    },
+    {
+      "at": [
+        1,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:0"
+    },
+    {
+      "at": [
+        2,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$118"
+    },
+    {
+      "at": [
+        2,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$121"
+    },
+    {
+      "at": [
+        3,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:1"
+    },
+    {
+      "at": [
+        4,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$123"
+    },
+    {
+      "at": [
+        4,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$126"
+    },
+    {
+      "at": [
+        5,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:2"
+    },
+    {
+      "at": [
+        6,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$128"
+    },
+    {
+      "at": [
+        6,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$131"
+    },
+    {
+      "at": [
+        7,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:3"
+    },
+    {
+      "at": [
+        8,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$133"
+    },
+    {
+      "at": [
+        8,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$136"
+    },
+    {
+      "at": [
+        9,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:4"
+    },
+    {
+      "at": [
+        10,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$138"
+    },
+    {
+      "at": [
+        10,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$141"
+    },
+    {
+      "at": [
+        11,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:5"
+    },
+    {
+      "at": [
+        12,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$143"
+    },
+    {
+      "at": [
+        12,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$146"
+    },
+    {
+      "at": [
+        13,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:6"
+    },
+    {
+      "at": [
+        14,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$148"
+    },
+    {
+      "at": [
+        14,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$151"
+    },
+    {
+      "at": [
+        15,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:7"
+    },
+    {
+      "at": [
+        16,
+        2
+      ],
+      "op": "BUF",
+      "id": "port:cout:0"
+    }
+  ],
+  "optimization": {
+    "objective": "native_threshold_and_parity_bit_slices",
+    "logical_gates_per_bit": 2,
+    "io_in_objective": false
+  },
+  "logic_nodes": 49,
+  "technology_nodes": 25,
+  "technology_mapping": [
+    {
+      "kind": "full_adder",
+      "a": "n2",
+      "b": "n10",
+      "cin": "n18",
+      "sum": "n19",
+      "cout": "n31",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$113",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$116",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$112",
+        "$auto$simplemap.cc:106:simplemap_bitop$114",
+        "$auto$simplemap.cc:106:simplemap_bitop$115"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n3",
+      "b": "n11",
+      "cin": "n31",
+      "sum": "n20",
+      "cout": "n35",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$118",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$121",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$117",
+        "$auto$simplemap.cc:106:simplemap_bitop$119",
+        "$auto$simplemap.cc:106:simplemap_bitop$120"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n4",
+      "b": "n12",
+      "cin": "n35",
+      "sum": "n21",
+      "cout": "n39",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$123",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$126",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$122",
+        "$auto$simplemap.cc:106:simplemap_bitop$124",
+        "$auto$simplemap.cc:106:simplemap_bitop$125"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n5",
+      "b": "n13",
+      "cin": "n39",
+      "sum": "n22",
+      "cout": "n43",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$128",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$131",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$127",
+        "$auto$simplemap.cc:106:simplemap_bitop$129",
+        "$auto$simplemap.cc:106:simplemap_bitop$130"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n6",
+      "b": "n14",
+      "cin": "n43",
+      "sum": "n23",
+      "cout": "n47",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$133",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$136",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$132",
+        "$auto$simplemap.cc:106:simplemap_bitop$134",
+        "$auto$simplemap.cc:106:simplemap_bitop$135"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n7",
+      "b": "n15",
+      "cin": "n47",
+      "sum": "n24",
+      "cout": "n51",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$138",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$141",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$137",
+        "$auto$simplemap.cc:106:simplemap_bitop$139",
+        "$auto$simplemap.cc:106:simplemap_bitop$140"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n8",
+      "b": "n16",
+      "cin": "n51",
+      "sum": "n25",
+      "cout": "n55",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$143",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$146",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$142",
+        "$auto$simplemap.cc:106:simplemap_bitop$144",
+        "$auto$simplemap.cc:106:simplemap_bitop$145"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n9",
+      "b": "n17",
+      "cin": "n55",
+      "sum": "n26",
+      "cout": "n27",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$148",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$151",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$147",
+        "$auto$simplemap.cc:106:simplemap_bitop$149",
+        "$auto$simplemap.cc:106:simplemap_bitop$150"
+      ]
+    }
+  ],
+  "source_sha256": "be942df682b1a73c9a489c5843fc55f7b065eec9eb589c2a5629677724c78ac9",
+  "source": "adder8.v",
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "logic_sha256": "55164f820583d744f201f586f4ab0bea2328d9db2b41e2e23918cb1de700b902"
+}

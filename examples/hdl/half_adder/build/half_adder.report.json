@@ -1,0 +1,1009 @@
+{
+  "checked_samples": 72,
+  "failure_count": 0,
+  "failures": [],
+  "frame_ticks": null,
+  "hold_ticks": 1,
+  "nodes": 12,
+  "optimized_cycles": 0,
+  "outputs": [
+    {
+      "at": [
+        3,
+        2
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "at": [
+        1,
+        4
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "passed": true,
+  "profile": "GraphDLC-01232bd",
+  "ticks": 216,
+  "verified_against_current_game": false,
+  "vectors": 36,
+  "settle_ticks": 6,
+  "truth_table": [
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 1
+      },
+      "actual": {
+        "o_carry": 1,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 1
+      },
+      "actual": {
+        "o_carry": 1,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 1
+      },
+      "actual": {
+        "o_carry": 1,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 1
+      },
+      "actual": {
+        "o_carry": 1,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 1
+      },
+      "actual": {
+        "o_carry": 1,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 1
+      },
+      "actual": {
+        "o_carry": 1,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 0,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 1
+      },
+      "actual": {
+        "o_carry": 1,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 0
+      },
+      "expected": {
+        "o_sum": 1,
+        "o_carry": 0
+      },
+      "actual": {
+        "o_carry": 0,
+        "o_sum": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 1
+      },
+      "actual": {
+        "o_carry": 1,
+        "o_sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "i_bit1": 1,
+        "i_bit2": 1
+      },
+      "expected": {
+        "o_sum": 0,
+        "o_carry": 1
+      },
+      "actual": {
+        "o_carry": 1,
+        "o_sum": 0
+      },
+      "passed": true
+    }
+  ],
+  "production_cells": 8,
+  "fixture_cells": 4
+}

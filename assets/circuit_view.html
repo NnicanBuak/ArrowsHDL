@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ArrowsHDL</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:14px system-ui,sans-serif;color:#24354c;background:#f5f7fb}header{padding:16px 22px;border-bottom:1px solid #dce3ed;background:white}h1{font-size:22px;margin:0 0 5px}h2{font-size:18px}p{margin:5px 0;line-height:1.5;color:#53637a}.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}button,select{font:inherit;background:white;border:1px solid #c7d1e0;border-radius:6px;padding:7px 10px;color:#24354c}button{cursor:pointer}button:hover{background:#e8eef9}button.active{background:#2d5aa0;color:white;border-color:#2d5aa0}main{display:grid;grid-template-columns:minmax(0,1fr) 330px;min-height:calc(100vh - 168px)}.board{position:relative;min-height:560px;background:white;overflow:hidden}canvas{width:100%;height:100%;position:absolute;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}.hint{position:absolute;bottom:10px;left:14px;pointer-events:none;background:#ffffffdf;padding:5px 8px;border-radius:4px;font-size:12px;color:#55677f}.sidebar{border-left:1px solid #dce3ed;padding:17px;overflow-wrap:anywhere}.sidebar h2{font-size:16px;margin:12px 0 9px}.swatch{display:inline-block;width:12px;height:12px;vertical-align:middle;border-radius:2px;margin-right:7px}.badge{display:inline-block;border:1px solid #d4ddea;border-radius:4px;padding:3px 5px;margin:2px;font-size:12px}#detail{margin-top:18px}#detail p{margin:8px 0}.net-button{display:block;width:100%;text-align:left;margin:6px 0}.sources-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.source-row{display:flex;gap:4px;align-items:center}.source-row button{padding:4px 5px;margin:0;flex:1;text-align:left}.port-icon{width:23px;height:23px;vertical-align:middle;margin-right:4px;transform:rotate(90deg)}#status{font-size:12px;color:#53637a;line-height:1.5;margin-top:20px}#module-view{background:#f6f8fb;padding:20px;min-width:0}#module-view svg{max-width:100%;height:auto;display:block}details{background:white;border:1px solid #d7dfeb;border-radius:7px;margin:14px 0;padding:12px}summary{font-weight:600;cursor:pointer}.module-sheet{max-height:600px;overflow:auto;margin-top:12px}.module-sheet svg{max-width:none}#module-overview{overflow:auto;background:white;border:1px solid #d7dfeb;border-radius:7px}[hidden]{display:none!important}@media(max-width:850px){main{grid-template-columns:1fr}.sidebar{border-left:0;border-top:1px solid #dce3ed}.board{min-height:65vh}}
+</style>
+<style>#metrics,#status,#detail,.hint,.sidebar>h2,.sidebar>p,#module-view>h2,#module-view>p{display:none}.board{background:#101925}.toolbar{margin-top:8px}</style>
+<header><h1 id="title"></h1><p id="metrics"></p><div class="toolbar">
+<button id="modules">Modules</button><button id="physical">Map</button>
+<label>View <select id="mode"><option value="routing">Routing</option><option value="nets">Nets</option><option value="values">0/1</option></select></label>
+<label>Module <select id="modulefilter"><option value="">All</option></select></label>
+<label>Bus <select id="bus"><option value="">All</option></select></label>
+<label>Bit <select id="bit"><option value="">All</option></select></label>
+<button id="core">Core</button><button id="full" class="active">Full</button><button id="clear">Reset</button>
+</div></header>
+<main><div id="physical-view" class="board"><canvas id="map"></canvas><div class="hint">Колесо — масштаб · перетаскивание — сдвиг · клик — сигнал или оператор</div></div>
+<div id="module-view" hidden><h2>Модули HDL и связи между ними</h2><p>Каждый модуль показан отдельно. Внутри — граф операций с условными координатами; физическая карта доступна рядом.</p><div id="module-overview"></div><div id="sheets"></div></div>
+<aside class="sidebar"><h2>Как читать</h2><p><b>Яркий фон</b> обозначает сигнал; исходные цвета и формы стрелок сохранены. После вентиля — один новый сигнал, без смешивания цветов.</p><p>В «Значениях 0/1» фон показывает результат вентиля. Изменяйте входные биты ниже: вычисляются установившиеся значения, без моделирования задержек стрелок.</p><p>Source/Target обозначают входы/выходы в просмотре. Сохранение схемы остаётся без тестовой обвязки.</p><div id="legend"></div><div id="ports"></div><div id="detail"><p>Выберите стрелку или модуль.</p></div><div id="status"></div></aside></main>
+<script id="data" type="application/json">__MAP_DATA__</script>
+<script>
+const data=JSON.parse(document.getElementById('data').textContent),$=id=>document.getElementById(id);
+const canvas=$('map'),ctx=canvas.getContext('2d'),nets=data.nets,byId=new Map(nets.map((n,i)=>[n.id,i]));
+const drawnCells=[...data.cells,...data.markers],byPos=new Map(drawnCells.map(c=>[c.at.join(','),c]));
+const images=new Map(),links=nets.flatMap((n,i)=>n.edges.map(([a,b])=>({a,b,net:i})));
+for(const m of data.markers)links.push({a:m.kind==='inputs'?m.at:m.contact,b:m.kind==='inputs'?m.contact:m.at,net:m.net});
+const sourceStates=new Map(data.sources.map(s=>[s.net,0])),memo=new Map();
+let scale=34,dx=0,dy=0,selected=new Set(),whole=true,drag=null,ready=false,moduleMode=data.modules.length>1;
+const esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const core=data.core,coreBounds=core?.bounds?.min?core.bounds:data.bounds;
+$('title').textContent=data.top;
+$('metrics').textContent=core?`Ядро: ${core.cells} стрелок · ${core.bounds.width}×${core.bounds.height} · глубина ${core.ticks} тик. Карта: ${data.cells.length}; обозначения портов: ${data.markers.length}.`:`${data.cells.length} стрелок`;
+$('status').textContent='Геометрия карты — из сохранения. Граф модулей и логические значения — из метаданных компилятора. Проверка временной модели: GraphDLC-01232bd.';
+for(const b of data.buses)$('bus').add(new Option(b.name,b.name));
+for(const m of data.modules)$('modulefilter').add(new Option(m.id,m.id));
+function routing(){return $('mode').value==='routing'}
+function valueOf(id,visiting=new Set()){
+ if(memo.has(id))return memo.get(id);if(id==='const0')return 0;if(id==='const1')return 1;
+ if(sourceStates.has(id))return sourceStates.get(id);
+ const n=nets[byId.get(id)];if(!n?.driver||visiting.has(id))return null;
+ visiting.add(id);const a=n.inputs.map(p=>valueOf(p,visiting));visiting.delete(id);
+ let v=null;if(!a.includes(null)){switch(n.driver.op){case 'BUF':v=a[0];break;case 'NOT':v=1-a[0];break;case 'AND':v=Number(a.every(Boolean));break;case 'OR':v=Number(a.some(Boolean));break;case 'XOR':v=a.reduce((x,y)=>x^y,0);break;case 'MAJ':v=Number(a.reduce((x,y)=>x+y,0)>=2);break}}
+ memo.set(id,v);return v;
+}
+function colors(n){if($('mode').value==='values'){const v=valueOf(n.id);return[v===1?'#8cff69':v===0?'#9ecfff':'#ffe58a']}return[routing()?n.route_color:n.color]}
+function sourceSwatches(n){return `<span class="swatch" style="background:${colors(n)[0]}"></span>`}
+function icon(type){return `<img class="port-icon" src="${data.sprites[type]}" alt="${type===22?'Source':'Target'}">`}
+function legend(){
+ $('legend').innerHTML='<div class="sources-grid">'+data.sources.map(s=>`<div class="source-row"><input type="checkbox" data-value="${esc(s.id)}" aria-label="Значение ${esc(s.label)}" ${sourceStates.get(s.net)?'checked':''}><button data-source="${esc(s.id)}" style="background:${s.color}">${icon(22)}${esc(s.label)}</button></div>`).join('')+'</div>';
+ $('ports').innerHTML=''+data.markers.filter(m=>m.kind==='outputs').map(m=>`<button class="net-button" style="background:${colors(nets[m.net])[0]}" data-target="${m.net}">${icon(23)}${esc(m.label)}</button>`).join('');
+}
+function chooseSource(id){const s=data.sources.find(s=>s.id===id);if(!s)return;$('bus').value=s.bus;$('bus').onchange();$('bit').value=String(s.bit);$('bit').onchange();$('detail').innerHTML=`<h2>Источник ${esc(s.label)}</h2><p>Выделены все сигналы, которые зависят от этого входа. После вентиля цвет нового сигнала остаётся отдельным.</p>`}
+$('legend').onclick=e=>{const b=e.target.closest('[data-source]');if(b)chooseSource(b.dataset.source)};
+$('legend').onchange=e=>{const id=e.target.dataset.value,s=data.sources.find(s=>s.id===id);if(!s)return;sourceStates.set(s.net,Number(e.target.checked));memo.clear();legend();draw();renderModules()};
+$('ports').onclick=e=>{const b=e.target.closest('[data-target]');if(b)showNet(Number(b.dataset.target),true)};
+function highlight(n,i){if(selected.size&&!selected.has(i))return false;const bus=$('bus').value,bit=$('bit').value;return !bus||n.origins.some(o=>o.bus===bus&&(bit===''||o.bit===Number(bit)))}
+function center(p){return[dx+(p[0]+.5)*scale,dy+(p[1]+.5)*scale]}
+function fit(){const b=whole?data.bounds:coreBounds,w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;scale=Math.min(52,(w-65)/(b.width+4),(h-65)/(b.height+4));dx=w/2-(b.min[0]+b.width/2)*scale;dy=h/2-(b.min[1]+b.height/2)*scale;draw()}
+function draw(){
+ if(!ready)return;const w=canvas.clientWidth,h=canvas.clientHeight,dpr=devicePixelRatio||1;
+ canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);ctx.fillStyle='#101925';ctx.fillRect(0,0,w,h);
+ if(scale>=11){ctx.strokeStyle='#243447';ctx.lineWidth=.6;ctx.beginPath();for(let x=((dx%scale)+scale)%scale;x<w;x+=scale){ctx.moveTo(x,0);ctx.lineTo(x,h)}for(let y=((dy%scale)+scale)%scale;y<h;y+=scale){ctx.moveTo(0,y);ctx.lineTo(w,y)}ctx.stroke()}
+ for(const e of links){const n=nets[e.net],a=center(e.a),b=center(e.b);ctx.globalAlpha=highlight(n,e.net)?1:.08;ctx.strokeStyle=colors(n)[0];ctx.lineWidth=Math.max(1.5,scale*.06);ctx.setLineDash(Math.max(Math.abs(e.a[0]-e.b[0]),Math.abs(e.a[1]-e.b[1]))>1?[scale*.13,scale*.12]:[]);ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke()}
+ ctx.setLineDash([]);
+ for(const c of drawnCells){const x=dx+c.at[0]*scale,y=dy+c.at[1]*scale;if(x+scale<0||x>w||y+scale<0||y>h)continue;const n=nets[c.net],active=highlight(n,c.net);ctx.globalAlpha=(active?1:.12)*((c.logic_gate||c.kind)? .75:.38);ctx.fillStyle=colors(n)[0];ctx.fillRect(x+1,y+1,scale-2,scale-2);ctx.globalAlpha=active?1:.12;const img=images.get(c.type);if(img){ctx.save();ctx.translate(x+scale/2,y+scale/2);ctx.rotate(c.rotation*Math.PI/2);if(c.mirrored)ctx.scale(-1,1);ctx.filter=c.logic_gate||c.kind?'none':'brightness(80%)';ctx.drawImage(img,-scale*.39,-scale*.39,scale*.78,scale*.78);ctx.restore()}if(c.logic_gate){ctx.strokeStyle='#ffffff';ctx.lineWidth=1;ctx.strokeRect(x+1.5,y+1.5,scale-3,scale-3)}}
+ ctx.globalAlpha=1;ctx.strokeStyle='#ffffff';ctx.lineWidth=1;
+ for(const b of data.module_blocks){ctx.strokeRect(dx+b.at[0]*scale+1,dy+b.at[1]*scale+1,b.width*scale-2,b.height*scale-2)}
+}
+function buttonNet(i,label){return `<button class="net-button" data-net="${i}">${sourceSwatches(nets[i])}${esc(label||nets[i].label)} = ${valueOf(nets[i].id)??'?'}</button>`}
+function showNet(i,ancestors=false){selected=new Set([i]);const n=nets[i];if(ancestors){const todo=[n.id];while(todo.length){const p=nets[byId.get(todo.pop())];if(!p)continue;for(const id of p.inputs){const j=byId.get(id);if(j!==undefined&&!selected.has(j)){selected.add(j);todo.push(id)}}}}$('detail').innerHTML=`<h2>Сигнал ${esc(n.label)}</h2><p>${esc(n.id)} · значение ${valueOf(n.id)??'?'} · ${n.cells.length} стрелок</p><p>${n.aliases.map(esc).join(', ')}</p><p>Зависит от: ${n.origins.map(o=>`${esc(o.bus)}[${o.bit}]`).join(', ')||'константа'}</p>`;draw();renderModules()}
+function showCell(c){
+ if(c.kind==='inputs'){chooseSource(c.source);return}if(c.kind==='outputs'){showNet(c.net,true);return}
+ const n=nets[c.net],g=c.gate;selected=new Set([c.net]);let html=`<h2>${g?'Оператор '+esc(g.op):'Стрелка '+c.type}</h2><p>Клетка (${c.at.join(', ')}) · тип ${c.type}</p>`;
+ if(g){const incoming=n.inputs.map(id=>byId.get(id)).filter(i=>i!==undefined);incoming.forEach(i=>selected.add(i));html+=`<p><b>Модуль:</b> ${esc(g.scope)}<br><b>Исходник:</b> ${esc(g.source||'—')}</p><p><b>Входные сигналы</b></p>`+incoming.map(i=>buttonNet(i)).join('')+`<p><b>Выход:</b> ${esc(g.op)}(${n.inputs.map(id=>valueOf(id)??'?').join(', ')}) = <b>${valueOf(n.id)??'?'}</b></p>`+buttonNet(c.net)}else html+=buttonNet(c.net);
+ const outs=links.filter(e=>e.a[0]===c.at[0]&&e.a[1]===c.at[1]).map(e=>`(${e.b.join(', ')})`),ins=links.filter(e=>e.b[0]===c.at[0]&&e.b[1]===c.at[1]).map(e=>`(${e.a.join(', ')})`);
+ html+=`<p><b>Физические входы:</b> ${ins.join('; ')||'—'}<br><b>Физические выходы:</b> ${outs.join('; ')||'—'}</p>`;$('detail').innerHTML=html;draw();renderModules();
+}
+$('detail').onclick=e=>{const b=e.target.closest('[data-net]');if(b)showNet(Number(b.dataset.net))};
+function svgIcon(type,x,y){return `<image href="${data.sprites[type]}" x="${x}" y="${y}" width="30" height="30" transform="rotate(90 ${x+15} ${y+15})"/>`}
+function moduleSheet(m){
+ const own=new Set(m.nodes),positions=new Map(),levels=new Map(),rows=new Map();
+ function level(id,seen=new Set()){if(!own.has(id))return 0;if(levels.has(id))return levels.get(id);if(seen.has(id))return 0;seen.add(id);const n=nets[byId.get(id)],l=1+Math.max(0,...n.inputs.map(p=>level(p,new Set(seen))));levels.set(id,l);return l}
+ const items=[...m.inputs.map(id=>({id,role:'input',level:0})),...m.nodes.map(id=>({id,role:'gate',level:level(id)}))];
+ const last=1+Math.max(1,...levels.values());items.push(...m.outputs.map(id=>({id,role:'output',level:last})));
+ for(const item of items){const row=rows.get(item.level)||0;rows.set(item.level,row+1);item.x=20+item.level*175;item.y=25+row*75;positions.set(item.role==='output'?'out:'+item.id:item.id,item)}
+ const width=(last+1)*175+30,height=Math.max(1,...rows.values())*75+40;let paths='',nodes='';
+ function edge(id,target){const p=positions.get(id),q=positions.get(target);if(!p||!q)return;const n=nets[byId.get(id)],i=byId.get(id);paths+=`<path d="M ${p.x+125} ${p.y+25} C ${p.x+150} ${p.y+25}, ${q.x-25} ${q.y+25}, ${q.x} ${q.y+25}" fill="none" stroke="${colors(n)[0]}" stroke-width="3" opacity="${highlight(n,i)?1:.12}"/>`}
+ for(const id of m.nodes){const n=nets[byId.get(id)];for(const p of n.inputs)edge(p,id)}for(const id of m.outputs)edge(id,'out:'+id);
+ for(const item of items){const i=byId.get(item.id),n=nets[i];if(!n)continue;const driver=n.driver,type=item.role==='input'?22:item.role==='output'?23:(data.cells.find(c=>c.gate?.id===driver.id)?.type||1),label=item.role==='gate'?`${driver.op==='MAJ'?'≥2':driver.op} · ${n.label}`:n.label;nodes+=`<g data-net="${i}" style="cursor:pointer" opacity="${highlight(n,i)?1:.15}"><title>${esc(n.label)} = ${valueOf(n.id)??'?'}</title><rect x="${item.x}" y="${item.y}" width="125" height="52" rx="5" fill="${colors(n)[0]}" stroke="#727e91"/>${svgIcon(type,item.x+4,item.y+4)}</g>`}
+ return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${paths}${nodes}</svg>`;
+}
+function renderModules(){
+ const groups=data.modules,stage=new Map();let pending=groups.slice();while(pending.length){const ready=pending.filter(m=>m.parents.every(p=>stage.has(p)));if(!ready.length){pending.forEach(m=>stage.set(m.id,0));break}for(const m of ready)stage.set(m.id,1+Math.max(-1,...m.parents.map(p=>stage.get(p))));pending=pending.filter(m=>!ready.includes(m))}
+ const rows=new Map(),pos=new Map();for(const m of groups){const l=stage.get(m.id),r=rows.get(l)||0;rows.set(l,r+1);pos.set(m.id,[30+l*270,30+r*140])}
+ const width=(1+Math.max(0,...stage.values()))*270+30,height=Math.max(1,...rows.values())*140+20;let paths='',boxes='';
+ for(const m of groups){const[x,y]=pos.get(m.id);for(const parent of m.parents){const[a,b]=pos.get(parent);paths+=`<path d="M ${a+205} ${b+45} C ${a+235} ${b+45}, ${x-30} ${y+45}, ${x} ${y+45}" stroke="#63748d" stroke-width="3" fill="none"/>`}boxes+=`<g data-module="${esc(m.id)}" style="cursor:pointer"><rect x="${x}" y="${y}" width="205" height="95" rx="8" fill="white" stroke="#8798b2"/>${svgIcon(22,x+5,y+33)}${svgIcon(23,x+169,y+33)}</g>`}
+ $('module-overview').innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${paths}${boxes}</svg>`;
+ const selectedModule=$('modulefilter').value,open=new Set($('sheets').querySelectorAll?Array.from($('sheets').querySelectorAll('details[open]')).map(d=>d.dataset.module):[]);
+ $('sheets').innerHTML=groups.filter(m=>!selectedModule||m.id===selectedModule).map(m=>`<details data-module="${esc(m.id)}" ${open.has(m.id)||selectedModule?'open':''}><summary>${esc(m.id)}</summary><div class="module-sheet">${moduleSheet(m)}</div></details>`).join('');
+}
+$('module-overview').onclick=e=>{const g=e.target.closest('[data-module]');if(g){$('modulefilter').value=g.dataset.module;$('modulefilter').onchange()}};
+$('sheets').onclick=e=>{const g=e.target.closest('[data-net]');if(g)showNet(Number(g.dataset.net))};
+function selectModule(){selected.clear();const m=data.modules.find(m=>m.id===$('modulefilter').value);if(m)for(const id of [...m.nodes,...m.inputs]){const i=byId.get(id);if(i!==undefined)selected.add(i)}draw();renderModules()}
+$('modulefilter').onchange=selectModule;
+function viewModules(on){moduleMode=on;$('module-view').hidden=!on;$('physical-view').hidden=on;$('modules').classList[on?'add':'remove']('active');$('physical').classList[on?'remove':'add']('active');if(on)renderModules();else fit()}
+$('modules').onclick=()=>viewModules(true);$('physical').onclick=()=>viewModules(false);
+$('mode').onchange=()=>{selected.clear();selectModule();legend();$('detail').innerHTML='<p>Выберите стрелку, источник или модуль.</p>';draw();renderModules()};
+$('bus').onchange=()=>{$('bit').replaceChildren(new Option('All',''));const b=data.buses.find(b=>b.name===$('bus').value);for(const bit of b?.bits||[])$('bit').add(new Option(String(bit),String(bit)));selected.clear();draw();renderModules()};$('bit').onchange=()=>{selected.clear();draw();renderModules()};
+$('core').onclick=()=>{whole=false;viewModules(false);$('core').classList.add('active');$('full').classList.remove('active');fit()};$('full').onclick=()=>{whole=true;viewModules(false);$('full').classList.add('active');$('core').classList.remove('active');fit()};
+$('clear').onclick=()=>{selected.clear();$('modulefilter').value='';$('bus').value='';$('bit').replaceChildren(new Option('All',''));$('detail').innerHTML='<p>Выберите стрелку или модуль.</p>';draw();renderModules()};
+canvas.onpointerdown=e=>{canvas.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY,dx,dy,moved:false}};
+canvas.onpointermove=e=>{if(!drag)return;const x=e.clientX-drag.x,y=e.clientY-drag.y;drag.moved||=Math.abs(x)+Math.abs(y)>5;dx=drag.dx+x;dy=drag.dy+y;draw()};
+canvas.onpointerup=e=>{if(!drag)return;if(!drag.moved){const r=canvas.getBoundingClientRect(),point=[Math.floor((e.clientX-r.left-dx)/scale),Math.floor((e.clientY-r.top-dy)/scale)],c=byPos.get(point.join(','));if(c)showCell(c)}drag=null};canvas.onpointercancel=()=>drag=null;
+canvas.addEventListener('wheel',e=>{e.preventDefault();const r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,s=Math.min(115,Math.max(3,scale*Math.exp(-e.deltaY*.001)));dx=x-(x-dx)*s/scale;dy=y-(y-dy)*s/scale;scale=s;draw()},{passive:false});
+Promise.all(Object.entries(data.sprites).map(([type,src])=>new Promise(resolve=>{const img=new Image();img.onload=()=>{images.set(Number(type),img);resolve()};img.onerror=resolve;img.src=src}))).then(()=>{ready=true;legend();renderModules();new ResizeObserver(fit).observe(canvas.parentElement);viewModules(moduleMode);fit()});
+</script></html>

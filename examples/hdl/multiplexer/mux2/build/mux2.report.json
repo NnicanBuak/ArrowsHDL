@@ -1,0 +1,253 @@
+{
+  "checked_samples": 16,
+  "failure_count": 0,
+  "failures": [],
+  "frame_ticks": null,
+  "hold_ticks": 7,
+  "nodes": 13,
+  "optimized_cycles": 0,
+  "outputs": [
+    {
+      "at": [
+        4,
+        2
+      ],
+      "values": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "passed": true,
+  "profile": "GraphDLC-01232bd",
+  "ticks": 112,
+  "verified_against_current_game": false,
+  "vectors": 16,
+  "settle_ticks": 7,
+  "truth_table": [
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    }
+  ],
+  "production_cells": 9,
+  "fixture_cells": 4
+}

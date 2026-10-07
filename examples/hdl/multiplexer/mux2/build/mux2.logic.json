@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "top": "mux2",
+  "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "inputs": {
+    "data": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      }
+    ],
+    "sel": [
+      {
+        "index": 0,
+        "net": "n4"
+      }
+    ]
+  },
+  "outputs": {
+    "y": [
+      {
+        "index": 0,
+        "net": "port:y:0"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$86:select",
+      "op": "NOT",
+      "inputs": [
+        "n4"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$86:s",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$86:b",
+      "op": "AND",
+      "inputs": [
+        "n3",
+        "n4"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$86:b",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$86:a",
+      "op": "AND",
+      "inputs": [
+        "n2",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$86:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$86:a",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$86",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$86:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$86:b"
+      ],
+      "output": "n5",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "port:y:0",
+      "op": "BUF",
+      "inputs": [
+        "n5"
+      ],
+      "output": "port:y:0",
+      "origin": null
+    }
+  ]
+}

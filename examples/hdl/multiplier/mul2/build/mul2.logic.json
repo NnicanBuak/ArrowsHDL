@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "top": "mul2",
+  "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "inputs": {
+    "a": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "net": "n4"
+      },
+      {
+        "index": 1,
+        "net": "n5"
+      }
+    ]
+  },
+  "outputs": {
+    "product": [
+      {
+        "index": 0,
+        "net": "port:product:0"
+      },
+      {
+        "index": 1,
+        "net": "port:product:1"
+      },
+      {
+        "index": 2,
+        "net": "port:product:2"
+      },
+      {
+        "index": 3,
+        "net": "port:product:3"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$86",
+      "op": "AND",
+      "inputs": [
+        "n2",
+        "n5"
+      ],
+      "output": "n10",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$87",
+      "op": "AND",
+      "inputs": [
+        "n3",
+        "n5"
+      ],
+      "output": "n13",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$89",
+      "op": "AND",
+      "inputs": [
+        "n2",
+        "n4"
+      ],
+      "output": "n6",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$90",
+      "op": "AND",
+      "inputs": [
+        "n3",
+        "n4"
+      ],
+      "output": "n11",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$139",
+      "op": "AND",
+      "inputs": [
+        "n10",
+        "n11"
+      ],
+      "output": "n12",
+      "origin": "/share/techmap.v:292.26-292.70|/share/techmap.v:205.26-205.31"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$143",
+      "op": "XOR",
+      "inputs": [
+        "n10",
+        "n11"
+      ],
+      "output": "n7",
+      "origin": "/share/techmap.v:292.26-292.70|/share/techmap.v:205.14-205.19"
+    },
+    {
+      "id": "port:product:0",
+      "op": "BUF",
+      "inputs": [
+        "n6"
+      ],
+      "output": "port:product:0",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$152",
+      "op": "AND",
+      "inputs": [
+        "n13",
+        "n12"
+      ],
+      "output": "n9",
+      "origin": "/share/techmap.v:293.27-293.63|/share/techmap.v:248.19-248.41"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$95",
+      "op": "XOR",
+      "inputs": [
+        "n13",
+        "n12"
+      ],
+      "output": "n8",
+      "origin": "/share/techmap.v:296.13-296.25"
+    },
+    {
+      "id": "port:product:1",
+      "op": "BUF",
+      "inputs": [
+        "n7"
+      ],
+      "output": "port:product:1",
+      "origin": null
+    },
+    {
+      "id": "port:product:2",
+      "op": "BUF",
+      "inputs": [
+        "n8"
+      ],
+      "output": "port:product:2",
+      "origin": null
+    },
+    {
+      "id": "port:product:3",
+      "op": "BUF",
+      "inputs": [
+        "n9"
+      ],
+      "output": "port:product:3",
+      "origin": null
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "vectors": 868,
+  "checked_samples": 6944,
+  "ticks": 123256,
+  "batches": 1,
+  "failure_count": 0,
+  "failures": [],
+  "settle_ticks": 142,
+  "production_cells": 1051,
+  "fixture_cells": 16,
+  "profile": "GraphDLC-01232bd",
+  "map_hash": "14b5091a551747bbd0b290fbfde71e714511e0e03c428ca5855ca43ea6637ce5",
+  "verified_against_current_game": false
+}

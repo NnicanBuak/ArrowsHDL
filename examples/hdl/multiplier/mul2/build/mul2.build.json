@@ -1,0 +1,423 @@
+{
+  "schema": 1,
+  "top": "mul2",
+  "map_hash": "e3c7f0900774eb5dbfc15d9640842459f4131069cdb7cb5a765079825bcbd2a4",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "inputs": {
+    "a": [
+      {
+        "index": 0,
+        "contact": [
+          -3,
+          0
+        ],
+        "fixture": [
+          -4,
+          0
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "contact": [
+          -3,
+          2
+        ],
+        "fixture": [
+          -4,
+          2
+        ],
+        "rotation": 1
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "contact": [
+          -3,
+          6
+        ],
+        "fixture": [
+          -4,
+          6
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "contact": [
+          -3,
+          8
+        ],
+        "fixture": [
+          -4,
+          8
+        ],
+        "rotation": 1
+      }
+    ]
+  },
+  "outputs": {
+    "product": [
+      {
+        "index": 0,
+        "contact": [
+          19,
+          0
+        ],
+        "fixture": [
+          20,
+          0
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          19,
+          2
+        ],
+        "fixture": [
+          20,
+          2
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          19,
+          4
+        ],
+        "fixture": [
+          20,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "contact": [
+          19,
+          6
+        ],
+        "fixture": [
+          20,
+          6
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "settle_ticks": 31,
+  "cells": 103,
+  "logic_nodes": 12,
+  "layout": "compact-logic-first-v3",
+  "bounds": {
+    "min": [
+      -3,
+      -1
+    ],
+    "max": [
+      19,
+      8
+    ],
+    "width": 23,
+    "height": 10,
+    "area": 230
+  },
+  "placement_pitch": 3,
+  "port_layout": "fixed-sides",
+  "placement_seed": 0,
+  "rerouted_nets": 0,
+  "logic_core": {
+    "cells": 26,
+    "gates": 8,
+    "bounds": {
+      "min": [
+        0,
+        0
+      ],
+      "max": [
+        7,
+        6
+      ],
+      "width": 8,
+      "height": 7,
+      "area": 56
+    },
+    "ticks": 10,
+    "excluded_io_cells": 77
+  },
+  "gate_labels": [
+    {
+      "at": [
+        0,
+        0
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$86"
+    },
+    {
+      "at": [
+        6,
+        6
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$87"
+    },
+    {
+      "at": [
+        0,
+        6
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$89"
+    },
+    {
+      "at": [
+        0,
+        3
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$90"
+    },
+    {
+      "at": [
+        3,
+        3
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$139"
+    },
+    {
+      "at": [
+        3,
+        0
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$143"
+    },
+    {
+      "at": [
+        19,
+        0
+      ],
+      "op": "BUF",
+      "id": "port:product:0"
+    },
+    {
+      "at": [
+        3,
+        6
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$152"
+    },
+    {
+      "at": [
+        6,
+        3
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$95"
+    },
+    {
+      "at": [
+        19,
+        2
+      ],
+      "op": "BUF",
+      "id": "port:product:1"
+    },
+    {
+      "at": [
+        19,
+        4
+      ],
+      "op": "BUF",
+      "id": "port:product:2"
+    },
+    {
+      "at": [
+        19,
+        6
+      ],
+      "op": "BUF",
+      "id": "port:product:3"
+    }
+  ],
+  "optimization": {
+    "objective": "min_core_cells_then_ticks_with_compactness_limits",
+    "path_search": "multi_source_A_star",
+    "routing_order": "internal_then_fixed_io",
+    "io_in_objective": false,
+    "area_factor": 1.25,
+    "cell_factor": 1.2,
+    "candidates": [
+      {
+        "core": {
+          "cells": 26,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              0,
+              0
+            ],
+            "max": [
+              7,
+              6
+            ],
+            "width": 8,
+            "height": 7,
+            "area": 56
+          },
+          "ticks": 10,
+          "excluded_io_cells": 77
+        },
+        "cells": 103,
+        "area": 230,
+        "ticks": 31,
+        "pitch": 3,
+        "seed": 0
+      },
+      {
+        "core": {
+          "cells": 26,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              0,
+              0
+            ],
+            "max": [
+              7,
+              6
+            ],
+            "width": 8,
+            "height": 7,
+            "area": 56
+          },
+          "ticks": 10,
+          "excluded_io_cells": 79
+        },
+        "cells": 105,
+        "area": 230,
+        "ticks": 29,
+        "pitch": 3,
+        "seed": 1
+      },
+      {
+        "core": {
+          "cells": 32,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              -1,
+              0
+            ],
+            "max": [
+              9,
+              8
+            ],
+            "width": 11,
+            "height": 9,
+            "area": 99
+          },
+          "ticks": 10,
+          "excluded_io_cells": 87
+        },
+        "cells": 119,
+        "area": 276,
+        "ticks": 35,
+        "pitch": 4,
+        "seed": 0
+      },
+      {
+        "core": {
+          "cells": 32,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              -1,
+              0
+            ],
+            "max": [
+              9,
+              8
+            ],
+            "width": 11,
+            "height": 9,
+            "area": 99
+          },
+          "ticks": 10,
+          "excluded_io_cells": 89
+        },
+        "cells": 121,
+        "area": 264,
+        "ticks": 36,
+        "pitch": 4,
+        "seed": 1
+      },
+      {
+        "core": {
+          "cells": 37,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              -1,
+              0
+            ],
+            "max": [
+              11,
+              10
+            ],
+            "width": 13,
+            "height": 11,
+            "area": 143
+          },
+          "ticks": 11,
+          "excluded_io_cells": 94
+        },
+        "cells": 131,
+        "area": 299,
+        "ticks": 41,
+        "pitch": 5,
+        "seed": 0
+      },
+      {
+        "core": {
+          "cells": 37,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              -1,
+              0
+            ],
+            "max": [
+              11,
+              10
+            ],
+            "width": 13,
+            "height": 11,
+            "area": 143
+          },
+          "ticks": 11,
+          "excluded_io_cells": 100
+        },
+        "cells": 137,
+        "area": 299,
+        "ticks": 38,
+        "pitch": 5,
+        "seed": 1
+      }
+    ]
+  },
+  "technology_nodes": 12,
+  "technology_mapping": [],
+  "source_sha256": "3d8d697d28a44948ae763d1d7850e48cb61e435dd2abfc8a2a41c5fd78ba730a",
+  "source": "mul2.v",
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "logic_sha256": "c7d3d92aee865adb53c4090bb1592e647af1bd1221ad00ad9f5a8cde90bc6b98"
+}

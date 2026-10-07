@@ -1,0 +1,4 @@
+.venv/
+native/target/
+tools/node_modules/
+

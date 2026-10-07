@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ArrowsHDL — сигналы</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:14px system-ui,sans-serif;color:#24354c;background:#f5f7fb}header{padding:16px 22px;border-bottom:1px solid #dce3ed;background:white}h1{font-size:22px;margin:0 0 5px}p{margin:4px 0;line-height:1.5;color:#53637a}.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px}button,select{font:inherit;background:white;border:1px solid #c7d1e0;border-radius:6px;padding:7px 10px;color:#24354c}button{cursor:pointer}button:hover{background:#e8eef9}button.active{background:#2d5aa0;color:white;border-color:#2d5aa0}main{display:grid;grid-template-columns:minmax(0,1fr) 315px;min-height:calc(100vh - 168px)}.board{position:relative;min-height:520px;background:#fff;overflow:hidden}canvas{width:100%;height:100%;position:absolute;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}.hint{position:absolute;bottom:10px;left:14px;pointer-events:none;background:#ffffffdf;padding:5px 8px;border-radius:4px;font-size:12px;color:#55677f}.sidebar{border-left:1px solid #dce3ed;padding:17px;overflow-wrap:anywhere}.sidebar h2{font-size:16px;margin:5px 0 9px}.swatch{display:inline-block;width:12px;height:12px;vertical-align:middle;border-radius:2px;margin-right:7px}.badge{display:inline-block;border:1px solid #d4ddea;border-radius:4px;padding:3px 5px;margin:2px;font-size:12px}#detail{margin-top:20px}#detail p{margin:8px 0}.net-button{display:block;width:100%;text-align:left;margin:6px 0}#status{font-size:12px;color:#53637a;line-height:1.6;margin-top:20px}@media(max-width:850px){main{grid-template-columns:1fr}.sidebar{border-left:0;border-top:1px solid #dce3ed}.board{min-height:60vh}}
+</style>
+<style>.sources-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.sources-grid .net-button{margin:0;padding:6px 8px}</style>
+<header><h1 id="title"></h1><p id="metrics"></p>
+<div class="toolbar">
+<label>Вид <select id="mode"><option value="nets">Сигналы</option><option value="routing">Разводка</option></select></label>
+<label>Шина <select id="bus"><option value="">Все</option></select></label>
+<label>Бит <select id="bit"><option value="">Все</option></select></label>
+<button id="core" class="active">Ядро</button><button id="full">Вся схема</button><button id="clear">Сбросить выделение</button>
+</div></header>
+<main><div class="board"><canvas id="map"></canvas><div class="hint">Колесо — масштаб · перетаскивание — сдвиг · клик — сигнал или оператор</div></div>
+<aside class="sidebar"><h2>Как читать</h2><p>Цвет линии и фона связывает стрелки <b>одного сигнала</b>. После оператора начинается новый сигнал.</p>
+<p>В режиме <b>«Разводка» каждый входной бит имеет свой цвет</b>. Исходные цвета стрелок и операторов сохранены. Полосы после оператора показывают участвующие источники.</p>
+<p>Нажмите источник в легенде, чтобы проследить его путь через всю логику. Это связи и зависимости, а не состояние сигнала по тактам.</p>
+<p>Пунктир — прыжок. Пересечение линий не означает соединение: связи определяют выходы стрелок.</p>
+<div id="legend"></div><div id="detail"><p>Выберите стрелку на схеме.</p></div><div id="status"></div></aside></main>
+<script id="data" type="application/json">__MAP_DATA__</script>
+<script>
+const data=JSON.parse(document.getElementById('data').textContent), $=id=>document.getElementById(id);
+const canvas=$('map'),ctx=canvas.getContext('2d'),nets=data.nets,byId=new Map(nets.map((n,i)=>[n.id,i]));
+const displayCells=data.cells.concat(data.markers||[]),byPos=new Map(displayCells.map(c=>[c.at.join(','),c])),sourceColors=new Map(data.sources.map(s=>[s.id,s.color]));
+const images=new Map(),links=nets.flatMap((n,i)=>n.edges.map(([a,b])=>({a,b,net:i}))).concat((data.markers||[]).map(m=>({a:m.kind==='inputs'?m.at:m.contact,b:m.kind==='inputs'?m.contact:m.at,net:m.net})));
+let scale=34,dx=0,dy=0,selected=new Set(),whole=false,drag=null,ready=false;
+const esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+$('title').textContent='ArrowsHDL · '+data.top;
+const core=data.core,coreBounds=core?.bounds?.min?core.bounds:data.bounds;
+$('metrics').textContent=core?`Ядро: ${core.cells} стрелок · ${core.bounds.width}×${core.bounds.height} · глубина ${core.ticks} тик. Вся карта: ${data.cells.length} стрелок.`:`${data.cells.length} стрелок`;
+$('status').textContent='Прочитано из сохранения. Цвета не изменяют типы стрелок. Профиль симуляции: GraphDLC-01232bd. Проверка в текущей игре отдельно не выполнена.';
+for(const bus of data.buses)$('bus').add(new Option(bus.name,bus.name));
+function routing(){return $('mode').value==='routing'}
+function sourceKey(o){return o.bus+':'+o.bit}
+function sourceSwatches(n){return colors(n).map(color=>`<span class="swatch" style="background:${color}"></span>`).join('')}
+function colors(n){if(!routing())return[n.color];const bus=$('bus').value,bit=$('bit').value,origins=n.origins.filter(o=>!bus||o.bus===bus&&(bit===''||o.bit===Number(bit)));return origins.length?origins.map(o=>sourceColors.get(sourceKey(o))):['#818a97']}
+function legend(){if(!routing()){$('legend').innerHTML='';return}$('legend').innerHTML='<h2>Источники</h2><div class="sources-grid">'+data.sources.map(s=>`<button class="net-button" data-source="${esc(s.id)}"><span class="swatch" style="background:${s.color}"></span>${esc(s.label)}</button>`).join('')+'</div>'}
+function chooseSource(id){const s=data.sources.find(s=>s.id===id);if(!s)return;$('bus').value=s.bus;$('bus').onchange();$('bit').value=String(s.bit);$('bit').onchange();$('detail').innerHTML=`<h2>Источник ${esc(s.label)}</h2><p>Его цвет проходит по проводам и операторам, которые получают этот вход. Остальная схема приглушена.</p>`}
+$('legend').onclick=e=>{const b=e.target.closest('[data-source]');if(b)chooseSource(b.dataset.source)};
+function highlight(n,i){if(selected.size&&!selected.has(i))return false;const bus=$('bus').value,bit=$('bit').value;return !bus||n.origins.some(o=>o.bus===bus&&(bit===''||o.bit===Number(bit)))}
+function center(p){return[dx+(p[0]+.5)*scale,dy+(p[1]+.5)*scale]}
+function fit(){const b=whole?data.bounds:coreBounds,w=canvas.clientWidth,h=canvas.clientHeight;scale=Math.min(52,(w-65)/(b.width+4),(h-65)/(b.height+4));dx=w/2-(b.min[0]+b.width/2)*scale;dy=h/2-(b.min[1]+b.height/2)*scale;draw()}
+function draw(){if(!ready)return;const w=canvas.clientWidth,h=canvas.clientHeight,dpr=devicePixelRatio||1;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);
+if(scale>=11){ctx.strokeStyle='#e5eaf1';ctx.lineWidth=.6;ctx.beginPath();for(let x=((dx%scale)+scale)%scale;x<w;x+=scale){ctx.moveTo(x,0);ctx.lineTo(x,h)}for(let y=((dy%scale)+scale)%scale;y<h;y+=scale){ctx.moveTo(0,y);ctx.lineTo(w,y)}ctx.stroke()}
+for(const e of links){const n=nets[e.net],a=center(e.a),b=center(e.b);if(Math.max(a[0],b[0])<0||Math.min(a[0],b[0])>w||Math.max(a[1],b[1])<0||Math.min(a[1],b[1])>h)continue;ctx.globalAlpha=highlight(n,e.net)?.9:.06;const cs=colors(n),vx=b[0]-a[0],vy=b[1]-a[1],length=Math.max(1,Math.hypot(vx,vy));ctx.lineWidth=routing()?Math.max(.7,Math.min(1.8,scale*.22/cs.length)):Math.max(1.5,scale*.065);ctx.setLineDash(Math.max(Math.abs(e.a[0]-e.b[0]),Math.abs(e.a[1]-e.b[1]))>1?[scale*.13,scale*.12]:[]);for(let i=0;i<cs.length;i++){const offset=routing()?(i-(cs.length-1)/2)*ctx.lineWidth:0,ox=-vy/length*offset,oy=vx/length*offset;ctx.strokeStyle=cs[i];ctx.beginPath();ctx.moveTo(a[0]+ox,a[1]+oy);ctx.lineTo(b[0]+ox,b[1]+oy);ctx.stroke()}}
+ctx.setLineDash([]);
+for(const c of displayCells){const x=dx+c.at[0]*scale,y=dy+c.at[1]*scale;if(x+scale<0||x>w||y+scale<0||y>h)continue;const n=nets[c.net],cs=colors(n);ctx.globalAlpha=highlight(n,c.net)?1:.1;for(let i=0;i<cs.length;i++){ctx.fillStyle=cs[i]+'38';ctx.fillRect(x+2+(scale-4)*i/cs.length,y+2,(scale-4)/cs.length,scale-4)}const img=images.get(c.type);if(img){ctx.save();ctx.translate(x+scale/2,y+scale/2);ctx.rotate(c.rotation*Math.PI/2);if(c.mirrored)ctx.scale(-1,1);ctx.drawImage(img,-scale*.39,-scale*.39,scale*.78,scale*.78);ctx.restore()}if(c.gate){ctx.strokeStyle=routing()?'#6d7785':'#673f83';ctx.lineWidth=1.6;ctx.strokeRect(x+1.5,y+1.5,scale-3,scale-3);if(scale>25&&c.gate.op!=='BUF'){ctx.font=`bold ${Math.max(8,scale*.22)}px system-ui`;ctx.textAlign='center';ctx.fillStyle='#fff';const label=c.gate.op==='MAJ'?'≥2':c.gate.op;const tw=ctx.measureText(label).width;ctx.fillRect(x+scale/2-tw/2-1,y+scale-11,tw+2,11);ctx.fillStyle=routing()?'#4e596b':'#513363';ctx.fillText(label,x+scale/2,y+scale-2)}}}
+ctx.globalAlpha=1;
+for(const kind of ['inputs','outputs'])for(const[name,entries]of Object.entries(data.ports[kind]))for(const e of entries){const[x,y]=center(e.contact);if(x<0||x>w||y<0||y>h||scale<10)continue;ctx.fillStyle=routing()?(kind==='inputs'?sourceColors.get(name+':'+e.index):'#4e596b'):(kind==='inputs'?'#245faa':'#6e456f');ctx.font=`${Math.max(10,Math.min(14,scale*.5))}px system-ui`;ctx.textAlign=kind==='inputs'?'right':'left';ctx.fillText(`${name}[${e.index}]`,x+(kind==='inputs'?-1:1)*(scale*.7),y+4)}
+}
+function buttonNet(i,label){return `<button class="net-button" data-net="${i}">${sourceSwatches(nets[i])}${esc(label||nets[i].label)}</button>`}
+function showCell(c){const n=nets[c.net],g=c.gate;selected=new Set([c.net]);let html=`<h2>${g?'Оператор '+esc(g.op):'Стрелка '+c.type}</h2><p>Клетка (${c.at.join(', ')}) · тип ${c.type}</p>`;if(g){const incoming=n.inputs.map(id=>byId.get(id)).filter(i=>i!==undefined);incoming.forEach(i=>selected.add(i));html+=`<p><b>Модуль:</b> ${esc(g.scope)}<br><b>Исходник:</b> ${esc(g.source||'—')}</p><p><b>Входные сигналы</b></p>`+incoming.map(i=>buttonNet(i)).join('')+`<p><b>Выход</b></p>`+buttonNet(c.net)}else html+=buttonNet(c.net);
+const outs=links.filter(e=>e.a[0]===c.at[0]&&e.a[1]===c.at[1]).map(e=>`(${e.b.join(', ')})`);const ins=links.filter(e=>e.b[0]===c.at[0]&&e.b[1]===c.at[1]).map(e=>`(${e.a.join(', ')})`);html+=`<p><b>Физические входы:</b> ${ins.join('; ')||'—'}<br><b>Физические выходы:</b> ${outs.join('; ')||'—'}</p><p><b>Зависит от</b></p>`+n.origins.map(o=>`<span class="badge">${esc(o.bus)}[${o.bit}]</span>`).join('');$('detail').innerHTML=html;draw()}
+$('detail').onclick=e=>{const b=e.target.closest('[data-net]');if(!b)return;const i=Number(b.dataset.net);selected=new Set([i]);const n=nets[i];$('detail').innerHTML=`<h2>Сигнал ${esc(n.label)}</h2><p>${esc(n.id)} · ${n.cells.length} стрелок</p><p>${n.aliases.map(esc).join(', ')}</p><p>Зависит от: ${n.origins.map(o=>`${esc(o.bus)}[${o.bit}]`).join(', ')||'константа'}</p>`;draw()};
+$('mode').onchange=()=>{selected.clear();legend();$('detail').innerHTML='<p>Выберите стрелку или источник.</p>';draw()};
+$('bus').onchange=()=>{$('bit').replaceChildren(new Option('Все',''));const b=data.buses.find(b=>b.name===$('bus').value);for(const bit of b?.bits||[])$('bit').add(new Option(String(bit),String(bit)));selected.clear();draw()};$('bit').onchange=()=>{selected.clear();draw()};
+$('core').onclick=()=>{whole=false;$('core').classList.add('active');$('full').classList.remove('active');fit()};$('full').onclick=()=>{whole=true;$('full').classList.add('active');$('core').classList.remove('active');fit()};$('clear').onclick=()=>{selected.clear();$('bus').value='';$('bit').replaceChildren(new Option('Все',''));$('detail').innerHTML='<p>Выберите стрелку на схеме.</p>';draw()};
+canvas.onpointerdown=e=>{canvas.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY,dx,dy,moved:false}};
+canvas.onpointermove=e=>{if(!drag)return;const x=e.clientX-drag.x,y=e.clientY-drag.y;drag.moved||=Math.abs(x)+Math.abs(y)>5;dx=drag.dx+x;dy=drag.dy+y;draw()};
+canvas.onpointerup=e=>{if(!drag)return;if(!drag.moved){const r=canvas.getBoundingClientRect(),point=[Math.floor((e.clientX-r.left-dx)/scale),Math.floor((e.clientY-r.top-dy)/scale)],c=byPos.get(point.join(','));if(c)showCell(c)}drag=null};canvas.onpointercancel=()=>drag=null;
+canvas.addEventListener('wheel',e=>{e.preventDefault();const r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,s=Math.min(115,Math.max(3,scale*Math.exp(-e.deltaY*.001)));dx=x-(x-dx)*s/scale;dy=y-(y-dy)*s/scale;scale=s;draw()},{passive:false});
+Promise.all([[data.sprites,images]].flatMap(([assets,target])=>Object.entries(assets).map(([type,src])=>new Promise(resolve=>{const img=new Image();img.onload=()=>{target.set(Number(type),img);resolve()};img.onerror=resolve;img.src=src})))).then(()=>{ready=true;legend();new ResizeObserver(fit).observe(canvas.parentElement);fit()});
+</script></html>

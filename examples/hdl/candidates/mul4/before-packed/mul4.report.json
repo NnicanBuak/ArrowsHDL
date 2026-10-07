@@ -1,0 +1,259 @@
+{
+  "checked_samples": 56,
+  "failure_count": 0,
+  "failures": [],
+  "frame_ticks": null,
+  "hold_ticks": 112,
+  "nodes": 769,
+  "optimized_cycles": 0,
+  "outputs": [
+    {
+      "at": [
+        52,
+        0
+      ],
+      "values": [
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "at": [
+        52,
+        2
+      ],
+      "values": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "at": [
+        52,
+        4
+      ],
+      "values": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "at": [
+        52,
+        6
+      ],
+      "values": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "at": [
+        52,
+        8
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "at": [
+        52,
+        10
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "at": [
+        52,
+        12
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "at": [
+        52,
+        14
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0
+      ]
+    }
+  ],
+  "passed": true,
+  "profile": "GraphDLC-01232bd",
+  "ticks": 784,
+  "verified_against_current_game": false,
+  "vectors": 7,
+  "settle_ticks": 112,
+  "truth_table": [
+    {
+      "inputs": {
+        "a": 0,
+        "b": 15
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 15
+      },
+      "expected": {
+        "product": 15
+      },
+      "actual": {
+        "product": 15
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 2,
+        "b": 7
+      },
+      "expected": {
+        "product": 14
+      },
+      "actual": {
+        "product": 14
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 5,
+        "b": 10
+      },
+      "expected": {
+        "product": 50
+      },
+      "actual": {
+        "product": 50
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 13,
+        "b": 11
+      },
+      "expected": {
+        "product": 143
+      },
+      "actual": {
+        "product": 143
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 15,
+        "b": 15
+      },
+      "expected": {
+        "product": 225
+      },
+      "actual": {
+        "product": 225
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 15,
+        "b": 0
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    }
+  ],
+  "production_cells": 753,
+  "fixture_cells": 16,
+  "coverage": {
+    "oracle": "Python integer a * b",
+    "all_256_input_pairs": true,
+    "orders": [
+      "ascending",
+      "descending",
+      "seeded_random"
+    ],
+    "single_bit_transitions": true
+  },
+  "physical_checks": {
+    "passed": true,
+    "vectors": 868,
+    "checked_samples": 6944,
+    "ticks": 97216,
+    "batches": 1,
+    "failure_count": 0,
+    "failures": [],
+    "settle_ticks": 112,
+    "production_cells": 753,
+    "fixture_cells": 16,
+    "profile": "GraphDLC-01232bd",
+    "map_hash": "a4768a6304f733eb67a8084c243335e5e6570197da2b0a52b72f53e863e26be4",
+    "verified_against_current_game": false
+  },
+  "test_run_seconds": 1.776,
+  "source_sha256": "69eb88eea2dd5a5cff0b2b31c62c99818ea4a131990241588991520643d849c5"
+}

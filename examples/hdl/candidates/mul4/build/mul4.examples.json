@@ -1,0 +1,77 @@
+{
+  "vectors": [
+    {
+      "inputs": {
+        "a": 0,
+        "b": 15
+      },
+      "expect": {
+        "product": 0
+      }
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 15
+      },
+      "expect": {
+        "product": 15
+      }
+    },
+    {
+      "inputs": {
+        "a": 2,
+        "b": 7
+      },
+      "expect": {
+        "product": 14
+      }
+    },
+    {
+      "inputs": {
+        "a": 5,
+        "b": 10
+      },
+      "expect": {
+        "product": 50
+      }
+    },
+    {
+      "inputs": {
+        "a": 13,
+        "b": 11
+      },
+      "expect": {
+        "product": 143
+      }
+    },
+    {
+      "inputs": {
+        "a": 15,
+        "b": 15
+      },
+      "expect": {
+        "product": 225
+      }
+    },
+    {
+      "inputs": {
+        "a": 15,
+        "b": 0
+      },
+      "expect": {
+        "product": 0
+      }
+    }
+  ],
+  "coverage": {
+    "oracle": "Python integer a * b",
+    "all_256_input_pairs": true,
+    "orders": [
+      "ascending",
+      "descending",
+      "seeded_random"
+    ],
+    "single_bit_transitions": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "vectors": 65536,
+  "checked_samples": 589824,
+  "ticks": 10485760,
+  "batches": 16,
+  "failure_count": 0,
+  "failures": [],
+  "operation_ticks": 160,
+  "map_hash": "38bff410671331d7510478740ebf7cc1a829fc389be56abea7589b61441056e6",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false
+}

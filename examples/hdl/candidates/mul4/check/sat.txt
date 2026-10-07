@@ -1,0 +1,481 @@
+
+-- Running command `read_verilog design.v; hierarchy -check -top spec_check_mul4; synth -top spec_check_mul4 -flatten -noabc; check -assert; sat -verify -prove ok 1 -show-inputs -show-outputs' --
+
+1. Executing Verilog-2005 frontend: design.v
+Parsing Verilog input from `design.v' to AST representation.
+Generating RTLIL representation for module `\mul4_partial_products'.
+Generating RTLIL representation for module `\mul4_add8'.
+Generating RTLIL representation for module `\mul4'.
+Generating RTLIL representation for module `\spec_check_mul4'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \spec_check_mul4
+Used module:     \mul4
+Used module:         \mul4_add8
+Used module:         \mul4_partial_products
+
+2.2. Analyzing design hierarchy..
+Top module:  \spec_check_mul4
+Used module:     \mul4
+Used module:         \mul4_add8
+Used module:         \mul4_partial_products
+Removed 0 unused modules.
+Mapping positional arguments of cell spec_check_mul4.dut (mul4).
+Mapping positional arguments of cell mul4.u_final (mul4_add8).
+Mapping positional arguments of cell mul4.u_right (mul4_add8).
+Mapping positional arguments of cell mul4.u_left (mul4_add8).
+Mapping positional arguments of cell mul4.u_partial (mul4_partial_products).
+
+3. Executing SYNTH pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \spec_check_mul4
+Used module:     \mul4
+Used module:         \mul4_add8
+Used module:         \mul4_partial_products
+
+3.1.2. Analyzing design hierarchy..
+Top module:  \spec_check_mul4
+Used module:     \mul4
+Used module:         \mul4_add8
+Used module:         \mul4_partial_products
+Removed 0 unused modules.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_mul4.
+Optimizing module mul4.
+Optimizing module mul4_add8.
+<suppressed ~3 debug messages>
+Optimizing module mul4_partial_products.
+
+3.3. Executing CHECK pass (checking for obvious problems).
+Checking module spec_check_mul4...
+Checking module mul4...
+Checking module mul4_add8...
+Checking module mul4_partial_products...
+Found and reported 0 problems.
+
+3.4. Executing FLATTEN pass (flatten design).
+Deleting now unused module mul4.
+Deleting now unused module mul4_add8.
+Deleting now unused module mul4_partial_products.
+<suppressed ~5 debug messages>
+
+3.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_mul4.
+<suppressed ~62 debug messages>
+
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_mul4..
+Removed 1 unused cells and 112 unused wires.
+<suppressed ~2 debug messages>
+
+3.7. Executing CHECK pass (checking for obvious problems).
+Checking module spec_check_mul4...
+Found and reported 0 problems.
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_mul4.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_mul4'.
+Computing hashes of 59 cells of `\spec_check_mul4'.
+Finding duplicate cells in `\spec_check_mul4'.
+Removed a total of 0 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spec_check_mul4..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spec_check_mul4.
+Performed a total of 0 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_mul4'.
+Computing hashes of 59 cells of `\spec_check_mul4'.
+Finding duplicate cells in `\spec_check_mul4'.
+Removed a total of 0 cells.
+
+3.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_mul4..
+
+3.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_mul4.
+
+3.8.9. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing FSM pass (extract and optimize FSM).
+
+3.9.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+3.9.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+3.9.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.9.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_mul4..
+
+3.9.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.9.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+3.9.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+3.9.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+3.10. Executing OPT pass (performing simple optimizations).
+
+3.10.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_mul4.
+
+3.10.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_mul4'.
+Computing hashes of 59 cells of `\spec_check_mul4'.
+Finding duplicate cells in `\spec_check_mul4'.
+Removed a total of 0 cells.
+
+3.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spec_check_mul4..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spec_check_mul4.
+Performed a total of 0 changes.
+
+3.10.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_mul4'.
+Computing hashes of 59 cells of `\spec_check_mul4'.
+Finding duplicate cells in `\spec_check_mul4'.
+Removed a total of 0 cells.
+
+3.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_mul4..
+
+3.10.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_mul4.
+
+3.10.9. Finished fast OPT passes. (There is nothing left to do.)
+
+3.11. Executing WREDUCE pass (reducing word size of cells).
+
+3.12. Executing PEEPOPT pass (run peephole optimizers).
+
+3.13. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_mul4..
+
+3.14. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module spec_check_mul4:
+  creating $macc model for $mul$design.v:44$45 ($mul).
+  creating $macc cell for $mul$design.v:44$45: $auto$alumacc.cc:399:replace_macc$52
+  created 0 $alu and 1 $macc cells.
+
+3.15. Executing SHARE pass (SAT-based resource sharing).
+
+3.16. Executing OPT pass (performing simple optimizations).
+
+3.16.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_mul4.
+
+3.16.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_mul4'.
+Computing hashes of 59 cells of `\spec_check_mul4'.
+Finding duplicate cells in `\spec_check_mul4'.
+Removed a total of 0 cells.
+
+3.16.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spec_check_mul4..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.16.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spec_check_mul4.
+Performed a total of 0 changes.
+
+3.16.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_mul4'.
+Computing hashes of 59 cells of `\spec_check_mul4'.
+Finding duplicate cells in `\spec_check_mul4'.
+Removed a total of 0 cells.
+
+3.16.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.16.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_mul4..
+
+3.16.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_mul4.
+
+3.16.9. Finished fast OPT passes. (There is nothing left to do.)
+
+3.17. Executing MEMORY pass.
+
+3.17.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+3.17.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+3.17.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+3.17.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+3.17.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+3.17.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_mul4..
+
+3.17.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+3.17.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+3.17.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_mul4..
+
+3.17.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.18. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_mul4..
+
+3.19. Executing OPT pass (performing simple optimizations).
+
+3.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_mul4.
+<suppressed ~1 debug messages>
+
+3.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_mul4'.
+Computing hashes of 59 cells of `\spec_check_mul4'.
+Finding duplicate cells in `\spec_check_mul4'.
+Removed a total of 0 cells.
+
+3.19.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.19.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_mul4..
+
+3.19.5. Finished fast OPT passes.
+
+3.20. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+3.21. Executing OPT pass (performing simple optimizations).
+
+3.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_mul4.
+
+3.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_mul4'.
+Computing hashes of 59 cells of `\spec_check_mul4'.
+Finding duplicate cells in `\spec_check_mul4'.
+Removed a total of 0 cells.
+
+3.21.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spec_check_mul4..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.21.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spec_check_mul4.
+Performed a total of 0 changes.
+
+3.21.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_mul4'.
+Computing hashes of 59 cells of `\spec_check_mul4'.
+Finding duplicate cells in `\spec_check_mul4'.
+Removed a total of 0 cells.
+
+3.21.6. Executing OPT_SHARE pass.
+
+3.21.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.21.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_mul4..
+
+3.21.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_mul4.
+
+3.21.10. Finished fast OPT passes. (There is nothing left to do.)
+
+3.22. Executing TECHMAP pass (map to technology primitives).
+
+3.22.1. Executing Verilog-2005 frontend: /share/techmap.v
+Parsing Verilog input from `/share/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.22.2. Continuing TECHMAP pass.
+Using extmapper maccmap for cells of type $macc_v2.
+  add \a * \b (4x4 bits, unsigned)
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $or.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000001000 for cells of type $fa.
+Using template $paramod$a1bc51c02ce12ac21eb18988e83292af48ed7d72\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000001000 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~308 debug messages>
+
+3.23. Executing OPT pass (performing simple optimizations).
+
+3.23.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_mul4.
+<suppressed ~120 debug messages>
+
+3.23.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_mul4'.
+Computing hashes of 170 cells of `\spec_check_mul4'.
+Finding duplicate cells in `\spec_check_mul4'.
+Computing hashes of 154 cells of `\spec_check_mul4'.
+Finding duplicate cells in `\spec_check_mul4'.
+Computing hashes of 146 cells of `\spec_check_mul4'.
+Finding duplicate cells in `\spec_check_mul4'.
+<suppressed ~72 debug messages>
+Removed a total of 24 cells.
+
+3.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_mul4..
+Removed 14 unused cells and 80 unused wires.
+<suppressed ~15 debug messages>
+
+3.23.5. Finished fast OPT passes.
+
+3.24. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `spec_check_mul4'. Setting top module to spec_check_mul4.
+
+3.24.1. Analyzing design hierarchy..
+Top module:  \spec_check_mul4
+
+3.24.2. Analyzing design hierarchy..
+Top module:  \spec_check_mul4
+Removed 0 unused modules.
+
+3.25. Printing statistics.
+
+=== spec_check_mul4 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       91 wires
+      382 wire bits
+       56 public wires
+      252 public wire bits
+        3 ports
+        9 port bits
+      132 cells
+       56   $_AND_
+        1   $_NOT_
+       22   $_OR_
+       48   $_XOR_
+        5   $scopeinfo
+
+3.26. Executing CHECK pass (checking for obvious problems).
+Checking module spec_check_mul4...
+Found and reported 0 problems.
+
+4. Executing CHECK pass (checking for obvious problems).
+Checking module spec_check_mul4...
+Found and reported 0 problems.
+
+5. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up SAT problem:
+Final constraint equation: { } = { }
+Imported 132 cells to SAT database.
+Import proof-constraint: \ok = 1'1
+Final proof equation: \ok = 1'1
+Import show expression: \b
+Import show expression: \a
+Import show expression: \ok
+
+Solving problem with 734 variables and 1922 clauses..
+SAT proof finished - no model found: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+

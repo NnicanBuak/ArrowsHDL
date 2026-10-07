@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "reference": {
+    "cells": 411,
+    "bounds": {
+      "min": [
+        -2,
+        0
+      ],
+      "max": [
+        51,
+        19
+      ],
+      "width": 54,
+      "height": 20,
+      "area": 1080
+    },
+    "map_hash": "38bff410671331d7510478740ebf7cc1a829fc389be56abea7589b61441056e6",
+    "function": "a+b; stored inputs and serial transport",
+    "fixture_cells": 30,
+    "state_cells": 42,
+    "timing": {
+      "kind": "word_protocol",
+      "ticks": 160
+    }
+  },
+  "reference_core": {
+    "cells": 56,
+    "bounds": {
+      "min": [
+        15,
+        7
+      ],
+      "max": [
+        30,
+        10
+      ],
+      "width": 16,
+      "height": 4,
+      "area": 64
+    },
+    "map_hash": "3d12cf0ca03c482e6764606f94aac1ee97b12f588dd2d2d7df6e17eba4e056fd",
+    "function": "a+b; cin=0",
+    "fixture_cells": 25,
+    "state_cells": 0,
+    "timing": {
+      "kind": "settle_bound",
+      "ticks": 20
+    },
+    "logic_core": {
+      "cells": 23,
+      "gates": 16,
+      "bounds": {
+        "min": [
+          16,
+          8
+        ],
+        "max": [
+          30,
+          9
+        ],
+        "width": 15,
+        "height": 2,
+        "area": 30
+      },
+      "ticks": 15,
+      "excluded_io_cells": 33
+    }
+  },
+  "comparison_scope": "Compare arrow counts of arithmetic cores. Full reference includes state and serial transport.",
+  "compiled_core": {
+    "cells": 58,
+    "bounds": {
+      "min": [
+        -1,
+        0
+      ],
+      "max": [
+        16,
+        3
+      ],
+      "width": 18,
+      "height": 4,
+      "area": 72
+    },
+    "map_hash": "bd2fd2eba8da7e32cb6014b2e11ebb85586adf63adaa49ac53f5e1890d5f11cb",
+    "function": "a+b+cin",
+    "fixture_cells": 26,
+    "state_cells": 0,
+    "timing": {
+      "kind": "settle_bound",
+      "ticks": 20
+    },
+    "logic_core": {
+      "cells": 23,
+      "gates": 16,
+      "bounds": {
+        "min": [
+          0,
+          1
+        ],
+        "max": [
+          14,
+          2
+        ],
+        "width": 15,
+        "height": 2,
+        "area": 30
+      },
+      "ticks": 15,
+      "excluded_io_cells": 35
+    },
+    "logic_sha256": "55164f820583d744f201f586f4ab0bea2328d9db2b41e2e23918cb1de700b902"
+  },
+  "extra_compiled_cells": {
+    "count": 2,
+    "reason": "Cin contact and separate Cout terminal"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "top": "half_adder",
+  "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "inputs": {
+    "i_bit1": [
+      {
+        "index": 0,
+        "net": "n2"
+      }
+    ],
+    "i_bit2": [
+      {
+        "index": 0,
+        "net": "n3"
+      }
+    ]
+  },
+  "outputs": {
+    "o_carry": [
+      {
+        "index": 0,
+        "net": "port:o_carry:0"
+      }
+    ],
+    "o_sum": [
+      {
+        "index": 0,
+        "net": "port:o_sum:0"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$74",
+      "op": "XOR",
+      "inputs": [
+        "n2",
+        "n3"
+      ],
+      "output": "n4",
+      "origin": "design.v:4.18-4.33"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$75",
+      "op": "AND",
+      "inputs": [
+        "n2",
+        "n3"
+      ],
+      "output": "n5",
+      "origin": "design.v:5.20-5.35"
+    },
+    {
+      "id": "port:o_carry:0",
+      "op": "BUF",
+      "inputs": [
+        "n5"
+      ],
+      "output": "port:o_carry:0",
+      "origin": null
+    },
+    {
+      "id": "port:o_sum:0",
+      "op": "BUF",
+      "inputs": [
+        "n4"
+      ],
+      "output": "port:o_sum:0",
+      "origin": null
+    }
+  ]
+}

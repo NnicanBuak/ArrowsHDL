@@ -1,0 +1,896 @@
+{
+  "schema": 1,
+  "top": "mul4",
+  "map_hash": "a4768a6304f733eb67a8084c243335e5e6570197da2b0a52b72f53e863e26be4",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "inputs": {
+    "a": [
+      {
+        "index": 0,
+        "contact": [
+          -3,
+          0
+        ],
+        "fixture": [
+          -4,
+          0
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "contact": [
+          -3,
+          2
+        ],
+        "fixture": [
+          -4,
+          2
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 2,
+        "contact": [
+          -3,
+          4
+        ],
+        "fixture": [
+          -4,
+          4
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 3,
+        "contact": [
+          -3,
+          6
+        ],
+        "fixture": [
+          -4,
+          6
+        ],
+        "rotation": 1
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "contact": [
+          -3,
+          10
+        ],
+        "fixture": [
+          -4,
+          10
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "contact": [
+          -3,
+          12
+        ],
+        "fixture": [
+          -4,
+          12
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 2,
+        "contact": [
+          -3,
+          14
+        ],
+        "fixture": [
+          -4,
+          14
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 3,
+        "contact": [
+          -3,
+          16
+        ],
+        "fixture": [
+          -4,
+          16
+        ],
+        "rotation": 1
+      }
+    ]
+  },
+  "outputs": {
+    "product": [
+      {
+        "index": 0,
+        "contact": [
+          51,
+          0
+        ],
+        "fixture": [
+          52,
+          0
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          51,
+          2
+        ],
+        "fixture": [
+          52,
+          2
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          51,
+          4
+        ],
+        "fixture": [
+          52,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "contact": [
+          51,
+          6
+        ],
+        "fixture": [
+          52,
+          6
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 4,
+        "contact": [
+          51,
+          8
+        ],
+        "fixture": [
+          52,
+          8
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 5,
+        "contact": [
+          51,
+          10
+        ],
+        "fixture": [
+          52,
+          10
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 6,
+        "contact": [
+          51,
+          12
+        ],
+        "fixture": [
+          52,
+          12
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 7,
+        "contact": [
+          51,
+          14
+        ],
+        "fixture": [
+          52,
+          14
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "settle_ticks": 112,
+  "cells": 753,
+  "logic_nodes": 72,
+  "layout": "compact-logic-first-v3",
+  "bounds": {
+    "min": [
+      -5,
+      -2
+    ],
+    "max": [
+      51,
+      27
+    ],
+    "width": 57,
+    "height": 30,
+    "area": 1710
+  },
+  "placement_pitch": 4,
+  "port_layout": "fixed-sides",
+  "placement_seed": 1,
+  "rerouted_nets": 1,
+  "io_conflict_fallback": false,
+  "logic_core": {
+    "cells": 287,
+    "gates": 43,
+    "bounds": {
+      "min": [
+        0,
+        -1
+      ],
+      "max": [
+        25,
+        25
+      ],
+      "width": 26,
+      "height": 27,
+      "area": 702
+    },
+    "ticks": 54,
+    "excluded_io_cells": 466
+  },
+  "gate_labels": [
+    {
+      "at": [
+        20,
+        4
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$125"
+    },
+    {
+      "at": [
+        24,
+        12
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$126"
+    },
+    {
+      "at": [
+        20,
+        20
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$127"
+    },
+    {
+      "at": [
+        0,
+        24
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$128"
+    },
+    {
+      "at": [
+        8,
+        4
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$129"
+    },
+    {
+      "at": [
+        16,
+        8
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$130"
+    },
+    {
+      "at": [
+        24,
+        8
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$131"
+    },
+    {
+      "at": [
+        24,
+        24
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$132"
+    },
+    {
+      "at": [
+        8,
+        0
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$133"
+    },
+    {
+      "at": [
+        0,
+        8
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$134"
+    },
+    {
+      "at": [
+        4,
+        12
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$135"
+    },
+    {
+      "at": [
+        4,
+        20
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$136"
+    },
+    {
+      "at": [
+        24,
+        0
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$137"
+    },
+    {
+      "at": [
+        0,
+        0
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$138"
+    },
+    {
+      "at": [
+        0,
+        4
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$139"
+    },
+    {
+      "at": [
+        4,
+        16
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$140"
+    },
+    {
+      "at": [
+        4,
+        0
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$153"
+    },
+    {
+      "at": [
+        12,
+        0
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$154"
+    },
+    {
+      "at": [
+        20,
+        8
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$167"
+    },
+    {
+      "at": [
+        16,
+        4
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$168"
+    },
+    {
+      "at": [
+        51,
+        0
+      ],
+      "op": "BUF",
+      "id": "port:product:0"
+    },
+    {
+      "at": [
+        4,
+        4
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$151"
+    },
+    {
+      "at": [
+        20,
+        12
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$165"
+    },
+    {
+      "at": [
+        51,
+        2
+      ],
+      "op": "BUF",
+      "id": "port:product:1"
+    },
+    {
+      "at": [
+        4,
+        8
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$148"
+    },
+    {
+      "at": [
+        24,
+        16
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$162"
+    },
+    {
+      "at": [
+        8,
+        8
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$187"
+    },
+    {
+      "at": [
+        12,
+        4
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$188"
+    },
+    {
+      "at": [
+        8,
+        12
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$146"
+    },
+    {
+      "at": [
+        24,
+        20
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$160"
+    },
+    {
+      "at": [
+        8,
+        16
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$143"
+    },
+    {
+      "at": [
+        20,
+        24
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$157"
+    },
+    {
+      "at": [
+        51,
+        4
+      ],
+      "op": "BUF",
+      "id": "port:product:2"
+    },
+    {
+      "at": [
+        12,
+        20
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$141"
+    },
+    {
+      "at": [
+        12,
+        16
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$142"
+    },
+    {
+      "at": [
+        4,
+        24
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$155"
+    },
+    {
+      "at": [
+        12,
+        24
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$156"
+    },
+    {
+      "at": [
+        12,
+        8
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$185"
+    },
+    {
+      "at": [
+        12,
+        12
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$182"
+    },
+    {
+      "at": [
+        51,
+        6
+      ],
+      "op": "BUF",
+      "id": "port:product:3"
+    },
+    {
+      "at": [
+        16,
+        12
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$180"
+    },
+    {
+      "at": [
+        16,
+        16
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$177"
+    },
+    {
+      "at": [
+        51,
+        8
+      ],
+      "op": "BUF",
+      "id": "port:product:4"
+    },
+    {
+      "at": [
+        20,
+        16
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$175"
+    },
+    {
+      "at": [
+        16,
+        20
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$172"
+    },
+    {
+      "at": [
+        51,
+        10
+      ],
+      "op": "BUF",
+      "id": "port:product:5"
+    },
+    {
+      "at": [
+        8,
+        20
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$170"
+    },
+    {
+      "at": [
+        16,
+        24
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$171"
+    },
+    {
+      "at": [
+        8,
+        24
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$169"
+    },
+    {
+      "at": [
+        51,
+        12
+      ],
+      "op": "BUF",
+      "id": "port:product:6"
+    },
+    {
+      "at": [
+        51,
+        14
+      ],
+      "op": "BUF",
+      "id": "port:product:7"
+    }
+  ],
+  "optimization": {
+    "objective": "min_core_cells_then_ticks_with_compactness_limits",
+    "path_search": "multi_source_A_star",
+    "routing_order": "internal_then_fixed_io_with_conflict_fallback",
+    "io_in_objective": false,
+    "max_attempts_per_net_per_phase": 6,
+    "attempts": [
+      {
+        "pitch": 3,
+        "seed": 0,
+        "status": "rejected",
+        "reason": "Цепь n58 повторно конфликтует: исчерпан лимит 6 перестроений"
+      },
+      {
+        "pitch": 3,
+        "seed": 1,
+        "status": "rejected",
+        "reason": "Цепь n34 повторно конфликтует: исчерпан лимит 6 перестроений"
+      },
+      {
+        "pitch": 4,
+        "seed": 0,
+        "status": "rejected",
+        "reason": "Цепь n5 повторно конфликтует: исчерпан лимит 6 перестроений"
+      },
+      {
+        "pitch": 4,
+        "seed": 1,
+        "status": "valid"
+      },
+      {
+        "pitch": 5,
+        "seed": 0,
+        "status": "valid"
+      },
+      {
+        "pitch": 5,
+        "seed": 1,
+        "status": "valid"
+      }
+    ],
+    "area_factor": 1.25,
+    "cell_factor": 1.2,
+    "candidates": [
+      {
+        "core": {
+          "cells": 287,
+          "gates": 43,
+          "bounds": {
+            "min": [
+              0,
+              -1
+            ],
+            "max": [
+              25,
+              25
+            ],
+            "width": 26,
+            "height": 27,
+            "area": 702
+          },
+          "ticks": 54,
+          "excluded_io_cells": 466
+        },
+        "cells": 753,
+        "area": 1710,
+        "ticks": 112,
+        "pitch": 4,
+        "seed": 1
+      },
+      {
+        "core": {
+          "cells": 354,
+          "gates": 43,
+          "bounds": {
+            "min": [
+              -1,
+              0
+            ],
+            "max": [
+              31,
+              31
+            ],
+            "width": 33,
+            "height": 32,
+            "area": 1056
+          },
+          "ticks": 52,
+          "excluded_io_cells": 514
+        },
+        "cells": 868,
+        "area": 1995,
+        "ticks": 105,
+        "pitch": 5,
+        "seed": 0
+      },
+      {
+        "core": {
+          "cells": 331,
+          "gates": 43,
+          "bounds": {
+            "min": [
+              -1,
+              0
+            ],
+            "max": [
+              31,
+              30
+            ],
+            "width": 33,
+            "height": 31,
+            "area": 1023
+          },
+          "ticks": 57,
+          "excluded_io_cells": 475
+        },
+        "cells": 806,
+        "area": 1881,
+        "ticks": 103,
+        "pitch": 5,
+        "seed": 1
+      }
+    ]
+  },
+  "technology_nodes": 51,
+  "technology_mapping": [
+    {
+      "kind": "full_adder",
+      "a": "n31",
+      "b": "n27",
+      "cin": "n44",
+      "sum": "n45",
+      "cout": "n39",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$151",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$148",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$152",
+        "$auto$simplemap.cc:106:simplemap_bitop$150",
+        "$auto$simplemap.cc:106:simplemap_bitop$149"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n24",
+      "b": "n19",
+      "cin": "n57",
+      "sum": "n58",
+      "cout": "n52",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$165",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$162",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$166",
+        "$auto$simplemap.cc:106:simplemap_bitop$164",
+        "$auto$simplemap.cc:106:simplemap_bitop$163"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n32",
+      "b": "n28",
+      "cin": "n39",
+      "sum": "n40",
+      "cout": "n33",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$146",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$143",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$147",
+        "$auto$simplemap.cc:106:simplemap_bitop$145",
+        "$auto$simplemap.cc:106:simplemap_bitop$144"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n25",
+      "b": "n20",
+      "cin": "n52",
+      "sum": "n53",
+      "cout": "n46",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$160",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$157",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$161",
+        "$auto$simplemap.cc:106:simplemap_bitop$159",
+        "$auto$simplemap.cc:106:simplemap_bitop$158"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n40",
+      "b": "n59",
+      "cin": "n73",
+      "sum": "n13",
+      "cout": "n69",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$185",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$182",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$186",
+        "$auto$simplemap.cc:106:simplemap_bitop$184",
+        "$auto$simplemap.cc:106:simplemap_bitop$183"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n35",
+      "b": "n58",
+      "cin": "n69",
+      "sum": "n14",
+      "cout": "n65",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$180",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$177",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$181",
+        "$auto$simplemap.cc:106:simplemap_bitop$179",
+        "$auto$simplemap.cc:106:simplemap_bitop$178"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n34",
+      "b": "n53",
+      "cin": "n65",
+      "sum": "n15",
+      "cout": "n61",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$175",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$172",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$176",
+        "$auto$simplemap.cc:106:simplemap_bitop$174",
+        "$auto$simplemap.cc:106:simplemap_bitop$173"
+      ]
+    }
+  ],
+  "source_sha256": "69eb88eea2dd5a5cff0b2b31c62c99818ea4a131990241588991520643d849c5",
+  "source": "mul4.v",
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "logic_sha256": "fb6497812cf7c6c4a41516852154a3af7ada700dd0d08d73d0cf600151c87559"
+}

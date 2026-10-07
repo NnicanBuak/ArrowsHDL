@@ -1,0 +1,1821 @@
+{
+  "checked_samples": 128,
+  "failure_count": 0,
+  "failures": [],
+  "frame_ticks": null,
+  "hold_ticks": 11,
+  "nodes": 34,
+  "optimized_cycles": 0,
+  "outputs": [
+    {
+      "at": [
+        7,
+        4
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "passed": true,
+  "profile": "GraphDLC-01232bd",
+  "ticks": 1408,
+  "verified_against_current_game": false,
+  "vectors": 128,
+  "settle_ticks": 11,
+  "truth_table": [
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 3
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 2
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 1
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 0
+      },
+      "expected": {
+        "y": 1
+      },
+      "actual": {
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 3
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 2
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 1
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 0
+      },
+      "expected": {
+        "y": 0
+      },
+      "actual": {
+        "y": 0
+      },
+      "passed": true
+    }
+  ],
+  "production_cells": 27,
+  "fixture_cells": 7
+}

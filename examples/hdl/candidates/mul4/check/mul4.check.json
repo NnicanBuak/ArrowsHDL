@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "top": "mul4",
+  "source_sha256": "69eb88eea2dd5a5cff0b2b31c62c99818ea4a131990241588991520643d849c5",
+  "compatible_with_current_frontend": true,
+  "modules": [
+    "mul4_partial_products",
+    "mul4_add8",
+    "mul4"
+  ],
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "input_bits": 8,
+  "output_bits": 8,
+  "logic_nodes_including_output_buffers": 72,
+  "operations": {
+    "AND": 36,
+    "XOR": 21,
+    "BUF": 8,
+    "OR": 7
+  },
+  "all_input_combinations": 256,
+  "specification_proved_for_all_inputs": true,
+  "proof_method": "Yosys SAT, combinational",
+  "physical_arrow_map_built": false
+}

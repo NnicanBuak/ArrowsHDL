@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "versions": [
+    {
+      "version": 1,
+      "title": "1. Длинные шины",
+      "cells": 30393,
+      "bounds": {
+        "min": [
+          0,
+          0
+        ],
+        "max": [
+          792,
+          268
+        ],
+        "width": 793,
+        "height": 269,
+        "area": 213317
+      },
+      "settle_ticks": 3778,
+      "map_hash": "076443e0537f9b1bc3305639882e1e4806a8b49e8840092c04eef961b15272b8",
+      "logic_sha256": "55164f820583d744f201f586f4ab0bea2328d9db2b41e2e23918cb1de700b902",
+      "map": "v1_sparse.map.json",
+      "image": "v1_sparse.preview.png",
+      "test_passed": true,
+      "checked_samples": 72,
+      "recovered_from_history": false
+    },
+    {
+      "version": 2,
+      "title": "2. Свободное размещение",
+      "cells": 473,
+      "bounds": {
+        "min": [
+          -1,
+          -1
+        ],
+        "max": [
+          41,
+          36
+        ],
+        "width": 43,
+        "height": 38,
+        "area": 1634
+      },
+      "settle_ticks": 128,
+      "map_hash": "1d2469b4b3d9f3307340ad585e6c323a5ad859bcd0385432eb24c73fe790b735",
+      "logic_sha256": "55164f820583d744f201f586f4ab0bea2328d9db2b41e2e23918cb1de700b902",
+      "map": "v2_free.map.json",
+      "image": "v2_free.preview.png",
+      "test_passed": true,
+      "checked_samples": 72,
+      "recovered_from_history": true
+    },
+    {
+      "version": 3,
+      "title": "3. Упорядоченные шины",
+      "cells": 623,
+      "bounds": {
+        "min": [
+          -3,
+          -5
+        ],
+        "max": [
+          32,
+          28
+        ],
+        "width": 36,
+        "height": 34,
+        "area": 1224
+      },
+      "settle_ticks": 93,
+      "map_hash": "05288677975b9d565cd2c9f90f54edcf579980189d1468bac686f9daa4eae69f",
+      "logic_sha256": "55164f820583d744f201f586f4ab0bea2328d9db2b41e2e23918cb1de700b902",
+      "map": "v3_buses.map.json",
+      "image": "v3_buses.preview.png",
+      "test_passed": true,
+      "checked_samples": 72,
+      "recovered_from_history": true
+    },
+    {
+      "version": 4,
+      "title": "4. Компактные разряды",
+      "cells": 58,
+      "bounds": {
+        "min": [
+          -1,
+          0
+        ],
+        "max": [
+          16,
+          3
+        ],
+        "width": 18,
+        "height": 4,
+        "area": 72
+      },
+      "settle_ticks": 20,
+      "map_hash": "bd2fd2eba8da7e32cb6014b2e11ebb85586adf63adaa49ac53f5e1890d5f11cb",
+      "logic_sha256": "55164f820583d744f201f586f4ab0bea2328d9db2b41e2e23918cb1de700b902",
+      "map": "v4_native.map.json",
+      "image": "v4_native.preview.png",
+      "test_passed": true,
+      "checked_samples": 72,
+      "recovered_from_history": false
+    }
+  ],
+  "same_original_logic_graph": true,
+  "comparison_scope": "production maps, excluding Source/Target",
+  "different_panel_scales": true
+}

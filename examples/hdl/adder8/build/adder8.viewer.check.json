@@ -1,0 +1,1 @@
+{"passed":true,"top":"adder8","cells":58,"nets":42,"sources":17,"drawn_icons":754,"checks":["script","draw","core/full","unique source colours","neutral routing sprites","source tracing across operators","operator inputs/output","wire outputs"]}

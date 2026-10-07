@@ -1,0 +1,60 @@
+{
+  "source": "compiler patches from this task history",
+  "snapshots": [
+    {
+      "call_index": 65,
+      "timestamp": "2026-10-06T13:17:36.430Z",
+      "sha256": "ec3ba9efe9f6e6aa4df8784e6ffce2ce388c5583c67f64d6897fd101098953b9"
+    },
+    {
+      "call_index": 81,
+      "timestamp": "2026-10-06T14:45:06.773Z",
+      "sha256": "0d628d2f25d259fa1c76af6b4d3fc88cbc212f2e2f2ec6a751d01947c7e9d94e"
+    },
+    {
+      "call_index": 82,
+      "timestamp": "2026-10-06T14:46:45.255Z",
+      "sha256": "4d3ad8f3e03fd1b545ee1e8e7b24f93d757bacbd82c21fbabc566ddaafd97e92"
+    },
+    {
+      "call_index": 84,
+      "timestamp": "2026-10-06T14:48:09.728Z",
+      "sha256": "cb4d71707f574c98558420223d63f6c421f035a202f4a433636d936a3bbcd47d"
+    },
+    {
+      "call_index": 85,
+      "timestamp": "2026-10-06T14:49:29.243Z",
+      "sha256": "b45b504d1fc7e590234854e62da9ddf0b551de8e26d1abc265439b58f5b720bf"
+    },
+    {
+      "call_index": 86,
+      "timestamp": "2026-10-06T14:50:40.879Z",
+      "sha256": "cd6e6e273fcf552c59d073b060ee383d768dfa231a713f06f3a7b767a6a947ac"
+    },
+    {
+      "call_index": 88,
+      "timestamp": "2026-10-06T14:52:38.129Z",
+      "sha256": "5e173ed39502f064e1ea30753f32347a26da3784bd41a3c749c3324008047f16"
+    },
+    {
+      "call_index": 91,
+      "timestamp": "2026-10-06T14:53:30.954Z",
+      "sha256": "1c735c57fe622cd2e91ad5886e768c65fc2cf45b6a4b8dc52187a088190b17b2"
+    },
+    {
+      "call_index": 92,
+      "timestamp": "2026-10-06T14:55:43.020Z",
+      "sha256": "535f1076e75561f5d728ee8d0dad9fe46bcd19979dbca507495cdd6ec386531c"
+    },
+    {
+      "call_index": 93,
+      "timestamp": "2026-10-06T14:56:59.469Z",
+      "sha256": "cac35506a8ce2bba6b3f77bb764a47fcef82595593a846292965360df3630204"
+    },
+    {
+      "call_index": 95,
+      "timestamp": "2026-10-06T15:01:34.384Z",
+      "sha256": "9fe98b5035026a09935ca74f67214b6b4fca0632c60c45ad412e7f483c74b47d"
+    }
+  ]
+}

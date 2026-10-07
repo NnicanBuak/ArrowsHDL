@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "top": "sort4x8",
+  "source_sha256": "c2a7eefc13dabfd1bd0b6bccbe6327a0bd75fa0b512ab8182c309ea773e0a54c",
+  "compatible_with_current_frontend": true,
+  "modules": [
+    "sort4x8_compare",
+    "sort4x8_mux",
+    "sort4x8_compare_swap",
+    "sort4x8"
+  ],
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "input_bits": 32,
+  "output_bits": 32,
+  "logic_nodes_including_output_buffers": 592,
+  "operations": {
+    "NOT": 125,
+    "AND": 270,
+    "XOR": 40,
+    "OR": 125,
+    "BUF": 32
+  },
+  "all_input_combinations": 4294967296,
+  "specification_proved_for_all_inputs": true,
+  "proof_method": "Yosys SAT, combinational",
+  "physical_arrow_map_built": false
+}

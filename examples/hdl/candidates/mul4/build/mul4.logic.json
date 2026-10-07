@@ -1,0 +1,2435 @@
+{
+  "schema": 1,
+  "top": "mul4",
+  "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "inputs": {
+    "a": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      },
+      {
+        "index": 2,
+        "net": "n4"
+      },
+      {
+        "index": 3,
+        "net": "n5"
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "net": "n6"
+      },
+      {
+        "index": 1,
+        "net": "n7"
+      },
+      {
+        "index": 2,
+        "net": "n8"
+      },
+      {
+        "index": 3,
+        "net": "n9"
+      }
+    ]
+  },
+  "outputs": {
+    "product": [
+      {
+        "index": 0,
+        "net": "port:product:0"
+      },
+      {
+        "index": 1,
+        "net": "port:product:1"
+      },
+      {
+        "index": 2,
+        "net": "port:product:2"
+      },
+      {
+        "index": 3,
+        "net": "port:product:3"
+      },
+      {
+        "index": 4,
+        "net": "port:product:4"
+      },
+      {
+        "index": 5,
+        "net": "port:product:5"
+      },
+      {
+        "index": 6,
+        "net": "port:product:6"
+      },
+      {
+        "index": 7,
+        "net": "port:product:7"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$139",
+      "op": "AND",
+      "inputs": [
+        "n2",
+        "n6"
+      ],
+      "output": "n10",
+      "origin": "design.v:6.24-6.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$140",
+      "op": "AND",
+      "inputs": [
+        "n3",
+        "n6"
+      ],
+      "output": "n39",
+      "origin": "design.v:6.24-6.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$141",
+      "op": "AND",
+      "inputs": [
+        "n4",
+        "n6"
+      ],
+      "output": "n40",
+      "origin": "design.v:6.24-6.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$142",
+      "op": "AND",
+      "inputs": [
+        "n5",
+        "n6"
+      ],
+      "output": "n41",
+      "origin": "design.v:6.24-6.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$143",
+      "op": "AND",
+      "inputs": [
+        "n2",
+        "n7"
+      ],
+      "output": "n42",
+      "origin": "design.v:7.24-7.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$144",
+      "op": "AND",
+      "inputs": [
+        "n3",
+        "n7"
+      ],
+      "output": "n43",
+      "origin": "design.v:7.24-7.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$145",
+      "op": "AND",
+      "inputs": [
+        "n4",
+        "n7"
+      ],
+      "output": "n44",
+      "origin": "design.v:7.24-7.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$146",
+      "op": "AND",
+      "inputs": [
+        "n5",
+        "n7"
+      ],
+      "output": "n45",
+      "origin": "design.v:7.24-7.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$147",
+      "op": "AND",
+      "inputs": [
+        "n2",
+        "n8"
+      ],
+      "output": "n46",
+      "origin": "design.v:8.24-8.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$148",
+      "op": "AND",
+      "inputs": [
+        "n3",
+        "n8"
+      ],
+      "output": "n18",
+      "origin": "design.v:8.24-8.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$149",
+      "op": "AND",
+      "inputs": [
+        "n4",
+        "n8"
+      ],
+      "output": "n21",
+      "origin": "design.v:8.24-8.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$150",
+      "op": "AND",
+      "inputs": [
+        "n5",
+        "n8"
+      ],
+      "output": "n26",
+      "origin": "design.v:8.24-8.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$151",
+      "op": "AND",
+      "inputs": [
+        "n2",
+        "n9"
+      ],
+      "output": "n19",
+      "origin": "design.v:9.24-9.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$152",
+      "op": "AND",
+      "inputs": [
+        "n3",
+        "n9"
+      ],
+      "output": "n22",
+      "origin": "design.v:9.24-9.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$153",
+      "op": "AND",
+      "inputs": [
+        "n4",
+        "n9"
+      ],
+      "output": "n27",
+      "origin": "design.v:9.24-9.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$154",
+      "op": "AND",
+      "inputs": [
+        "n5",
+        "n9"
+      ],
+      "output": "n32",
+      "origin": "design.v:9.24-9.37",
+      "scope": "u_partial"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$125",
+      "op": "AND",
+      "inputs": [
+        "n18",
+        "n19"
+      ],
+      "output": "n20",
+      "origin": "design.v:24.34-24.45",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$126",
+      "op": "AND",
+      "inputs": [
+        "n21",
+        "n22"
+      ],
+      "output": "n23",
+      "origin": "design.v:24.34-24.45",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$128",
+      "op": "AND",
+      "inputs": [
+        "n26",
+        "n27"
+      ],
+      "output": "n28",
+      "origin": "design.v:24.34-24.45",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$133",
+      "op": "XOR",
+      "inputs": [
+        "n18",
+        "n19"
+      ],
+      "output": "n35",
+      "origin": "design.v:22.32-22.43",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$134",
+      "op": "XOR",
+      "inputs": [
+        "n21",
+        "n22"
+      ],
+      "output": "n24",
+      "origin": "design.v:22.32-22.43",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$135",
+      "op": "XOR",
+      "inputs": [
+        "n26",
+        "n27"
+      ],
+      "output": "n29",
+      "origin": "design.v:22.32-22.43",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$155",
+      "op": "AND",
+      "inputs": [
+        "n39",
+        "n42"
+      ],
+      "output": "n47",
+      "origin": "design.v:24.34-24.45",
+      "scope": "u_left"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$156",
+      "op": "AND",
+      "inputs": [
+        "n40",
+        "n43"
+      ],
+      "output": "n48",
+      "origin": "design.v:24.34-24.45",
+      "scope": "u_left"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$158",
+      "op": "AND",
+      "inputs": [
+        "n41",
+        "n44"
+      ],
+      "output": "n51",
+      "origin": "design.v:24.34-24.45",
+      "scope": "u_left"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$163",
+      "op": "XOR",
+      "inputs": [
+        "n39",
+        "n42"
+      ],
+      "output": "n11",
+      "origin": "design.v:22.32-22.43",
+      "scope": "u_left"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$164",
+      "op": "XOR",
+      "inputs": [
+        "n40",
+        "n43"
+      ],
+      "output": "n49",
+      "origin": "design.v:22.32-22.43",
+      "scope": "u_left"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$165",
+      "op": "XOR",
+      "inputs": [
+        "n41",
+        "n44"
+      ],
+      "output": "n52",
+      "origin": "design.v:22.32-22.43",
+      "scope": "u_left"
+    },
+    {
+      "id": "port:product:0",
+      "op": "BUF",
+      "inputs": [
+        "n10"
+      ],
+      "output": "port:product:0",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$127",
+      "op": "AND",
+      "inputs": [
+        "n24",
+        "n20"
+      ],
+      "output": "n25",
+      "origin": "design.v:24.50-24.70",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$136",
+      "op": "XOR",
+      "inputs": [
+        "n24",
+        "n20"
+      ],
+      "output": "n36",
+      "origin": "design.v:23.29-23.49",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$157",
+      "op": "AND",
+      "inputs": [
+        "n49",
+        "n47"
+      ],
+      "output": "n50",
+      "origin": "design.v:24.50-24.70",
+      "scope": "u_left"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$166",
+      "op": "XOR",
+      "inputs": [
+        "n49",
+        "n47"
+      ],
+      "output": "n57",
+      "origin": "design.v:23.29-23.49",
+      "scope": "u_left"
+    },
+    {
+      "id": "port:product:1",
+      "op": "BUF",
+      "inputs": [
+        "n11"
+      ],
+      "output": "port:product:1",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$131",
+      "op": "OR",
+      "inputs": [
+        "n23",
+        "n25"
+      ],
+      "output": "n30",
+      "origin": "design.v:24.33-24.71",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$161",
+      "op": "OR",
+      "inputs": [
+        "n48",
+        "n50"
+      ],
+      "output": "n53",
+      "origin": "design.v:24.33-24.71",
+      "scope": "u_left"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$169",
+      "op": "AND",
+      "inputs": [
+        "n57",
+        "n46"
+      ],
+      "output": "n60",
+      "origin": "design.v:24.34-24.45",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$180",
+      "op": "XOR",
+      "inputs": [
+        "n57",
+        "n46"
+      ],
+      "output": "n12",
+      "origin": "design.v:22.32-22.43",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$129",
+      "op": "AND",
+      "inputs": [
+        "n29",
+        "n30"
+      ],
+      "output": "n31",
+      "origin": "design.v:24.50-24.70",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$137",
+      "op": "XOR",
+      "inputs": [
+        "n29",
+        "n30"
+      ],
+      "output": "n37",
+      "origin": "design.v:23.29-23.49",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$159",
+      "op": "AND",
+      "inputs": [
+        "n52",
+        "n53"
+      ],
+      "output": "n54",
+      "origin": "design.v:24.50-24.70",
+      "scope": "u_left"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$167",
+      "op": "XOR",
+      "inputs": [
+        "n52",
+        "n53"
+      ],
+      "output": "n58",
+      "origin": "design.v:23.29-23.49",
+      "scope": "u_left"
+    },
+    {
+      "id": "port:product:2",
+      "op": "BUF",
+      "inputs": [
+        "n12"
+      ],
+      "output": "port:product:2",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$132",
+      "op": "OR",
+      "inputs": [
+        "n28",
+        "n31"
+      ],
+      "output": "n33",
+      "origin": "design.v:24.33-24.71",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$162",
+      "op": "OR",
+      "inputs": [
+        "n51",
+        "n54"
+      ],
+      "output": "n55",
+      "origin": "design.v:24.33-24.71",
+      "scope": "u_left"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$170",
+      "op": "AND",
+      "inputs": [
+        "n58",
+        "n35"
+      ],
+      "output": "n61",
+      "origin": "design.v:24.34-24.45",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$181",
+      "op": "XOR",
+      "inputs": [
+        "n58",
+        "n35"
+      ],
+      "output": "n62",
+      "origin": "design.v:22.32-22.43",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$130",
+      "op": "AND",
+      "inputs": [
+        "n32",
+        "n33"
+      ],
+      "output": "n34",
+      "origin": "design.v:24.50-24.70",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$138",
+      "op": "XOR",
+      "inputs": [
+        "n32",
+        "n33"
+      ],
+      "output": "n38",
+      "origin": "design.v:23.29-23.49",
+      "scope": "u_right"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$160",
+      "op": "AND",
+      "inputs": [
+        "n45",
+        "n55"
+      ],
+      "output": "n56",
+      "origin": "design.v:24.50-24.70",
+      "scope": "u_left"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$168",
+      "op": "XOR",
+      "inputs": [
+        "n45",
+        "n55"
+      ],
+      "output": "n59",
+      "origin": "design.v:23.29-23.49",
+      "scope": "u_left"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$171",
+      "op": "AND",
+      "inputs": [
+        "n62",
+        "n60"
+      ],
+      "output": "n63",
+      "origin": "design.v:24.50-24.70",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$184",
+      "op": "XOR",
+      "inputs": [
+        "n62",
+        "n60"
+      ],
+      "output": "n13",
+      "origin": "design.v:23.29-23.49",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$172",
+      "op": "AND",
+      "inputs": [
+        "n59",
+        "n36"
+      ],
+      "output": "n64",
+      "origin": "design.v:24.34-24.45",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$174",
+      "op": "AND",
+      "inputs": [
+        "n56",
+        "n37"
+      ],
+      "output": "n68",
+      "origin": "design.v:24.34-24.45",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$177",
+      "op": "OR",
+      "inputs": [
+        "n61",
+        "n63"
+      ],
+      "output": "n66",
+      "origin": "design.v:24.33-24.71",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$182",
+      "op": "XOR",
+      "inputs": [
+        "n59",
+        "n36"
+      ],
+      "output": "n65",
+      "origin": "design.v:22.32-22.43",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$183",
+      "op": "XOR",
+      "inputs": [
+        "n56",
+        "n37"
+      ],
+      "output": "n69",
+      "origin": "design.v:22.32-22.43",
+      "scope": "u_final"
+    },
+    {
+      "id": "port:product:3",
+      "op": "BUF",
+      "inputs": [
+        "n13"
+      ],
+      "output": "port:product:3",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$173",
+      "op": "AND",
+      "inputs": [
+        "n65",
+        "n66"
+      ],
+      "output": "n67",
+      "origin": "design.v:24.50-24.70",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$185",
+      "op": "XOR",
+      "inputs": [
+        "n65",
+        "n66"
+      ],
+      "output": "n14",
+      "origin": "design.v:23.29-23.49",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$178",
+      "op": "OR",
+      "inputs": [
+        "n64",
+        "n67"
+      ],
+      "output": "n70",
+      "origin": "design.v:24.33-24.71",
+      "scope": "u_final"
+    },
+    {
+      "id": "port:product:4",
+      "op": "BUF",
+      "inputs": [
+        "n14"
+      ],
+      "output": "port:product:4",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$175",
+      "op": "AND",
+      "inputs": [
+        "n69",
+        "n70"
+      ],
+      "output": "n71",
+      "origin": "design.v:24.50-24.70",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$186",
+      "op": "XOR",
+      "inputs": [
+        "n69",
+        "n70"
+      ],
+      "output": "n15",
+      "origin": "design.v:23.29-23.49",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$179",
+      "op": "OR",
+      "inputs": [
+        "n68",
+        "n71"
+      ],
+      "output": "n72",
+      "origin": "design.v:24.33-24.71",
+      "scope": "u_final"
+    },
+    {
+      "id": "port:product:5",
+      "op": "BUF",
+      "inputs": [
+        "n15"
+      ],
+      "output": "port:product:5",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$176",
+      "op": "AND",
+      "inputs": [
+        "n38",
+        "n72"
+      ],
+      "output": "n73",
+      "origin": "design.v:24.50-24.70",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$187",
+      "op": "XOR",
+      "inputs": [
+        "n38",
+        "n72"
+      ],
+      "output": "n16",
+      "origin": "design.v:23.29-23.49",
+      "scope": "u_final"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$188",
+      "op": "XOR",
+      "inputs": [
+        "n34",
+        "n73"
+      ],
+      "output": "n17",
+      "origin": "design.v:23.29-23.49",
+      "scope": "u_final"
+    },
+    {
+      "id": "port:product:6",
+      "op": "BUF",
+      "inputs": [
+        "n16"
+      ],
+      "output": "port:product:6",
+      "origin": null
+    },
+    {
+      "id": "port:product:7",
+      "op": "BUF",
+      "inputs": [
+        "n17"
+      ],
+      "output": "port:product:7",
+      "origin": null
+    }
+  ],
+  "scopes": [
+    {
+      "name": "u_final",
+      "module": "mul4_add8",
+      "source": "design.v:12.1-27.10",
+      "instance_source": "design.v:37.15-37.45"
+    },
+    {
+      "name": "u_left",
+      "module": "mul4_add8",
+      "source": "design.v:12.1-27.10",
+      "instance_source": "design.v:35.15-35.36"
+    },
+    {
+      "name": "u_partial",
+      "module": "mul4_partial_products",
+      "source": "design.v:2.1-10.10",
+      "instance_source": "design.v:34.27-34.58"
+    },
+    {
+      "name": "u_right",
+      "module": "mul4_add8",
+      "source": "design.v:12.1-27.10",
+      "instance_source": "design.v:36.15-36.37"
+    }
+  ],
+  "wire_names": {
+    "a": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      },
+      {
+        "index": 2,
+        "net": "n4"
+      },
+      {
+        "index": 3,
+        "net": "n5"
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "net": "n6"
+      },
+      {
+        "index": 1,
+        "net": "n7"
+      },
+      {
+        "index": 2,
+        "net": "n8"
+      },
+      {
+        "index": 3,
+        "net": "n9"
+      }
+    ],
+    "p0": [
+      {
+        "index": 0,
+        "net": "n10"
+      },
+      {
+        "index": 1,
+        "net": "n39"
+      },
+      {
+        "index": 2,
+        "net": "n40"
+      },
+      {
+        "index": 3,
+        "net": "n41"
+      }
+    ],
+    "p1": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "n42"
+      },
+      {
+        "index": 2,
+        "net": "n43"
+      },
+      {
+        "index": 3,
+        "net": "n44"
+      },
+      {
+        "index": 4,
+        "net": "n45"
+      }
+    ],
+    "p2": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "n46"
+      },
+      {
+        "index": 3,
+        "net": "n18"
+      },
+      {
+        "index": 4,
+        "net": "n21"
+      },
+      {
+        "index": 5,
+        "net": "n26"
+      }
+    ],
+    "p3": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "const0"
+      },
+      {
+        "index": 3,
+        "net": "n19"
+      },
+      {
+        "index": 4,
+        "net": "n22"
+      },
+      {
+        "index": 5,
+        "net": "n27"
+      },
+      {
+        "index": 6,
+        "net": "n32"
+      }
+    ],
+    "product": [
+      {
+        "index": 0,
+        "net": "n10"
+      },
+      {
+        "index": 1,
+        "net": "n11"
+      },
+      {
+        "index": 2,
+        "net": "n12"
+      },
+      {
+        "index": 3,
+        "net": "n13"
+      },
+      {
+        "index": 4,
+        "net": "n14"
+      },
+      {
+        "index": 5,
+        "net": "n15"
+      },
+      {
+        "index": 6,
+        "net": "n16"
+      },
+      {
+        "index": 7,
+        "net": "n17"
+      }
+    ],
+    "sum01": [
+      {
+        "index": 0,
+        "net": "n10"
+      },
+      {
+        "index": 1,
+        "net": "n11"
+      },
+      {
+        "index": 2,
+        "net": "n57"
+      },
+      {
+        "index": 3,
+        "net": "n58"
+      },
+      {
+        "index": 4,
+        "net": "n59"
+      },
+      {
+        "index": 5,
+        "net": "n56"
+      }
+    ],
+    "sum23": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "n46"
+      },
+      {
+        "index": 3,
+        "net": "n35"
+      },
+      {
+        "index": 4,
+        "net": "n36"
+      },
+      {
+        "index": 5,
+        "net": "n37"
+      },
+      {
+        "index": 6,
+        "net": "n38"
+      },
+      {
+        "index": 7,
+        "net": "n34"
+      }
+    ],
+    "u_final.a": [
+      {
+        "index": 0,
+        "net": "n10"
+      },
+      {
+        "index": 1,
+        "net": "n11"
+      },
+      {
+        "index": 2,
+        "net": "n57"
+      },
+      {
+        "index": 3,
+        "net": "n58"
+      },
+      {
+        "index": 4,
+        "net": "n59"
+      },
+      {
+        "index": 5,
+        "net": "n56"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "u_final.b": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "n46"
+      },
+      {
+        "index": 3,
+        "net": "n35"
+      },
+      {
+        "index": 4,
+        "net": "n36"
+      },
+      {
+        "index": 5,
+        "net": "n37"
+      },
+      {
+        "index": 6,
+        "net": "n38"
+      },
+      {
+        "index": 7,
+        "net": "n34"
+      }
+    ],
+    "u_final.bit_slice[0].propagate": [
+      {
+        "index": 0,
+        "net": "n10"
+      }
+    ],
+    "u_final.bit_slice[1].propagate": [
+      {
+        "index": 0,
+        "net": "n11"
+      }
+    ],
+    "u_final.bit_slice[2].propagate": [
+      {
+        "index": 0,
+        "net": "n12"
+      }
+    ],
+    "u_final.bit_slice[3].propagate": [
+      {
+        "index": 0,
+        "net": "n62"
+      }
+    ],
+    "u_final.bit_slice[4].propagate": [
+      {
+        "index": 0,
+        "net": "n65"
+      }
+    ],
+    "u_final.bit_slice[5].propagate": [
+      {
+        "index": 0,
+        "net": "n69"
+      }
+    ],
+    "u_final.bit_slice[6].propagate": [
+      {
+        "index": 0,
+        "net": "n38"
+      }
+    ],
+    "u_final.bit_slice[7].propagate": [
+      {
+        "index": 0,
+        "net": "n34"
+      }
+    ],
+    "u_final.carry": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "const0"
+      },
+      {
+        "index": 3,
+        "net": "n60"
+      },
+      {
+        "index": 4,
+        "net": "n66"
+      },
+      {
+        "index": 5,
+        "net": "n70"
+      },
+      {
+        "index": 6,
+        "net": "n72"
+      },
+      {
+        "index": 7,
+        "net": "n73"
+      }
+    ],
+    "u_final.sum": [
+      {
+        "index": 0,
+        "net": "n10"
+      },
+      {
+        "index": 1,
+        "net": "n11"
+      },
+      {
+        "index": 2,
+        "net": "n12"
+      },
+      {
+        "index": 3,
+        "net": "n13"
+      },
+      {
+        "index": 4,
+        "net": "n14"
+      },
+      {
+        "index": 5,
+        "net": "n15"
+      },
+      {
+        "index": 6,
+        "net": "n16"
+      },
+      {
+        "index": 7,
+        "net": "n17"
+      }
+    ],
+    "u_left.a": [
+      {
+        "index": 0,
+        "net": "n10"
+      },
+      {
+        "index": 1,
+        "net": "n39"
+      },
+      {
+        "index": 2,
+        "net": "n40"
+      },
+      {
+        "index": 3,
+        "net": "n41"
+      },
+      {
+        "index": 4,
+        "net": "const0"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "u_left.b": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "n42"
+      },
+      {
+        "index": 2,
+        "net": "n43"
+      },
+      {
+        "index": 3,
+        "net": "n44"
+      },
+      {
+        "index": 4,
+        "net": "n45"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "u_left.bit_slice[0].propagate": [
+      {
+        "index": 0,
+        "net": "n10"
+      }
+    ],
+    "u_left.bit_slice[1].propagate": [
+      {
+        "index": 0,
+        "net": "n11"
+      }
+    ],
+    "u_left.bit_slice[2].propagate": [
+      {
+        "index": 0,
+        "net": "n49"
+      }
+    ],
+    "u_left.bit_slice[3].propagate": [
+      {
+        "index": 0,
+        "net": "n52"
+      }
+    ],
+    "u_left.bit_slice[4].propagate": [
+      {
+        "index": 0,
+        "net": "n45"
+      }
+    ],
+    "u_left.bit_slice[5].propagate": [
+      {
+        "index": 0,
+        "net": "const0"
+      }
+    ],
+    "u_left.bit_slice[6].propagate": [
+      {
+        "index": 0,
+        "net": "const0"
+      }
+    ],
+    "u_left.bit_slice[7].propagate": [
+      {
+        "index": 0,
+        "net": "const0"
+      }
+    ],
+    "u_left.carry": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "n47"
+      },
+      {
+        "index": 3,
+        "net": "n53"
+      },
+      {
+        "index": 4,
+        "net": "n55"
+      },
+      {
+        "index": 5,
+        "net": "n56"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      },
+      {
+        "index": 8,
+        "net": "const0"
+      }
+    ],
+    "u_left.sum": [
+      {
+        "index": 0,
+        "net": "n10"
+      },
+      {
+        "index": 1,
+        "net": "n11"
+      },
+      {
+        "index": 2,
+        "net": "n57"
+      },
+      {
+        "index": 3,
+        "net": "n58"
+      },
+      {
+        "index": 4,
+        "net": "n59"
+      },
+      {
+        "index": 5,
+        "net": "n56"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "u_partial.a": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      },
+      {
+        "index": 2,
+        "net": "n4"
+      },
+      {
+        "index": 3,
+        "net": "n5"
+      }
+    ],
+    "u_partial.b": [
+      {
+        "index": 0,
+        "net": "n6"
+      },
+      {
+        "index": 1,
+        "net": "n7"
+      },
+      {
+        "index": 2,
+        "net": "n8"
+      },
+      {
+        "index": 3,
+        "net": "n9"
+      }
+    ],
+    "u_partial.p0": [
+      {
+        "index": 0,
+        "net": "n10"
+      },
+      {
+        "index": 1,
+        "net": "n39"
+      },
+      {
+        "index": 2,
+        "net": "n40"
+      },
+      {
+        "index": 3,
+        "net": "n41"
+      },
+      {
+        "index": 4,
+        "net": "const0"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "u_partial.p1": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "n42"
+      },
+      {
+        "index": 2,
+        "net": "n43"
+      },
+      {
+        "index": 3,
+        "net": "n44"
+      },
+      {
+        "index": 4,
+        "net": "n45"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "u_partial.p2": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "n46"
+      },
+      {
+        "index": 3,
+        "net": "n18"
+      },
+      {
+        "index": 4,
+        "net": "n21"
+      },
+      {
+        "index": 5,
+        "net": "n26"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "u_partial.p3": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "const0"
+      },
+      {
+        "index": 3,
+        "net": "n19"
+      },
+      {
+        "index": 4,
+        "net": "n22"
+      },
+      {
+        "index": 5,
+        "net": "n27"
+      },
+      {
+        "index": 6,
+        "net": "n32"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "u_right.a": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "n46"
+      },
+      {
+        "index": 3,
+        "net": "n18"
+      },
+      {
+        "index": 4,
+        "net": "n21"
+      },
+      {
+        "index": 5,
+        "net": "n26"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "u_right.b": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "const0"
+      },
+      {
+        "index": 3,
+        "net": "n19"
+      },
+      {
+        "index": 4,
+        "net": "n22"
+      },
+      {
+        "index": 5,
+        "net": "n27"
+      },
+      {
+        "index": 6,
+        "net": "n32"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "u_right.bit_slice[0].propagate": [
+      {
+        "index": 0,
+        "net": "const0"
+      }
+    ],
+    "u_right.bit_slice[1].propagate": [
+      {
+        "index": 0,
+        "net": "const0"
+      }
+    ],
+    "u_right.bit_slice[2].propagate": [
+      {
+        "index": 0,
+        "net": "n46"
+      }
+    ],
+    "u_right.bit_slice[3].propagate": [
+      {
+        "index": 0,
+        "net": "n35"
+      }
+    ],
+    "u_right.bit_slice[4].propagate": [
+      {
+        "index": 0,
+        "net": "n24"
+      }
+    ],
+    "u_right.bit_slice[5].propagate": [
+      {
+        "index": 0,
+        "net": "n29"
+      }
+    ],
+    "u_right.bit_slice[6].propagate": [
+      {
+        "index": 0,
+        "net": "n32"
+      }
+    ],
+    "u_right.bit_slice[7].propagate": [
+      {
+        "index": 0,
+        "net": "const0"
+      }
+    ],
+    "u_right.carry": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "const0"
+      },
+      {
+        "index": 3,
+        "net": "const0"
+      },
+      {
+        "index": 4,
+        "net": "n20"
+      },
+      {
+        "index": 5,
+        "net": "n30"
+      },
+      {
+        "index": 6,
+        "net": "n33"
+      },
+      {
+        "index": 7,
+        "net": "n34"
+      },
+      {
+        "index": 8,
+        "net": "const0"
+      }
+    ],
+    "u_right.sum": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "n46"
+      },
+      {
+        "index": 3,
+        "net": "n35"
+      },
+      {
+        "index": 4,
+        "net": "n36"
+      },
+      {
+        "index": 5,
+        "net": "n37"
+      },
+      {
+        "index": 6,
+        "net": "n38"
+      },
+      {
+        "index": 7,
+        "net": "n34"
+      }
+    ]
+  },
+  "instances": [
+    {
+      "name": "u_final",
+      "module": "mul4_add8",
+      "source": "design.v:12.1-27.10",
+      "instance_source": "design.v:37.15-37.45",
+      "inputs": {
+        "a": [
+          {
+            "index": 0,
+            "net": "n10"
+          },
+          {
+            "index": 1,
+            "net": "n11"
+          },
+          {
+            "index": 2,
+            "net": "n57"
+          },
+          {
+            "index": 3,
+            "net": "n58"
+          },
+          {
+            "index": 4,
+            "net": "n59"
+          },
+          {
+            "index": 5,
+            "net": "n56"
+          },
+          {
+            "index": 6,
+            "net": "const0"
+          },
+          {
+            "index": 7,
+            "net": "const0"
+          }
+        ],
+        "b": [
+          {
+            "index": 0,
+            "net": "const0"
+          },
+          {
+            "index": 1,
+            "net": "const0"
+          },
+          {
+            "index": 2,
+            "net": "n46"
+          },
+          {
+            "index": 3,
+            "net": "n35"
+          },
+          {
+            "index": 4,
+            "net": "n36"
+          },
+          {
+            "index": 5,
+            "net": "n37"
+          },
+          {
+            "index": 6,
+            "net": "n38"
+          },
+          {
+            "index": 7,
+            "net": "n34"
+          }
+        ]
+      },
+      "outputs": {
+        "sum": [
+          {
+            "index": 0,
+            "net": "n10"
+          },
+          {
+            "index": 1,
+            "net": "n11"
+          },
+          {
+            "index": 2,
+            "net": "n12"
+          },
+          {
+            "index": 3,
+            "net": "n13"
+          },
+          {
+            "index": 4,
+            "net": "n14"
+          },
+          {
+            "index": 5,
+            "net": "n15"
+          },
+          {
+            "index": 6,
+            "net": "n16"
+          },
+          {
+            "index": 7,
+            "net": "n17"
+          }
+        ]
+      },
+      "nodes": [
+        "$auto$simplemap.cc:106:simplemap_bitop$169",
+        "$auto$simplemap.cc:106:simplemap_bitop$170",
+        "$auto$simplemap.cc:106:simplemap_bitop$171",
+        "$auto$simplemap.cc:106:simplemap_bitop$172",
+        "$auto$simplemap.cc:106:simplemap_bitop$173",
+        "$auto$simplemap.cc:106:simplemap_bitop$174",
+        "$auto$simplemap.cc:106:simplemap_bitop$175",
+        "$auto$simplemap.cc:106:simplemap_bitop$176",
+        "$auto$simplemap.cc:106:simplemap_bitop$177",
+        "$auto$simplemap.cc:106:simplemap_bitop$178",
+        "$auto$simplemap.cc:106:simplemap_bitop$179",
+        "$auto$simplemap.cc:106:simplemap_bitop$180",
+        "$auto$simplemap.cc:106:simplemap_bitop$181",
+        "$auto$simplemap.cc:106:simplemap_bitop$182",
+        "$auto$simplemap.cc:106:simplemap_bitop$183",
+        "$auto$simplemap.cc:106:simplemap_bitop$184",
+        "$auto$simplemap.cc:106:simplemap_bitop$185",
+        "$auto$simplemap.cc:106:simplemap_bitop$186",
+        "$auto$simplemap.cc:106:simplemap_bitop$187",
+        "$auto$simplemap.cc:106:simplemap_bitop$188"
+      ]
+    },
+    {
+      "name": "u_left",
+      "module": "mul4_add8",
+      "source": "design.v:12.1-27.10",
+      "instance_source": "design.v:35.15-35.36",
+      "inputs": {
+        "a": [
+          {
+            "index": 0,
+            "net": "n10"
+          },
+          {
+            "index": 1,
+            "net": "n39"
+          },
+          {
+            "index": 2,
+            "net": "n40"
+          },
+          {
+            "index": 3,
+            "net": "n41"
+          },
+          {
+            "index": 4,
+            "net": "const0"
+          },
+          {
+            "index": 5,
+            "net": "const0"
+          },
+          {
+            "index": 6,
+            "net": "const0"
+          },
+          {
+            "index": 7,
+            "net": "const0"
+          }
+        ],
+        "b": [
+          {
+            "index": 0,
+            "net": "const0"
+          },
+          {
+            "index": 1,
+            "net": "n42"
+          },
+          {
+            "index": 2,
+            "net": "n43"
+          },
+          {
+            "index": 3,
+            "net": "n44"
+          },
+          {
+            "index": 4,
+            "net": "n45"
+          },
+          {
+            "index": 5,
+            "net": "const0"
+          },
+          {
+            "index": 6,
+            "net": "const0"
+          },
+          {
+            "index": 7,
+            "net": "const0"
+          }
+        ]
+      },
+      "outputs": {
+        "sum": [
+          {
+            "index": 0,
+            "net": "n10"
+          },
+          {
+            "index": 1,
+            "net": "n11"
+          },
+          {
+            "index": 2,
+            "net": "n57"
+          },
+          {
+            "index": 3,
+            "net": "n58"
+          },
+          {
+            "index": 4,
+            "net": "n59"
+          },
+          {
+            "index": 5,
+            "net": "n56"
+          },
+          {
+            "index": 6,
+            "net": "const0"
+          },
+          {
+            "index": 7,
+            "net": "const0"
+          }
+        ]
+      },
+      "nodes": [
+        "$auto$simplemap.cc:106:simplemap_bitop$155",
+        "$auto$simplemap.cc:106:simplemap_bitop$156",
+        "$auto$simplemap.cc:106:simplemap_bitop$157",
+        "$auto$simplemap.cc:106:simplemap_bitop$158",
+        "$auto$simplemap.cc:106:simplemap_bitop$159",
+        "$auto$simplemap.cc:106:simplemap_bitop$160",
+        "$auto$simplemap.cc:106:simplemap_bitop$161",
+        "$auto$simplemap.cc:106:simplemap_bitop$162",
+        "$auto$simplemap.cc:106:simplemap_bitop$163",
+        "$auto$simplemap.cc:106:simplemap_bitop$164",
+        "$auto$simplemap.cc:106:simplemap_bitop$165",
+        "$auto$simplemap.cc:106:simplemap_bitop$166",
+        "$auto$simplemap.cc:106:simplemap_bitop$167",
+        "$auto$simplemap.cc:106:simplemap_bitop$168"
+      ]
+    },
+    {
+      "name": "u_partial",
+      "module": "mul4_partial_products",
+      "source": "design.v:2.1-10.10",
+      "instance_source": "design.v:34.27-34.58",
+      "inputs": {
+        "a": [
+          {
+            "index": 0,
+            "net": "n2"
+          },
+          {
+            "index": 1,
+            "net": "n3"
+          },
+          {
+            "index": 2,
+            "net": "n4"
+          },
+          {
+            "index": 3,
+            "net": "n5"
+          }
+        ],
+        "b": [
+          {
+            "index": 0,
+            "net": "n6"
+          },
+          {
+            "index": 1,
+            "net": "n7"
+          },
+          {
+            "index": 2,
+            "net": "n8"
+          },
+          {
+            "index": 3,
+            "net": "n9"
+          }
+        ]
+      },
+      "outputs": {
+        "p0": [
+          {
+            "index": 0,
+            "net": "n10"
+          },
+          {
+            "index": 1,
+            "net": "n39"
+          },
+          {
+            "index": 2,
+            "net": "n40"
+          },
+          {
+            "index": 3,
+            "net": "n41"
+          },
+          {
+            "index": 4,
+            "net": "const0"
+          },
+          {
+            "index": 5,
+            "net": "const0"
+          },
+          {
+            "index": 6,
+            "net": "const0"
+          },
+          {
+            "index": 7,
+            "net": "const0"
+          }
+        ],
+        "p1": [
+          {
+            "index": 0,
+            "net": "const0"
+          },
+          {
+            "index": 1,
+            "net": "n42"
+          },
+          {
+            "index": 2,
+            "net": "n43"
+          },
+          {
+            "index": 3,
+            "net": "n44"
+          },
+          {
+            "index": 4,
+            "net": "n45"
+          },
+          {
+            "index": 5,
+            "net": "const0"
+          },
+          {
+            "index": 6,
+            "net": "const0"
+          },
+          {
+            "index": 7,
+            "net": "const0"
+          }
+        ],
+        "p2": [
+          {
+            "index": 0,
+            "net": "const0"
+          },
+          {
+            "index": 1,
+            "net": "const0"
+          },
+          {
+            "index": 2,
+            "net": "n46"
+          },
+          {
+            "index": 3,
+            "net": "n18"
+          },
+          {
+            "index": 4,
+            "net": "n21"
+          },
+          {
+            "index": 5,
+            "net": "n26"
+          },
+          {
+            "index": 6,
+            "net": "const0"
+          },
+          {
+            "index": 7,
+            "net": "const0"
+          }
+        ],
+        "p3": [
+          {
+            "index": 0,
+            "net": "const0"
+          },
+          {
+            "index": 1,
+            "net": "const0"
+          },
+          {
+            "index": 2,
+            "net": "const0"
+          },
+          {
+            "index": 3,
+            "net": "n19"
+          },
+          {
+            "index": 4,
+            "net": "n22"
+          },
+          {
+            "index": 5,
+            "net": "n27"
+          },
+          {
+            "index": 6,
+            "net": "n32"
+          },
+          {
+            "index": 7,
+            "net": "const0"
+          }
+        ]
+      },
+      "nodes": [
+        "$auto$simplemap.cc:106:simplemap_bitop$139",
+        "$auto$simplemap.cc:106:simplemap_bitop$140",
+        "$auto$simplemap.cc:106:simplemap_bitop$141",
+        "$auto$simplemap.cc:106:simplemap_bitop$142",
+        "$auto$simplemap.cc:106:simplemap_bitop$143",
+        "$auto$simplemap.cc:106:simplemap_bitop$144",
+        "$auto$simplemap.cc:106:simplemap_bitop$145",
+        "$auto$simplemap.cc:106:simplemap_bitop$146",
+        "$auto$simplemap.cc:106:simplemap_bitop$147",
+        "$auto$simplemap.cc:106:simplemap_bitop$148",
+        "$auto$simplemap.cc:106:simplemap_bitop$149",
+        "$auto$simplemap.cc:106:simplemap_bitop$150",
+        "$auto$simplemap.cc:106:simplemap_bitop$151",
+        "$auto$simplemap.cc:106:simplemap_bitop$152",
+        "$auto$simplemap.cc:106:simplemap_bitop$153",
+        "$auto$simplemap.cc:106:simplemap_bitop$154"
+      ]
+    },
+    {
+      "name": "u_right",
+      "module": "mul4_add8",
+      "source": "design.v:12.1-27.10",
+      "instance_source": "design.v:36.15-36.37",
+      "inputs": {
+        "a": [
+          {
+            "index": 0,
+            "net": "const0"
+          },
+          {
+            "index": 1,
+            "net": "const0"
+          },
+          {
+            "index": 2,
+            "net": "n46"
+          },
+          {
+            "index": 3,
+            "net": "n18"
+          },
+          {
+            "index": 4,
+            "net": "n21"
+          },
+          {
+            "index": 5,
+            "net": "n26"
+          },
+          {
+            "index": 6,
+            "net": "const0"
+          },
+          {
+            "index": 7,
+            "net": "const0"
+          }
+        ],
+        "b": [
+          {
+            "index": 0,
+            "net": "const0"
+          },
+          {
+            "index": 1,
+            "net": "const0"
+          },
+          {
+            "index": 2,
+            "net": "const0"
+          },
+          {
+            "index": 3,
+            "net": "n19"
+          },
+          {
+            "index": 4,
+            "net": "n22"
+          },
+          {
+            "index": 5,
+            "net": "n27"
+          },
+          {
+            "index": 6,
+            "net": "n32"
+          },
+          {
+            "index": 7,
+            "net": "const0"
+          }
+        ]
+      },
+      "outputs": {
+        "sum": [
+          {
+            "index": 0,
+            "net": "const0"
+          },
+          {
+            "index": 1,
+            "net": "const0"
+          },
+          {
+            "index": 2,
+            "net": "n46"
+          },
+          {
+            "index": 3,
+            "net": "n35"
+          },
+          {
+            "index": 4,
+            "net": "n36"
+          },
+          {
+            "index": 5,
+            "net": "n37"
+          },
+          {
+            "index": 6,
+            "net": "n38"
+          },
+          {
+            "index": 7,
+            "net": "n34"
+          }
+        ]
+      },
+      "nodes": [
+        "$auto$simplemap.cc:106:simplemap_bitop$125",
+        "$auto$simplemap.cc:106:simplemap_bitop$126",
+        "$auto$simplemap.cc:106:simplemap_bitop$127",
+        "$auto$simplemap.cc:106:simplemap_bitop$128",
+        "$auto$simplemap.cc:106:simplemap_bitop$129",
+        "$auto$simplemap.cc:106:simplemap_bitop$130",
+        "$auto$simplemap.cc:106:simplemap_bitop$131",
+        "$auto$simplemap.cc:106:simplemap_bitop$132",
+        "$auto$simplemap.cc:106:simplemap_bitop$133",
+        "$auto$simplemap.cc:106:simplemap_bitop$134",
+        "$auto$simplemap.cc:106:simplemap_bitop$135",
+        "$auto$simplemap.cc:106:simplemap_bitop$136",
+        "$auto$simplemap.cc:106:simplemap_bitop$137",
+        "$auto$simplemap.cc:106:simplemap_bitop$138"
+      ]
+    }
+  ]
+}

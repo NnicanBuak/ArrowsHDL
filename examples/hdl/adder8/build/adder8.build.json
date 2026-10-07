@@ -1,0 +1,3701 @@
+{
+  "schema": 1,
+  "top": "adder8",
+  "map_hash": "bd2fd2eba8da7e32cb6014b2e11ebb85586adf63adaa49ac53f5e1890d5f11cb",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "inputs": {
+    "a": [
+      {
+        "index": 0,
+        "contact": [
+          0,
+          0
+        ],
+        "fixture": [
+          0,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 1,
+        "contact": [
+          2,
+          0
+        ],
+        "fixture": [
+          2,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 2,
+        "contact": [
+          4,
+          0
+        ],
+        "fixture": [
+          4,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 3,
+        "contact": [
+          6,
+          0
+        ],
+        "fixture": [
+          6,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 4,
+        "contact": [
+          8,
+          0
+        ],
+        "fixture": [
+          8,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 5,
+        "contact": [
+          10,
+          0
+        ],
+        "fixture": [
+          10,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 6,
+        "contact": [
+          12,
+          0
+        ],
+        "fixture": [
+          12,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 7,
+        "contact": [
+          14,
+          0
+        ],
+        "fixture": [
+          14,
+          -1
+        ],
+        "rotation": 2
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "contact": [
+          0,
+          3
+        ],
+        "fixture": [
+          0,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          2,
+          3
+        ],
+        "fixture": [
+          2,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          4,
+          3
+        ],
+        "fixture": [
+          4,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "contact": [
+          6,
+          3
+        ],
+        "fixture": [
+          6,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 4,
+        "contact": [
+          8,
+          3
+        ],
+        "fixture": [
+          8,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 5,
+        "contact": [
+          10,
+          3
+        ],
+        "fixture": [
+          10,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 6,
+        "contact": [
+          12,
+          3
+        ],
+        "fixture": [
+          12,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 7,
+        "contact": [
+          14,
+          3
+        ],
+        "fixture": [
+          14,
+          4
+        ],
+        "rotation": 0
+      }
+    ],
+    "cin": [
+      {
+        "index": 0,
+        "contact": [
+          -1,
+          2
+        ],
+        "fixture": [
+          -2,
+          2
+        ],
+        "rotation": 1
+      }
+    ]
+  },
+  "outputs": {
+    "cout": [
+      {
+        "index": 0,
+        "contact": [
+          16,
+          2
+        ],
+        "fixture": [
+          17,
+          2
+        ],
+        "rotation": 0
+      }
+    ],
+    "sum": [
+      {
+        "index": 0,
+        "contact": [
+          1,
+          3
+        ],
+        "fixture": [
+          1,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          3,
+          3
+        ],
+        "fixture": [
+          3,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          5,
+          3
+        ],
+        "fixture": [
+          5,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "contact": [
+          7,
+          3
+        ],
+        "fixture": [
+          7,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 4,
+        "contact": [
+          9,
+          3
+        ],
+        "fixture": [
+          9,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 5,
+        "contact": [
+          11,
+          3
+        ],
+        "fixture": [
+          11,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 6,
+        "contact": [
+          13,
+          3
+        ],
+        "fixture": [
+          13,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 7,
+        "contact": [
+          15,
+          3
+        ],
+        "fixture": [
+          15,
+          4
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "settle_ticks": 20,
+  "cells": 58,
+  "layout": "compact-native-adder-v1",
+  "port_layout": "parallel-bit-slices",
+  "bounds": {
+    "min": [
+      -1,
+      0
+    ],
+    "max": [
+      16,
+      3
+    ],
+    "width": 18,
+    "height": 4,
+    "area": 72
+  },
+  "adder_bits": 8,
+  "logic_core": {
+    "cells": 23,
+    "gates": 16,
+    "bounds": {
+      "min": [
+        0,
+        1
+      ],
+      "max": [
+        14,
+        2
+      ],
+      "width": 15,
+      "height": 2,
+      "area": 30
+    },
+    "ticks": 15,
+    "excluded_io_cells": 35
+  },
+  "gate_labels": [
+    {
+      "at": [
+        0,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$113"
+    },
+    {
+      "at": [
+        0,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$116"
+    },
+    {
+      "at": [
+        1,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:0"
+    },
+    {
+      "at": [
+        2,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$118"
+    },
+    {
+      "at": [
+        2,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$121"
+    },
+    {
+      "at": [
+        3,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:1"
+    },
+    {
+      "at": [
+        4,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$123"
+    },
+    {
+      "at": [
+        4,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$126"
+    },
+    {
+      "at": [
+        5,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:2"
+    },
+    {
+      "at": [
+        6,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$128"
+    },
+    {
+      "at": [
+        6,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$131"
+    },
+    {
+      "at": [
+        7,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:3"
+    },
+    {
+      "at": [
+        8,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$133"
+    },
+    {
+      "at": [
+        8,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$136"
+    },
+    {
+      "at": [
+        9,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:4"
+    },
+    {
+      "at": [
+        10,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$138"
+    },
+    {
+      "at": [
+        10,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$141"
+    },
+    {
+      "at": [
+        11,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:5"
+    },
+    {
+      "at": [
+        12,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$143"
+    },
+    {
+      "at": [
+        12,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$146"
+    },
+    {
+      "at": [
+        13,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:6"
+    },
+    {
+      "at": [
+        14,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$148"
+    },
+    {
+      "at": [
+        14,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$151"
+    },
+    {
+      "at": [
+        15,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:sum:7"
+    },
+    {
+      "at": [
+        16,
+        2
+      ],
+      "op": "BUF",
+      "id": "port:cout:0"
+    }
+  ],
+  "optimization": {
+    "objective": "native_threshold_and_parity_bit_slices",
+    "logical_gates_per_bit": 2,
+    "io_in_objective": false
+  },
+  "signals": {
+    "schema": 1,
+    "input_buses": [
+      {
+        "name": "a",
+        "bits": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "name": "b",
+        "bits": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "name": "cin",
+        "bits": [
+          0
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "n10",
+        "label": "b[0]",
+        "aliases": [
+          "b[0]"
+        ],
+        "origins": [
+          {
+            "bus": "b",
+            "bit": 0
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            0,
+            3
+          ]
+        ],
+        "edges": [
+          [
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n11",
+        "label": "b[1]",
+        "aliases": [
+          "b[1]"
+        ],
+        "origins": [
+          {
+            "bus": "b",
+            "bit": 1
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            2,
+            3
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n12",
+        "label": "b[2]",
+        "aliases": [
+          "b[2]"
+        ],
+        "origins": [
+          {
+            "bus": "b",
+            "bit": 2
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            4,
+            3
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              2
+            ]
+          ],
+          [
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n13",
+        "label": "b[3]",
+        "aliases": [
+          "b[3]"
+        ],
+        "origins": [
+          {
+            "bus": "b",
+            "bit": 3
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            6,
+            3
+          ]
+        ],
+        "edges": [
+          [
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              2
+            ]
+          ],
+          [
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n14",
+        "label": "b[4]",
+        "aliases": [
+          "b[4]"
+        ],
+        "origins": [
+          {
+            "bus": "b",
+            "bit": 4
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            8,
+            3
+          ]
+        ],
+        "edges": [
+          [
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              2
+            ]
+          ],
+          [
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n15",
+        "label": "b[5]",
+        "aliases": [
+          "b[5]"
+        ],
+        "origins": [
+          {
+            "bus": "b",
+            "bit": 5
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            10,
+            3
+          ]
+        ],
+        "edges": [
+          [
+            [
+              10,
+              3
+            ],
+            [
+              10,
+              2
+            ]
+          ],
+          [
+            [
+              10,
+              3
+            ],
+            [
+              10,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n16",
+        "label": "b[6]",
+        "aliases": [
+          "b[6]"
+        ],
+        "origins": [
+          {
+            "bus": "b",
+            "bit": 6
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            12,
+            3
+          ]
+        ],
+        "edges": [
+          [
+            [
+              12,
+              3
+            ],
+            [
+              12,
+              2
+            ]
+          ],
+          [
+            [
+              12,
+              3
+            ],
+            [
+              12,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n17",
+        "label": "b[7]",
+        "aliases": [
+          "b[7]"
+        ],
+        "origins": [
+          {
+            "bus": "b",
+            "bit": 7
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            14,
+            3
+          ]
+        ],
+        "edges": [
+          [
+            [
+              14,
+              3
+            ],
+            [
+              14,
+              2
+            ]
+          ],
+          [
+            [
+              14,
+              3
+            ],
+            [
+              14,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n18",
+        "label": "cin[0]",
+        "aliases": [
+          "cin[0]"
+        ],
+        "origins": [
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            -1,
+            2
+          ]
+        ],
+        "edges": [
+          [
+            [
+              -1,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              -1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n19",
+        "label": "n19",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n2",
+          "n10",
+          "n18"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$113",
+          "op": "XOR",
+          "at": [
+            0,
+            1
+          ],
+          "scope": "core",
+          "source": "design.v:18.29-18.49"
+        },
+        "cells": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n2",
+        "label": "a[0]",
+        "aliases": [
+          "a[0]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ],
+        "edges": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n20",
+        "label": "n20",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n3",
+          "n11",
+          "n31"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$118",
+          "op": "XOR",
+          "at": [
+            2,
+            1
+          ],
+          "scope": "core",
+          "source": "design.v:18.29-18.49"
+        },
+        "cells": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          [
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n21",
+        "label": "n21",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n4",
+          "n12",
+          "n35"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$123",
+          "op": "XOR",
+          "at": [
+            4,
+            1
+          ],
+          "scope": "core",
+          "source": "design.v:18.29-18.49"
+        },
+        "cells": [
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              1
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          [
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n22",
+        "label": "n22",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n5",
+          "n13",
+          "n39"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$128",
+          "op": "XOR",
+          "at": [
+            6,
+            1
+          ],
+          "scope": "core",
+          "source": "design.v:18.29-18.49"
+        },
+        "cells": [
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              6,
+              1
+            ],
+            [
+              7,
+              1
+            ]
+          ],
+          [
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              3
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n23",
+        "label": "n23",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n6",
+          "n14",
+          "n43"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$133",
+          "op": "XOR",
+          "at": [
+            8,
+            1
+          ],
+          "scope": "core",
+          "source": "design.v:18.29-18.49"
+        },
+        "cells": [
+          [
+            8,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              8,
+              1
+            ],
+            [
+              9,
+              1
+            ]
+          ],
+          [
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              3
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n24",
+        "label": "n24",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "a",
+            "bit": 5
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 5
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n7",
+          "n15",
+          "n47"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$138",
+          "op": "XOR",
+          "at": [
+            10,
+            1
+          ],
+          "scope": "core",
+          "source": "design.v:18.29-18.49"
+        },
+        "cells": [
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              10,
+              1
+            ],
+            [
+              11,
+              1
+            ]
+          ],
+          [
+            [
+              11,
+              1
+            ],
+            [
+              11,
+              3
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n25",
+        "label": "n25",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "a",
+            "bit": 5
+          },
+          {
+            "bus": "a",
+            "bit": 6
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 5
+          },
+          {
+            "bus": "b",
+            "bit": 6
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n8",
+          "n16",
+          "n51"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$143",
+          "op": "XOR",
+          "at": [
+            12,
+            1
+          ],
+          "scope": "core",
+          "source": "design.v:18.29-18.49"
+        },
+        "cells": [
+          [
+            12,
+            1
+          ],
+          [
+            13,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              12,
+              1
+            ],
+            [
+              13,
+              1
+            ]
+          ],
+          [
+            [
+              13,
+              1
+            ],
+            [
+              13,
+              3
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n26",
+        "label": "n26",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "a",
+            "bit": 5
+          },
+          {
+            "bus": "a",
+            "bit": 6
+          },
+          {
+            "bus": "a",
+            "bit": 7
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 5
+          },
+          {
+            "bus": "b",
+            "bit": 6
+          },
+          {
+            "bus": "b",
+            "bit": 7
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n9",
+          "n17",
+          "n55"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$148",
+          "op": "XOR",
+          "at": [
+            14,
+            1
+          ],
+          "scope": "core",
+          "source": "design.v:18.29-18.49"
+        },
+        "cells": [
+          [
+            14,
+            1
+          ],
+          [
+            15,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ]
+          ],
+          [
+            [
+              15,
+              1
+            ],
+            [
+              15,
+              3
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n27",
+        "label": "n27",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "a",
+            "bit": 5
+          },
+          {
+            "bus": "a",
+            "bit": 6
+          },
+          {
+            "bus": "a",
+            "bit": 7
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 5
+          },
+          {
+            "bus": "b",
+            "bit": 6
+          },
+          {
+            "bus": "b",
+            "bit": 7
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n9",
+          "n17",
+          "n55"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$151",
+          "op": "MAJ",
+          "at": [
+            14,
+            2
+          ],
+          "scope": "core",
+          "source": "design.v:19.33-19.71"
+        },
+        "cells": [
+          [
+            14,
+            2
+          ],
+          [
+            15,
+            2
+          ]
+        ],
+        "edges": [
+          [
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ]
+          ],
+          [
+            [
+              15,
+              2
+            ],
+            [
+              16,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n3",
+        "label": "a[1]",
+        "aliases": [
+          "a[1]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 1
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            2,
+            0
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n31",
+        "label": "n31",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n2",
+          "n10",
+          "n18"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$116",
+          "op": "MAJ",
+          "at": [
+            0,
+            2
+          ],
+          "scope": "core",
+          "source": "design.v:19.33-19.71"
+        },
+        "cells": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "edges": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n35",
+        "label": "n35",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n3",
+          "n11",
+          "n31"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$121",
+          "op": "MAJ",
+          "at": [
+            2,
+            2
+          ],
+          "scope": "core",
+          "source": "design.v:19.33-19.71"
+        },
+        "cells": [
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          [
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ]
+          ],
+          [
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n39",
+        "label": "n39",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n4",
+          "n12",
+          "n35"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$126",
+          "op": "MAJ",
+          "at": [
+            4,
+            2
+          ],
+          "scope": "core",
+          "source": "design.v:19.33-19.71"
+        },
+        "cells": [
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          [
+            [
+              5,
+              2
+            ],
+            [
+              6,
+              2
+            ]
+          ],
+          [
+            [
+              5,
+              2
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n4",
+        "label": "a[2]",
+        "aliases": [
+          "a[2]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 2
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            4,
+            0
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ]
+          ],
+          [
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n43",
+        "label": "n43",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n5",
+          "n13",
+          "n39"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$131",
+          "op": "MAJ",
+          "at": [
+            6,
+            2
+          ],
+          "scope": "core",
+          "source": "design.v:19.33-19.71"
+        },
+        "cells": [
+          [
+            6,
+            2
+          ],
+          [
+            7,
+            2
+          ]
+        ],
+        "edges": [
+          [
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              2
+            ]
+          ],
+          [
+            [
+              7,
+              2
+            ],
+            [
+              8,
+              2
+            ]
+          ],
+          [
+            [
+              7,
+              2
+            ],
+            [
+              8,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n47",
+        "label": "n47",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n6",
+          "n14",
+          "n43"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$136",
+          "op": "MAJ",
+          "at": [
+            8,
+            2
+          ],
+          "scope": "core",
+          "source": "design.v:19.33-19.71"
+        },
+        "cells": [
+          [
+            8,
+            2
+          ],
+          [
+            9,
+            2
+          ]
+        ],
+        "edges": [
+          [
+            [
+              8,
+              2
+            ],
+            [
+              9,
+              2
+            ]
+          ],
+          [
+            [
+              9,
+              2
+            ],
+            [
+              10,
+              2
+            ]
+          ],
+          [
+            [
+              9,
+              2
+            ],
+            [
+              10,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n5",
+        "label": "a[3]",
+        "aliases": [
+          "a[3]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 3
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            6,
+            0
+          ]
+        ],
+        "edges": [
+          [
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              1
+            ]
+          ],
+          [
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n51",
+        "label": "n51",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "a",
+            "bit": 5
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 5
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n7",
+          "n15",
+          "n47"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$141",
+          "op": "MAJ",
+          "at": [
+            10,
+            2
+          ],
+          "scope": "core",
+          "source": "design.v:19.33-19.71"
+        },
+        "cells": [
+          [
+            10,
+            2
+          ],
+          [
+            11,
+            2
+          ]
+        ],
+        "edges": [
+          [
+            [
+              10,
+              2
+            ],
+            [
+              11,
+              2
+            ]
+          ],
+          [
+            [
+              11,
+              2
+            ],
+            [
+              12,
+              2
+            ]
+          ],
+          [
+            [
+              11,
+              2
+            ],
+            [
+              12,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n55",
+        "label": "n55",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "a",
+            "bit": 5
+          },
+          {
+            "bus": "a",
+            "bit": 6
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 5
+          },
+          {
+            "bus": "b",
+            "bit": 6
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n8",
+          "n16",
+          "n51"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$146",
+          "op": "MAJ",
+          "at": [
+            12,
+            2
+          ],
+          "scope": "core",
+          "source": "design.v:19.33-19.71"
+        },
+        "cells": [
+          [
+            12,
+            2
+          ],
+          [
+            13,
+            2
+          ]
+        ],
+        "edges": [
+          [
+            [
+              12,
+              2
+            ],
+            [
+              13,
+              2
+            ]
+          ],
+          [
+            [
+              13,
+              2
+            ],
+            [
+              14,
+              2
+            ]
+          ],
+          [
+            [
+              13,
+              2
+            ],
+            [
+              14,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n6",
+        "label": "a[4]",
+        "aliases": [
+          "a[4]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 4
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            8,
+            0
+          ]
+        ],
+        "edges": [
+          [
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              1
+            ]
+          ],
+          [
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n7",
+        "label": "a[5]",
+        "aliases": [
+          "a[5]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 5
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            10,
+            0
+          ]
+        ],
+        "edges": [
+          [
+            [
+              10,
+              0
+            ],
+            [
+              10,
+              1
+            ]
+          ],
+          [
+            [
+              10,
+              0
+            ],
+            [
+              10,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n8",
+        "label": "a[6]",
+        "aliases": [
+          "a[6]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 6
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            12,
+            0
+          ]
+        ],
+        "edges": [
+          [
+            [
+              12,
+              0
+            ],
+            [
+              12,
+              1
+            ]
+          ],
+          [
+            [
+              12,
+              0
+            ],
+            [
+              12,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n9",
+        "label": "a[7]",
+        "aliases": [
+          "a[7]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 7
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            14,
+            0
+          ]
+        ],
+        "edges": [
+          [
+            [
+              14,
+              0
+            ],
+            [
+              14,
+              1
+            ]
+          ],
+          [
+            [
+              14,
+              0
+            ],
+            [
+              14,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "port:cout:0",
+        "label": "cout[0]",
+        "aliases": [
+          "cout[0]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "a",
+            "bit": 5
+          },
+          {
+            "bus": "a",
+            "bit": 6
+          },
+          {
+            "bus": "a",
+            "bit": 7
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 5
+          },
+          {
+            "bus": "b",
+            "bit": 6
+          },
+          {
+            "bus": "b",
+            "bit": 7
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n27"
+        ],
+        "driver": {
+          "id": "port:cout:0",
+          "op": "BUF",
+          "at": [
+            16,
+            2
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            16,
+            2
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:sum:0",
+        "label": "sum[0]",
+        "aliases": [
+          "sum[0]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n19"
+        ],
+        "driver": {
+          "id": "port:sum:0",
+          "op": "BUF",
+          "at": [
+            1,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            1,
+            3
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:sum:1",
+        "label": "sum[1]",
+        "aliases": [
+          "sum[1]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n20"
+        ],
+        "driver": {
+          "id": "port:sum:1",
+          "op": "BUF",
+          "at": [
+            3,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            3,
+            3
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:sum:2",
+        "label": "sum[2]",
+        "aliases": [
+          "sum[2]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n21"
+        ],
+        "driver": {
+          "id": "port:sum:2",
+          "op": "BUF",
+          "at": [
+            5,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            5,
+            3
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:sum:3",
+        "label": "sum[3]",
+        "aliases": [
+          "sum[3]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n22"
+        ],
+        "driver": {
+          "id": "port:sum:3",
+          "op": "BUF",
+          "at": [
+            7,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            7,
+            3
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:sum:4",
+        "label": "sum[4]",
+        "aliases": [
+          "sum[4]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n23"
+        ],
+        "driver": {
+          "id": "port:sum:4",
+          "op": "BUF",
+          "at": [
+            9,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            9,
+            3
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:sum:5",
+        "label": "sum[5]",
+        "aliases": [
+          "sum[5]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "a",
+            "bit": 5
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 5
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n24"
+        ],
+        "driver": {
+          "id": "port:sum:5",
+          "op": "BUF",
+          "at": [
+            11,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            11,
+            3
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:sum:6",
+        "label": "sum[6]",
+        "aliases": [
+          "sum[6]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "a",
+            "bit": 5
+          },
+          {
+            "bus": "a",
+            "bit": 6
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 5
+          },
+          {
+            "bus": "b",
+            "bit": 6
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n25"
+        ],
+        "driver": {
+          "id": "port:sum:6",
+          "op": "BUF",
+          "at": [
+            13,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            13,
+            3
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:sum:7",
+        "label": "sum[7]",
+        "aliases": [
+          "sum[7]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "a",
+            "bit": 2
+          },
+          {
+            "bus": "a",
+            "bit": 3
+          },
+          {
+            "bus": "a",
+            "bit": 4
+          },
+          {
+            "bus": "a",
+            "bit": 5
+          },
+          {
+            "bus": "a",
+            "bit": 6
+          },
+          {
+            "bus": "a",
+            "bit": 7
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 2
+          },
+          {
+            "bus": "b",
+            "bit": 3
+          },
+          {
+            "bus": "b",
+            "bit": 4
+          },
+          {
+            "bus": "b",
+            "bit": 5
+          },
+          {
+            "bus": "b",
+            "bit": 6
+          },
+          {
+            "bus": "b",
+            "bit": 7
+          },
+          {
+            "bus": "cin",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n26"
+        ],
+        "driver": {
+          "id": "port:sum:7",
+          "op": "BUF",
+          "at": [
+            15,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            15,
+            3
+          ]
+        ],
+        "edges": []
+      }
+    ]
+  },
+  "logic_nodes": 49,
+  "technology_nodes": 25,
+  "technology_mapping": [
+    {
+      "kind": "full_adder",
+      "a": "n2",
+      "b": "n10",
+      "cin": "n18",
+      "sum": "n19",
+      "cout": "n31",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$113",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$116",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$112",
+        "$auto$simplemap.cc:106:simplemap_bitop$114",
+        "$auto$simplemap.cc:106:simplemap_bitop$115"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n3",
+      "b": "n11",
+      "cin": "n31",
+      "sum": "n20",
+      "cout": "n35",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$118",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$121",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$117",
+        "$auto$simplemap.cc:106:simplemap_bitop$119",
+        "$auto$simplemap.cc:106:simplemap_bitop$120"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n4",
+      "b": "n12",
+      "cin": "n35",
+      "sum": "n21",
+      "cout": "n39",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$123",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$126",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$122",
+        "$auto$simplemap.cc:106:simplemap_bitop$124",
+        "$auto$simplemap.cc:106:simplemap_bitop$125"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n5",
+      "b": "n13",
+      "cin": "n39",
+      "sum": "n22",
+      "cout": "n43",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$128",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$131",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$127",
+        "$auto$simplemap.cc:106:simplemap_bitop$129",
+        "$auto$simplemap.cc:106:simplemap_bitop$130"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n6",
+      "b": "n14",
+      "cin": "n43",
+      "sum": "n23",
+      "cout": "n47",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$133",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$136",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$132",
+        "$auto$simplemap.cc:106:simplemap_bitop$134",
+        "$auto$simplemap.cc:106:simplemap_bitop$135"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n7",
+      "b": "n15",
+      "cin": "n47",
+      "sum": "n24",
+      "cout": "n51",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$138",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$141",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$137",
+        "$auto$simplemap.cc:106:simplemap_bitop$139",
+        "$auto$simplemap.cc:106:simplemap_bitop$140"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n8",
+      "b": "n16",
+      "cin": "n51",
+      "sum": "n25",
+      "cout": "n55",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$143",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$146",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$142",
+        "$auto$simplemap.cc:106:simplemap_bitop$144",
+        "$auto$simplemap.cc:106:simplemap_bitop$145"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n9",
+      "b": "n17",
+      "cin": "n55",
+      "sum": "n26",
+      "cout": "n27",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$148",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$151",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$147",
+        "$auto$simplemap.cc:106:simplemap_bitop$149",
+        "$auto$simplemap.cc:106:simplemap_bitop$150"
+      ]
+    }
+  ],
+  "shared_logic": [],
+  "input_buses": [],
+  "source_sha256": "be942df682b1a73c9a489c5843fc55f7b065eec9eb589c2a5629677724c78ac9",
+  "source": "adder8.v",
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "io_boundary_verified": true,
+  "logic_sha256": "55164f820583d744f201f586f4ab0bea2328d9db2b41e2e23918cb1de700b902"
+}

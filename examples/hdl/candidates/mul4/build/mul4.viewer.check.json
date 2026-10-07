@@ -1,0 +1,1 @@
+{"passed":true,"top":"mul4","cells":1051,"nets":59,"sources":8,"drawn_icons":7135,"checks":["script","draw","core/full","unique source colours","neutral routing sprites","source tracing across operators","operator inputs/output","wire outputs"]}

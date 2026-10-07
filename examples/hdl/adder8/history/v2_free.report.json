@@ -1,0 +1,293 @@
+{
+  "checked_samples": 72,
+  "failure_count": 0,
+  "failures": [],
+  "frame_ticks": null,
+  "hold_ticks": 128,
+  "nodes": 499,
+  "optimized_cycles": 0,
+  "outputs": [
+    {
+      "at": [
+        1,
+        20
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "at": [
+        16,
+        10
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "at": [
+        1,
+        0
+      ],
+      "values": [
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "at": [
+        16,
+        20
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "at": [
+        21,
+        10
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "at": [
+        41,
+        10
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "at": [
+        41,
+        35
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "at": [
+        26,
+        35
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "at": [
+        6,
+        35
+      ],
+      "values": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    }
+  ],
+  "passed": true,
+  "profile": "GraphDLC-01232bd",
+  "ticks": 1024,
+  "verified_against_current_game": false,
+  "vectors": 8,
+  "settle_ticks": 128,
+  "truth_table": [
+    {
+      "inputs": {
+        "a": 0,
+        "b": 0,
+        "cin": 0
+      },
+      "expected": {
+        "sum": 0,
+        "cout": 0
+      },
+      "actual": {
+        "cout": 0,
+        "sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 1,
+        "cin": 0
+      },
+      "expected": {
+        "sum": 2,
+        "cout": 0
+      },
+      "actual": {
+        "cout": 0,
+        "sum": 2
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 127,
+        "b": 1,
+        "cin": 0
+      },
+      "expected": {
+        "sum": 128,
+        "cout": 0
+      },
+      "actual": {
+        "cout": 0,
+        "sum": 128
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 255,
+        "b": 0,
+        "cin": 1
+      },
+      "expected": {
+        "sum": 0,
+        "cout": 1
+      },
+      "actual": {
+        "cout": 1,
+        "sum": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 255,
+        "b": 255,
+        "cin": 0
+      },
+      "expected": {
+        "sum": 254,
+        "cout": 1
+      },
+      "actual": {
+        "cout": 1,
+        "sum": 254
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 255,
+        "b": 255,
+        "cin": 1
+      },
+      "expected": {
+        "sum": 255,
+        "cout": 1
+      },
+      "actual": {
+        "cout": 1,
+        "sum": 255
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 85,
+        "b": 170,
+        "cin": 0
+      },
+      "expected": {
+        "sum": 255,
+        "cout": 0
+      },
+      "actual": {
+        "cout": 0,
+        "sum": 255
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 85,
+        "b": 170,
+        "cin": 1
+      },
+      "expected": {
+        "sum": 0,
+        "cout": 1
+      },
+      "actual": {
+        "cout": 1,
+        "sum": 0
+      },
+      "passed": true
+    }
+  ],
+  "production_cells": 473,
+  "fixture_cells": 26
+}

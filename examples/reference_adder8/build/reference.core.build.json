@@ -1,0 +1,484 @@
+{
+  "schema": 1,
+  "top": "reference_core",
+  "map_hash": "3d12cf0ca03c482e6764606f94aac1ee97b12f588dd2d2d7df6e17eba4e056fd",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "inputs": {
+    "a": [
+      {
+        "index": 0,
+        "contact": [
+          30,
+          7
+        ],
+        "fixture": [
+          30,
+          6
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 1,
+        "contact": [
+          28,
+          7
+        ],
+        "fixture": [
+          28,
+          6
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 2,
+        "contact": [
+          26,
+          7
+        ],
+        "fixture": [
+          26,
+          6
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 3,
+        "contact": [
+          24,
+          7
+        ],
+        "fixture": [
+          24,
+          6
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 4,
+        "contact": [
+          22,
+          7
+        ],
+        "fixture": [
+          22,
+          6
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 5,
+        "contact": [
+          20,
+          7
+        ],
+        "fixture": [
+          20,
+          6
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 6,
+        "contact": [
+          18,
+          7
+        ],
+        "fixture": [
+          18,
+          6
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 7,
+        "contact": [
+          16,
+          7
+        ],
+        "fixture": [
+          16,
+          6
+        ],
+        "rotation": 2
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "contact": [
+          30,
+          10
+        ],
+        "fixture": [
+          30,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          28,
+          10
+        ],
+        "fixture": [
+          28,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          26,
+          10
+        ],
+        "fixture": [
+          26,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "contact": [
+          24,
+          10
+        ],
+        "fixture": [
+          24,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 4,
+        "contact": [
+          22,
+          10
+        ],
+        "fixture": [
+          22,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 5,
+        "contact": [
+          20,
+          10
+        ],
+        "fixture": [
+          20,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 6,
+        "contact": [
+          18,
+          10
+        ],
+        "fixture": [
+          18,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 7,
+        "contact": [
+          16,
+          10
+        ],
+        "fixture": [
+          16,
+          11
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "outputs": {
+    "sum": [
+      {
+        "index": 0,
+        "contact": [
+          29,
+          10
+        ],
+        "fixture": [
+          29,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          27,
+          10
+        ],
+        "fixture": [
+          27,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          25,
+          10
+        ],
+        "fixture": [
+          25,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "contact": [
+          23,
+          10
+        ],
+        "fixture": [
+          23,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 4,
+        "contact": [
+          21,
+          10
+        ],
+        "fixture": [
+          21,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 5,
+        "contact": [
+          19,
+          10
+        ],
+        "fixture": [
+          19,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 6,
+        "contact": [
+          17,
+          10
+        ],
+        "fixture": [
+          17,
+          11
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 7,
+        "contact": [
+          15,
+          10
+        ],
+        "fixture": [
+          15,
+          11
+        ],
+        "rotation": 0
+      }
+    ],
+    "cout": [
+      {
+        "index": 0,
+        "contact": [
+          15,
+          9
+        ],
+        "fixture": [
+          13,
+          9
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "cells": 56,
+  "settle_ticks": 20,
+  "bounds": {
+    "min": [
+      15,
+      7
+    ],
+    "max": [
+      30,
+      10
+    ],
+    "width": 16,
+    "height": 4,
+    "area": 64
+  },
+  "layout": "compact-reference-core",
+  "gate_labels": [
+    {
+      "at": [
+        16,
+        9
+      ],
+      "op": "MAJ",
+      "id": "image:(16, 9)"
+    },
+    {
+      "at": [
+        18,
+        9
+      ],
+      "op": "MAJ",
+      "id": "image:(18, 9)"
+    },
+    {
+      "at": [
+        20,
+        9
+      ],
+      "op": "MAJ",
+      "id": "image:(20, 9)"
+    },
+    {
+      "at": [
+        22,
+        9
+      ],
+      "op": "MAJ",
+      "id": "image:(22, 9)"
+    },
+    {
+      "at": [
+        24,
+        9
+      ],
+      "op": "MAJ",
+      "id": "image:(24, 9)"
+    },
+    {
+      "at": [
+        26,
+        9
+      ],
+      "op": "MAJ",
+      "id": "image:(26, 9)"
+    },
+    {
+      "at": [
+        28,
+        9
+      ],
+      "op": "MAJ",
+      "id": "image:(28, 9)"
+    },
+    {
+      "at": [
+        30,
+        9
+      ],
+      "op": "MAJ",
+      "id": "image:(30, 9)"
+    },
+    {
+      "at": [
+        16,
+        8
+      ],
+      "op": "XOR3",
+      "id": "image:(16, 8)"
+    },
+    {
+      "at": [
+        18,
+        8
+      ],
+      "op": "XOR3",
+      "id": "image:(18, 8)"
+    },
+    {
+      "at": [
+        20,
+        8
+      ],
+      "op": "XOR3",
+      "id": "image:(20, 8)"
+    },
+    {
+      "at": [
+        22,
+        8
+      ],
+      "op": "XOR3",
+      "id": "image:(22, 8)"
+    },
+    {
+      "at": [
+        24,
+        8
+      ],
+      "op": "XOR3",
+      "id": "image:(24, 8)"
+    },
+    {
+      "at": [
+        26,
+        8
+      ],
+      "op": "XOR3",
+      "id": "image:(26, 8)"
+    },
+    {
+      "at": [
+        28,
+        8
+      ],
+      "op": "XOR3",
+      "id": "image:(28, 8)"
+    },
+    {
+      "at": [
+        30,
+        8
+      ],
+      "op": "XOR3",
+      "id": "image:(30, 8)"
+    }
+  ],
+  "logic_core": {
+    "cells": 23,
+    "gates": 16,
+    "bounds": {
+      "min": [
+        16,
+        8
+      ],
+      "max": [
+        30,
+        9
+      ],
+      "width": 15,
+      "height": 2,
+      "area": 30
+    },
+    "ticks": 15,
+    "excluded_io_cells": 33
+  }
+}

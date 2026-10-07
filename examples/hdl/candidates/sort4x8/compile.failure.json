@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "top": "sort4x8",
+  "source_sha256": "c2a7eefc13dabfd1bd0b6bccbe6327a0bd75fa0b512ab8182c309ea773e0a54c",
+  "hdl_specification_proved_for_all_inputs": true,
+  "input_combinations": 4294967296,
+  "logic_nodes": 592,
+  "compiled_arrow_map": false,
+  "physical_simulation_run": false,
+  "phase": "placement_and_routing",
+  "profile": "GraphDLC-01232bd",
+  "default_compiler_command": "python ArrowsHDL/src/verilog_compile.py ArrowsHDL/examples/hdl/candidates/sort4x8/sort4x8.v --top sort4x8 --out ArrowsHDL/examples/hdl/candidates/sort4x8/build --trace-layout",
+  "observed_attempts": [
+    {
+      "pitch": 3,
+      "seed": 0,
+      "seconds": 14.2,
+      "status": "rejected",
+      "reason": "Исчерпан бюджет перестройки проводов"
+    },
+    {
+      "pitch": 3,
+      "seed": 1,
+      "seconds": 21.6,
+      "status": "rejected",
+      "reason": "Исчерпан бюджет перестройки проводов"
+    },
+    {
+      "pitch": 4,
+      "seed": 0,
+      "seconds": 16.0,
+      "status": "rejected",
+      "reason": "Цепь n192 повторно конфликтует: исчерпан лимит 6 перестроений"
+    },
+    {
+      "pitch": 4,
+      "seed": 1,
+      "seconds": 16.6,
+      "status": "rejected",
+      "reason": "Цепь n192 повторно конфликтует: исчерпан лимит 6 перестроений"
+    },
+    {
+      "pitch": 5,
+      "seed": 0,
+      "seconds": 10.8,
+      "status": "rejected",
+      "reason": "Цепь n77 повторно конфликтует: исчерпан лимит 6 перестроений"
+    },
+    {
+      "pitch": 5,
+      "seed": 1,
+      "seconds": 16.2,
+      "status": "rejected",
+      "reason": "Цепь n74 повторно конфликтует: исчерпан лимит 6 перестроений"
+    },
+    {
+      "pitch": 6,
+      "seed": 0,
+      "seconds": 8.5,
+      "status": "rejected",
+      "reason": "Цепь n71 повторно конфликтует: исчерпан лимит 6 перестроений"
+    },
+    {
+      "pitch": 8,
+      "seed": 0,
+      "seconds": 16.6,
+      "status": "rejected",
+      "reason": "Цепь n3 повторно конфликтует: исчерпан лимит 6 перестроений"
+    }
+  ],
+  "additional_experiment": {
+    "pitch": 8,
+    "seed": 1,
+    "status": "rejected",
+    "reason": "Цепь n17 повторно конфликтует: исчерпан лимит 6 перестроений"
+  },
+  "prepared_physical_vectors": 86984,
+  "prepared_vectors_executed": 0
+}

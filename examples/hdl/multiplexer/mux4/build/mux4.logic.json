@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "top": "mux4",
+  "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "inputs": {
+    "data": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      },
+      {
+        "index": 2,
+        "net": "n4"
+      },
+      {
+        "index": 3,
+        "net": "n5"
+      }
+    ],
+    "sel": [
+      {
+        "index": 0,
+        "net": "n6"
+      },
+      {
+        "index": 1,
+        "net": "n7"
+      }
+    ]
+  },
+  "outputs": {
+    "y": [
+      {
+        "index": 0,
+        "net": "port:y:0"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$92:select",
+      "op": "NOT",
+      "inputs": [
+        "n6"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$92:s",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$92:b",
+      "op": "AND",
+      "inputs": [
+        "n3",
+        "n6"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$92:b",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$94:select",
+      "op": "NOT",
+      "inputs": [
+        "n6"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$94:s",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$94:b",
+      "op": "AND",
+      "inputs": [
+        "n5",
+        "n6"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$94:b",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$96:select",
+      "op": "NOT",
+      "inputs": [
+        "n7"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$96:s",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$92:a",
+      "op": "AND",
+      "inputs": [
+        "n2",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$92:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$92:a",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$94:a",
+      "op": "AND",
+      "inputs": [
+        "n4",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$94:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$94:a",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$92",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$92:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$92:b"
+      ],
+      "output": "n9",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$94",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$94:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$94:b"
+      ],
+      "output": "n10",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$96:a",
+      "op": "AND",
+      "inputs": [
+        "n9",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$96:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$96:a",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$96:b",
+      "op": "AND",
+      "inputs": [
+        "n10",
+        "n7"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$96:b",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$96",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$96:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$96:b"
+      ],
+      "output": "n8",
+      "origin": "design.v:3.20-3.25|/share/techmap.v:178.4-183.7|/share/techmap.v:178.8-178.12"
+    },
+    {
+      "id": "port:y:0",
+      "op": "BUF",
+      "inputs": [
+        "n8"
+      ],
+      "output": "port:y:0",
+      "origin": null
+    }
+  ]
+}

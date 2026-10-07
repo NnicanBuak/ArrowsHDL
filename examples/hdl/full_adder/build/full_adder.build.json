@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "top": "full_adder",
+  "map_hash": "7d60ad5f3c3ab2931e8fb0f2dd0e92c199a5c29534853d122e0d0fffec715f19",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "inputs": {
+    "i_bit1": [
+      {
+        "index": 0,
+        "contact": [
+          0,
+          0
+        ],
+        "fixture": [
+          0,
+          -1
+        ],
+        "rotation": 2
+      }
+    ],
+    "i_bit2": [
+      {
+        "index": 0,
+        "contact": [
+          0,
+          3
+        ],
+        "fixture": [
+          0,
+          4
+        ],
+        "rotation": 0
+      }
+    ],
+    "i_carry": [
+      {
+        "index": 0,
+        "contact": [
+          -1,
+          2
+        ],
+        "fixture": [
+          -2,
+          2
+        ],
+        "rotation": 1
+      }
+    ]
+  },
+  "outputs": {
+    "o_carry": [
+      {
+        "index": 0,
+        "contact": [
+          2,
+          2
+        ],
+        "fixture": [
+          3,
+          2
+        ],
+        "rotation": 0
+      }
+    ],
+    "o_sum": [
+      {
+        "index": 0,
+        "contact": [
+          1,
+          3
+        ],
+        "fixture": [
+          1,
+          4
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "settle_ticks": 6,
+  "cells": 9,
+  "layout": "compact-native-adder-v1",
+  "port_layout": "parallel-bit-slices",
+  "bounds": {
+    "min": [
+      -1,
+      0
+    ],
+    "max": [
+      2,
+      3
+    ],
+    "width": 4,
+    "height": 4,
+    "area": 16
+  },
+  "adder_bits": 1,
+  "logic_core": {
+    "cells": 2,
+    "gates": 2,
+    "bounds": {
+      "min": [
+        0,
+        1
+      ],
+      "max": [
+        0,
+        2
+      ],
+      "width": 1,
+      "height": 2,
+      "area": 2
+    },
+    "ticks": 1,
+    "excluded_io_cells": 7
+  },
+  "gate_labels": [
+    {
+      "at": [
+        0,
+        1
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$80"
+    },
+    {
+      "at": [
+        0,
+        2
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$81"
+    },
+    {
+      "at": [
+        1,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:o_sum:0"
+    },
+    {
+      "at": [
+        2,
+        2
+      ],
+      "op": "BUF",
+      "id": "port:o_carry:0"
+    }
+  ],
+  "optimization": {
+    "objective": "native_threshold_and_parity_bit_slices",
+    "logical_gates_per_bit": 2,
+    "io_in_objective": false
+  },
+  "logic_nodes": 7,
+  "technology_nodes": 4,
+  "technology_mapping": [
+    {
+      "kind": "full_adder",
+      "a": "n2",
+      "b": "n3",
+      "cin": "n4",
+      "sum": "n5",
+      "cout": "n6",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$80",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$81",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$77",
+        "$auto$simplemap.cc:106:simplemap_bitop$79",
+        "$auto$simplemap.cc:106:simplemap_bitop$78"
+      ]
+    }
+  ],
+  "source_sha256": "55d30fda65f9c172db3e5e17507339cbe4081943bc96d1ff1b87314e3b038080",
+  "source": "full_adder.v",
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "logic_sha256": "dfc296244b7845bf7e6d3f427902b95213e4987e8dac235e82271229b3529694"
+}

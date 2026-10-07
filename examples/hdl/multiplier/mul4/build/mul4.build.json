@@ -1,0 +1,907 @@
+{
+  "schema": 1,
+  "top": "mul4",
+  "map_hash": "1b3fa6f4f6dda0fc278e2fb28c9e3accdfd49e43210bf1ad95329abffd6882f6",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "inputs": {
+    "a": [
+      {
+        "index": 0,
+        "contact": [
+          -3,
+          0
+        ],
+        "fixture": [
+          -4,
+          0
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "contact": [
+          -3,
+          2
+        ],
+        "fixture": [
+          -4,
+          2
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 2,
+        "contact": [
+          -3,
+          4
+        ],
+        "fixture": [
+          -4,
+          4
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 3,
+        "contact": [
+          -3,
+          6
+        ],
+        "fixture": [
+          -4,
+          6
+        ],
+        "rotation": 1
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "contact": [
+          -3,
+          10
+        ],
+        "fixture": [
+          -4,
+          10
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "contact": [
+          -3,
+          12
+        ],
+        "fixture": [
+          -4,
+          12
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 2,
+        "contact": [
+          -3,
+          14
+        ],
+        "fixture": [
+          -4,
+          14
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 3,
+        "contact": [
+          -3,
+          16
+        ],
+        "fixture": [
+          -4,
+          16
+        ],
+        "rotation": 1
+      }
+    ]
+  },
+  "outputs": {
+    "product": [
+      {
+        "index": 0,
+        "contact": [
+          59,
+          0
+        ],
+        "fixture": [
+          60,
+          0
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          59,
+          2
+        ],
+        "fixture": [
+          60,
+          2
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          59,
+          4
+        ],
+        "fixture": [
+          60,
+          4
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "contact": [
+          59,
+          6
+        ],
+        "fixture": [
+          60,
+          6
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 4,
+        "contact": [
+          59,
+          8
+        ],
+        "fixture": [
+          60,
+          8
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 5,
+        "contact": [
+          59,
+          10
+        ],
+        "fixture": [
+          60,
+          10
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 6,
+        "contact": [
+          59,
+          12
+        ],
+        "fixture": [
+          60,
+          12
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 7,
+        "contact": [
+          59,
+          14
+        ],
+        "fixture": [
+          60,
+          14
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "settle_ticks": 115,
+  "cells": 992,
+  "logic_nodes": 79,
+  "layout": "compact-logic-first-v3",
+  "bounds": {
+    "min": [
+      -5,
+      -3
+    ],
+    "max": [
+      59,
+      31
+    ],
+    "width": 65,
+    "height": 35,
+    "area": 2275
+  },
+  "placement_pitch": 5,
+  "port_layout": "fixed-sides",
+  "placement_seed": 1,
+  "rerouted_nets": 0,
+  "logic_core": {
+    "cells": 507,
+    "gates": 56,
+    "bounds": {
+      "min": [
+        -2,
+        -1
+      ],
+      "max": [
+        36,
+        31
+      ],
+      "width": 39,
+      "height": 33,
+      "area": 1287
+    },
+    "ticks": 71,
+    "excluded_io_cells": 485
+  },
+  "gate_labels": [
+    {
+      "at": [
+        15,
+        15
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$103"
+    },
+    {
+      "at": [
+        0,
+        20
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$104"
+    },
+    {
+      "at": [
+        5,
+        5
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$105"
+    },
+    {
+      "at": [
+        35,
+        20
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$106"
+    },
+    {
+      "at": [
+        10,
+        10
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$110"
+    },
+    {
+      "at": [
+        10,
+        15
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$111"
+    },
+    {
+      "at": [
+        5,
+        15
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$112"
+    },
+    {
+      "at": [
+        0,
+        0
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$113"
+    },
+    {
+      "at": [
+        30,
+        5
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$117"
+    },
+    {
+      "at": [
+        10,
+        5
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$118"
+    },
+    {
+      "at": [
+        15,
+        20
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$119"
+    },
+    {
+      "at": [
+        0,
+        25
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$120"
+    },
+    {
+      "at": [
+        5,
+        0
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$124"
+    },
+    {
+      "at": [
+        35,
+        0
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$125"
+    },
+    {
+      "at": [
+        15,
+        0
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$126"
+    },
+    {
+      "at": [
+        25,
+        15
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$127"
+    },
+    {
+      "at": [
+        15,
+        5
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$142"
+    },
+    {
+      "at": [
+        15,
+        10
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$150"
+    },
+    {
+      "at": [
+        5,
+        10
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$161"
+    },
+    {
+      "at": [
+        0,
+        5
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$169"
+    },
+    {
+      "at": [
+        35,
+        5
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$181"
+    },
+    {
+      "at": [
+        30,
+        0
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$189"
+    },
+    {
+      "at": [
+        59,
+        0
+      ],
+      "op": "BUF",
+      "id": "port:product:0"
+    },
+    {
+      "at": [
+        20,
+        15
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$143"
+    },
+    {
+      "at": [
+        5,
+        20
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$144"
+    },
+    {
+      "at": [
+        10,
+        20
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$135"
+    },
+    {
+      "at": [
+        0,
+        15
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$136"
+    },
+    {
+      "at": [
+        20,
+        0
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$182"
+    },
+    {
+      "at": [
+        20,
+        5
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$190"
+    },
+    {
+      "at": [
+        35,
+        10
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$202"
+    },
+    {
+      "at": [
+        30,
+        20
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$210"
+    },
+    {
+      "at": [
+        59,
+        2
+      ],
+      "op": "BUF",
+      "id": "port:product:1"
+    },
+    {
+      "at": [
+        20,
+        10
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$183"
+    },
+    {
+      "at": [
+        5,
+        25
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$200"
+    },
+    {
+      "at": [
+        0,
+        10
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$201"
+    },
+    {
+      "at": [
+        10,
+        25
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$208"
+    },
+    {
+      "at": [
+        0,
+        30
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$209"
+    },
+    {
+      "at": [
+        20,
+        20
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$175"
+    },
+    {
+      "at": [
+        25,
+        0
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$299"
+    },
+    {
+      "at": [
+        10,
+        0
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$307"
+    },
+    {
+      "at": [
+        5,
+        30
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$302"
+    },
+    {
+      "at": [
+        10,
+        30
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$310"
+    },
+    {
+      "at": [
+        15,
+        25
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$301"
+    },
+    {
+      "at": [
+        20,
+        25
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$309"
+    },
+    {
+      "at": [
+        59,
+        4
+      ],
+      "op": "BUF",
+      "id": "port:product:2"
+    },
+    {
+      "at": [
+        25,
+        5
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$215"
+    },
+    {
+      "at": [
+        25,
+        25
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$330"
+    },
+    {
+      "at": [
+        15,
+        30
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$332"
+    },
+    {
+      "at": [
+        25,
+        10
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$334"
+    },
+    {
+      "at": [
+        59,
+        6
+      ],
+      "op": "BUF",
+      "id": "port:product:3"
+    },
+    {
+      "at": [
+        30,
+        10
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$216"
+    },
+    {
+      "at": [
+        25,
+        30
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$315"
+    },
+    {
+      "at": [
+        25,
+        20
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$317"
+    },
+    {
+      "at": [
+        20,
+        30
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$331"
+    },
+    {
+      "at": [
+        30,
+        25
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$316"
+    },
+    {
+      "at": [
+        30,
+        30
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$336"
+    },
+    {
+      "at": [
+        59,
+        8
+      ],
+      "op": "BUF",
+      "id": "port:product:4"
+    },
+    {
+      "at": [
+        35,
+        30
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$217"
+    },
+    {
+      "at": [
+        35,
+        25
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$218"
+    },
+    {
+      "at": [
+        30,
+        15
+      ],
+      "op": "MAJ",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$324"
+    },
+    {
+      "at": [
+        59,
+        10
+      ],
+      "op": "BUF",
+      "id": "port:product:5"
+    },
+    {
+      "at": [
+        59,
+        12
+      ],
+      "op": "BUF",
+      "id": "port:product:6"
+    },
+    {
+      "at": [
+        35,
+        15
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$219"
+    },
+    {
+      "at": [
+        59,
+        14
+      ],
+      "op": "BUF",
+      "id": "port:product:7"
+    }
+  ],
+  "optimization": {
+    "objective": "min_core_cells_then_ticks_with_compactness_limits",
+    "path_search": "multi_source_A_star",
+    "routing_order": "internal_then_fixed_io",
+    "io_in_objective": false,
+    "area_factor": 1.25,
+    "cell_factor": 1.2,
+    "candidates": [
+      {
+        "core": {
+          "cells": 530,
+          "gates": 56,
+          "bounds": {
+            "min": [
+              -1,
+              -2
+            ],
+            "max": [
+              36,
+              32
+            ],
+            "width": 38,
+            "height": 35,
+            "area": 1330
+          },
+          "ticks": 66,
+          "excluded_io_cells": 519
+        },
+        "cells": 1049,
+        "area": 2275,
+        "ticks": 138,
+        "pitch": 5,
+        "seed": 0
+      },
+      {
+        "core": {
+          "cells": 507,
+          "gates": 56,
+          "bounds": {
+            "min": [
+              -2,
+              -1
+            ],
+            "max": [
+              36,
+              31
+            ],
+            "width": 39,
+            "height": 33,
+            "area": 1287
+          },
+          "ticks": 71,
+          "excluded_io_cells": 485
+        },
+        "cells": 992,
+        "area": 2275,
+        "ticks": 115,
+        "pitch": 5,
+        "seed": 1
+      }
+    ]
+  },
+  "technology_nodes": 64,
+  "technology_mapping": [
+    {
+      "kind": "full_adder",
+      "a": "n18",
+      "b": "n23",
+      "cin": "n28",
+      "sum": "n41",
+      "cout": "n35",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$143",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$135",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$167",
+        "$auto$simplemap.cc:106:simplemap_bitop$159",
+        "$auto$simplemap.cc:106:simplemap_bitop$151"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n19",
+      "b": "n24",
+      "cin": "n29",
+      "sum": "n43",
+      "cout": "n38",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$144",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$136",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$168",
+        "$auto$simplemap.cc:106:simplemap_bitop$160",
+        "$auto$simplemap.cc:106:simplemap_bitop$152"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n41",
+      "b": "n44",
+      "cin": "n32",
+      "sum": "n52",
+      "cout": "n49",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$183",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$175",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$207",
+        "$auto$simplemap.cc:106:simplemap_bitop$199",
+        "$auto$simplemap.cc:106:simplemap_bitop$191"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n52",
+      "b": "n54",
+      "cin": "n62",
+      "sum": "n13",
+      "cout": "n64",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$215",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$334",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$308",
+        "$auto$simplemap.cc:106:simplemap_bitop$300",
+        "$auto$simplemap.cc:106:simplemap_bitop$335"
+      ]
+    },
+    {
+      "kind": "full_adder",
+      "a": "n60",
+      "b": "n56",
+      "cin": "n68",
+      "sum": "n16",
+      "cout": "n69",
+      "sum_id": "$auto$simplemap.cc:106:simplemap_bitop$218",
+      "cout_id": "$auto$simplemap.cc:106:simplemap_bitop$324",
+      "removed": [
+        "$auto$simplemap.cc:106:simplemap_bitop$311",
+        "$auto$simplemap.cc:106:simplemap_bitop$303",
+        "$auto$simplemap.cc:106:simplemap_bitop$318"
+      ]
+    }
+  ],
+  "source_sha256": "314ea46cd29dfdd0b9f916ebc56eb6776954444791d7a7c08902f3868926bc4d",
+  "source": "mul4.v",
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "logic_sha256": "3099d2b1638b7050c2dcf10db5a65f26a6efa0f064234ffb97baedee7d2d8320"
+}

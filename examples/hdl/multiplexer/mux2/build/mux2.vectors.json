@@ -1,0 +1,150 @@
+{
+  "oracle": "(data >> sel) & 1",
+  "unique_combinations": 8,
+  "vectors": [
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    }
+  ]
+}

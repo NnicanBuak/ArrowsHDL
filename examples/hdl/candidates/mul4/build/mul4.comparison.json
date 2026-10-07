@@ -1,0 +1,53 @@
+{
+  "same_source_sha256": true,
+  "same_operator_structure": true,
+  "same_output_structure": true,
+  "source_sha256": "69eb88eea2dd5a5cff0b2b31c62c99818ea4a131990241588991520643d849c5",
+  "before": {
+    "cells": 753,
+    "logic_core": {
+      "cells": 287,
+      "gates": 43,
+      "bounds": {
+        "min": [
+          0,
+          -1
+        ],
+        "max": [
+          25,
+          25
+        ],
+        "width": 26,
+        "height": 27,
+        "area": 702
+      },
+      "ticks": 54,
+      "excluded_io_cells": 466
+    },
+    "settle_ticks": 112
+  },
+  "after": {
+    "cells": 1051,
+    "logic_core": {
+      "cells": 185,
+      "gates": 43,
+      "bounds": {
+        "min": [
+          4,
+          4
+        ],
+        "max": [
+          41,
+          16
+        ],
+        "width": 38,
+        "height": 13,
+        "area": 494
+      },
+      "ticks": 41,
+      "excluded_io_cells": 866
+    },
+    "settle_ticks": 142
+  },
+  "passed": true
+}

@@ -1,0 +1,461 @@
+{
+  "schema": 1,
+  "top": "mux8_manual",
+  "map_hash": "1f47d8d69e0478bf4191ca20e8aa09ca309c440d4e61f9a8d7d207f9febf06c8",
+  "inputs": {
+    "data": [
+      {
+        "index": 0,
+        "contact": [
+          0,
+          1
+        ],
+        "fixture": [
+          -1,
+          1
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "contact": [
+          0,
+          2
+        ],
+        "fixture": [
+          -1,
+          2
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 2,
+        "contact": [
+          0,
+          4
+        ],
+        "fixture": [
+          -1,
+          4
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 3,
+        "contact": [
+          0,
+          5
+        ],
+        "fixture": [
+          -1,
+          5
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 4,
+        "contact": [
+          0,
+          7
+        ],
+        "fixture": [
+          -1,
+          7
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 5,
+        "contact": [
+          0,
+          8
+        ],
+        "fixture": [
+          -1,
+          8
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 6,
+        "contact": [
+          0,
+          10
+        ],
+        "fixture": [
+          -1,
+          10
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 7,
+        "contact": [
+          0,
+          11
+        ],
+        "fixture": [
+          -1,
+          11
+        ],
+        "rotation": 1
+      }
+    ],
+    "sel": [
+      {
+        "index": 0,
+        "contact": [
+          1,
+          0
+        ],
+        "fixture": [
+          1,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 1,
+        "contact": [
+          4,
+          0
+        ],
+        "fixture": [
+          4,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 2,
+        "contact": [
+          7,
+          0
+        ],
+        "fixture": [
+          7,
+          -1
+        ],
+        "rotation": 2
+      }
+    ]
+  },
+  "outputs": {
+    "y": [
+      {
+        "index": 0,
+        "contact": [
+          8,
+          7
+        ],
+        "fixture": [
+          9,
+          7
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      0,
+      0
+    ],
+    "max": [
+      8,
+      11
+    ],
+    "width": 9,
+    "height": 12,
+    "area": 108
+  },
+  "full_bounds": {
+    "min": [
+      -1,
+      -1
+    ],
+    "max": [
+      9,
+      11
+    ],
+    "width": 11,
+    "height": 13,
+    "area": 143
+  },
+  "cells": 68,
+  "settle_ticks": 19,
+  "logic_core": {
+    "cells": 40,
+    "gates": 28,
+    "bounds": {
+      "min": [
+        1,
+        1
+      ],
+      "max": [
+        8,
+        11
+      ],
+      "width": 8,
+      "height": 11,
+      "area": 88
+    },
+    "ticks": 11,
+    "excluded_io_cells": 28
+  },
+  "gate_labels": [
+    {
+      "at": [
+        3,
+        4
+      ],
+      "id": "manual:3:4",
+      "output": "at:3:4",
+      "op": "OR"
+    },
+    {
+      "at": [
+        3,
+        10
+      ],
+      "id": "manual:3:10",
+      "output": "at:3:10",
+      "op": "OR"
+    },
+    {
+      "at": [
+        1,
+        1
+      ],
+      "id": "manual:1:1",
+      "output": "at:1:1",
+      "op": "NOT"
+    },
+    {
+      "at": [
+        1,
+        4
+      ],
+      "id": "manual:1:4",
+      "output": "at:1:4",
+      "op": "NOT"
+    },
+    {
+      "at": [
+        1,
+        7
+      ],
+      "id": "manual:1:7",
+      "output": "at:1:7",
+      "op": "NOT"
+    },
+    {
+      "at": [
+        1,
+        10
+      ],
+      "id": "manual:1:10",
+      "output": "at:1:10",
+      "op": "NOT"
+    },
+    {
+      "at": [
+        4,
+        3
+      ],
+      "id": "manual:4:3",
+      "output": "at:4:3",
+      "op": "NOT"
+    },
+    {
+      "at": [
+        4,
+        9
+      ],
+      "id": "manual:4:9",
+      "output": "at:4:9",
+      "op": "NOT"
+    },
+    {
+      "at": [
+        5,
+        6
+      ],
+      "id": "manual:5:6",
+      "output": "at:5:6",
+      "op": "NOT"
+    },
+    {
+      "at": [
+        3,
+        2
+      ],
+      "id": "manual:3:2",
+      "output": "at:3:2",
+      "op": "OR"
+    },
+    {
+      "at": [
+        3,
+        8
+      ],
+      "id": "manual:3:8",
+      "output": "at:3:8",
+      "op": "OR"
+    },
+    {
+      "at": [
+        6,
+        5
+      ],
+      "id": "manual:6:5",
+      "output": "at:6:5",
+      "op": "OR"
+    },
+    {
+      "at": [
+        6,
+        8
+      ],
+      "id": "manual:6:8",
+      "output": "at:6:8",
+      "op": "OR"
+    },
+    {
+      "at": [
+        8,
+        7
+      ],
+      "id": "manual:8:7",
+      "output": "at:8:7",
+      "op": "OR"
+    },
+    {
+      "at": [
+        2,
+        1
+      ],
+      "id": "manual:2:1",
+      "output": "at:2:1",
+      "op": "AND"
+    },
+    {
+      "at": [
+        2,
+        2
+      ],
+      "id": "manual:2:2",
+      "output": "at:2:2",
+      "op": "AND"
+    },
+    {
+      "at": [
+        2,
+        4
+      ],
+      "id": "manual:2:4",
+      "output": "at:2:4",
+      "op": "AND"
+    },
+    {
+      "at": [
+        2,
+        5
+      ],
+      "id": "manual:2:5",
+      "output": "at:2:5",
+      "op": "AND"
+    },
+    {
+      "at": [
+        2,
+        7
+      ],
+      "id": "manual:2:7",
+      "output": "at:2:7",
+      "op": "AND"
+    },
+    {
+      "at": [
+        2,
+        8
+      ],
+      "id": "manual:2:8",
+      "output": "at:2:8",
+      "op": "AND"
+    },
+    {
+      "at": [
+        2,
+        10
+      ],
+      "id": "manual:2:10",
+      "output": "at:2:10",
+      "op": "AND"
+    },
+    {
+      "at": [
+        2,
+        11
+      ],
+      "id": "manual:2:11",
+      "output": "at:2:11",
+      "op": "AND"
+    },
+    {
+      "at": [
+        5,
+        3
+      ],
+      "id": "manual:5:3",
+      "output": "at:5:3",
+      "op": "AND"
+    },
+    {
+      "at": [
+        5,
+        4
+      ],
+      "id": "manual:5:4",
+      "output": "at:5:4",
+      "op": "AND"
+    },
+    {
+      "at": [
+        5,
+        9
+      ],
+      "id": "manual:5:9",
+      "output": "at:5:9",
+      "op": "AND"
+    },
+    {
+      "at": [
+        5,
+        10
+      ],
+      "id": "manual:5:10",
+      "output": "at:5:10",
+      "op": "AND"
+    },
+    {
+      "at": [
+        6,
+        6
+      ],
+      "id": "manual:6:6",
+      "output": "at:6:6",
+      "op": "AND"
+    },
+    {
+      "at": [
+        6,
+        7
+      ],
+      "id": "manual:6:7",
+      "output": "at:6:7",
+      "op": "AND"
+    }
+  ],
+  "io_boundary_verified": true
+}

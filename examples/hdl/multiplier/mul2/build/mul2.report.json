@@ -1,0 +1,597 @@
+{
+  "checked_samples": 128,
+  "failure_count": 0,
+  "failures": [],
+  "frame_ticks": null,
+  "hold_ticks": 31,
+  "nodes": 111,
+  "optimized_cycles": 0,
+  "outputs": [
+    {
+      "at": [
+        20,
+        0
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "at": [
+        20,
+        2
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "at": [
+        20,
+        4
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "at": [
+        20,
+        6
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "passed": true,
+  "profile": "GraphDLC-01232bd",
+  "ticks": 992,
+  "verified_against_current_game": false,
+  "vectors": 32,
+  "settle_ticks": 31,
+  "truth_table": [
+    {
+      "inputs": {
+        "a": 0,
+        "b": 0
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 1
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 2
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 3
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 0
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 1
+      },
+      "expected": {
+        "product": 1
+      },
+      "actual": {
+        "product": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 2
+      },
+      "expected": {
+        "product": 2
+      },
+      "actual": {
+        "product": 2
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 3
+      },
+      "expected": {
+        "product": 3
+      },
+      "actual": {
+        "product": 3
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 2,
+        "b": 0
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 2,
+        "b": 1
+      },
+      "expected": {
+        "product": 2
+      },
+      "actual": {
+        "product": 2
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 2,
+        "b": 2
+      },
+      "expected": {
+        "product": 4
+      },
+      "actual": {
+        "product": 4
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 2,
+        "b": 3
+      },
+      "expected": {
+        "product": 6
+      },
+      "actual": {
+        "product": 6
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 3,
+        "b": 0
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 3,
+        "b": 1
+      },
+      "expected": {
+        "product": 3
+      },
+      "actual": {
+        "product": 3
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 3,
+        "b": 2
+      },
+      "expected": {
+        "product": 6
+      },
+      "actual": {
+        "product": 6
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 3,
+        "b": 3
+      },
+      "expected": {
+        "product": 9
+      },
+      "actual": {
+        "product": 9
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 3,
+        "b": 3
+      },
+      "expected": {
+        "product": 9
+      },
+      "actual": {
+        "product": 9
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 3,
+        "b": 2
+      },
+      "expected": {
+        "product": 6
+      },
+      "actual": {
+        "product": 6
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 3,
+        "b": 1
+      },
+      "expected": {
+        "product": 3
+      },
+      "actual": {
+        "product": 3
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 3,
+        "b": 0
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 2,
+        "b": 3
+      },
+      "expected": {
+        "product": 6
+      },
+      "actual": {
+        "product": 6
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 2,
+        "b": 2
+      },
+      "expected": {
+        "product": 4
+      },
+      "actual": {
+        "product": 4
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 2,
+        "b": 1
+      },
+      "expected": {
+        "product": 2
+      },
+      "actual": {
+        "product": 2
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 2,
+        "b": 0
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 3
+      },
+      "expected": {
+        "product": 3
+      },
+      "actual": {
+        "product": 3
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 2
+      },
+      "expected": {
+        "product": 2
+      },
+      "actual": {
+        "product": 2
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 1
+      },
+      "expected": {
+        "product": 1
+      },
+      "actual": {
+        "product": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 0
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 3
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 2
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 1
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 0
+      },
+      "expected": {
+        "product": 0
+      },
+      "actual": {
+        "product": 0
+      },
+      "passed": true
+    }
+  ],
+  "production_cells": 103,
+  "fixture_cells": 8
+}

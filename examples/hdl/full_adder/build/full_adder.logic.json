@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "top": "full_adder",
+  "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "inputs": {
+    "i_bit1": [
+      {
+        "index": 0,
+        "net": "n2"
+      }
+    ],
+    "i_bit2": [
+      {
+        "index": 0,
+        "net": "n3"
+      }
+    ],
+    "i_carry": [
+      {
+        "index": 0,
+        "net": "n4"
+      }
+    ]
+  },
+  "outputs": {
+    "o_carry": [
+      {
+        "index": 0,
+        "net": "port:o_carry:0"
+      }
+    ],
+    "o_sum": [
+      {
+        "index": 0,
+        "net": "port:o_sum:0"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$77",
+      "op": "XOR",
+      "inputs": [
+        "n2",
+        "n3"
+      ],
+      "output": "n7",
+      "origin": "design.v:5.21-5.36"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$79",
+      "op": "AND",
+      "inputs": [
+        "n2",
+        "n3"
+      ],
+      "output": "n9",
+      "origin": "design.v:7.21-7.36"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$78",
+      "op": "AND",
+      "inputs": [
+        "n7",
+        "n4"
+      ],
+      "output": "n8",
+      "origin": "design.v:6.21-6.39"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$80",
+      "op": "XOR",
+      "inputs": [
+        "n7",
+        "n4"
+      ],
+      "output": "n5",
+      "origin": "design.v:8.18-8.36"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$81",
+      "op": "OR",
+      "inputs": [
+        "n8",
+        "n9"
+      ],
+      "output": "n6",
+      "origin": "design.v:9.20-9.39"
+    },
+    {
+      "id": "port:o_sum:0",
+      "op": "BUF",
+      "inputs": [
+        "n5"
+      ],
+      "output": "port:o_sum:0",
+      "origin": null
+    },
+    {
+      "id": "port:o_carry:0",
+      "op": "BUF",
+      "inputs": [
+        "n6"
+      ],
+      "output": "port:o_carry:0",
+      "origin": null
+    }
+  ]
+}

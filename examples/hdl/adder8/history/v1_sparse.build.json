@@ -1,0 +1,745 @@
+{
+  "schema": 1,
+  "top": "adder8",
+  "map_hash": "076443e0537f9b1bc3305639882e1e4806a8b49e8840092c04eef961b15272b8",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "inputs": {
+    "a": [
+      {
+        "index": 0,
+        "contact": [
+          0,
+          0
+        ],
+        "fixture": [
+          -1,
+          0
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "contact": [
+          0,
+          4
+        ],
+        "fixture": [
+          -1,
+          4
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 2,
+        "contact": [
+          0,
+          8
+        ],
+        "fixture": [
+          -1,
+          8
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 3,
+        "contact": [
+          0,
+          12
+        ],
+        "fixture": [
+          -1,
+          12
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 4,
+        "contact": [
+          0,
+          16
+        ],
+        "fixture": [
+          -1,
+          16
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 5,
+        "contact": [
+          0,
+          20
+        ],
+        "fixture": [
+          -1,
+          20
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 6,
+        "contact": [
+          0,
+          24
+        ],
+        "fixture": [
+          -1,
+          24
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 7,
+        "contact": [
+          0,
+          28
+        ],
+        "fixture": [
+          -1,
+          28
+        ],
+        "rotation": 1
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "contact": [
+          0,
+          32
+        ],
+        "fixture": [
+          -1,
+          32
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "contact": [
+          0,
+          36
+        ],
+        "fixture": [
+          -1,
+          36
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 2,
+        "contact": [
+          0,
+          40
+        ],
+        "fixture": [
+          -1,
+          40
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 3,
+        "contact": [
+          0,
+          44
+        ],
+        "fixture": [
+          -1,
+          44
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 4,
+        "contact": [
+          0,
+          48
+        ],
+        "fixture": [
+          -1,
+          48
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 5,
+        "contact": [
+          0,
+          52
+        ],
+        "fixture": [
+          -1,
+          52
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 6,
+        "contact": [
+          0,
+          56
+        ],
+        "fixture": [
+          -1,
+          56
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 7,
+        "contact": [
+          0,
+          60
+        ],
+        "fixture": [
+          -1,
+          60
+        ],
+        "rotation": 1
+      }
+    ],
+    "cin": [
+      {
+        "index": 0,
+        "contact": [
+          0,
+          64
+        ],
+        "fixture": [
+          -1,
+          64
+        ],
+        "rotation": 1
+      }
+    ]
+  },
+  "outputs": {
+    "cout": [
+      {
+        "index": 0,
+        "contact": [
+          792,
+          260
+        ],
+        "fixture": [
+          793,
+          260
+        ],
+        "rotation": 0
+      }
+    ],
+    "sum": [
+      {
+        "index": 0,
+        "contact": [
+          792,
+          144
+        ],
+        "fixture": [
+          793,
+          144
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          792,
+          160
+        ],
+        "fixture": [
+          793,
+          160
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          792,
+          176
+        ],
+        "fixture": [
+          793,
+          176
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "contact": [
+          792,
+          192
+        ],
+        "fixture": [
+          793,
+          192
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 4,
+        "contact": [
+          792,
+          208
+        ],
+        "fixture": [
+          793,
+          208
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 5,
+        "contact": [
+          792,
+          224
+        ],
+        "fixture": [
+          793,
+          224
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 6,
+        "contact": [
+          792,
+          240
+        ],
+        "fixture": [
+          793,
+          240
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 7,
+        "contact": [
+          792,
+          256
+        ],
+        "fixture": [
+          793,
+          256
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "settle_ticks": 3778,
+  "cells": 30393,
+  "logic_nodes": 49,
+  "layout": "sparse-buses-v1",
+  "bounds": {
+    "min": [
+      0,
+      0
+    ],
+    "max": [
+      792,
+      268
+    ],
+    "width": 793,
+    "height": 269,
+    "area": 213317
+  },
+  "gate_labels": [
+    {
+      "at": [
+        12,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$112"
+    },
+    {
+      "at": [
+        28,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$114"
+    },
+    {
+      "at": [
+        44,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$117"
+    },
+    {
+      "at": [
+        60,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$119"
+    },
+    {
+      "at": [
+        76,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$122"
+    },
+    {
+      "at": [
+        92,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$124"
+    },
+    {
+      "at": [
+        108,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$127"
+    },
+    {
+      "at": [
+        124,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$129"
+    },
+    {
+      "at": [
+        140,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$132"
+    },
+    {
+      "at": [
+        156,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$134"
+    },
+    {
+      "at": [
+        172,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$137"
+    },
+    {
+      "at": [
+        188,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$139"
+    },
+    {
+      "at": [
+        204,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$142"
+    },
+    {
+      "at": [
+        220,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$144"
+    },
+    {
+      "at": [
+        236,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$147"
+    },
+    {
+      "at": [
+        252,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$149"
+    },
+    {
+      "at": [
+        268,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$113"
+    },
+    {
+      "at": [
+        284,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$115"
+    },
+    {
+      "at": [
+        300,
+        268
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$116"
+    },
+    {
+      "at": [
+        316,
+        268
+      ],
+      "op": "BUF",
+      "id": "port:sum:0"
+    },
+    {
+      "at": [
+        332,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$118"
+    },
+    {
+      "at": [
+        348,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$120"
+    },
+    {
+      "at": [
+        364,
+        268
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$121"
+    },
+    {
+      "at": [
+        380,
+        268
+      ],
+      "op": "BUF",
+      "id": "port:sum:1"
+    },
+    {
+      "at": [
+        396,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$123"
+    },
+    {
+      "at": [
+        412,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$125"
+    },
+    {
+      "at": [
+        428,
+        268
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$126"
+    },
+    {
+      "at": [
+        444,
+        268
+      ],
+      "op": "BUF",
+      "id": "port:sum:2"
+    },
+    {
+      "at": [
+        460,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$128"
+    },
+    {
+      "at": [
+        476,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$130"
+    },
+    {
+      "at": [
+        492,
+        268
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$131"
+    },
+    {
+      "at": [
+        508,
+        268
+      ],
+      "op": "BUF",
+      "id": "port:sum:3"
+    },
+    {
+      "at": [
+        524,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$133"
+    },
+    {
+      "at": [
+        540,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$135"
+    },
+    {
+      "at": [
+        556,
+        268
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$136"
+    },
+    {
+      "at": [
+        572,
+        268
+      ],
+      "op": "BUF",
+      "id": "port:sum:4"
+    },
+    {
+      "at": [
+        588,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$138"
+    },
+    {
+      "at": [
+        604,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$140"
+    },
+    {
+      "at": [
+        620,
+        268
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$141"
+    },
+    {
+      "at": [
+        636,
+        268
+      ],
+      "op": "BUF",
+      "id": "port:sum:5"
+    },
+    {
+      "at": [
+        652,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$143"
+    },
+    {
+      "at": [
+        668,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$145"
+    },
+    {
+      "at": [
+        684,
+        268
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$146"
+    },
+    {
+      "at": [
+        700,
+        268
+      ],
+      "op": "BUF",
+      "id": "port:sum:6"
+    },
+    {
+      "at": [
+        716,
+        268
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$148"
+    },
+    {
+      "at": [
+        732,
+        268
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$150"
+    },
+    {
+      "at": [
+        748,
+        268
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$151"
+    },
+    {
+      "at": [
+        764,
+        268
+      ],
+      "op": "BUF",
+      "id": "port:sum:7"
+    },
+    {
+      "at": [
+        780,
+        268
+      ],
+      "op": "BUF",
+      "id": "port:cout:0"
+    }
+  ],
+  "logic_sha256": "55164f820583d744f201f586f4ab0bea2328d9db2b41e2e23918cb1de700b902"
+}

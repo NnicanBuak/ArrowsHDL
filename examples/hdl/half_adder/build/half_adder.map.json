@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "cells": [
+    {"type": "arrow", "dir": "right", "at": [
+      [1, 2], [2, 2]
+    ]},
+    {"type": "arrow", "dir": "down", "at": [
+      [1, 3]
+    ]},
+    {"type": "blue_arrow", "dir": "down", "at": [
+      [1, 1]
+    ]},
+    {"type": "blue_splitter_up_up", "dir": "up", "at": [
+      [0, 3]
+    ]},
+    {"type": "blue_splitter_up_up", "dir": "down", "at": [
+      [0, 0]
+    ]},
+    {"type": "and", "dir": "right", "at": [
+      [0, 2]
+    ]},
+    {"type": "xor", "dir": "right", "at": [
+      [0, 1]
+    ]}
+  ]
+}

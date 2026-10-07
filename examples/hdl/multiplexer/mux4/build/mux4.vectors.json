@@ -1,0 +1,1158 @@
+{
+  "oracle": "(data >> sel) & 1",
+  "unique_combinations": 64,
+  "vectors": [
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 15,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 14,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 13,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 12,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 11,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 10,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 9,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 3
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 8,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 7,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 6,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 5,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 2
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 4,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 3,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 1
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 2,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 1,
+        "sel": 0
+      },
+      "expect": {
+        "y": 1
+      }
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 3
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 2
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 1
+      },
+      "expect": {
+        "y": 0
+      }
+    },
+    {
+      "inputs": {
+        "data": 0,
+        "sel": 0
+      },
+      "expect": {
+        "y": 0
+      }
+    }
+  ]
+}

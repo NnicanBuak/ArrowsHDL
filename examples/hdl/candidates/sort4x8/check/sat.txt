@@ -1,0 +1,712 @@
+
+-- Running command `read_verilog design.v; hierarchy -check -top spec_check_sort4x8; synth -top spec_check_sort4x8 -flatten -noabc; check -assert; sat -verify -prove ok 1 -show-inputs -show-outputs' --
+
+1. Executing Verilog-2005 frontend: design.v
+Parsing Verilog input from `design.v' to AST representation.
+Generating RTLIL representation for module `\sort4x8_compare'.
+Generating RTLIL representation for module `\sort4x8_mux'.
+Generating RTLIL representation for module `\sort4x8_compare_swap'.
+Generating RTLIL representation for module `\sort4x8'.
+Generating RTLIL representation for module `\spec_check_sort4x8'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \spec_check_sort4x8
+Used module:     \sort4x8
+Used module:         \sort4x8_compare_swap
+Used module:             \sort4x8_mux
+Used module:             \sort4x8_compare
+
+2.2. Analyzing design hierarchy..
+Top module:  \spec_check_sort4x8
+Used module:     \sort4x8
+Used module:         \sort4x8_compare_swap
+Used module:             \sort4x8_mux
+Used module:             \sort4x8_compare
+Removed 0 unused modules.
+Mapping positional arguments of cell spec_check_sort4x8.dut (sort4x8).
+Mapping positional arguments of cell sort4x8.u_middle (sort4x8_compare_swap).
+Mapping positional arguments of cell sort4x8.u_outer_high (sort4x8_compare_swap).
+Mapping positional arguments of cell sort4x8.u_outer_low (sort4x8_compare_swap).
+Mapping positional arguments of cell sort4x8.u_pair23 (sort4x8_compare_swap).
+Mapping positional arguments of cell sort4x8.u_pair01 (sort4x8_compare_swap).
+Mapping positional arguments of cell sort4x8_compare_swap.u_high (sort4x8_mux).
+Mapping positional arguments of cell sort4x8_compare_swap.u_low (sort4x8_mux).
+Mapping positional arguments of cell sort4x8_compare_swap.u_compare (sort4x8_compare).
+
+3. Executing SYNTH pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \spec_check_sort4x8
+Used module:     \sort4x8
+Used module:         \sort4x8_compare_swap
+Used module:             \sort4x8_mux
+Used module:             \sort4x8_compare
+
+3.1.2. Analyzing design hierarchy..
+Top module:  \spec_check_sort4x8
+Used module:     \sort4x8
+Used module:         \sort4x8_compare_swap
+Used module:             \sort4x8_mux
+Used module:             \sort4x8_compare
+Removed 0 unused modules.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+<suppressed ~4 debug messages>
+Optimizing module sort4x8.
+Optimizing module sort4x8_compare_swap.
+Optimizing module sort4x8_mux.
+Optimizing module sort4x8_compare.
+
+3.3. Executing CHECK pass (checking for obvious problems).
+Checking module spec_check_sort4x8...
+Checking module sort4x8...
+Checking module sort4x8_compare_swap...
+Checking module sort4x8_mux...
+Checking module sort4x8_compare...
+Found and reported 0 problems.
+
+3.4. Executing FLATTEN pass (flatten design).
+Deleting now unused module sort4x8.
+Deleting now unused module sort4x8_compare_swap.
+Deleting now unused module sort4x8_mux.
+Deleting now unused module sort4x8_compare.
+<suppressed ~9 debug messages>
+
+3.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+Removed 0 unused cells and 28 unused wires.
+<suppressed ~1 debug messages>
+
+3.7. Executing CHECK pass (checking for obvious problems).
+Checking module spec_check_sort4x8...
+Found and reported 0 problems.
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_sort4x8'.
+Computing hashes of 101 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Removed a total of 0 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spec_check_sort4x8..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~20 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spec_check_sort4x8.
+Performed a total of 0 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_sort4x8'.
+Computing hashes of 101 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Removed a total of 0 cells.
+
+3.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+
+3.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+
+3.8.9. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing FSM pass (extract and optimize FSM).
+
+3.9.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+3.9.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+3.9.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.9.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+
+3.9.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.9.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+3.9.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+3.9.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+3.10. Executing OPT pass (performing simple optimizations).
+
+3.10.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+
+3.10.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_sort4x8'.
+Computing hashes of 101 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Removed a total of 0 cells.
+
+3.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spec_check_sort4x8..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~20 debug messages>
+
+3.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spec_check_sort4x8.
+Performed a total of 0 changes.
+
+3.10.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_sort4x8'.
+Computing hashes of 101 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Removed a total of 0 cells.
+
+3.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+
+3.10.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+
+3.10.9. Finished fast OPT passes. (There is nothing left to do.)
+
+3.11. Executing WREDUCE pass (reducing word size of cells).
+Removed top 2 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:43$5 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:43$5 ($add).
+Removed top 1 bits (of 3) from port Y of cell spec_check_sort4x8.$add$design.v:43$5 ($add).
+Removed top 1 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:43$7 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:43$7 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:43$9 ($add).
+Removed top 2 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:44$12 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:44$12 ($add).
+Removed top 1 bits (of 3) from port Y of cell spec_check_sort4x8.$add$design.v:44$12 ($add).
+Removed top 1 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:44$14 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:44$14 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:44$16 ($add).
+Removed top 2 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:45$19 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:45$19 ($add).
+Removed top 1 bits (of 3) from port Y of cell spec_check_sort4x8.$add$design.v:45$19 ($add).
+Removed top 1 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:45$21 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:45$21 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:45$23 ($add).
+Removed top 2 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:46$26 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:46$26 ($add).
+Removed top 1 bits (of 3) from port Y of cell spec_check_sort4x8.$add$design.v:46$26 ($add).
+Removed top 1 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:46$28 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:46$28 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:46$30 ($add).
+Removed top 2 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:47$33 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:47$33 ($add).
+Removed top 1 bits (of 3) from port Y of cell spec_check_sort4x8.$add$design.v:47$33 ($add).
+Removed top 1 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:47$35 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:47$35 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:47$37 ($add).
+Removed top 2 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:48$40 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:48$40 ($add).
+Removed top 1 bits (of 3) from port Y of cell spec_check_sort4x8.$add$design.v:48$40 ($add).
+Removed top 1 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:48$42 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:48$42 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:48$44 ($add).
+Removed top 2 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:49$47 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:49$47 ($add).
+Removed top 1 bits (of 3) from port Y of cell spec_check_sort4x8.$add$design.v:49$47 ($add).
+Removed top 1 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:49$49 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:49$49 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:49$51 ($add).
+Removed top 2 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:50$54 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:50$54 ($add).
+Removed top 1 bits (of 3) from port Y of cell spec_check_sort4x8.$add$design.v:50$54 ($add).
+Removed top 1 bits (of 3) from port A of cell spec_check_sort4x8.$add$design.v:50$56 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:50$56 ($add).
+Removed top 2 bits (of 3) from port B of cell spec_check_sort4x8.$add$design.v:50$58 ($add).
+Removed top 1 bits (of 3) from wire spec_check_sort4x8.$add$design.v:50$54_Y.
+Removed top 1 bits (of 3) from wire spec_check_sort4x8.$add$design.v:49$47_Y.
+Removed top 1 bits (of 3) from wire spec_check_sort4x8.$add$design.v:48$40_Y.
+Removed top 1 bits (of 3) from wire spec_check_sort4x8.$add$design.v:47$33_Y.
+Removed top 1 bits (of 3) from wire spec_check_sort4x8.$add$design.v:46$26_Y.
+Removed top 1 bits (of 3) from wire spec_check_sort4x8.$add$design.v:45$19_Y.
+Removed top 1 bits (of 3) from wire spec_check_sort4x8.$add$design.v:44$12_Y.
+Removed top 1 bits (of 3) from wire spec_check_sort4x8.$add$design.v:43$5_Y.
+
+3.12. Executing PEEPOPT pass (run peephole optimizers).
+
+3.13. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+Removed 0 unused cells and 8 unused wires.
+<suppressed ~1 debug messages>
+
+3.14. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module spec_check_sort4x8:
+  creating $macc model for $add$design.v:50$58 ($add).
+  creating $macc model for $add$design.v:50$56 ($add).
+  creating $macc model for $add$design.v:50$54 ($add).
+  creating $macc model for $add$design.v:49$51 ($add).
+  creating $macc model for $add$design.v:49$49 ($add).
+  creating $macc model for $add$design.v:49$47 ($add).
+  creating $macc model for $add$design.v:48$44 ($add).
+  creating $macc model for $add$design.v:48$42 ($add).
+  creating $macc model for $add$design.v:48$40 ($add).
+  creating $macc model for $add$design.v:47$37 ($add).
+  creating $macc model for $add$design.v:47$35 ($add).
+  creating $macc model for $add$design.v:47$33 ($add).
+  creating $macc model for $add$design.v:46$30 ($add).
+  creating $macc model for $add$design.v:46$28 ($add).
+  creating $macc model for $add$design.v:46$26 ($add).
+  creating $macc model for $add$design.v:45$23 ($add).
+  creating $macc model for $add$design.v:45$21 ($add).
+  creating $macc model for $add$design.v:45$19 ($add).
+  creating $macc model for $add$design.v:44$16 ($add).
+  creating $macc model for $add$design.v:44$14 ($add).
+  creating $macc model for $add$design.v:44$12 ($add).
+  creating $macc model for $add$design.v:43$9 ($add).
+  creating $macc model for $add$design.v:43$7 ($add).
+  creating $macc model for $add$design.v:43$5 ($add).
+  merging $macc model for $add$design.v:43$5 into $add$design.v:43$7.
+  merging $macc model for $add$design.v:43$7 into $add$design.v:43$9.
+  merging $macc model for $add$design.v:44$12 into $add$design.v:44$14.
+  merging $macc model for $add$design.v:44$14 into $add$design.v:44$16.
+  merging $macc model for $add$design.v:45$19 into $add$design.v:45$21.
+  merging $macc model for $add$design.v:45$21 into $add$design.v:45$23.
+  merging $macc model for $add$design.v:46$26 into $add$design.v:46$28.
+  merging $macc model for $add$design.v:46$28 into $add$design.v:46$30.
+  merging $macc model for $add$design.v:47$33 into $add$design.v:47$35.
+  merging $macc model for $add$design.v:47$35 into $add$design.v:47$37.
+  merging $macc model for $add$design.v:48$40 into $add$design.v:48$42.
+  merging $macc model for $add$design.v:48$42 into $add$design.v:48$44.
+  merging $macc model for $add$design.v:49$47 into $add$design.v:49$49.
+  merging $macc model for $add$design.v:49$49 into $add$design.v:49$51.
+  merging $macc model for $add$design.v:50$54 into $add$design.v:50$56.
+  merging $macc model for $add$design.v:50$56 into $add$design.v:50$58.
+  creating $macc cell for $add$design.v:45$23: $auto$alumacc.cc:399:replace_macc$89
+  creating $macc cell for $add$design.v:48$44: $auto$alumacc.cc:399:replace_macc$90
+  creating $macc cell for $add$design.v:46$30: $auto$alumacc.cc:399:replace_macc$91
+  creating $macc cell for $add$design.v:43$9: $auto$alumacc.cc:399:replace_macc$92
+  creating $macc cell for $add$design.v:49$51: $auto$alumacc.cc:399:replace_macc$93
+  creating $macc cell for $add$design.v:47$37: $auto$alumacc.cc:399:replace_macc$94
+  creating $macc cell for $add$design.v:44$16: $auto$alumacc.cc:399:replace_macc$95
+  creating $macc cell for $add$design.v:50$58: $auto$alumacc.cc:399:replace_macc$96
+  creating $alu model for $flatten\dut.\u_pair23.\u_compare.$gt$design.v:6$1 ($gt): new $alu
+  creating $alu model for $flatten\dut.\u_outer_low.\u_compare.$gt$design.v:6$1 ($gt): new $alu
+  creating $alu model for $flatten\dut.\u_outer_high.\u_compare.$gt$design.v:6$1 ($gt): new $alu
+  creating $alu model for $flatten\dut.\u_middle.\u_compare.$gt$design.v:6$1 ($gt): new $alu
+  creating $alu model for $le$design.v:51$62 ($le): new $alu
+  creating $alu model for $le$design.v:51$60 ($le): new $alu
+  creating $alu model for $le$design.v:51$59 ($le): new $alu
+  creating $alu model for $flatten\dut.\u_pair01.\u_compare.$gt$design.v:6$1 ($gt): new $alu
+  creating $alu model for $eq$design.v:49$48 ($eq): merged with $flatten\dut.\u_pair23.\u_compare.$gt$design.v:6$1.
+  creating $alu model for $eq$design.v:47$36 ($eq): merged with $flatten\dut.\u_pair23.\u_compare.$gt$design.v:6$1.
+  creating $alu model for $eq$design.v:45$17 ($eq): merged with $flatten\dut.\u_pair01.\u_compare.$gt$design.v:6$1.
+  creating $alu model for $eq$design.v:43$4 ($eq): merged with $flatten\dut.\u_pair01.\u_compare.$gt$design.v:6$1.
+  creating $alu cell for $flatten\dut.\u_pair01.\u_compare.$gt$design.v:6$1, $eq$design.v:45$17, $eq$design.v:43$4: $auto$alumacc.cc:548:replace_alu$105
+  creating $alu cell for $le$design.v:51$59: $auto$alumacc.cc:548:replace_alu$116
+  creating $alu cell for $le$design.v:51$60: $auto$alumacc.cc:548:replace_alu$125
+  creating $alu cell for $le$design.v:51$62: $auto$alumacc.cc:548:replace_alu$134
+  creating $alu cell for $flatten\dut.\u_middle.\u_compare.$gt$design.v:6$1: $auto$alumacc.cc:548:replace_alu$143
+  creating $alu cell for $flatten\dut.\u_outer_high.\u_compare.$gt$design.v:6$1: $auto$alumacc.cc:548:replace_alu$154
+  creating $alu cell for $flatten\dut.\u_outer_low.\u_compare.$gt$design.v:6$1: $auto$alumacc.cc:548:replace_alu$165
+  creating $alu cell for $flatten\dut.\u_pair23.\u_compare.$gt$design.v:6$1, $eq$design.v:49$48, $eq$design.v:47$36: $auto$alumacc.cc:548:replace_alu$176
+  created 8 $alu and 8 $macc cells.
+
+3.15. Executing SHARE pass (SAT-based resource sharing).
+
+3.16. Executing OPT pass (performing simple optimizations).
+
+3.16.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+<suppressed ~10 debug messages>
+
+3.16.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_sort4x8'.
+Computing hashes of 126 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Computing hashes of 125 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+3.16.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spec_check_sort4x8..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~20 debug messages>
+
+3.16.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spec_check_sort4x8.
+Performed a total of 0 changes.
+
+3.16.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_sort4x8'.
+Computing hashes of 125 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Removed a total of 0 cells.
+
+3.16.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.16.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+Removed 20 unused cells and 48 unused wires.
+<suppressed ~41 debug messages>
+
+3.16.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+
+3.16.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.16.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spec_check_sort4x8..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~20 debug messages>
+
+3.16.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spec_check_sort4x8.
+Performed a total of 0 changes.
+
+3.16.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_sort4x8'.
+Computing hashes of 105 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Removed a total of 0 cells.
+
+3.16.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.16.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+
+3.16.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+
+3.16.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.17. Executing MEMORY pass.
+
+3.17.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+3.17.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+3.17.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+3.17.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+3.17.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+3.17.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+
+3.17.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+3.17.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+3.17.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+
+3.17.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.18. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+
+3.19. Executing OPT pass (performing simple optimizations).
+
+3.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+
+3.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_sort4x8'.
+Computing hashes of 105 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Removed a total of 0 cells.
+
+3.19.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.19.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+
+3.19.5. Finished fast OPT passes.
+
+3.20. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+3.21. Executing OPT pass (performing simple optimizations).
+
+3.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+
+3.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_sort4x8'.
+Computing hashes of 105 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Removed a total of 0 cells.
+
+3.21.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spec_check_sort4x8..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~20 debug messages>
+
+3.21.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spec_check_sort4x8.
+Performed a total of 0 changes.
+
+3.21.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_sort4x8'.
+Computing hashes of 105 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Removed a total of 0 cells.
+
+3.21.6. Executing OPT_SHARE pass.
+
+3.21.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.21.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+
+3.21.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+
+3.21.10. Finished fast OPT passes. (There is nothing left to do.)
+
+3.22. Executing TECHMAP pass (map to technology primitives).
+
+3.22.1. Executing Verilog-2005 frontend: /share/techmap.v
+Parsing Verilog input from `/share/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.22.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod$a1bc51c02ce12ac21eb18988e83292af48ed7d72\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper maccmap for cells of type $macc_v2.
+  add $eq$design.v:50$52_Y (1 bits, unsigned)
+  add $eq$design.v:50$57_Y (1 bits, unsigned)
+  add $eq$design.v:50$55_Y (1 bits, unsigned)
+  add $eq$design.v:50$53_Y (1 bits, unsigned)
+  packed 1 (1) bits / 1 words into adder tree
+  add $eq$design.v:44$10_Y (1 bits, unsigned)
+  add $eq$design.v:44$15_Y (1 bits, unsigned)
+  add $eq$design.v:44$13_Y (1 bits, unsigned)
+  add $eq$design.v:44$11_Y (1 bits, unsigned)
+  packed 1 (1) bits / 1 words into adder tree
+  add $eq$design.v:47$31_Y (1 bits, unsigned)
+  add $auto$rtlil.cc:3254:ReduceAnd$182 (1 bits, unsigned)
+  add $eq$design.v:47$32_Y (1 bits, unsigned)
+  add 3'001 (3 bits, unsigned)
+  packed 1 (1) bits / 1 words into adder tree
+  add $eq$design.v:49$45_Y (1 bits, unsigned)
+  add $auto$rtlil.cc:3254:ReduceAnd$182 (1 bits, unsigned)
+  add $eq$design.v:49$46_Y (1 bits, unsigned)
+  add 3'001 (3 bits, unsigned)
+  packed 1 (1) bits / 1 words into adder tree
+  add $eq$design.v:43$8_Y (1 bits, unsigned)
+  add $eq$design.v:43$6_Y (1 bits, unsigned)
+  add $auto$rtlil.cc:3254:ReduceAnd$111 (1 bits, unsigned)
+  add 3'001 (3 bits, unsigned)
+  packed 1 (1) bits / 1 words into adder tree
+  add $eq$design.v:46$24_Y (1 bits, unsigned)
+  add $eq$design.v:46$29_Y (1 bits, unsigned)
+  add $eq$design.v:46$27_Y (1 bits, unsigned)
+  add $eq$design.v:46$25_Y (1 bits, unsigned)
+  packed 1 (1) bits / 1 words into adder tree
+  add $eq$design.v:48$38_Y (1 bits, unsigned)
+  add $eq$design.v:48$43_Y (1 bits, unsigned)
+  add $eq$design.v:48$41_Y (1 bits, unsigned)
+  add $eq$design.v:48$39_Y (1 bits, unsigned)
+  packed 1 (1) bits / 1 words into adder tree
+  add $auto$rtlil.cc:3254:ReduceAnd$111 (1 bits, unsigned)
+  add $eq$design.v:45$22_Y (1 bits, unsigned)
+  add $eq$design.v:45$20_Y (1 bits, unsigned)
+  add 3'001 (3 bits, unsigned)
+  packed 1 (1) bits / 1 words into adder tree
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $mux.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000001 for cells of type $fa.
+Using template $paramod$78e969f2586efcf3a5b0b0440bcca0db83d5cca2\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000001000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000001000 for cells of type $lcu.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $and.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000011 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000011 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~925 debug messages>
+
+3.23. Executing OPT pass (performing simple optimizations).
+
+3.23.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spec_check_sort4x8.
+<suppressed ~496 debug messages>
+
+3.23.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spec_check_sort4x8'.
+Computing hashes of 1135 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Computing hashes of 1077 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Computing hashes of 1053 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Computing hashes of 1045 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Computing hashes of 1041 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+Computing hashes of 1037 cells of `\spec_check_sort4x8'.
+Finding duplicate cells in `\spec_check_sort4x8'.
+<suppressed ~294 debug messages>
+Removed a total of 98 cells.
+
+3.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spec_check_sort4x8..
+Removed 136 unused cells and 885 unused wires.
+<suppressed ~137 debug messages>
+
+3.23.5. Finished fast OPT passes.
+
+3.24. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `spec_check_sort4x8'. Setting top module to spec_check_sort4x8.
+
+3.24.1. Analyzing design hierarchy..
+Top module:  \spec_check_sort4x8
+
+3.24.2. Analyzing design hierarchy..
+Top module:  \spec_check_sort4x8
+Removed 0 unused modules.
+
+3.25. Printing statistics.
+
+=== spec_check_sort4x8 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      414 wires
+     1514 wire bits
+       91 public wires
+      681 public wire bits
+        5 ports
+       33 port bits
+      901 cells
+      210   $_AND_
+       80   $_MUX_
+       98   $_NOT_
+      228   $_OR_
+      264   $_XOR_
+       21   $scopeinfo
+
+3.26. Executing CHECK pass (checking for obvious problems).
+Checking module spec_check_sort4x8...
+Found and reported 0 problems.
+
+4. Executing CHECK pass (checking for obvious problems).
+Checking module spec_check_sort4x8...
+Found and reported 0 problems.
+
+5. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up SAT problem:
+Final constraint equation: { } = { }
+Imported 901 cells to SAT database.
+Import proof-constraint: \ok = 1'1
+Final proof equation: \ok = 1'1
+Import show expression: \x3
+Import show expression: \x2
+Import show expression: \x1
+Import show expression: \x0
+Import show expression: \ok
+
+Solving problem with 5026 variables and 13220 clauses..
+SAT proof finished - no model found: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+

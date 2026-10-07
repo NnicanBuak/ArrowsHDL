@@ -1,0 +1,3553 @@
+{
+  "schema": 1,
+  "top": "mux4",
+  "map_hash": "e1a8f7a287bf37c7d7faf33163d032429d0d9a5918c46402f04d7c30ca7b12d2",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "inputs": {
+    "data": [
+      {
+        "index": 0,
+        "contact": [
+          0,
+          1
+        ],
+        "fixture": [
+          -1,
+          1
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "contact": [
+          0,
+          2
+        ],
+        "fixture": [
+          -1,
+          2
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 2,
+        "contact": [
+          0,
+          4
+        ],
+        "fixture": [
+          -1,
+          4
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 3,
+        "contact": [
+          0,
+          5
+        ],
+        "fixture": [
+          -1,
+          5
+        ],
+        "rotation": 1
+      }
+    ],
+    "sel": [
+      {
+        "index": 0,
+        "contact": [
+          1,
+          0
+        ],
+        "fixture": [
+          1,
+          -1
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 1,
+        "contact": [
+          4,
+          0
+        ],
+        "fixture": [
+          4,
+          -1
+        ],
+        "rotation": 2
+      }
+    ]
+  },
+  "outputs": {
+    "y": [
+      {
+        "index": 0,
+        "contact": [
+          6,
+          4
+        ],
+        "fixture": [
+          7,
+          4
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "routing_limits": [
+    0,
+    0,
+    6,
+    null
+  ],
+  "settle_ticks": 11,
+  "cells": 27,
+  "bounds": {
+    "min": [
+      0,
+      0
+    ],
+    "max": [
+      6,
+      5
+    ],
+    "width": 7,
+    "height": 6,
+    "area": 42
+  },
+  "full_bounds": {
+    "min": [
+      -1,
+      -1
+    ],
+    "max": [
+      7,
+      5
+    ],
+    "width": 9,
+    "height": 7,
+    "area": 63
+  },
+  "logic_core": {
+    "cells": 16,
+    "gates": 12,
+    "bounds": {
+      "min": [
+        1,
+        1
+      ],
+      "max": [
+        6,
+        5
+      ],
+      "width": 6,
+      "height": 5,
+      "area": 30
+    },
+    "ticks": 8,
+    "excluded_io_cells": 11
+  },
+  "layout": "compact-dense-mux-v1",
+  "port_layout": "adaptive-input-buses",
+  "io_conflict_fallback": false,
+  "mux_inputs": 4,
+  "mapped_logic_nodes": 12,
+  "module_blocks": [
+    {
+      "id": "mux0:0",
+      "at": [
+        1,
+        1
+      ],
+      "width": 3,
+      "height": 2,
+      "operators": 4
+    },
+    {
+      "id": "mux0:1",
+      "at": [
+        1,
+        4
+      ],
+      "width": 3,
+      "height": 2,
+      "operators": 4
+    },
+    {
+      "id": "mux1:0",
+      "at": [
+        4,
+        3
+      ],
+      "width": 3,
+      "height": 2,
+      "operators": 4
+    }
+  ],
+  "select_bank": "adaptive-near-gates",
+  "pair_pitch": 3,
+  "stage_columns": [
+    1,
+    4
+  ],
+  "select_pitch": 3,
+  "merge_positions": "convergent",
+  "fused_output": true,
+  "output_search": {
+    "core_frozen": true,
+    "core_connections_verified": true,
+    "selected": {
+      "side": "right",
+      "align": "driver",
+      "fused": true,
+      "core": {
+        "cells": 16,
+        "gates": 12,
+        "bounds": {
+          "min": [
+            1,
+            1
+          ],
+          "max": [
+            6,
+            5
+          ],
+          "width": 6,
+          "height": 5,
+          "area": 30
+        },
+        "ticks": 8,
+        "excluded_io_cells": 11
+      },
+      "bounds": {
+        "min": [
+          -1,
+          -1
+        ],
+        "max": [
+          7,
+          5
+        ],
+        "width": 9,
+        "height": 7,
+        "area": 63
+      },
+      "cells": 27,
+      "ticks": 11
+    },
+    "candidates": [
+      {
+        "side": "right",
+        "align": "driver",
+        "fused": true,
+        "core": {
+          "cells": 16,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              5
+            ],
+            "width": 6,
+            "height": 5,
+            "area": 30
+          },
+          "ticks": 8,
+          "excluded_io_cells": 11
+        },
+        "bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            5
+          ],
+          "width": 9,
+          "height": 7,
+          "area": 63
+        },
+        "cells": 27,
+        "ticks": 11
+      }
+    ]
+  },
+  "gate_labels": [
+    {
+      "at": [
+        1,
+        1
+      ],
+      "op": "NOT",
+      "id": "mux-dense:0"
+    },
+    {
+      "at": [
+        2,
+        1
+      ],
+      "op": "AND",
+      "id": "mux-dense:1"
+    },
+    {
+      "at": [
+        2,
+        2
+      ],
+      "op": "AND",
+      "id": "mux-dense:2"
+    },
+    {
+      "at": [
+        3,
+        2
+      ],
+      "op": "OR",
+      "id": "mux-dense:3"
+    },
+    {
+      "at": [
+        1,
+        4
+      ],
+      "op": "NOT",
+      "id": "mux-dense:4"
+    },
+    {
+      "at": [
+        2,
+        4
+      ],
+      "op": "AND",
+      "id": "mux-dense:5"
+    },
+    {
+      "at": [
+        2,
+        5
+      ],
+      "op": "AND",
+      "id": "mux-dense:6"
+    },
+    {
+      "at": [
+        3,
+        4
+      ],
+      "op": "OR",
+      "id": "mux-dense:7"
+    },
+    {
+      "at": [
+        4,
+        3
+      ],
+      "op": "NOT",
+      "id": "mux-dense:8"
+    },
+    {
+      "at": [
+        5,
+        3
+      ],
+      "op": "AND",
+      "id": "mux-dense:9"
+    },
+    {
+      "at": [
+        5,
+        4
+      ],
+      "op": "AND",
+      "id": "mux-dense:10"
+    },
+    {
+      "at": [
+        6,
+        4
+      ],
+      "op": "OR",
+      "id": "mux-dense:11"
+    }
+  ],
+  "signals": {
+    "schema": 1,
+    "input_buses": [
+      {
+        "name": "data",
+        "bits": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "name": "sel",
+        "bits": [
+          0,
+          1
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "dense:0",
+        "label": "dense:0",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "sel",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n6"
+        ],
+        "driver": {
+          "id": "mux-dense:0",
+          "op": "NOT",
+          "at": [
+            1,
+            1
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            1,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "dense:1",
+        "label": "dense:1",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 0
+          },
+          {
+            "bus": "sel",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n2",
+          "dense:0"
+        ],
+        "driver": {
+          "id": "mux-dense:1",
+          "op": "AND",
+          "at": [
+            2,
+            1
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          [
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "dense:10",
+        "label": "dense:10",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 2
+          },
+          {
+            "bus": "data",
+            "bit": 3
+          },
+          {
+            "bus": "sel",
+            "bit": 0
+          },
+          {
+            "bus": "sel",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "dense:7",
+          "n7"
+        ],
+        "driver": {
+          "id": "mux-dense:10",
+          "op": "AND",
+          "at": [
+            5,
+            4
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            5,
+            4
+          ]
+        ],
+        "edges": [
+          [
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "dense:2",
+        "label": "dense:2",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 1
+          },
+          {
+            "bus": "sel",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n3",
+          "n6"
+        ],
+        "driver": {
+          "id": "mux-dense:2",
+          "op": "AND",
+          "at": [
+            2,
+            2
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            2,
+            2
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "dense:3",
+        "label": "dense:3",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 0
+          },
+          {
+            "bus": "data",
+            "bit": 1
+          },
+          {
+            "bus": "sel",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "dense:1",
+          "dense:2"
+        ],
+        "driver": {
+          "id": "mux-dense:3",
+          "op": "OR",
+          "at": [
+            3,
+            2
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "edges": [
+          [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          [
+            [
+              3,
+              3
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "dense:4",
+        "label": "dense:4",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "sel",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n6"
+        ],
+        "driver": {
+          "id": "mux-dense:4",
+          "op": "NOT",
+          "at": [
+            1,
+            4
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            1,
+            4
+          ]
+        ],
+        "edges": [
+          [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "dense:5",
+        "label": "dense:5",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 2
+          },
+          {
+            "bus": "sel",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n4",
+          "dense:4"
+        ],
+        "driver": {
+          "id": "mux-dense:5",
+          "op": "AND",
+          "at": [
+            2,
+            4
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            2,
+            4
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "dense:6",
+        "label": "dense:6",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 3
+          },
+          {
+            "bus": "sel",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n5",
+          "n6"
+        ],
+        "driver": {
+          "id": "mux-dense:6",
+          "op": "AND",
+          "at": [
+            2,
+            5
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          [
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "dense:7",
+        "label": "dense:7",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 2
+          },
+          {
+            "bus": "data",
+            "bit": 3
+          },
+          {
+            "bus": "sel",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "dense:5",
+          "dense:6"
+        ],
+        "driver": {
+          "id": "mux-dense:7",
+          "op": "OR",
+          "at": [
+            3,
+            4
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            3,
+            4
+          ]
+        ],
+        "edges": [
+          [
+            [
+              3,
+              4
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "dense:8",
+        "label": "dense:8",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "sel",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "n7"
+        ],
+        "driver": {
+          "id": "mux-dense:8",
+          "op": "NOT",
+          "at": [
+            4,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            4,
+            3
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "dense:9",
+        "label": "dense:9",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 0
+          },
+          {
+            "bus": "data",
+            "bit": 1
+          },
+          {
+            "bus": "sel",
+            "bit": 0
+          },
+          {
+            "bus": "sel",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "dense:3",
+          "dense:8"
+        ],
+        "driver": {
+          "id": "mux-dense:9",
+          "op": "AND",
+          "at": [
+            5,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            3
+          ]
+        ],
+        "edges": [
+          [
+            [
+              5,
+              3
+            ],
+            [
+              6,
+              3
+            ]
+          ],
+          [
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n2",
+        "label": "data[0]",
+        "aliases": [
+          "data[0]"
+        ],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 0
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            0,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n3",
+        "label": "data[1]",
+        "aliases": [
+          "data[1]"
+        ],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 1
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            0,
+            2
+          ]
+        ],
+        "edges": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n4",
+        "label": "data[2]",
+        "aliases": [
+          "data[2]"
+        ],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 2
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            0,
+            4
+          ]
+        ],
+        "edges": [
+          [
+            [
+              0,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n5",
+        "label": "data[3]",
+        "aliases": [
+          "data[3]"
+        ],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 3
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            0,
+            5
+          ]
+        ],
+        "edges": [
+          [
+            [
+              0,
+              5
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n6",
+        "label": "sel[0]",
+        "aliases": [
+          "sel[0]"
+        ],
+        "origins": [
+          {
+            "bus": "sel",
+            "bit": 0
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "edges": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          [
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ]
+          ],
+          [
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              5
+            ]
+          ],
+          [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n7",
+        "label": "sel[1]",
+        "aliases": [
+          "sel[1]"
+        ],
+        "origins": [
+          {
+            "bus": "sel",
+            "bit": 1
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              2
+            ]
+          ],
+          [
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              4
+            ]
+          ],
+          [
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "port:y:0",
+        "label": "y[0]",
+        "aliases": [
+          "y[0]"
+        ],
+        "origins": [
+          {
+            "bus": "data",
+            "bit": 0
+          },
+          {
+            "bus": "data",
+            "bit": 1
+          },
+          {
+            "bus": "data",
+            "bit": 2
+          },
+          {
+            "bus": "data",
+            "bit": 3
+          },
+          {
+            "bus": "sel",
+            "bit": 0
+          },
+          {
+            "bus": "sel",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "dense:9",
+          "dense:10"
+        ],
+        "driver": {
+          "id": "mux-dense:11",
+          "op": "OR",
+          "at": [
+            6,
+            4
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            6,
+            4
+          ]
+        ],
+        "edges": []
+      }
+    ]
+  },
+  "io_boundary_verified": true,
+  "optimization": {
+    "objective": "min_core_then_cells_full_area_and_ticks",
+    "fixed_input_bus": true,
+    "io_in_objective": true,
+    "automatic_input_buses": true,
+    "core_lower_bound_pruning": [
+      16,
+      30
+    ],
+    "candidates": [
+      {
+        "cells": 28,
+        "ticks": 11,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            6,
+            5
+          ],
+          "width": 7,
+          "height": 6,
+          "area": 42
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            5
+          ],
+          "width": 9,
+          "height": 7,
+          "area": 63
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 16,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              5
+            ],
+            "width": 6,
+            "height": 5,
+            "area": 30
+          },
+          "ticks": 8,
+          "excluded_io_cells": 12
+        },
+        "pair_pitch": 3,
+        "stage_columns": [
+          1,
+          4
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 28,
+        "ticks": 11,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            6,
+            5
+          ],
+          "width": 7,
+          "height": 6,
+          "area": 42
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            5
+          ],
+          "width": 9,
+          "height": 7,
+          "area": 63
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 16,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              5
+            ],
+            "width": 6,
+            "height": 5,
+            "area": 30
+          },
+          "ticks": 8,
+          "excluded_io_cells": 12
+        },
+        "pair_pitch": 3,
+        "stage_columns": [
+          1,
+          4
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 27,
+        "ticks": 11,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            6,
+            5
+          ],
+          "width": 7,
+          "height": 6,
+          "area": 42
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            5
+          ],
+          "width": 9,
+          "height": 7,
+          "area": 63
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 16,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              5
+            ],
+            "width": 6,
+            "height": 5,
+            "area": 30
+          },
+          "ticks": 8,
+          "excluded_io_cells": 11
+        },
+        "pair_pitch": 3,
+        "stage_columns": [
+          1,
+          4
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 30,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            5
+          ],
+          "width": 8,
+          "height": 6,
+          "area": 48
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            5
+          ],
+          "width": 10,
+          "height": 7,
+          "area": 70
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              5
+            ],
+            "width": 7,
+            "height": 5,
+            "area": 35
+          },
+          "ticks": 8,
+          "excluded_io_cells": 13
+        },
+        "pair_pitch": 3,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 30,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            5
+          ],
+          "width": 8,
+          "height": 6,
+          "area": 48
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            5
+          ],
+          "width": 10,
+          "height": 7,
+          "area": 70
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              5
+            ],
+            "width": 7,
+            "height": 5,
+            "area": 35
+          },
+          "ticks": 8,
+          "excluded_io_cells": 13
+        },
+        "pair_pitch": 3,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 29,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            5
+          ],
+          "width": 8,
+          "height": 6,
+          "area": 48
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            5
+          ],
+          "width": 10,
+          "height": 7,
+          "area": 70
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              5
+            ],
+            "width": 7,
+            "height": 5,
+            "area": 35
+          },
+          "ticks": 8,
+          "excluded_io_cells": 12
+        },
+        "pair_pitch": 3,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 29,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            5
+          ],
+          "width": 8,
+          "height": 6,
+          "area": 48
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            5
+          ],
+          "width": 10,
+          "height": 7,
+          "area": 70
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              5
+            ],
+            "width": 7,
+            "height": 5,
+            "area": 35
+          },
+          "ticks": 8,
+          "excluded_io_cells": 12
+        },
+        "pair_pitch": 3,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 29,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            5
+          ],
+          "width": 8,
+          "height": 6,
+          "area": 48
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            5
+          ],
+          "width": 10,
+          "height": 7,
+          "area": 70
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              5
+            ],
+            "width": 7,
+            "height": 5,
+            "area": 35
+          },
+          "ticks": 8,
+          "excluded_io_cells": 12
+        },
+        "pair_pitch": 3,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 29,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            5
+          ],
+          "width": 8,
+          "height": 6,
+          "area": 48
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            5
+          ],
+          "width": 10,
+          "height": 7,
+          "area": 70
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              5
+            ],
+            "width": 7,
+            "height": 5,
+            "area": 35
+          },
+          "ticks": 8,
+          "excluded_io_cells": 12
+        },
+        "pair_pitch": 3,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 29,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            6,
+            6
+          ],
+          "width": 7,
+          "height": 7,
+          "area": 49
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            6
+          ],
+          "width": 9,
+          "height": 8,
+          "area": 72
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              6
+            ],
+            "width": 6,
+            "height": 6,
+            "area": 36
+          },
+          "ticks": 8,
+          "excluded_io_cells": 12
+        },
+        "pair_pitch": 4,
+        "stage_columns": [
+          1,
+          4
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 29,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            6,
+            6
+          ],
+          "width": 7,
+          "height": 7,
+          "area": 49
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            6
+          ],
+          "width": 9,
+          "height": 8,
+          "area": 72
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              6
+            ],
+            "width": 6,
+            "height": 6,
+            "area": 36
+          },
+          "ticks": 8,
+          "excluded_io_cells": 12
+        },
+        "pair_pitch": 4,
+        "stage_columns": [
+          1,
+          4
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 28,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            6,
+            6
+          ],
+          "width": 7,
+          "height": 7,
+          "area": 49
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            6
+          ],
+          "width": 9,
+          "height": 8,
+          "area": 72
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              6
+            ],
+            "width": 6,
+            "height": 6,
+            "area": 36
+          },
+          "ticks": 8,
+          "excluded_io_cells": 11
+        },
+        "pair_pitch": 4,
+        "stage_columns": [
+          1,
+          4
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 30,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            6
+          ],
+          "width": 8,
+          "height": 7,
+          "area": 56
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            6
+          ],
+          "width": 10,
+          "height": 8,
+          "area": 80
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              6
+            ],
+            "width": 7,
+            "height": 6,
+            "area": 42
+          },
+          "ticks": 8,
+          "excluded_io_cells": 13
+        },
+        "pair_pitch": 4,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 31,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            6
+          ],
+          "width": 8,
+          "height": 7,
+          "area": 56
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            6
+          ],
+          "width": 10,
+          "height": 8,
+          "area": 80
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 18,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              6
+            ],
+            "width": 7,
+            "height": 6,
+            "area": 42
+          },
+          "ticks": 9,
+          "excluded_io_cells": 13
+        },
+        "pair_pitch": 4,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 29,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            6
+          ],
+          "width": 8,
+          "height": 7,
+          "area": 56
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            6
+          ],
+          "width": 10,
+          "height": 8,
+          "area": 80
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              6
+            ],
+            "width": 7,
+            "height": 6,
+            "area": 42
+          },
+          "ticks": 8,
+          "excluded_io_cells": 12
+        },
+        "pair_pitch": 4,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 31,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            6
+          ],
+          "width": 8,
+          "height": 7,
+          "area": 56
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            6
+          ],
+          "width": 10,
+          "height": 8,
+          "area": 80
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 18,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              6
+            ],
+            "width": 7,
+            "height": 6,
+            "area": 42
+          },
+          "ticks": 9,
+          "excluded_io_cells": 13
+        },
+        "pair_pitch": 4,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 29,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            6
+          ],
+          "width": 8,
+          "height": 7,
+          "area": 56
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            6
+          ],
+          "width": 10,
+          "height": 8,
+          "area": 80
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              6
+            ],
+            "width": 7,
+            "height": 6,
+            "area": 42
+          },
+          "ticks": 8,
+          "excluded_io_cells": 12
+        },
+        "pair_pitch": 4,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 30,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            6
+          ],
+          "width": 8,
+          "height": 7,
+          "area": 56
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            6
+          ],
+          "width": 10,
+          "height": 8,
+          "area": 80
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 18,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              6
+            ],
+            "width": 7,
+            "height": 6,
+            "area": 42
+          },
+          "ticks": 9,
+          "excluded_io_cells": 12
+        },
+        "pair_pitch": 4,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 31,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            5,
+            7
+          ],
+          "width": 6,
+          "height": 8,
+          "area": 48
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            6,
+            7
+          ],
+          "width": 8,
+          "height": 9,
+          "area": 72
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              5,
+              7
+            ],
+            "width": 5,
+            "height": 7,
+            "area": 35
+          },
+          "ticks": 9,
+          "excluded_io_cells": 14
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          3
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 31,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            5,
+            7
+          ],
+          "width": 6,
+          "height": 8,
+          "area": 48
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            6,
+            7
+          ],
+          "width": 8,
+          "height": 9,
+          "area": 72
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              5,
+              7
+            ],
+            "width": 5,
+            "height": 7,
+            "area": 35
+          },
+          "ticks": 9,
+          "excluded_io_cells": 14
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          3
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 30,
+        "ticks": 12,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            5,
+            7
+          ],
+          "width": 6,
+          "height": 8,
+          "area": 48
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            6,
+            7
+          ],
+          "width": 8,
+          "height": 9,
+          "area": 72
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              5,
+              7
+            ],
+            "width": 5,
+            "height": 7,
+            "area": 35
+          },
+          "ticks": 9,
+          "excluded_io_cells": 13
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          3
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 31,
+        "ticks": 13,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            6,
+            7
+          ],
+          "width": 7,
+          "height": 8,
+          "area": 56
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            7
+          ],
+          "width": 9,
+          "height": 9,
+          "area": 81
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              7
+            ],
+            "width": 6,
+            "height": 7,
+            "area": 42
+          },
+          "ticks": 8,
+          "excluded_io_cells": 14
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          4
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 31,
+        "ticks": 13,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            6,
+            7
+          ],
+          "width": 7,
+          "height": 8,
+          "area": 56
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            7
+          ],
+          "width": 9,
+          "height": 9,
+          "area": 81
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              7
+            ],
+            "width": 6,
+            "height": 7,
+            "area": 42
+          },
+          "ticks": 8,
+          "excluded_io_cells": 14
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          4
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 30,
+        "ticks": 13,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            6,
+            7
+          ],
+          "width": 7,
+          "height": 8,
+          "area": 56
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            7
+          ],
+          "width": 9,
+          "height": 9,
+          "area": 81
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              7
+            ],
+            "width": 6,
+            "height": 7,
+            "area": 42
+          },
+          "ticks": 8,
+          "excluded_io_cells": 13
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          4
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 30,
+        "ticks": 13,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            6,
+            7
+          ],
+          "width": 7,
+          "height": 8,
+          "area": 56
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            7
+          ],
+          "width": 9,
+          "height": 9,
+          "area": 81
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              7
+            ],
+            "width": 6,
+            "height": 7,
+            "area": 42
+          },
+          "ticks": 8,
+          "excluded_io_cells": 13
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          4
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 30,
+        "ticks": 13,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            6,
+            7
+          ],
+          "width": 7,
+          "height": 8,
+          "area": 56
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            7
+          ],
+          "width": 9,
+          "height": 9,
+          "area": 81
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              7
+            ],
+            "width": 6,
+            "height": 7,
+            "area": 42
+          },
+          "ticks": 8,
+          "excluded_io_cells": 13
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          4
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 30,
+        "ticks": 13,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            6,
+            7
+          ],
+          "width": 7,
+          "height": 8,
+          "area": 56
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            7,
+            7
+          ],
+          "width": 9,
+          "height": 9,
+          "area": 81
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 17,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              6,
+              7
+            ],
+            "width": 6,
+            "height": 7,
+            "area": 42
+          },
+          "ticks": 8,
+          "excluded_io_cells": 13
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          4
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 32,
+        "ticks": 13,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            7
+          ],
+          "width": 8,
+          "height": 8,
+          "area": 64
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            7
+          ],
+          "width": 10,
+          "height": 9,
+          "area": 90
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 18,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              7
+            ],
+            "width": 7,
+            "height": 7,
+            "area": 49
+          },
+          "ticks": 9,
+          "excluded_io_cells": 14
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 33,
+        "ticks": 14,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            7
+          ],
+          "width": 8,
+          "height": 8,
+          "area": 64
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            7
+          ],
+          "width": 10,
+          "height": 9,
+          "area": 90
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 19,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              7
+            ],
+            "width": 7,
+            "height": 7,
+            "area": 49
+          },
+          "ticks": 9,
+          "excluded_io_cells": 14
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 32,
+        "ticks": 13,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            7
+          ],
+          "width": 8,
+          "height": 8,
+          "area": 64
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            7
+          ],
+          "width": 10,
+          "height": 9,
+          "area": 90
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 18,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              7
+            ],
+            "width": 7,
+            "height": 7,
+            "area": 49
+          },
+          "ticks": 9,
+          "excluded_io_cells": 14
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 33,
+        "ticks": 14,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            7
+          ],
+          "width": 8,
+          "height": 8,
+          "area": 64
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            7
+          ],
+          "width": 10,
+          "height": 9,
+          "area": 90
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 19,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              7
+            ],
+            "width": 7,
+            "height": 7,
+            "area": 49
+          },
+          "ticks": 9,
+          "excluded_io_cells": 14
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 31,
+        "ticks": 13,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            7
+          ],
+          "width": 8,
+          "height": 8,
+          "area": 64
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            7
+          ],
+          "width": 10,
+          "height": 9,
+          "area": 90
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 18,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              7
+            ],
+            "width": 7,
+            "height": 7,
+            "area": 49
+          },
+          "ticks": 9,
+          "excluded_io_cells": 13
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      },
+      {
+        "cells": 32,
+        "ticks": 14,
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            7,
+            7
+          ],
+          "width": 8,
+          "height": 8,
+          "area": 64
+        },
+        "full_bounds": {
+          "min": [
+            -1,
+            -1
+          ],
+          "max": [
+            8,
+            7
+          ],
+          "width": 10,
+          "height": 9,
+          "area": 90
+        },
+        "layout": "compact-dense-mux-v1",
+        "core": {
+          "cells": 19,
+          "gates": 12,
+          "bounds": {
+            "min": [
+              1,
+              1
+            ],
+            "max": [
+              7,
+              7
+            ],
+            "width": 7,
+            "height": 7,
+            "area": 49
+          },
+          "ticks": 9,
+          "excluded_io_cells": 13
+        },
+        "pair_pitch": 5,
+        "stage_columns": [
+          1,
+          5
+        ],
+        "term_columns": null,
+        "block_pitch": null,
+        "compact_block": null,
+        "leaf_pitch": null,
+        "port_margin": 3,
+        "bus_settings": null,
+        "alternate_reflection": false,
+        "snake_rows": false,
+        "select_bank": "adaptive-near-gates"
+      }
+    ]
+  },
+  "logic_nodes": 13,
+  "technology_nodes": 12,
+  "technology_mapping": [],
+  "shared_logic": [
+    {
+      "removed": "$auto$simplemap.cc:298:simplemap_mux$94:select",
+      "kept": "$auto$simplemap.cc:298:simplemap_mux$92:select",
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$94:s",
+      "shared_net": "tmp:$auto$simplemap.cc:298:simplemap_mux$92:s"
+    }
+  ],
+  "input_buses": [
+    {
+      "ports": [
+        "data"
+      ],
+      "gap": null,
+      "pitch": null,
+      "pitches": [
+        1,
+        2,
+        1
+      ],
+      "gaps": [
+        0,
+        1,
+        0
+      ],
+      "requested_gap": "auto",
+      "rotation": 1,
+      "fixtures": [
+        [
+          -1,
+          1
+        ],
+        [
+          -1,
+          2
+        ],
+        [
+          -1,
+          4
+        ],
+        [
+          -1,
+          5
+        ]
+      ]
+    },
+    {
+      "ports": [
+        "sel"
+      ],
+      "gap": 2,
+      "pitch": 3,
+      "pitches": [
+        3
+      ],
+      "gaps": [
+        2
+      ],
+      "requested_gap": "auto",
+      "rotation": 2,
+      "fixtures": [
+        [
+          1,
+          -1
+        ],
+        [
+          4,
+          -1
+        ]
+      ]
+    }
+  ],
+  "source_sha256": "df4cb15d582c38ef391fa5833d8bfd02d9a4729c7f576f3f07e1734f988252b5",
+  "source": "mux4.v",
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "logic_sha256": "b03338e96f6556c23c64b340c921e4552c0454cdb703d867f6e804c0e6050aa9"
+}
