@@ -368,7 +368,7 @@ class Router:
                     if predecessor in seen or predecessor in self.reserved:
                         continue
                     if predecessor in tree:
-                        if len(self.outs[predecessor])<3 and wire_cell(predecessor,self.outs[predecessor]|{current}) is not None:
+                        if predecessor in self.outs and len(self.outs[predecessor])<3 and wire_cell(predecessor,self.outs[predecessor]|{current}) is not None:
                             connected=True
                         continue
                     blocked=predecessor in self.cells
@@ -380,7 +380,7 @@ class Router:
             return None
         heap, cost, previous = [], {}, {}
         for key in sorted(tree):
-            if len(self.outs[key]) < 3:
+            if key in self.outs and len(self.outs[key]) < 3:
                 cost[key] = 0
                 heappush(heap, (manhattan(key, goal) / 2, 0, key))
         while heap:
@@ -395,7 +395,7 @@ class Router:
             for dx, dy in ((1, 0), (0, 1), (-1, 0), (0, -1), (1, 1), (-1, 1), (1, -1), (-1, -1)):
                 for distance in ((1,) if dx and dy else (1, 2)):
                     next_key = key[0] + distance * dx, key[1] + distance * dy
-                    if key in self.flexible_gates and next_key in self.pins[key]:continue
+                    if key in getattr(self,'flexible_gates',()) and next_key in self.pins[key]:continue
                     if not self.route_allowed(next_key):continue
                     if not (lo_x - margin <= next_key[0] <= hi_x + margin and lo_y - margin <= next_key[1] <= hi_y + margin):
                         continue
@@ -510,7 +510,7 @@ class Router:
         return self.cells
 
     def clear_net(self, net):
-        for key in self.flexible_gates:
+        for key in getattr(self,'flexible_gates',()):
             if self.gates[key]['output']==net:
                 self.outs[key]=set(self.fixed_outs.get(key,()))
         for key in [p for p,owner in self.owners.items() if owner == net]:
@@ -542,6 +542,8 @@ class Router:
             for pin, net in zip(pins, self.gates[key]["inputs"]):
                 if (self.gates[pin]['output'] if pin in self.gates else self.owners[pin]) != net:
                     raise MapError(f"Неверный сигнал у элемента {key}")
+        if any(reverse[p] for p,c in self.cells.items() if c.type==2):
+            raise MapError('Посторонний сигнал отключает постоянный источник')
         for net, root in self.roots.items():
             reached, todo = set(), [root]
             while todo:
@@ -559,6 +561,7 @@ def place_compact(netlist, max_cells=100_000):
     from native_mux_layout import try_native_mux
     graph,rewrites=map_native_gates(netlist)
     graph,sharing=merge_duplicate_logic(graph)
+    graph=dict(graph,_physical_optimize=True)
     result=try_native_adder(graph,rewrites,max_cells) if not graph.get('_input_bus_config') else None
     mux_failure=None
     if result is None:
@@ -566,9 +569,36 @@ def place_compact(netlist, max_cells=100_000):
             result=try_native_mux(graph,max_cells)
         except MapError as error:
             mux_failure=str(error)
-    if result is None:
-        result=place_packed(graph,max_cells)
-    cells,meta=result
+    from physical_compaction import compact_manifest, no_size_regression
+    candidates=[];failures=[]
+    if result is not None:
+        cells,meta=result
+        if not meta.get('physical_compaction'):cells,meta=compact_manifest(cells,meta,graph)
+        candidates.append((cells,meta))
+    # Templates contribute initial candidates; they no longer exclude the
+    # general graph placer. Both use the same physical compaction and checks.
+    try:
+        cells,meta=place_packed(graph,max_cells)
+        if not meta.get('physical_compaction'):cells,meta=compact_manifest(cells,meta,graph)
+        candidates.append((cells,meta))
+    except MapError as error:
+        failures.append({'layout':'general','reason':str(error)})
+    from placement_search import search_placement
+    try:
+        searched=search_placement(graph,max_cells)
+        if searched is not None:candidates.append(searched)
+    except MapError as error:failures.append({'layout':'graph-search','reason':str(error)})
+    if not candidates:raise MapError(f'Не удалось собрать граф: {failures[-1]["reason"]}')
+    eligible=[candidate for candidate in candidates if no_size_regression(candidate,candidates[0])]
+    cells,meta=min(eligible,key=lambda cm:(cm[1]['logic_core']['cells'],cm[1]['logic_core']['bounds']['area'],
+                                          len(cm[0]),cm[1]['bounds']['area'],cm[1]['settle_ticks']))
+    meta['backend_search']={'selected':meta['layout'],'candidates':[
+        {'layout':m['layout'],'cells':len(c),'core':m['logic_core'],'bounds':m['bounds'],
+         'ticks':m['settle_ticks'],'no_size_regression':no_size_regression((c,m),candidates[0])}
+        for c,m in candidates], 'rejected':failures}
+    if result is not None:
+        for key in ('adder_bits','mux_inputs'):
+            if key in result[1]:meta[key]=result[1][key]
     meta['logic_nodes']=len(netlist['nodes'])
     meta['technology_nodes']=meta.get('mapped_logic_nodes',len(graph['nodes']))
     if mux_failure is not None:
@@ -584,6 +614,7 @@ def router_manifest(graph,router,cells,layout):
             'profile':'GraphDLC-01232bd','verified_against_current_game':False,
             'inputs':router.inputs,'outputs':router.outputs,'settle_ticks':depth_of(cells)+2,
             'routing_limits':router.routing_limits,
+            'physical_compaction':getattr(router,'physical_compaction',None),
             'output_search':getattr(router,'output_search',None),
             'cells':len(cells),'logic_nodes':len(graph['nodes']),'layout':layout,'bounds':bounds_of(cells),
             'port_layout':'fixed-sides','rerouted_nets':router.ripups,
@@ -614,20 +645,27 @@ def place_packed(graph,max_cells=100_000):
                 placement,blocks=arrange_packed(graph,growth,corridor,aspect,frame,combine)
                 from input_buses import apply_placement
                 automatic=graph.get('_input_bus_config',{}).get('gap')=='auto'
-                variant=dict(graph,_bus_gap={0.5:0,1.0:1,1.4:2,2.5:0,4.0:3}[aspect]) if automatic else graph
+                variant=dict(graph,_bus_gap={0.5:0,1.0:1,1.4:2,2.5:0,4.0:3}[aspect]) if automatic else dict(graph,_adaptive_ports=graph.get('_port_policy')!='fixed',_port_margin=min(1+iteration,4))
                 placement=apply_placement(variant,placement)
-                if graph.get('_input_bus_config',{}).get('groups'):
-                    from output_layout import route_with_outputs
-                    cells,router=route_with_outputs(variant,placement,max_cells)
+                from output_layout import route_with_outputs
+                if graph.get('_port_policy')=='fixed' and not graph.get('_input_bus_config',{}).get('groups'):
+                    # Keep the successfully routed core as the starting point.
+                    # Its old output tails have already left escape paths open.
+                    router=Router(variant,1,max_cells,placement);cells=router.route()
+                    try:
+                        moved=route_with_outputs(variant,placement,max_cells,routed_seed=router)
+                        from physical_compaction import no_size_regression
+                        old_meta=router_manifest(graph,router,cells,'compact-connected-modules-v1')
+                        new_meta=router_manifest(graph,moved[1],moved[0],'compact-connected-modules-v1')
+                        if no_size_regression((moved[0],new_meta),(cells,old_meta)):cells,router=moved
+                    except MapError as error:router.output_relocation_rejected=str(error)
                 else:
-                    # Default I/O banks are static across all core candidates.
-                    # Explicit bus searches may optimize their outer interface.
-                    router=Router(variant,1,max_cells,placement)
-                    cells=router.route()
+                    cells,router=route_with_outputs(variant,placement,max_cells)
                 meta=router_manifest(graph,router,cells,'compact-connected-modules-v1')
-                meta['module_blocks']=blocks
+                from physical_compaction import rebase_blocks
+                meta['module_blocks']=rebase_blocks(blocks,getattr(router,'physical_compaction',None))
                 meta['output_search']=getattr(router,'output_search',None)
-                meta['fixed_port_banks']=not bool(graph.get('_input_bus_config',{}).get('groups'))
+                meta['fixed_port_banks']=False
                 meta['bus_search_gap']=variant.get('_bus_gap',graph.get('_input_bus_config',{}).get('gap'))
                 meta['packing']={'aspect':aspect,'local_expansion':dict(growth),'corridor':corridor,'port_margin':4,'fixed_frame':list(frame)}
                 attempts.append(dict(meta['packing'],status='valid',core=meta['logic_core']))
@@ -655,6 +693,10 @@ def place_packed(graph,max_cells=100_000):
                 elif corridor<15:corridor+=3
                 else:break
     if not candidates:
+        if graph.get('_port_policy')!='fixed':
+            cells,meta=place_packed(dict(graph,_port_policy='fixed'),max_cells)
+            meta['adaptive_port_rejected']=attempts
+            return cells,meta
         trace('packed: using legacy placement fallback')
         cells,meta=place_routed(graph,max_cells)
         meta['packing_attempts']=attempts

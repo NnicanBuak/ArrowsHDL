@@ -60,7 +60,7 @@ Primary-input wires stop before the first gate. Output terminal buffers and
 wires after the last gate are excluded. Constants that feed logic stay inside.
 The complete map's settle bound remains a separate physical timing contract.
 """
-    internal={p for p,n in gates.items() if n['output'] not in output_nets or n['op']!='BUF'}
+    internal={p for p,n in gates.items() if n['output'] not in output_nets or n.get('op','BUF')!='BUF'}
     links=edges(cells)
     reverse={p:[] for p in cells}
     for p,targets in links.items():

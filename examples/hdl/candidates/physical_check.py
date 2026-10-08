@@ -38,6 +38,10 @@ def render_core(cells, manifest, path):
     metrics = manifest["logic_core"]
     if len(core) != metrics["cells"] or bounds_of(core) != metrics["bounds"] or depth_of(core) != metrics["ticks"]:
         raise MapError("Изображение ядра не соответствует метрикам компилятора")
+    if manifest.get('signals'):
+        from signal_view import render_poster
+        render_poster(cells,manifest,path,'routing')
+        return
     view = dict(manifest, top=f"{manifest['top']} · ядро, внешние трассы скрыты",
                 cells=len(core), settle_ticks=metrics["ticks"], inputs={}, outputs={},
                 gate_labels=[gate for gate in manifest["gate_labels"] if tuple(gate["at"]) in selected])

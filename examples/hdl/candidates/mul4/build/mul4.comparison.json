@@ -27,9 +27,9 @@
     "settle_ticks": 112
   },
   "after": {
-    "cells": 1051,
+    "cells": 511,
     "logic_core": {
-      "cells": 185,
+      "cells": 184,
       "gates": 43,
       "bounds": {
         "min": [
@@ -44,10 +44,10 @@
         "height": 13,
         "area": 494
       },
-      "ticks": 41,
-      "excluded_io_cells": 866
+      "ticks": 40,
+      "excluded_io_cells": 327
     },
-    "settle_ticks": 142
+    "settle_ticks": 82
   },
   "passed": true
 }

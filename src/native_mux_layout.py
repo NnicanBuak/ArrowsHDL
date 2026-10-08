@@ -14,20 +14,6 @@ def grouped_contacts(graph, contacts, core_points):
     return apply_contacts(graph, contacts, core_points)
 
 
-def check_core_lower_bound(graph,vertices,positions):
-    """Reject layouts whose mandatory gates/pins already exceed the best core."""
-    limit=graph.get('_core_score_limit')
-    if limit is None:return
-    output_nets={e['net'] for es in graph['outputs'].values() for e in es}
-    internal=[(v,p) for v,p in zip(vertices,positions) if v['kind']=='gate'
-              and (v['node']['output'] not in output_nets or v['node']['op']!='BUF')]
-    nets={v['node']['output'] for v,p in internal}
-    required={p for v,p in internal}
-    required.update(tuple(pin) for v,p in internal for net,pin in zip(v['node']['inputs'],v['pins']) if net in nets)
-    if (len(required),bounds_of(required)['area'])>tuple(limit):
-        raise MapError('Обязательные ворота и контакты уже больше найденного ядра')
-
-
 def recognize_mux(graph):
     primary = {e['net'] for es in graph['inputs'].values() for e in es}
     outputs = [e['net'] for es in graph['outputs'].values() for e in es]
@@ -79,15 +65,26 @@ def recognize_mux(graph):
 
 
 def try_native_mux(graph, max_cells):
+    if not graph.get('_physical_optimize'):return _try_native_mux(graph,max_cells)
+    baseline=_try_native_mux(dict(graph,_physical_optimize=False),max_cells)
+    if baseline is None:return None
+    optimized=_try_native_mux(graph,max_cells)
+    if optimized is None:return baseline
+    old,old_meta=baseline;cells,meta=optimized
+    from physical_compaction import no_size_regression
+    if no_size_regression(optimized,baseline):return optimized
+    old_meta['physical_compaction']={'selected':'original','removed_relays':0,'coordinate_cuts':0,
+                                     'rejected':'optimized search increases cells or area',
+                                     'exact_edges_verified':True,'bus_constraints_preserved':True}
+    return baseline
+
+
+def _try_native_mux(graph, max_cells):
     matched = recognize_mux(graph)
     if matched is None:
         return None
     count = len(matched[0])
-    from dense_mux_layout import dense_candidates
-    candidates, failures = dense_candidates(graph,max_cells), []
-    if candidates:
-        best=min(candidates,key=candidate_score)[1]['logic_core']
-        graph=dict(graph,_core_score_limit=(best['cells'],best['bounds']['area']))
+    candidates, failures = [], []
     for compact_block in (True, False):
         for pitch in ((2, 3, 4, 5) if compact_block else (3, 4, 5, 6)):
             for leaf_pitch in (1, 2):
@@ -143,13 +140,10 @@ def try_native_mux(graph, max_cells):
                             'fixed_input_bus': bool(graph.get('_input_bus_config')),
                             'io_in_objective': True,
                             'automatic_input_buses': graph.get('_input_bus_config',{}).get('gap')=='auto',
-                            'core_lower_bound_pruning':graph.get('_core_score_limit'),
                             'candidates': [{'cells': len(c), 'ticks': m['settle_ticks'],
                                             'bounds': m['bounds'],
                                             'full_bounds':exterior_bounds(c,m['inputs'],m['outputs']), 'layout': m['layout'],
                                             'core':m['logic_core'],
-                                            'pair_pitch':m.get('pair_pitch'),
-                                            'stage_columns':m.get('stage_columns'),
                                             'term_columns': m.get('term_columns'),
                                             'block_pitch': m.get('block_pitch'),
                                             'compact_block': m.get('compact_block'),
@@ -221,13 +215,15 @@ def tree_candidate(graph, max_cells, pitch, mirrored, compact_block=False, leaf_
         vertices.append({'kind': 'input', 'net': net, 'fixture': fixture, 'rotation': rot})
         positions.append((cx, cy))
     technology = dict(graph, nodes=nodes)
-    check_core_lower_bound(technology,vertices,positions)
     from output_layout import route_with_outputs
     cells,router = route_with_outputs(technology,(vertices,positions,{}),max_cells)
+    from physical_compaction import rebase_blocks
+    blocks=rebase_blocks(blocks,getattr(router,'physical_compaction',None))
     meta = {'schema': 1, 'top': graph['top'], 'map_hash': map_hash(cells),
             'profile': 'GraphDLC-01232bd', 'verified_against_current_game': False,
             'inputs': router.inputs, 'outputs': router.outputs,
             'routing_limits': router.routing_limits,
+            'physical_compaction':getattr(router,'physical_compaction',None),
             'output_search':router.output_search,
             'settle_ticks': depth_of(cells) + 2, 'cells': len(cells),
             'bounds': bounds_of(cells), 'layout': 'compact-native-mux-tree-v2',
@@ -339,7 +335,6 @@ def mux_candidate(graph, max_cells, columns, snake, bank):
         vertices.append({'kind': 'input', 'net': net, 'fixture': fixture, 'rotation': rotation})
         positions.append((cx, cy))
     technology = dict(graph, nodes=nodes)
-    check_core_lower_bound(technology,vertices,positions)
     router = Router(technology, 1, max_cells, (vertices, positions, sources))
     # Keep routing of every inter-gate wire inside the two physical rows.
     if not folded:
@@ -367,6 +362,7 @@ def mux_candidate(graph, max_cells, columns, snake, bank):
             'profile': 'GraphDLC-01232bd', 'verified_against_current_game': False,
             'inputs': router.inputs, 'outputs': router.outputs,
             'routing_limits': router.routing_limits,
+            'physical_compaction':getattr(router,'physical_compaction',None),
             'settle_ticks': depth_of(cells) + 2, 'cells': len(cells),
             'bounds': bounds_of(cells), 'layout': 'compact-native-mux-oriented-v2',
             'port_layout': 'explicit-input-buses', 'logic_core': core,

@@ -97,6 +97,26 @@ def execute(cells, scenario, optimized=True):
 
 
 class SimulatorTests(unittest.TestCase):
+    def test_read_only_cell_observations(self):
+        cells={(0,0):asm.Cell(22,1),(1,0):asm.Cell(1,1),(2,0):asm.Cell(23,0)}
+        signal=[1,1,1,0,0,1,0,0]
+        case={'ticks':len(signal),'inputs':[{'at':[0,0],'values':signal}],
+              'expect':[], 'observe':[[0,0],[1,0],[2,0]]}
+        expected=oracle(cells,dict(case,expect=[{'at':p} for p in case['observe']]))
+        result,report=execute(cells,case)
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertIsNone(report['passed'])
+        self.assertEqual(report['checked_samples'],0)
+        self.assertEqual({tuple(p['at']):p['values'] for p in report['observations']},expected)
+        checked=dict(case,expect=[{'at':[2,0],'values':expected[2,0]}])
+        _,with_observation=execute(cells,checked)
+        _,without_observation=execute(cells,{k:v for k,v in checked.items() if k!='observe'})
+        self.assertEqual(with_observation['outputs'],without_observation['outputs'])
+        self.assertEqual(with_observation['checked_samples'],len(signal))
+        for bad in ([[99,99]],[[1,0],[1,0]]):
+            result,_=execute(cells,dict(case,observe=bad))
+            self.assertEqual(result.returncode,2)
+
     def verify_oracle(self, cells, scenario, optimized=True):
         expected = oracle(cells, scenario)
         scenario = dict(scenario, expect=[{"at": list(key), "values": values} for key, values in expected.items()])

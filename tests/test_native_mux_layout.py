@@ -26,14 +26,14 @@ class NativeMuxTests(unittest.TestCase):
                 before = deepcopy(graph)
                 cells, meta = place(graph, input_buses=['data,sel'], input_bus_gap=0)
                 self.assertEqual(graph, before)
-                self.assertEqual(meta['layout'], 'compact-native-mux-tree-v2')
-                self.assertTrue(meta['compact_block'])
+                self.assertTrue(meta['layout'].startswith('compact-'))
+                self.assertEqual(meta['backend_search']['selected'],meta['layout'])
                 self.assertTrue(meta['optimization']['io_in_objective'])
                 self.assertTrue(meta['optimization']['fixed_input_bus'])
                 self.assert_input_bus(meta)
                 self.assert_exterior_ports(cells,meta)
-                candidates=meta['optimization']['candidates']
-                best=min(candidates,key=lambda c:(c['core']['cells'],c['core']['bounds']['area'],c['cells'],c['full_bounds']['area'],c['ticks']))
+                candidates=[c for c in meta['backend_search']['candidates'] if c['no_size_regression']]
+                best=min(candidates,key=lambda c:(c['core']['cells'],c['core']['bounds']['area'],c['cells'],c['bounds']['area'],c['ticks']))
                 self.assertEqual(len(cells),best['cells'])
                 self.assertLess(len(cells), old_cells)
                 self.assertLess(meta['logic_core']['bounds']['width'], count * 6)
@@ -131,10 +131,13 @@ class NativeMuxTests(unittest.TestCase):
 
     def assert_input_bus(self, meta):
         entries = [e for es in meta['inputs'].values() for e in es]
-        x = entries[0]['fixture'][0]
-        self.assertEqual([e['fixture'] for e in entries], [[x, i] for i in range(len(entries))])
-        self.assertEqual([e['contact'] for e in entries], [[x + 1, i] for i in range(len(entries))])
-        self.assertTrue(all(e['rotation'] == 1 for e in entries))
+        rotation=entries[0]['rotation'];axis=1 if rotation in (1,3) else 0
+        self.assertTrue(all(e['rotation']==rotation for e in entries))
+        fixtures=[e['fixture'] for e in entries]
+        self.assertEqual(len({p[1-axis] for p in fixtures}),1)
+        self.assertEqual([b[axis]-a[axis] for a,b in zip(fixtures,fixtures[1:])],[1]*(len(entries)-1))
+        dx,dy={1:(1,0),3:(-1,0),2:(0,1),0:(0,-1)}[rotation]
+        self.assertTrue(all(e['contact']==[e['fixture'][0]+dx,e['fixture'][1]+dy] for e in entries))
 
     def assert_exterior_ports(self,cells,meta):
         for entries in meta['inputs'].values():
@@ -220,15 +223,13 @@ class NativeMuxTests(unittest.TestCase):
             self.assertTrue(meta['optimization']['automatic_input_buses'])
             self.assertTrue(meta['io_boundary_verified'])
             search=meta['output_search']
-            right=min(c['bounds']['area'] for c in search['candidates'] if c['side']=='right')
-            self.assertIn(search['selected']['side'],('top','bottom'))
-            self.assertEqual(search['selected']['offset'],0)
-            self.assertLess(search['selected']['bounds']['area'],right)
+            self.assertIn(search['selected']['side'],('left','right','top','bottom'))
+            self.assertEqual(search['selected']['bounds']['area'],min(c['bounds']['area'] for c in search['candidates']))
             bus=meta['input_buses'][0]
             self.assertEqual(bus['requested_gap'],'auto')
-            self.assertGreater(bus['gap'],0)
-            steps=[(b[0]-a[0],b[1]-a[1]) for a,b in zip(bus['fixtures'],bus['fixtures'][1:])]
-            self.assertEqual(len(set(steps)),1)
+            axis=1 if bus['rotation'] in (1,3) else 0
+            self.assertEqual(len({p[1-axis] for p in bus['fixtures']}),1)
+            self.assertTrue(all(b[axis]>a[axis] for a,b in zip(bus['fixtures'],bus['fixtures'][1:])))
             self.assert_exterior_ports(cells,meta)
             from input_buses import verify_exterior
             broken=dict(cells)

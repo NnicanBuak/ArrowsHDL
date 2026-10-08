@@ -4,11 +4,31 @@ Local growth changes spacing between units, never the direct links inside a
 chain or the shared pins of a native pair. Port banks are fixed for the search.
 """
 from collections import defaultdict
-from itertools import product
 import math
 import re
 
 from arrowasm import MapError
+
+
+def localize_unaries(graph):
+    """Trade shared cheap inversions for short local connections, as a candidate."""
+    from copy import deepcopy
+    result=deepcopy(graph);consumers=defaultdict(list)
+    for n in result['nodes']:
+        for net in n['inputs']:consumers[net].append(n)
+    nodes=[];clones=0
+    for n in result['nodes']:
+        sinks=consumers[n['output']]
+        if n['op']=='NOT' and len(sinks)>1:
+            nodes.append(n)
+            for i,sink in enumerate(sinks[1:],1):
+                net=n['output']+f':local:{i}'
+                nodes.append(dict(n,id=n['id']+f':local:{i}',output=net))
+                sink['inputs']=[net if p==n['output'] else p for p in sink['inputs']]
+                clones+=1
+        else:nodes.append(n)
+    result['nodes']=nodes;result['_localized_unaries']=clones
+    return result
 
 
 def group_of(node):
@@ -26,10 +46,29 @@ def units_of(graph):
         depth[node['output']]=1+max(depth[net] for net in node['inputs'])
         for net in node['inputs']:consumers[net].append(node)
     paired=set();units=[]
+    if graph.get('_pack_cones'):
+        for merge in reversed(nodes):
+            if merge['id'] in paired or len(merge['inputs'])!=2:continue
+            parents=[by_net.get(net) for net in merge['inputs']]
+            if any(not p or p['id'] in paired or len(p['inputs'])!=2 or len(consumers[p['output']])!=1 for p in parents):continue
+            unary=None
+            for i,parent in enumerate(parents):
+                for net in parent['inputs']:
+                    p=by_net.get(net)
+                    if p and p['op'] in ('NOT','BUF') and len(p['inputs'])==1 and len(consumers[net])==1 and p['id'] not in paired:
+                        unary=p
+                        if i:parents.reverse()
+                        break
+                if unary:break
+            group=group_of(merge)
+            cluster=([unary] if unary else [])+parents+[merge]
+            if not graph.get('_flatten_modules') and any(group_of(n)!=group for n in cluster):continue
+            units.append({'group':group,'kind':'join','nodes':cluster,'unary':unary})
+            paired.update(n['id'] for n in cluster)
     buckets=defaultdict(dict)
     for node in nodes:
-        if node['op'] in ('XOR','AND','MAJ'):
-            buckets[group_of(node),tuple(sorted(node['inputs']))][node['op']]=node
+        if node['op'] in ('XOR','AND','MAJ') and node['id'] not in paired:
+            buckets['core' if graph.get('_flatten_modules') else group_of(node),tuple(sorted(node['inputs']))][node['op']]=node
     for (group,arguments),ops in sorted(buckets.items()):
         threshold='MAJ' if len(arguments)==3 else 'AND'
         if 'XOR' in ops and threshold in ops and len(set(arguments))==len(arguments):
@@ -85,6 +124,11 @@ def units_of(graph):
             for net in terminal['inputs']:
                 if net in unit_for:visit(unit_for[net])
     for i in range(len(units)):visit(i)
+    if graph.get('_pack_cones'):
+        level={}
+        for i in ordered:level[i]=1+max((level[p] for p in units[i]['parents']),default=0)
+        primary_order={e['net']:i for i,e in enumerate(e for es in graph['inputs'].values() for e in es)}
+        ordered.sort(key=lambda i:(level[i],tuple(sorted(primary_order[n] for n in units[i]['inputs'] if n in primary_order)),i))
     return [units[i] for i in ordered]
 
 
@@ -100,6 +144,31 @@ def shape(unit):
         if unit['net']=='const1':
             for p in ((-1,0),(0,-1),(0,1)):points[p]=('clear',unit['net'],set())
         vertices=[({'kind':'constant','net':unit['net']},(0,0))]
+    elif unit['kind']=='join':
+        unary=unit['unary'];low,high,merge=unit['nodes'][-3:]
+        def gate(node,at,pins,flexible=False):
+            points[at]=('gate',node['id'],set())
+            vertices.append(({'kind':'gate','node':node,'pins':pins,'flexible_output':flexible},at))
+            for net,pin in zip(node['inputs'],pins):
+                if pin not in points or points[pin][0]!='gate':wire(pin,net,[at])
+        if unary:
+            gate(unary,(0,0),[(0,-1)])
+            args=[unary['output']]+[net for net in low['inputs'] if net!=unary['output']]
+            low=dict(low,inputs=args)
+            gate(low,(1,0),[(0,0),(-1,0)])
+            shared=unary['inputs'][0]
+            if shared in high['inputs']:
+                high=dict(high,inputs=[shared]+[net for net in high['inputs'] if net!=shared])
+                gate(high,(1,1),[(0,1),(-1,1)])
+            else:gate(high,(1,1),[(0,1),(1,2)])
+        else:
+            gate(low,(1,0),[(0,0),(1,-1)])
+            gate(high,(1,1),[(0,1),(1,2)])
+        wire((2,0),low['output'],[(2,1)])
+        merge=dict(merge,inputs=[low['output'],high['output']])
+        flexible=merge['op'] in ('OR','BUF')
+        gate(merge,(2,1),[(2,0),(1,1)],flexible)
+        if not flexible:wire((3,1),merge['output'])
     elif unit['kind']=='shared_pair':
         arguments=unit['nodes'][0]['inputs']
         pins=[(0,-1),(0,2)]+([(-1,1)] if len(arguments)==3 else [])
@@ -128,9 +197,12 @@ def shape(unit):
     return points,vertices
 
 
-def pack_group(units,gap=0,aspect=1.0,fanout=None):
+def pack_group(units,gap=0,aspect=1.0,fanout=None,bus_groups=()):
     from compact_layout import wire_cell
     shaped=[(unit,*shape(unit)) for unit in units]
+    gate_nodes={v['node']['id']:v['node'] for _,_,vs in shaped for v,p in vs if v['kind']=='gate'}
+    flexible_ids={v['node']['id'] for _,_,vs in shaped for v,p in vs if v.get('flexible_output')}
+    primary_groups={net:j for j,nets in enumerate(bus_groups) for net in nets}
     area=sum(len(points) for _,points,_ in shaped)
     widest=max(max(x for x,y in points)-min(x for x,y in points)+1 for _,points,_ in shaped)
     tallest=max(max(y for x,y in points)-min(y for x,y in points)+1 for _,points,_ in shaped)
@@ -138,7 +210,7 @@ def pack_group(units,gap=0,aspect=1.0,fanout=None):
     height=max(tallest+2,math.ceil(area*1.4/width)+gap*math.ceil(math.sqrt(len(units))))
     for growth in range(24):
         occupied,placed,boxes,roots={},[],[],{}
-        root_at={}
+        root_at={};bus_axes={}
         for unit,points,vertices in shaped:
             minx,miny=min(x for x,y in points),min(y for x,y in points)
             maxx,maxy=max(x for x,y in points),max(y for x,y in points)
@@ -152,9 +224,23 @@ def pack_group(units,gap=0,aspect=1.0,fanout=None):
                     for p,(kind,net,targets) in shifted.items():
                         if p not in occupied:continue
                         other=occupied[p]
+                        if kind=='wire' and other[0]=='gate' and other[1] in flexible_ids and gate_nodes[other[1]]['output']==net:
+                            if wire_cell(p,targets|other[2]) is None:valid=False;break
+                            shifted[p]=(other[0],other[1],targets|other[2]);shared+=1;continue
                         if kind!='wire' or other[0]!='wire' or net!=other[1] or wire_cell(p,targets|other[2]) is None:
                             valid=False;break
                         shared+=1
+                    if not valid:continue
+                    for p,entry in list(shifted.items()):
+                        if p in occupied:shifted[p]=(entry[0],entry[1],entry[2]|occupied[p][2])
+                    # Shared input pins must still have a representable outlet
+                    # toward other consumers. This rejects densely overlapped
+                    # contacts that look small but force long signal detours.
+                    for p,(kind,net,targets) in shifted.items():
+                        if unit['kind']!='join' or kind!='wire' or len(targets)<2 or not fanout or fanout.get(net,0)<=len(targets):continue
+                        if not any(q not in shifted and q not in occupied and wire_cell(p,targets|{q}) is not None
+                                   for q in ((p[0]+dx,p[1]+dy) for dx,dy in ((1,0),(-1,0),(0,1),(0,-1),(2,0),(-2,0),(0,2),(0,-2),(1,1),(-1,1),(1,-1),(-1,-1)))):
+                            valid=False;break
                     if not valid:continue
                     for p,entry in list(shifted.items()):
                         if p in occupied:shifted[p]=(entry[0],entry[1],entry[2]|occupied[p][2])
@@ -163,10 +249,10 @@ def pack_group(units,gap=0,aspect=1.0,fanout=None):
                     prospective=dict(roots)
                     for vertex,(gx,gy) in vertices:
                         net=vertex.get('net',vertex.get('node',{}).get('output'))
-                        prospective[net]=(x+gx+1,y+gy);check_roots.add(net)
+                        prospective[net]=(x+gx+(0 if vertex.get('flexible_output') else 1),y+gy);check_roots.add(net)
                     for net in check_roots:
                         root=prospective[net];entry=shifted.get(root,occupied.get(root))
-                        if not entry or entry[:2]!=('wire',net):continue
+                        if not entry or (entry[:2]!=('wire',net) and not(entry[0]=='gate' and entry[1] in flexible_ids and gate_nodes[entry[1]]['output']==net)):continue
                         if fanout and fanout.get(net,0)<=len(entry[2]):continue
                         accessible=any(q not in shifted and q not in occupied and wire_cell(root,entry[2]|{q}) is not None
                                        for q in ((root[0]+dx,root[1]+dy) for dx,dy in moves))
@@ -181,6 +267,10 @@ def pack_group(units,gap=0,aspect=1.0,fanout=None):
                                 cost+=abs(x+pin[0]-roots[net][0])+abs(y+pin[1]-roots[net][1])
                     right=max([box[2]]+[b[2] for b in boxes]);bottom=max([box[3]]+[b[3] for b in boxes])
                     score=cost+0.035*(right+1)*(bottom+1)-2*shared
+                    for group,axis in bus_axes.items():
+                        old=[p[axis] for p,(kind,net,_) in occupied.items() if kind=='wire' and primary_groups.get(net)==group and fanout.get(net,0)==1]
+                        added=[p[axis] for p,(kind,net,_) in shifted.items() if kind=='wire' and primary_groups.get(net)==group and fanout.get(net,0)==1]
+                        if old and added:score+=4*sum(abs(v-sorted(old)[len(old)//2]) for v in added)
                     candidate=(score,y,x)
                     if best is None or candidate<best[0]:best=(candidate,shifted,box)
             if best is None:break
@@ -190,11 +280,18 @@ def pack_group(units,gap=0,aspect=1.0,fanout=None):
                 occupied[p]=entry
             for vertex,(gx,gy) in vertices:
                 value=dict(vertex)
+                value['pack_unit']=unit['kind']+':'+','.join(n['id'] for n in unit['nodes']) if unit['nodes'] else 'constant:'+unit['net']
+                if unit['kind']=='join':
+                    value['pack_role']='merge' if value.get('node',{}).get('id')==unit['nodes'][-1]['id'] else 'arm'
                 if 'pins' in value:value['pins']=[(x+px,y+py) for px,py in value['pins']]
                 placed.append((value,(x+gx,y+gy)))
-                if value['kind']=='gate':roots[value['node']['output']]=(x+gx+1,y+gy)
+                if value['kind']=='gate':roots[value['node']['output']]=(x+gx+(0 if value.get('flexible_output') else 1),y+gy)
                 else:roots[value['net']]=(x+gx+1,y+gy)
             root_at={p:net for net,p in roots.items()}
+            for group in set(primary_groups.values())-bus_axes.keys():
+                points=[p for p,(kind,net,_) in occupied.items() if kind=='wire' and primary_groups.get(net)==group and fanout.get(net,0)==1]
+                if len(points)>=2:
+                    bus_axes[group]=min((0,1),key=lambda axis:max(p[axis] for p in points)-min(p[axis] for p in points))
         else:
             return placed,max(x for x,y in occupied)+1,max(y for x,y in occupied)+1
         if width<=height*aspect:width+=2
@@ -224,7 +321,8 @@ def arrange_packed(graph,expansion=None,corridor=3,aspect=1.0,frame=None,combine
     fanout=defaultdict(int)
     for node in graph['nodes']:
         for net in node['inputs']:fanout[net]+=1
-    layouts={group:pack_group(us,expansion.get(group,0),aspect,fanout) for group,us in grouped.items()}
+    bus_groups=[[e['net'] for name in names for e in graph['inputs'][name]] for names in graph.get('_input_bus_config',{}).get('groups',[])]
+    layouts={group:pack_group(us,expansion.get(group,0),aspect,fanout,bus_groups) for group,us in grouped.items()}
     source_order={scope['name']:scope.get('instance_source','') for scope in graph.get('instances',[])}
     def order(group):
         number=re.search(r':(\d+)\.',source_order.get(group,''))

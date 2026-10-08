@@ -36,8 +36,22 @@ def synthesize(source: Path, top: str, timeout: float = 90) -> tuple[dict, str]:
         raise MapError("MVP принимает комбинационные модули с assign; процессы, inout, директивы и системные задачи пока не поддерживаются")
     if re.search(r"\b(?:[0-9]+)?'[sS]?[bBoOdDhH][0-9a-fA-F_]*[xXzZ?]", code):
         raise MapError("Неопределённые значения x/z не поддерживаются")
-    # Parameter declarations are permitted; delayed assign and delayed gate instances are not.
-    without_parameters = re.sub(r"\bmodule\s+\w+\s*#\s*\([^)]*\)", "module parameterized", code, flags=re.S)
+    # Module parameter declarations and overrides are not simulation delays.
+    # Balance parentheses so expressions inside parameter values remain valid.
+    parameter_types = set(re.findall(r"\bmodule\s+(\w+)\s*#\s*\(", code))
+    without_parameters = list(code)
+    for match in re.finditer(r"\b(?:module\s+)?(\w+)\s*#\s*\(", code):
+        if match.group(1) not in parameter_types:
+            continue
+        end, depth = match.end(), 1
+        while end < len(code) and depth:
+            depth += (code[end] == '(') - (code[end] == ')')
+            end += 1
+        declaration = bool(re.match(r'module\s', match.group(0)))
+        instance = re.match(r"\s+[A-Za-z_][A-Za-z0-9_$]*\s*\(", code[end:])
+        if not depth and (declaration or instance):
+            without_parameters[code.index('#', match.start(), match.end())] = ' '
+    without_parameters = ''.join(without_parameters)
     if "#" in without_parameters:
         raise MapError("Задержки # в исходнике не поддерживаются")
     with tempfile.TemporaryDirectory(prefix="arrows-yosys-") as folder:

@@ -21,8 +21,40 @@ def candidate_score(candidate):
 
 
 def route_with_outputs(graph, placement, max_cells, routed_seed=None):
+    baseline=_route_with_outputs(dict(graph,_physical_optimize=False),placement,max_cells,routed_seed)
+    if not graph.get('_physical_optimize'):return baseline
+    from copy import deepcopy
+    before_cells,before_router=baseline
+    before_core=logic_core_metrics(before_cells,before_router.gates,before_router.output_nets)
+    before_bounds=exterior_bounds(before_cells,before_router.inputs,before_router.outputs)
+    try:
+        optimized=_route_with_outputs(graph,deepcopy(placement),max_cells,routed_seed)
+        cells,router=optimized
+        core=logic_core_metrics(cells,router.gates,router.output_nets)
+        bounds=exterior_bounds(cells,router.inputs,router.outputs)
+        if (len(cells)<=len(before_cells) and bounds['area']<=before_bounds['area']
+                and core['cells']<=before_core['cells'] and core['bounds']['area']<=before_core['bounds']['area']):
+            router.physical_compaction['before']={'cells':len(before_cells),'core':before_core,'full_bounds':before_bounds}
+            return optimized
+        reason='optimized candidate increases cells or area'
+    except MapError as error:reason=str(error)
+    before_router.physical_compaction={'removed_relays':0,'coordinate_cuts':0,'selected':'original',
+                                      'rejected':reason,'exact_edges_verified':True,'bus_constraints_preserved':True}
+    return baseline
+
+
+def _route_with_outputs(graph, placement, max_cells, routed_seed=None):
     from compact_layout import Router
-    seed=deepcopy(routed_seed) if routed_seed is not None else Router(graph,1,max_cells,deepcopy(placement))
+    if routed_seed is not None:seed=deepcopy(routed_seed)
+    elif graph.get('_adaptive_ports'):
+        # A dummy output at the old fixed frame must not constrain free input
+        # faces before output placement has even started.
+        terminal_nets={e['net'] for es in graph['outputs'].values() for e in es}
+        vs,ps,sources=deepcopy(placement)
+        interior=[(v,p) for v,p in zip(vs,ps) if v.get('node',{}).get('output') not in terminal_nets]
+        seed=Router(dict(graph,outputs={}),1,max_cells,([v for v,p in interior],[p for v,p in interior],sources))
+        seed.output_nets=terminal_nets
+    else:seed=Router(graph,1,max_cells,deepcopy(placement))
     old_terminals={p for p,n in seed.gates.items() if n['output'] in seed.output_nets}
     shared_pins={pin for p,pins in seed.pins.items() if p not in old_terminals for pin in pins}
     for p in old_terminals:
@@ -48,6 +80,26 @@ def route_with_outputs(graph, placement, max_cells, routed_seed=None):
     seed.fixed_cells=set(seed.cells)
     seed.fixed_outs={p:set(v) for p,v in seed.outs.items()}
     seed.route()
+    if graph.get('_physical_optimize'):
+        from physical_compaction import compact_router
+        seed.outputs={}
+        compact_router(seed)
+        # Reconstruct candidates from the optimized physical core, rather than
+        # letting the original placement restore removed pins or output relays.
+        placement=deepcopy(placement)
+        vs,ps,_=placement
+        gate_by_id={node['id']:p for p,node in seed.gates.items()}
+        for i,v in enumerate(vs):
+            if v['kind']=='gate' and v['node']['id'] in gate_by_id:
+                p=gate_by_id[v['node']['id']];ps[i]=p
+                vs[i]=dict(v,pins=seed.pins[p],rotation=seed.cells[p].rotation,
+                           flexible_output=p in seed.flexible_gates)
+            elif v['kind']=='input':
+                entry=next(e for name,es in graph['inputs'].items() for j,e in enumerate(seed.inputs[name])
+                           if es[j]['net']==v['net'])
+                ps[i]=tuple(entry['contact']);vs[i]=dict(v,fixture=entry['fixture'],rotation=entry['rotation'])
+            elif v['kind']=='constant':
+                ps[i]=seed.source_positions[v['net']]
     internal={p for p,n in seed.gates.items() if n['output'] not in seed.output_nets}
     links=edges(seed.cells)
     reverse={p:[] for p in seed.cells}
@@ -65,6 +117,8 @@ def route_with_outputs(graph, placement, max_cells, routed_seed=None):
     primary={e['net'] for es in graph['inputs'].values() for e in es}
     vertices,positions,_=placement
     outputs=[i for i,v in enumerate(vertices) if v['kind']=='gate' and v['node']['output'] in seed.output_nets]
+    port_order={e['net']:(-len(es),name,j) for name,es in graph['outputs'].items() for j,e in enumerate(es)}
+    outputs.sort(key=lambda i:port_order[vertices[i]['node']['output']])
     terminals=old_terminals
     preserved=fixed|{p for p,net in seed.owners.items() if net in primary and p in ancestors}|constants
     preserved.update(seed.roots[n] for n in primary|{'const0','const1'} if n in seed.roots)
@@ -84,9 +138,12 @@ def route_with_outputs(graph, placement, max_cells, routed_seed=None):
             (('right',1),('bottom',2),('top',0),('left',3)),(0,1),('driver','center','end')):
             candidate=deepcopy(placement)
             vs,ps,_=candidate
+            claimed=set()
             for j,i in enumerate(outputs):
                 driver=seed.roots[vertices[i]['node']['inputs'][0]]
                 along=(driver[1] if side in ('right','left') else driver[0]) if align=='driver' else ((maxy+1 if side in ('right','left') else maxx+1) if align=='end' else ((miny+maxy)//2 if side in ('right','left') else (minx+maxx)//2))+j*2
+                while along in claimed:along+=1
+                claimed.add(along)
                 point=(maxx+offset,along) if side=='right' else (minx-offset,along) if side=='left' else (along,maxy+offset) if side=='bottom' else (along,miny-offset)
                 if side in input_faces:
                     point=(input_faces[side],point[1]) if side in ('left','right') else (point[0],input_faces[side])
@@ -96,12 +153,17 @@ def route_with_outputs(graph, placement, max_cells, routed_seed=None):
                 direct=next((p for p,n in seed.gates.items() if n['output']==net
                              and point in destinations(p,seed.cells[p])),None)
                 if direct is not None:pin=direct
+                elif driver in seed.outs:
+                    from compact_layout import wire_cell
+                    if wire_cell(driver,seed.outs[driver]|{point}) is not None:pin=driver
                 vs[i]=dict(vs[i],rotation=rotation,pins=[pin])
                 ps[i]=point
             try:
                 if any(ps[i] in preserved for i in outputs):
                     raise MapError('Внешний контакт вывода занят сохранённой разводкой')
                 router=Router(graph,1,max_cells,candidate)
+                if graph.get('_physical_optimize'):
+                    router.roots.update({net:p for net,p in seed.roots.items() if p in seed.outs})
                 for p in preserved:
                     if p in router.cells and router.owners[p]!=seed.owners[p]:
                         raise MapError('Внешний вывод пересекает фиксированное ядро')
@@ -114,7 +176,7 @@ def route_with_outputs(graph, placement, max_cells, routed_seed=None):
                 cells=router.route()
                 metrics=logic_core_metrics(cells,router.gates,router.output_nets)
                 actual_links=edges(cells)
-                if any(cells[p]!=seed.cells[p] for p in internal):
+                if any(cells[p]!=seed.cells[p] for p in internal if p not in seed.flexible_gates):
                     raise MapError('Подключение вывода изменило ядро')
                 if any({q for q in actual_links[p] if q in fixed}!={q for q in links[p] if q in fixed} for p in fixed):
                     raise MapError('Подключение вывода изменило внутренние соединения')
@@ -131,4 +193,5 @@ def route_with_outputs(graph, placement, max_cells, routed_seed=None):
     router.output_search={'core_frozen':True,'core_connections_verified':True,'selected':selected,
                           'objective':'min_core_then_full_area_then_cells_and_ticks',
                           'candidates':[dict(m,cells=len(c)) for c,r,m in trials], 'rejected':failures}
+    router.physical_compaction=getattr(seed,'physical_compaction',None)
     return cells,router

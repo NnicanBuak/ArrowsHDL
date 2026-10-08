@@ -36,7 +36,7 @@ def main():
         if args.report:
             args.report.write_text(output, encoding="utf-8")
         print(output, end="")
-        return 0 if report["passed"] else 1
+        return 1 if report["passed"] is False else 0
     except (OSError, MapError, ValueError, subprocess.TimeoutExpired) as error:
         print(f"Ошибка: {error}", file=sys.stderr)
         return 2

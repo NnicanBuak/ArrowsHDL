@@ -91,6 +91,8 @@ class CompilerTests(unittest.TestCase):
             "module bad(input clk,d, output reg y); always @(posedge clk) y<=d; endmodule",
             "module bad(input a, output y); assign y = 1'bx; endmodule",
             "module bad(input a, output y); assign #2 y=a; endmodule",
+            "module bad(input a, output y); buf #(1) gate_delay(y,a); endmodule",
+            "module bad #(parameter W=(1+1))(input a, output y); assign #(W) y=a; endmodule",
             "module bad(input a, output y); wire missing; assign y=missing; endmodule",
             "module bad(input a, output y); assign y=~y; endmodule",
         ]
@@ -100,6 +102,20 @@ class CompilerTests(unittest.TestCase):
                 source.write_text(code, encoding="utf-8")
                 with self.subTest(code=code), self.assertRaises(MapError):
                     synthesize(source, "bad")
+
+    def test_parameter_overrides_with_nested_expressions(self):
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            source = folder / 'configured.v'
+            source.write_text('''module invert #(parameter W=(1+1))(input [W-1:0] a, output [W-1:0] y);
+                assign y=~a; endmodule
+                module configured(input [3:0] a, output [3:0] y);
+                invert #(.W((2+2))) unit(a,y); endmodule''', encoding='utf-8')
+            cells, manifest = compile_file(source, 'configured', folder)
+            self.assertEqual(len(manifest['inputs']['a']), 4)
+            vectors = [{'inputs': {'a': a}, 'expect': {'y': a ^ 15}} for a in range(16)]
+            _, report = run_vectors(cells, manifest, vectors, folder, 'configured')
+            self.assertTrue(report['passed'], report['failures'])
 
     def test_json_model_roundtrip_and_invalid_data(self):
         cells = {(-2, 3): Cell(255, 3, True), (0, 0): Cell(22, 1), (1, 0): Cell(23, 0)}

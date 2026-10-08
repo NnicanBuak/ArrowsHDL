@@ -2,14 +2,14 @@
   "passed": true,
   "vectors": 868,
   "checked_samples": 6944,
-  "ticks": 123256,
+  "ticks": 71176,
   "batches": 1,
   "failure_count": 0,
   "failures": [],
-  "settle_ticks": 142,
-  "production_cells": 1051,
+  "settle_ticks": 82,
+  "production_cells": 511,
   "fixture_cells": 16,
   "profile": "GraphDLC-01232bd",
-  "map_hash": "14b5091a551747bbd0b290fbfde71e714511e0e03c428ca5855ca43ea6637ce5",
+  "map_hash": "9f4c8795c4515eaac4c91111ea181525b840b03f558168708eeb96146bda7511",
   "verified_against_current_game": false
 }

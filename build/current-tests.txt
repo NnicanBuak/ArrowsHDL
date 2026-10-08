@@ -32,10 +32,17 @@ test_auto_separate_buses_and_generic_spacing (test_native_mux_layout.NativeMuxTe
 test_cli_and_generic_graph_grouping (test_native_mux_layout.NativeMuxTests.test_cli_and_generic_graph_grouping) ... ok
 test_exhaustive_saved_maps_and_total_size (test_native_mux_layout.NativeMuxTests.test_exhaustive_saved_maps_and_total_size) ... ok
 test_explicit_groups_gap_validation_and_free_inputs (test_native_mux_layout.NativeMuxTests.test_explicit_groups_gap_validation_and_free_inputs) ... ok
+test_initial_output_anchor_does_not_change_core_or_result (test_native_mux_layout.NativeMuxTests.test_initial_output_anchor_does_not_change_core_or_result) ... ok
 test_names_and_reversed_data_indices_are_not_templates (test_native_mux_layout.NativeMuxTests.test_names_and_reversed_data_indices_are_not_templates) ... ok
 test_non_mux_and_observed_internal_nodes_are_rejected (test_native_mux_layout.NativeMuxTests.test_non_mux_and_observed_internal_nodes_are_rejected) ... ok
+test_output_candidates_keep_core_and_remain_exterior (test_native_mux_layout.NativeMuxTests.test_output_candidates_keep_core_and_remain_exterior) ... ok
 test_rotated_candidates_and_optional_two_row_strip (test_native_mux_layout.NativeMuxTests.test_rotated_candidates_and_optional_two_row_strip) ... ok
 test_three_by_two_blocks_and_touching_stages (test_native_mux_layout.NativeMuxTests.test_three_by_two_blocks_and_touching_stages) ... ok
+test_general_packer_matches_adder_size_without_adder_backend (test_physical_compaction.PhysicalCompactionTests.test_general_packer_matches_adder_size_without_adder_backend) ... ok
+test_manual_bus_spacing_and_auto_order_survive_compaction (test_physical_compaction.PhysicalCompactionTests.test_manual_bus_spacing_and_auto_order_survive_compaction) ... ok
+test_parity_decoder_threshold_fanout_and_multiple_outputs (test_physical_compaction.PhysicalCompactionTests.test_parity_decoder_threshold_fanout_and_multiple_outputs) ... ok
+test_connected_modules_compare_flat_and_hierarchical_placement (test_placement_search.PlacementSearchTests.test_connected_modules_compare_flat_and_hierarchical_placement) ... ok
+test_mixed_operations_are_not_a_mux_template (test_placement_search.PlacementSearchTests.test_mixed_operations_are_not_a_mux_template) ... ok
 test_image_reconstruction_and_register_transitions (test_reference_and_native_mapping.ReferenceTests.test_image_reconstruction_and_register_transitions) ... ok
 test_observed_propagate_net_cannot_be_removed (test_reference_and_native_mapping.ReferenceTests.test_observed_propagate_net_cannot_be_removed) ... ok
 test_reference_core_is_an_exact_subset (test_reference_and_native_mapping.ReferenceTests.test_reference_core_is_an_exact_subset) ... ok
@@ -43,7 +50,7 @@ test_three_bit_adder_is_not_a_fixed_eight_bit_template (test_reference_and_nativ
 test_variable_frames_match_full_tick_simulation (test_reference_and_native_mapping.ReferenceTests.test_variable_frames_match_full_tick_simulation) ... ok
 test_constant_only_view_uses_board_bounds_when_core_is_empty (test_signal_view.SignalViewTests.test_constant_only_view_uses_board_bounds_when_core_is_empty) ... ok
 test_duplicate_inversions_share_logic_but_retain_output_contacts (test_signal_view.SignalViewTests.test_duplicate_inversions_share_logic_but_retain_output_contacts) ... ok
-test_each_input_bit_has_its_own_colour_and_neutral_sprites_keep_shape (test_signal_view.SignalViewTests.test_each_input_bit_has_its_own_colour_and_neutral_sprites_keep_shape) ... ok
+test_each_input_bit_has_its_own_colour_and_sprites_keep_original_colours (test_signal_view.SignalViewTests.test_each_input_bit_has_its_own_colour_and_sprites_keep_original_colours) ... ok
 test_net_colour_changes_at_operator_but_input_dependency_survives (test_signal_view.SignalViewTests.test_net_colour_changes_at_operator_but_input_dependency_survives) ... ok
 test_red_splitter_has_three_outputs_and_one_shared_source (test_signal_view.SignalViewTests.test_red_splitter_has_three_outputs_and_one_shared_source) ... ok
 test_delay_detector_and_blocker (test_simulator.SimulatorTests.test_delay_detector_and_blocker) ... ok
@@ -64,7 +71,7 @@ test_mux_bus_inversion_and_aliases (test_verilog_compiler.CompilerTests.test_mux
 test_reject_unsupported_and_undriven_verilog (test_verilog_compiler.CompilerTests.test_reject_unsupported_and_undriven_verilog) ... ok
 
 ----------------------------------------------------------------------
-Ran 64 tests in 99.889s
+Ran 71 tests in 902.100s
 
 OK
 cells 411 counts {1: 105, 4: 8, 6: 4, 7: 21, 10: 36, 11: 3, 12: 84, 13: 5, 14: 10, 16: 56, 17: 16, 18: 24, 19: 18, 24: 21}

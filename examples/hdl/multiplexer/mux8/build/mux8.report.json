@@ -3,14 +3,14 @@
   "failure_count": 0,
   "failures": [],
   "frame_ticks": null,
-  "hold_ticks": 18,
-  "nodes": 77,
+  "hold_ticks": 22,
+  "nodes": 76,
   "optimized_cycles": 0,
   "outputs": [
     {
       "at": [
-        8,
-        7
+        13,
+        16
       ],
       "values": [
         0,
@@ -4114,10 +4114,10 @@
   ],
   "passed": true,
   "profile": "GraphDLC-01232bd",
-  "ticks": 73728,
+  "ticks": 90112,
   "verified_against_current_game": false,
   "vectors": 4096,
-  "settle_ticks": 18,
+  "settle_ticks": 22,
   "truth_table": [
     {
       "inputs": {
@@ -57368,6 +57368,6 @@
       "passed": true
     }
   ],
-  "production_cells": 65,
+  "production_cells": 64,
   "fixture_cells": 12
 }

@@ -3,14 +3,14 @@
   "failure_count": 0,
   "failures": [],
   "frame_ticks": null,
-  "hold_ticks": 142,
-  "nodes": 1067,
+  "hold_ticks": 82,
+  "nodes": 527,
   "optimized_cycles": 0,
   "outputs": [
     {
       "at": [
-        174,
-        0
+        19,
+        -1
       ],
       "values": [
         0,
@@ -24,8 +24,8 @@
     },
     {
       "at": [
-        174,
-        2
+        21,
+        -1
       ],
       "values": [
         0,
@@ -39,8 +39,8 @@
     },
     {
       "at": [
-        174,
-        4
+        23,
+        -1
       ],
       "values": [
         0,
@@ -54,8 +54,8 @@
     },
     {
       "at": [
-        174,
-        6
+        25,
+        -1
       ],
       "values": [
         0,
@@ -69,8 +69,8 @@
     },
     {
       "at": [
-        174,
-        8
+        27,
+        -1
       ],
       "values": [
         0,
@@ -84,8 +84,8 @@
     },
     {
       "at": [
-        174,
-        10
+        29,
+        -1
       ],
       "values": [
         0,
@@ -99,8 +99,8 @@
     },
     {
       "at": [
-        174,
-        12
+        31,
+        -1
       ],
       "values": [
         0,
@@ -114,8 +114,8 @@
     },
     {
       "at": [
-        174,
-        14
+        33,
+        -1
       ],
       "values": [
         0,
@@ -130,10 +130,10 @@
   ],
   "passed": true,
   "profile": "GraphDLC-01232bd",
-  "ticks": 994,
+  "ticks": 574,
   "verified_against_current_game": false,
   "vectors": 7,
-  "settle_ticks": 142,
+  "settle_ticks": 82,
   "truth_table": [
     {
       "inputs": {
@@ -227,7 +227,7 @@
       "passed": true
     }
   ],
-  "production_cells": 1051,
+  "production_cells": 511,
   "fixture_cells": 16,
   "coverage": {
     "oracle": "Python integer a * b",
@@ -243,17 +243,17 @@
     "passed": true,
     "vectors": 868,
     "checked_samples": 6944,
-    "ticks": 123256,
+    "ticks": 71176,
     "batches": 1,
     "failure_count": 0,
     "failures": [],
-    "settle_ticks": 142,
-    "production_cells": 1051,
+    "settle_ticks": 82,
+    "production_cells": 511,
     "fixture_cells": 16,
     "profile": "GraphDLC-01232bd",
-    "map_hash": "14b5091a551747bbd0b290fbfde71e714511e0e03c428ca5855ca43ea6637ce5",
+    "map_hash": "9f4c8795c4515eaac4c91111ea181525b840b03f558168708eeb96146bda7511",
     "verified_against_current_game": false
   },
-  "test_run_seconds": 0.182,
+  "test_run_seconds": 107.2,
   "source_sha256": "69eb88eea2dd5a5cff0b2b31c62c99818ea4a131990241588991520643d849c5"
 }

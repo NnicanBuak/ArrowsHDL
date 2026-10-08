@@ -50,6 +50,8 @@ struct Scenario {
     #[serde(default)]
     inputs: Vec<Port>,
     expect: Vec<Port>,
+    #[serde(default)]
+    observe: Vec<[i32; 2]>,
 }
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -110,7 +112,7 @@ fn run(request: Request) -> Result<Value, String> {
     } else {
         test.ticks / hold
     };
-    if test.expect.is_empty() {
+    if test.expect.is_empty() && test.observe.is_empty() {
         return Err("Нужен хотя бы один проверяемый приёмник".into());
     }
     if nodes.len() > 1_000_000 {
@@ -136,6 +138,16 @@ fn run(request: Request) -> Result<Value, String> {
             return Err("Повторный выходной порт".into());
         }
         outputs.push(index);
+    }
+    let mut observed = Vec::new();
+    used.clear();
+    for at in &test.observe {
+        let index = nodes.iter().position(|n| [n.x, n.y] == *at)
+            .ok_or_else(|| format!("Наблюдаемая клетка {at:?} отсутствует"))?;
+        if !used.insert(index) {
+            return Err("Повторная наблюдаемая клетка".into());
+        }
+        observed.push(index);
     }
     let len = nodes.len() as u32;
     for node in &nodes {
@@ -215,6 +227,7 @@ fn run(request: Request) -> Result<Value, String> {
     core::reset_export();
     let mut previous_inputs = vec![0u8; inputs.len()];
     let mut traces = vec![Vec::with_capacity(samples); outputs.len()];
+    let mut observations = vec![Vec::with_capacity(samples); observed.len()];
     let mut failures = Vec::new();
     let mut failed_count = 0usize;
     let mut checked_samples = 0usize;
@@ -249,6 +262,9 @@ fn run(request: Request) -> Result<Value, String> {
                 }
             }
         }
+        for (p, &index) in observed.iter().enumerate() {
+            observations[p].push(u8::from(core::get_node_signal_export(index as u32) == NODE_SIGNAL_ACTIVE));
+        }
         sample += 1;
         if sample < samples {
             frame_end += test
@@ -258,13 +274,15 @@ fn run(request: Request) -> Result<Value, String> {
         }
     }
     Ok(json!({
-        "passed": failed_count == 0, "ticks": test.ticks, "nodes": nodes.len(),
+        "passed": if checked_samples == 0 { None } else { Some(failed_count == 0) }, "ticks": test.ticks, "nodes": nodes.len(),
         "hold_ticks": hold,
         "frame_ticks": test.frame_ticks,
         "optimized_cycles": cycles.len(), "failure_count": failed_count,
         "failures": failures,
         "checked_samples": checked_samples,
+        "observed_samples": observed.len() * samples,
         "outputs": test.expect.iter().enumerate().map(|(p, port)| json!({"at": port.at, "values": traces[p]})).collect::<Vec<_>>(),
+        "observations": test.observe.iter().enumerate().map(|(p, at)| json!({"at": at, "values": observations[p]})).collect::<Vec<_>>(),
         "profile": "GraphDLC-01232bd", "verified_against_current_game": false,
     }))
 }

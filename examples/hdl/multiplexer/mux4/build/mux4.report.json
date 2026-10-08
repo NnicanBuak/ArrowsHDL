@@ -3,14 +3,14 @@
   "failure_count": 0,
   "failures": [],
   "frame_ticks": null,
-  "hold_ticks": 11,
+  "hold_ticks": 13,
   "nodes": 34,
   "optimized_cycles": 0,
   "outputs": [
     {
       "at": [
-        7,
-        4
+        10,
+        10
       ],
       "values": [
         0,
@@ -146,10 +146,10 @@
   ],
   "passed": true,
   "profile": "GraphDLC-01232bd",
-  "ticks": 1408,
+  "ticks": 1664,
   "verified_against_current_game": false,
   "vectors": 128,
-  "settle_ticks": 11,
+  "settle_ticks": 13,
   "truth_table": [
     {
       "inputs": {

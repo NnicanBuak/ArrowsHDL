@@ -20,6 +20,10 @@ def font(size):
 
 
 def render(cells, manifest, path, report=None, table_rows=None):
+    if manifest.get('signals'):
+        from signal_view import render_poster
+        production={p:c for p,c in cells.items() if c.type not in (22,23)}
+        return render_poster(production,manifest,path,'routing',whole=True)
     if manifest["layout"] == "compact-native-adder-v1":
         return render_native_adder(cells, manifest, path, report, table_rows)
     if manifest["layout"].startswith("compact-"):
