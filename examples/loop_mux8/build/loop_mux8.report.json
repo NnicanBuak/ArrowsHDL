@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "cells": 1381,
+  "map_hash": "4eec57863936bcc062e8661f839bb548bc21ceddb3764d873338931837746351",
+  "modes": [
+    {
+      "mode": 0,
+      "period_ticks": 0,
+      "output_disabled": true
+    },
+    {
+      "mode": 1,
+      "period_ticks": 20,
+      "output_disabled": false
+    },
+    {
+      "mode": 2,
+      "period_ticks": 24,
+      "output_disabled": false
+    },
+    {
+      "mode": 3,
+      "period_ticks": 32,
+      "output_disabled": false
+    },
+    {
+      "mode": 4,
+      "period_ticks": 40,
+      "output_disabled": false
+    },
+    {
+      "mode": 5,
+      "period_ticks": 48,
+      "output_disabled": false
+    },
+    {
+      "mode": 6,
+      "period_ticks": 64,
+      "output_disabled": false
+    },
+    {
+      "mode": 7,
+      "period_ticks": 80,
+      "output_disabled": false
+    }
+  ],
+  "checked_samples": 14651700,
+  "all_256_latched_masks_verified": true,
+  "held_buttons_toggle_once": true,
+  "second_click_toggles_off": true,
+  "simultaneous_clicks_verified": true,
+  "all_eight_game_presets_verified": true,
+  "zero_disables_output": true,
+  "display_pixels": 64,
+  "verified_against_current_game": false
+}

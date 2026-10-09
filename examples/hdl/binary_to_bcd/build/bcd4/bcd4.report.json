@@ -1,0 +1,165 @@
+{
+  "checked_samples": 32,
+  "failure_count": 0,
+  "failures": [],
+  "frame_ticks": null,
+  "hold_ticks": 60,
+  "nodes": 241,
+  "optimized_cycles": 0,
+  "outputs": [
+    {
+      "at": [
+        16,
+        -1
+      ],
+      "values": [
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "at": [
+        18,
+        -1
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "at": [
+        20,
+        -1
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "at": [
+        22,
+        -1
+      ],
+      "values": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "at": [
+        24,
+        -1
+      ],
+      "values": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "at": [
+        26,
+        -1
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "at": [
+        28,
+        -1
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "at": [
+        30,
+        -1
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "passed": true,
+  "profile": "GraphDLC-01232bd",
+  "ticks": 240,
+  "verified_against_current_game": false,
+  "vectors": 4,
+  "settle_ticks": 60,
+  "truth_table": [
+    {
+      "inputs": {
+        "binary": 0
+      },
+      "expected": {
+        "bcd": 0
+      },
+      "actual": {
+        "bcd": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "binary": 9
+      },
+      "expected": {
+        "bcd": 9
+      },
+      "actual": {
+        "bcd": 9
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "binary": 10
+      },
+      "expected": {
+        "bcd": 16
+      },
+      "actual": {
+        "bcd": 16
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "binary": 15
+      },
+      "expected": {
+        "bcd": 21
+      },
+      "actual": {
+        "bcd": 21
+      },
+      "passed": true
+    }
+  ],
+  "production_cells": 229,
+  "fixture_cells": 12
+}

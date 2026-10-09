@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "cells": [
+    {"type": "arrow", "dir": "right", "at": [
+      [5, 6], [8, 6], [9, 6], [10, 6], [7, 8], [10, 8]
+    ]},
+    {"type": "arrow", "dir": "down", "at": [
+      [10, 7]
+    ]},
+    {"type": "blue_arrow", "dir": "right", "at": [
+      [4, 5], [4, 6], [6, 7], [6, 8]
+    ]},
+    {"type": "diagonal", "dir": "up", "at": [
+      [6, 6], [8, 8]
+    ]},
+    {"type": "blue_splitter_up_up", "dir": "down", "at": [
+      [5, 4], [7, 6]
+    ]},
+    {"type": "blue_splitter_right_up", "dir": "right", "mirrored": true, "at": [
+      [4, 7]
+    ]},
+    {"type": "blue_splitter_up_diagonal", "dir": "down", "at": [
+      [8, 5]
+    ]},
+    {"type": "not", "dir": "right", "at": [
+      [5, 5], [7, 7]
+    ]},
+    {"type": "and", "dir": "right", "at": [
+      [7, 5], [9, 7]
+    ]},
+    {"type": "xor", "dir": "right", "at": [
+      [6, 5], [8, 7]
+    ]},
+    {"type": "level_source", "dir": "up", "at": [
+      [6, 9]
+    ]},
+    {"type": "level_source", "dir": "right", "at": [
+      [3, 5], [3, 7]
+    ]},
+    {"type": "level_source", "dir": "down", "at": [
+      [5, 3]
+    ]},
+    {"type": "level_target", "dir": "up", "at": [
+      [11, 6], [11, 8]
+    ]}
+  ]
+}

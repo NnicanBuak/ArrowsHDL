@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "top": "digit3",
+  "profile": "GraphDLC-01232bd",
+  "map_hash": "11cdc840753ca6f82cbd898708132b6101af3c04795308f4515603a66bcba699",
+  "cells": 308,
+  "bounds": {
+    "min": [
+      0,
+      0
+    ],
+    "max": [
+      13,
+      40
+    ],
+    "width": 14,
+    "height": 41,
+    "area": 574
+  },
+  "inputs": {
+    "n": [
+      {
+        "index": 0,
+        "contact": [
+          4,
+          40
+        ],
+        "fixture": [
+          4,
+          41
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          3,
+          40
+        ],
+        "fixture": [
+          3,
+          41
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          1,
+          40
+        ],
+        "fixture": [
+          1,
+          41
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "outputs": {},
+  "source_url": "https://logic-arrows.io/map-0TNlFXRQa6Y",
+  "reference_map_hash": "f17ce01e35aba3d441c3988599adf7a0fec9f7919ea5bda2a4f6fe825bc2ae52",
+  "layout": "reused-seven-segment-module",
+  "input_range": [
+    0,
+    7
+  ],
+  "fixed_most_significant_bit": 0,
+  "binary_to_bcd_converter": false,
+  "segments": [
+    [
+      10,
+      0
+    ],
+    [
+      13,
+      2
+    ],
+    [
+      13,
+      8
+    ],
+    [
+      10,
+      10
+    ],
+    [
+      7,
+      8
+    ],
+    [
+      7,
+      2
+    ],
+    [
+      10,
+      6
+    ]
+  ],
+  "segment_order": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g"
+  ],
+  "requested_bus_gap": "auto",
+  "input_pitches": [
+    1,
+    2
+  ],
+  "io_boundary_verified": true
+}

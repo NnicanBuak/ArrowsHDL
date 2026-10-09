@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "map_hash": "11cdc840753ca6f82cbd898708132b6101af3c04795308f4515603a66bcba699",
+  "all_input_values": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "all_64_transitions": true,
+  "vectors": 192,
+  "steady_window_ticks": 24,
+  "hold_ticks": 160,
+  "segment_checks": 67200,
+  "cycle_modes": [
+    false,
+    true
+  ],
+  "static_presets": 8,
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false
+}

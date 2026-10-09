@@ -1,0 +1,6266 @@
+{
+  "schema": 1,
+  "top": "bcd4",
+  "map_hash": "1ecfb42fa574ae0b3284968df4a03dc571b934a024df2c9709a02c660c5356e3",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "inputs": {
+    "binary": [
+      {
+        "index": 0,
+        "contact": [
+          2,
+          0
+        ],
+        "fixture": [
+          1,
+          0
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "contact": [
+          2,
+          1
+        ],
+        "fixture": [
+          1,
+          1
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 2,
+        "contact": [
+          2,
+          2
+        ],
+        "fixture": [
+          1,
+          2
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 3,
+        "contact": [
+          2,
+          3
+        ],
+        "fixture": [
+          1,
+          3
+        ],
+        "rotation": 1
+      }
+    ]
+  },
+  "outputs": {
+    "bcd": [
+      {
+        "index": 0,
+        "contact": [
+          16,
+          0
+        ],
+        "fixture": [
+          16,
+          -1
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          18,
+          0
+        ],
+        "fixture": [
+          18,
+          -1
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          20,
+          0
+        ],
+        "fixture": [
+          20,
+          -1
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "contact": [
+          22,
+          0
+        ],
+        "fixture": [
+          22,
+          -1
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 4,
+        "contact": [
+          24,
+          0
+        ],
+        "fixture": [
+          24,
+          -1
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 5,
+        "contact": [
+          26,
+          0
+        ],
+        "fixture": [
+          26,
+          -1
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 6,
+        "contact": [
+          28,
+          0
+        ],
+        "fixture": [
+          28,
+          -1
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 7,
+        "contact": [
+          30,
+          0
+        ],
+        "fixture": [
+          30,
+          -1
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "settle_ticks": 60,
+  "routing_limits": [
+    2,
+    0,
+    null,
+    null
+  ],
+  "physical_compaction": {
+    "removed_relays": 14,
+    "coordinate_cuts": 0,
+    "coordinate_transforms": [],
+    "exact_edges_verified": true,
+    "bus_constraints_preserved": true,
+    "before": {
+      "cells": 241,
+      "core": {
+        "cells": 114,
+        "gates": 25,
+        "bounds": {
+          "min": [
+            4,
+            4
+          ],
+          "max": [
+            30,
+            11
+          ],
+          "width": 27,
+          "height": 8,
+          "area": 216
+        },
+        "ticks": 47,
+        "excluded_io_cells": 127
+      },
+      "full_bounds": {
+        "min": [
+          1,
+          -1
+        ],
+        "max": [
+          31,
+          12
+        ],
+        "width": 31,
+        "height": 14,
+        "area": 434
+      }
+    }
+  },
+  "output_search": {
+    "core_frozen": true,
+    "core_connections_verified": true,
+    "selected": {
+      "side": "top",
+      "align": "center",
+      "offset": 0,
+      "core": {
+        "cells": 106,
+        "gates": 25,
+        "bounds": {
+          "min": [
+            5,
+            4
+          ],
+          "max": [
+            30,
+            11
+          ],
+          "width": 26,
+          "height": 8,
+          "area": 208
+        },
+        "ticks": 45,
+        "excluded_io_cells": 123
+      },
+      "bounds": {
+        "min": [
+          1,
+          -1
+        ],
+        "max": [
+          31,
+          12
+        ],
+        "width": 31,
+        "height": 14,
+        "area": 434
+      },
+      "ticks": 60,
+      "cells": 229
+    },
+    "objective": "min_core_then_full_area_then_cells_and_ticks",
+    "candidates": [
+      {
+        "side": "right",
+        "align": "end",
+        "offset": 1,
+        "core": {
+          "cells": 106,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              5,
+              4
+            ],
+            "max": [
+              30,
+              11
+            ],
+            "width": 26,
+            "height": 8,
+            "area": 208
+          },
+          "ticks": 45,
+          "excluded_io_cells": 144
+        },
+        "bounds": {
+          "min": [
+            1,
+            0
+          ],
+          "max": [
+            32,
+            27
+          ],
+          "width": 32,
+          "height": 28,
+          "area": 896
+        },
+        "ticks": 58,
+        "cells": 250
+      },
+      {
+        "side": "bottom",
+        "align": "end",
+        "offset": 0,
+        "core": {
+          "cells": 106,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              5,
+              4
+            ],
+            "max": [
+              30,
+              11
+            ],
+            "width": 26,
+            "height": 8,
+            "area": 208
+          },
+          "ticks": 45,
+          "excluded_io_cells": 150
+        },
+        "bounds": {
+          "min": [
+            1,
+            0
+          ],
+          "max": [
+            45,
+            13
+          ],
+          "width": 45,
+          "height": 14,
+          "area": 630
+        },
+        "ticks": 57,
+        "cells": 256
+      },
+      {
+        "side": "bottom",
+        "align": "end",
+        "offset": 1,
+        "core": {
+          "cells": 106,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              5,
+              4
+            ],
+            "max": [
+              30,
+              11
+            ],
+            "width": 26,
+            "height": 8,
+            "area": 208
+          },
+          "ticks": 45,
+          "excluded_io_cells": 144
+        },
+        "bounds": {
+          "min": [
+            1,
+            0
+          ],
+          "max": [
+            45,
+            14
+          ],
+          "width": 45,
+          "height": 15,
+          "area": 675
+        },
+        "ticks": 57,
+        "cells": 250
+      },
+      {
+        "side": "top",
+        "align": "center",
+        "offset": 0,
+        "core": {
+          "cells": 106,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              5,
+              4
+            ],
+            "max": [
+              30,
+              11
+            ],
+            "width": 26,
+            "height": 8,
+            "area": 208
+          },
+          "ticks": 45,
+          "excluded_io_cells": 123
+        },
+        "bounds": {
+          "min": [
+            1,
+            -1
+          ],
+          "max": [
+            31,
+            12
+          ],
+          "width": 31,
+          "height": 14,
+          "area": 434
+        },
+        "ticks": 60,
+        "cells": 229
+      },
+      {
+        "side": "top",
+        "align": "end",
+        "offset": 0,
+        "core": {
+          "cells": 106,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              5,
+              4
+            ],
+            "max": [
+              30,
+              11
+            ],
+            "width": 26,
+            "height": 8,
+            "area": 208
+          },
+          "ticks": 45,
+          "excluded_io_cells": 152
+        },
+        "bounds": {
+          "min": [
+            1,
+            -1
+          ],
+          "max": [
+            45,
+            12
+          ],
+          "width": 45,
+          "height": 14,
+          "area": 630
+        },
+        "ticks": 61,
+        "cells": 258
+      },
+      {
+        "side": "top",
+        "align": "center",
+        "offset": 1,
+        "core": {
+          "cells": 106,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              5,
+              4
+            ],
+            "max": [
+              30,
+              11
+            ],
+            "width": 26,
+            "height": 8,
+            "area": 208
+          },
+          "ticks": 45,
+          "excluded_io_cells": 125
+        },
+        "bounds": {
+          "min": [
+            1,
+            -2
+          ],
+          "max": [
+            31,
+            12
+          ],
+          "width": 31,
+          "height": 15,
+          "area": 465
+        },
+        "ticks": 61,
+        "cells": 231
+      },
+      {
+        "side": "top",
+        "align": "end",
+        "offset": 1,
+        "core": {
+          "cells": 106,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              5,
+              4
+            ],
+            "max": [
+              30,
+              11
+            ],
+            "width": 26,
+            "height": 8,
+            "area": 208
+          },
+          "ticks": 45,
+          "excluded_io_cells": 153
+        },
+        "bounds": {
+          "min": [
+            1,
+            -2
+          ],
+          "max": [
+            45,
+            12
+          ],
+          "width": 45,
+          "height": 15,
+          "area": 675
+        },
+        "ticks": 61,
+        "cells": 259
+      },
+      {
+        "side": "left",
+        "align": "end",
+        "offset": 0,
+        "core": {
+          "cells": 106,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              5,
+              4
+            ],
+            "max": [
+              30,
+              11
+            ],
+            "width": 26,
+            "height": 8,
+            "area": 208
+          },
+          "ticks": 45,
+          "excluded_io_cells": 180
+        },
+        "bounds": {
+          "min": [
+            1,
+            0
+          ],
+          "max": [
+            31,
+            27
+          ],
+          "width": 31,
+          "height": 28,
+          "area": 868
+        },
+        "ticks": 72,
+        "cells": 286
+      },
+      {
+        "side": "left",
+        "align": "end",
+        "offset": 1,
+        "core": {
+          "cells": 106,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              5,
+              4
+            ],
+            "max": [
+              30,
+              11
+            ],
+            "width": 26,
+            "height": 8,
+            "area": 208
+          },
+          "ticks": 45,
+          "excluded_io_cells": 180
+        },
+        "bounds": {
+          "min": [
+            1,
+            0
+          ],
+          "max": [
+            31,
+            27
+          ],
+          "width": 31,
+          "height": 28,
+          "area": 868
+        },
+        "ticks": 72,
+        "cells": 286
+      }
+    ],
+    "rejected": [
+      {
+        "side": "right",
+        "align": "driver",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "right",
+        "align": "center",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "right",
+        "align": "end",
+        "offset": 0,
+        "reason": "Контакты ввода/вывода не образуют внешнюю границу схемы"
+      },
+      {
+        "side": "right",
+        "align": "driver",
+        "offset": 1,
+        "reason": "Конфликт компактного размещения в (31, 10)"
+      },
+      {
+        "side": "right",
+        "align": "center",
+        "offset": 1,
+        "reason": "Конфликт компактного размещения в (31, 10)"
+      },
+      {
+        "side": "bottom",
+        "align": "driver",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "bottom",
+        "align": "center",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "bottom",
+        "align": "driver",
+        "offset": 1,
+        "reason": "Внешний вывод пересекает фиксированное ядро"
+      },
+      {
+        "side": "bottom",
+        "align": "center",
+        "offset": 1,
+        "reason": "Внешний вывод пересекает фиксированное ядро"
+      },
+      {
+        "side": "top",
+        "align": "driver",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "top",
+        "align": "driver",
+        "offset": 1,
+        "reason": "Разрыв входов элемента (2, -1)"
+      },
+      {
+        "side": "left",
+        "align": "driver",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "left",
+        "align": "center",
+        "offset": 0,
+        "reason": "Внешний вывод пересекает фиксированное ядро"
+      },
+      {
+        "side": "left",
+        "align": "driver",
+        "offset": 1,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "left",
+        "align": "center",
+        "offset": 1,
+        "reason": "Внешний вывод пересекает фиксированное ядро"
+      }
+    ]
+  },
+  "cells": 229,
+  "logic_nodes": 36,
+  "layout": "compact-connected-modules-v1",
+  "bounds": {
+    "min": [
+      2,
+      0
+    ],
+    "max": [
+      31,
+      12
+    ],
+    "width": 30,
+    "height": 13,
+    "area": 390
+  },
+  "port_layout": "fixed-sides",
+  "rerouted_nets": 0,
+  "io_conflict_fallback": false,
+  "logic_core": {
+    "cells": 106,
+    "gates": 25,
+    "bounds": {
+      "min": [
+        5,
+        4
+      ],
+      "max": [
+        30,
+        11
+      ],
+      "width": 26,
+      "height": 8,
+      "area": 208
+    },
+    "ticks": 45,
+    "excluded_io_cells": 123
+  },
+  "direct_gate_links": 8,
+  "shared_input_contacts": 4,
+  "gate_labels": [
+    {
+      "at": [
+        5,
+        4
+      ],
+      "op": "NOT",
+      "id": "$auto$simplemap.cc:46:simplemap_not$405",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        8,
+        5
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$376",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        8,
+        6
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$526",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        11,
+        5
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$525",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        14,
+        6
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$377",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        14,
+        7
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$524",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        5,
+        7
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$335",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        5,
+        11
+      ],
+      "op": "NOT",
+      "id": "$auto$simplemap.cc:46:simplemap_not$336",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        6,
+        11
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$330",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        7,
+        11
+      ],
+      "op": "NOT",
+      "id": "$auto$simplemap.cc:46:simplemap_not$329",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        8,
+        11
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$328",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        12,
+        11
+      ],
+      "op": "NOT",
+      "id": "$auto$simplemap.cc:46:simplemap_not$404",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        13,
+        11
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$337:b",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        17,
+        11
+      ],
+      "op": "NOT",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$337:select",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        17,
+        8
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$337:a",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        18,
+        8
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$337",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        21,
+        6
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$338:b",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        21,
+        10
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$338:a",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        22,
+        10
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$338",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        24,
+        6
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$339:b",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        25,
+        10
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$339:a",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        26,
+        10
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$339",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        27,
+        6
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$340:b",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        29,
+        10
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$340:a",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        30,
+        10
+      ],
+      "op": "OR",
+      "id": "$auto$simplemap.cc:298:simplemap_mux$340",
+      "scope": "convert"
+    },
+    {
+      "at": [
+        16,
+        0
+      ],
+      "op": "BUF",
+      "id": "port:bcd:0",
+      "scope": "core"
+    },
+    {
+      "at": [
+        18,
+        0
+      ],
+      "op": "BUF",
+      "id": "port:bcd:1",
+      "scope": "core"
+    },
+    {
+      "at": [
+        20,
+        0
+      ],
+      "op": "BUF",
+      "id": "port:bcd:2",
+      "scope": "core"
+    },
+    {
+      "at": [
+        22,
+        0
+      ],
+      "op": "BUF",
+      "id": "port:bcd:3",
+      "scope": "core"
+    },
+    {
+      "at": [
+        24,
+        0
+      ],
+      "op": "BUF",
+      "id": "port:bcd:4",
+      "scope": "core"
+    },
+    {
+      "at": [
+        26,
+        0
+      ],
+      "op": "BUF",
+      "id": "port:bcd:5",
+      "scope": "core"
+    },
+    {
+      "at": [
+        28,
+        0
+      ],
+      "op": "BUF",
+      "id": "port:bcd:6",
+      "scope": "core"
+    },
+    {
+      "at": [
+        30,
+        0
+      ],
+      "op": "BUF",
+      "id": "port:bcd:7",
+      "scope": "core"
+    }
+  ],
+  "signals": {
+    "schema": 1,
+    "input_buses": [
+      {
+        "name": "binary",
+        "bits": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "const0",
+        "label": "bcd[5]",
+        "aliases": [
+          "bcd[5]",
+          "bcd[6]",
+          "bcd[7]",
+          "convert.bcd[5]",
+          "convert.bcd[6]",
+          "convert.bcd[7]",
+          "convert.stage[0][0]",
+          "convert.stage[0][1]",
+          "convert.stage[0][2]",
+          "convert.stage[0][3]",
+          "convert.stage[0][4]",
+          "convert.stage[0][5]",
+          "convert.stage[0][6]",
+          "convert.stage[0][7]",
+          "convert.stage[1][1]",
+          "convert.stage[1][2]",
+          "convert.stage[1][3]",
+          "convert.stage[1][4]",
+          "convert.stage[1][5]",
+          "convert.stage[1][6]",
+          "convert.stage[1][7]",
+          "convert.stage[2][2]",
+          "convert.stage[2][3]",
+          "convert.stage[2][4]",
+          "convert.stage[2][5]",
+          "convert.stage[2][6]",
+          "convert.stage[2][7]",
+          "convert.stage[3][3]",
+          "convert.stage[3][4]",
+          "convert.stage[3][5]",
+          "convert.stage[3][6]",
+          "convert.stage[3][7]",
+          "convert.stage[4][5]",
+          "convert.stage[4][6]",
+          "convert.stage[4][7]",
+          "convert.stages[0].corrected[0]",
+          "convert.stages[0].corrected[1]",
+          "convert.stages[0].corrected[2]",
+          "convert.stages[0].corrected[3]",
+          "convert.stages[0].corrected[4]",
+          "convert.stages[0].corrected[5]",
+          "convert.stages[0].corrected[6]",
+          "convert.stages[0].corrected[7]",
+          "convert.stages[1].corrected[1]",
+          "convert.stages[1].corrected[2]",
+          "convert.stages[1].corrected[3]",
+          "convert.stages[1].corrected[4]",
+          "convert.stages[1].corrected[5]",
+          "convert.stages[1].corrected[6]",
+          "convert.stages[1].corrected[7]",
+          "convert.stages[2].corrected[2]",
+          "convert.stages[2].corrected[3]",
+          "convert.stages[2].corrected[4]",
+          "convert.stages[2].corrected[5]",
+          "convert.stages[2].corrected[6]",
+          "convert.stages[3].corrected[4]",
+          "convert.stages[3].corrected[5]",
+          "convert.stages[3].corrected[6]"
+        ],
+        "origins": [],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            17,
+            4
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            18,
+            4
+          ],
+          [
+            19,
+            1
+          ],
+          [
+            21,
+            1
+          ],
+          [
+            23,
+            1
+          ],
+          [
+            25,
+            1
+          ],
+          [
+            26,
+            1
+          ],
+          [
+            28,
+            1
+          ],
+          [
+            28,
+            9
+          ],
+          [
+            29,
+            1
+          ],
+          [
+            29,
+            3
+          ],
+          [
+            29,
+            5
+          ],
+          [
+            29,
+            7
+          ],
+          [
+            29,
+            9
+          ],
+          [
+            30,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              17,
+              4
+            ],
+            [
+              18,
+              4
+            ]
+          ],
+          [
+            [
+              18,
+              2
+            ],
+            [
+              19,
+              1
+            ]
+          ],
+          [
+            [
+              18,
+              4
+            ],
+            [
+              18,
+              2
+            ]
+          ],
+          [
+            [
+              19,
+              1
+            ],
+            [
+              21,
+              1
+            ]
+          ],
+          [
+            [
+              21,
+              1
+            ],
+            [
+              23,
+              1
+            ]
+          ],
+          [
+            [
+              23,
+              1
+            ],
+            [
+              25,
+              1
+            ]
+          ],
+          [
+            [
+              25,
+              1
+            ],
+            [
+              26,
+              1
+            ]
+          ],
+          [
+            [
+              26,
+              1
+            ],
+            [
+              26,
+              0
+            ]
+          ],
+          [
+            [
+              26,
+              1
+            ],
+            [
+              28,
+              1
+            ]
+          ],
+          [
+            [
+              28,
+              1
+            ],
+            [
+              28,
+              0
+            ]
+          ],
+          [
+            [
+              28,
+              1
+            ],
+            [
+              30,
+              1
+            ]
+          ],
+          [
+            [
+              28,
+              9
+            ],
+            [
+              29,
+              10
+            ]
+          ],
+          [
+            [
+              29,
+              1
+            ],
+            [
+              29,
+              3
+            ]
+          ],
+          [
+            [
+              29,
+              3
+            ],
+            [
+              29,
+              5
+            ]
+          ],
+          [
+            [
+              29,
+              5
+            ],
+            [
+              29,
+              7
+            ]
+          ],
+          [
+            [
+              29,
+              7
+            ],
+            [
+              29,
+              9
+            ]
+          ],
+          [
+            [
+              29,
+              9
+            ],
+            [
+              28,
+              9
+            ]
+          ],
+          [
+            [
+              30,
+              1
+            ],
+            [
+              29,
+              1
+            ]
+          ],
+          [
+            [
+              30,
+              1
+            ],
+            [
+              30,
+              0
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n10",
+        "label": "n10",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n17"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:46:simplemap_not$336",
+          "op": "NOT",
+          "at": [
+            5,
+            11
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-12.83"
+        },
+        "cells": [
+          [
+            5,
+            11
+          ]
+        ],
+        "edges": [
+          [
+            [
+              5,
+              11
+            ],
+            [
+              6,
+              11
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n11",
+        "label": "n11",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n18",
+          "n5"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:157:simplemap_reduce$335",
+          "op": "AND",
+          "at": [
+            5,
+            7
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-12.83"
+        },
+        "cells": [
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            8,
+            10
+          ]
+        ],
+        "edges": [
+          [
+            [
+              5,
+              7
+            ],
+            [
+              6,
+              7
+            ]
+          ],
+          [
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              9
+            ]
+          ],
+          [
+            [
+              6,
+              9
+            ],
+            [
+              6,
+              10
+            ]
+          ],
+          [
+            [
+              6,
+              10
+            ],
+            [
+              6,
+              11
+            ]
+          ],
+          [
+            [
+              6,
+              10
+            ],
+            [
+              8,
+              10
+            ]
+          ],
+          [
+            [
+              8,
+              10
+            ],
+            [
+              8,
+              11
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n12",
+        "label": "n12",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n10",
+          "n11"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$330",
+          "op": "OR",
+          "at": [
+            6,
+            11
+          ],
+          "scope": "convert",
+          "source": null
+        },
+        "cells": [
+          [
+            6,
+            11
+          ]
+        ],
+        "edges": [
+          [
+            [
+              6,
+              11
+            ],
+            [
+              7,
+              11
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n13",
+        "label": "n13",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 2
+          }
+        ],
+        "inputs": [
+          "n4"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:46:simplemap_not$405",
+          "op": "NOT",
+          "at": [
+            5,
+            4
+          ],
+          "scope": "convert",
+          "source": "design.v:13.23-13.55|/share/techmap.v:279.31-279.37"
+        },
+        "cells": [
+          [
+            5,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            8,
+            4
+          ]
+        ],
+        "edges": [
+          [
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              4
+            ]
+          ],
+          [
+            [
+              6,
+              4
+            ],
+            [
+              8,
+              4
+            ]
+          ],
+          [
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              5
+            ]
+          ],
+          [
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              6
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n14",
+        "label": "n14",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          }
+        ],
+        "inputs": [
+          "n13",
+          "n3"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$376",
+          "op": "XOR",
+          "at": [
+            8,
+            5
+          ],
+          "scope": "convert",
+          "source": "design.v:13.23-13.55|/share/techmap.v:296.13-296.25"
+        },
+        "cells": [
+          [
+            8,
+            5
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            12,
+            4
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            17,
+            5
+          ],
+          [
+            19,
+            5
+          ],
+          [
+            21,
+            5
+          ]
+        ],
+        "edges": [
+          [
+            [
+              8,
+              5
+            ],
+            [
+              9,
+              5
+            ]
+          ],
+          [
+            [
+              9,
+              5
+            ],
+            [
+              10,
+              4
+            ]
+          ],
+          [
+            [
+              10,
+              4
+            ],
+            [
+              12,
+              4
+            ]
+          ],
+          [
+            [
+              12,
+              4
+            ],
+            [
+              14,
+              4
+            ]
+          ],
+          [
+            [
+              14,
+              4
+            ],
+            [
+              16,
+              4
+            ]
+          ],
+          [
+            [
+              16,
+              4
+            ],
+            [
+              17,
+              5
+            ]
+          ],
+          [
+            [
+              17,
+              5
+            ],
+            [
+              19,
+              5
+            ]
+          ],
+          [
+            [
+              19,
+              5
+            ],
+            [
+              21,
+              5
+            ]
+          ],
+          [
+            [
+              21,
+              5
+            ],
+            [
+              21,
+              6
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n15",
+        "label": "n15",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          }
+        ],
+        "inputs": [
+          "n4",
+          "n18"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$525",
+          "op": "OR",
+          "at": [
+            11,
+            5
+          ],
+          "scope": "convert",
+          "source": "design.v:13.23-13.55|/share/techmap.v:293.27-293.63|/share/techmap.v:240.12-240.41"
+        },
+        "cells": [
+          [
+            11,
+            5
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            14,
+            5
+          ]
+        ],
+        "edges": [
+          [
+            [
+              11,
+              5
+            ],
+            [
+              12,
+              5
+            ]
+          ],
+          [
+            [
+              12,
+              5
+            ],
+            [
+              14,
+              5
+            ]
+          ],
+          [
+            [
+              14,
+              5
+            ],
+            [
+              14,
+              6
+            ]
+          ],
+          [
+            [
+              14,
+              5
+            ],
+            [
+              14,
+              7
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n16",
+        "label": "n16",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n5",
+          "n15"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$377",
+          "op": "XOR",
+          "at": [
+            14,
+            6
+          ],
+          "scope": "convert",
+          "source": "design.v:13.23-13.55|/share/techmap.v:296.13-296.25"
+        },
+        "cells": [
+          [
+            14,
+            6
+          ],
+          [
+            15,
+            6
+          ],
+          [
+            16,
+            6
+          ],
+          [
+            18,
+            6
+          ],
+          [
+            20,
+            4
+          ],
+          [
+            20,
+            6
+          ],
+          [
+            22,
+            4
+          ],
+          [
+            24,
+            4
+          ]
+        ],
+        "edges": [
+          [
+            [
+              14,
+              6
+            ],
+            [
+              15,
+              6
+            ]
+          ],
+          [
+            [
+              15,
+              6
+            ],
+            [
+              16,
+              6
+            ]
+          ],
+          [
+            [
+              16,
+              6
+            ],
+            [
+              18,
+              6
+            ]
+          ],
+          [
+            [
+              18,
+              6
+            ],
+            [
+              20,
+              6
+            ]
+          ],
+          [
+            [
+              20,
+              4
+            ],
+            [
+              22,
+              4
+            ]
+          ],
+          [
+            [
+              20,
+              6
+            ],
+            [
+              20,
+              4
+            ]
+          ],
+          [
+            [
+              22,
+              4
+            ],
+            [
+              24,
+              4
+            ]
+          ],
+          [
+            [
+              24,
+              4
+            ],
+            [
+              24,
+              6
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n17",
+        "label": "n17",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n5",
+          "n15"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$524",
+          "op": "AND",
+          "at": [
+            14,
+            7
+          ],
+          "scope": "convert",
+          "source": "design.v:13.23-13.55|/share/techmap.v:293.27-293.63|/share/techmap.v:248.19-248.41"
+        },
+        "cells": [
+          [
+            5,
+            10
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            10
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            13,
+            4
+          ],
+          [
+            13,
+            6
+          ],
+          [
+            14,
+            7
+          ],
+          [
+            15,
+            4
+          ],
+          [
+            15,
+            5
+          ],
+          [
+            15,
+            7
+          ],
+          [
+            16,
+            5
+          ],
+          [
+            18,
+            5
+          ],
+          [
+            20,
+            5
+          ],
+          [
+            22,
+            5
+          ],
+          [
+            23,
+            5
+          ],
+          [
+            25,
+            5
+          ],
+          [
+            27,
+            5
+          ]
+        ],
+        "edges": [
+          [
+            [
+              5,
+              10
+            ],
+            [
+              5,
+              11
+            ]
+          ],
+          [
+            [
+              7,
+              8
+            ],
+            [
+              7,
+              10
+            ]
+          ],
+          [
+            [
+              7,
+              10
+            ],
+            [
+              5,
+              10
+            ]
+          ],
+          [
+            [
+              9,
+              8
+            ],
+            [
+              7,
+              8
+            ]
+          ],
+          [
+            [
+              10,
+              7
+            ],
+            [
+              9,
+              8
+            ]
+          ],
+          [
+            [
+              12,
+              7
+            ],
+            [
+              10,
+              7
+            ]
+          ],
+          [
+            [
+              13,
+              4
+            ],
+            [
+              13,
+              6
+            ]
+          ],
+          [
+            [
+              13,
+              6
+            ],
+            [
+              12,
+              7
+            ]
+          ],
+          [
+            [
+              14,
+              7
+            ],
+            [
+              15,
+              7
+            ]
+          ],
+          [
+            [
+              15,
+              4
+            ],
+            [
+              13,
+              4
+            ]
+          ],
+          [
+            [
+              15,
+              5
+            ],
+            [
+              15,
+              4
+            ]
+          ],
+          [
+            [
+              15,
+              5
+            ],
+            [
+              16,
+              5
+            ]
+          ],
+          [
+            [
+              15,
+              7
+            ],
+            [
+              15,
+              5
+            ]
+          ],
+          [
+            [
+              16,
+              5
+            ],
+            [
+              18,
+              5
+            ]
+          ],
+          [
+            [
+              18,
+              5
+            ],
+            [
+              20,
+              5
+            ]
+          ],
+          [
+            [
+              20,
+              5
+            ],
+            [
+              22,
+              5
+            ]
+          ],
+          [
+            [
+              22,
+              5
+            ],
+            [
+              23,
+              5
+            ]
+          ],
+          [
+            [
+              23,
+              5
+            ],
+            [
+              25,
+              5
+            ]
+          ],
+          [
+            [
+              25,
+              5
+            ],
+            [
+              27,
+              5
+            ]
+          ],
+          [
+            [
+              27,
+              5
+            ],
+            [
+              27,
+              6
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n18",
+        "label": "n18",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          }
+        ],
+        "inputs": [
+          "n13",
+          "n3"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$526",
+          "op": "AND",
+          "at": [
+            8,
+            6
+          ],
+          "scope": "convert",
+          "source": "design.v:13.23-13.55|/share/techmap.v:293.27-293.63|/share/techmap.v:240.19-240.41"
+        },
+        "cells": [
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            9,
+            6
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            11,
+            6
+          ]
+        ],
+        "edges": [
+          [
+            [
+              7,
+              7
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          [
+            [
+              8,
+              6
+            ],
+            [
+              9,
+              6
+            ]
+          ],
+          [
+            [
+              9,
+              6
+            ],
+            [
+              9,
+              7
+            ]
+          ],
+          [
+            [
+              9,
+              6
+            ],
+            [
+              11,
+              6
+            ]
+          ],
+          [
+            [
+              9,
+              7
+            ],
+            [
+              7,
+              7
+            ]
+          ],
+          [
+            [
+              11,
+              6
+            ],
+            [
+              11,
+              5
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n19",
+        "label": "n19",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n12"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:46:simplemap_not$329",
+          "op": "NOT",
+          "at": [
+            7,
+            11
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-12.83"
+        },
+        "cells": [
+          [
+            7,
+            11
+          ]
+        ],
+        "edges": [
+          [
+            [
+              7,
+              11
+            ],
+            [
+              8,
+              11
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n2",
+        "label": "bcd[0]",
+        "aliases": [
+          "bcd[0]",
+          "binary[0]",
+          "convert.bcd[0]",
+          "convert.binary[0]",
+          "convert.stage[4][0]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 0
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            13,
+            1
+          ],
+          [
+            15,
+            1
+          ],
+          [
+            16,
+            1
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          [
+            [
+              3,
+              1
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          [
+            [
+              5,
+              1
+            ],
+            [
+              7,
+              1
+            ]
+          ],
+          [
+            [
+              7,
+              1
+            ],
+            [
+              9,
+              1
+            ]
+          ],
+          [
+            [
+              9,
+              1
+            ],
+            [
+              11,
+              1
+            ]
+          ],
+          [
+            [
+              11,
+              1
+            ],
+            [
+              13,
+              1
+            ]
+          ],
+          [
+            [
+              13,
+              1
+            ],
+            [
+              15,
+              1
+            ]
+          ],
+          [
+            [
+              15,
+              1
+            ],
+            [
+              16,
+              1
+            ]
+          ],
+          [
+            [
+              16,
+              1
+            ],
+            [
+              16,
+              0
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n20",
+        "label": "n20",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n19",
+          "n11"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:157:simplemap_reduce$328",
+          "op": "OR",
+          "at": [
+            8,
+            11
+          ],
+          "scope": "convert",
+          "source": null
+        },
+        "cells": [
+          [
+            8,
+            11
+          ],
+          [
+            9,
+            11
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            10
+          ],
+          [
+            13,
+            10
+          ],
+          [
+            15,
+            10
+          ],
+          [
+            16,
+            11
+          ],
+          [
+            17,
+            10
+          ],
+          [
+            18,
+            10
+          ],
+          [
+            19,
+            7
+          ],
+          [
+            19,
+            9
+          ],
+          [
+            21,
+            7
+          ],
+          [
+            23,
+            7
+          ],
+          [
+            24,
+            7
+          ],
+          [
+            26,
+            7
+          ]
+        ],
+        "edges": [
+          [
+            [
+              8,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          [
+            [
+              9,
+              11
+            ],
+            [
+              10,
+              10
+            ]
+          ],
+          [
+            [
+              10,
+              10
+            ],
+            [
+              11,
+              10
+            ]
+          ],
+          [
+            [
+              11,
+              10
+            ],
+            [
+              13,
+              10
+            ]
+          ],
+          [
+            [
+              13,
+              10
+            ],
+            [
+              13,
+              11
+            ]
+          ],
+          [
+            [
+              13,
+              10
+            ],
+            [
+              15,
+              10
+            ]
+          ],
+          [
+            [
+              15,
+              10
+            ],
+            [
+              16,
+              11
+            ]
+          ],
+          [
+            [
+              16,
+              11
+            ],
+            [
+              17,
+              11
+            ]
+          ],
+          [
+            [
+              16,
+              11
+            ],
+            [
+              17,
+              10
+            ]
+          ],
+          [
+            [
+              17,
+              10
+            ],
+            [
+              18,
+              10
+            ]
+          ],
+          [
+            [
+              18,
+              10
+            ],
+            [
+              19,
+              9
+            ]
+          ],
+          [
+            [
+              19,
+              7
+            ],
+            [
+              21,
+              7
+            ]
+          ],
+          [
+            [
+              19,
+              9
+            ],
+            [
+              19,
+              7
+            ]
+          ],
+          [
+            [
+              21,
+              7
+            ],
+            [
+              21,
+              6
+            ]
+          ],
+          [
+            [
+              21,
+              7
+            ],
+            [
+              23,
+              7
+            ]
+          ],
+          [
+            [
+              23,
+              7
+            ],
+            [
+              24,
+              7
+            ]
+          ],
+          [
+            [
+              24,
+              7
+            ],
+            [
+              24,
+              6
+            ]
+          ],
+          [
+            [
+              24,
+              7
+            ],
+            [
+              26,
+              7
+            ]
+          ],
+          [
+            [
+              26,
+              7
+            ],
+            [
+              27,
+              6
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n21",
+        "label": "n21",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "n3"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:46:simplemap_not$404",
+          "op": "NOT",
+          "at": [
+            12,
+            11
+          ],
+          "scope": "convert",
+          "source": "design.v:13.23-13.55|/share/techmap.v:279.31-279.37"
+        },
+        "cells": [
+          [
+            12,
+            11
+          ]
+        ],
+        "edges": [
+          [
+            [
+              12,
+              11
+            ],
+            [
+              13,
+              11
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n3",
+        "label": "binary[1]",
+        "aliases": [
+          "binary[1]",
+          "convert.binary[1]",
+          "convert.stage[3][0]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            11,
+            9
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            9
+          ],
+          [
+            13,
+            9
+          ],
+          [
+            15,
+            9
+          ],
+          [
+            16,
+            8
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          [
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              6
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              5
+            ]
+          ],
+          [
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              8
+            ]
+          ],
+          [
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              9
+            ]
+          ],
+          [
+            [
+              5,
+              9
+            ],
+            [
+              7,
+              9
+            ]
+          ],
+          [
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              6
+            ]
+          ],
+          [
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              6
+            ]
+          ],
+          [
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              5
+            ]
+          ],
+          [
+            [
+              7,
+              9
+            ],
+            [
+              9,
+              9
+            ]
+          ],
+          [
+            [
+              9,
+              9
+            ],
+            [
+              11,
+              9
+            ]
+          ],
+          [
+            [
+              11,
+              9
+            ],
+            [
+              12,
+              9
+            ]
+          ],
+          [
+            [
+              11,
+              9
+            ],
+            [
+              11,
+              11
+            ]
+          ],
+          [
+            [
+              11,
+              11
+            ],
+            [
+              12,
+              11
+            ]
+          ],
+          [
+            [
+              12,
+              9
+            ],
+            [
+              13,
+              9
+            ]
+          ],
+          [
+            [
+              13,
+              9
+            ],
+            [
+              15,
+              9
+            ]
+          ],
+          [
+            [
+              15,
+              9
+            ],
+            [
+              16,
+              8
+            ]
+          ],
+          [
+            [
+              16,
+              8
+            ],
+            [
+              17,
+              8
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n4",
+        "label": "binary[2]",
+        "aliases": [
+          "binary[2]",
+          "convert.binary[2]",
+          "convert.stage[2][0]",
+          "convert.stage[3][1]",
+          "convert.stages[2].corrected[0]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 2
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            10
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            6,
+            12
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            14,
+            12
+          ],
+          [
+            16,
+            12
+          ],
+          [
+            18,
+            12
+          ],
+          [
+            20,
+            10
+          ],
+          [
+            20,
+            12
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          [
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              4
+            ]
+          ],
+          [
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          [
+            [
+              3,
+              7
+            ],
+            [
+              3,
+              9
+            ]
+          ],
+          [
+            [
+              3,
+              9
+            ],
+            [
+              4,
+              10
+            ]
+          ],
+          [
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              4
+            ]
+          ],
+          [
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              10
+            ],
+            [
+              4,
+              12
+            ]
+          ],
+          [
+            [
+              4,
+              12
+            ],
+            [
+              6,
+              12
+            ]
+          ],
+          [
+            [
+              5,
+              3
+            ],
+            [
+              6,
+              3
+            ]
+          ],
+          [
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          [
+            [
+              5,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          [
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              4
+            ]
+          ],
+          [
+            [
+              6,
+              12
+            ],
+            [
+              8,
+              12
+            ]
+          ],
+          [
+            [
+              7,
+              4
+            ],
+            [
+              9,
+              4
+            ]
+          ],
+          [
+            [
+              8,
+              12
+            ],
+            [
+              10,
+              12
+            ]
+          ],
+          [
+            [
+              9,
+              4
+            ],
+            [
+              11,
+              4
+            ]
+          ],
+          [
+            [
+              10,
+              12
+            ],
+            [
+              12,
+              12
+            ]
+          ],
+          [
+            [
+              11,
+              4
+            ],
+            [
+              11,
+              5
+            ]
+          ],
+          [
+            [
+              12,
+              12
+            ],
+            [
+              14,
+              12
+            ]
+          ],
+          [
+            [
+              14,
+              12
+            ],
+            [
+              16,
+              12
+            ]
+          ],
+          [
+            [
+              16,
+              12
+            ],
+            [
+              18,
+              12
+            ]
+          ],
+          [
+            [
+              18,
+              12
+            ],
+            [
+              20,
+              12
+            ]
+          ],
+          [
+            [
+              20,
+              10
+            ],
+            [
+              21,
+              10
+            ]
+          ],
+          [
+            [
+              20,
+              12
+            ],
+            [
+              20,
+              10
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n5",
+        "label": "binary[3]",
+        "aliases": [
+          "binary[3]",
+          "convert.binary[3]",
+          "convert.stage[1][0]",
+          "convert.stage[2][1]",
+          "convert.stage[3][2]",
+          "convert.stages[1].corrected[0]",
+          "convert.stages[2].corrected[1]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            10,
+            8
+          ],
+          [
+            10,
+            9
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            12,
+            8
+          ],
+          [
+            13,
+            12
+          ],
+          [
+            14,
+            8
+          ],
+          [
+            15,
+            12
+          ],
+          [
+            17,
+            12
+          ],
+          [
+            19,
+            12
+          ],
+          [
+            20,
+            11
+          ],
+          [
+            22,
+            11
+          ],
+          [
+            24,
+            11
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              5
+            ]
+          ],
+          [
+            [
+              2,
+              5
+            ],
+            [
+              2,
+              7
+            ]
+          ],
+          [
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              8
+            ]
+          ],
+          [
+            [
+              3,
+              8
+            ],
+            [
+              5,
+              8
+            ]
+          ],
+          [
+            [
+              5,
+              8
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          [
+            [
+              5,
+              8
+            ],
+            [
+              6,
+              8
+            ]
+          ],
+          [
+            [
+              6,
+              8
+            ],
+            [
+              8,
+              8
+            ]
+          ],
+          [
+            [
+              8,
+              8
+            ],
+            [
+              10,
+              8
+            ]
+          ],
+          [
+            [
+              10,
+              8
+            ],
+            [
+              10,
+              9
+            ]
+          ],
+          [
+            [
+              10,
+              8
+            ],
+            [
+              12,
+              8
+            ]
+          ],
+          [
+            [
+              10,
+              9
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          [
+            [
+              10,
+              11
+            ],
+            [
+              11,
+              12
+            ]
+          ],
+          [
+            [
+              11,
+              12
+            ],
+            [
+              13,
+              12
+            ]
+          ],
+          [
+            [
+              12,
+              8
+            ],
+            [
+              14,
+              8
+            ]
+          ],
+          [
+            [
+              13,
+              12
+            ],
+            [
+              15,
+              12
+            ]
+          ],
+          [
+            [
+              14,
+              8
+            ],
+            [
+              14,
+              7
+            ]
+          ],
+          [
+            [
+              14,
+              8
+            ],
+            [
+              14,
+              6
+            ]
+          ],
+          [
+            [
+              15,
+              12
+            ],
+            [
+              17,
+              12
+            ]
+          ],
+          [
+            [
+              17,
+              12
+            ],
+            [
+              19,
+              12
+            ]
+          ],
+          [
+            [
+              19,
+              12
+            ],
+            [
+              20,
+              11
+            ]
+          ],
+          [
+            [
+              20,
+              11
+            ],
+            [
+              22,
+              11
+            ]
+          ],
+          [
+            [
+              22,
+              11
+            ],
+            [
+              24,
+              11
+            ]
+          ],
+          [
+            [
+              24,
+              11
+            ],
+            [
+              25,
+              10
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n6",
+        "label": "bcd[1]",
+        "aliases": [
+          "bcd[1]",
+          "convert.bcd[1]",
+          "convert.stage[4][1]",
+          "convert.stages[3].corrected[0]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "tmp:$auto$simplemap.cc:298:simplemap_mux$337:a",
+          "tmp:$auto$simplemap.cc:298:simplemap_mux$337:b"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$337",
+          "op": "OR",
+          "at": [
+            18,
+            8
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            18,
+            1
+          ],
+          [
+            18,
+            3
+          ],
+          [
+            18,
+            8
+          ],
+          [
+            19,
+            4
+          ],
+          [
+            19,
+            6
+          ],
+          [
+            19,
+            8
+          ]
+        ],
+        "edges": [
+          [
+            [
+              18,
+              1
+            ],
+            [
+              18,
+              0
+            ]
+          ],
+          [
+            [
+              18,
+              3
+            ],
+            [
+              18,
+              1
+            ]
+          ],
+          [
+            [
+              18,
+              8
+            ],
+            [
+              19,
+              8
+            ]
+          ],
+          [
+            [
+              19,
+              4
+            ],
+            [
+              18,
+              3
+            ]
+          ],
+          [
+            [
+              19,
+              6
+            ],
+            [
+              19,
+              4
+            ]
+          ],
+          [
+            [
+              19,
+              8
+            ],
+            [
+              19,
+              6
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n7",
+        "label": "bcd[2]",
+        "aliases": [
+          "bcd[2]",
+          "convert.bcd[2]",
+          "convert.stage[4][2]",
+          "convert.stages[3].corrected[1]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "tmp:$auto$simplemap.cc:298:simplemap_mux$338:a",
+          "tmp:$auto$simplemap.cc:298:simplemap_mux$338:b"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$338",
+          "op": "OR",
+          "at": [
+            22,
+            10
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            20,
+            1
+          ],
+          [
+            20,
+            3
+          ],
+          [
+            21,
+            4
+          ],
+          [
+            22,
+            10
+          ],
+          [
+            23,
+            4
+          ],
+          [
+            23,
+            6
+          ],
+          [
+            23,
+            8
+          ],
+          [
+            23,
+            10
+          ]
+        ],
+        "edges": [
+          [
+            [
+              20,
+              1
+            ],
+            [
+              20,
+              0
+            ]
+          ],
+          [
+            [
+              20,
+              3
+            ],
+            [
+              20,
+              1
+            ]
+          ],
+          [
+            [
+              21,
+              4
+            ],
+            [
+              20,
+              3
+            ]
+          ],
+          [
+            [
+              22,
+              10
+            ],
+            [
+              23,
+              10
+            ]
+          ],
+          [
+            [
+              23,
+              4
+            ],
+            [
+              21,
+              4
+            ]
+          ],
+          [
+            [
+              23,
+              6
+            ],
+            [
+              23,
+              4
+            ]
+          ],
+          [
+            [
+              23,
+              8
+            ],
+            [
+              23,
+              6
+            ]
+          ],
+          [
+            [
+              23,
+              10
+            ],
+            [
+              23,
+              8
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n8",
+        "label": "bcd[3]",
+        "aliases": [
+          "bcd[3]",
+          "convert.bcd[3]",
+          "convert.stage[4][3]",
+          "convert.stages[3].corrected[2]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "tmp:$auto$simplemap.cc:298:simplemap_mux$339:a",
+          "tmp:$auto$simplemap.cc:298:simplemap_mux$339:b"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$339",
+          "op": "OR",
+          "at": [
+            26,
+            10
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            22,
+            1
+          ],
+          [
+            22,
+            2
+          ],
+          [
+            23,
+            3
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            26,
+            4
+          ],
+          [
+            26,
+            6
+          ],
+          [
+            26,
+            10
+          ],
+          [
+            27,
+            7
+          ],
+          [
+            27,
+            8
+          ],
+          [
+            27,
+            10
+          ]
+        ],
+        "edges": [
+          [
+            [
+              22,
+              1
+            ],
+            [
+              22,
+              0
+            ]
+          ],
+          [
+            [
+              22,
+              2
+            ],
+            [
+              22,
+              1
+            ]
+          ],
+          [
+            [
+              23,
+              3
+            ],
+            [
+              22,
+              2
+            ]
+          ],
+          [
+            [
+              25,
+              3
+            ],
+            [
+              23,
+              3
+            ]
+          ],
+          [
+            [
+              26,
+              4
+            ],
+            [
+              25,
+              3
+            ]
+          ],
+          [
+            [
+              26,
+              6
+            ],
+            [
+              26,
+              4
+            ]
+          ],
+          [
+            [
+              26,
+              10
+            ],
+            [
+              27,
+              10
+            ]
+          ],
+          [
+            [
+              27,
+              7
+            ],
+            [
+              26,
+              6
+            ]
+          ],
+          [
+            [
+              27,
+              8
+            ],
+            [
+              27,
+              7
+            ]
+          ],
+          [
+            [
+              27,
+              10
+            ],
+            [
+              27,
+              8
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n9",
+        "label": "bcd[4]",
+        "aliases": [
+          "bcd[4]",
+          "convert.bcd[4]",
+          "convert.stage[4][4]",
+          "convert.stages[3].corrected[3]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "tmp:$auto$simplemap.cc:298:simplemap_mux$340:a",
+          "tmp:$auto$simplemap.cc:298:simplemap_mux$340:b"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$340",
+          "op": "OR",
+          "at": [
+            30,
+            10
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            24,
+            1
+          ],
+          [
+            24,
+            3
+          ],
+          [
+            24,
+            5
+          ],
+          [
+            26,
+            5
+          ],
+          [
+            28,
+            5
+          ],
+          [
+            28,
+            7
+          ],
+          [
+            30,
+            7
+          ],
+          [
+            30,
+            10
+          ],
+          [
+            31,
+            8
+          ],
+          [
+            31,
+            10
+          ]
+        ],
+        "edges": [
+          [
+            [
+              24,
+              1
+            ],
+            [
+              24,
+              0
+            ]
+          ],
+          [
+            [
+              24,
+              3
+            ],
+            [
+              24,
+              1
+            ]
+          ],
+          [
+            [
+              24,
+              5
+            ],
+            [
+              24,
+              3
+            ]
+          ],
+          [
+            [
+              26,
+              5
+            ],
+            [
+              24,
+              5
+            ]
+          ],
+          [
+            [
+              28,
+              5
+            ],
+            [
+              26,
+              5
+            ]
+          ],
+          [
+            [
+              28,
+              7
+            ],
+            [
+              28,
+              5
+            ]
+          ],
+          [
+            [
+              30,
+              7
+            ],
+            [
+              28,
+              7
+            ]
+          ],
+          [
+            [
+              30,
+              10
+            ],
+            [
+              31,
+              10
+            ]
+          ],
+          [
+            [
+              31,
+              8
+            ],
+            [
+              30,
+              7
+            ]
+          ],
+          [
+            [
+              31,
+              10
+            ],
+            [
+              31,
+              8
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "port:bcd:0",
+        "label": "bcd[0]",
+        "aliases": [
+          "bcd[0]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n2"
+        ],
+        "driver": {
+          "id": "port:bcd:0",
+          "op": "BUF",
+          "at": [
+            16,
+            0
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            16,
+            0
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:bcd:1",
+        "label": "bcd[1]",
+        "aliases": [
+          "bcd[1]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n6"
+        ],
+        "driver": {
+          "id": "port:bcd:1",
+          "op": "BUF",
+          "at": [
+            18,
+            0
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            18,
+            0
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:bcd:2",
+        "label": "bcd[2]",
+        "aliases": [
+          "bcd[2]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n7"
+        ],
+        "driver": {
+          "id": "port:bcd:2",
+          "op": "BUF",
+          "at": [
+            20,
+            0
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            20,
+            0
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:bcd:3",
+        "label": "bcd[3]",
+        "aliases": [
+          "bcd[3]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n8"
+        ],
+        "driver": {
+          "id": "port:bcd:3",
+          "op": "BUF",
+          "at": [
+            22,
+            0
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            22,
+            0
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:bcd:4",
+        "label": "bcd[4]",
+        "aliases": [
+          "bcd[4]"
+        ],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n9"
+        ],
+        "driver": {
+          "id": "port:bcd:4",
+          "op": "BUF",
+          "at": [
+            24,
+            0
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            24,
+            0
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:bcd:5",
+        "label": "bcd[5]",
+        "aliases": [
+          "bcd[5]"
+        ],
+        "origins": [],
+        "inputs": [
+          "const0"
+        ],
+        "driver": {
+          "id": "port:bcd:5",
+          "op": "BUF",
+          "at": [
+            26,
+            0
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            26,
+            0
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:bcd:6",
+        "label": "bcd[6]",
+        "aliases": [
+          "bcd[6]"
+        ],
+        "origins": [],
+        "inputs": [
+          "const0"
+        ],
+        "driver": {
+          "id": "port:bcd:6",
+          "op": "BUF",
+          "at": [
+            28,
+            0
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            28,
+            0
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:bcd:7",
+        "label": "bcd[7]",
+        "aliases": [
+          "bcd[7]"
+        ],
+        "origins": [],
+        "inputs": [
+          "const0"
+        ],
+        "driver": {
+          "id": "port:bcd:7",
+          "op": "BUF",
+          "at": [
+            30,
+            0
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            30,
+            0
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:a",
+        "label": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:a",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n3",
+          "tmp:$auto$simplemap.cc:298:simplemap_mux$337:s"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$337:a",
+          "op": "AND",
+          "at": [
+            17,
+            8
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            17,
+            8
+          ]
+        ],
+        "edges": [
+          [
+            [
+              17,
+              8
+            ],
+            [
+              18,
+              8
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:b",
+        "label": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:b",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n21",
+          "n20"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$337:b",
+          "op": "AND",
+          "at": [
+            13,
+            11
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            13,
+            11
+          ],
+          [
+            14,
+            9
+          ],
+          [
+            14,
+            11
+          ],
+          [
+            15,
+            8
+          ],
+          [
+            16,
+            7
+          ],
+          [
+            18,
+            7
+          ]
+        ],
+        "edges": [
+          [
+            [
+              13,
+              11
+            ],
+            [
+              14,
+              11
+            ]
+          ],
+          [
+            [
+              14,
+              9
+            ],
+            [
+              15,
+              8
+            ]
+          ],
+          [
+            [
+              14,
+              11
+            ],
+            [
+              14,
+              9
+            ]
+          ],
+          [
+            [
+              15,
+              8
+            ],
+            [
+              16,
+              7
+            ]
+          ],
+          [
+            [
+              16,
+              7
+            ],
+            [
+              18,
+              7
+            ]
+          ],
+          [
+            [
+              18,
+              7
+            ],
+            [
+              18,
+              8
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:s",
+        "label": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:s",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n20"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$337:select",
+          "op": "NOT",
+          "at": [
+            17,
+            11
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            17,
+            11
+          ],
+          [
+            18,
+            9
+          ],
+          [
+            18,
+            11
+          ],
+          [
+            19,
+            11
+          ],
+          [
+            21,
+            11
+          ],
+          [
+            23,
+            11
+          ],
+          [
+            25,
+            11
+          ],
+          [
+            27,
+            11
+          ],
+          [
+            29,
+            11
+          ]
+        ],
+        "edges": [
+          [
+            [
+              17,
+              11
+            ],
+            [
+              18,
+              11
+            ]
+          ],
+          [
+            [
+              18,
+              9
+            ],
+            [
+              17,
+              8
+            ]
+          ],
+          [
+            [
+              18,
+              11
+            ],
+            [
+              19,
+              11
+            ]
+          ],
+          [
+            [
+              18,
+              11
+            ],
+            [
+              18,
+              9
+            ]
+          ],
+          [
+            [
+              19,
+              11
+            ],
+            [
+              21,
+              11
+            ]
+          ],
+          [
+            [
+              21,
+              11
+            ],
+            [
+              21,
+              10
+            ]
+          ],
+          [
+            [
+              21,
+              11
+            ],
+            [
+              23,
+              11
+            ]
+          ],
+          [
+            [
+              23,
+              11
+            ],
+            [
+              25,
+              11
+            ]
+          ],
+          [
+            [
+              25,
+              11
+            ],
+            [
+              25,
+              10
+            ]
+          ],
+          [
+            [
+              25,
+              11
+            ],
+            [
+              27,
+              11
+            ]
+          ],
+          [
+            [
+              27,
+              11
+            ],
+            [
+              29,
+              11
+            ]
+          ],
+          [
+            [
+              29,
+              11
+            ],
+            [
+              29,
+              10
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "tmp:$auto$simplemap.cc:298:simplemap_mux$338:a",
+        "label": "tmp:$auto$simplemap.cc:298:simplemap_mux$338:a",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n4",
+          "tmp:$auto$simplemap.cc:298:simplemap_mux$337:s"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$338:a",
+          "op": "AND",
+          "at": [
+            21,
+            10
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            21,
+            10
+          ]
+        ],
+        "edges": [
+          [
+            [
+              21,
+              10
+            ],
+            [
+              22,
+              10
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "tmp:$auto$simplemap.cc:298:simplemap_mux$338:b",
+        "label": "tmp:$auto$simplemap.cc:298:simplemap_mux$338:b",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n14",
+          "n20"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$338:b",
+          "op": "AND",
+          "at": [
+            21,
+            6
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            21,
+            6
+          ],
+          [
+            22,
+            6
+          ],
+          [
+            22,
+            8
+          ]
+        ],
+        "edges": [
+          [
+            [
+              21,
+              6
+            ],
+            [
+              22,
+              6
+            ]
+          ],
+          [
+            [
+              22,
+              6
+            ],
+            [
+              22,
+              8
+            ]
+          ],
+          [
+            [
+              22,
+              8
+            ],
+            [
+              22,
+              10
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "tmp:$auto$simplemap.cc:298:simplemap_mux$339:a",
+        "label": "tmp:$auto$simplemap.cc:298:simplemap_mux$339:a",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n5",
+          "tmp:$auto$simplemap.cc:298:simplemap_mux$337:s"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$339:a",
+          "op": "AND",
+          "at": [
+            25,
+            10
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            25,
+            10
+          ]
+        ],
+        "edges": [
+          [
+            [
+              25,
+              10
+            ],
+            [
+              26,
+              10
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "tmp:$auto$simplemap.cc:298:simplemap_mux$339:b",
+        "label": "tmp:$auto$simplemap.cc:298:simplemap_mux$339:b",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n16",
+          "n20"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$339:b",
+          "op": "AND",
+          "at": [
+            24,
+            6
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            24,
+            6
+          ],
+          [
+            25,
+            6
+          ],
+          [
+            25,
+            7
+          ],
+          [
+            26,
+            8
+          ]
+        ],
+        "edges": [
+          [
+            [
+              24,
+              6
+            ],
+            [
+              25,
+              6
+            ]
+          ],
+          [
+            [
+              25,
+              6
+            ],
+            [
+              25,
+              7
+            ]
+          ],
+          [
+            [
+              25,
+              7
+            ],
+            [
+              26,
+              8
+            ]
+          ],
+          [
+            [
+              26,
+              8
+            ],
+            [
+              26,
+              10
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "tmp:$auto$simplemap.cc:298:simplemap_mux$340:a",
+        "label": "tmp:$auto$simplemap.cc:298:simplemap_mux$340:a",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "const0",
+          "tmp:$auto$simplemap.cc:298:simplemap_mux$337:s"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$340:a",
+          "op": "AND",
+          "at": [
+            29,
+            10
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            29,
+            10
+          ]
+        ],
+        "edges": [
+          [
+            [
+              29,
+              10
+            ],
+            [
+              30,
+              10
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "tmp:$auto$simplemap.cc:298:simplemap_mux$340:b",
+        "label": "tmp:$auto$simplemap.cc:298:simplemap_mux$340:b",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "binary",
+            "bit": 1
+          },
+          {
+            "bus": "binary",
+            "bit": 2
+          },
+          {
+            "bus": "binary",
+            "bit": 3
+          }
+        ],
+        "inputs": [
+          "n17",
+          "n20"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:298:simplemap_mux$340:b",
+          "op": "AND",
+          "at": [
+            27,
+            6
+          ],
+          "scope": "convert",
+          "source": "design.v:12.50-13.83"
+        },
+        "cells": [
+          [
+            27,
+            6
+          ],
+          [
+            28,
+            6
+          ],
+          [
+            28,
+            8
+          ],
+          [
+            29,
+            8
+          ],
+          [
+            30,
+            9
+          ]
+        ],
+        "edges": [
+          [
+            [
+              27,
+              6
+            ],
+            [
+              28,
+              6
+            ]
+          ],
+          [
+            [
+              28,
+              6
+            ],
+            [
+              28,
+              8
+            ]
+          ],
+          [
+            [
+              28,
+              8
+            ],
+            [
+              29,
+              8
+            ]
+          ],
+          [
+            [
+              29,
+              8
+            ],
+            [
+              30,
+              9
+            ]
+          ],
+          [
+            [
+              30,
+              9
+            ],
+            [
+              30,
+              10
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  "module_blocks": [
+    {
+      "id": "core",
+      "at": [
+        4,
+        4
+      ],
+      "width": 28,
+      "height": 8,
+      "expansion": 1,
+      "units": 16,
+      "operators": 25
+    }
+  ],
+  "fixed_port_banks": false,
+  "bus_search_gap": 0,
+  "packing": {
+    "aspect": 2.5,
+    "local_expansion": {
+      "core": 1
+    },
+    "corridor": 0,
+    "port_margin": 4,
+    "fixed_frame": [
+      98,
+      96
+    ]
+  },
+  "optimization": {
+    "objective": "min_core_then_cells_full_area_and_ticks",
+    "io_in_objective": true,
+    "routing_order": "internal_then_fixed_io_with_conflict_fallback",
+    "path_search": "multi_source_A_star",
+    "local_growth": true,
+    "attempts": [
+      {
+        "aspect": 0.5,
+        "local_expansion": {},
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": "n20",
+        "reason": "Цепь n20 повторно конфликтует: исчерпан лимит 6 перестроений"
+      },
+      {
+        "aspect": 0.5,
+        "local_expansion": {
+          "core": 1
+        },
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": null,
+        "reason": "Не удалось изолировать неиспользуемый контакт (14, 14)"
+      },
+      {
+        "aspect": 0.5,
+        "local_expansion": {
+          "core": 2
+        },
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          98,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 124,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              4,
+              4
+            ],
+            "max": [
+              16,
+              30
+            ],
+            "width": 13,
+            "height": 27,
+            "area": 351
+          },
+          "ticks": 46,
+          "excluded_io_cells": 133
+        }
+      },
+      {
+        "aspect": 1.0,
+        "local_expansion": {},
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": "n3",
+        "reason": "Цепь n3 повторно конфликтует: исчерпан лимит 6 перестроений"
+      },
+      {
+        "aspect": 1.0,
+        "local_expansion": {
+          "core": 1
+        },
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": null,
+        "reason": "Не удалось изолировать неиспользуемый контакт (14, 14)"
+      },
+      {
+        "aspect": 1.0,
+        "local_expansion": {
+          "core": 2
+        },
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": null,
+        "reason": "Не удалось изолировать неиспользуемый контакт (14, 17)"
+      },
+      {
+        "aspect": 1.0,
+        "local_expansion": {
+          "core": 3
+        },
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          98,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 131,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              2,
+              2
+            ],
+            "max": [
+              23,
+              23
+            ],
+            "width": 22,
+            "height": 22,
+            "area": 484
+          },
+          "ticks": 47,
+          "excluded_io_cells": 138
+        }
+      },
+      {
+        "aspect": 1.4,
+        "local_expansion": {},
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:s",
+        "reason": "Цепь tmp:$auto$simplemap.cc:298:simplemap_mux$337:s повторно конфликтует: исчерпан лимит 6 перестроений"
+      },
+      {
+        "aspect": 1.4,
+        "local_expansion": {
+          "core": 1
+        },
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": null,
+        "reason": "Не удалось изолировать неиспользуемый контакт (21, 11)"
+      },
+      {
+        "aspect": 1.4,
+        "local_expansion": {
+          "core": 2
+        },
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          98,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 123,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              5,
+              4
+            ],
+            "max": [
+              26,
+              21
+            ],
+            "width": 22,
+            "height": 18,
+            "area": 396
+          },
+          "ticks": 44,
+          "excluded_io_cells": 121
+        }
+      },
+      {
+        "aspect": 2.5,
+        "local_expansion": {},
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": "n20",
+        "reason": "Цепь n20 повторно конфликтует: исчерпан лимит 6 перестроений"
+      },
+      {
+        "aspect": 2.5,
+        "local_expansion": {
+          "core": 1
+        },
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          98,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 106,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              5,
+              4
+            ],
+            "max": [
+              30,
+              11
+            ],
+            "width": 26,
+            "height": 8,
+            "area": 208
+          },
+          "ticks": 45,
+          "excluded_io_cells": 123
+        }
+      },
+      {
+        "aspect": 4.0,
+        "local_expansion": {},
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": "n17",
+        "reason": "Цепь n17 повторно конфликтует: исчерпан лимит 6 перестроений"
+      },
+      {
+        "aspect": 4.0,
+        "local_expansion": {
+          "core": 1
+        },
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": null,
+        "reason": "Не удалось изолировать неиспользуемый контакт (34, 6)"
+      },
+      {
+        "aspect": 4.0,
+        "local_expansion": {
+          "core": 2
+        },
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": null,
+        "reason": "Не удалось изолировать неиспользуемый контакт (28, 7)"
+      },
+      {
+        "aspect": 4.0,
+        "local_expansion": {
+          "core": 3
+        },
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          98,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 146,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              4,
+              1
+            ],
+            "max": [
+              41,
+              13
+            ],
+            "width": 38,
+            "height": 13,
+            "area": 494
+          },
+          "ticks": 52,
+          "excluded_io_cells": 163
+        }
+      }
+    ],
+    "aspect_candidates": [
+      0.5,
+      1.0,
+      1.4,
+      2.5,
+      4.0
+    ],
+    "initial_corridor": 0,
+    "area_factor": 1.25,
+    "max_attempts_per_net_per_phase": 6,
+    "automatic_input_buses": true,
+    "bus_candidates": [
+      {
+        "gap": 0,
+        "cells": 257,
+        "ticks": 61,
+        "full_bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            16,
+            30
+          ],
+          "width": 17,
+          "height": 31,
+          "area": 527
+        }
+      },
+      {
+        "gap": 1,
+        "cells": 269,
+        "ticks": 65,
+        "full_bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            25,
+            23
+          ],
+          "width": 26,
+          "height": 24,
+          "area": 624
+        }
+      },
+      {
+        "gap": 2,
+        "cells": 244,
+        "ticks": 63,
+        "full_bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            28,
+            21
+          ],
+          "width": 29,
+          "height": 22,
+          "area": 638
+        }
+      },
+      {
+        "gap": 0,
+        "cells": 229,
+        "ticks": 60,
+        "full_bounds": {
+          "min": [
+            1,
+            -1
+          ],
+          "max": [
+            31,
+            12
+          ],
+          "width": 31,
+          "height": 14,
+          "area": 434
+        }
+      },
+      {
+        "gap": 3,
+        "cells": 309,
+        "ticks": 71,
+        "full_bounds": {
+          "min": [
+            0,
+            -2
+          ],
+          "max": [
+            42,
+            13
+          ],
+          "width": 43,
+          "height": 16,
+          "area": 688
+        }
+      }
+    ]
+  },
+  "full_bounds": {
+    "min": [
+      1,
+      -1
+    ],
+    "max": [
+      31,
+      12
+    ],
+    "width": 31,
+    "height": 14,
+    "area": 434
+  },
+  "backend_search": {
+    "selected": "compact-connected-modules-v1",
+    "candidates": [
+      {
+        "layout": "compact-connected-modules-v1",
+        "cells": 229,
+        "core": {
+          "cells": 106,
+          "gates": 25,
+          "bounds": {
+            "min": [
+              5,
+              4
+            ],
+            "max": [
+              30,
+              11
+            ],
+            "width": 26,
+            "height": 8,
+            "area": 208
+          },
+          "ticks": 45,
+          "excluded_io_cells": 123
+        },
+        "bounds": {
+          "min": [
+            2,
+            0
+          ],
+          "max": [
+            31,
+            12
+          ],
+          "width": 30,
+          "height": 13,
+          "area": 390
+        },
+        "ticks": 60,
+        "no_size_regression": true
+      }
+    ],
+    "rejected": []
+  },
+  "technology_nodes": 33,
+  "technology_mapping": [],
+  "shared_logic": [
+    {
+      "removed": "$auto$simplemap.cc:298:simplemap_mux$338:select",
+      "kept": "$auto$simplemap.cc:298:simplemap_mux$337:select",
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$338:s",
+      "shared_net": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:s"
+    },
+    {
+      "removed": "$auto$simplemap.cc:298:simplemap_mux$339:select",
+      "kept": "$auto$simplemap.cc:298:simplemap_mux$337:select",
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$339:s",
+      "shared_net": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:s"
+    },
+    {
+      "removed": "$auto$simplemap.cc:298:simplemap_mux$340:select",
+      "kept": "$auto$simplemap.cc:298:simplemap_mux$337:select",
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$340:s",
+      "shared_net": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:s"
+    }
+  ],
+  "input_buses": [
+    {
+      "ports": [
+        "binary"
+      ],
+      "gap": 0,
+      "pitch": 1,
+      "pitches": [
+        1,
+        1,
+        1
+      ],
+      "gaps": [
+        0,
+        0,
+        0
+      ],
+      "requested_gap": "auto",
+      "rotation": 1,
+      "fixtures": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    }
+  ],
+  "source_sha256": "a48bf128ff2b1f7727d6e11c16b4a5220d4307599725ee3b149975f2c5ee7ca8",
+  "source": "binary_to_bcd.v",
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "io_boundary_verified": true,
+  "logic_sha256": "35eeee0932236172947cd9d99b39d2746c440d51ca704eb10116cc2b815b716b"
+}

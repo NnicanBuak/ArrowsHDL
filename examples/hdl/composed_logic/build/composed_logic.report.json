@@ -1,0 +1,645 @@
+{
+  "checked_samples": 64,
+  "failure_count": 0,
+  "failures": [],
+  "frame_ticks": null,
+  "hold_ticks": 13,
+  "nodes": 29,
+  "optimized_cycles": 0,
+  "outputs": [
+    {
+      "at": [
+        11,
+        6
+      ],
+      "values": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "at": [
+        11,
+        8
+      ],
+      "values": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    }
+  ],
+  "passed": true,
+  "profile": "GraphDLC-01232bd",
+  "ticks": 416,
+  "verified_against_current_game": false,
+  "vectors": 32,
+  "settle_ticks": 13,
+  "truth_table": [
+    {
+      "inputs": {
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "d": 0
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "d": 1
+      },
+      "expected": {
+        "p": 0,
+        "y": 1
+      },
+      "actual": {
+        "p": 0,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 0,
+        "c": 1,
+        "d": 0
+      },
+      "expected": {
+        "p": 1,
+        "y": 1
+      },
+      "actual": {
+        "p": 1,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 0,
+        "c": 1,
+        "d": 1
+      },
+      "expected": {
+        "p": 1,
+        "y": 1
+      },
+      "actual": {
+        "p": 1,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 1,
+        "c": 0,
+        "d": 0
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 1,
+        "c": 0,
+        "d": 1
+      },
+      "expected": {
+        "p": 0,
+        "y": 1
+      },
+      "actual": {
+        "p": 0,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 1,
+        "c": 1,
+        "d": 0
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 1,
+        "c": 1,
+        "d": 1
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 0
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1
+      },
+      "expected": {
+        "p": 0,
+        "y": 1
+      },
+      "actual": {
+        "p": 0,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 0,
+        "c": 1,
+        "d": 0
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 0,
+        "c": 1,
+        "d": 1
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 1,
+        "c": 0,
+        "d": 0
+      },
+      "expected": {
+        "p": 1,
+        "y": 0
+      },
+      "actual": {
+        "p": 1,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 1,
+        "c": 0,
+        "d": 1
+      },
+      "expected": {
+        "p": 1,
+        "y": 0
+      },
+      "actual": {
+        "p": 1,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "d": 0
+      },
+      "expected": {
+        "p": 1,
+        "y": 1
+      },
+      "actual": {
+        "p": 1,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "d": 1
+      },
+      "expected": {
+        "p": 1,
+        "y": 1
+      },
+      "actual": {
+        "p": 1,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "d": 1
+      },
+      "expected": {
+        "p": 1,
+        "y": 1
+      },
+      "actual": {
+        "p": 1,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "d": 0
+      },
+      "expected": {
+        "p": 1,
+        "y": 1
+      },
+      "actual": {
+        "p": 1,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 1,
+        "c": 0,
+        "d": 1
+      },
+      "expected": {
+        "p": 1,
+        "y": 0
+      },
+      "actual": {
+        "p": 1,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 1,
+        "c": 0,
+        "d": 0
+      },
+      "expected": {
+        "p": 1,
+        "y": 0
+      },
+      "actual": {
+        "p": 1,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 0,
+        "c": 1,
+        "d": 1
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 0,
+        "c": 1,
+        "d": 0
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1
+      },
+      "expected": {
+        "p": 0,
+        "y": 1
+      },
+      "actual": {
+        "p": 0,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 0
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 1,
+        "c": 1,
+        "d": 1
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 1,
+        "c": 1,
+        "d": 0
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 1,
+        "c": 0,
+        "d": 1
+      },
+      "expected": {
+        "p": 0,
+        "y": 1
+      },
+      "actual": {
+        "p": 0,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 1,
+        "c": 0,
+        "d": 0
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 0,
+        "c": 1,
+        "d": 1
+      },
+      "expected": {
+        "p": 1,
+        "y": 1
+      },
+      "actual": {
+        "p": 1,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 0,
+        "c": 1,
+        "d": 0
+      },
+      "expected": {
+        "p": 1,
+        "y": 1
+      },
+      "actual": {
+        "p": 1,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "d": 1
+      },
+      "expected": {
+        "p": 0,
+        "y": 1
+      },
+      "actual": {
+        "p": 0,
+        "y": 1
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "d": 0
+      },
+      "expected": {
+        "p": 0,
+        "y": 0
+      },
+      "actual": {
+        "p": 0,
+        "y": 0
+      },
+      "passed": true
+    }
+  ],
+  "production_cells": 23,
+  "fixture_cells": 6
+}

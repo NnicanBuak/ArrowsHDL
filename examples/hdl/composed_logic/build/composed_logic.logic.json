@@ -1,0 +1,357 @@
+{
+  "schema": 1,
+  "top": "composed_logic",
+  "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "inputs": {
+    "a": [
+      {
+        "index": 0,
+        "net": "n2"
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "net": "n3"
+      }
+    ],
+    "c": [
+      {
+        "index": 0,
+        "net": "n4"
+      }
+    ],
+    "d": [
+      {
+        "index": 0,
+        "net": "n5"
+      }
+    ]
+  },
+  "outputs": {
+    "p": [
+      {
+        "index": 0,
+        "net": "port:p:0"
+      }
+    ],
+    "y": [
+      {
+        "index": 0,
+        "net": "port:y:0"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$84",
+      "op": "OR",
+      "inputs": [
+        "n2",
+        "n4"
+      ],
+      "output": "n12",
+      "origin": "design.v:3.14-3.19",
+      "scope": "first"
+    },
+    {
+      "id": "$auto$simplemap.cc:46:simplemap_not$83",
+      "op": "NOT",
+      "inputs": [
+        "n2"
+      ],
+      "output": "n13",
+      "origin": "design.v:2.15-2.17",
+      "scope": "first"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$85",
+      "op": "XOR",
+      "inputs": [
+        "n13",
+        "n3"
+      ],
+      "output": "n11",
+      "origin": "design.v:2.14-2.22",
+      "scope": "first"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$82",
+      "op": "AND",
+      "inputs": [
+        "n11",
+        "n12"
+      ],
+      "output": "n7",
+      "origin": "design.v:4.16-4.21",
+      "scope": "first"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$80",
+      "op": "OR",
+      "inputs": [
+        "n7",
+        "n5"
+      ],
+      "output": "n9",
+      "origin": "design.v:3.14-3.19",
+      "scope": "second"
+    },
+    {
+      "id": "$auto$simplemap.cc:46:simplemap_not$79",
+      "op": "NOT",
+      "inputs": [
+        "n7"
+      ],
+      "output": "n10",
+      "origin": "design.v:2.15-2.17",
+      "scope": "second"
+    },
+    {
+      "id": "port:p:0",
+      "op": "BUF",
+      "inputs": [
+        "n7"
+      ],
+      "output": "port:p:0",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$81",
+      "op": "XOR",
+      "inputs": [
+        "n10",
+        "n4"
+      ],
+      "output": "n8",
+      "origin": "design.v:2.14-2.22",
+      "scope": "second"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$78",
+      "op": "AND",
+      "inputs": [
+        "n8",
+        "n9"
+      ],
+      "output": "n6",
+      "origin": "design.v:4.16-4.21",
+      "scope": "second"
+    },
+    {
+      "id": "port:y:0",
+      "op": "BUF",
+      "inputs": [
+        "n6"
+      ],
+      "output": "port:y:0",
+      "origin": null
+    }
+  ],
+  "scopes": [
+    {
+      "name": "first",
+      "module": "transform",
+      "source": "design.v:1.1-5.10",
+      "instance_source": "design.v:8.15-8.32"
+    },
+    {
+      "name": "second",
+      "module": "transform",
+      "source": "design.v:1.1-5.10",
+      "instance_source": "design.v:9.15-9.33"
+    }
+  ],
+  "wire_names": {
+    "a": [
+      {
+        "index": 0,
+        "net": "n2"
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "net": "n3"
+      }
+    ],
+    "c": [
+      {
+        "index": 0,
+        "net": "n4"
+      }
+    ],
+    "d": [
+      {
+        "index": 0,
+        "net": "n5"
+      }
+    ],
+    "first.a": [
+      {
+        "index": 0,
+        "net": "n2"
+      }
+    ],
+    "first.b": [
+      {
+        "index": 0,
+        "net": "n3"
+      }
+    ],
+    "first.c": [
+      {
+        "index": 0,
+        "net": "n4"
+      }
+    ],
+    "first.p": [
+      {
+        "index": 0,
+        "net": "n11"
+      }
+    ],
+    "first.q": [
+      {
+        "index": 0,
+        "net": "n12"
+      }
+    ],
+    "first.y": [
+      {
+        "index": 0,
+        "net": "n7"
+      }
+    ],
+    "p": [
+      {
+        "index": 0,
+        "net": "n7"
+      }
+    ],
+    "second.a": [
+      {
+        "index": 0,
+        "net": "n7"
+      }
+    ],
+    "second.b": [
+      {
+        "index": 0,
+        "net": "n4"
+      }
+    ],
+    "second.c": [
+      {
+        "index": 0,
+        "net": "n5"
+      }
+    ],
+    "second.p": [
+      {
+        "index": 0,
+        "net": "n8"
+      }
+    ],
+    "second.q": [
+      {
+        "index": 0,
+        "net": "n9"
+      }
+    ],
+    "second.y": [
+      {
+        "index": 0,
+        "net": "n6"
+      }
+    ],
+    "y": [
+      {
+        "index": 0,
+        "net": "n6"
+      }
+    ]
+  },
+  "instances": [
+    {
+      "name": "first",
+      "module": "transform",
+      "source": "design.v:1.1-5.10",
+      "instance_source": "design.v:8.15-8.32",
+      "inputs": {
+        "a": [
+          {
+            "index": 0,
+            "net": "n2"
+          }
+        ],
+        "b": [
+          {
+            "index": 0,
+            "net": "n3"
+          }
+        ],
+        "c": [
+          {
+            "index": 0,
+            "net": "n4"
+          }
+        ]
+      },
+      "outputs": {
+        "y": [
+          {
+            "index": 0,
+            "net": "n7"
+          }
+        ]
+      },
+      "nodes": [
+        "$auto$simplemap.cc:106:simplemap_bitop$82",
+        "$auto$simplemap.cc:106:simplemap_bitop$84",
+        "$auto$simplemap.cc:106:simplemap_bitop$85",
+        "$auto$simplemap.cc:46:simplemap_not$83"
+      ]
+    },
+    {
+      "name": "second",
+      "module": "transform",
+      "source": "design.v:1.1-5.10",
+      "instance_source": "design.v:9.15-9.33",
+      "inputs": {
+        "a": [
+          {
+            "index": 0,
+            "net": "n7"
+          }
+        ],
+        "b": [
+          {
+            "index": 0,
+            "net": "n4"
+          }
+        ],
+        "c": [
+          {
+            "index": 0,
+            "net": "n5"
+          }
+        ]
+      },
+      "outputs": {
+        "y": [
+          {
+            "index": 0,
+            "net": "n6"
+          }
+        ]
+      },
+      "nodes": [
+        "$auto$simplemap.cc:106:simplemap_bitop$78",
+        "$auto$simplemap.cc:106:simplemap_bitop$80",
+        "$auto$simplemap.cc:106:simplemap_bitop$81",
+        "$auto$simplemap.cc:46:simplemap_not$79"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "physical_arrow_map_built": false,
+  "reason": "All placement and routing candidates failed",
+  "logic_nodes": 213,
+  "mapped_nodes": 189,
+  "source_function_proved": true,
+  "input_combinations": 524288,
+  "source_sha256": "5e3393c19496cdaa2527d20d20aa9756f203a26700a75509b20bbc97b1ab3a05"
+}

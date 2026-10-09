@@ -1,0 +1,224 @@
+{
+  "passed": true,
+  "profile": "GraphDLC-01232bd",
+  "deterministic_types": [
+    {
+      "type": 1,
+      "input_contacts": 11,
+      "center": [
+        16,
+        0
+      ]
+    },
+    {
+      "type": 2,
+      "input_contacts": 8,
+      "center": [
+        32,
+        0
+      ]
+    },
+    {
+      "type": 3,
+      "input_contacts": 11,
+      "center": [
+        48,
+        0
+      ]
+    },
+    {
+      "type": 4,
+      "input_contacts": 11,
+      "center": [
+        64,
+        0
+      ]
+    },
+    {
+      "type": 5,
+      "input_contacts": 11,
+      "center": [
+        80,
+        0
+      ]
+    },
+    {
+      "type": 6,
+      "input_contacts": 10,
+      "center": [
+        96,
+        0
+      ]
+    },
+    {
+      "type": 7,
+      "input_contacts": 10,
+      "center": [
+        112,
+        0
+      ]
+    },
+    {
+      "type": 8,
+      "input_contacts": 9,
+      "center": [
+        128,
+        0
+      ]
+    },
+    {
+      "type": 9,
+      "input_contacts": 8,
+      "center": [
+        144,
+        0
+      ]
+    },
+    {
+      "type": 10,
+      "input_contacts": 11,
+      "center": [
+        160,
+        0
+      ]
+    },
+    {
+      "type": 11,
+      "input_contacts": 11,
+      "center": [
+        176,
+        0
+      ]
+    },
+    {
+      "type": 12,
+      "input_contacts": 10,
+      "center": [
+        192,
+        0
+      ]
+    },
+    {
+      "type": 13,
+      "input_contacts": 10,
+      "center": [
+        208,
+        0
+      ]
+    },
+    {
+      "type": 14,
+      "input_contacts": 10,
+      "center": [
+        224,
+        0
+      ]
+    },
+    {
+      "type": 15,
+      "input_contacts": 11,
+      "center": [
+        240,
+        0
+      ]
+    },
+    {
+      "type": 16,
+      "input_contacts": 11,
+      "center": [
+        256,
+        0
+      ]
+    },
+    {
+      "type": 17,
+      "input_contacts": 11,
+      "center": [
+        272,
+        0
+      ]
+    },
+    {
+      "type": 18,
+      "input_contacts": 11,
+      "center": [
+        288,
+        0
+      ]
+    },
+    {
+      "type": 19,
+      "input_contacts": 11,
+      "center": [
+        304,
+        0
+      ]
+    },
+    {
+      "type": 21,
+      "input_contacts": 8,
+      "center": [
+        336,
+        0
+      ]
+    },
+    {
+      "type": 22,
+      "input_contacts": 11,
+      "center": [
+        352,
+        0
+      ]
+    },
+    {
+      "type": 23,
+      "input_contacts": 12,
+      "center": [
+        368,
+        0
+      ]
+    },
+    {
+      "type": 24,
+      "input_contacts": 11,
+      "center": [
+        384,
+        0
+      ]
+    },
+    {
+      "type": 25,
+      "input_contacts": 12,
+      "center": [
+        400,
+        0
+      ]
+    }
+  ],
+  "input_masks": 2048,
+  "geometry_cases": 192,
+  "geometry_ticks": 52,
+  "deterministic_samples": 96096,
+  "transient_samples": 399360,
+  "every_transient_tick_checked": true,
+  "total_types": 25,
+  "total_geometry_cases": 200,
+  "semantic_regressions": 5,
+  "random": {
+    "seeded_repeatability": true,
+    "zero_input_off": true,
+    "output_one_tick_later": true,
+    "geometry_cases": 8
+  },
+  "findings": [
+    "type 16 counts at least two active inputs; AND needs exactly two",
+    "type 17 computes parity of every active input",
+    "type 18: one input resets; at least two set; zero retain",
+    "type 19 toggles every active-input tick, not only on an edge",
+    "type 5 reads the cell behind, including pending delay state",
+    "reciprocal emissions are real feedback",
+    "ordinary inputs do not control types 2, 9 and 21; blockers do",
+    "a one-output receiver can use eleven distinct incoming contacts"
+  ],
+  "limitation": "Pinned engine profile; passive buttons only; this does not certify current browser behavior"
+}

@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "input_combinations": 256,
+  "method": "Yosys SAT",
+  "source_sha256": "a48bf128ff2b1f7727d6e11c16b4a5220d4307599725ee3b149975f2c5ee7ca8"
+}

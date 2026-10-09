@@ -1,0 +1,106 @@
+[
+  {
+    "name": "digit3",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\..\\digit3\\build\\digit3.save.txt",
+    "map_hash": "11cdc840753ca6f82cbd898708132b6101af3c04795308f4515603a66bcba699",
+    "cells": 308,
+    "image": "digit3.preview.png",
+    "interactive": false
+  },
+  {
+    "name": "bcd4",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\binary_to_bcd\\build\\bcd4\\bcd4.save.txt",
+    "map_hash": "1ecfb42fa574ae0b3284968df4a03dc571b934a024df2c9709a02c660c5356e3",
+    "cells": 229,
+    "image": "bcd4.routing.full.preview.png",
+    "interactive": true
+  },
+  {
+    "name": "mul4_tree",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\candidates\\mul4\\build\\mul4.save.txt",
+    "map_hash": "9f4c8795c4515eaac4c91111ea181525b840b03f558168708eeb96146bda7511",
+    "cells": 511,
+    "image": "mul4_tree.routing.full.preview.png",
+    "interactive": true
+  },
+  {
+    "name": "composed_logic",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\composed_logic\\build\\composed_logic.save.txt",
+    "map_hash": "fb7ea8bbf00834fc929d41576eff3d0d686a3c599e8fcd9ecd60a4a20141f769",
+    "cells": 23,
+    "image": "composed_logic.routing.full.preview.png",
+    "interactive": true
+  },
+  {
+    "name": "mux2",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\multiplexer\\mux2\\build\\mux2.save.txt",
+    "map_hash": "3220fe8f45201589caae561aa11ce12fc67100648c7c1434eff548548488846a",
+    "cells": 10,
+    "image": "mux2.routing.full.preview.png",
+    "interactive": true
+  },
+  {
+    "name": "mux4",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\multiplexer\\mux4\\build\\mux4.save.txt",
+    "map_hash": "9ef110bee277fa21f3f8604f14d978f34ae7e46b585bbcd9b246e434c7fb12d0",
+    "cells": 27,
+    "image": "mux4.routing.full.preview.png",
+    "interactive": true
+  },
+  {
+    "name": "mux8",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\multiplexer\\mux8\\build\\mux8.save.txt",
+    "map_hash": "2ad8781b0fba70603b5cc883136009beba6c917f9e55a3659d9bb2ee22fc92c7",
+    "cells": 64,
+    "image": "mux8.routing.full.preview.png",
+    "interactive": true
+  },
+  {
+    "name": "adder8",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\adder8\\build\\adder8.save.txt",
+    "map_hash": "bd2fd2eba8da7e32cb6014b2e11ebb85586adf63adaa49ac53f5e1890d5f11cb",
+    "cells": 58,
+    "image": "adder8.routing.full.preview.png",
+    "interactive": true
+  },
+  {
+    "name": "half_adder",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\half_adder\\build\\half_adder.save.txt",
+    "map_hash": "64f4ecb689253c5988aeb5efb5240a3972ab5c761ceb012a72e91dc6fc69fcd4",
+    "cells": 8,
+    "image": "half_adder.preview.png",
+    "interactive": false
+  },
+  {
+    "name": "full_adder",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\full_adder\\build\\full_adder.save.txt",
+    "map_hash": "7d60ad5f3c3ab2931e8fb0f2dd0e92c199a5c29534853d122e0d0fffec715f19",
+    "cells": 9,
+    "image": "full_adder.preview.png",
+    "interactive": false
+  },
+  {
+    "name": "mul2_flat",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\multiplier\\mul2\\build\\mul2.save.txt",
+    "map_hash": "e3c7f0900774eb5dbfc15d9640842459f4131069cdb7cb5a765079825bcbd2a4",
+    "cells": 103,
+    "image": "mul2_flat.preview.png",
+    "interactive": false
+  },
+  {
+    "name": "mul3_flat",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\multiplier\\mul3\\build\\mul3.save.txt",
+    "map_hash": "6fb76ec4706f9c529d7021c59eed7a739c1601198fc03c62ad2cee7a690f602e",
+    "cells": 359,
+    "image": "mul3_flat.preview.png",
+    "interactive": false
+  },
+  {
+    "name": "mul4_flat",
+    "save": "C:\\Users\\Nnican\\Desktop\\vibe-projects\\LogicArrows\\ArrowsHDL\\examples\\hdl\\multiplier\\mul4\\build\\mul4.save.txt",
+    "map_hash": "1b3fa6f4f6dda0fc278e2fb28c9e3accdfd49e43210bf1ad95329abffd6882f6",
+    "cells": 992,
+    "image": "mul4_flat.preview.png",
+    "interactive": false
+  }
+]

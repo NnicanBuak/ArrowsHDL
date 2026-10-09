@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "mode": "fixed_select",
+  "channels": [
+    {
+      "sel": 0,
+      "latency_ticks": 9,
+      "input_period_ticks": 1,
+      "samples": 240
+    },
+    {
+      "sel": 1,
+      "latency_ticks": 8,
+      "input_period_ticks": 1,
+      "samples": 240
+    },
+    {
+      "sel": 2,
+      "latency_ticks": 10,
+      "input_period_ticks": 1,
+      "samples": 240
+    },
+    {
+      "sel": 3,
+      "latency_ticks": 11,
+      "input_period_ticks": 1,
+      "samples": 240
+    }
+  ]
+}

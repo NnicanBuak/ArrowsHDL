@@ -1,0 +1,941 @@
+{
+  "schema": 1,
+  "top": "bcd4",
+  "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "inputs": {
+    "binary": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      },
+      {
+        "index": 2,
+        "net": "n4"
+      },
+      {
+        "index": 3,
+        "net": "n5"
+      }
+    ]
+  },
+  "outputs": {
+    "bcd": [
+      {
+        "index": 0,
+        "net": "port:bcd:0"
+      },
+      {
+        "index": 1,
+        "net": "port:bcd:1"
+      },
+      {
+        "index": 2,
+        "net": "port:bcd:2"
+      },
+      {
+        "index": 3,
+        "net": "port:bcd:3"
+      },
+      {
+        "index": 4,
+        "net": "port:bcd:4"
+      },
+      {
+        "index": 5,
+        "net": "port:bcd:5"
+      },
+      {
+        "index": 6,
+        "net": "port:bcd:6"
+      },
+      {
+        "index": 7,
+        "net": "port:bcd:7"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "$auto$simplemap.cc:46:simplemap_not$404",
+      "op": "NOT",
+      "inputs": [
+        "n3"
+      ],
+      "output": "n21",
+      "origin": "design.v:13.23-13.55|/share/techmap.v:279.31-279.37",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:46:simplemap_not$405",
+      "op": "NOT",
+      "inputs": [
+        "n4"
+      ],
+      "output": "n13",
+      "origin": "design.v:13.23-13.55|/share/techmap.v:279.31-279.37",
+      "scope": "convert"
+    },
+    {
+      "id": "port:bcd:0",
+      "op": "BUF",
+      "inputs": [
+        "n2"
+      ],
+      "output": "port:bcd:0",
+      "origin": null
+    },
+    {
+      "id": "port:bcd:5",
+      "op": "BUF",
+      "inputs": [
+        "const0"
+      ],
+      "output": "port:bcd:5",
+      "origin": null
+    },
+    {
+      "id": "port:bcd:6",
+      "op": "BUF",
+      "inputs": [
+        "const0"
+      ],
+      "output": "port:bcd:6",
+      "origin": null
+    },
+    {
+      "id": "port:bcd:7",
+      "op": "BUF",
+      "inputs": [
+        "const0"
+      ],
+      "output": "port:bcd:7",
+      "origin": null
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$376",
+      "op": "XOR",
+      "inputs": [
+        "n13",
+        "n3"
+      ],
+      "output": "n14",
+      "origin": "design.v:13.23-13.55|/share/techmap.v:296.13-296.25",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$526",
+      "op": "AND",
+      "inputs": [
+        "n13",
+        "n3"
+      ],
+      "output": "n18",
+      "origin": "design.v:13.23-13.55|/share/techmap.v:293.27-293.63|/share/techmap.v:240.19-240.41",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$525",
+      "op": "OR",
+      "inputs": [
+        "n4",
+        "n18"
+      ],
+      "output": "n15",
+      "origin": "design.v:13.23-13.55|/share/techmap.v:293.27-293.63|/share/techmap.v:240.12-240.41",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$335",
+      "op": "AND",
+      "inputs": [
+        "n18",
+        "n5"
+      ],
+      "output": "n11",
+      "origin": "design.v:12.50-12.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$377",
+      "op": "XOR",
+      "inputs": [
+        "n5",
+        "n15"
+      ],
+      "output": "n16",
+      "origin": "design.v:13.23-13.55|/share/techmap.v:296.13-296.25",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$524",
+      "op": "AND",
+      "inputs": [
+        "n5",
+        "n15"
+      ],
+      "output": "n17",
+      "origin": "design.v:13.23-13.55|/share/techmap.v:293.27-293.63|/share/techmap.v:248.19-248.41",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:46:simplemap_not$336",
+      "op": "NOT",
+      "inputs": [
+        "n17"
+      ],
+      "output": "n10",
+      "origin": "design.v:12.50-12.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$330",
+      "op": "OR",
+      "inputs": [
+        "n10",
+        "n11"
+      ],
+      "output": "n12",
+      "origin": null,
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:46:simplemap_not$329",
+      "op": "NOT",
+      "inputs": [
+        "n12"
+      ],
+      "output": "n19",
+      "origin": "design.v:12.50-12.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$328",
+      "op": "OR",
+      "inputs": [
+        "n19",
+        "n11"
+      ],
+      "output": "n20",
+      "origin": null,
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$337:select",
+      "op": "NOT",
+      "inputs": [
+        "n20"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:s",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$337:b",
+      "op": "AND",
+      "inputs": [
+        "n21",
+        "n20"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:b",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$338:select",
+      "op": "NOT",
+      "inputs": [
+        "n20"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$338:s",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$338:b",
+      "op": "AND",
+      "inputs": [
+        "n14",
+        "n20"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$338:b",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$339:select",
+      "op": "NOT",
+      "inputs": [
+        "n20"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$339:s",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$339:b",
+      "op": "AND",
+      "inputs": [
+        "n16",
+        "n20"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$339:b",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$340:select",
+      "op": "NOT",
+      "inputs": [
+        "n20"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$340:s",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$340:b",
+      "op": "AND",
+      "inputs": [
+        "n17",
+        "n20"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$340:b",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$337:a",
+      "op": "AND",
+      "inputs": [
+        "n3",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$337:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$337:a",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$338:a",
+      "op": "AND",
+      "inputs": [
+        "n4",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$338:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$338:a",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$339:a",
+      "op": "AND",
+      "inputs": [
+        "n5",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$339:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$339:a",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$340:a",
+      "op": "AND",
+      "inputs": [
+        "const0",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$340:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$340:a",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$337",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$337:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$337:b"
+      ],
+      "output": "n6",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$338",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$338:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$338:b"
+      ],
+      "output": "n7",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$339",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$339:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$339:b"
+      ],
+      "output": "n8",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$340",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$340:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$340:b"
+      ],
+      "output": "n9",
+      "origin": "design.v:12.50-13.83",
+      "scope": "convert"
+    },
+    {
+      "id": "port:bcd:1",
+      "op": "BUF",
+      "inputs": [
+        "n6"
+      ],
+      "output": "port:bcd:1",
+      "origin": null
+    },
+    {
+      "id": "port:bcd:2",
+      "op": "BUF",
+      "inputs": [
+        "n7"
+      ],
+      "output": "port:bcd:2",
+      "origin": null
+    },
+    {
+      "id": "port:bcd:3",
+      "op": "BUF",
+      "inputs": [
+        "n8"
+      ],
+      "output": "port:bcd:3",
+      "origin": null
+    },
+    {
+      "id": "port:bcd:4",
+      "op": "BUF",
+      "inputs": [
+        "n9"
+      ],
+      "output": "port:bcd:4",
+      "origin": null
+    }
+  ],
+  "scopes": [
+    {
+      "name": "convert",
+      "module": "$paramod$715e352470dbd96d0229cb399d1e667b7c346020\\binary_to_bcd",
+      "source": "design.v:3.1-19.10",
+      "instance_source": "design.v:22.49-22.69"
+    }
+  ],
+  "wire_names": {
+    "bcd": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n6"
+      },
+      {
+        "index": 2,
+        "net": "n7"
+      },
+      {
+        "index": 3,
+        "net": "n8"
+      },
+      {
+        "index": 4,
+        "net": "n9"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "binary": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      },
+      {
+        "index": 2,
+        "net": "n4"
+      },
+      {
+        "index": 3,
+        "net": "n5"
+      }
+    ],
+    "convert.bcd": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n6"
+      },
+      {
+        "index": 2,
+        "net": "n7"
+      },
+      {
+        "index": 3,
+        "net": "n8"
+      },
+      {
+        "index": 4,
+        "net": "n9"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "convert.binary": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      },
+      {
+        "index": 2,
+        "net": "n4"
+      },
+      {
+        "index": 3,
+        "net": "n5"
+      }
+    ],
+    "convert.stage[0]": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "const0"
+      },
+      {
+        "index": 3,
+        "net": "const0"
+      },
+      {
+        "index": 4,
+        "net": "const0"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "convert.stage[1]": [
+      {
+        "index": 0,
+        "net": "n5"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "const0"
+      },
+      {
+        "index": 3,
+        "net": "const0"
+      },
+      {
+        "index": 4,
+        "net": "const0"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "convert.stage[2]": [
+      {
+        "index": 0,
+        "net": "n4"
+      },
+      {
+        "index": 1,
+        "net": "n5"
+      },
+      {
+        "index": 2,
+        "net": "const0"
+      },
+      {
+        "index": 3,
+        "net": "const0"
+      },
+      {
+        "index": 4,
+        "net": "const0"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "convert.stage[3]": [
+      {
+        "index": 0,
+        "net": "n3"
+      },
+      {
+        "index": 1,
+        "net": "n4"
+      },
+      {
+        "index": 2,
+        "net": "n5"
+      },
+      {
+        "index": 3,
+        "net": "const0"
+      },
+      {
+        "index": 4,
+        "net": "const0"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "convert.stage[4]": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n6"
+      },
+      {
+        "index": 2,
+        "net": "n7"
+      },
+      {
+        "index": 3,
+        "net": "n8"
+      },
+      {
+        "index": 4,
+        "net": "n9"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "convert.stages[0].corrected": [
+      {
+        "index": 0,
+        "net": "const0"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "const0"
+      },
+      {
+        "index": 3,
+        "net": "const0"
+      },
+      {
+        "index": 4,
+        "net": "const0"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "convert.stages[1].corrected": [
+      {
+        "index": 0,
+        "net": "n5"
+      },
+      {
+        "index": 1,
+        "net": "const0"
+      },
+      {
+        "index": 2,
+        "net": "const0"
+      },
+      {
+        "index": 3,
+        "net": "const0"
+      },
+      {
+        "index": 4,
+        "net": "const0"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      },
+      {
+        "index": 7,
+        "net": "const0"
+      }
+    ],
+    "convert.stages[2].corrected": [
+      {
+        "index": 0,
+        "net": "n4"
+      },
+      {
+        "index": 1,
+        "net": "n5"
+      },
+      {
+        "index": 2,
+        "net": "const0"
+      },
+      {
+        "index": 3,
+        "net": "const0"
+      },
+      {
+        "index": 4,
+        "net": "const0"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      }
+    ],
+    "convert.stages[3].corrected": [
+      {
+        "index": 0,
+        "net": "n6"
+      },
+      {
+        "index": 1,
+        "net": "n7"
+      },
+      {
+        "index": 2,
+        "net": "n8"
+      },
+      {
+        "index": 3,
+        "net": "n9"
+      },
+      {
+        "index": 4,
+        "net": "const0"
+      },
+      {
+        "index": 5,
+        "net": "const0"
+      },
+      {
+        "index": 6,
+        "net": "const0"
+      }
+    ]
+  },
+  "instances": [
+    {
+      "name": "convert",
+      "module": "$paramod$715e352470dbd96d0229cb399d1e667b7c346020\\binary_to_bcd",
+      "source": "design.v:3.1-19.10",
+      "instance_source": "design.v:22.49-22.69",
+      "inputs": {
+        "binary": [
+          {
+            "index": 0,
+            "net": "n2"
+          },
+          {
+            "index": 1,
+            "net": "n3"
+          },
+          {
+            "index": 2,
+            "net": "n4"
+          },
+          {
+            "index": 3,
+            "net": "n5"
+          }
+        ]
+      },
+      "outputs": {
+        "bcd": [
+          {
+            "index": 0,
+            "net": "n2"
+          },
+          {
+            "index": 1,
+            "net": "n6"
+          },
+          {
+            "index": 2,
+            "net": "n7"
+          },
+          {
+            "index": 3,
+            "net": "n8"
+          },
+          {
+            "index": 4,
+            "net": "n9"
+          },
+          {
+            "index": 5,
+            "net": "const0"
+          },
+          {
+            "index": 6,
+            "net": "const0"
+          },
+          {
+            "index": 7,
+            "net": "const0"
+          }
+        ]
+      },
+      "nodes": [
+        "$auto$simplemap.cc:106:simplemap_bitop$330",
+        "$auto$simplemap.cc:106:simplemap_bitop$376",
+        "$auto$simplemap.cc:106:simplemap_bitop$377",
+        "$auto$simplemap.cc:106:simplemap_bitop$524",
+        "$auto$simplemap.cc:106:simplemap_bitop$525",
+        "$auto$simplemap.cc:106:simplemap_bitop$526",
+        "$auto$simplemap.cc:157:simplemap_reduce$328",
+        "$auto$simplemap.cc:157:simplemap_reduce$335",
+        "$auto$simplemap.cc:298:simplemap_mux$337",
+        "$auto$simplemap.cc:298:simplemap_mux$337:a",
+        "$auto$simplemap.cc:298:simplemap_mux$337:b",
+        "$auto$simplemap.cc:298:simplemap_mux$337:select",
+        "$auto$simplemap.cc:298:simplemap_mux$338",
+        "$auto$simplemap.cc:298:simplemap_mux$338:a",
+        "$auto$simplemap.cc:298:simplemap_mux$338:b",
+        "$auto$simplemap.cc:298:simplemap_mux$338:select",
+        "$auto$simplemap.cc:298:simplemap_mux$339",
+        "$auto$simplemap.cc:298:simplemap_mux$339:a",
+        "$auto$simplemap.cc:298:simplemap_mux$339:b",
+        "$auto$simplemap.cc:298:simplemap_mux$339:select",
+        "$auto$simplemap.cc:298:simplemap_mux$340",
+        "$auto$simplemap.cc:298:simplemap_mux$340:a",
+        "$auto$simplemap.cc:298:simplemap_mux$340:b",
+        "$auto$simplemap.cc:298:simplemap_mux$340:select",
+        "$auto$simplemap.cc:46:simplemap_not$329",
+        "$auto$simplemap.cc:46:simplemap_not$336",
+        "$auto$simplemap.cc:46:simplemap_not$404",
+        "$auto$simplemap.cc:46:simplemap_not$405"
+      ]
+    }
+  ]
+}

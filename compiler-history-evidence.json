@@ -1,0 +1,348 @@
+{
+  "scope": "Три полностью прочитанных основных чата. Отдельные файлы текущей рабочей копии прочитаны 2026-10-08; параллельные задачи могут их менять.",
+  "definition": "Один пакет = одно событие fileChange с хотя бы одним изменением рабочего кода ArrowsHDL/logic-language в src/, tools/ или native/; тесты, README, examples, vendor исключены. Один этап = один turn с такими событиями. Изменения через shell не подсчитаны.",
+  "threads": {
+    "01a110db-027b-7af1-8d8b-13b46e7748aa": "Создать язык схемотехники",
+    "01a11110-45cc-7583-bfa9-96e1707da652": "Схематический язык",
+    "01a11247-aac0-7880-ba36-c50f300207ee": "ALU схема"
+  },
+  "total": {
+    "including_initial": {
+      "turns": 25,
+      "batches": 162
+    },
+    "after_initial": {
+      "turns": 24,
+      "batches": 161
+    },
+    "before_first_examples": {
+      "separate_prior_revisions": 0
+    },
+    "after_assembler_before_hdl_examples": {
+      "turns": 2,
+      "batches": 4
+    }
+  },
+  "records": [
+    {
+      "thread": "01a110db-027b-7af1-8d8b-13b46e7748aa",
+      "turn": "01a11103-291f-71a3-b936-f8faf77c1773",
+      "start": 1791286782,
+      "batches": 1,
+      "paths": [
+        "src/arrowasm.py"
+      ],
+      "started_at_utc": "2026-10-06T11:39:42.000Z"
+    },
+    {
+      "thread": "01a110db-027b-7af1-8d8b-13b46e7748aa",
+      "turn": "01a1110f-18b3-7a13-b5b4-584dfe70b1c9",
+      "start": 1791287564,
+      "batches": 3,
+      "paths": [
+        "native/Cargo.toml",
+        "native/src/main.rs",
+        "src/arrowasm.py",
+        "src/logicarrows.py",
+        "tools/build.mjs",
+        "tools/compile-graph.ts",
+        "tools/headless-scheduler.ts",
+        "tools/package.json"
+      ],
+      "started_at_utc": "2026-10-06T11:52:44.000Z"
+    },
+    {
+      "thread": "01a110db-027b-7af1-8d8b-13b46e7748aa",
+      "turn": "01a11119-7421-7eb1-b9ab-224ebfd25194",
+      "start": 1791288243,
+      "batches": 1,
+      "paths": [
+        "src/arrowasm.py"
+      ],
+      "started_at_utc": "2026-10-06T12:04:03.000Z"
+    },
+    {
+      "thread": "01a11110-45cc-7583-bfa9-96e1707da652",
+      "turn": "01a1113b-2c1b-7801-bdcf-963a36b97e6a",
+      "start": 1791290453,
+      "batches": 1,
+      "paths": [
+        "src/arrow_layout.py",
+        "src/mapdata.py",
+        "src/verilog_frontend.py"
+      ],
+      "started_at_utc": "2026-10-06T12:40:53.000Z"
+    },
+    {
+      "thread": "01a11110-45cc-7583-bfa9-96e1707da652",
+      "turn": "01a11146-1fa0-7980-a555-62bdd072e3ed",
+      "start": 1791291170,
+      "batches": 5,
+      "paths": [
+        "native/src/main.rs",
+        "src/simulation.py",
+        "src/test_harness.py",
+        "src/verilog_compile.py",
+        "src/map_preview.py",
+        "src/logicarrows.py",
+        "src/mapdata.py"
+      ],
+      "started_at_utc": "2026-10-06T12:52:50.000Z"
+    },
+    {
+      "thread": "01a11110-45cc-7583-bfa9-96e1707da652",
+      "turn": "01a11154-92df-7080-8bd2-18ec6ff975c9",
+      "start": 1791292117,
+      "batches": 4,
+      "paths": [
+        "src/arrow_layout.py",
+        "src/compact_layout.py",
+        "src/verilog_compile.py",
+        "native/src/main.rs",
+        "src/test_harness.py",
+        "src/map_preview.py"
+      ],
+      "started_at_utc": "2026-10-06T13:08:37.000Z"
+    },
+    {
+      "thread": "01a11110-45cc-7583-bfa9-96e1707da652",
+      "turn": "01a111a8-5465-7633-ba97-b9572cd005b7",
+      "start": 1791297606,
+      "batches": 10,
+      "paths": [
+        "src/compact_layout.py",
+        "src/arrow_layout.py",
+        "src/map_preview.py"
+      ],
+      "started_at_utc": "2026-10-06T14:40:06.000Z"
+    },
+    {
+      "thread": "01a11110-45cc-7583-bfa9-96e1707da652",
+      "turn": "01a111d7-c278-7832-ac5d-5c035c4f6540",
+      "start": 1791300715,
+      "batches": 10,
+      "paths": [
+        "src/arrow_layout.py",
+        "native/src/main.rs",
+        "src/compact_layout.py",
+        "src/native_adder_layout.py",
+        "src/technology_mapping.py",
+        "src/map_preview.py",
+        "src/verilog_compile.py"
+      ],
+      "started_at_utc": "2026-10-06T15:31:55.000Z"
+    },
+    {
+      "thread": "01a11110-45cc-7583-bfa9-96e1707da652",
+      "turn": "01a1123b-5427-7033-ba43-4acd5d988568",
+      "start": 1791307240,
+      "batches": 1,
+      "paths": [
+        "src/verilog_frontend.py"
+      ],
+      "started_at_utc": "2026-10-06T17:20:40.000Z"
+    },
+    {
+      "thread": "01a11110-45cc-7583-bfa9-96e1707da652",
+      "turn": "01a11250-b765-7e01-87ae-0142ae61c6db",
+      "start": 1791308642,
+      "batches": 3,
+      "paths": [
+        "src/compact_layout.py",
+        "src/verilog_compile.py",
+        "src/map_preview.py"
+      ],
+      "started_at_utc": "2026-10-06T17:44:02.000Z"
+    },
+    {
+      "thread": "01a11110-45cc-7583-bfa9-96e1707da652",
+      "turn": "01a113bd-62c7-7653-b42d-823f16807fa0",
+      "start": 1791332541,
+      "batches": 22,
+      "paths": [
+        "src/compact_layout.py",
+        "src/technology_mapping.py",
+        "src/verilog_frontend.py",
+        "src/native_adder_layout.py",
+        "src/signal_metadata.py",
+        "src/packed_layout.py",
+        "src/arrow_layout.py",
+        "src/signal_view.py",
+        "src/verilog_compile.py",
+        "src/input_buses.py",
+        "src/native_mux_layout.py"
+      ],
+      "started_at_utc": "2026-10-07T00:22:21.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a113c6-359f-7a83-996c-b10a063adaba",
+      "start": 1791333119,
+      "batches": 3,
+      "paths": [
+        "src/compact_layout.py",
+        "src/native_mux_layout.py"
+      ],
+      "started_at_utc": "2026-10-07T00:31:59.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a113cb-f153-7273-811e-a0ddb1f2bdb6",
+      "start": 1791333495,
+      "batches": 3,
+      "paths": [
+        "src/native_mux_layout.py"
+      ],
+      "started_at_utc": "2026-10-07T00:38:15.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a113cf-0ccb-7cc1-9efd-ea26871d467d",
+      "start": 1791333698,
+      "batches": 4,
+      "paths": [
+        "src/native_mux_layout.py",
+        "src/packed_layout.py"
+      ],
+      "started_at_utc": "2026-10-07T00:41:38.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a113d1-4e06-7aa1-996d-7452db33e1a0",
+      "start": 1791333846,
+      "batches": 3,
+      "paths": [
+        "src/arrow_layout.py",
+        "src/compact_layout.py",
+        "src/input_buses.py",
+        "src/verilog_compile.py",
+        "src/native_mux_layout.py"
+      ],
+      "started_at_utc": "2026-10-07T00:44:06.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a113d4-719d-7ff1-8e01-22416f122527",
+      "start": 1791334052,
+      "batches": 8,
+      "paths": [
+        "src/native_mux_layout.py",
+        "src/compact_layout.py",
+        "src/input_buses.py",
+        "src/signal_view.py"
+      ],
+      "started_at_utc": "2026-10-07T00:47:32.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a113de-3ed2-7801-be0f-078002d5a855",
+      "start": 1791334694,
+      "batches": 5,
+      "paths": [
+        "src/arrow_layout.py",
+        "src/input_buses.py",
+        "src/verilog_compile.py",
+        "src/native_mux_layout.py",
+        "src/compact_layout.py"
+      ],
+      "started_at_utc": "2026-10-07T00:58:14.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a113e3-acf5-7082-97fb-219d35b6cfbb",
+      "start": 1791335050,
+      "batches": 14,
+      "paths": [
+        "src/output_layout.py",
+        "src/native_mux_layout.py",
+        "src/compact_layout.py",
+        "src/input_buses.py"
+      ],
+      "started_at_utc": "2026-10-07T01:04:10.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a113f6-0611-7f70-b8d0-ced489332b3a",
+      "start": 1791336252,
+      "batches": 6,
+      "paths": [
+        "src/output_layout.py",
+        "src/compact_layout.py",
+        "src/native_mux_layout.py"
+      ],
+      "started_at_utc": "2026-10-07T01:24:12.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a11534-f782-7ae2-bc8b-8623e1fb604f",
+      "start": 1791357155,
+      "batches": 2,
+      "paths": [
+        "src/native_mux_layout.py",
+        "src/signal_view.py"
+      ],
+      "started_at_utc": "2026-10-07T07:12:35.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a11545-9b0b-73b0-abf4-09a3dad9d695",
+      "start": 1791358245,
+      "batches": 1,
+      "paths": [
+        "src/signal_view.py"
+      ],
+      "started_at_utc": "2026-10-07T07:30:45.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a11578-55fd-7d42-81c5-b05ed8d9af97",
+      "start": 1791361570,
+      "batches": 39,
+      "paths": [
+        "src/arrow_layout.py",
+        "src/compact_layout.py",
+        "src/input_buses.py",
+        "src/dense_mux_layout.py",
+        "src/native_mux_layout.py",
+        "src/physical_compaction.py",
+        "src/output_layout.py",
+        "src/packed_layout.py",
+        "src/placement_search.py"
+      ],
+      "started_at_utc": "2026-10-07T08:26:10.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a11694-9026-7c73-9f1e-818ffb05964c",
+      "start": 1791380197,
+      "batches": 8,
+      "paths": [
+        "src/packed_layout.py",
+        "src/compact_layout.py",
+        "src/verilog_frontend.py"
+      ],
+      "started_at_utc": "2026-10-07T13:36:37.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a1170f-20de-79d2-a7ed-8d60962b0952",
+      "start": 1791388229,
+      "batches": 1,
+      "paths": [
+        "native/src/main.rs"
+      ],
+      "started_at_utc": "2026-10-07T15:50:29.000Z"
+    },
+    {
+      "thread": "01a11247-aac0-7880-ba36-c50f300207ee",
+      "turn": "01a1171d-0b7e-7683-b100-caea2b172837",
+      "start": 1791389141,
+      "batches": 4,
+      "paths": [
+        "native/src/main.rs",
+        "src/logicarrows.py"
+      ],
+      "started_at_utc": "2026-10-07T16:05:41.000Z"
+    }
+  ]
+}
