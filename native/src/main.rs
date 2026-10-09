@@ -42,6 +42,8 @@ struct Port {
 struct Scenario {
     ticks: usize,
     #[serde(default)]
+    limits: Limits,
+    #[serde(default)]
     hold_ticks: Option<usize>,
     #[serde(default)]
     frame_ticks: Option<Vec<usize>>,
@@ -52,6 +54,17 @@ struct Scenario {
     expect: Vec<Port>,
     #[serde(default)]
     observe: Vec<[i32; 2]>,
+}
+#[derive(Deserialize)]
+#[serde(default, deny_unknown_fields)]
+struct Limits {
+    nodes: usize,
+    ticks: usize,
+}
+impl Default for Limits {
+    fn default() -> Self {
+        Self { nodes: 1_000_000, ticks: 1_000_000 }
+    }
 }
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -93,8 +106,11 @@ fn run(request: Request) -> Result<Value, String> {
         cycles,
         test,
     } = request;
-    if test.ticks == 0 || test.ticks > 1_000_000 {
-        return Err("Количество тактов должно быть от 1 до 1000000".into());
+    if test.limits.nodes == 0 || test.limits.nodes > i32::MAX as usize || test.limits.ticks == 0 {
+        return Err("Лимиты должны быть положительными; nodes не больше 2147483647".into());
+    }
+    if test.ticks == 0 || test.ticks > test.limits.ticks {
+        return Err(format!("Количество тактов должно быть от 1 до {}", test.limits.ticks));
     }
     let hold = test.hold_ticks.unwrap_or(1);
     if hold == 0 || test.ticks % hold != 0 {
@@ -115,7 +131,7 @@ fn run(request: Request) -> Result<Value, String> {
     if test.expect.is_empty() && test.observe.is_empty() {
         return Err("Нужен хотя бы один проверяемый приёмник".into());
     }
-    if nodes.len() > 1_000_000 {
+    if nodes.len() > test.limits.nodes {
         return Err("Слишком много узлов".into());
     }
     let mut inputs = Vec::new();

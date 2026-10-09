@@ -205,11 +205,15 @@ variables, so no optimization can scatter a bus's bits.
 
 class Router:
     def __init__(self, netlist, pitch, max_cells, placement=None):
+        from native_rules import validate_gate_rule
+        for node in netlist['nodes']:validate_gate_rule(node)
         self.netlist, self.max_cells = netlist, max_cells
         self.cells, self.owners, self.outs = {}, {}, {}
         self.gates, self.pins, self.roots, self.sinks = {}, {}, {}, defaultdict(list)
         self.pin_consumers=defaultdict(list)
         self.reserved, self.inputs, self.outputs = set(), {}, {}
+        self.reserved.update(map(tuple,netlist.get('_blocked_contacts',())))
+        self.native_links, self.native_initial = set(), {}
         vertices, positions, sources = placement or arrange_free(netlist, pitch)
         self.input_interfaces = {}
         self.output_interfaces = {}
@@ -224,12 +228,19 @@ class Router:
         self.direct_nets=set()
         self.flexible_gates=set()
         self.explicit_pins={}
+        self.adaptive_pins=set()
         self.node_groups={node['id']:node.get('scope','core') for node in netlist['nodes']}
         for vertex, (x, y) in zip(vertices, positions):
             if vertex["kind"] == "gate":
                 node = vertex["node"]
                 key = x, y
-                self.add(key, "gate:" + node["id"], Cell(GATE_TYPES[node["op"]], vertex.get("rotation",1)))
+                cell_type = vertex.get("cell_type", GATE_TYPES[node["op"]])
+                # A buffer may use an equivalent one-output native path. Its
+                # physical output fixture follows that path (including jumps).
+                allowed = (1, 10, 11) if node["op"] in ("BUF", "OR") else (GATE_TYPES[node["op"]],)
+                if type(cell_type) is not int or cell_type not in allowed:
+                    raise MapError(f"Неверный физический тип {cell_type} для {node['op']}")
+                self.add(key, "gate:" + node["id"], Cell(cell_type, vertex.get("rotation",1), vertex.get("mirrored", False)))
                 self.gates[key] = node
                 flexible=vertex.get('flexible_output',False) and node['op'] in ('OR','BUF')
                 if flexible:
@@ -238,6 +249,7 @@ class Router:
                     self.roots[node['output']]=key
                 if vertex.get('pins') is not None:
                     self.explicit_pins[key]=[tuple(p) for p in vertex['pins']]
+                    if vertex.get('pin_policy')=='adaptive':self.adaptive_pins.add(key)
                 if node["output"] in output_nets:
                     fixture = next(destinations(key,self.cells[key]))
                     self.reserved.add(fixture)
@@ -287,10 +299,24 @@ class Router:
                         wire_cell(pin,self.outs[pin]|{key}) is not None if pin in self.flexible_gates
                         else key in destinations(pin,self.cells[pin]))
                 return self.owners[pin]==net and wire_cell(pin,self.outs[pin]|{key}) is not None
-            choices=[ps for ps in permutations(candidates,len(node['inputs'])) if all(compatible(pin,net) for net,pin in zip(node['inputs'],ps))]
+            if len(node['inputs'])>3 and key not in self.explicit_pins:
+                if node['op'] not in ('OR','NOT','XOR','ATLEAST2'):
+                    raise MapError('Unsupported native fan-in: '+node['id'])
+                from pin_planning import choose_input_contacts
+                excluded=() if key in self.flexible_gates else destinations(key,self.cells[key])
+                choices=[tuple(choose_input_contacts(node['inputs'],key,self.roots,compatible,excluded=excluded))]
+            else:
+                choices=[ps for ps in permutations(candidates,len(node['inputs'])) if all(compatible(pin,net) for net,pin in zip(node['inputs'],ps))]
             if key in self.explicit_pins:
+                if len(self.explicit_pins[key])!=len(node['inputs']):
+                    raise MapError('Physical pin count differs from logical input count: '+node['id'])
                 choices=[tuple(self.explicit_pins[key])]
                 if not all(compatible(pin,net) for net,pin in zip(node['inputs'],choices[0])):choices=[]
+            if not choices and (key not in self.explicit_pins or key in self.adaptive_pins):
+                from pin_planning import choose_input_contacts
+                excluded=() if key in self.flexible_gates else destinations(key,self.cells[key])
+                try:choices=[tuple(choose_input_contacts(node['inputs'],key,self.roots,compatible,excluded=excluded))]
+                except MapError:pass
             if not choices:raise MapError(f"Нет совместимых контактов у элемента {node['id']}")
             pins = min(choices, key=lambda ps: sum(manhattan(self.roots[net], pin) for net, pin in zip(node["inputs"], ps) if net not in primary and node['output'] not in output_nets))
             self.pins[key] = list(pins)
@@ -405,9 +431,10 @@ class Router:
                         continue
                     if key in tree and wire_cell(key, self.outs[key] | {next_key}) is None:
                         continue
-                    added = 1 if distance == 1 and not (dx and dy) else 1.05
+                    added = 1 if distance == 1 and not (dx and dy) else getattr(self, 'routing_jump_cost', 1.05)
                     if blocked:
                         added += 20
+                    added += getattr(self, "routing_history", {}).get(next_key, 0)
                     candidate = spent + added
                     if candidate < cost.get(next_key, math.inf):
                         cost[next_key], previous[next_key] = candidate, key
@@ -490,6 +517,10 @@ class Router:
             self.fixed_cells=set(seed_cells)
             self.fixed_outs={p:set(targets) for p,targets in seed_outs.items()}
             self.route_phase(self.sinks)
+        return self.finish()
+
+    def finish(self):
+        """Materialize routes and validate; shared by routing strategies."""
         for key, targets in self.outs.items():
             if not targets:
                 # Unused inputs still have a physical contact; emit only into empty
@@ -507,6 +538,10 @@ class Router:
         for key, cell in self.cells.items():
             validate_cell(*key, cell)
         self.validate()
+        optimization = self.netlist.get('_route_optimization')
+        if optimization and not getattr(self, '_route_optimization_active', False):
+            from route_optimization import optimize_router
+            optimize_router(self, passes=optimization.get('passes', 2) if isinstance(optimization, dict) else 2)
         return self.cells
 
     def clear_net(self, net):
@@ -525,9 +560,11 @@ class Router:
         links, reverse = edges(self.cells), defaultdict(list)
         for key, targets in links.items():
             for target in targets:
-                if key in destinations(target,self.cells[target]):
-                    raise MapError(f"Вход стрелки расположен на её выходе: {key} → {target}")
                 reverse[target].append(key)
+                if (key,target) in self.native_links:
+                    continue
+                if key in destinations(target,self.cells[target]):
+                    raise MapError(f"Необъявленная обратная связь между стрелками: {key} → {target}")
                 if target in self.gates:
                     if key not in self.pins[target]:
                         raise MapError(f"Посторонний сигнал у элемента {target}")
@@ -542,8 +579,11 @@ class Router:
             for pin, net in zip(pins, self.gates[key]["inputs"]):
                 if (self.gates[pin]['output'] if pin in self.gates else self.owners[pin]) != net:
                     raise MapError(f"Неверный сигнал у элемента {key}")
-        if any(reverse[p] for p,c in self.cells.items() if c.type==2):
-            raise MapError('Посторонний сигнал отключает постоянный источник')
+        if any(any(self.cells[q].type==3 for q in reverse[p]) for p,c in self.cells.items() if c.type==2):
+            raise MapError('Блокирующая стрелка отключает постоянный источник')
+        for p,c in self.native_initial.items():
+            if self.cells.get(p)!=c:
+                raise MapError(f'Изменён элемент фиксированного нативного блока в {p}')
         for net, root in self.roots.items():
             reached, todo = set(), [root]
             while todo:
@@ -561,7 +601,7 @@ def place_compact(netlist, max_cells=100_000):
     from native_mux_layout import try_native_mux
     graph,rewrites=map_native_gates(netlist)
     graph,sharing=merge_duplicate_logic(graph)
-    graph=dict(graph,_physical_optimize=True)
+    graph=dict(graph,_physical_optimize=True,_route_optimization=graph.get('_route_optimization', {'passes': 2}))
     result=try_native_adder(graph,rewrites,max_cells) if not graph.get('_input_bus_config') else None
     mux_failure=None
     if result is None:
@@ -615,6 +655,7 @@ def router_manifest(graph,router,cells,layout):
             'inputs':router.inputs,'outputs':router.outputs,'settle_ticks':depth_of(cells)+2,
             'routing_limits':router.routing_limits,
             'physical_compaction':getattr(router,'physical_compaction',None),
+            'route_optimization':getattr(router,'route_optimization',None),
             'output_search':getattr(router,'output_search',None),
             'cells':len(cells),'logic_nodes':len(graph['nodes']),'layout':layout,'bounds':bounds_of(cells),
             'port_layout':'fixed-sides','rerouted_nets':router.ripups,

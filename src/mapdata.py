@@ -66,7 +66,7 @@ def map_hash(cells: ArrowMap) -> str:
 
 
 def write_map(folder: Path, stem: str, cells: ArrowMap) -> None:
-    folder.mkdir(parents=True, exist_ok=True)
+    (folder / f"{stem}.map.json").parent.mkdir(parents=True, exist_ok=True)
     groups = to_document(cells)["cells"]
     lines = ['{', '  "schema": 1,', '  "cells": [']
     for index, group in enumerate(groups):

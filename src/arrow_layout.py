@@ -7,7 +7,8 @@ from arrowasm import Cell, MapError, validate_cell
 from mapdata import map_hash
 
 VECTORS = {1: [(0, -1)], 2: [(0, -1), (1, 0), (0, 1), (-1, 0)], 3: [(0, -1)], 4: [(0, -1)], 5: [(0, -1)], 6: [(0, -1), (0, 1)], 7: [(0, -1), (1, 0)], 8: [(0, -1), (1, 0), (-1, 0)], 9: [(0, -1), (1, 0), (0, 1), (-1, 0)], 10: [(0, -2)], 11: [(1, -1)], 12: [(0, -1), (0, -2)], 13: [(1, 0), (0, -2)], 14: [(0, -1), (1, -1)], 15: [(0, -1)], 16: [(0, -1)], 17: [(0, -1)], 18: [(0, -1)], 19: [(0, -1)], 20: [(0, -1)], 21: [(0, -1), (1, 0), (0, 1), (-1, 0)], 22: [(0, -1)], 23: [], 24: [(0, -1)], 25: []}
-GATE_TYPES = {"BUF": 1, "OR": 1, "NOT": 15, "AND": 16, "MAJ": 16, "XOR": 17}
+GATE_TYPES = {"BUF": 1, "OR": 1, "NOT": 15, "AND": 16, "MAJ": 16, "ATLEAST2": 16, "XOR": 17,
+              "SET": 18, "TOGGLE": 19, "RANDOM": 20}
 
 
 def destinations(position, cell):
@@ -111,6 +112,8 @@ def validate_connections(cells,owners,gates,pins,roots):
 
 
 def place(netlist, max_cells=100_000, layout="compact", input_buses=None, input_bus_gap='auto'):
+    from native_rules import validate_gate_rule
+    for node in netlist['nodes']:validate_gate_rule(node)
     from copy import deepcopy
     from input_buses import configure, describe
     config = configure(netlist, input_buses, input_bus_gap)
@@ -130,6 +133,8 @@ def place(netlist, max_cells=100_000, layout="compact", input_buses=None, input_
 
 
 def place_sparse(netlist, max_cells=100_000):
+    from native_rules import validate_gate_rule
+    for node in netlist['nodes']:validate_gate_rule(node)
     cells, owners, gate_positions, gate_pins = {}, {}, {}, {}
     inputs, outputs = {}, {}
     nets = [entry["net"] for entries in netlist["inputs"].values() for entry in entries]

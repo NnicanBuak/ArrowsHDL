@@ -84,6 +84,7 @@ def _route_with_outputs(graph, placement, max_cells, routed_seed=None):
         from physical_compaction import compact_router
         seed.outputs={}
         compact_router(seed)
+    if graph.get('_physical_optimize') or graph.get('_route_optimization'):
         # Reconstruct candidates from the optimized physical core, rather than
         # letting the original placement restore removed pins or output relays.
         placement=deepcopy(placement)
@@ -161,7 +162,10 @@ def _route_with_outputs(graph, placement, max_cells, routed_seed=None):
             try:
                 if any(ps[i] in preserved for i in outputs):
                     raise MapError('Внешний контакт вывода занят сохранённой разводкой')
-                router=Router(graph,1,max_cells,candidate)
+                # The core was optimized above. Output-face trials must keep
+                # those chosen gate directions and internal routes frozen.
+                router=Router(dict(graph,_route_optimization=False),1,max_cells,candidate)
+                router.route_optimization=deepcopy(getattr(seed,'route_optimization',None))
                 if graph.get('_physical_optimize'):
                     router.roots.update({net:p for net,p in seed.roots.items() if p in seed.outs})
                 for p in preserved:
