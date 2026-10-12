@@ -64,6 +64,9 @@ class Project:
     connections: tuple[dict, ...] = ()
     labels: tuple[dict, ...] = ()
     version: int = 1
+    design_path: Path | None = None
+    design: dict | None = None
+    output_sources: dict | None = None
 
 
 def load_project(path: Path) -> Project:
@@ -73,7 +76,131 @@ def load_project(path: Path) -> Project:
     except tomllib.TOMLDecodeError as exc:
         raise MapError(f"{path}: invalid TOML: {exc}") from exc
     check_project_version(data.get("version"))
-    return _load_v2(path,data) if data['version']==2 else _load_v1(path, data)
+    if data['version'] != 3:
+        raise MapError(f"Project format {data['version']} is no longer supported; use version 3")
+    return _load_v3(path, data)
+
+
+def _load_v3(path, data):
+    """Build configuration references HDL structure and a presentation sidecar."""
+    table(data, {'version','sources','libraries','top','language','include_dirs','defines',
+                 'parameters','timing','bindings','design'}, 'project v3')
+    base_fields = {'version','sources','libraries','top','language','include_dirs','defines',
+                   'parameters','timing','bindings'}
+    base = _load_v1(path, {key: value for key,value in data.items() if key in base_fields} | {'version': 1})
+    design_path = None
+    design = {'ports': (), 'views': (), 'components': (), 'labels': (), 'placement': {}}
+    if 'design' in data:
+        reference = data['design']
+        if not isinstance(reference, str) or not reference:
+            raise MapError('design: expected a design TOML filename')
+        design_path = (path.parent / reference).resolve()
+        if not design_path.is_file():
+            raise MapError(f'Design file not found: {design_path}')
+        try:
+            document = tomllib.loads(design_path.read_text(encoding='utf-8-sig'))
+        except tomllib.TOMLDecodeError as exc:
+            raise MapError(f'{design_path}: invalid TOML: {exc}') from exc
+        design = _load_design(design_path, document)
+    return replace(base, version=3, modules=(), components=(), connections=(),
+                   inputs=None, outputs=None, labels=tuple(design['labels']),
+                   layout=design['placement'], design_path=design_path, design=design)
+
+
+def _load_design(path, data):
+    table(data, {'version','ports','views','components','labels','placement'}, 'design')
+    if data.get('version') != 1:
+        raise MapError('design.version: expected 1')
+    result = {}
+    definitions = {
+        'ports': {'path','widget','size','hidden'},
+        'views': {'select','button','size','left','right'},
+        'components': {'name','file','kind','text','font','size','bind','at','rotation'},
+        'labels': {'name','path','text','font','size','offset','at'},
+    }
+    for category, allowed in definitions.items():
+        rows = data.get(category, [])
+        if not isinstance(rows, list):
+            raise MapError(f'design.{category}: expected a list of tables')
+        seen = set()
+        for row in rows:
+            table(row, allowed, f'design.{category}')
+            key = 'path' if category in ('ports','labels') else 'select' if category == 'views' else 'name'
+            if not isinstance(row.get(key), str) or not row[key]:
+                raise MapError(f'design.{category}.{key}: a nonempty string is required')
+            if category != 'views':
+                if row[key] in seen:
+                    raise MapError(f'design.{category}: duplicate {key} {row[key]!r}')
+                seen.add(row[key])
+            if category == 'ports':
+                if row.get('hidden', False) not in (True, False):
+                    raise MapError('design.ports.hidden: expected a boolean')
+                if 'widget' in row and row['widget'] not in ('button','indicator','binary'):
+                    raise MapError('design.ports.widget: expected button, indicator or binary')
+                if 'size' in row: pair(row['size'], 'design.ports.size', positive=True)
+            elif category == 'views':
+                if not isinstance(row.get('button'), str) or not row['button']:
+                    raise MapError('design.views.button: an HDL input path is required')
+                if 'size' in row: pair(row['size'], 'design.views.size', positive=True)
+                for side in ('left','right'):
+                    item = row.get(side)
+                    if item is None: continue
+                    table(item, {'port','component','bitmap'}, f'design.views.{side}')
+                    if not isinstance(item.get('port'), str) or not item['port']:
+                        raise MapError(f'design.views.{side}.port: an HDL output is required')
+                    if ('component' in item) == ('bitmap' in item):
+                        raise MapError(f'design.views.{side}: specify component or bitmap')
+                    if 'component' in item: component_file(path.parent, item['component'])
+                    if 'bitmap' in item and (not isinstance(item['bitmap'], list) or not item['bitmap'] or
+                                              any(not isinstance(line, str) or not line for line in item['bitmap']) or
+                                              len({len(line) for line in item['bitmap']}) != 1 or
+                                              any(set(line)-{'.','#'} for line in item['bitmap'])):
+                        raise MapError(f'design.views.{side}.bitmap: expected a rectangular . and # raster')
+            elif category == 'components':
+                if 'at' in row: pair(row['at'], 'design.components.at')
+                if row.get('rotation',0) not in (0,1,2,3) or type(row.get('rotation',0)) is not int:
+                    raise MapError('design.components.rotation: expected 0, 1, 2 or 3')
+                if row.get('kind') == 'text':
+                    if 'file' in row or not isinstance(row.get('text'), str) or not row['text']:
+                        raise MapError('Text component requires text and cannot specify file')
+                    if type(row.get('size',1)) is not int or row.get('size',1) < 1:
+                        raise MapError('design.components.size: expected a positive integer')
+                    if not isinstance(row.get('font','library:arrow4'), str):
+                        raise MapError('design.components.font: expected a font filename')
+                else:
+                    component_file(path.parent, row.get('file'))
+                if 'bind' in row and not isinstance(row['bind'], str):
+                    raise MapError('design.components.bind: expected an HDL signal path')
+            else:
+                if not isinstance(row.get('text'),str) or not row['text'] or not isinstance(row.get('font'),str) or not row['font']:
+                    raise MapError('design.labels: text and font are required')
+                if type(row.get('size',1)) is not int or row.get('size',1) < 1:
+                    raise MapError('design.labels.size: expected a positive integer')
+                if 'at' in row: pair(row['at'],'design.labels.at')
+                if 'offset' in row: pair(row['offset'],'design.labels.offset')
+                if 'at' in row and 'offset' in row: raise MapError('design.labels: specify at or offset')
+        result[category] = tuple(rows)
+    placement = data.get('placement', {})
+    table(placement, {'input_buses','input_bus_gap','grids','placements','template'}, 'design.placement')
+    strings(placement.get('input_buses', []), 'design.placement.input_buses')
+    for category, allowed in (('grids', {'instances','step','origin','max_cell_size'}),
+                              ('placements', {'instance','at'})):
+        rows = placement.get(category, [])
+        if not isinstance(rows, list): raise MapError(f'design.placement.{category}: expected a list')
+        for row in rows:
+            table(row, allowed, f'design.placement.{category}')
+            selector = row.get('instances' if category == 'grids' else 'instance')
+            if not isinstance(selector, str) or not selector: raise MapError(f'design.placement.{category}: selector required')
+            for field in ('step','origin','max_cell_size','at'):
+                if field in row: pair(row[field], f'design.placement.{category}.{field}', positive=field in ('step','max_cell_size'))
+            if category == 'grids' and 'step' not in row or category == 'placements' and 'at' not in row:
+                raise MapError(f'design.placement.{category}: step or at is missing')
+    if 'input_bus_gap' in placement and placement['input_bus_gap'] != 'auto' and (type(placement['input_bus_gap']) is not int or placement['input_bus_gap'] < 0):
+        raise MapError('design.placement.input_bus_gap: expected auto or a nonnegative integer')
+    if 'template' in placement and (not isinstance(placement['template'],str) or not (path.parent/placement['template']).is_file()):
+        raise MapError('design.placement.template: physical template file not found')
+    result['placement'] = placement
+    return result
 
 
 def _load_v2(path,data):

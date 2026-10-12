@@ -131,8 +131,10 @@ def route_project(project,blocks,names,origins,frames,cache_records,out,max_cell
     public={row['name']:[dict(index=i,net=f"input:{row['name']}:{i}") for i in range(row.get('width',1))] for row in project.inputs}
     endpoints=defaultdict(list); input_sinks=defaultdict(list)
     def target(reference):
-        name,separator,port=reference.partition('.')
-        if not separator or name not in placed: raise MapError('Unknown input: '+reference)
+        name=next((candidate for candidate in sorted(placed,key=len,reverse=True)
+                   if reference.startswith(candidate+'.')),None)
+        if name is None: raise MapError('Unknown input: '+reference)
+        port=reference[len(name)+1:]
         return [(name,e) for e in port_bits(placed[name]['inputs'],port)]
     def public_bits(reference):
         try: return port_bits(public,reference)
@@ -172,8 +174,10 @@ def route_project(project,blocks,names,origins,frames,cache_records,out,max_cell
                 cells[p]=Cell(25 if reference=='0' else 2,1)
                 net='constant:'+reference; roots[net]=(p[0]+1,p[1]);constants[reference]=net
             return [(constants[reference],0)]
-        name,separator,port=reference.partition('.')
-        if not separator or name not in placed: raise MapError('Unknown output: '+reference)
+        name=next((candidate for candidate in sorted(placed,key=len,reverse=True)
+                   if reference.startswith(candidate+'.')),None)
+        if name is None: raise MapError('Unknown output: '+reference)
+        port=reference[len(name)+1:]
         result=[]
         for entry in port_bits(placed[name]['outputs'],port):
             p=tuple(entry['fixture']);net=f"block:{name}:{p}"
@@ -193,7 +197,19 @@ def route_project(project,blocks,names,origins,frames,cache_records,out,max_cell
         for port,entries in desc['inputs'].items():
             if any((name,tuple(e['contact'])) not in driven for e in entries):
                 raise MapError('Unconnected input: '+name+'.'+port)
-    exports={row['name']:[dict(index=i,net=net) for i,(net,_) in enumerate(source(row['from']))] for row in project.outputs}
+    output_sources=getattr(project,'output_sources',None)
+    if output_sources:
+        exports={}
+        for row in project.outputs:
+            refs=output_sources[row['name']]
+            entries=[]
+            for index,reference in enumerate(refs):
+                bits=source(reference)
+                if len(bits)!=1: raise MapError(f'Output source must select one bit: {reference}')
+                entries.append(dict(index=index,net=bits[0][0]))
+            exports[row['name']]=entries
+    else:
+        exports={row['name']:[dict(index=i,net=net) for i,(net,_) in enumerate(source(row['from']))] for row in project.outputs}
     aliases={}; claimed=set()
     for name,entries in exports.items():
         if all(e['net'] in source_entries and not targets[e['net']] and e['net'] not in claimed for e in entries):

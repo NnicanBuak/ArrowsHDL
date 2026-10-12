@@ -1,7 +1,7 @@
 """Compiler, project schema and language evolve independently."""
 from arrowshdl.arrowasm import MapError
 
-PROJECT_VERSIONS = (1,2)
+PROJECT_VERSIONS = (3,)
 OBJECT_VERSION = 1
 DEFAULT_STANDARD = "1800-2023"
 SUPPORTED_STANDARDS = ("1364-2005", "1800-2023")
