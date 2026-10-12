@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "top": "alu_workbench",
+  "save_sha256": "28665f9623af66d19c59a44ba220f0a4e2fcb66bb7b7b9a98963c68a0b9edabe",
+  "vectors": 2048,
+  "checked_samples": 14336,
+  "batches": 3,
+  "oracle": "independent Python arithmetic / frame routing protocol",
+  "failures": []
+}

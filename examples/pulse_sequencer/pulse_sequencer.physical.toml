@@ -1,0 +1,34 @@
+version = 1
+[[modules]]
+hdl = "pulse_sequencer"
+geometry = "pulse_sequencer.geometry.json"
+[[modules]]
+hdl = "oscillator_0"
+geometry = "oscillator_0.geometry.json"
+[[modules]]
+hdl = "oscillator_1"
+geometry = "oscillator_1.geometry.json"
+[[modules]]
+hdl = "oscillator_2"
+geometry = "oscillator_2.geometry.json"
+[[modules]]
+hdl = "oscillator_3"
+geometry = "oscillator_3.geometry.json"
+[[modules]]
+hdl = "oscillator_4"
+geometry = "oscillator_4.geometry.json"
+[[modules]]
+hdl = "oscillator_5"
+geometry = "oscillator_5.geometry.json"
+[[modules]]
+hdl = "oscillator_6"
+geometry = "oscillator_6.geometry.json"
+[[modules]]
+hdl = "oscillator_7"
+geometry = "oscillator_7.geometry.json"
+[[modules]]
+hdl = "selection_memory"
+geometry = "selection_memory.geometry.json"
+[[modules]]
+hdl = "history_display"
+geometry = "history_display.geometry.json"

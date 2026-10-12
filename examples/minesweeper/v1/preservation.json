@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "source": "Исходный комплект previous-112 до удаления архива",
+  "maps": [
+    {
+      "original": "cell.save.txt",
+      "current": "tile.save.txt",
+      "save_sha256": "95577dbe1a5149bd763dadf26a9fa9d337f94ab80ce610d06c71456ba92cec40",
+      "byte_identical": true
+    },
+    {
+      "original": "minesweeper-3x3.save.txt",
+      "current": "minesweeper_3x3.save.txt",
+      "save_sha256": "af9e68c1a4d7cd05f2d95b38bac82a5eb026fffa7326650ea38e7ff4931702d3",
+      "byte_identical": true
+    },
+    {
+      "original": "minesweeper-10x10.save.txt",
+      "current": "minesweeper_10x10.save.txt",
+      "save_sha256": "a1a5cf966bd91034941c016f88e0d38a9bdea93ffa5057b6826c3cf567d24759",
+      "byte_identical": true
+    }
+  ]
+}

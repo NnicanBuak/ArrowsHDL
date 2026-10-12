@@ -1,0 +1,15 @@
+version = 1
+sources = ["cell.v", "minesweeper_10x10.v", "controller_part0.v", "controller_part1.v", "controller_part2.v", "controller_part3.v", "controller_part4.v", "controller_part5.v", "controller_part6.v", "controller_part7.v", "controller_part8.v", "controller_part9.v", "controller_part10.v", "controller_part11.v", "controller_part12.v", "controller_part13.v", "controller_part14.v", "controller_part15.v", "controller_part16.v", "controller_part17.v", "controller_part18.v", "controller_part19.v", "controller_part20.v", "controller_part21.v", "controller_part22.v", "controller_part23.v", "controller_part24.v", "controller_part25.v", "controller_part26.v", "controller_part27.v", "controller_part28.v", "controller_part29.v", "controller_part30.v", "controller_part31.v", "controller_part32.v", "controller_part33.v", "controller_part34.v"]
+top = "minesweeper_10x10"
+bindings = "minesweeper_10x10.bindings.json"
+
+[language]
+standard = "1800-2023"
+
+[placement]
+template = "minesweeper_10x10.physical.toml"
+
+[[placement.grids]]
+instances = "rows[*].cols[*].tile"
+step = [112, 112]
+max_cell_size = [112, 112]

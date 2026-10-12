@@ -1,0 +1,240 @@
+{
+  "passed": true,
+  "map_hash": "2b7b9a0338292a5b7f3451ad1beebb0c358ecb479f75f2f4c07d0ea613a0ce98",
+  "save_sha256": "23457132e8dba4eeb4b97ac5a743838fb675d73534c7c9f0ec3dbcc67c556a10",
+  "cells": 22638,
+  "bounds": {
+    "min": [
+      -120,
+      -148
+    ],
+    "max": [
+      171,
+      203
+    ],
+    "width": 292,
+    "height": 352,
+    "area": 102784
+  },
+  "runs": [
+    {
+      "passed": true,
+      "size": 3,
+      "seed": 123456789,
+      "first": 4,
+      "mines": [],
+      "first_opened": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "scenarios": [
+        "first-safe",
+        "neighbor-counts",
+        "cascade",
+        "closed-blank",
+        "visible-zero",
+        "stacked-connectors",
+        "victory",
+        "blocked-after-victory",
+        "status-blank-before-start",
+        "win-lose-all-pixels"
+      ],
+      "map_hash": "2b7b9a0338292a5b7f3451ad1beebb0c358ecb479f75f2f4c07d0ea613a0ce98",
+      "measured_outputs": 645,
+      "status_pixels": 220,
+      "mine_indicator_pixels": 315,
+      "wait_ticks": 50000,
+      "identical_modules": true,
+      "connection_wires_added": 1801,
+      "save_sha256": "23457132e8dba4eeb4b97ac5a743838fb675d73534c7c9f0ec3dbcc67c556a10"
+    },
+    {
+      "passed": true,
+      "size": 3,
+      "seed": 987654321,
+      "first": 0,
+      "mines": [],
+      "first_opened": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "scenarios": [
+        "first-safe",
+        "neighbor-counts",
+        "cascade",
+        "closed-blank",
+        "visible-zero",
+        "stacked-connectors",
+        "victory",
+        "blocked-after-victory",
+        "status-blank-before-start",
+        "win-lose-all-pixels"
+      ],
+      "map_hash": "2b7b9a0338292a5b7f3451ad1beebb0c358ecb479f75f2f4c07d0ea613a0ce98",
+      "measured_outputs": 645,
+      "status_pixels": 220,
+      "mine_indicator_pixels": 315,
+      "wait_ticks": 50000,
+      "identical_modules": true,
+      "connection_wires_added": 1801,
+      "save_sha256": "23457132e8dba4eeb4b97ac5a743838fb675d73534c7c9f0ec3dbcc67c556a10"
+    },
+    {
+      "passed": true,
+      "map_hash": "2b7b9a0338292a5b7f3451ad1beebb0c358ecb479f75f2f4c07d0ea613a0ce98",
+      "cold_ticks": 1,
+      "cases": [
+        {
+          "pressed": [
+            0,
+            8
+          ],
+          "selected": [
+            0
+          ],
+          "protected": [
+            0,
+            1,
+            3,
+            4
+          ],
+          "passed": true
+        },
+        {
+          "pressed": [
+            4,
+            5
+          ],
+          "selected": [
+            4
+          ],
+          "protected": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "passed": true
+        },
+        {
+          "pressed": [
+            2,
+            6
+          ],
+          "selected": [
+            2
+          ],
+          "protected": [
+            1,
+            2,
+            4,
+            5
+          ],
+          "passed": true
+        },
+        {
+          "pressed": [
+            1,
+            3
+          ],
+          "selected": [
+            1
+          ],
+          "protected": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "passed": true
+        },
+        {
+          "pressed": [
+            8
+          ],
+          "selected": [
+            8
+          ],
+          "protected": [
+            4,
+            5,
+            7,
+            8
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "passed": true,
+      "map_hash": "2b7b9a0338292a5b7f3451ad1beebb0c358ecb479f75f2f4c07d0ea613a0ce98",
+      "size": 3,
+      "first": 4,
+      "second": 0,
+      "events_after_click": {
+        "busy_second": 478,
+        "choose_second": 1765,
+        "choose_first": 1841,
+        "ready_first": 3483
+      },
+      "cases": [
+        {
+          "second_click_after_first": 734,
+          "selected": [
+            4
+          ],
+          "passed": true
+        },
+        {
+          "second_click_after_first": 1637,
+          "selected": [
+            4
+          ],
+          "passed": true
+        },
+        {
+          "second_click_after_first": 1713,
+          "selected": [
+            4
+          ],
+          "passed": true
+        },
+        {
+          "second_click_after_first": 1893,
+          "selected": [
+            4
+          ],
+          "passed": true
+        },
+        {
+          "second_click_after_first": 3355,
+          "selected": [
+            4
+          ],
+          "passed": true
+        }
+      ]
+    }
+  ]
+}

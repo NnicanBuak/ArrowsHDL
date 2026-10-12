@@ -1,0 +1,92 @@
+[
+  {
+    "inputs": {
+      "frame0": 3,
+      "frame1": 37,
+      "valid": 3,
+      "ready": 3
+    },
+    "expect": {
+      "data0": 3,
+      "data1": 5,
+      "output_valid": 3,
+      "accepted": 3,
+      "error": 0
+    }
+  },
+  {
+    "inputs": {
+      "frame0": 3,
+      "frame1": 5,
+      "valid": 3,
+      "ready": 3
+    },
+    "expect": {
+      "data0": 3,
+      "data1": 0,
+      "output_valid": 1,
+      "accepted": 1,
+      "error": 0
+    }
+  },
+  {
+    "inputs": {
+      "frame0": 3,
+      "frame1": 37,
+      "valid": 3,
+      "ready": 1
+    },
+    "expect": {
+      "data0": 3,
+      "data1": 5,
+      "output_valid": 3,
+      "accepted": 1,
+      "error": 0
+    }
+  },
+  {
+    "inputs": {
+      "frame0": 1,
+      "frame1": 37,
+      "valid": 3,
+      "ready": 3
+    },
+    "expect": {
+      "data0": 0,
+      "data1": 5,
+      "output_valid": 2,
+      "accepted": 2,
+      "error": 1
+    }
+  },
+  {
+    "inputs": {
+      "frame0": 3,
+      "frame1": 37,
+      "valid": 0,
+      "ready": 3
+    },
+    "expect": {
+      "data0": 0,
+      "data1": 0,
+      "output_valid": 0,
+      "accepted": 0,
+      "error": 0
+    }
+  },
+  {
+    "inputs": {
+      "frame0": 35,
+      "frame1": 37,
+      "valid": 3,
+      "ready": 2
+    },
+    "expect": {
+      "data0": 0,
+      "data1": 3,
+      "output_valid": 2,
+      "accepted": 1,
+      "error": 0
+    }
+  }
+]

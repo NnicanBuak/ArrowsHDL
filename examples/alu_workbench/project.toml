@@ -1,0 +1,6 @@
+version = 1
+sources = ["alu_workbench.v", "arithmetic.v", "logic_unit.v"]
+top = "alu_workbench"
+
+[language]
+standard = "1364-2005"

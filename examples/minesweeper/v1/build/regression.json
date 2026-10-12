@@ -1,0 +1,288 @@
+{
+  "passed": true,
+  "version": "v1",
+  "compiled": {
+    "tile": {
+      "map_hash": "1d083c4cdbf225cab43cdf960570f6440e6cb87977265330fb0402b4f06776b2",
+      "save_sha256": "95577dbe1a5149bd763dadf26a9fa9d337f94ab80ce610d06c71456ba92cec40",
+      "cells": 7196,
+      "bounds": {
+        "min": [
+          0,
+          0
+        ],
+        "max": [
+          111,
+          111
+        ],
+        "width": 112,
+        "height": 112,
+        "area": 12544
+      }
+    },
+    "minesweeper_3x3": {
+      "map_hash": "8293349ca4c1cd64e1930c52fd3ea69f4ac067fb116d7bd74e746667334da18b",
+      "save_sha256": "af9e68c1a4d7cd05f2d95b38bac82a5eb026fffa7326650ea38e7ff4931702d3",
+      "cells": 83273,
+      "bounds": {
+        "min": [
+          -410,
+          -323
+        ],
+        "max": [
+          335,
+          335
+        ],
+        "width": 746,
+        "height": 659,
+        "area": 491614
+      }
+    },
+    "minesweeper_10x10": {
+      "map_hash": "fcb0a7cfa5d93a7229f3ebbd4d5cb79800a18c8925407683b6287788386cace7",
+      "save_sha256": "a1a5cf966bd91034941c016f88e0d38a9bdea93ffa5057b6826c3cf567d24759",
+      "cells": 892608,
+      "bounds": {
+        "min": [
+          -410,
+          -1844
+        ],
+        "max": [
+          1119,
+          1119
+        ],
+        "width": 1530,
+        "height": 2964,
+        "area": 4534920
+      }
+    }
+  },
+  "cell": {
+    "passed": true,
+    "neighbor_masks": 256,
+    "transition_vectors": 512,
+    "segment_checks": 3584,
+    "checked_samples": 7168,
+    "read_only_state_checks": true,
+    "button_squares": 9,
+    "button_press_release_checks": 18,
+    "side": 112,
+    "map_hash": "1d083c4cdbf225cab43cdf960570f6440e6cb87977265330fb0402b4f06776b2",
+    "save_sha256": "95577dbe1a5149bd763dadf26a9fa9d337f94ab80ce610d06c71456ba92cec40"
+  },
+  "boards": [
+    {
+      "passed": true,
+      "size": 3,
+      "seed": 123456789,
+      "first": 4,
+      "mines": [],
+      "first_opened": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "scenarios": [
+        "first-safe",
+        "neighbor-counts",
+        "cascade",
+        "closed-blank",
+        "visible-zero",
+        "stacked-connectors",
+        "victory",
+        "blocked-after-victory"
+      ],
+      "map_hash": "8293349ca4c1cd64e1930c52fd3ea69f4ac067fb116d7bd74e746667334da18b",
+      "measured_outputs": 155,
+      "status_pixels": 0,
+      "mine_indicator_pixels": 45,
+      "wait_ticks": 72404,
+      "identical_modules": true,
+      "connection_wires_added": 0,
+      "save_sha256": "af9e68c1a4d7cd05f2d95b38bac82a5eb026fffa7326650ea38e7ff4931702d3"
+    },
+    {
+      "passed": true,
+      "size": 3,
+      "seed": 987654321,
+      "first": 0,
+      "mines": [],
+      "first_opened": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "scenarios": [
+        "first-safe",
+        "neighbor-counts",
+        "cascade",
+        "closed-blank",
+        "visible-zero",
+        "stacked-connectors",
+        "victory",
+        "blocked-after-victory"
+      ],
+      "map_hash": "8293349ca4c1cd64e1930c52fd3ea69f4ac067fb116d7bd74e746667334da18b",
+      "measured_outputs": 155,
+      "status_pixels": 0,
+      "mine_indicator_pixels": 45,
+      "wait_ticks": 72404,
+      "identical_modules": true,
+      "connection_wires_added": 0,
+      "save_sha256": "af9e68c1a4d7cd05f2d95b38bac82a5eb026fffa7326650ea38e7ff4931702d3"
+    },
+    {
+      "passed": true,
+      "size": 10,
+      "seed": 123456789,
+      "first": 55,
+      "mines": [
+        0,
+        2,
+        10,
+        11,
+        13,
+        18,
+        23,
+        28,
+        30,
+        31,
+        36,
+        39,
+        41,
+        48,
+        49,
+        58,
+        62,
+        67,
+        69,
+        70,
+        71,
+        75,
+        80,
+        92,
+        93
+      ],
+      "first_opened": [
+        32,
+        33,
+        34,
+        35,
+        42,
+        43,
+        44,
+        45,
+        46,
+        52,
+        53,
+        54,
+        55,
+        56,
+        63,
+        64,
+        65,
+        66
+      ],
+      "scenarios": [
+        "first-safe",
+        "neighbor-counts",
+        "cascade",
+        "closed-blank",
+        "visible-zero",
+        "stacked-connectors",
+        "mine-defeat",
+        "blocked-after-defeat",
+        "safe-cells-stay-closed-after-defeat",
+        "victory",
+        "blocked-after-victory"
+      ],
+      "map_hash": "fcb0a7cfa5d93a7229f3ebbd4d5cb79800a18c8925407683b6287788386cace7",
+      "measured_outputs": 1702,
+      "status_pixels": 0,
+      "mine_indicator_pixels": 500,
+      "wait_ticks": 750364,
+      "identical_modules": true,
+      "connection_wires_added": 0,
+      "save_sha256": "a1a5cf966bd91034941c016f88e0d38a9bdea93ffa5057b6826c3cf567d24759"
+    },
+    {
+      "passed": true,
+      "size": 10,
+      "seed": 987654321,
+      "first": 0,
+      "mines": [
+        4,
+        13,
+        19,
+        24,
+        27,
+        32,
+        34,
+        51,
+        55,
+        59,
+        61,
+        68,
+        72,
+        74,
+        77,
+        79,
+        80,
+        81,
+        88,
+        91,
+        94,
+        97,
+        99
+      ],
+      "first_opened": [
+        0,
+        1,
+        2,
+        10,
+        11,
+        12,
+        20,
+        21,
+        22,
+        30,
+        31,
+        40,
+        41
+      ],
+      "scenarios": [
+        "first-safe",
+        "neighbor-counts",
+        "cascade",
+        "closed-blank",
+        "visible-zero",
+        "stacked-connectors",
+        "mine-defeat",
+        "blocked-after-defeat",
+        "safe-cells-stay-closed-after-defeat",
+        "victory",
+        "blocked-after-victory"
+      ],
+      "map_hash": "fcb0a7cfa5d93a7229f3ebbd4d5cb79800a18c8925407683b6287788386cace7",
+      "measured_outputs": 1702,
+      "status_pixels": 0,
+      "mine_indicator_pixels": 500,
+      "wait_ticks": 750364,
+      "identical_modules": true,
+      "connection_wires_added": 0,
+      "save_sha256": "a1a5cf966bd91034941c016f88e0d38a9bdea93ffa5057b6826c3cf567d24759"
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+version = 1
+interfaces = "interfaces.v"
+
+[[modules]]
+hdl = "minesweeper_cell_v2"
+source = "cell.v"
+geometry = "minesweeper_cell_v2.geometry.json"
+
+[[modules]]
+hdl = "tile"
+source = "cell_top.v"
+geometry = "tile.geometry.json"
+
+[[modules]]
+hdl = "minesweeper_10x10"
+source = "minesweeper_10x10.v"
+geometry = "minesweeper_10x10.geometry.json"
+
+[[modules]]
+hdl = "minesweeper_3x3"
+source = "minesweeper_3x3.v"
+geometry = "minesweeper_3x3.geometry.json"
+
+[[modules]]
+hdl = "minesweeper_5x5"
+source = "minesweeper_5x5.v"
+geometry = "minesweeper_5x5.geometry.json"
+
+[[instances]]
+path = "rows[0].cols[0].tile"
+at = [0, 0]
+
+[[instances]]
+path = "rows[0].cols[1].tile"
+at = [56, 0]
+
+[[instances]]
+path = "rows[0].cols[2].tile"
+at = [112, 0]
+
+[[instances]]
+path = "rows[0].cols[3].tile"
+at = [168, 0]
+
+[[instances]]
+path = "rows[0].cols[4].tile"
+at = [224, 0]
+
+[[instances]]
+path = "rows[0].cols[5].tile"
+at = [280, 0]
+
+[[instances]]
+path = "rows[0].cols[6].tile"
+at = [336, 0]
+
+[[instances]]
+path = "rows[0].cols[7].tile"
+at = [392, 0]
+
+[[instances]]
+path = "rows[0].cols[8].tile"
+at = [448, 0]
+
+[[instances]]
+path = "rows[0].cols[9].tile"
+at = [504, 0]
+
+[[instances]]
+path = "rows[1].cols[0].tile"
+at = [0, 70]
+
+[[instances]]
+path = "rows[1].cols[1].tile"
+at = [56, 70]
+
+[[instances]]
+path = "rows[1].cols[2].tile"
+at = [112, 70]
+
+[[instances]]
+path = "rows[1].cols[3].tile"
+at = [168, 70]
+
+[[instances]]
+path = "rows[1].cols[4].tile"
+at = [224, 70]
+
+[[instances]]
+path = "rows[1].cols[5].tile"
+at = [280, 70]
+
+[[instances]]
+path = "rows[1].cols[6].tile"
+at = [336, 70]
+
+[[instances]]
+path = "rows[1].cols[7].tile"
+at = [392, 70]
+
+[[instances]]
+path = "rows[1].cols[8].tile"
+at = [448, 70]
+
+[[instances]]
+path = "rows[1].cols[9].tile"
+at = [504, 70]
+
+[[instances]]
+path = "rows[2].cols[0].tile"
+at = [0, 140]
+
+[[instances]]
+path = "rows[2].cols[1].tile"
+at = [56, 140]
+
+[[instances]]
+path = "rows[2].cols[2].tile"
+at = [112, 140]
+
+[[instances]]
+path = "rows[2].cols[3].tile"
+at = [168, 140]
+
+[[instances]]
+path = "rows[2].cols[4].tile"
+at = [224, 140]
+
+[[instances]]
+path = "rows[2].cols[5].tile"
+at = [280, 140]
+
+[[instances]]
+path = "rows[2].cols[6].tile"
+at = [336, 140]
+
+[[instances]]
+path = "rows[2].cols[7].tile"
+at = [392, 140]
+
+[[instances]]
+path = "rows[2].cols[8].tile"
+at = [448, 140]
+
+[[instances]]
+path = "rows[2].cols[9].tile"
+at = [504, 140]
+
+[[instances]]
+path = "rows[3].cols[0].tile"
+at = [0, 210]
+
+[[instances]]
+path = "rows[3].cols[1].tile"
+at = [56, 210]
+
+[[instances]]
+path = "rows[3].cols[2].tile"
+at = [112, 210]
+
+[[instances]]
+path = "rows[3].cols[3].tile"
+at = [168, 210]
+
+[[instances]]
+path = "rows[3].cols[4].tile"
+at = [224, 210]
+
+[[instances]]
+path = "rows[3].cols[5].tile"
+at = [280, 210]
+
+[[instances]]
+path = "rows[3].cols[6].tile"
+at = [336, 210]
+
+[[instances]]
+path = "rows[3].cols[7].tile"
+at = [392, 210]
+
+[[instances]]
+path = "rows[3].cols[8].tile"
+at = [448, 210]
+
+[[instances]]
+path = "rows[3].cols[9].tile"
+at = [504, 210]
+
+[[instances]]
+path = "rows[4].cols[0].tile"
+at = [0, 280]
+
+[[instances]]
+path = "rows[4].cols[1].tile"
+at = [56, 280]
+
+[[instances]]
+path = "rows[4].cols[2].tile"
+at = [112, 280]
+
+[[instances]]
+path = "rows[4].cols[3].tile"
+at = [168, 280]
+
+[[instances]]
+path = "rows[4].cols[4].tile"
+at = [224, 280]
+
+[[instances]]
+path = "rows[4].cols[5].tile"
+at = [280, 280]
+
+[[instances]]
+path = "rows[4].cols[6].tile"
+at = [336, 280]
+
+[[instances]]
+path = "rows[4].cols[7].tile"
+at = [392, 280]
+
+[[instances]]
+path = "rows[4].cols[8].tile"
+at = [448, 280]
+
+[[instances]]
+path = "rows[4].cols[9].tile"
+at = [504, 280]
+
+[[instances]]
+path = "rows[5].cols[0].tile"
+at = [0, 350]
+
+[[instances]]
+path = "rows[5].cols[1].tile"
+at = [56, 350]
+
+[[instances]]
+path = "rows[5].cols[2].tile"
+at = [112, 350]
+
+[[instances]]
+path = "rows[5].cols[3].tile"
+at = [168, 350]
+
+[[instances]]
+path = "rows[5].cols[4].tile"
+at = [224, 350]
+
+[[instances]]
+path = "rows[5].cols[5].tile"
+at = [280, 350]
+
+[[instances]]
+path = "rows[5].cols[6].tile"
+at = [336, 350]
+
+[[instances]]
+path = "rows[5].cols[7].tile"
+at = [392, 350]
+
+[[instances]]
+path = "rows[5].cols[8].tile"
+at = [448, 350]
+
+[[instances]]
+path = "rows[5].cols[9].tile"
+at = [504, 350]
+
+[[instances]]
+path = "rows[6].cols[0].tile"
+at = [0, 420]
+
+[[instances]]
+path = "rows[6].cols[1].tile"
+at = [56, 420]
+
+[[instances]]
+path = "rows[6].cols[2].tile"
+at = [112, 420]
+
+[[instances]]
+path = "rows[6].cols[3].tile"
+at = [168, 420]
+
+[[instances]]
+path = "rows[6].cols[4].tile"
+at = [224, 420]
+
+[[instances]]
+path = "rows[6].cols[5].tile"
+at = [280, 420]
+
+[[instances]]
+path = "rows[6].cols[6].tile"
+at = [336, 420]
+
+[[instances]]
+path = "rows[6].cols[7].tile"
+at = [392, 420]
+
+[[instances]]
+path = "rows[6].cols[8].tile"
+at = [448, 420]
+
+[[instances]]
+path = "rows[6].cols[9].tile"
+at = [504, 420]
+
+[[instances]]
+path = "rows[7].cols[0].tile"
+at = [0, 490]
+
+[[instances]]
+path = "rows[7].cols[1].tile"
+at = [56, 490]
+
+[[instances]]
+path = "rows[7].cols[2].tile"
+at = [112, 490]
+
+[[instances]]
+path = "rows[7].cols[3].tile"
+at = [168, 490]
+
+[[instances]]
+path = "rows[7].cols[4].tile"
+at = [224, 490]
+
+[[instances]]
+path = "rows[7].cols[5].tile"
+at = [280, 490]
+
+[[instances]]
+path = "rows[7].cols[6].tile"
+at = [336, 490]
+
+[[instances]]
+path = "rows[7].cols[7].tile"
+at = [392, 490]
+
+[[instances]]
+path = "rows[7].cols[8].tile"
+at = [448, 490]
+
+[[instances]]
+path = "rows[7].cols[9].tile"
+at = [504, 490]
+
+[[instances]]
+path = "rows[8].cols[0].tile"
+at = [0, 560]
+
+[[instances]]
+path = "rows[8].cols[1].tile"
+at = [56, 560]
+
+[[instances]]
+path = "rows[8].cols[2].tile"
+at = [112, 560]
+
+[[instances]]
+path = "rows[8].cols[3].tile"
+at = [168, 560]
+
+[[instances]]
+path = "rows[8].cols[4].tile"
+at = [224, 560]
+
+[[instances]]
+path = "rows[8].cols[5].tile"
+at = [280, 560]
+
+[[instances]]
+path = "rows[8].cols[6].tile"
+at = [336, 560]
+
+[[instances]]
+path = "rows[8].cols[7].tile"
+at = [392, 560]
+
+[[instances]]
+path = "rows[8].cols[8].tile"
+at = [448, 560]
+
+[[instances]]
+path = "rows[8].cols[9].tile"
+at = [504, 560]
+
+[[instances]]
+path = "rows[9].cols[0].tile"
+at = [0, 630]
+
+[[instances]]
+path = "rows[9].cols[1].tile"
+at = [56, 630]
+
+[[instances]]
+path = "rows[9].cols[2].tile"
+at = [112, 630]
+
+[[instances]]
+path = "rows[9].cols[3].tile"
+at = [168, 630]
+
+[[instances]]
+path = "rows[9].cols[4].tile"
+at = [224, 630]
+
+[[instances]]
+path = "rows[9].cols[5].tile"
+at = [280, 630]
+
+[[instances]]
+path = "rows[9].cols[6].tile"
+at = [336, 630]
+
+[[instances]]
+path = "rows[9].cols[7].tile"
+at = [392, 630]
+
+[[instances]]
+path = "rows[9].cols[8].tile"
+at = [448, 630]
+
+[[instances]]
+path = "rows[9].cols[9].tile"
+at = [504, 630]

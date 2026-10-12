@@ -1,0 +1,121 @@
+{
+  "title": "Packet Router",
+  "subtitle": "Два входных кадра → два выхода · проверка чётности · арбитраж · backpressure",
+  "blocks": [
+    {
+      "name": "Входные кадры",
+      "at": [
+        44,
+        335
+      ],
+      "lines": [
+        "frame0[5:0], frame1[5:0]",
+        "valid[1:0]"
+      ]
+    },
+    {
+      "name": "frame_check × 2",
+      "at": [
+        400,
+        335
+      ],
+      "lines": [
+        "Чётность пяти битов",
+        "Отбрасывание ошибки"
+      ]
+    },
+    {
+      "name": "output_lane × 2",
+      "at": [
+        790,
+        335
+      ],
+      "lines": [
+        "Выбор по dest",
+        "Приоритет входа 0"
+      ]
+    },
+    {
+      "name": "Выходы",
+      "at": [
+        1150,
+        335
+      ],
+      "lines": [
+        "data0, data1, valid",
+        "accepted, error"
+      ]
+    }
+  ],
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ]
+  ],
+  "note": "ready разрешает accepted; выход valid и выбранные данные остаются видимыми при backpressure.",
+  "columns": [
+    {
+      "label": "frame0",
+      "key": "frame0",
+      "from": "inputs",
+      "width": 160
+    },
+    {
+      "label": "frame1",
+      "key": "frame1",
+      "from": "inputs",
+      "width": 160
+    },
+    {
+      "label": "valid",
+      "key": "valid",
+      "from": "inputs",
+      "width": 125
+    },
+    {
+      "label": "ready",
+      "key": "ready",
+      "from": "inputs",
+      "width": 125
+    },
+    {
+      "label": "data0",
+      "key": "data0",
+      "from": "actual",
+      "width": 150
+    },
+    {
+      "label": "data1",
+      "key": "data1",
+      "from": "actual",
+      "width": 150
+    },
+    {
+      "label": "out valid",
+      "key": "output_valid",
+      "from": "actual",
+      "width": 155
+    },
+    {
+      "label": "accepted",
+      "key": "accepted",
+      "from": "actual",
+      "width": 165
+    },
+    {
+      "label": "error",
+      "key": "error",
+      "from": "actual",
+      "width": 150
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "passed": true,
+  "save_sha256": "28665f9623af66d19c59a44ba220f0a4e2fcb66bb7b7b9a98963c68a0b9edabe",
+  "vectors_sha256": "3df4aca5c3cf52c30d3bbf77425f17d30d0e3d8793e905f0a987c55d73be3daa",
+  "rows": [
+    {
+      "inputs": {
+        "a": 15,
+        "b": 1,
+        "operation": 0
+      },
+      "actual": {
+        "carry": 1,
+        "equal": 0,
+        "result": 0,
+        "zero": 1
+      }
+    },
+    {
+      "inputs": {
+        "a": 3,
+        "b": 5,
+        "operation": 1
+      },
+      "actual": {
+        "carry": 0,
+        "equal": 0,
+        "result": 14,
+        "zero": 0
+      }
+    },
+    {
+      "inputs": {
+        "a": 6,
+        "b": 10,
+        "operation": 2
+      },
+      "actual": {
+        "carry": 0,
+        "equal": 0,
+        "result": 2,
+        "zero": 0
+      }
+    },
+    {
+      "inputs": {
+        "a": 6,
+        "b": 10,
+        "operation": 3
+      },
+      "actual": {
+        "carry": 0,
+        "equal": 0,
+        "result": 14,
+        "zero": 0
+      }
+    },
+    {
+      "inputs": {
+        "a": 6,
+        "b": 10,
+        "operation": 4
+      },
+      "actual": {
+        "carry": 0,
+        "equal": 0,
+        "result": 12,
+        "zero": 0
+      }
+    },
+    {
+      "inputs": {
+        "a": 6,
+        "b": 0,
+        "operation": 5
+      },
+      "actual": {
+        "carry": 0,
+        "equal": 0,
+        "result": 9,
+        "zero": 0
+      }
+    },
+    {
+      "inputs": {
+        "a": 9,
+        "b": 0,
+        "operation": 6
+      },
+      "actual": {
+        "carry": 1,
+        "equal": 0,
+        "result": 2,
+        "zero": 0
+      }
+    },
+    {
+      "inputs": {
+        "a": 0,
+        "b": 13,
+        "operation": 7
+      },
+      "actual": {
+        "carry": 0,
+        "equal": 0,
+        "result": 13,
+        "zero": 0
+      }
+    }
+  ],
+  "checked_samples": 56
+}

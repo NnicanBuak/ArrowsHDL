@@ -1,0 +1,10 @@
+version = 1
+sources = ["cell.v", "cell_top.v"]
+top = "tile"
+bindings = "cell.bindings.json"
+
+[language]
+standard = "1800-2023"
+
+[placement]
+template = "tile.physical.toml"

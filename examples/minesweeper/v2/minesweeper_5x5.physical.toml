@@ -1,0 +1,127 @@
+version = 1
+interfaces = "interfaces.v"
+
+[[modules]]
+hdl = "minesweeper_cell_v2"
+source = "cell.v"
+geometry = "minesweeper_cell_v2.geometry.json"
+
+[[modules]]
+hdl = "tile"
+source = "cell_top.v"
+geometry = "tile.geometry.json"
+
+[[modules]]
+hdl = "minesweeper_10x10"
+source = "minesweeper_10x10.v"
+geometry = "minesweeper_10x10.geometry.json"
+
+[[modules]]
+hdl = "minesweeper_3x3"
+source = "minesweeper_3x3.v"
+geometry = "minesweeper_3x3.geometry.json"
+
+[[modules]]
+hdl = "minesweeper_5x5"
+source = "minesweeper_5x5.v"
+geometry = "minesweeper_5x5.geometry.json"
+
+[[instances]]
+path = "rows[0].cols[0].tile"
+at = [0, 0]
+
+[[instances]]
+path = "rows[0].cols[1].tile"
+at = [56, 0]
+
+[[instances]]
+path = "rows[0].cols[2].tile"
+at = [112, 0]
+
+[[instances]]
+path = "rows[0].cols[3].tile"
+at = [168, 0]
+
+[[instances]]
+path = "rows[0].cols[4].tile"
+at = [224, 0]
+
+[[instances]]
+path = "rows[1].cols[0].tile"
+at = [0, 70]
+
+[[instances]]
+path = "rows[1].cols[1].tile"
+at = [56, 70]
+
+[[instances]]
+path = "rows[1].cols[2].tile"
+at = [112, 70]
+
+[[instances]]
+path = "rows[1].cols[3].tile"
+at = [168, 70]
+
+[[instances]]
+path = "rows[1].cols[4].tile"
+at = [224, 70]
+
+[[instances]]
+path = "rows[2].cols[0].tile"
+at = [0, 140]
+
+[[instances]]
+path = "rows[2].cols[1].tile"
+at = [56, 140]
+
+[[instances]]
+path = "rows[2].cols[2].tile"
+at = [112, 140]
+
+[[instances]]
+path = "rows[2].cols[3].tile"
+at = [168, 140]
+
+[[instances]]
+path = "rows[2].cols[4].tile"
+at = [224, 140]
+
+[[instances]]
+path = "rows[3].cols[0].tile"
+at = [0, 210]
+
+[[instances]]
+path = "rows[3].cols[1].tile"
+at = [56, 210]
+
+[[instances]]
+path = "rows[3].cols[2].tile"
+at = [112, 210]
+
+[[instances]]
+path = "rows[3].cols[3].tile"
+at = [168, 210]
+
+[[instances]]
+path = "rows[3].cols[4].tile"
+at = [224, 210]
+
+[[instances]]
+path = "rows[4].cols[0].tile"
+at = [0, 280]
+
+[[instances]]
+path = "rows[4].cols[1].tile"
+at = [56, 280]
+
+[[instances]]
+path = "rows[4].cols[2].tile"
+at = [112, 280]
+
+[[instances]]
+path = "rows[4].cols[3].tile"
+at = [168, 280]
+
+[[instances]]
+path = "rows[4].cols[4].tile"
+at = [224, 280]

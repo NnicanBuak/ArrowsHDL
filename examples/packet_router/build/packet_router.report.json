@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "top": "packet_router",
+  "save_sha256": "c5efdde947b33a979e068fc7a08d3d34312e365c61c2285b23f354dde45d9f23",
+  "vectors": 65536,
+  "checked_samples": 917504,
+  "batches": 57,
+  "oracle": "independent Python arithmetic / frame routing protocol",
+  "failures": []
+}

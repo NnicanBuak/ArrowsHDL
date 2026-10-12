@@ -1,0 +1,8 @@
+{
+  "source": "original previous-112 saves, exact bytes including trailing newline",
+  "sha256": {
+    "tile": "95577dbe1a5149bd763dadf26a9fa9d337f94ab80ce610d06c71456ba92cec40",
+    "minesweeper_3x3": "af9e68c1a4d7cd05f2d95b38bac82a5eb026fffa7326650ea38e7ff4931702d3",
+    "minesweeper_10x10": "a1a5cf966bd91034941c016f88e0d38a9bdea93ffa5057b6826c3cf567d24759"
+  }
+}

@@ -1,0 +1,6 @@
+version = 1
+sources = ["packet_router.v", "frame_check.v", "output_lane.v"]
+top = "packet_router"
+
+[language]
+standard = "1364-2005"

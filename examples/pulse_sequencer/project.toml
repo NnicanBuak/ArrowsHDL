@@ -1,0 +1,10 @@
+version = 1
+sources = ["pulse_sequencer.v", "oscillator_0.v", "oscillator_1.v", "oscillator_2.v", "oscillator_3.v", "oscillator_4.v", "oscillator_5.v", "oscillator_6.v", "oscillator_7.v", "selection_memory.v", "history_display.v"]
+top = "pulse_sequencer"
+bindings = "bindings.json"
+
+[language]
+standard = "1800-2023"
+
+[placement]
+template = "pulse_sequencer.physical.toml"

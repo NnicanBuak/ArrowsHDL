@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "map_hash": "1d083c4cdbf225cab43cdf960570f6440e6cb87977265330fb0402b4f06776b2",
+  "save_sha256": "95577dbe1a5149bd763dadf26a9fa9d337f94ab80ce610d06c71456ba92cec40",
+  "cells": 7196,
+  "bounds": {
+    "min": [
+      0,
+      0
+    ],
+    "max": [
+      111,
+      111
+    ],
+    "width": 112,
+    "height": 112,
+    "area": 12544
+  },
+  "checks": {
+    "passed": true,
+    "neighbor_masks": 256,
+    "transition_vectors": 512,
+    "segment_checks": 3584,
+    "checked_samples": 7168,
+    "read_only_state_checks": true,
+    "button_squares": 9,
+    "button_press_release_checks": 18,
+    "side": 112,
+    "map_hash": "1d083c4cdbf225cab43cdf960570f6440e6cb87977265330fb0402b4f06776b2",
+    "save_sha256": "95577dbe1a5149bd763dadf26a9fa9d337f94ab80ce610d06c71456ba92cec40"
+  }
+}

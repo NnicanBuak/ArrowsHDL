@@ -1,0 +1,27 @@
+version = 1
+interfaces = "interfaces.v"
+
+[[modules]]
+hdl = "minesweeper_cell_v2"
+source = "cell.v"
+geometry = "minesweeper_cell_v2.geometry.json"
+
+[[modules]]
+hdl = "tile"
+source = "cell_top.v"
+geometry = "tile.geometry.json"
+
+[[modules]]
+hdl = "minesweeper_10x10"
+source = "minesweeper_10x10.v"
+geometry = "minesweeper_10x10.geometry.json"
+
+[[modules]]
+hdl = "minesweeper_3x3"
+source = "minesweeper_3x3.v"
+geometry = "minesweeper_3x3.geometry.json"
+
+[[modules]]
+hdl = "minesweeper_5x5"
+source = "minesweeper_5x5.v"
+geometry = "minesweeper_5x5.geometry.json"

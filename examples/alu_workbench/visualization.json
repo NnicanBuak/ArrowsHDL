@@ -1,0 +1,138 @@
+{
+  "title": "ALU Workbench",
+  "subtitle": "Три HDL-модуля · 4-битные слова · 8 операций · флаги результата",
+  "blocks": [
+    {
+      "name": "Входы",
+      "at": [
+        44,
+        335
+      ],
+      "lines": [
+        "a[3:0], b[3:0]",
+        "operation[2:0]"
+      ]
+    },
+    {
+      "name": "arithmetic",
+      "at": [
+        400,
+        180
+      ],
+      "lines": [
+        "Сложение / вычитание",
+        "Цепь переноса 4 бита"
+      ]
+    },
+    {
+      "name": "logic_unit",
+      "at": [
+        400,
+        430
+      ],
+      "lines": [
+        "AND, OR, XOR, NOT",
+        "Четыре режима"
+      ]
+    },
+    {
+      "name": "alu_workbench",
+      "at": [
+        790,
+        335
+      ],
+      "lines": [
+        "Выбор результата",
+        "SHL A и PASS B"
+      ]
+    },
+    {
+      "name": "Выходы",
+      "at": [
+        1150,
+        335
+      ],
+      "lines": [
+        "result[3:0]",
+        "carry, zero, equal"
+      ]
+    }
+  ],
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      4
+    ]
+  ],
+  "note": "Проверка: все 2048 комбинации a × b × operation на физическом сохранении.",
+  "columns": [
+    {
+      "label": "a",
+      "key": "a",
+      "from": "inputs",
+      "width": 85
+    },
+    {
+      "label": "b",
+      "key": "b",
+      "from": "inputs",
+      "width": 85
+    },
+    {
+      "label": "Операция",
+      "key": "operation",
+      "from": "inputs",
+      "width": 240,
+      "names": {
+        "0": "ADD",
+        "1": "SUB",
+        "2": "AND",
+        "3": "OR",
+        "4": "XOR",
+        "5": "NOT A",
+        "6": "SHL A",
+        "7": "PASS B"
+      }
+    },
+    {
+      "label": "result",
+      "key": "result",
+      "from": "actual",
+      "width": 170
+    },
+    {
+      "label": "carry",
+      "key": "carry",
+      "from": "actual",
+      "width": 180
+    },
+    {
+      "label": "zero",
+      "key": "zero",
+      "from": "actual",
+      "width": 180
+    },
+    {
+      "label": "equal",
+      "key": "equal",
+      "from": "actual",
+      "width": 180
+    }
+  ]
+}

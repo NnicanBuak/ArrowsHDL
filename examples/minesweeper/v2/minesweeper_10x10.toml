@@ -1,0 +1,15 @@
+version = 1
+sources = ["cell.v", "minesweeper_10x10.v"]
+top = "minesweeper_10x10"
+bindings = "minesweeper_10x10.bindings.json"
+
+[language]
+standard = "1800-2023"
+
+[placement]
+template = "minesweeper_10x10.physical.toml"
+
+[[placement.grids]]
+instances = "rows[*].cols[*].tile"
+step = [56, 70]
+max_cell_size = [56, 64]

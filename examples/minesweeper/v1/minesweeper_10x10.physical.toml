@@ -1,0 +1,597 @@
+version = 1
+interfaces = "interfaces.v"
+
+[[modules]]
+hdl = "minesweeper_cell_v1"
+source = "cell.v"
+geometry = "minesweeper_cell_v1.geometry.json"
+
+[[modules]]
+hdl = "tile"
+source = "cell_top.v"
+geometry = "tile.geometry.json"
+
+[[modules]]
+hdl = "minesweeper_10x10"
+source = "minesweeper_10x10.v"
+geometry = "minesweeper_10x10.geometry.json"
+
+[[modules]]
+hdl = "minesweeper_3x3"
+source = "minesweeper_3x3.v"
+geometry = "minesweeper_3x3.geometry.json"
+
+[[instances]]
+path = "rows[0].cols[0].tile"
+at = [0, 0]
+
+[[instances]]
+path = "rows[0].cols[1].tile"
+at = [112, 0]
+
+[[instances]]
+path = "rows[0].cols[2].tile"
+at = [224, 0]
+
+[[instances]]
+path = "rows[0].cols[3].tile"
+at = [336, 0]
+
+[[instances]]
+path = "rows[0].cols[4].tile"
+at = [448, 0]
+
+[[instances]]
+path = "rows[0].cols[5].tile"
+at = [560, 0]
+
+[[instances]]
+path = "rows[0].cols[6].tile"
+at = [672, 0]
+
+[[instances]]
+path = "rows[0].cols[7].tile"
+at = [784, 0]
+
+[[instances]]
+path = "rows[0].cols[8].tile"
+at = [896, 0]
+
+[[instances]]
+path = "rows[0].cols[9].tile"
+at = [1008, 0]
+
+[[instances]]
+path = "rows[1].cols[0].tile"
+at = [0, 112]
+
+[[instances]]
+path = "rows[1].cols[1].tile"
+at = [112, 112]
+
+[[instances]]
+path = "rows[1].cols[2].tile"
+at = [224, 112]
+
+[[instances]]
+path = "rows[1].cols[3].tile"
+at = [336, 112]
+
+[[instances]]
+path = "rows[1].cols[4].tile"
+at = [448, 112]
+
+[[instances]]
+path = "rows[1].cols[5].tile"
+at = [560, 112]
+
+[[instances]]
+path = "rows[1].cols[6].tile"
+at = [672, 112]
+
+[[instances]]
+path = "rows[1].cols[7].tile"
+at = [784, 112]
+
+[[instances]]
+path = "rows[1].cols[8].tile"
+at = [896, 112]
+
+[[instances]]
+path = "rows[1].cols[9].tile"
+at = [1008, 112]
+
+[[instances]]
+path = "rows[2].cols[0].tile"
+at = [0, 224]
+
+[[instances]]
+path = "rows[2].cols[1].tile"
+at = [112, 224]
+
+[[instances]]
+path = "rows[2].cols[2].tile"
+at = [224, 224]
+
+[[instances]]
+path = "rows[2].cols[3].tile"
+at = [336, 224]
+
+[[instances]]
+path = "rows[2].cols[4].tile"
+at = [448, 224]
+
+[[instances]]
+path = "rows[2].cols[5].tile"
+at = [560, 224]
+
+[[instances]]
+path = "rows[2].cols[6].tile"
+at = [672, 224]
+
+[[instances]]
+path = "rows[2].cols[7].tile"
+at = [784, 224]
+
+[[instances]]
+path = "rows[2].cols[8].tile"
+at = [896, 224]
+
+[[instances]]
+path = "rows[2].cols[9].tile"
+at = [1008, 224]
+
+[[instances]]
+path = "rows[3].cols[0].tile"
+at = [0, 336]
+
+[[instances]]
+path = "rows[3].cols[1].tile"
+at = [112, 336]
+
+[[instances]]
+path = "rows[3].cols[2].tile"
+at = [224, 336]
+
+[[instances]]
+path = "rows[3].cols[3].tile"
+at = [336, 336]
+
+[[instances]]
+path = "rows[3].cols[4].tile"
+at = [448, 336]
+
+[[instances]]
+path = "rows[3].cols[5].tile"
+at = [560, 336]
+
+[[instances]]
+path = "rows[3].cols[6].tile"
+at = [672, 336]
+
+[[instances]]
+path = "rows[3].cols[7].tile"
+at = [784, 336]
+
+[[instances]]
+path = "rows[3].cols[8].tile"
+at = [896, 336]
+
+[[instances]]
+path = "rows[3].cols[9].tile"
+at = [1008, 336]
+
+[[instances]]
+path = "rows[4].cols[0].tile"
+at = [0, 448]
+
+[[instances]]
+path = "rows[4].cols[1].tile"
+at = [112, 448]
+
+[[instances]]
+path = "rows[4].cols[2].tile"
+at = [224, 448]
+
+[[instances]]
+path = "rows[4].cols[3].tile"
+at = [336, 448]
+
+[[instances]]
+path = "rows[4].cols[4].tile"
+at = [448, 448]
+
+[[instances]]
+path = "rows[4].cols[5].tile"
+at = [560, 448]
+
+[[instances]]
+path = "rows[4].cols[6].tile"
+at = [672, 448]
+
+[[instances]]
+path = "rows[4].cols[7].tile"
+at = [784, 448]
+
+[[instances]]
+path = "rows[4].cols[8].tile"
+at = [896, 448]
+
+[[instances]]
+path = "rows[4].cols[9].tile"
+at = [1008, 448]
+
+[[instances]]
+path = "rows[5].cols[0].tile"
+at = [0, 560]
+
+[[instances]]
+path = "rows[5].cols[1].tile"
+at = [112, 560]
+
+[[instances]]
+path = "rows[5].cols[2].tile"
+at = [224, 560]
+
+[[instances]]
+path = "rows[5].cols[3].tile"
+at = [336, 560]
+
+[[instances]]
+path = "rows[5].cols[4].tile"
+at = [448, 560]
+
+[[instances]]
+path = "rows[5].cols[5].tile"
+at = [560, 560]
+
+[[instances]]
+path = "rows[5].cols[6].tile"
+at = [672, 560]
+
+[[instances]]
+path = "rows[5].cols[7].tile"
+at = [784, 560]
+
+[[instances]]
+path = "rows[5].cols[8].tile"
+at = [896, 560]
+
+[[instances]]
+path = "rows[5].cols[9].tile"
+at = [1008, 560]
+
+[[instances]]
+path = "rows[6].cols[0].tile"
+at = [0, 672]
+
+[[instances]]
+path = "rows[6].cols[1].tile"
+at = [112, 672]
+
+[[instances]]
+path = "rows[6].cols[2].tile"
+at = [224, 672]
+
+[[instances]]
+path = "rows[6].cols[3].tile"
+at = [336, 672]
+
+[[instances]]
+path = "rows[6].cols[4].tile"
+at = [448, 672]
+
+[[instances]]
+path = "rows[6].cols[5].tile"
+at = [560, 672]
+
+[[instances]]
+path = "rows[6].cols[6].tile"
+at = [672, 672]
+
+[[instances]]
+path = "rows[6].cols[7].tile"
+at = [784, 672]
+
+[[instances]]
+path = "rows[6].cols[8].tile"
+at = [896, 672]
+
+[[instances]]
+path = "rows[6].cols[9].tile"
+at = [1008, 672]
+
+[[instances]]
+path = "rows[7].cols[0].tile"
+at = [0, 784]
+
+[[instances]]
+path = "rows[7].cols[1].tile"
+at = [112, 784]
+
+[[instances]]
+path = "rows[7].cols[2].tile"
+at = [224, 784]
+
+[[instances]]
+path = "rows[7].cols[3].tile"
+at = [336, 784]
+
+[[instances]]
+path = "rows[7].cols[4].tile"
+at = [448, 784]
+
+[[instances]]
+path = "rows[7].cols[5].tile"
+at = [560, 784]
+
+[[instances]]
+path = "rows[7].cols[6].tile"
+at = [672, 784]
+
+[[instances]]
+path = "rows[7].cols[7].tile"
+at = [784, 784]
+
+[[instances]]
+path = "rows[7].cols[8].tile"
+at = [896, 784]
+
+[[instances]]
+path = "rows[7].cols[9].tile"
+at = [1008, 784]
+
+[[instances]]
+path = "rows[8].cols[0].tile"
+at = [0, 896]
+
+[[instances]]
+path = "rows[8].cols[1].tile"
+at = [112, 896]
+
+[[instances]]
+path = "rows[8].cols[2].tile"
+at = [224, 896]
+
+[[instances]]
+path = "rows[8].cols[3].tile"
+at = [336, 896]
+
+[[instances]]
+path = "rows[8].cols[4].tile"
+at = [448, 896]
+
+[[instances]]
+path = "rows[8].cols[5].tile"
+at = [560, 896]
+
+[[instances]]
+path = "rows[8].cols[6].tile"
+at = [672, 896]
+
+[[instances]]
+path = "rows[8].cols[7].tile"
+at = [784, 896]
+
+[[instances]]
+path = "rows[8].cols[8].tile"
+at = [896, 896]
+
+[[instances]]
+path = "rows[8].cols[9].tile"
+at = [1008, 896]
+
+[[instances]]
+path = "rows[9].cols[0].tile"
+at = [0, 1008]
+
+[[instances]]
+path = "rows[9].cols[1].tile"
+at = [112, 1008]
+
+[[instances]]
+path = "rows[9].cols[2].tile"
+at = [224, 1008]
+
+[[instances]]
+path = "rows[9].cols[3].tile"
+at = [336, 1008]
+
+[[instances]]
+path = "rows[9].cols[4].tile"
+at = [448, 1008]
+
+[[instances]]
+path = "rows[9].cols[5].tile"
+at = [560, 1008]
+
+[[instances]]
+path = "rows[9].cols[6].tile"
+at = [672, 1008]
+
+[[instances]]
+path = "rows[9].cols[7].tile"
+at = [784, 1008]
+
+[[instances]]
+path = "rows[9].cols[8].tile"
+at = [896, 1008]
+
+[[instances]]
+path = "rows[9].cols[9].tile"
+at = [1008, 1008]
+
+[[modules]]
+hdl="controller_part0"
+source="controller_part0.v"
+geometry="controller_part0.geometry.json"
+
+[[modules]]
+hdl="controller_part1"
+source="controller_part1.v"
+geometry="controller_part1.geometry.json"
+
+[[modules]]
+hdl="controller_part2"
+source="controller_part2.v"
+geometry="controller_part2.geometry.json"
+
+[[modules]]
+hdl="controller_part3"
+source="controller_part3.v"
+geometry="controller_part3.geometry.json"
+
+[[modules]]
+hdl="controller_part4"
+source="controller_part4.v"
+geometry="controller_part4.geometry.json"
+
+[[modules]]
+hdl="controller_part5"
+source="controller_part5.v"
+geometry="controller_part5.geometry.json"
+
+[[modules]]
+hdl="controller_part6"
+source="controller_part6.v"
+geometry="controller_part6.geometry.json"
+
+[[modules]]
+hdl="controller_part7"
+source="controller_part7.v"
+geometry="controller_part7.geometry.json"
+
+[[modules]]
+hdl="controller_part8"
+source="controller_part8.v"
+geometry="controller_part8.geometry.json"
+
+[[modules]]
+hdl="controller_part9"
+source="controller_part9.v"
+geometry="controller_part9.geometry.json"
+
+[[modules]]
+hdl="controller_part10"
+source="controller_part10.v"
+geometry="controller_part10.geometry.json"
+
+[[modules]]
+hdl="controller_part11"
+source="controller_part11.v"
+geometry="controller_part11.geometry.json"
+
+[[modules]]
+hdl="controller_part12"
+source="controller_part12.v"
+geometry="controller_part12.geometry.json"
+
+[[modules]]
+hdl="controller_part13"
+source="controller_part13.v"
+geometry="controller_part13.geometry.json"
+
+[[modules]]
+hdl="controller_part14"
+source="controller_part14.v"
+geometry="controller_part14.geometry.json"
+
+[[modules]]
+hdl="controller_part15"
+source="controller_part15.v"
+geometry="controller_part15.geometry.json"
+
+[[modules]]
+hdl="controller_part16"
+source="controller_part16.v"
+geometry="controller_part16.geometry.json"
+
+[[modules]]
+hdl="controller_part17"
+source="controller_part17.v"
+geometry="controller_part17.geometry.json"
+
+[[modules]]
+hdl="controller_part18"
+source="controller_part18.v"
+geometry="controller_part18.geometry.json"
+
+[[modules]]
+hdl="controller_part19"
+source="controller_part19.v"
+geometry="controller_part19.geometry.json"
+
+[[modules]]
+hdl="controller_part20"
+source="controller_part20.v"
+geometry="controller_part20.geometry.json"
+
+[[modules]]
+hdl="controller_part21"
+source="controller_part21.v"
+geometry="controller_part21.geometry.json"
+
+[[modules]]
+hdl="controller_part22"
+source="controller_part22.v"
+geometry="controller_part22.geometry.json"
+
+[[modules]]
+hdl="controller_part23"
+source="controller_part23.v"
+geometry="controller_part23.geometry.json"
+
+[[modules]]
+hdl="controller_part24"
+source="controller_part24.v"
+geometry="controller_part24.geometry.json"
+
+[[modules]]
+hdl="controller_part25"
+source="controller_part25.v"
+geometry="controller_part25.geometry.json"
+
+[[modules]]
+hdl="controller_part26"
+source="controller_part26.v"
+geometry="controller_part26.geometry.json"
+
+[[modules]]
+hdl="controller_part27"
+source="controller_part27.v"
+geometry="controller_part27.geometry.json"
+
+[[modules]]
+hdl="controller_part28"
+source="controller_part28.v"
+geometry="controller_part28.geometry.json"
+
+[[modules]]
+hdl="controller_part29"
+source="controller_part29.v"
+geometry="controller_part29.geometry.json"
+
+[[modules]]
+hdl="controller_part30"
+source="controller_part30.v"
+geometry="controller_part30.geometry.json"
+
+[[modules]]
+hdl="controller_part31"
+source="controller_part31.v"
+geometry="controller_part31.geometry.json"
+
+[[modules]]
+hdl="controller_part32"
+source="controller_part32.v"
+geometry="controller_part32.geometry.json"
+
+[[modules]]
+hdl="controller_part33"
+source="controller_part33.v"
+geometry="controller_part33.geometry.json"
+
+[[modules]]
+hdl="controller_part34"
+source="controller_part34.v"
+geometry="controller_part34.geometry.json"

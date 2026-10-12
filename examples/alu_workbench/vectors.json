@@ -1,0 +1,106 @@
+[
+  {
+    "inputs": {
+      "a": 15,
+      "b": 1,
+      "operation": 0
+    },
+    "expect": {
+      "result": 0,
+      "carry": 1,
+      "zero": 1,
+      "equal": 0
+    }
+  },
+  {
+    "inputs": {
+      "a": 3,
+      "b": 5,
+      "operation": 1
+    },
+    "expect": {
+      "result": 14,
+      "carry": 0,
+      "zero": 0,
+      "equal": 0
+    }
+  },
+  {
+    "inputs": {
+      "a": 6,
+      "b": 10,
+      "operation": 2
+    },
+    "expect": {
+      "result": 2,
+      "carry": 0,
+      "zero": 0,
+      "equal": 0
+    }
+  },
+  {
+    "inputs": {
+      "a": 6,
+      "b": 10,
+      "operation": 3
+    },
+    "expect": {
+      "result": 14,
+      "carry": 0,
+      "zero": 0,
+      "equal": 0
+    }
+  },
+  {
+    "inputs": {
+      "a": 6,
+      "b": 10,
+      "operation": 4
+    },
+    "expect": {
+      "result": 12,
+      "carry": 0,
+      "zero": 0,
+      "equal": 0
+    }
+  },
+  {
+    "inputs": {
+      "a": 6,
+      "b": 0,
+      "operation": 5
+    },
+    "expect": {
+      "result": 9,
+      "carry": 0,
+      "zero": 0,
+      "equal": 0
+    }
+  },
+  {
+    "inputs": {
+      "a": 9,
+      "b": 0,
+      "operation": 6
+    },
+    "expect": {
+      "result": 2,
+      "carry": 1,
+      "zero": 0,
+      "equal": 0
+    }
+  },
+  {
+    "inputs": {
+      "a": 0,
+      "b": 13,
+      "operation": 7
+    },
+    "expect": {
+      "result": 13,
+      "carry": 0,
+      "zero": 0,
+      "equal": 0
+    }
+  }
+]
