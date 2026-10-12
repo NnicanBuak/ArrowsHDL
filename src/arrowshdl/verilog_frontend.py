@@ -27,13 +27,13 @@ def find_yosys() -> str:
     local = ROOT / ".venv" / ("Scripts/yowasp-yosys.exe" if os.name == "nt" else "bin/yowasp-yosys")
     if local.is_file():
         return str(local)
-    raise MapError("Yosys не найден. Установите зависимости из ArrowsHDL/requirements.txt")
+    raise MapError("Yosys not found. Install the ArrowsHDL dependencies")
 
 
 def _quoted(path):
     value = str(path).replace("\\", "/")
     if any(c in value for c in ('"', "\n", "\r", ";")):
-        raise MapError("Недопустимый путь для Yosys")
+        raise MapError("Invalid path for Yosys")
     return '"' + value + '"'
 
 
@@ -47,25 +47,25 @@ def _validate_sources(sources):
         if re.search(r"#\s*(?:[0-9]|'|[A-Za-z_])", code):
             raise MapError(f"{source}: simulation delays are unsupported")
         if re.search(r'\b(?:assign|buf|not|and|or|xor|nand|nor|xnor)\s*#', code):
-            raise MapError(f'{source}: задержки у операторов и примитивов не поддерживаются')
+            raise MapError(f'{source}: operator and primitive delays are unsupported')
 
 
 def elaborate(sources, top, timeout=90, *, standard="1800-2023", include_dirs=(), defines=(), parameters=None, blackbox_modules=()):
     from arrowshdl.standards import check_standard
     check_standard(standard)
     if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_$]*", top):
-        raise MapError("Некорректное имя верхнего модуля")
+        raise MapError("Invalid top module name")
     sources = [Path(sources)] if isinstance(sources, (str, Path)) else list(map(Path, sources))
     if not sources:
-        raise MapError("Не указан исходный код")
+        raise MapError("No source files specified")
     sources = [p.resolve() for p in sources]
     _validate_sources(sources)
     library = Path(__file__).parent / "library/arrows.v"
     params = parameters or {}
     if any(not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", k) or not re.fullmatch(r"[-+0-9A-Za-z_'\[\]:]+", str(v)) for k,v in params.items()):
-        raise MapError("Некорректное переопределение параметра")
+        raise MapError("Invalid parameter override")
     if any(not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*(?:=[-+0-9A-Za-z_']+)?", v) for v in defines):
-        raise MapError("Некорректное определение макроса")
+        raise MapError("Invalid macro definition")
     # WASI sees the working directory; stage inputs with relative paths so native
     # Yosys and YoWASP use the same command on Windows, Linux and macOS.
     with tempfile.TemporaryDirectory(prefix="arrowshdl-inputs-") as staged:
@@ -117,10 +117,10 @@ def _elaborate_staged(stage, files, include_dirs, top, timeout, standard, define
             for port, desc in declaration.get('ports', {}).items():
                 connected = cell.get('connections', {}).get(port)
                 if connected is None or len(connected) != len(desc['bits']):
-                    raise MapError(f'{name}.{port}: несовместимая ширина или отсутствующий порт')
+                    raise MapError(f'{name}.{port}: incompatible width or missing port')
                 direction = cell.get('port_directions', {}).get(port)
                 if direction and direction != desc['direction']:
-                    raise MapError(f'{name}.{port}: несовместимое направление порта')
+                    raise MapError(f'{name}.{port}: incompatible port direction')
     if 'arrows_cell' in raw['modules']:
         # Slang keeps actual black-box instance parameters but omits defaults
         # from the declaration. RTLIL hierarchy needs those at object linking.
@@ -144,7 +144,7 @@ def synthesize_raw(raw, top, timeout=90):
     # remain attached to the declaration and native instances remain distinct.
     from copy import deepcopy
     raw = deepcopy(raw)
-    native_names = {'arrows_logic','arrows_detector','arrows_edge','arrows_rise','arrows_timer','arrows_impulse'}
+    native_names = {'arrows_logic','arrows_detector','arrows_edge','arrows_rise','arrows_timer','arrows_impulse','arrows_clock','arrows_register','arrows_latch'}
     additions = {}
     for module in raw['modules'].values():
         for cell in module.get('cells', {}).values():
@@ -190,7 +190,7 @@ def synthesize(source, top, timeout=90, **options):
 def normalize(raw: dict, top: str) -> dict:
     module = raw["modules"].get(top)
     if module is None:
-        raise MapError(f"В результате Yosys отсутствует модуль {top}")
+        raise MapError(f"Yosys output does not contain module {top}")
     if any(c['type'] == 'arrows_cell' or c['type'].startswith('$paramod\\arrows_cell') for c in module.get('cells', {}).values()):
         from arrowshdl.physical import normalize_physical
         return normalize_physical(raw, top)
@@ -202,7 +202,7 @@ def normalize(raw: dict, top: str) -> dict:
             return "const" + value
         if type(value) is int:
             return "n" + str(value)
-        raise MapError(f"Неопределённый бит Yosys: {value}")
+        raise MapError(f"Undefined Yosys bit: {value}")
 
     def emit(name, op, args, output, origin=None):
         nodes.append({"id": name, "op": op, "inputs": args, "output": output, "origin": origin})
@@ -215,46 +215,56 @@ def normalize(raw: dict, top: str) -> dict:
         entries = [{"index": i, "net": net} for i, net in zip(indices, bits)]
         if port["direction"] == "input":
             if any(net in used or net.startswith("const") for net in bits):
-                raise MapError("Входные биты должны иметь независимые источники")
+                raise MapError("Input bits must have independent drivers")
             inputs[name] = entries
             used.update(bits)
         elif port["direction"] == "output":
             outputs[name] = entries
         else:
-            raise MapError("Двунаправленный порт не поддерживается")
+            raise MapError("Bidirectional ports are unsupported")
 
     for name, cell in sorted(module.get("cells", {}).items()):
         kind = cell["type"]
         connections = cell["connections"]
-        native_kind = raw['modules'].get(kind,{}).get('attributes',{}).get('arrowshdl_primitive') or next((n for n in ('arrows_logic','arrows_detector','arrows_edge','arrows_rise','arrows_timer','arrows_impulse')
+        native_kind = raw['modules'].get(kind,{}).get('attributes',{}).get('arrowshdl_primitive') or next((n for n in ('arrows_logic','arrows_detector','arrows_edge','arrows_rise','arrows_timer','arrows_impulse','arrows_clock','arrows_register','arrows_latch')
                             if kind == n or kind.startswith('$paramod') and ('\\'+n+'\\' in kind or kind.endswith('\\'+n))), kind)
-        if native_kind in ('arrows_logic', 'arrows_detector', 'arrows_edge', 'arrows_rise', 'arrows_timer', 'arrows_impulse'):
+        if native_kind in ('arrows_register','arrows_latch'):
+            outputs_q=connections['Q']
+            for index,value in enumerate(outputs_q):
+                y=bit(value)
+                if y in used or y.startswith('const'): raise MapError(name+': duplicate driver')
+                used.add(y)
+                args=[bit(connections['load'][0]),bit(connections['D'][index])] if native_kind=='arrows_register' else [bit(connections['set'][0]),bit(connections['clear'][0])]
+                nodes.append(dict(id=name+f'[{index}]',op='REGISTER' if native_kind=='arrows_register' else 'LATCH',inputs=args,output=y,native=True,ticks=1))
+            tick=True
+            continue
+        if native_kind in ('arrows_logic', 'arrows_detector', 'arrows_edge', 'arrows_rise', 'arrows_timer', 'arrows_impulse','arrows_clock'):
             from arrowshdl.physical import parameter
             params = dict(raw['modules'].get(kind, {}).get('parameter_default_values', {}), **cell.get('parameters', {}))
             op = {'arrows_detector': 'DETECTOR', 'arrows_edge': 'EDGE', 'arrows_rise': 'RISE',
-                  'arrows_timer': 'TIMER', 'arrows_impulse': 'IMPULSE'}.get(native_kind)
+                  'arrows_timer': 'TIMER', 'arrows_impulse': 'IMPULSE','arrows_clock':'CLOCK'}.get(native_kind)
             if native_kind == 'arrows_logic':
                 op = {1:'OR', 2:'SOURCE', 4:'DELAY', 5:'DETECTOR', 9:'IMPULSE', 15:'NOT',
                       16:'ATLEAST2', 17:'XOR', 18:'SET', 19:'TOGGLE', 20:'RANDOM', 24:'BUTTON'}.get(parameter(params.get('OP'), 1))
                 if not op:
-                    raise MapError(f'{name}: операция требует физического шаблона')
+                    raise MapError(f'{name}: operation requires a physical template')
                 if any(v != '0' for v in connections.get('B', [])):
-                    raise MapError(f'{name}: blocking-входы требуют физического шаблона')
+                    raise MapError(f'{name}: blocking inputs require a physical template')
             values = connections.get('S' if op == 'DETECTOR' and native_kind == 'arrows_logic' else 'I', [])
             args = [bit(v) for v in values if v != '0']
             y = bit(connections['O'][0])
             if y in used or y.startswith('const'):
-                raise MapError(f'{name}: повторный источник сигнала')
+                raise MapError(f'{name}: duplicate signal driver')
             used.add(y)
             nodes.append(dict(id=name, op=op, inputs=args, output=y, native=True,
-                              ticks=parameter(params.get('TICKS'), 1)))
+                              ticks=parameter(params.get('PERIOD' if op=='CLOCK' else 'TICKS'), 20 if op=='CLOCK' else 1)))
             tick = True
             continue
         if kind == "$scopeinfo":
             # Flatten preserves instance/module attributes in this non-electrical
             # cell. Keep its provenance without treating it as a logic element.
             if connections or cell.get("port_directions"):
-                raise MapError(f"Служебная запись иерархии имеет электрические порты: {name}")
+                raise MapError(f"Hierarchy metadata record has electrical ports: {name}")
             attrs = cell.get("attributes", {})
             rtlil_module = attrs.get('module')
             original = raw.get('hierarchy_modules', {}).get(rtlil_module, {}).get('attributes', {}).get('hdlname')
@@ -263,13 +273,13 @@ def normalize(raw: dict, top: str) -> dict:
                            "source": attrs.get("module_src"), "instance_source": attrs.get("cell_src")})
             continue
         if kind not in {"$_BUF_", "$_NOT_", "$_AND_", "$_OR_", "$_XOR_", "$_XNOR_", "$_NAND_", "$_NOR_", "$_MUX_"}:
-            raise MapError(f"Неподдерживаемая клетка Yosys {kind}: {name}")
+            raise MapError(f"Unsupported Yosys cell: {kind}: {name}")
         if any(len(values) != 1 for values in connections.values()):
-            raise MapError(f"Ожидается битовая клетка: {name}")
+            raise MapError(f"Expected a single-bit cell: {name}")
         c = {key: bit(values[0]) for key, values in connections.items()}
         y, a, origin = c["Y"], c["A"], cell.get("attributes", {}).get("src")
         if y in used or y.startswith("const"):
-            raise MapError(f"Повторный источник сигнала {y}")
+            raise MapError(f"Duplicate signal driver: {y}")
         used.add(y)
         op = kind[2:-1]
         if op in ("BUF", "NOT"):
@@ -302,19 +312,19 @@ def normalize(raw: dict, top: str) -> dict:
         driven = available | {n['output'] for n in pending}
         missing = {v for n in nodes for v in n['inputs']} - driven
         if missing:
-            raise MapError(f'Нативный сигнал без источника: {sorted(missing)}')
+            raise MapError(f'Native signal has no driver: {sorted(missing)}')
     while pending:
         ready = [node for node in pending if set(node["inputs"]) <= available]
         if not ready:
-            raise MapError("Обратная связь или сигнал без источника в логическом графе")
+            raise MapError("Feedback or undriven signal in logic graph")
         for node in ready:
             if node["output"] in available:
-                raise MapError(f"Повторный источник {node['output']}")
+                raise MapError(f"Duplicate driver: {node['output']}")
             available.add(node["output"])
             ordered.append(node)
             pending.remove(node)
     if not outputs:
-        raise MapError("У схемы должен быть хотя бы один выход")
+        raise MapError("Scheme must have at least one output")
     graph = {"schema": 1, "top": top, "creator": raw.get("creator"), "inputs": inputs, "outputs": outputs, "nodes": ordered}
     if tick:
         graph['kind'] = 'tick'

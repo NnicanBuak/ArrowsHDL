@@ -11,7 +11,7 @@ module arrows_cell #(
 )(input [10:0] I, input [10:0] B, input S, output O);
 endmodule
 
-// Tick-level computation. OP is logical behavior; placement comes from TOML.
+// Tick-level computation. OP is logical behavior; placement is a compiler decision.
 // 1 OR, 2 constant source, 3 blocker, 4 delay, 5 detector, 9 pulse,
 // 15 NOT, 16 threshold >=2, 17 XOR, 18 SET, 19 TOGGLE, 20 RANDOM.
 (* blackbox *) module arrows_logic #(parameter integer OP = 1)
@@ -42,3 +42,12 @@ endmodule
 (* blackbox, keep *) module arrows_rise(input I, output O); endmodule
 (* blackbox, keep *) module arrows_timer #(parameter integer TICKS=1)(input I, output O); endmodule
 (* blackbox, keep *) module arrows_impulse(output O); endmodule
+// Free-running oscillator. PERIOD is the complete high/low cycle in game ticks.
+(* blackbox, keep *) module arrows_clock #(parameter integer PERIOD=20)(output O); endmodule
+
+// Level-controlled storage. A high load writes D; a low load retains Q.
+(* blackbox, keep *) module arrows_register #(parameter integer WIDTH=1)
+    (input load,input [WIDTH-1:0] D,output [WIDTH-1:0] Q); endmodule
+
+// Set/clear storage with set priority. Clear must be released before setting.
+(* blackbox, keep *) module arrows_latch(input set,clear,output Q); endmodule

@@ -1,11 +1,8 @@
-module packet_router(input [5:0] frame0,frame1,input [1:0] valid,ready,
-    output [3:0] data0,data1,output [1:0] output_valid,accepted,error);
-    wire good0,good1,g00,g01,g10,g11;
-    frame_check ingress0(frame0,valid[0],good0,error[0]);
-    frame_check ingress1(frame1,valid[1],good1,error[1]);
-    output_lane lane0(good0&~frame0[5],good1&~frame1[5],frame0[3:0],frame1[3:0],
-                      ready[0],output_valid[0],data0,g00,g01);
-    output_lane lane1(good0&frame0[5],good1&frame1[5],frame0[3:0],frame1[3:0],
-                      ready[1],output_valid[1],data1,g10,g11);
-    assign accepted={g01|g11,g00|g10};
+// Aggregate lane status and ingress parity errors.
+module router_status(input lane0_grant0,lane0_grant1,lane1_grant0,lane1_grant1,
+                     input lane0_valid,lane1_valid,error0,error1,
+                     output [1:0] accepted,output_valid,error);
+    assign accepted={lane0_grant1|lane1_grant1,lane0_grant0|lane1_grant0};
+    assign output_valid={lane1_valid,lane0_valid};
+    assign error={error1,error0};
 endmodule

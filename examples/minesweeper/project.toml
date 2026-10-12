@@ -1,0 +1,3434 @@
+version = 2
+top = "minesweeper"
+sources = ["mine_cell.v", "game_controller.v", "seven_segment.v"]
+
+[language]
+standard = "1364-2005"
+
+[[modules]]
+name = "cell_0"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_1"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_2"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_3"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_4"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_5"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_6"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_7"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_8"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_9"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_10"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_11"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_12"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_13"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_14"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_15"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_16"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_17"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_18"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_19"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_20"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_21"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_22"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_23"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "cell_24"
+hdl = "mine_cell"
+panel = { button = "selected", size = [7, 7], left = { file = "library:seven_segment", port = "segments" }, right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] } }
+
+[[modules]]
+name = "game"
+hdl = "game_controller"
+
+[[inputs]]
+name = "new_game"
+width = 1
+widget = "button"
+
+[[inputs]]
+name = "selected"
+width = 25
+widget = "button"
+size = [7, 7]
+
+[[connections]]
+from = "new_game"
+to = "game.new_game"
+
+[[connections]]
+from = "new_game"
+to = "cell_0.new_game"
+
+[[connections]]
+from = "selected[0]"
+to = "cell_0.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_0.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_0.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_0.defeat"
+
+[[connections]]
+from = "0"
+to = "cell_0.protected_cells[0]"
+
+[[connections]]
+from = "0"
+to = "cell_0.neighbor_mines[0]"
+
+[[connections]]
+from = "0"
+to = "cell_0.neighbor_zero_open[0]"
+
+[[connections]]
+from = "0"
+to = "cell_0.protected_cells[1]"
+
+[[connections]]
+from = "0"
+to = "cell_0.neighbor_mines[1]"
+
+[[connections]]
+from = "0"
+to = "cell_0.neighbor_zero_open[1]"
+
+[[connections]]
+from = "0"
+to = "cell_0.protected_cells[2]"
+
+[[connections]]
+from = "0"
+to = "cell_0.neighbor_mines[2]"
+
+[[connections]]
+from = "0"
+to = "cell_0.neighbor_zero_open[2]"
+
+[[connections]]
+from = "0"
+to = "cell_0.protected_cells[3]"
+
+[[connections]]
+from = "0"
+to = "cell_0.neighbor_mines[3]"
+
+[[connections]]
+from = "0"
+to = "cell_0.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_0.first_selected"
+to = "cell_0.protected_cells[4]"
+
+[[connections]]
+from = "cell_1.first_selected"
+to = "cell_0.protected_cells[5]"
+
+[[connections]]
+from = "cell_1.mine"
+to = "cell_0.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_1.zero_open"
+to = "cell_0.neighbor_zero_open[4]"
+
+[[connections]]
+from = "0"
+to = "cell_0.protected_cells[6]"
+
+[[connections]]
+from = "0"
+to = "cell_0.neighbor_mines[5]"
+
+[[connections]]
+from = "0"
+to = "cell_0.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_5.first_selected"
+to = "cell_0.protected_cells[7]"
+
+[[connections]]
+from = "cell_5.mine"
+to = "cell_0.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_5.zero_open"
+to = "cell_0.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_6.first_selected"
+to = "cell_0.protected_cells[8]"
+
+[[connections]]
+from = "cell_6.mine"
+to = "cell_0.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_6.zero_open"
+to = "cell_0.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_1.new_game"
+
+[[connections]]
+from = "selected[1]"
+to = "cell_1.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_1.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_1.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_1.defeat"
+
+[[connections]]
+from = "0"
+to = "cell_1.protected_cells[0]"
+
+[[connections]]
+from = "0"
+to = "cell_1.neighbor_mines[0]"
+
+[[connections]]
+from = "0"
+to = "cell_1.neighbor_zero_open[0]"
+
+[[connections]]
+from = "0"
+to = "cell_1.protected_cells[1]"
+
+[[connections]]
+from = "0"
+to = "cell_1.neighbor_mines[1]"
+
+[[connections]]
+from = "0"
+to = "cell_1.neighbor_zero_open[1]"
+
+[[connections]]
+from = "0"
+to = "cell_1.protected_cells[2]"
+
+[[connections]]
+from = "0"
+to = "cell_1.neighbor_mines[2]"
+
+[[connections]]
+from = "0"
+to = "cell_1.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_0.first_selected"
+to = "cell_1.protected_cells[3]"
+
+[[connections]]
+from = "cell_0.mine"
+to = "cell_1.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_0.zero_open"
+to = "cell_1.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_1.first_selected"
+to = "cell_1.protected_cells[4]"
+
+[[connections]]
+from = "cell_2.first_selected"
+to = "cell_1.protected_cells[5]"
+
+[[connections]]
+from = "cell_2.mine"
+to = "cell_1.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_2.zero_open"
+to = "cell_1.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_5.first_selected"
+to = "cell_1.protected_cells[6]"
+
+[[connections]]
+from = "cell_5.mine"
+to = "cell_1.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_5.zero_open"
+to = "cell_1.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_6.first_selected"
+to = "cell_1.protected_cells[7]"
+
+[[connections]]
+from = "cell_6.mine"
+to = "cell_1.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_6.zero_open"
+to = "cell_1.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_7.first_selected"
+to = "cell_1.protected_cells[8]"
+
+[[connections]]
+from = "cell_7.mine"
+to = "cell_1.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_7.zero_open"
+to = "cell_1.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_2.new_game"
+
+[[connections]]
+from = "selected[2]"
+to = "cell_2.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_2.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_2.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_2.defeat"
+
+[[connections]]
+from = "0"
+to = "cell_2.protected_cells[0]"
+
+[[connections]]
+from = "0"
+to = "cell_2.neighbor_mines[0]"
+
+[[connections]]
+from = "0"
+to = "cell_2.neighbor_zero_open[0]"
+
+[[connections]]
+from = "0"
+to = "cell_2.protected_cells[1]"
+
+[[connections]]
+from = "0"
+to = "cell_2.neighbor_mines[1]"
+
+[[connections]]
+from = "0"
+to = "cell_2.neighbor_zero_open[1]"
+
+[[connections]]
+from = "0"
+to = "cell_2.protected_cells[2]"
+
+[[connections]]
+from = "0"
+to = "cell_2.neighbor_mines[2]"
+
+[[connections]]
+from = "0"
+to = "cell_2.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_1.first_selected"
+to = "cell_2.protected_cells[3]"
+
+[[connections]]
+from = "cell_1.mine"
+to = "cell_2.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_1.zero_open"
+to = "cell_2.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_2.first_selected"
+to = "cell_2.protected_cells[4]"
+
+[[connections]]
+from = "cell_3.first_selected"
+to = "cell_2.protected_cells[5]"
+
+[[connections]]
+from = "cell_3.mine"
+to = "cell_2.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_3.zero_open"
+to = "cell_2.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_6.first_selected"
+to = "cell_2.protected_cells[6]"
+
+[[connections]]
+from = "cell_6.mine"
+to = "cell_2.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_6.zero_open"
+to = "cell_2.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_7.first_selected"
+to = "cell_2.protected_cells[7]"
+
+[[connections]]
+from = "cell_7.mine"
+to = "cell_2.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_7.zero_open"
+to = "cell_2.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_8.first_selected"
+to = "cell_2.protected_cells[8]"
+
+[[connections]]
+from = "cell_8.mine"
+to = "cell_2.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_8.zero_open"
+to = "cell_2.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_3.new_game"
+
+[[connections]]
+from = "selected[3]"
+to = "cell_3.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_3.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_3.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_3.defeat"
+
+[[connections]]
+from = "0"
+to = "cell_3.protected_cells[0]"
+
+[[connections]]
+from = "0"
+to = "cell_3.neighbor_mines[0]"
+
+[[connections]]
+from = "0"
+to = "cell_3.neighbor_zero_open[0]"
+
+[[connections]]
+from = "0"
+to = "cell_3.protected_cells[1]"
+
+[[connections]]
+from = "0"
+to = "cell_3.neighbor_mines[1]"
+
+[[connections]]
+from = "0"
+to = "cell_3.neighbor_zero_open[1]"
+
+[[connections]]
+from = "0"
+to = "cell_3.protected_cells[2]"
+
+[[connections]]
+from = "0"
+to = "cell_3.neighbor_mines[2]"
+
+[[connections]]
+from = "0"
+to = "cell_3.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_2.first_selected"
+to = "cell_3.protected_cells[3]"
+
+[[connections]]
+from = "cell_2.mine"
+to = "cell_3.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_2.zero_open"
+to = "cell_3.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_3.first_selected"
+to = "cell_3.protected_cells[4]"
+
+[[connections]]
+from = "cell_4.first_selected"
+to = "cell_3.protected_cells[5]"
+
+[[connections]]
+from = "cell_4.mine"
+to = "cell_3.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_4.zero_open"
+to = "cell_3.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_7.first_selected"
+to = "cell_3.protected_cells[6]"
+
+[[connections]]
+from = "cell_7.mine"
+to = "cell_3.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_7.zero_open"
+to = "cell_3.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_8.first_selected"
+to = "cell_3.protected_cells[7]"
+
+[[connections]]
+from = "cell_8.mine"
+to = "cell_3.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_8.zero_open"
+to = "cell_3.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_9.first_selected"
+to = "cell_3.protected_cells[8]"
+
+[[connections]]
+from = "cell_9.mine"
+to = "cell_3.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_9.zero_open"
+to = "cell_3.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_4.new_game"
+
+[[connections]]
+from = "selected[4]"
+to = "cell_4.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_4.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_4.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_4.defeat"
+
+[[connections]]
+from = "0"
+to = "cell_4.protected_cells[0]"
+
+[[connections]]
+from = "0"
+to = "cell_4.neighbor_mines[0]"
+
+[[connections]]
+from = "0"
+to = "cell_4.neighbor_zero_open[0]"
+
+[[connections]]
+from = "0"
+to = "cell_4.protected_cells[1]"
+
+[[connections]]
+from = "0"
+to = "cell_4.neighbor_mines[1]"
+
+[[connections]]
+from = "0"
+to = "cell_4.neighbor_zero_open[1]"
+
+[[connections]]
+from = "0"
+to = "cell_4.protected_cells[2]"
+
+[[connections]]
+from = "0"
+to = "cell_4.neighbor_mines[2]"
+
+[[connections]]
+from = "0"
+to = "cell_4.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_3.first_selected"
+to = "cell_4.protected_cells[3]"
+
+[[connections]]
+from = "cell_3.mine"
+to = "cell_4.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_3.zero_open"
+to = "cell_4.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_4.first_selected"
+to = "cell_4.protected_cells[4]"
+
+[[connections]]
+from = "0"
+to = "cell_4.protected_cells[5]"
+
+[[connections]]
+from = "0"
+to = "cell_4.neighbor_mines[4]"
+
+[[connections]]
+from = "0"
+to = "cell_4.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_8.first_selected"
+to = "cell_4.protected_cells[6]"
+
+[[connections]]
+from = "cell_8.mine"
+to = "cell_4.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_8.zero_open"
+to = "cell_4.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_9.first_selected"
+to = "cell_4.protected_cells[7]"
+
+[[connections]]
+from = "cell_9.mine"
+to = "cell_4.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_9.zero_open"
+to = "cell_4.neighbor_zero_open[6]"
+
+[[connections]]
+from = "0"
+to = "cell_4.protected_cells[8]"
+
+[[connections]]
+from = "0"
+to = "cell_4.neighbor_mines[7]"
+
+[[connections]]
+from = "0"
+to = "cell_4.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_5.new_game"
+
+[[connections]]
+from = "selected[5]"
+to = "cell_5.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_5.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_5.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_5.defeat"
+
+[[connections]]
+from = "0"
+to = "cell_5.protected_cells[0]"
+
+[[connections]]
+from = "0"
+to = "cell_5.neighbor_mines[0]"
+
+[[connections]]
+from = "0"
+to = "cell_5.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_0.first_selected"
+to = "cell_5.protected_cells[1]"
+
+[[connections]]
+from = "cell_0.mine"
+to = "cell_5.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_0.zero_open"
+to = "cell_5.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_1.first_selected"
+to = "cell_5.protected_cells[2]"
+
+[[connections]]
+from = "cell_1.mine"
+to = "cell_5.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_1.zero_open"
+to = "cell_5.neighbor_zero_open[2]"
+
+[[connections]]
+from = "0"
+to = "cell_5.protected_cells[3]"
+
+[[connections]]
+from = "0"
+to = "cell_5.neighbor_mines[3]"
+
+[[connections]]
+from = "0"
+to = "cell_5.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_5.first_selected"
+to = "cell_5.protected_cells[4]"
+
+[[connections]]
+from = "cell_6.first_selected"
+to = "cell_5.protected_cells[5]"
+
+[[connections]]
+from = "cell_6.mine"
+to = "cell_5.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_6.zero_open"
+to = "cell_5.neighbor_zero_open[4]"
+
+[[connections]]
+from = "0"
+to = "cell_5.protected_cells[6]"
+
+[[connections]]
+from = "0"
+to = "cell_5.neighbor_mines[5]"
+
+[[connections]]
+from = "0"
+to = "cell_5.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_10.first_selected"
+to = "cell_5.protected_cells[7]"
+
+[[connections]]
+from = "cell_10.mine"
+to = "cell_5.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_10.zero_open"
+to = "cell_5.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_11.first_selected"
+to = "cell_5.protected_cells[8]"
+
+[[connections]]
+from = "cell_11.mine"
+to = "cell_5.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_11.zero_open"
+to = "cell_5.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_6.new_game"
+
+[[connections]]
+from = "selected[6]"
+to = "cell_6.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_6.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_6.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_6.defeat"
+
+[[connections]]
+from = "cell_0.first_selected"
+to = "cell_6.protected_cells[0]"
+
+[[connections]]
+from = "cell_0.mine"
+to = "cell_6.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_0.zero_open"
+to = "cell_6.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_1.first_selected"
+to = "cell_6.protected_cells[1]"
+
+[[connections]]
+from = "cell_1.mine"
+to = "cell_6.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_1.zero_open"
+to = "cell_6.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_2.first_selected"
+to = "cell_6.protected_cells[2]"
+
+[[connections]]
+from = "cell_2.mine"
+to = "cell_6.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_2.zero_open"
+to = "cell_6.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_5.first_selected"
+to = "cell_6.protected_cells[3]"
+
+[[connections]]
+from = "cell_5.mine"
+to = "cell_6.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_5.zero_open"
+to = "cell_6.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_6.first_selected"
+to = "cell_6.protected_cells[4]"
+
+[[connections]]
+from = "cell_7.first_selected"
+to = "cell_6.protected_cells[5]"
+
+[[connections]]
+from = "cell_7.mine"
+to = "cell_6.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_7.zero_open"
+to = "cell_6.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_10.first_selected"
+to = "cell_6.protected_cells[6]"
+
+[[connections]]
+from = "cell_10.mine"
+to = "cell_6.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_10.zero_open"
+to = "cell_6.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_11.first_selected"
+to = "cell_6.protected_cells[7]"
+
+[[connections]]
+from = "cell_11.mine"
+to = "cell_6.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_11.zero_open"
+to = "cell_6.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_12.first_selected"
+to = "cell_6.protected_cells[8]"
+
+[[connections]]
+from = "cell_12.mine"
+to = "cell_6.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_12.zero_open"
+to = "cell_6.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_7.new_game"
+
+[[connections]]
+from = "selected[7]"
+to = "cell_7.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_7.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_7.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_7.defeat"
+
+[[connections]]
+from = "cell_1.first_selected"
+to = "cell_7.protected_cells[0]"
+
+[[connections]]
+from = "cell_1.mine"
+to = "cell_7.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_1.zero_open"
+to = "cell_7.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_2.first_selected"
+to = "cell_7.protected_cells[1]"
+
+[[connections]]
+from = "cell_2.mine"
+to = "cell_7.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_2.zero_open"
+to = "cell_7.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_3.first_selected"
+to = "cell_7.protected_cells[2]"
+
+[[connections]]
+from = "cell_3.mine"
+to = "cell_7.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_3.zero_open"
+to = "cell_7.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_6.first_selected"
+to = "cell_7.protected_cells[3]"
+
+[[connections]]
+from = "cell_6.mine"
+to = "cell_7.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_6.zero_open"
+to = "cell_7.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_7.first_selected"
+to = "cell_7.protected_cells[4]"
+
+[[connections]]
+from = "cell_8.first_selected"
+to = "cell_7.protected_cells[5]"
+
+[[connections]]
+from = "cell_8.mine"
+to = "cell_7.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_8.zero_open"
+to = "cell_7.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_11.first_selected"
+to = "cell_7.protected_cells[6]"
+
+[[connections]]
+from = "cell_11.mine"
+to = "cell_7.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_11.zero_open"
+to = "cell_7.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_12.first_selected"
+to = "cell_7.protected_cells[7]"
+
+[[connections]]
+from = "cell_12.mine"
+to = "cell_7.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_12.zero_open"
+to = "cell_7.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_13.first_selected"
+to = "cell_7.protected_cells[8]"
+
+[[connections]]
+from = "cell_13.mine"
+to = "cell_7.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_13.zero_open"
+to = "cell_7.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_8.new_game"
+
+[[connections]]
+from = "selected[8]"
+to = "cell_8.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_8.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_8.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_8.defeat"
+
+[[connections]]
+from = "cell_2.first_selected"
+to = "cell_8.protected_cells[0]"
+
+[[connections]]
+from = "cell_2.mine"
+to = "cell_8.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_2.zero_open"
+to = "cell_8.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_3.first_selected"
+to = "cell_8.protected_cells[1]"
+
+[[connections]]
+from = "cell_3.mine"
+to = "cell_8.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_3.zero_open"
+to = "cell_8.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_4.first_selected"
+to = "cell_8.protected_cells[2]"
+
+[[connections]]
+from = "cell_4.mine"
+to = "cell_8.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_4.zero_open"
+to = "cell_8.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_7.first_selected"
+to = "cell_8.protected_cells[3]"
+
+[[connections]]
+from = "cell_7.mine"
+to = "cell_8.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_7.zero_open"
+to = "cell_8.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_8.first_selected"
+to = "cell_8.protected_cells[4]"
+
+[[connections]]
+from = "cell_9.first_selected"
+to = "cell_8.protected_cells[5]"
+
+[[connections]]
+from = "cell_9.mine"
+to = "cell_8.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_9.zero_open"
+to = "cell_8.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_12.first_selected"
+to = "cell_8.protected_cells[6]"
+
+[[connections]]
+from = "cell_12.mine"
+to = "cell_8.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_12.zero_open"
+to = "cell_8.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_13.first_selected"
+to = "cell_8.protected_cells[7]"
+
+[[connections]]
+from = "cell_13.mine"
+to = "cell_8.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_13.zero_open"
+to = "cell_8.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_14.first_selected"
+to = "cell_8.protected_cells[8]"
+
+[[connections]]
+from = "cell_14.mine"
+to = "cell_8.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_14.zero_open"
+to = "cell_8.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_9.new_game"
+
+[[connections]]
+from = "selected[9]"
+to = "cell_9.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_9.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_9.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_9.defeat"
+
+[[connections]]
+from = "cell_3.first_selected"
+to = "cell_9.protected_cells[0]"
+
+[[connections]]
+from = "cell_3.mine"
+to = "cell_9.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_3.zero_open"
+to = "cell_9.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_4.first_selected"
+to = "cell_9.protected_cells[1]"
+
+[[connections]]
+from = "cell_4.mine"
+to = "cell_9.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_4.zero_open"
+to = "cell_9.neighbor_zero_open[1]"
+
+[[connections]]
+from = "0"
+to = "cell_9.protected_cells[2]"
+
+[[connections]]
+from = "0"
+to = "cell_9.neighbor_mines[2]"
+
+[[connections]]
+from = "0"
+to = "cell_9.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_8.first_selected"
+to = "cell_9.protected_cells[3]"
+
+[[connections]]
+from = "cell_8.mine"
+to = "cell_9.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_8.zero_open"
+to = "cell_9.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_9.first_selected"
+to = "cell_9.protected_cells[4]"
+
+[[connections]]
+from = "0"
+to = "cell_9.protected_cells[5]"
+
+[[connections]]
+from = "0"
+to = "cell_9.neighbor_mines[4]"
+
+[[connections]]
+from = "0"
+to = "cell_9.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_13.first_selected"
+to = "cell_9.protected_cells[6]"
+
+[[connections]]
+from = "cell_13.mine"
+to = "cell_9.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_13.zero_open"
+to = "cell_9.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_14.first_selected"
+to = "cell_9.protected_cells[7]"
+
+[[connections]]
+from = "cell_14.mine"
+to = "cell_9.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_14.zero_open"
+to = "cell_9.neighbor_zero_open[6]"
+
+[[connections]]
+from = "0"
+to = "cell_9.protected_cells[8]"
+
+[[connections]]
+from = "0"
+to = "cell_9.neighbor_mines[7]"
+
+[[connections]]
+from = "0"
+to = "cell_9.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_10.new_game"
+
+[[connections]]
+from = "selected[10]"
+to = "cell_10.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_10.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_10.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_10.defeat"
+
+[[connections]]
+from = "0"
+to = "cell_10.protected_cells[0]"
+
+[[connections]]
+from = "0"
+to = "cell_10.neighbor_mines[0]"
+
+[[connections]]
+from = "0"
+to = "cell_10.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_5.first_selected"
+to = "cell_10.protected_cells[1]"
+
+[[connections]]
+from = "cell_5.mine"
+to = "cell_10.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_5.zero_open"
+to = "cell_10.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_6.first_selected"
+to = "cell_10.protected_cells[2]"
+
+[[connections]]
+from = "cell_6.mine"
+to = "cell_10.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_6.zero_open"
+to = "cell_10.neighbor_zero_open[2]"
+
+[[connections]]
+from = "0"
+to = "cell_10.protected_cells[3]"
+
+[[connections]]
+from = "0"
+to = "cell_10.neighbor_mines[3]"
+
+[[connections]]
+from = "0"
+to = "cell_10.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_10.first_selected"
+to = "cell_10.protected_cells[4]"
+
+[[connections]]
+from = "cell_11.first_selected"
+to = "cell_10.protected_cells[5]"
+
+[[connections]]
+from = "cell_11.mine"
+to = "cell_10.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_11.zero_open"
+to = "cell_10.neighbor_zero_open[4]"
+
+[[connections]]
+from = "0"
+to = "cell_10.protected_cells[6]"
+
+[[connections]]
+from = "0"
+to = "cell_10.neighbor_mines[5]"
+
+[[connections]]
+from = "0"
+to = "cell_10.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_15.first_selected"
+to = "cell_10.protected_cells[7]"
+
+[[connections]]
+from = "cell_15.mine"
+to = "cell_10.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_15.zero_open"
+to = "cell_10.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_16.first_selected"
+to = "cell_10.protected_cells[8]"
+
+[[connections]]
+from = "cell_16.mine"
+to = "cell_10.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_16.zero_open"
+to = "cell_10.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_11.new_game"
+
+[[connections]]
+from = "selected[11]"
+to = "cell_11.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_11.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_11.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_11.defeat"
+
+[[connections]]
+from = "cell_5.first_selected"
+to = "cell_11.protected_cells[0]"
+
+[[connections]]
+from = "cell_5.mine"
+to = "cell_11.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_5.zero_open"
+to = "cell_11.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_6.first_selected"
+to = "cell_11.protected_cells[1]"
+
+[[connections]]
+from = "cell_6.mine"
+to = "cell_11.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_6.zero_open"
+to = "cell_11.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_7.first_selected"
+to = "cell_11.protected_cells[2]"
+
+[[connections]]
+from = "cell_7.mine"
+to = "cell_11.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_7.zero_open"
+to = "cell_11.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_10.first_selected"
+to = "cell_11.protected_cells[3]"
+
+[[connections]]
+from = "cell_10.mine"
+to = "cell_11.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_10.zero_open"
+to = "cell_11.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_11.first_selected"
+to = "cell_11.protected_cells[4]"
+
+[[connections]]
+from = "cell_12.first_selected"
+to = "cell_11.protected_cells[5]"
+
+[[connections]]
+from = "cell_12.mine"
+to = "cell_11.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_12.zero_open"
+to = "cell_11.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_15.first_selected"
+to = "cell_11.protected_cells[6]"
+
+[[connections]]
+from = "cell_15.mine"
+to = "cell_11.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_15.zero_open"
+to = "cell_11.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_16.first_selected"
+to = "cell_11.protected_cells[7]"
+
+[[connections]]
+from = "cell_16.mine"
+to = "cell_11.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_16.zero_open"
+to = "cell_11.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_17.first_selected"
+to = "cell_11.protected_cells[8]"
+
+[[connections]]
+from = "cell_17.mine"
+to = "cell_11.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_17.zero_open"
+to = "cell_11.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_12.new_game"
+
+[[connections]]
+from = "selected[12]"
+to = "cell_12.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_12.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_12.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_12.defeat"
+
+[[connections]]
+from = "cell_6.first_selected"
+to = "cell_12.protected_cells[0]"
+
+[[connections]]
+from = "cell_6.mine"
+to = "cell_12.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_6.zero_open"
+to = "cell_12.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_7.first_selected"
+to = "cell_12.protected_cells[1]"
+
+[[connections]]
+from = "cell_7.mine"
+to = "cell_12.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_7.zero_open"
+to = "cell_12.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_8.first_selected"
+to = "cell_12.protected_cells[2]"
+
+[[connections]]
+from = "cell_8.mine"
+to = "cell_12.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_8.zero_open"
+to = "cell_12.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_11.first_selected"
+to = "cell_12.protected_cells[3]"
+
+[[connections]]
+from = "cell_11.mine"
+to = "cell_12.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_11.zero_open"
+to = "cell_12.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_12.first_selected"
+to = "cell_12.protected_cells[4]"
+
+[[connections]]
+from = "cell_13.first_selected"
+to = "cell_12.protected_cells[5]"
+
+[[connections]]
+from = "cell_13.mine"
+to = "cell_12.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_13.zero_open"
+to = "cell_12.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_16.first_selected"
+to = "cell_12.protected_cells[6]"
+
+[[connections]]
+from = "cell_16.mine"
+to = "cell_12.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_16.zero_open"
+to = "cell_12.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_17.first_selected"
+to = "cell_12.protected_cells[7]"
+
+[[connections]]
+from = "cell_17.mine"
+to = "cell_12.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_17.zero_open"
+to = "cell_12.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_18.first_selected"
+to = "cell_12.protected_cells[8]"
+
+[[connections]]
+from = "cell_18.mine"
+to = "cell_12.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_18.zero_open"
+to = "cell_12.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_13.new_game"
+
+[[connections]]
+from = "selected[13]"
+to = "cell_13.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_13.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_13.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_13.defeat"
+
+[[connections]]
+from = "cell_7.first_selected"
+to = "cell_13.protected_cells[0]"
+
+[[connections]]
+from = "cell_7.mine"
+to = "cell_13.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_7.zero_open"
+to = "cell_13.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_8.first_selected"
+to = "cell_13.protected_cells[1]"
+
+[[connections]]
+from = "cell_8.mine"
+to = "cell_13.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_8.zero_open"
+to = "cell_13.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_9.first_selected"
+to = "cell_13.protected_cells[2]"
+
+[[connections]]
+from = "cell_9.mine"
+to = "cell_13.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_9.zero_open"
+to = "cell_13.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_12.first_selected"
+to = "cell_13.protected_cells[3]"
+
+[[connections]]
+from = "cell_12.mine"
+to = "cell_13.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_12.zero_open"
+to = "cell_13.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_13.first_selected"
+to = "cell_13.protected_cells[4]"
+
+[[connections]]
+from = "cell_14.first_selected"
+to = "cell_13.protected_cells[5]"
+
+[[connections]]
+from = "cell_14.mine"
+to = "cell_13.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_14.zero_open"
+to = "cell_13.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_17.first_selected"
+to = "cell_13.protected_cells[6]"
+
+[[connections]]
+from = "cell_17.mine"
+to = "cell_13.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_17.zero_open"
+to = "cell_13.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_18.first_selected"
+to = "cell_13.protected_cells[7]"
+
+[[connections]]
+from = "cell_18.mine"
+to = "cell_13.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_18.zero_open"
+to = "cell_13.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_19.first_selected"
+to = "cell_13.protected_cells[8]"
+
+[[connections]]
+from = "cell_19.mine"
+to = "cell_13.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_19.zero_open"
+to = "cell_13.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_14.new_game"
+
+[[connections]]
+from = "selected[14]"
+to = "cell_14.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_14.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_14.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_14.defeat"
+
+[[connections]]
+from = "cell_8.first_selected"
+to = "cell_14.protected_cells[0]"
+
+[[connections]]
+from = "cell_8.mine"
+to = "cell_14.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_8.zero_open"
+to = "cell_14.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_9.first_selected"
+to = "cell_14.protected_cells[1]"
+
+[[connections]]
+from = "cell_9.mine"
+to = "cell_14.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_9.zero_open"
+to = "cell_14.neighbor_zero_open[1]"
+
+[[connections]]
+from = "0"
+to = "cell_14.protected_cells[2]"
+
+[[connections]]
+from = "0"
+to = "cell_14.neighbor_mines[2]"
+
+[[connections]]
+from = "0"
+to = "cell_14.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_13.first_selected"
+to = "cell_14.protected_cells[3]"
+
+[[connections]]
+from = "cell_13.mine"
+to = "cell_14.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_13.zero_open"
+to = "cell_14.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_14.first_selected"
+to = "cell_14.protected_cells[4]"
+
+[[connections]]
+from = "0"
+to = "cell_14.protected_cells[5]"
+
+[[connections]]
+from = "0"
+to = "cell_14.neighbor_mines[4]"
+
+[[connections]]
+from = "0"
+to = "cell_14.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_18.first_selected"
+to = "cell_14.protected_cells[6]"
+
+[[connections]]
+from = "cell_18.mine"
+to = "cell_14.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_18.zero_open"
+to = "cell_14.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_19.first_selected"
+to = "cell_14.protected_cells[7]"
+
+[[connections]]
+from = "cell_19.mine"
+to = "cell_14.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_19.zero_open"
+to = "cell_14.neighbor_zero_open[6]"
+
+[[connections]]
+from = "0"
+to = "cell_14.protected_cells[8]"
+
+[[connections]]
+from = "0"
+to = "cell_14.neighbor_mines[7]"
+
+[[connections]]
+from = "0"
+to = "cell_14.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_15.new_game"
+
+[[connections]]
+from = "selected[15]"
+to = "cell_15.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_15.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_15.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_15.defeat"
+
+[[connections]]
+from = "0"
+to = "cell_15.protected_cells[0]"
+
+[[connections]]
+from = "0"
+to = "cell_15.neighbor_mines[0]"
+
+[[connections]]
+from = "0"
+to = "cell_15.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_10.first_selected"
+to = "cell_15.protected_cells[1]"
+
+[[connections]]
+from = "cell_10.mine"
+to = "cell_15.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_10.zero_open"
+to = "cell_15.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_11.first_selected"
+to = "cell_15.protected_cells[2]"
+
+[[connections]]
+from = "cell_11.mine"
+to = "cell_15.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_11.zero_open"
+to = "cell_15.neighbor_zero_open[2]"
+
+[[connections]]
+from = "0"
+to = "cell_15.protected_cells[3]"
+
+[[connections]]
+from = "0"
+to = "cell_15.neighbor_mines[3]"
+
+[[connections]]
+from = "0"
+to = "cell_15.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_15.first_selected"
+to = "cell_15.protected_cells[4]"
+
+[[connections]]
+from = "cell_16.first_selected"
+to = "cell_15.protected_cells[5]"
+
+[[connections]]
+from = "cell_16.mine"
+to = "cell_15.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_16.zero_open"
+to = "cell_15.neighbor_zero_open[4]"
+
+[[connections]]
+from = "0"
+to = "cell_15.protected_cells[6]"
+
+[[connections]]
+from = "0"
+to = "cell_15.neighbor_mines[5]"
+
+[[connections]]
+from = "0"
+to = "cell_15.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_20.first_selected"
+to = "cell_15.protected_cells[7]"
+
+[[connections]]
+from = "cell_20.mine"
+to = "cell_15.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_20.zero_open"
+to = "cell_15.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_21.first_selected"
+to = "cell_15.protected_cells[8]"
+
+[[connections]]
+from = "cell_21.mine"
+to = "cell_15.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_21.zero_open"
+to = "cell_15.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_16.new_game"
+
+[[connections]]
+from = "selected[16]"
+to = "cell_16.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_16.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_16.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_16.defeat"
+
+[[connections]]
+from = "cell_10.first_selected"
+to = "cell_16.protected_cells[0]"
+
+[[connections]]
+from = "cell_10.mine"
+to = "cell_16.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_10.zero_open"
+to = "cell_16.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_11.first_selected"
+to = "cell_16.protected_cells[1]"
+
+[[connections]]
+from = "cell_11.mine"
+to = "cell_16.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_11.zero_open"
+to = "cell_16.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_12.first_selected"
+to = "cell_16.protected_cells[2]"
+
+[[connections]]
+from = "cell_12.mine"
+to = "cell_16.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_12.zero_open"
+to = "cell_16.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_15.first_selected"
+to = "cell_16.protected_cells[3]"
+
+[[connections]]
+from = "cell_15.mine"
+to = "cell_16.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_15.zero_open"
+to = "cell_16.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_16.first_selected"
+to = "cell_16.protected_cells[4]"
+
+[[connections]]
+from = "cell_17.first_selected"
+to = "cell_16.protected_cells[5]"
+
+[[connections]]
+from = "cell_17.mine"
+to = "cell_16.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_17.zero_open"
+to = "cell_16.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_20.first_selected"
+to = "cell_16.protected_cells[6]"
+
+[[connections]]
+from = "cell_20.mine"
+to = "cell_16.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_20.zero_open"
+to = "cell_16.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_21.first_selected"
+to = "cell_16.protected_cells[7]"
+
+[[connections]]
+from = "cell_21.mine"
+to = "cell_16.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_21.zero_open"
+to = "cell_16.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_22.first_selected"
+to = "cell_16.protected_cells[8]"
+
+[[connections]]
+from = "cell_22.mine"
+to = "cell_16.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_22.zero_open"
+to = "cell_16.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_17.new_game"
+
+[[connections]]
+from = "selected[17]"
+to = "cell_17.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_17.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_17.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_17.defeat"
+
+[[connections]]
+from = "cell_11.first_selected"
+to = "cell_17.protected_cells[0]"
+
+[[connections]]
+from = "cell_11.mine"
+to = "cell_17.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_11.zero_open"
+to = "cell_17.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_12.first_selected"
+to = "cell_17.protected_cells[1]"
+
+[[connections]]
+from = "cell_12.mine"
+to = "cell_17.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_12.zero_open"
+to = "cell_17.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_13.first_selected"
+to = "cell_17.protected_cells[2]"
+
+[[connections]]
+from = "cell_13.mine"
+to = "cell_17.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_13.zero_open"
+to = "cell_17.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_16.first_selected"
+to = "cell_17.protected_cells[3]"
+
+[[connections]]
+from = "cell_16.mine"
+to = "cell_17.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_16.zero_open"
+to = "cell_17.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_17.first_selected"
+to = "cell_17.protected_cells[4]"
+
+[[connections]]
+from = "cell_18.first_selected"
+to = "cell_17.protected_cells[5]"
+
+[[connections]]
+from = "cell_18.mine"
+to = "cell_17.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_18.zero_open"
+to = "cell_17.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_21.first_selected"
+to = "cell_17.protected_cells[6]"
+
+[[connections]]
+from = "cell_21.mine"
+to = "cell_17.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_21.zero_open"
+to = "cell_17.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_22.first_selected"
+to = "cell_17.protected_cells[7]"
+
+[[connections]]
+from = "cell_22.mine"
+to = "cell_17.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_22.zero_open"
+to = "cell_17.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_23.first_selected"
+to = "cell_17.protected_cells[8]"
+
+[[connections]]
+from = "cell_23.mine"
+to = "cell_17.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_23.zero_open"
+to = "cell_17.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_18.new_game"
+
+[[connections]]
+from = "selected[18]"
+to = "cell_18.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_18.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_18.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_18.defeat"
+
+[[connections]]
+from = "cell_12.first_selected"
+to = "cell_18.protected_cells[0]"
+
+[[connections]]
+from = "cell_12.mine"
+to = "cell_18.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_12.zero_open"
+to = "cell_18.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_13.first_selected"
+to = "cell_18.protected_cells[1]"
+
+[[connections]]
+from = "cell_13.mine"
+to = "cell_18.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_13.zero_open"
+to = "cell_18.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_14.first_selected"
+to = "cell_18.protected_cells[2]"
+
+[[connections]]
+from = "cell_14.mine"
+to = "cell_18.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_14.zero_open"
+to = "cell_18.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_17.first_selected"
+to = "cell_18.protected_cells[3]"
+
+[[connections]]
+from = "cell_17.mine"
+to = "cell_18.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_17.zero_open"
+to = "cell_18.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_18.first_selected"
+to = "cell_18.protected_cells[4]"
+
+[[connections]]
+from = "cell_19.first_selected"
+to = "cell_18.protected_cells[5]"
+
+[[connections]]
+from = "cell_19.mine"
+to = "cell_18.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_19.zero_open"
+to = "cell_18.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_22.first_selected"
+to = "cell_18.protected_cells[6]"
+
+[[connections]]
+from = "cell_22.mine"
+to = "cell_18.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_22.zero_open"
+to = "cell_18.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_23.first_selected"
+to = "cell_18.protected_cells[7]"
+
+[[connections]]
+from = "cell_23.mine"
+to = "cell_18.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_23.zero_open"
+to = "cell_18.neighbor_zero_open[6]"
+
+[[connections]]
+from = "cell_24.first_selected"
+to = "cell_18.protected_cells[8]"
+
+[[connections]]
+from = "cell_24.mine"
+to = "cell_18.neighbor_mines[7]"
+
+[[connections]]
+from = "cell_24.zero_open"
+to = "cell_18.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_19.new_game"
+
+[[connections]]
+from = "selected[19]"
+to = "cell_19.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_19.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_19.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_19.defeat"
+
+[[connections]]
+from = "cell_13.first_selected"
+to = "cell_19.protected_cells[0]"
+
+[[connections]]
+from = "cell_13.mine"
+to = "cell_19.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_13.zero_open"
+to = "cell_19.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_14.first_selected"
+to = "cell_19.protected_cells[1]"
+
+[[connections]]
+from = "cell_14.mine"
+to = "cell_19.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_14.zero_open"
+to = "cell_19.neighbor_zero_open[1]"
+
+[[connections]]
+from = "0"
+to = "cell_19.protected_cells[2]"
+
+[[connections]]
+from = "0"
+to = "cell_19.neighbor_mines[2]"
+
+[[connections]]
+from = "0"
+to = "cell_19.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_18.first_selected"
+to = "cell_19.protected_cells[3]"
+
+[[connections]]
+from = "cell_18.mine"
+to = "cell_19.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_18.zero_open"
+to = "cell_19.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_19.first_selected"
+to = "cell_19.protected_cells[4]"
+
+[[connections]]
+from = "0"
+to = "cell_19.protected_cells[5]"
+
+[[connections]]
+from = "0"
+to = "cell_19.neighbor_mines[4]"
+
+[[connections]]
+from = "0"
+to = "cell_19.neighbor_zero_open[4]"
+
+[[connections]]
+from = "cell_23.first_selected"
+to = "cell_19.protected_cells[6]"
+
+[[connections]]
+from = "cell_23.mine"
+to = "cell_19.neighbor_mines[5]"
+
+[[connections]]
+from = "cell_23.zero_open"
+to = "cell_19.neighbor_zero_open[5]"
+
+[[connections]]
+from = "cell_24.first_selected"
+to = "cell_19.protected_cells[7]"
+
+[[connections]]
+from = "cell_24.mine"
+to = "cell_19.neighbor_mines[6]"
+
+[[connections]]
+from = "cell_24.zero_open"
+to = "cell_19.neighbor_zero_open[6]"
+
+[[connections]]
+from = "0"
+to = "cell_19.protected_cells[8]"
+
+[[connections]]
+from = "0"
+to = "cell_19.neighbor_mines[7]"
+
+[[connections]]
+from = "0"
+to = "cell_19.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_20.new_game"
+
+[[connections]]
+from = "selected[20]"
+to = "cell_20.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_20.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_20.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_20.defeat"
+
+[[connections]]
+from = "0"
+to = "cell_20.protected_cells[0]"
+
+[[connections]]
+from = "0"
+to = "cell_20.neighbor_mines[0]"
+
+[[connections]]
+from = "0"
+to = "cell_20.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_15.first_selected"
+to = "cell_20.protected_cells[1]"
+
+[[connections]]
+from = "cell_15.mine"
+to = "cell_20.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_15.zero_open"
+to = "cell_20.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_16.first_selected"
+to = "cell_20.protected_cells[2]"
+
+[[connections]]
+from = "cell_16.mine"
+to = "cell_20.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_16.zero_open"
+to = "cell_20.neighbor_zero_open[2]"
+
+[[connections]]
+from = "0"
+to = "cell_20.protected_cells[3]"
+
+[[connections]]
+from = "0"
+to = "cell_20.neighbor_mines[3]"
+
+[[connections]]
+from = "0"
+to = "cell_20.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_20.first_selected"
+to = "cell_20.protected_cells[4]"
+
+[[connections]]
+from = "cell_21.first_selected"
+to = "cell_20.protected_cells[5]"
+
+[[connections]]
+from = "cell_21.mine"
+to = "cell_20.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_21.zero_open"
+to = "cell_20.neighbor_zero_open[4]"
+
+[[connections]]
+from = "0"
+to = "cell_20.protected_cells[6]"
+
+[[connections]]
+from = "0"
+to = "cell_20.neighbor_mines[5]"
+
+[[connections]]
+from = "0"
+to = "cell_20.neighbor_zero_open[5]"
+
+[[connections]]
+from = "0"
+to = "cell_20.protected_cells[7]"
+
+[[connections]]
+from = "0"
+to = "cell_20.neighbor_mines[6]"
+
+[[connections]]
+from = "0"
+to = "cell_20.neighbor_zero_open[6]"
+
+[[connections]]
+from = "0"
+to = "cell_20.protected_cells[8]"
+
+[[connections]]
+from = "0"
+to = "cell_20.neighbor_mines[7]"
+
+[[connections]]
+from = "0"
+to = "cell_20.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_21.new_game"
+
+[[connections]]
+from = "selected[21]"
+to = "cell_21.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_21.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_21.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_21.defeat"
+
+[[connections]]
+from = "cell_15.first_selected"
+to = "cell_21.protected_cells[0]"
+
+[[connections]]
+from = "cell_15.mine"
+to = "cell_21.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_15.zero_open"
+to = "cell_21.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_16.first_selected"
+to = "cell_21.protected_cells[1]"
+
+[[connections]]
+from = "cell_16.mine"
+to = "cell_21.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_16.zero_open"
+to = "cell_21.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_17.first_selected"
+to = "cell_21.protected_cells[2]"
+
+[[connections]]
+from = "cell_17.mine"
+to = "cell_21.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_17.zero_open"
+to = "cell_21.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_20.first_selected"
+to = "cell_21.protected_cells[3]"
+
+[[connections]]
+from = "cell_20.mine"
+to = "cell_21.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_20.zero_open"
+to = "cell_21.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_21.first_selected"
+to = "cell_21.protected_cells[4]"
+
+[[connections]]
+from = "cell_22.first_selected"
+to = "cell_21.protected_cells[5]"
+
+[[connections]]
+from = "cell_22.mine"
+to = "cell_21.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_22.zero_open"
+to = "cell_21.neighbor_zero_open[4]"
+
+[[connections]]
+from = "0"
+to = "cell_21.protected_cells[6]"
+
+[[connections]]
+from = "0"
+to = "cell_21.neighbor_mines[5]"
+
+[[connections]]
+from = "0"
+to = "cell_21.neighbor_zero_open[5]"
+
+[[connections]]
+from = "0"
+to = "cell_21.protected_cells[7]"
+
+[[connections]]
+from = "0"
+to = "cell_21.neighbor_mines[6]"
+
+[[connections]]
+from = "0"
+to = "cell_21.neighbor_zero_open[6]"
+
+[[connections]]
+from = "0"
+to = "cell_21.protected_cells[8]"
+
+[[connections]]
+from = "0"
+to = "cell_21.neighbor_mines[7]"
+
+[[connections]]
+from = "0"
+to = "cell_21.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_22.new_game"
+
+[[connections]]
+from = "selected[22]"
+to = "cell_22.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_22.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_22.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_22.defeat"
+
+[[connections]]
+from = "cell_16.first_selected"
+to = "cell_22.protected_cells[0]"
+
+[[connections]]
+from = "cell_16.mine"
+to = "cell_22.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_16.zero_open"
+to = "cell_22.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_17.first_selected"
+to = "cell_22.protected_cells[1]"
+
+[[connections]]
+from = "cell_17.mine"
+to = "cell_22.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_17.zero_open"
+to = "cell_22.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_18.first_selected"
+to = "cell_22.protected_cells[2]"
+
+[[connections]]
+from = "cell_18.mine"
+to = "cell_22.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_18.zero_open"
+to = "cell_22.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_21.first_selected"
+to = "cell_22.protected_cells[3]"
+
+[[connections]]
+from = "cell_21.mine"
+to = "cell_22.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_21.zero_open"
+to = "cell_22.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_22.first_selected"
+to = "cell_22.protected_cells[4]"
+
+[[connections]]
+from = "cell_23.first_selected"
+to = "cell_22.protected_cells[5]"
+
+[[connections]]
+from = "cell_23.mine"
+to = "cell_22.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_23.zero_open"
+to = "cell_22.neighbor_zero_open[4]"
+
+[[connections]]
+from = "0"
+to = "cell_22.protected_cells[6]"
+
+[[connections]]
+from = "0"
+to = "cell_22.neighbor_mines[5]"
+
+[[connections]]
+from = "0"
+to = "cell_22.neighbor_zero_open[5]"
+
+[[connections]]
+from = "0"
+to = "cell_22.protected_cells[7]"
+
+[[connections]]
+from = "0"
+to = "cell_22.neighbor_mines[6]"
+
+[[connections]]
+from = "0"
+to = "cell_22.neighbor_zero_open[6]"
+
+[[connections]]
+from = "0"
+to = "cell_22.protected_cells[8]"
+
+[[connections]]
+from = "0"
+to = "cell_22.neighbor_mines[7]"
+
+[[connections]]
+from = "0"
+to = "cell_22.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_23.new_game"
+
+[[connections]]
+from = "selected[23]"
+to = "cell_23.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_23.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_23.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_23.defeat"
+
+[[connections]]
+from = "cell_17.first_selected"
+to = "cell_23.protected_cells[0]"
+
+[[connections]]
+from = "cell_17.mine"
+to = "cell_23.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_17.zero_open"
+to = "cell_23.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_18.first_selected"
+to = "cell_23.protected_cells[1]"
+
+[[connections]]
+from = "cell_18.mine"
+to = "cell_23.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_18.zero_open"
+to = "cell_23.neighbor_zero_open[1]"
+
+[[connections]]
+from = "cell_19.first_selected"
+to = "cell_23.protected_cells[2]"
+
+[[connections]]
+from = "cell_19.mine"
+to = "cell_23.neighbor_mines[2]"
+
+[[connections]]
+from = "cell_19.zero_open"
+to = "cell_23.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_22.first_selected"
+to = "cell_23.protected_cells[3]"
+
+[[connections]]
+from = "cell_22.mine"
+to = "cell_23.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_22.zero_open"
+to = "cell_23.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_23.first_selected"
+to = "cell_23.protected_cells[4]"
+
+[[connections]]
+from = "cell_24.first_selected"
+to = "cell_23.protected_cells[5]"
+
+[[connections]]
+from = "cell_24.mine"
+to = "cell_23.neighbor_mines[4]"
+
+[[connections]]
+from = "cell_24.zero_open"
+to = "cell_23.neighbor_zero_open[4]"
+
+[[connections]]
+from = "0"
+to = "cell_23.protected_cells[6]"
+
+[[connections]]
+from = "0"
+to = "cell_23.neighbor_mines[5]"
+
+[[connections]]
+from = "0"
+to = "cell_23.neighbor_zero_open[5]"
+
+[[connections]]
+from = "0"
+to = "cell_23.protected_cells[7]"
+
+[[connections]]
+from = "0"
+to = "cell_23.neighbor_mines[6]"
+
+[[connections]]
+from = "0"
+to = "cell_23.neighbor_zero_open[6]"
+
+[[connections]]
+from = "0"
+to = "cell_23.protected_cells[8]"
+
+[[connections]]
+from = "0"
+to = "cell_23.neighbor_mines[7]"
+
+[[connections]]
+from = "0"
+to = "cell_23.neighbor_zero_open[7]"
+
+[[connections]]
+from = "new_game"
+to = "cell_24.new_game"
+
+[[connections]]
+from = "selected[24]"
+to = "cell_24.selected"
+
+[[connections]]
+from = "game.started"
+to = "cell_24.started"
+
+[[connections]]
+from = "game.victory"
+to = "cell_24.victory"
+
+[[connections]]
+from = "game.defeat"
+to = "cell_24.defeat"
+
+[[connections]]
+from = "cell_18.first_selected"
+to = "cell_24.protected_cells[0]"
+
+[[connections]]
+from = "cell_18.mine"
+to = "cell_24.neighbor_mines[0]"
+
+[[connections]]
+from = "cell_18.zero_open"
+to = "cell_24.neighbor_zero_open[0]"
+
+[[connections]]
+from = "cell_19.first_selected"
+to = "cell_24.protected_cells[1]"
+
+[[connections]]
+from = "cell_19.mine"
+to = "cell_24.neighbor_mines[1]"
+
+[[connections]]
+from = "cell_19.zero_open"
+to = "cell_24.neighbor_zero_open[1]"
+
+[[connections]]
+from = "0"
+to = "cell_24.protected_cells[2]"
+
+[[connections]]
+from = "0"
+to = "cell_24.neighbor_mines[2]"
+
+[[connections]]
+from = "0"
+to = "cell_24.neighbor_zero_open[2]"
+
+[[connections]]
+from = "cell_23.first_selected"
+to = "cell_24.protected_cells[3]"
+
+[[connections]]
+from = "cell_23.mine"
+to = "cell_24.neighbor_mines[3]"
+
+[[connections]]
+from = "cell_23.zero_open"
+to = "cell_24.neighbor_zero_open[3]"
+
+[[connections]]
+from = "cell_24.first_selected"
+to = "cell_24.protected_cells[4]"
+
+[[connections]]
+from = "0"
+to = "cell_24.protected_cells[5]"
+
+[[connections]]
+from = "0"
+to = "cell_24.neighbor_mines[4]"
+
+[[connections]]
+from = "0"
+to = "cell_24.neighbor_zero_open[4]"
+
+[[connections]]
+from = "0"
+to = "cell_24.protected_cells[6]"
+
+[[connections]]
+from = "0"
+to = "cell_24.neighbor_mines[5]"
+
+[[connections]]
+from = "0"
+to = "cell_24.neighbor_zero_open[5]"
+
+[[connections]]
+from = "0"
+to = "cell_24.protected_cells[7]"
+
+[[connections]]
+from = "0"
+to = "cell_24.neighbor_mines[6]"
+
+[[connections]]
+from = "0"
+to = "cell_24.neighbor_zero_open[6]"
+
+[[connections]]
+from = "0"
+to = "cell_24.protected_cells[8]"
+
+[[connections]]
+from = "0"
+to = "cell_24.neighbor_mines[7]"
+
+[[connections]]
+from = "0"
+to = "cell_24.neighbor_zero_open[7]"
+
+[[outputs]]
+name = "opened_0"
+from = "cell_0.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_1"
+from = "cell_1.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_2"
+from = "cell_2.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_3"
+from = "cell_3.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_4"
+from = "cell_4.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_5"
+from = "cell_5.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_6"
+from = "cell_6.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_7"
+from = "cell_7.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_8"
+from = "cell_8.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_9"
+from = "cell_9.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_10"
+from = "cell_10.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_11"
+from = "cell_11.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_12"
+from = "cell_12.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_13"
+from = "cell_13.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_14"
+from = "cell_14.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_15"
+from = "cell_15.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_16"
+from = "cell_16.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_17"
+from = "cell_17.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_18"
+from = "cell_18.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_19"
+from = "cell_19.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_20"
+from = "cell_20.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_21"
+from = "cell_21.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_22"
+from = "cell_22.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_23"
+from = "cell_23.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "opened_24"
+from = "cell_24.opened"
+widget = "indicator"
+
+[[outputs]]
+name = "started"
+from = "game.started"
+widget = "indicator"
+
+[[outputs]]
+name = "victory"
+from = "game.victory"
+widget = "indicator"
+
+[[outputs]]
+name = "defeat"
+from = "game.defeat"
+widget = "indicator"
+
+[[components]]
+name = "win_message"
+kind = "text"
+text = "WIN"
+font = "library:arrow4"
+size = 1
+
+[[components]]
+name = "loss_message"
+kind = "text"
+text = "LOSE"
+font = "library:arrow4"
+size = 1
+
+[[connections]]
+from = "game.victory"
+to = "win_message.signal"
+
+[[connections]]
+from = "game.defeat"
+to = "loss_message.signal"
+
+# Status chain: selected, hit and solved are accumulated in row order.
+
+[[connections]]
+from = "0"
+to = "cell_0.previous_status[0]"
+
+[[connections]]
+from = "0"
+to = "cell_0.previous_status[1]"
+
+[[connections]]
+from = "1"
+to = "cell_0.previous_status[2]"
+
+[[connections]]
+from = "cell_0.status"
+to = "cell_1.previous_status"
+
+[[connections]]
+from = "cell_1.status"
+to = "cell_2.previous_status"
+
+[[connections]]
+from = "cell_2.status"
+to = "cell_3.previous_status"
+
+[[connections]]
+from = "cell_3.status"
+to = "cell_4.previous_status"
+
+[[connections]]
+from = "cell_4.status"
+to = "cell_5.previous_status"
+
+[[connections]]
+from = "cell_5.status"
+to = "cell_6.previous_status"
+
+[[connections]]
+from = "cell_6.status"
+to = "cell_7.previous_status"
+
+[[connections]]
+from = "cell_7.status"
+to = "cell_8.previous_status"
+
+[[connections]]
+from = "cell_8.status"
+to = "cell_9.previous_status"
+
+[[connections]]
+from = "cell_9.status"
+to = "cell_10.previous_status"
+
+[[connections]]
+from = "cell_10.status"
+to = "cell_11.previous_status"
+
+[[connections]]
+from = "cell_11.status"
+to = "cell_12.previous_status"
+
+[[connections]]
+from = "cell_12.status"
+to = "cell_13.previous_status"
+
+[[connections]]
+from = "cell_13.status"
+to = "cell_14.previous_status"
+
+[[connections]]
+from = "cell_14.status"
+to = "cell_15.previous_status"
+
+[[connections]]
+from = "cell_15.status"
+to = "cell_16.previous_status"
+
+[[connections]]
+from = "cell_16.status"
+to = "cell_17.previous_status"
+
+[[connections]]
+from = "cell_17.status"
+to = "cell_18.previous_status"
+
+[[connections]]
+from = "cell_18.status"
+to = "cell_19.previous_status"
+
+[[connections]]
+from = "cell_19.status"
+to = "cell_20.previous_status"
+
+[[connections]]
+from = "cell_20.status"
+to = "cell_21.previous_status"
+
+[[connections]]
+from = "cell_21.status"
+to = "cell_22.previous_status"
+
+[[connections]]
+from = "cell_22.status"
+to = "cell_23.previous_status"
+
+[[connections]]
+from = "cell_23.status"
+to = "cell_24.previous_status"
+
+[[connections]]
+from = "cell_24.status[0]"
+to = "game.first_selected"
+
+[[connections]]
+from = "cell_24.status[1]"
+to = "game.hit"
+
+[[connections]]
+from = "cell_24.status[2]"
+to = "game.solved"

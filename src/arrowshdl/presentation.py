@@ -9,7 +9,7 @@ from arrowshdl.mapdata import map_hash
 def button_cells(at,rotation,size):
     """A rectangle of directional buttons collecting toward one boundary pin."""
     w,h=size
-    if w*h>1000000:raise MapError('Кнопка превышает миллион клеток')
+    if w*h>1000000:raise MapError('Button exceeds one million cells')
     x,y=at
     if rotation==0:x0,y0=x-w//2,y
     elif rotation==1:x0,y0=x-w+1,y-h//2
@@ -32,13 +32,18 @@ def port_bits(ports, reference):
     if reference.endswith(']') and '[' in reference:
         name, number = reference[:-1].rsplit('[', 1)
         try:
+            if ':' in number:
+                hi,lo = map(int,number.split(':'))
+                entries = [entry for entry in ports.get(name,()) if lo<=entry['index']<=hi]
+                if lo<=hi and len(entries)==hi-lo+1: return sorted(entries,key=lambda e:e['index'])
+                raise ValueError('range')
             index = int(number)
         except ValueError as exc:
-            raise MapError(f'Неверный индекс порта {reference}') from exc
+            raise MapError(f'Invalid port index: {reference}') from exc
         entries = [entry for entry in ports.get(name, ()) if entry['index'] == index]
         if entries:
             return entries
-    raise MapError(f'Логический порт не найден: {reference}')
+    raise MapError(f'Logical port not found: {reference}')
 
 
 def attach_io(cells, manifest, inputs=None, outputs=None, *, testing=False):
@@ -60,30 +65,30 @@ def attach_io(cells, manifest, inputs=None, outputs=None, *, testing=False):
             entries = port_bits(meta[direction], reference)
             widget = row.get('widget', 'button' if direction == 'inputs' else 'indicator')
             if widget not in (('button',) if direction == 'inputs' else ('indicator', 'binary')):
-                raise MapError(f'Встроенный виджет {widget!r} не поддерживается; готовые дисплеи подключаются как components')
+                raise MapError(f'Built-in widget {widget!r} is unsupported; connect prepared displays as components')
             for entry in entries:
                 key = (direction, tuple(entry['contact']))
                 if key in occupied_ports:
-                    raise MapError(f'Повторное подключение виджета к {reference}')
+                    raise MapError(f'Duplicate widget connection to {reference}')
                 occupied_ports.add(key)
                 at = tuple(entry['fixture'])
                 if at in cells:
-                    raise MapError(f'Место виджета занято: {at}')
+                    raise MapError(f'Widget position is occupied: {at}')
                 kind = (22 if testing else 24) if direction == 'inputs' else 1
                 if direction=='inputs' and not testing:
                     part=button_cells(at,entry['rotation'],row.get('size',[1,1]))
-                    if cells.keys() & part.keys():raise MapError('Кнопка заданного размера пересекается со схемой')
+                    if cells.keys() & part.keys():raise MapError('Button of the specified size overlaps the scheme')
                     if any(q in part for p,c in cells.items() for q in destinations(p,c)):
-                        raise MapError('Схема подаёт посторонний сигнал в кнопку')
+                        raise MapError('Scheme feeds an unexpected signal into a button')
                     cells.update(part)
                 elif direction=='outputs' and entry.get('sensor'):
                     sensor=entry['sensor'];p=tuple(sensor['at'])
-                    if p in cells:raise MapError('Место пробника занято')
+                    if p in cells:raise MapError('Probe position is occupied')
                     cells[p]=Cell(5,sensor['rotation']);cells[at]=Cell(kind,entry['rotation'])
                 else:
                     cells[at] = Cell(kind, entry['rotation'])
                 if direction == 'inputs' and list(destinations(at, cells[at])) != [tuple(entry['contact'])]:
-                    raise MapError('Кнопка не направлена на логический вход')
+                    raise MapError('Button does not point toward the logical input')
                 devices.append(dict(name=row.get('name', reference), port=reference, index=entry['index'],
                                     kind=widget, direction=direction, at=list(at), type=kind))
     meta['io_devices'] = devices

@@ -1,0 +1,92 @@
+"""Public CLI exports exactly one file and streams progress during work."""
+import json
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+import unittest
+
+from arrowshdl.mapdata import read_map
+
+
+class CliArtifactTests(unittest.TestCase):
+    def test_one_file_metadata_vectors_preview_and_save(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            source=root/'xor.v'
+            source.write_text('module xor_unit(input a,b,output y); assign y=a^b; endmodule')
+            output=root/'out'/'unit.json'
+            def cli(*args):
+                result=subprocess.run([sys.executable,'-m','arrowshdl',*map(str,args)],
+                    capture_output=True,text=True,encoding='utf-8',timeout=30)
+                self.assertEqual(result.returncode,0,result.stderr)
+                self.assertIn('[100.0%]',result.stderr)
+                return result
+            result=cli('compile',source,'--top','xor_unit','-o',output)
+            self.assertIn('Synthesizing',result.stderr)
+            self.assertEqual(list(output.parent.iterdir()),[output])
+            self.assertEqual(json.loads(output.read_text())['format'],'arrowshdl-compiled-scheme')
+            vectors=root/'vectors.json'
+            vectors.write_text(json.dumps([dict(inputs={'a':a,'b':b},expect={'y':a^b})
+                for a in (0,1) for b in (0,1)]))
+            cli('test',output,vectors,'--vectors','-o',root/'report.json')
+            self.assertTrue(json.loads((root/'report.json').read_text())['passed'])
+            cli('preview',output,'-o',root/'preview.png')
+            cli('compile',source,'--top','xor_unit','-o',root/'save'/'xor.save.txt')
+            self.assertEqual(read_map(output),read_map(root/'save'/'xor.save.txt'))
+            self.assertEqual(len(list((root/'save').iterdir())),1)
+            rejected=subprocess.run([sys.executable,'-m','arrowshdl','compile',str(source),
+                '--top','xor_unit','-o',str(output.parent)],capture_output=True,text=True,encoding='utf-8')
+            self.assertEqual(rejected.returncode,2)
+            self.assertIn('Output must be a file',rejected.stderr)
+            self.assertEqual(list(output.parent.iterdir()),[output])
+
+    def test_progress_is_visible_before_process_finishes(self):
+        process=subprocess.Popen([sys.executable,'-m','arrowshdl','health'],
+            stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,encoding='utf-8')
+        try:
+            first=process.stderr.readline()
+            self.assertIn('[  0.0%]',first)
+            self.assertIsNone(process.poll())
+            _,logs=process.communicate(timeout=30)
+            self.assertEqual(process.returncode,0,logs)
+            self.assertIn('Synthesizing',logs)
+            self.assertIn('[100.0%]',logs)
+        finally:
+            if process.poll() is None:
+                process.kill()
+                process.wait()
+
+    def test_missing_component_reports_resolved_filename(self):
+        from arrowshdl.manifest import load_project
+        from arrowshdl.arrowasm import MapError
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'project.toml'
+            path.write_text('version=2\ntop="demo"\n[[components]]\nname="display"\nfile="build/display.json"\n')
+            with self.assertRaisesRegex(MapError,'display.json'):
+                load_project(path)
+
+    def test_help_and_runtime_failures_are_in_english(self):
+        def cli(*args):
+            return subprocess.run([sys.executable,'-m','arrowshdl',*args],
+                capture_output=True,text=True,encoding='utf-8',timeout=30)
+        for command in ('compile','build','link','simulate','test','encode','decode','graph','preview','health'):
+            result=cli(command,'--help')
+            self.assertEqual(result.returncode,0)
+            self.assertFalse(any('\u0400'<=c<='\u04ff' for c in result.stdout+result.stderr))
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            project=root/'bad.toml'
+            project.write_text('version=2\ntop="bad"\n[[components]]\nname="screen"\nfile="missing.json"\n')
+            result=cli('build',str(project),'-o',str(root/'result.json'))
+            self.assertEqual(result.returncode,2)
+            self.assertIn('Error: Component file not found:',result.stderr)
+            self.assertFalse(any('\u0400'<=c<='\u04ff' for c in result.stderr))
+            source=root/'source.v'
+            source.write_text('module demo(input a,output y); assign y=a; endmodule')
+            cli('compile',str(source),'--top','demo','-o',str(root/'demo.json'))
+            scenario=root/'bad-scenario.json'
+            scenario.write_text('{"ticks":0,"inputs":[],"expect":[],"observe":[[0,0]]}')
+            result=cli('simulate',str(root/'demo.json'),str(scenario),'-o',str(root/'trace.json'))
+            self.assertEqual(result.returncode,2)
+            self.assertFalse(any('\u0400'<=c<='\u04ff' for c in result.stderr))

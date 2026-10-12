@@ -11,27 +11,27 @@ from arrowshdl.presentation import port_bits
 
 
 def text_pixels(font_path,text,size=1):
-    if type(size) is not int or size<1:raise MapError('Кегль: целый множитель от 1')
+    if type(size) is not int or size<1:raise MapError('Font size must be an integer scale >= 1')
     data=json.loads(Path(font_path).read_text(encoding='utf-8-sig'))
     table(data,{'version','name','height','spacing','space','glyphs','source'},'font')
     if type(data.get('version')) is not int or data['version']!=1:
-        raise MapError('Неизвестная версия шрифта')
+        raise MapError('Unsupported font version')
     height,spacing,space=data.get('height'),data.get('spacing',1),data.get('space',3)
     if any(type(n) is not int or n<1 for n in (height,space)) or type(spacing) is not int or spacing<0:
-        raise MapError('Неверные размеры шрифта')
+        raise MapError('Invalid font dimensions')
     glyphs=data.get('glyphs')
-    if not isinstance(glyphs,dict):raise MapError('font.glyphs: таблица символов')
+    if not isinstance(glyphs,dict):raise MapError('font.glyphs: expected a glyph table')
     for char,rows in glyphs.items():
         if len(char)!=1 or not isinstance(rows,list) or len(rows)!=height or not rows or not isinstance(rows[0],str) or not rows[0]:
-            raise MapError('Символ шрифта: одна буква и height строк')
+            raise MapError('Glyph must contain one character and height rows')
         if any(not isinstance(r,str) or len(r)!=len(rows[0]) or set(r)-set('.#') for r in rows):
-            raise MapError('Растр символа: строки одинаковой ширины из . и #')
+            raise MapError('Glyph raster must contain equal-width rows of . and #')
     lines=text.split('\n')
     width=max((sum(space if c==' ' else len(glyphs[c][0]) if c in glyphs else 0 for c in line)+max(0,len(line)-1)*spacing for line in lines),default=0)
     missing=sorted({c for c in text if c not in glyphs and c not in ' \n'})
-    if missing:raise MapError('В шрифте отсутствуют символы: '+''.join(missing))
+    if missing:raise MapError('Missing font characters: '+''.join(missing))
     total_height=len(lines)*height+max(0,len(lines)-1)*spacing
-    if width*total_height*size*size>1000000:raise MapError('Надпись превышает миллион клеток')
+    if width*total_height*size*size>1000000:raise MapError('Label exceeds one million cells')
     pixels=set()
     for line_index,line in enumerate(lines):
         left=0
@@ -56,14 +56,14 @@ def attach_labels(cells,manifest,labels,base):
         for side in ('inputs','outputs'):
             try:matches.append((side,port_bits(meta[side],reference)))
             except MapError:pass
-        if len(matches)!=1:raise MapError(f'Подпись {row["name"]}: I/O отсутствует или неоднозначен')
+        if len(matches)!=1:raise MapError(f'Label {row["name"]}: I/O is missing or ambiguous')
         side,entries=matches[0]
         pixels,(width,height)=text_pixels(base/row['font'],row['text'],row.get('size',1))
         anchor=entries[0]['fixture']
         offset=row.get('offset',[-width-3,-height//2] if side=='inputs' else [3,-height//2])
         at=row.get('at',[anchor[0]+offset[0],anchor[1]+offset[1]])
         part={(x+at[0],y+at[1]):Cell(25,0) for x,y in pixels}
-        if part.keys() & result.keys() or part.keys() & occupied:raise MapError(f'Надпись {row["name"]} пересекается со схемой или I/O')
+        if part.keys() & result.keys() or part.keys() & occupied:raise MapError(f'Label {row["name"]} overlaps scheme or I/O')
         result.update(part)
         records.append(dict(name=row['name'],io=reference,text=row['text'],font=row['font'],
                             size=row.get('size',1),at=at,width=width,height=height,cells=len(part)))

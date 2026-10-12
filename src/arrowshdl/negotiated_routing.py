@@ -41,6 +41,8 @@ class CongestionRouting:
         queue, attempts = deque(order), 0
         net_attempts=defaultdict(int)
         conflicts=defaultdict(int);last_goal={}
+        visited=set()
+        from arrowshdl.progress import report
         def fail(message,net,goal=None):
             common=sorted(conflicts.items(),key=lambda e:-e[1])[:5]
             message+=f'; goal={goal or last_goal.get(net)}; conflicts={common}'
@@ -54,10 +56,13 @@ class CongestionRouting:
             # by repeatedly tearing down each other's identical routes.
             limit=budget_scale*max(30,len(set(targets[net]))*12)
             if net_attempts[net] > limit:
-                fail(f"Цепь {net} повторно конфликтует: исчерпан лимит {limit} перестроений",net)
+                fail(f"Net {net} repeatedly conflicts: repair limit exhausted: {limit} repairs",net)
             if attempts > budget_scale*max(40, len(order)*20):
-                fail("Исчерпан бюджет перестройки проводов",net)
-            if attempts%400==0:print(f'Routing progress: {attempts} repairs, {len(queue)} nets pending, {len(self.cells)} arrows',flush=True)
+                fail("Wire repair budget exhausted",net)
+            visited.add(net)
+            if attempts == 1 or attempts % 10 == 0 or not queue:
+                report(80*len(visited)/max(1,len(order)),
+                       f'Routing: {len(visited)}/{len(order)} nets visited, {len(queue)+1} pending, {self.ripups} repairs')
             # A retained trunk can force two nets to repair the same crossing
             # forever. Periodically release the whole trunk so congestion
             # history can choose a different topology, not just another leaf.
@@ -76,7 +81,7 @@ class CongestionRouting:
                 if path is None:
                     path = self.path(tree,goal,8,soft=True)
                     if path is None:
-                        fail(f"Не удалось проложить компактную цепь {net}",net,goal)
+                        fail(f"Could not route net {net}",net,goal)
                     blockers = sorted({self.owners[p] for p in path if p in self.cells and p not in self.fixed_cells and self.owners[p] != net})
                     for point in path:
                         if point in self.cells and point not in self.fixed_cells and self.owners.get(point) != net:
@@ -90,7 +95,7 @@ class CongestionRouting:
                         self.ripups += 1
                     path = self.path(tree,goal,32)
                     if path is None:
-                        fail(f"Не удалось перестроить цепь {net}",net,goal)
+                        fail(f"Could not repair net {net}",net,goal)
                 for key in path[1:-1]:
                     self.add(key, net)
                 for key, target in zip(path, path[1:]):

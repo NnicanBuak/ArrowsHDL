@@ -6,12 +6,13 @@ from arrowshdl.test_harness import add_fixture,make_scenario
 from arrowshdl.simulation import simulate
 from tests.projects.examples.catalog import ROOT
 from tests.projects.examples.showcases import vectors
+from arrowshdl.artifacts import read_metadata
 
 class ShowcaseTests(unittest.TestCase):
     def check_project(self,top):
         folder=ROOT/'examples'/top
-        saved=folder/'build'/f'{top}.save.txt'
-        meta=json.loads((folder/'build'/f'{top}.build.json').read_text())
+        saved=folder/'build'/f'{top}.json'
+        meta=read_metadata(saved)
         cells=read_map(saved)
         self.assertEqual(map_hash(cells),meta['map_hash'])
         fixture=add_fixture(cells,meta)

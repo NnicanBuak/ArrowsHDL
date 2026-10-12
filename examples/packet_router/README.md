@@ -24,14 +24,14 @@
 Из корня ArrowsHDL:
 
 ~~~powershell
-arrowshdl build examples/packet_router/project.toml --layout macro-grid -o examples/packet_router/build
-arrowshdl test examples/packet_router/build/packet_router.save.txt examples/packet_router/vectors.json --vectors --manifest examples/packet_router/build/packet_router.build.json -o build/router-demo.report.json
+arrowshdl build examples/packet_router/project.toml -o examples/packet_router/build/packet_router.json
+arrowshdl test examples/packet_router/build/packet_router.json examples/packet_router/build/vectors.json --vectors -o build/router-demo.report.json
 python -m unittest tests.projects.examples.test_showcases.ShowcaseTests.test_router_all_65536_frames_controls_and_backpressure -v
 ~~~
 
-[Сохранение](build/packet_router.save.txt): **11 221 стрелка, 204×505**.
+[Схема](build/packet_router.json): **3487 стрелок, 124×106**.
 Кнопки задают биты входов; индикаторы показывают данные, valid, accepted и error.
-Порядок битов, контакты и `settle_ticks`: [manifest](build/packet_router.build.json).
+Порядок битов, контакты и `settle_ticks`: [описание схемы](build/packet_router.json).
 [Полный отчёт](build/packet_router.report.json) проверяет **65 536** наборов:
 все кадры, valid и ready. Модель ожиданий независимо описана в tests.
 
@@ -42,5 +42,5 @@ python -m unittest tests.projects.examples.test_showcases.ShowcaseTests.test_rou
 Битовые маски приведены десятичными числами: например, 3 означает два активных бита.
 
 [Физическая карта](visuals/map.png) ·
-[Измерения с хешем сохранения](visuals/behavior.report.json).
+[Измерения с хешем сохранения](build/behavior.report.json).
 Воспроизведение изображений: `python tools/render_examples.py`.

@@ -5,6 +5,8 @@ from arrowshdl.arrow_layout import bounds_of
 from arrowshdl.arrow_layout import destinations
 from arrowshdl.compact_layout import wire_cell, manhattan
 from arrowshdl.negotiated_routing import CongestionRouting
+import time
+from arrowshdl.arrowasm import MapError
 
 class FixedWiring(CongestionRouting,Router):
     """Route only external wires. All original physical cells remain fixed."""
@@ -34,10 +36,11 @@ class FixedWiring(CongestionRouting,Router):
             self.sinks[name].append(target)
     def clear_net(self,net):
         self.route_attempts=getattr(self,'route_attempts',0)+1
-        if self.route_attempts%25==0:
-            print(f'External route {self.route_attempts}/{len(self.sinks)}: {net}, {len(self.cells)} cells',flush=True)
         super().clear_net(net)
     def path(self,tree,goal,margin,soft=False):
+        deadline=getattr(self,'deadline',None)
+        if deadline is not None and time.monotonic()>deadline:
+            raise MapError('Routing attempt exceeded its time budget')
         # Seed the nearby branch contacts, rather than every arrow of a global
         # bus. Local bounds prevent an obstructed pin from flooding the board.
         candidates=sorted(tree,key=lambda p:manhattan(p,goal))[:96]
@@ -54,14 +57,15 @@ class FixedWiring(CongestionRouting,Router):
         self.fixed_outs={p:set(out) for p,out in self.outs.items()}
         # Fix boundary positions as well as internal cells.
         b=bounds_of(self.cells);self.bounds=(*b['min'],*b['max'])
-        print(f'Routing {len(self.sinks)} external nets ({len(self.cells)} fixed cells)',flush=True)
+        from arrowshdl.progress import report
+        report(0, f'Routing {len(self.sinks)} nets around {len(self.cells)} fixed arrows')
         self.route_phase(self.sinks)
-        print(f'Routed: {len(self.cells)} cells, {self.ripups} wire negotiations',flush=True)
+        report(90, f'Checking routed scheme: {len(self.cells)} arrows, {self.ripups} wire repairs')
         for p,targets in self.outs.items():
             if not targets:
                 # A source without consumers is deliberately absent from this router.
                 raise ValueError(f'Unused external source {p}')
-            self.cells[p]=wire_cell(p,targets)
+            self.cells[p]=getattr(self,'wire_cell',wire_cell)(p,targets)
             if self.cells[p] is None:raise ValueError(f'Unsupported external branch {p}')
         # Exact destinations make jumps insulated. Also forbid the reverse edge
         # which would create an undeclared feedback loop in the compiled map.
@@ -70,4 +74,5 @@ class FixedWiring(CongestionRouting,Router):
                 if q in self.cells and q not in targets:raise ValueError(f'Short {p}->{q}')
             for q in targets:
                 if p in destinations(q,self.cells[q]):raise ValueError(f'Reversed edge {p}->{q}')
+        report(100, 'Routing verified')
         return self.cells

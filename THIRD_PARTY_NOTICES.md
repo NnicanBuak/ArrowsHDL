@@ -24,3 +24,12 @@
   Условия использования этих фрагментов требуют отдельной проверки.
   Изображение исходной схемы в `tests/fixtures/circuits/reference_adder8`
   используется только регрессией распознавания и тоже не входит в wheel.
+
+
+## Arrow 4 bitmap font
+
+`src/arrowshdl/data/fonts/arrow4.json` preserves the bitmap glyphs extracted
+from the saved arrow alphabet at https://logic-arrows.io/map--132oac3.
+The source map hash and derivation notes are retained in the font document.
+Original authorship of the source map and game materials is retained.
+The generated display wiring is part of ArrowsHDL.

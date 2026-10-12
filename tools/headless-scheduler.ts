@@ -11,7 +11,7 @@ export function drainTasks() {
     const task = queuedTasks.shift();
     while (!task.step(10_000)) {
       budget -= 10_000;
-      if (budget <= 0) throw new Error('Превышен бюджет поиска колец; используйте --no-cycles');
+      if (budget <= 0) throw new Error('Cycle search budget exceeded; use --no-optimize-cycles');
     }
   }
 }

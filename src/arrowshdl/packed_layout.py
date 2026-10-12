@@ -113,7 +113,7 @@ def units_of(graph):
     ordered=[];visiting=set();visited=set()
     def visit(i):
         if i in visited:return
-        if i in visiting:raise MapError('Цикл в графе упаковки операторов')
+        if i in visiting:raise MapError('Cycle in operator packing graph')
         visiting.add(i)
         for parent in sorted(units[i]['parents']):visit(parent)
         visiting.remove(i);visited.add(i);ordered.append(i)
@@ -296,7 +296,7 @@ def pack_group(units,gap=0,aspect=1.0,fanout=None,bus_groups=()):
             return placed,max(x for x,y in occupied)+1,max(y for x,y in occupied)+1
         if width<=height*aspect:width+=2
         else:height+=2
-    raise MapError('Не удалось упаковать связанные операторы в локальную область')
+    raise MapError('Could not pack connected operators into a local region')
 
 
 def arrange_packed(graph,expansion=None,corridor=3,aspect=1.0,frame=None,combine=False):
@@ -348,7 +348,7 @@ def arrange_packed(graph,expansion=None,corridor=3,aspect=1.0,frame=None,combine
             y+=height+corridor
         core_bottom=max(core_bottom,y-corridor)
     frame=frame or (max(64,cursor+32),max(64,core_bottom+32))
-    if cursor>frame[0]-3 or core_bottom>frame[1]-3:raise MapError('Ядро вышло за фиксированную рамку портов')
+    if cursor>frame[0]-3 or core_bottom>frame[1]-3:raise MapError('Core exceeds the fixed port frame')
     vertices=[];positions=[];sources={}
     offset=0
     for name,entries in sorted(graph['inputs'].items(),key=lambda item:(-len(item[1]),item[0])):

@@ -57,8 +57,8 @@ def try_native_adder(graph,rewrites,max_cells):
     input_coords,output_coords={},{}
 
     def add(key,cell,owner):
-        if key in cells:raise MapError(f"Конфликт шаблона сумматора: {key}")
-        if len(cells)>=max_cells:raise MapError(f"Схема превышает лимит {max_cells} клеток")
+        if key in cells:raise MapError(f"Adder template conflict: {key}")
+        if len(cells)>=max_cells:raise MapError(f"Scheme exceeds the limit of {max_cells} cells")
         validate_cell(*key,cell)
         cells[key],owners[key]=cell,owner
 

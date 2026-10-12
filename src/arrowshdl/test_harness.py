@@ -10,18 +10,18 @@ from arrowshdl.simulation import simulate
 
 def add_fixture(cells, manifest):
     if map_hash(cells) != manifest["map_hash"]:
-        raise MapError("Описание портов относится к другой карте")
+        raise MapError("Port metadata belongs to another map")
     test_cells = dict(cells)
     devices = {(d['direction'], tuple(d['at'])): d for d in manifest.get('io_devices', [])}
     for direction, kind in (("inputs", 22), ("outputs", 23)):
         for entries in manifest[direction].values():
             for entry in entries:
                 if not {'fixture','contact','rotation'} <= entry.keys():
-                    raise MapError('Для физического порта не объявлена тестовая площадка; требуется описание bindings')
+                    raise MapError('Physical port has no test fixture; bindings metadata is required')
                 position, contact = tuple(entry["fixture"]), tuple(entry["contact"])
                 device = devices.get((direction, position))
                 if (position in test_cells and not device) or contact not in cells:
-                    raise MapError(f"Нет свободного места для тестового порта {position}")
+                    raise MapError(f"No free space for test port {position}")
                 fixture = Cell(kind, entry["rotation"])
                 if direction == 'outputs' and entry.get('sensor'):
                     sensor=entry['sensor']
@@ -29,49 +29,49 @@ def add_fixture(cells, manifest):
                     front=next(destinations(at,detector))
                     behind=(2*at[0]-front[0],2*at[1]-front[1])
                     if (at in test_cells and not (device and test_cells[at]==detector)) or behind!=contact or front!=position:
-                        raise MapError('Неверный независимый пробник выхода')
+                        raise MapError('Invalid independent output probe')
                     test_cells[at]=detector
                     test_cells[position]=fixture
                     continue
                 if kind == 22:
                     if list(destinations(position, fixture)) != [contact]:
-                        raise MapError("Источник теста должен быть направлен на контакт")
+                        raise MapError("Test source must point toward the contact")
                     if any(position in destinations(key, cell) for key, cell in cells.items() if key != position):
-                        raise MapError("Схема подаёт сигнал обратно на тестовый источник")
+                        raise MapError("Scheme feeds a signal back into the test source")
                 elif position not in destinations(contact, cells[contact]):
-                    raise MapError("Выходной контакт не направлен на приёмник")
+                    raise MapError("Output contact does not point toward the receiver")
                 test_cells[position] = fixture
     links = edges(test_cells)
     for entries in manifest["inputs"].values():
         for entry in entries:
             if links[tuple(entry["fixture"])] != [tuple(entry["contact"])]:
-                raise MapError("Тестовый источник соединён с посторонними клетками")
+                raise MapError("Test source is connected to unexpected cells")
     for entries in manifest["outputs"].values():
         for entry in entries:
             sources = [key for key, targets in links.items() if tuple(entry["fixture"]) in targets]
             expected=tuple(entry['sensor']['at']) if entry.get('sensor') else tuple(entry['contact'])
             if sources != [expected]:
-                raise MapError("Посторонний сигнал на тестовом приёмнике")
+                raise MapError("Unexpected signal at test receiver")
     return test_cells
 
 
 def make_scenario(manifest, vectors, settle_ticks=None, compressed=False):
     hold = manifest["settle_ticks"] if settle_ticks is None else settle_ticks
     if type(hold) is not int or hold < manifest["settle_ticks"]:
-        raise MapError("Время удержания входов меньше рассчитанной задержки")
+        raise MapError("Input hold time is shorter than the computed delay")
     ticks = hold * len(vectors)
     if not 0 < ticks <= 1_000_000:
-        raise MapError("Сценарий должен содержать от 1 до 1000000 тактов")
+        raise MapError("Scenario must contain between 1 and 1000000 ticks")
     for vector in vectors:
         if set(vector) != {"inputs", "expect"}:
-            raise MapError("Тестовый вектор: inputs и expect")
+            raise MapError("Test vector: expected inputs and expect")
         for category, key in (("inputs", "inputs"), ("outputs", "expect")):
             if set(vector[key]) != set(manifest[category]):
-                raise MapError("Тестовый вектор должен задать все входы и выходы")
+                raise MapError("Test vector must specify all inputs and outputs")
             for name, entries in manifest[category].items():
                 value = vector[key][name]
                 if type(value) is not int or not 0 <= value < 2 ** len(entries):
-                    raise MapError(f"Значение порта {name} не помещается в {len(entries)} бит")
+                    raise MapError(f"Port value {name} does not fit in {len(entries)} bits")
     inputs, expect = [], []
     for category, key, destination in (("inputs", "inputs", inputs), ("outputs", "expect", expect)):
         for name, entries in manifest[category].items():
@@ -93,14 +93,14 @@ def make_scenario(manifest, vectors, settle_ticks=None, compressed=False):
 def run_vectors(cells, manifest, vectors, folder: Path, stem: str, compressed=False):
     test_cells = add_fixture(cells, manifest)
     if depth_of(test_cells) > manifest["settle_ticks"]:
-        raise MapError("Тестовая обвязка превышает рассчитанный срок установления")
+        raise MapError("Test fixture exceeds the computed settling time")
     scenario = make_scenario(manifest, vectors, compressed=compressed)
     write_map(folder, stem + ".test", test_cells)
     write_json(folder / f"{stem}.scenario.json", scenario)
     # Execute the exported/imported cells, rather than the Boolean synthesis graph.
     imported = read_map(folder / f"{stem}.test.save.txt")
     if imported != test_cells or read_map(folder / f"{stem}.test.map.json") != test_cells:
-        raise MapError("Экспорт изменил тестовую карту")
+        raise MapError("Export modified the test map")
     report = simulate(imported, scenario, optimize_cycles=False)
     hold = manifest["settle_ticks"]
     measured = {tuple(trace["at"]): trace["values"] for trace in report["outputs"]}
@@ -124,17 +124,17 @@ The same exported/imported fixture map is executed for every batch.
     """
     test_cells = add_fixture(cells, manifest)
     if depth_of(test_cells) > manifest["settle_ticks"]:
-        raise MapError("Тестовая обвязка превышает рассчитанный срок установления")
+        raise MapError("Test fixture exceeds the computed settling time")
     write_map(folder, stem + ".test", test_cells)
     imported = read_map(folder / f"{stem}.test.save.txt")
     if imported != test_cells or read_map(folder / f"{stem}.test.map.json") != test_cells:
-        raise MapError("Экспорт изменил тестовую карту")
+        raise MapError("Export modified the test map")
     hold = manifest["settle_ticks"]
     if type(batch_size) is not int or batch_size < 1:
-        raise MapError("Размер пакета должен быть положительным")
+        raise MapError("Batch size must be positive")
     batch_size = min(batch_size, 1_000_000 // hold)
     if batch_size == 0:
-        raise MapError("Слишком большая задержка для пакетного теста")
+        raise MapError("Delay is too large for batch testing")
     summary = {"passed": True, "vectors": 0, "checked_samples": 0, "ticks": 0,
                "batches": 0, "failure_count": 0, "failures": [], "settle_ticks": hold,
                "production_cells": len(cells), "fixture_cells": len(test_cells) - len(cells),
@@ -157,6 +157,6 @@ The same exported/imported fixture map is executed for every batch.
         if progress:
             progress(summary)
     if not summary["vectors"]:
-        raise MapError("Нет тестовых векторов")
+        raise MapError("No test vectors")
     write_json(folder / f"{stem}.exhaustive.report.json", summary)
     return summary

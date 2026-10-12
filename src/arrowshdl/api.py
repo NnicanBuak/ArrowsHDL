@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 import json
 from pathlib import Path
+import tempfile
 
 from arrowshdl.arrowasm import Cell
 from arrowshdl.execution import bounded
@@ -16,24 +17,29 @@ class BuildResult:
 
 
 def _result(cells, metadata, output):
-    root = Path(output).resolve()
-    top = metadata['top']
-    artifacts = {p.name[len(top)+1:]: p for p in root.glob(top+'.*') if p.is_file()}
-    return BuildResult(cells, {side: metadata[side] for side in ('inputs', 'outputs')}, metadata, artifacts)
+    from arrowshdl.artifacts import export
+    path = export(output, cells, metadata)
+    return BuildResult(cells, {side: metadata[side] for side in ('inputs', 'outputs')}, metadata, {'output': path})
 
 
 @bounded
 def compile(sources, *, top, out, timeout=600, libraries=(), **options):
     from arrowshdl.verilog_compile import compile_file
+    from arrowshdl.artifacts import validate_output
+    validate_output(out)
     files = [sources] if isinstance(sources, (str, Path)) else list(sources)
-    cells, meta = compile_file([*files, *libraries], top, out, timeout=timeout, **options)
+    with tempfile.TemporaryDirectory(prefix='arrowshdl-compile-') as directory:
+        cells, meta = compile_file([*files, *libraries], top, directory, timeout=timeout, **options)
     return _result(cells, meta, out)
 
 
 @bounded
 def build(project, *, out, timeout=600, **options):
     from arrowshdl.scheme import build_scheme
-    cells, meta = build_scheme(project, out, timeout=timeout, **options)
+    from arrowshdl.artifacts import validate_output
+    validate_output(out)
+    with tempfile.TemporaryDirectory(prefix='arrowshdl-build-') as directory:
+        cells, meta = build_scheme(project, directory, timeout=timeout, **options)
     return _result(cells, meta, out)
 
 
@@ -41,8 +47,11 @@ def build(project, *, out, timeout=600, **options):
 def link(objects, *, top, out, timeout=600, **options):
     from arrowshdl.objects import link_objects
     from arrowshdl.verilog_compile import emit_build
+    from arrowshdl.artifacts import validate_output
+    validate_output(out)
     graph, log, standard = link_objects(objects, top, timeout)
-    cells, meta = emit_build(graph, [], top, Path(out), log, standard=standard, **options)
+    with tempfile.TemporaryDirectory(prefix='arrowshdl-link-') as directory:
+        cells, meta = emit_build(graph, [], top, Path(directory), log, standard=standard, **options)
     return _result(cells, meta, out)
 
 

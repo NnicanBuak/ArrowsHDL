@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import os
 from arrowshdl import api
 
 from arrowshdl import __version__
@@ -22,124 +23,137 @@ def main(argv=None):
     for stream in (sys.stdout, sys.stderr):
         if hasattr(stream, 'reconfigure'):
             stream.reconfigure(encoding='utf-8')
-    parser = argparse.ArgumentParser(prog='arrowshdl', description='Verilog → карта Logic Arrows')
+    parser = argparse.ArgumentParser(prog='arrowshdl', description='Compile Verilog into Logic Arrows maps')
     parser.add_argument('--version', action='version', version=f'ArrowsHDL {__version__}')
     commands = parser.add_subparsers(dest='command', required=True)
-    check=commands.add_parser('check',help='Проверить установку или запустить набор тестов компилятора')
-    check.add_argument('--suite',type=Path,help='Папка тестов из исходного репозитория')
-    compile = commands.add_parser('compile', help='Скомпилировать исходники HDL')
+    commands.add_parser('health', help='Check ArrowsHDL operational health',
+                        description='Check runtimes, compilation, save codec, simulation and preview rendering.')
+    compile = commands.add_parser('compile', help='Compile HDL sources')
     compile.add_argument('sources', nargs='+', type=Path)
     compile.add_argument('--top')
-    compile.add_argument('-o', '--out', required=True, type=Path)
-    compile.add_argument('-c', action='store_true', help='Получить объект модуля .aho.json')
+    compile.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='One output file: .json scheme or .txt game save')
+    compile.add_argument('-c', action='store_true', help='Write a reusable RTLIL module object (.aho.json)')
     compile.add_argument('--std', choices=SUPPORTED_STANDARDS, default=DEFAULT_STANDARD)
     compile.add_argument('-I', dest='includes', action='append', default=[], type=Path)
-    compile.add_argument('-L', '--library', dest='libraries', action='append', default=[], type=Path, help='Дополнительный файл библиотеки HDL')
+    compile.add_argument('-L', '--library', dest='libraries', action='append', default=[], type=Path, help='Additional HDL library file')
     compile.add_argument('-D', dest='defines', action='append', default=[])
     compile.add_argument('-G', dest='parameters', action='append', default=[], metavar='NAME=VALUE')
-    compile.add_argument('--extern', action='append',default=[],help='Модуль с объявленным интерфейсом, реализация поступит при link; только -c')
-    compile.add_argument('--layout', choices=('compact', 'sparse', 'fixed', 'macro-grid'), default='compact')
+    compile.add_argument('--extern', action='append',default=[],help='Declared module interface resolved at link time; requires -c')
+    compile.add_argument('--layout', choices=('auto','compact', 'sparse', 'fixed', 'macro-grid'), default='auto')
+    compile.add_argument('--compact',action='store_true',help='Search additional graph placements for fewer arrows and a smaller complete map')
     compile.add_argument('--input-bus', action='append', default=[])
     compile.add_argument('--input-bus-gap', default='auto')
     compile.add_argument('--timeout', type=float, default=600)
     compile.add_argument('--max-cells', type=int, default=1000000)
-    compile.add_argument('--preview', action='store_true')
-    build = commands.add_parser('build', help='Прочитать проект TOML и собрать схему')
+    build = commands.add_parser('build', help='Build a scheme from a TOML project')
     build.add_argument('project', type=Path)
-    build.add_argument('-o', '--out', required=True, type=Path)
+    build.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='One output file: .json scheme or .txt game save')
     build.add_argument('--timeout', type=float, default=600)
-    build.add_argument('--layout', choices=('compact', 'sparse', 'macro-grid'), default='compact', help='Алгоритм компилятора; не является частью схемы')
+    build.add_argument('--layout', choices=('auto','compact', 'sparse', 'macro-grid'), default='auto', help='Compiler layout algorithm')
+    build.add_argument('--compact',action='store_true',help='Search additional graph placements for fewer arrows and a smaller complete map')
     build.add_argument('--max-cells', type=int, default=1000000)
-    build.add_argument('--test', action='store_true', help='Заменить кнопки тестовыми источниками, сохранить дисплеи')
-    link = commands.add_parser('link', help='Скомпоновать объекты RTLIL в карту')
+    build.add_argument('--test', action='store_true', help='Replace buttons with test sources and preserve displays')
+    link = commands.add_parser('link', help='Link RTLIL objects into a scheme')
     link.add_argument('objects', nargs='+', type=Path)
     link.add_argument('--top', required=True)
-    link.add_argument('-o', '--out', required=True, type=Path)
+    link.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='One output file: .json scheme or .txt game save')
     link.add_argument('--timeout', type=float, default=600)
-    link.add_argument('--layout', choices=('compact', 'sparse', 'fixed', 'macro-grid'), default='compact')
+    link.add_argument('--layout', choices=('auto','compact', 'sparse', 'fixed', 'macro-grid'), default='auto')
+    link.add_argument('--compact',action='store_true',help='Search additional graph placements for fewer arrows and a smaller complete map')
     for name in ('simulate', 'test'):
-        sim = commands.add_parser(name, help='Запустить общий физический симулятор')
+        sim = commands.add_parser(name, help='Run the physical simulator')
         sim.add_argument('map', nargs='?', type=Path)
         sim.add_argument('scenario', nargs='?', type=Path)
         sim.add_argument('-o', '--out', type=Path)
         if name == 'test':
-            sim.add_argument('--suite', type=Path, help='Общие регрессии unittest из исходного репозитория')
+            sim.add_argument('--suite', type=Path, help='Run repository unittest regressions')
         sim.add_argument('--manifest', type=Path)
-        sim.add_argument('--vectors', action='store_true', help='scenario содержит список логических векторов inputs/expect; требуется --manifest')
+        sim.add_argument('--vectors', action='store_true', help='Read inputs/expect vectors; requires scheme metadata or --manifest')
         sim.add_argument('--timeout', type=float, default=120)
         sim.add_argument('--no-optimize-cycles', action='store_true')
     for name in ('encode', 'decode', 'graph'):
-        codec = commands.add_parser(name, help='Преобразовать карту и сохранение')
+        codec = commands.add_parser(name, help='Convert maps and game saves')
         codec.add_argument('source', type=Path)
         codec.add_argument('-o', '--out', required=True, type=Path)
-    preview = commands.add_parser('preview', help='Получить предпросмотр схемы')
+    preview = commands.add_parser('preview', help='Render a scheme preview')
     preview.add_argument('map', type=Path)
     preview.add_argument('manifest', nargs='?', type=Path)
     preview.add_argument('-o', '--out', required=True, type=Path)
     args = parser.parse_args(argv)
+    os.environ['ARROWSHDL_PROGRESS'] = '1'
+    from arrowshdl.progress import report, reset
+    reset()
+    report(0, f'Starting {args.command}')
     try:
-        if args.command=='check':
-            from arrowshdl.checks import check_installation,check_suite
-            return check_suite(args.suite) if args.suite else check_installation()
+        if args.command=='health':
+            from arrowshdl.health import health
+            return health()
         elif args.command == 'compile':
             top = args.top or args.sources[0].stem
             parameters = {}
             for pair in args.parameters:
                 if '=' not in pair:
-                    raise MapError('-G: ожидается NAME=VALUE')
+                    raise MapError('-G: expected NAME=VALUE')
                 name, value = pair.split('=', 1)
                 parameters[name] = value
             opts = dict(standard=args.std, include_dirs=args.includes, defines=args.defines, parameters=parameters)
             if args.c:
                 from arrowshdl.objects import compile_object
                 compile_object([*args.sources, *args.libraries], top, args.out, args.timeout, blackbox_modules=args.extern,**opts)
-                print(f'{top}: объект {args.out}')
+                report(100, f'Object written: {args.out}')
                 return 0
-            if args.extern:raise MapError('--extern применяется только с -c')
+            if args.extern:raise MapError('--extern requires -c')
             gap = args.input_bus_gap if args.input_bus_gap == 'auto' else int(args.input_bus_gap)
             result = api.compile(args.sources, top=top, out=args.out, timeout=args.timeout,
                 libraries=args.libraries, max_cells=args.max_cells, layout=args.layout,
-                input_buses=args.input_bus, input_bus_gap=gap, preview=args.preview, **opts)
+                input_buses=args.input_bus, input_bus_gap=gap,compact=args.compact, **opts)
             cells, manifest = result.cells, result.metadata
         elif args.command == 'build':
-            from arrowshdl.scheme import build_scheme
-            cells, manifest = build_scheme(args.project,args.out,timeout=args.timeout,layout=args.layout,
-                                          max_cells=args.max_cells,testing=args.test)
+            result = api.build(args.project,out=args.out,timeout=args.timeout,layout=args.layout,
+                               max_cells=args.max_cells,testing=args.test,compact=args.compact)
+            cells, manifest = result.cells, result.metadata
         elif args.command == 'link':
-            result = api.link(args.objects, top=args.top, out=args.out, timeout=args.timeout, layout=args.layout)
+            result = api.link(args.objects, top=args.top, out=args.out, timeout=args.timeout, layout=args.layout,compact=args.compact)
             cells, manifest = result.cells, result.metadata
         elif args.command in ('simulate', 'test'):
             if getattr(args,'suite',None):
                 from arrowshdl.checks import check_suite
                 return check_suite(args.suite,args.out)
             if not args.map or not args.scenario or not args.out:
-                raise MapError('Укажите map, scenario и --out, либо test --suite')
+                raise MapError('Specify map, scenario and --out, or use test --suite')
             from arrowshdl.simulation import simulate
             from arrowshdl.test_harness import add_fixture
             cells = read_map(args.map)
+            from arrowshdl.artifacts import read_metadata
+            metadata = _json(args.manifest) if args.manifest else read_metadata(args.map)
             scenario = _json(args.scenario)
             if args.vectors:
-                if not args.manifest:
-                    raise MapError('--vectors требует --manifest')
+                if not metadata:
+                    raise MapError('--vectors requires a compiled .json scheme or --manifest')
                 from arrowshdl.test_harness import make_scenario
-                scenario = make_scenario(_json(args.manifest), scenario, compressed=True)
-            if args.manifest:
-                cells = add_fixture(cells, _json(args.manifest))
+                scenario = make_scenario(metadata, scenario, compressed=True)
+            if metadata:
+                cells = add_fixture(cells, metadata)
             report = simulate(cells, scenario, timeout=args.timeout, optimize_cycles=not args.no_optimize_cycles)
             from arrowshdl.mapdata import save_sha256, map_hash
             report.update(save_sha256=save_sha256(args.map), source_map_hash=map_hash(read_map(args.map)),
                           scenario_sha256=save_sha256(args.scenario))
             args.out.parent.mkdir(parents=True, exist_ok=True)
             write_json(args.out, report)
+            from arrowshdl.progress import report as log_progress
+            log_progress(100, f'Report written: {args.out}')
             status = 'TRACE' if report['passed'] is None else 'PASS' if report['passed'] else 'FAIL'
-            print(f"{status}: {report.get('checked_samples', 0)} проверок")
+            print(f"{status}: {report.get('checked_samples', 0)} checks")
             return 1 if report['passed'] is False else 0
         elif args.command == 'encode':
+            report(25, 'Reading and validating map')
             cells = read_map(args.source)
             args.out.parent.mkdir(parents=True, exist_ok=True)
             args.out.write_text(encode(cells)+'\n', encoding='ascii')
+            report(100, f'Save written: {args.out}')
             return 0
         elif args.command in ('decode','graph'):
+            report(25, 'Reading and validating map')
             args.out.parent.mkdir(parents=True, exist_ok=True)
             cells=read_map(args.source)
             document=to_document(cells)
@@ -149,14 +163,19 @@ def main(argv=None):
                               dependencies=[dict(at=list(p),to=[list(q) for q in sorted(targets)])
                                             for p,targets in sorted(dependency_links(cells).items())])
             write_json(args.out,document)
+            report(100, f'Output written: {args.out}')
             return 0
         elif args.command == 'preview':
+            report(25, 'Rendering placed arrows and ports')
             args.out.parent.mkdir(parents=True, exist_ok=True)
             from arrowshdl.map_preview import render_cells
-            render_cells(read_map(args.map), args.out, _json(args.manifest) if args.manifest else None)
+            from arrowshdl.artifacts import read_metadata
+            render_cells(read_map(args.map), args.out, _json(args.manifest) if args.manifest else read_metadata(args.map))
+            report(100, f'Preview written: {args.out}')
             return 0
-        print(f"{manifest['top']}: {len(cells)} стрелок, {manifest['bounds']['width']}×{manifest['bounds']['height']}")
+        report(100, f'Output written: {args.out}')
+        print(f"{manifest['top']}: {len(cells)} arrows, {manifest['bounds']['width']}×{manifest['bounds']['height']}")
         return 0
     except (MapError, OSError, ValueError, subprocess.TimeoutExpired,subprocess.CalledProcessError) as exc:
-        print(f'Ошибка: {exc}', file=sys.stderr)
+        print(f'Error: {exc}', file=sys.stderr)
         return 2

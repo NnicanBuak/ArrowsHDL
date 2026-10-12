@@ -239,7 +239,7 @@ class Router:
                 # physical output fixture follows that path (including jumps).
                 allowed = (1, 10, 11) if node["op"] in ("BUF", "OR") else (GATE_TYPES[node["op"]],)
                 if type(cell_type) is not int or cell_type not in allowed:
-                    raise MapError(f"Неверный физический тип {cell_type} для {node['op']}")
+                    raise MapError(f"Incorrect physical type {cell_type} for {node['op']}")
                 self.add(key, "gate:" + node["id"], Cell(cell_type, vertex.get("rotation",1), vertex.get("mirrored", False)))
                 self.gates[key] = node
                 flexible=vertex.get('flexible_output',False) and node['op'] in ('OR','BUF')
@@ -317,7 +317,7 @@ class Router:
                 excluded=() if key in self.flexible_gates else destinations(key,self.cells[key])
                 try:choices=[tuple(choose_input_contacts(node['inputs'],key,self.roots,compatible,excluded=excluded))]
                 except MapError:pass
-            if not choices:raise MapError(f"Нет совместимых контактов у элемента {node['id']}")
+            if not choices:raise MapError(f"No compatible contacts for gate {node['id']}")
             pins = min(choices, key=lambda ps: sum(manhattan(self.roots[net], pin) for net, pin in zip(node["inputs"], ps) if net not in primary and node['output'] not in output_nets))
             self.pins[key] = list(pins)
             for net, pin in zip(node["inputs"], pins):
@@ -350,7 +350,7 @@ class Router:
                 old=self.routing_limits[axis]
                 self.routing_limits[axis]=value if old is None else (max(old,value) if axis<2 else min(old,value))
         if any(not self.route_allowed(p) for p in self.cells):
-            raise MapError('Контакты ввода/вывода не образуют внешнюю границу схемы')
+            raise MapError('I/O contacts do not form an exterior scheme boundary')
         self.fixed_cells = set(self.cells)
         self.fixed_outs = {key:set(values) for key,values in self.outs.items()}
         internal={p for p,n in self.gates.items() if n['output'] not in output_nets or n['op']!='BUF'}
@@ -362,9 +362,9 @@ class Router:
 
     def add(self, key, owner, cell=None):
         if key in self.cells or key in self.reserved:
-            raise MapError(f"Конфликт компактного размещения в {key}")
+            raise MapError(f"Compact placement conflict at {key}")
         if len(self.cells) >= self.max_cells:
-            raise MapError(f"Схема превышает лимит {self.max_cells} клеток")
+            raise MapError(f"Scheme exceeds the limit of {self.max_cells} cells")
         self.cells[key], self.owners[key] = cell, owner
         if cell is None:
             self.outs[key] = set()
@@ -376,6 +376,7 @@ class Router:
                    for i,(value,limit) in enumerate(zip((x,y,x,y),limits)))
 
     def path(self, tree, goal, margin, soft=False):
+        make_wire=getattr(self,'wire_cell',wire_cell)
         lo_x, lo_y, hi_x, hi_y = self.bounds
         net = self.owners[goal]
         # An isolated sink otherwise makes forward A* flood the whole board.
@@ -394,7 +395,7 @@ class Router:
                     if predecessor in seen or predecessor in self.reserved:
                         continue
                     if predecessor in tree:
-                        if predecessor in self.outs and len(self.outs[predecessor])<3 and wire_cell(predecessor,self.outs[predecessor]|{current}) is not None:
+                        if predecessor in self.outs and len(self.outs[predecessor])<3 and make_wire(predecessor,self.outs[predecessor]|{current}) is not None:
                             connected=True
                         continue
                     blocked=predecessor in self.cells
@@ -429,7 +430,7 @@ class Router:
                     removable = soft and next_key not in self.fixed_cells and self.owners.get(next_key) != net
                     if next_key in self.reserved or (blocked and not removable):
                         continue
-                    if key in tree and wire_cell(key, self.outs[key] | {next_key}) is None:
+                    if key in tree and make_wire(key, self.outs[key] | {next_key}) is None:
                         continue
                     added = 1 if distance == 1 and not (dx and dy) else getattr(self, 'routing_jump_cost', 1.05)
                     if blocked:
@@ -464,9 +465,9 @@ class Router:
             # A few conflicting nets must not consume the entire graph's budget
             # by repeatedly tearing down each other's identical routes.
             if net_attempts[net] > 6:
-                fail(f"Цепь {net} повторно конфликтует: исчерпан лимит 6 перестроений",net)
+                fail(f"Net {net} repeatedly conflicts: limit of 6 repairs exhausted",net)
             if attempts > max(40, len(order)*3):
-                fail("Исчерпан бюджет перестройки проводов",net)
+                fail("Wire repair budget exhausted",net)
             self.clear_net(net)
             tree=self.tree(net)
             pending=set(targets[net])-tree
@@ -480,7 +481,7 @@ class Router:
                 if path is None:
                     path = self.path(tree,goal,8,soft=True)
                     if path is None:
-                        fail(f"Не удалось проложить компактную цепь {net}",net,goal)
+                        fail(f"Could not route net {net}",net,goal)
                     blockers = sorted({self.owners[p] for p in path if p in self.cells and p not in self.fixed_cells and self.owners[p] != net})
                     for blocker in blockers:
                         self.clear_net(blocker)
@@ -489,7 +490,7 @@ class Router:
                         self.ripups += 1
                     path = self.path(tree,goal,32)
                     if path is None:
-                        fail(f"Не удалось перестроить цепь {net}",net,goal)
+                        fail(f"Could not repair net {net}",net,goal)
                 for key in path[1:-1]:
                     self.add(key, net)
                 for key, target in zip(path, path[1:]):
@@ -531,10 +532,10 @@ class Router:
                         targets.add(dest)
                         break
                 else:
-                    raise MapError(f"Не удалось изолировать неиспользуемый контакт {key}")
+                    raise MapError(f"Could not isolate unused contact {key}")
             self.cells[key] = wire_cell(key, targets)
             if self.cells[key] is None:
-                raise MapError(f"Неподдерживаемое разветвление в {key}")
+                raise MapError(f"Unsupported wire branch at {key}")
         for key, cell in self.cells.items():
             validate_cell(*key, cell)
         self.validate()
@@ -556,7 +557,7 @@ class Router:
 
     def validate(self):
         if any(not self.route_allowed(p) for p in self.cells):
-            raise MapError('Провод вышел за внешнюю границу ввода/вывода')
+            raise MapError('Wire crosses the exterior I/O boundary')
         links, reverse = edges(self.cells), defaultdict(list)
         for key, targets in links.items():
             for target in targets:
@@ -564,26 +565,26 @@ class Router:
                 if (key,target) in self.native_links:
                     continue
                 if key in destinations(target,self.cells[target]):
-                    raise MapError(f"Необъявленная обратная связь между стрелками: {key} → {target}")
+                    raise MapError(f"Undeclared feedback between arrows: {key} → {target}")
                 if target in self.gates:
                     if key not in self.pins[target]:
-                        raise MapError(f"Посторонний сигнал у элемента {target}")
+                        raise MapError(f"Unexpected gate input at {target}")
                 elif key in self.gates:
                     if self.owners[target] != self.gates[key]["output"]:
-                        raise MapError(f"Посторонний выход элемента {key}")
+                        raise MapError(f"Unexpected gate output at {key}")
                 elif self.owners[key] != self.owners[target] and self.owners[key] != "constant:" + self.owners[target]:
-                    raise MapError(f"Короткое замыкание {key} → {target}")
+                    raise MapError(f"Short circuit: {key} → {target}")
         for key, pins in self.pins.items():
             if set(reverse[key]) != set(pins):
-                raise MapError(f"Разрыв входов элемента {key}")
+                raise MapError(f"Disconnected gate inputs: {key}")
             for pin, net in zip(pins, self.gates[key]["inputs"]):
                 if (self.gates[pin]['output'] if pin in self.gates else self.owners[pin]) != net:
-                    raise MapError(f"Неверный сигнал у элемента {key}")
+                    raise MapError(f"Incorrect gate signal at {key}")
         if any(any(self.cells[q].type==3 for q in reverse[p]) for p,c in self.cells.items() if c.type==2):
-            raise MapError('Блокирующая стрелка отключает постоянный источник')
+            raise MapError('A blocking arrow disables a constant source')
         for p,c in self.native_initial.items():
             if self.cells.get(p)!=c:
-                raise MapError(f'Изменён элемент фиксированного нативного блока в {p}')
+                raise MapError(f'Fixed native block cell was modified at {p}')
         for net, root in self.roots.items():
             reached, todo = set(), [root]
             while todo:
@@ -592,7 +593,7 @@ class Router:
                     reached.add(key)
                     todo.extend(v for v in links[key] if self.owners[v] == net)
             if {key for key, owner in self.owners.items() if owner == net} - reached:
-                raise MapError(f"Разрыв цепи {net}")
+                raise MapError(f"Disconnected net: {net}")
 
 
 def place_compact(netlist, max_cells=100_000):
@@ -628,7 +629,7 @@ def place_compact(netlist, max_cells=100_000):
         searched=search_placement(graph,max_cells)
         if searched is not None:candidates.append(searched)
     except MapError as error:failures.append({'layout':'graph-search','reason':str(error)})
-    if not candidates:raise MapError(f'Не удалось собрать граф: {failures[-1]["reason"]}')
+    if not candidates:raise MapError(f'Could not assemble graph: {failures[-1]["reason"]}')
     eligible=[candidate for candidate in candidates if no_size_regression(candidate,candidates[0])]
     cells,meta=min(eligible,key=lambda cm:(cm[1]['logic_core']['cells'],cm[1]['logic_core']['bounds']['area'],
                                           len(cm[0]),cm[1]['bounds']['area'],cm[1]['settle_ticks']))
@@ -815,7 +816,7 @@ def place_routed(netlist, max_cells=100_000):
             if attempt(pitch,0):
                 break
     if not candidates:
-        raise MapError(f"Компактная трассировка не выполнена: {failures[-1]}")
+        raise MapError(f"Compact routing failed: {failures[-1]}")
     min_area = max(1,min(m["logic_core"]["bounds"]["area"] for _,m in candidates))
     min_cells = max(1,min(m["logic_core"]["cells"] for _,m in candidates))
     eligible = [(c,m) for c,m in candidates if m["logic_core"]["bounds"]["area"] <= min_area*1.25 and m["logic_core"]["cells"] <= min_cells*1.2]

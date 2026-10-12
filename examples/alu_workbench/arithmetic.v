@@ -1,9 +1,10 @@
 // WIDTH-bit arithmetic slice; carry/borrow are visible in the high bit.
 module arithmetic #(parameter WIDTH=4)(
-    input [WIDTH-1:0] a,b, input subtract,
+    input [WIDTH-1:0] a,b, input [2:0] operation,
     output [WIDTH-1:0] result, output carry
 );
     wire [WIDTH:0] c;
+    wire subtract=operation==1;
     wire [WIDTH-1:0] operand=b^{WIDTH{subtract}};
     assign c[0]=subtract;
     genvar i;

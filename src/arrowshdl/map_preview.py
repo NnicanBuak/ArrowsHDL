@@ -17,19 +17,24 @@ def render_cells(cells, path, manifest=None):
     manifest = manifest or {}
     b = bounds_of(cells) if cells else {'min':[0,0],'width':1,'height':1}
     size = max(1, min(24, 5000//max(b['width'],b['height'])))
-    width, height = b['width']*size+64, b['height']*size+96
+    ports = [(kind,name,entries) for kind in ('inputs','outputs') for name,entries in manifest.get(kind,{}).items()]
+    label_font = font(max(10,min(17,size)))
+    labels = [(kind,(name if len(entries)==1 else f"{name}[{entry['index']}]") ,entry)
+              for kind,name,entries in ports for entry in entries]
+    padding = max(32,int(max((label_font.getlength(name) for _,name,_ in labels),default=0))+18)
+    width, height = b['width']*size+2*padding, b['height']*size+96+2*padding
     title = f"{manifest.get('top','Logic Arrows')} · {len(cells)} · {b['width']}×{b['height']}"
     title_font = font(18)
     width = max(width, int(title_font.getlength(title))+33)
     if width*height > 40_000_000:
-        raise MapError('Карта слишком велика для PNG')
+        raise MapError('Map is too large for PNG rendering')
     picture = Image.new('RGB',(width,height),'#f6f8fb')
     draw = ImageDraw.Draw(picture)
     draw.text((16,12),title,font=title_font,fill='#142237')
     sprites = {}
     for (x,y), cell in cells.items():
         token = cell.type,cell.rotation,cell.mirrored
-        at = ((x-b['min'][0])*size+(width-b['width']*size)//2,(y-b['min'][1])*size+64)
+        at = ((x-b['min'][0])*size+(width-b['width']*size)//2,(y-b['min'][1])*size+64+padding)
         if token not in sprites:
             asset = SPRITES/f'arrow{cell.type}.png'
             if not asset.is_file():
@@ -43,6 +48,24 @@ def render_cells(cells, path, manifest=None):
             draw.rectangle((*at,at[0]+size-1,at[1]+size-1),fill='#777777')
         else:
             picture.paste(sprite,at,sprite)
+    for kind,name,entry in labels:
+        x,y = entry['fixture']; cx,cy = entry['contact']
+        px = (x-b['min'][0]+0.5)*size+(width-b['width']*size)//2
+        py = (y-b['min'][1]+0.5)*size+64+padding
+        color = '#157d68' if kind=='inputs' else '#a15b15'
+        draw.rectangle((px-size/2,py-size/2,px+size/2,py+size/2),outline=color,width=2)
+        if x<cx: draw.text((px-size/2-5,py),name,font=label_font,fill=color,anchor='rm')
+        elif x>cx: draw.text((px+size/2+5,py),name,font=label_font,fill=color,anchor='lm')
+        else:
+            # Vertical text keeps adjacent bus labels distinct.
+            tile = Image.new('RGBA',(padding-12,label_font.size+4))
+            ImageDraw.Draw(tile).text((0,0),name,font=label_font,fill=color)
+            tile = tile.rotate(90 if y<cy else -90,expand=True)
+            at = (round(px-tile.width/2),round(py-size/2-tile.height-5 if y<cy else py+size/2+5))
+            picture.paste(tile,at,tile)
+    if labels:
+        draw.text((16,height-25),'Inputs / buttons',font=font(14),fill='#157d68')
+        draw.text((170,height-25),'Outputs / displays',font=font(14),fill='#a15b15')
     picture.save(path)
 
 
@@ -70,11 +93,11 @@ def render(cells, manifest, path, report=None, table_rows=None):
     rows = (table_rows or report.get("truth_table", [])[:8]) if report else []
     width, height = max(1000, left + gw + 190), top + gh + 105 + (len(rows) + 2) * 28
     if width * height > 40_000_000:
-        raise ValueError("Карта слишком велика для растрового предпросмотра")
+        raise ValueError("Map is too large for raster preview")
     im = Image.new("RGB", (width, height), "#f6f8fb")
     draw = ImageDraw.Draw(im)
     draw.text((24, 18), manifest["top"], font=font(29), fill="#142237")
-    subtitle = f"{'Тестовая карта' if report else 'Обычная карта'} · {len(cells)} клеток · предел установления: {manifest['settle_ticks']} тактов"
+    subtitle = f"{'Тестовая карта' if report else 'Обычная карта'} · {len(cells)} cells · предел установления: {manifest['settle_ticks']} ticks"
     draw.text((24, 57), subtitle, font=font(17), fill="#526278")
     draw.rectangle((left, top, left + gw, top + gh), fill="white", outline="#bdc9d8")
     for x in range(0, gw + 1, size):
@@ -133,12 +156,12 @@ def render_native_adder(cells, manifest, path, report=None, table_rows=None):
     rows=(table_rows or report.get('truth_table',[])[:8]) if report else []
     width=max(1050,left+gw+140)
     height=top+gh+125+(len(rows)+2)*29
-    if width*height>40_000_000:raise ValueError('Карта слишком велика для предпросмотра')
+    if width*height>40_000_000:raise ValueError('Map is too large for preview')
     im=Image.new('RGB',(width,height),'#f6f8fb');draw=ImageDraw.Draw(im)
     draw.text((24,16),manifest['top'],font=font(29),fill='#142237')
-    draw.text((24,57),f"{'Тестовая карта' if report else 'Обычная карта'} · {len(cells)} клеток · {max_x-min_x+1}×{max_y-min_y+1} · установление ≤ {manifest['settle_ticks']} тактов",font=font(17),fill='#526278')
+    draw.text((24,57),f"{'Тестовая карта' if report else 'Обычная карта'} · {len(cells)} cells · {max_x-min_x+1}×{max_y-min_y+1} · установление ≤ {manifest['settle_ticks']} ticks",font=font(17),fill='#526278')
     core=manifest.get('logic_core')
-    detail=f"Ядро без ввода/вывода · стрелок: {core['cells']} · поле: {core['bounds']['width']}×{core['bounds']['height']} · тактов: {core['ticks']}. " if core else ''
+    detail=f"Ядро без ввода/вывода · стрелок: {core['cells']} · поле: {core['bounds']['width']}×{core['bounds']['height']} · ticks: {core['ticks']}. " if core else ''
     draw.text((24,90),detail+'XOR — сумма; ≥2 — перенос.',font=font(16),fill='#526278')
     draw.rectangle((left,top,left+gw,top+gh),fill='white',outline='#bdc9d8')
     for x in range(0,gw+1,size):draw.line((left+x,top,left+x,top+gh),fill='#edf1f6')
@@ -206,15 +229,15 @@ def render_compact(cells, manifest, path, report=None, table_rows=None):
     board_height = max(gh, 180 + port_count * 25)
     width, height = max(1050, left + gw + 325), top + board_height + 105 + (len(rows) + 2) * 28
     if width * height > 40_000_000:
-        raise ValueError("Карта слишком велика для растрового предпросмотра")
+        raise ValueError("Map is too large for raster preview")
     im = Image.new("RGB", (width, height), "#f6f8fb")
     draw = ImageDraw.Draw(im)
     draw.text((24, 15), manifest["top"], font=font(29), fill="#142237")
-    timing = f"протокол слова: {manifest['operation_ticks']} тактов" if 'operation_ticks' in manifest else f"установление ≤ {manifest['settle_ticks']} тактов"
-    subtitle = f"{'Тестовая карта' if report else 'Обычная карта'} · {len(cells)} клеток · поле {max_x-min_x+1}×{max_y-min_y+1} · {timing}"
+    timing = f"протокол слова: {manifest['operation_ticks']} ticks" if 'operation_ticks' in manifest else f"установление ≤ {manifest['settle_ticks']} ticks"
+    subtitle = f"{'Тестовая карта' if report else 'Обычная карта'} · {len(cells)} cells · поле {max_x-min_x+1}×{max_y-min_y+1} · {timing}"
     draw.text((24, 56), subtitle, font=font(18), fill="#526278")
     if core:=manifest.get('logic_core'):
-        draw.text((24,87),f"Ядро без ввода/вывода · стрелок: {core['cells']} · поле: {core['bounds']['width']}×{core['bounds']['height']} · тактов: {core['ticks']}",font=font(16),fill="#526278")
+        draw.text((24,87),f"Ядро без ввода/вывода · стрелок: {core['cells']} · поле: {core['bounds']['width']}×{core['bounds']['height']} · ticks: {core['ticks']}",font=font(16),fill="#526278")
     draw.rectangle((left, top, left + gw, top + gh), fill="white", outline="#bdc9d8")
     for x in range(0, gw + 1, size):
         draw.line((left + x, top, left + x, top + gh), fill="#edf1f6")

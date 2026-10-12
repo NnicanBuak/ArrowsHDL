@@ -24,14 +24,14 @@ Yosys и Node.js устанавливаются как зависимости pi
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install .
-arrowshdl check
+arrowshdl health
 ~~~
 
 ### Из wheel
 
 ~~~powershell
 python -m pip install .\dist\arrowshdl-0.1.0-py3-none-win_amd64.whl
-arrowshdl check
+arrowshdl health
 ~~~
 
 Имя файла приведено для Windows x64. Сборка wheel из исходников:
@@ -46,9 +46,9 @@ python -m pip wheel . --no-deps -w dist
 `python -m arrowshdl` эквивалентен `arrowshdl`.
 
 ~~~powershell
-arrowshdl build examples/alu_workbench/project.toml --layout macro-grid -o build/alu
-arrowshdl test build/alu/alu_workbench.save.txt examples/alu_workbench/vectors.json --vectors --manifest build/alu/alu_workbench.build.json -o build/alu/report.json
-arrowshdl preview build/alu/alu_workbench.save.txt build/alu/alu_workbench.build.json -o build/alu/map.png
+arrowshdl build examples/alu_workbench/project.toml -o build/alu.json
+arrowshdl test build/alu.json examples/alu_workbench/build/vectors.json --vectors -o build/alu/report.json
+arrowshdl preview build/alu.json -o build/alu/map.png
 ~~~
 
 `*.save.txt` — игровой код сохранения для импорта в Logic Arrows;
@@ -62,31 +62,112 @@ arrowshdl preview build/alu/alu_workbench.save.txt build/alu/alu_workbench.build
 **`-o` / `--out`** задаёт каталог результатов сборки либо имя объекта,
 отчёта, преобразованного файла или PNG.
 
-### Компиляция HDL и проект TOML
+### Проверка работоспособности
 
 ~~~powershell
-arrowshdl compile examples/alu_workbench/alu_workbench.v examples/alu_workbench/arithmetic.v examples/alu_workbench/logic_unit.v --top alu_workbench --std 1364-2005 --layout macro-grid -o build/compiled
-arrowshdl build examples/packet_router/project.toml --layout macro-grid -o build/router
-arrowshdl build examples/minesweeper/v2/minesweeper_5x5.toml -o build/mines
+arrowshdl health
 ~~~
 
-TOML задаёт исходники, верхний модуль, стандарт, контакты и геометрию.
+Команда проверяет запуск Node.js, наличие исполняемого файла симулятора,
+компиляцию встроенной схемы, экспорт и чтение сохранения, результаты
+физической симуляции и создание PNG. Проверки выполняются во временном
+каталоге. Вывод на английском содержит статус каждого компонента;
+код завершения **0** означает успех, **1** — сбой проверки.
+
+### Компиляция HDL и проект TOML
+
+`-o FILE` задаёт путь к **одному выходному файлу**. Расширение `.json` сохраняет
+скомпилированную схему вместе с портами, временными характеристиками и метаданными.
+Расширение `.txt` сохраняет код импорта в игру. Каталог в `-o` не допускается.
+Предпросмотр и отчёт создаются отдельными командами.
+
+Процессы выводят этапы и процент выполнения в stderr. Процент относится
+к этапам операции; трассировщик дополнительно сообщает число обработанных
+цепей, оставшиеся цепи и перестроения. Повторные попытки размещения могут
+увеличивать длительность этапа. 100% выводится после успешного завершения. Все встроенные сообщения CLI,
+справка и диагностика ошибок выводятся на английском языке.
+
+
+~~~powershell
+arrowshdl compile examples/alu_workbench/arithmetic.v --top arithmetic --std 1364-2005 -G WIDTH=4 -o build/compiled.json
+arrowshdl build examples/packet_router/project.toml -o build/router.json
+arrowshdl build examples/minesweeper/project.toml -o build/mines.json
+~~~
+
+TOML v2 задаёт исходники, экземпляры HDL-модулей, параметры, связи портов,
+кнопки и готовые схемы дисплеев. Имена `library:seven_segment` и
+`library:history64` в `components.file` подключают I/O из установленного пакета;
+их сборка не зависит от ранее созданных файлов в `build/`. Каждая уникальная специализация HDL-модуля компилируется один раз;
+готовые карты экземпляров размещаются и соединяются по графу TOML.
 Параметры `compile`: `-I каталог` для include, `-D NAME=VALUE` для макроса,
 `-G NAME=VALUE` для параметра верхнего модуля, `-L файл.v` для библиотеки.
 Стандартная нативная библиотека подключается автоматически.
 `--timeout` ограничивает время **всей операции** в секундах (по умолчанию 600),
 `--max-cells` — число клеток (по умолчанию 1 000 000).
 
-`--layout compact` — обычное автоматическое размещение; `macro-grid` —
-сетка макросов для сложных комбинационных схем; `sparse` — разреженная разводка.
-`macro-grid` не поддерживает группировку входных шин.
-Нативные физические проекты используют заданную в TOML геометрию.
+По умолчанию используется **`--layout auto`**: размещение по связям графа,
+сокращение эквивалентной комбинационной логики и разводка. Шины сохраняют
+порядок битов; входы размещаются ближе к потребителям, выходы — к источникам.
+Размер скомпилированного модуля оценивается целиком, включая его порты. Геометрические шаблоны
+арифметических блоков в этом режиме не используются.
+
+**`--compact`** включает дополнительные формы размещения и эвристический
+поиск. Он требует больше времени; скомпилированный модуль содержит не больше
+стрелок и занимает не большую площадь, чем обычная компиляция того же модуля.
+Поиск не гарантирует глобальный минимум.
+
+~~~powershell
+arrowshdl build examples/packet_router/project.toml --compact -o build/router-small.json
+arrowshdl compile examples/alu_workbench/arithmetic.v --top arithmetic --compact -o build/math-small.json
+~~~
+
+| Режим | Назначение |
+| --- | --- |
+| `--layout auto` | Автоматическое размещение по графу, включая нативную память и панели управления. Используется по умолчанию. |
+| `--compact` | Дополнительный поиск расположений в режиме `auto`; выбирается проверенный вариант с меньшим числом стрелок и площадью. |
+| `--layout compact` | Прежний поисковый алгоритм для комбинационной логики. |
+| `--layout sparse` | Разреженная разводка комбинационной логики; увеличивает расстояния и размер карты. |
+| `--layout macro-grid` | Диагностическая сетка нативных элементов без поиска компактного размещения. |
+| `--layout fixed` | Структурная схема с заранее подготовленной физической геометрией. |
+
+`--layout compact` и `sparse` не поддерживают нативные элементы памяти.
+Панели управления требуют `auto`. `--compact` применяется с `--layout auto`.
+
+### Повторное использование скомпилированных схем
+
+`build` хранит готовые модули в системном каталоге кеша ArrowsHDL.
+На Windows это `%LOCALAPPDATA%/ArrowsHDL/cache`; переменная
+`ARROWSHDL_CACHE_DIR` задаёт другой каталог. Ключ учитывает
+исходники, include-файлы, параметры, стандарт, определения и настройки
+компилятора. Одинаковые экземпляры используют одну скомпилированную карту;
+повторный `build` читает её из кеша. Изменение входных данных создаёт новую
+сборку. Внутренние клетки готовой схемы при сборке карты сохраняются.
+
+Для явной двухэтапной сборки:
+
+~~~powershell
+arrowshdl compile examples/minesweeper/mine_cell.v examples/minesweeper/seven_segment.v --top mine_cell --std 1364-2005 --compact -o build/tile.json
+~~~
+
+Команда создаёт один файл `build/tile.json`, содержащий готовую карту, порты и метаданные.
+TOML проекта может подключить готовый результат без исходников:
+
+~~~toml
+[[components]]
+name = "cell_0"
+file = "build/tile.json"
+~~~
+
+Путь file задаётся относительно TOML. Добавление нескольких components с
+разными name и одним file размещает копии одной готовой схемы. `--compact`
+применяется при компиляции модуля; готовые components повторно не синтезируются.
+Время и размер межмодульной разводки зависят от связей проекта.
 
 ### Объектная компиляция и компоновка
 
 ~~~powershell
-arrowshdl compile -c examples/alu_workbench/alu_workbench.v examples/alu_workbench/arithmetic.v examples/alu_workbench/logic_unit.v --top alu_workbench -o build/alu.aho.json
-arrowshdl link build/alu.aho.json --top alu_workbench --layout macro-grid -o build/linked
+arrowshdl compile -c examples/alu_workbench/arithmetic.v --top arithmetic -o build/math.aho.json
+arrowshdl link build/math.aho.json --top arithmetic -o build/linked.json
 ~~~
 
 `-c` сохраняет объект RTLIL без размещения. `link` принимает несколько
@@ -96,9 +177,9 @@ arrowshdl link build/alu.aho.json --top alu_workbench --layout macro-grid -o bui
 ### Проверка логики и симуляция по тактам
 
 ~~~powershell
-arrowshdl test build/alu/alu_workbench.save.txt examples/alu_workbench/vectors.json --vectors --manifest build/alu/alu_workbench.build.json -o build/alu/report.json
-arrowshdl build examples/pulse_sequencer/project.toml -o build/sequencer
-arrowshdl simulate build/sequencer/pulse_sequencer.save.txt examples/pulse_sequencer/scenario.json -o build/sequencer/trace.json
+arrowshdl test build/alu.json examples/alu_workbench/build/vectors.json --vectors -o build/alu/report.json
+arrowshdl build examples/pulse_sequencer/project.toml -o build/sequencer.json
+arrowshdl simulate build/sequencer.json examples/pulse_sequencer/build/scenario.json -o build/sequencer/trace.json
 ~~~
 
 Векторы — массив объектов `{"inputs": {...}, "expect": {...}}`, шины заданы
@@ -117,16 +198,16 @@ arrowshdl simulate build/sequencer/pulse_sequencer.save.txt examples/pulse_seque
 ### Сохранения, граф и изображения
 
 ~~~powershell
-arrowshdl decode build/alu/alu_workbench.save.txt -o build/alu/decoded.json
+arrowshdl decode build/alu.json -o build/alu/decoded.json
 arrowshdl encode build/alu/decoded.json -o build/alu/roundtrip.save.txt
 arrowshdl graph build/alu/roundtrip.save.txt -o build/alu/graph.json
 arrowshdl preview build/alu/roundtrip.save.txt -o build/alu/preview.png
-arrowshdl check
+arrowshdl health
 ~~~
 
 `decode` читает сохранение, `encode` записывает его из JSON,
 `graph` экспортирует клетки и физические зависимости,
-`preview` рисует реальные стрелки; `check` проверяет установку.
+`preview` рисует реальные стрелки; `health` проверяет работоспособность установленного пакета.
 
 ## Примеры
 
@@ -135,10 +216,12 @@ arrowshdl check
 | [Minesweeper](examples/minesweeper/README.md) | Игра с безопасным первым кликом, каскадным открытием, счётчиками и статусом |
 | [ALU Workbench](examples/alu_workbench/README.md) | Иерархическая ALU с восемью операциями и флагами результата |
 | [Packet Router](examples/packet_router/README.md) | Маршрутизатор с проверкой чётности, арбитражем и backpressure |
-| [Pulse Sequencer](examples/pulse_sequencer/README.md) | Восемь генераторов, память выбора и история сигнала на 64 такта |
+| [Pulse Sequencer](examples/pulse_sequencer/README.md) | Семь генераторов, восемь режимов, память выбора и история сигнала на 64 такта |
 
-Каталоги примеров содержат HDL, описание проекта, сохранения,
-диаграммы, изображения карт и визуализации поведения.
+Корень каждого примера содержит README, один TOML и Verilog-модули.
+`build/` содержит выходные карты,
+сценарии, отчёты и JSON; `visuals/` — изображения. Исторические клеточные
+реализации сохранены в `tests/fixtures/historical`.
 
 ## Разработка и тестирование
 

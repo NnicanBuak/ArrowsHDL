@@ -13,7 +13,7 @@ GATE_TYPES = {"BUF": 1, "OR": 1, "NOT": 15, "AND": 16, "MAJ": 16, "ATLEAST2": 16
 
 def destinations(position, cell):
     if cell.type not in VECTORS:
-        raise MapError(f"Неизвестный элемент проверки трассировки: {cell.type}")
+        raise MapError(f"Unknown routing verification element: {cell.type}")
     for dx, dy in VECTORS[cell.type]:
         if cell.mirrored:
             dx = -dx
@@ -44,7 +44,7 @@ def depth_of(cells):
             if incoming[target] == 0:
                 queue.append(target)
     if count != len(cells):
-        raise MapError("В физической карте обнаружен цикл")
+        raise MapError("Cycle detected in physical map")
     return max(depths.values(), default=0)
 
 
@@ -91,15 +91,15 @@ def validate_connections(cells,owners,gates,pins,roots):
         for target in targets:
             reverse[target].append(key)
             if target in gates:
-                if key not in pins[target]:raise MapError(f"Посторонний сигнал у элемента {target}")
+                if key not in pins[target]:raise MapError(f"Unexpected gate input at {target}")
             elif key in gates:
-                if owners[target]!=gates[key]['output']:raise MapError(f"Посторонний выход элемента {key}")
+                if owners[target]!=gates[key]['output']:raise MapError(f"Unexpected gate output at {key}")
             elif owners[key]!=owners[target] and owners[key]!='constant:'+owners[target]:
-                raise MapError(f"Короткое замыкание {key} → {target}")
+                raise MapError(f"Short circuit: {key} → {target}")
     for key,expected in pins.items():
-        if set(reverse[key])!=set(expected):raise MapError(f"Разрыв входов элемента {key}")
+        if set(reverse[key])!=set(expected):raise MapError(f"Disconnected gate inputs: {key}")
         for pin,net in zip(expected,gates[key]['inputs']):
-            if owners[pin]!=net:raise MapError(f"Неверный сигнал у элемента {key}")
+            if owners[pin]!=net:raise MapError(f"Incorrect gate signal at {key}")
     for net,root in roots.items():
         reached,todo=set(),[root]
         while todo:
@@ -107,7 +107,7 @@ def validate_connections(cells,owners,gates,pins,roots):
             if key not in reached:
                 reached.add(key)
                 todo.extend(v for v in links[key] if owners[v]==net)
-        if {key for key,owner in owners.items() if owner==net}-reached:raise MapError(f"Разрыв цепи {net}")
+        if {key for key,owner in owners.items() if owner==net}-reached:raise MapError(f"Disconnected net: {net}")
     depth_of(cells)
 
 
@@ -119,13 +119,13 @@ def place(netlist, max_cells=100_000, layout="compact", input_buses=None, input_
     config = configure(netlist, input_buses, input_bus_gap)
     if config['groups']:
         if layout != 'compact':
-            raise MapError('Группировка входов поддерживается в режиме compact')
+            raise MapError('Input grouping requires compact layout')
         netlist = deepcopy(netlist)
         netlist['_input_bus_config'] = config
     if layout == "sparse":
         return place_sparse(netlist, max_cells)
     if layout != "compact":
-        raise MapError(f"Неизвестный способ размещения: {layout}")
+        raise MapError(f"Unknown layout algorithm: {layout}")
     from arrowshdl.compact_layout import place_compact
     cells, meta = place_compact(netlist, max_cells)
     describe(netlist, meta)
@@ -150,11 +150,11 @@ def place_sparse(netlist, max_cells=100_000):
 
     def add(key, cell, owner):
         if key in cells:
-            raise MapError(f"Конфликт трассировки в {key}")
+            raise MapError(f"Routing conflict at {key}")
         validate_cell(*key, cell)
         cells[key], owners[key] = cell, owner
         if len(cells) > max_cells:
-            raise MapError(f"Схема превышает лимит {max_cells} клеток")
+            raise MapError(f"Scheme exceeds the limit of {max_cells} cells")
 
     for name, entries in netlist["inputs"].items():
         inputs[name] = []
@@ -224,19 +224,19 @@ def place_sparse(netlist, max_cells=100_000):
             reverse[target].append(key)
             if target in gate_positions:
                 if key not in gate_pins[target]:
-                    raise MapError(f"Посторонний сигнал у логического элемента {target}")
+                    raise MapError(f"Unexpected logic gate input at {target}")
             elif key in gate_positions:
                 if owners[target] != gate_positions[key]["output"]:
-                    raise MapError(f"Посторонняя связь от элемента {key}")
+                    raise MapError(f"Unexpected connection from gate {key}")
             elif owners[key] != owners[target]:
-                raise MapError(f"Короткое замыкание {key} → {target}")
+                raise MapError(f"Short circuit: {key} → {target}")
     for key, pins in gate_pins.items():
         if set(reverse[key]) != set(pins):
-            raise MapError(f"Не все входы логического элемента соединены: {key}")
+            raise MapError(f"Unconnected logic gate inputs: {key}")
         node = gate_positions[key]
         for pin, net in zip(pins, node["inputs"]):
             if owners[pin] != net:
-                raise MapError(f"Неправильный сигнал на входе {key}")
+                raise MapError(f"Incorrect input signal at {key}")
     # A disconnected path of the right ownership is still a routing failure.
     for net in nets:
         start = (starts[net], rows[net])
@@ -251,7 +251,7 @@ def place_sparse(netlist, max_cells=100_000):
             reached.add(key)
             todo += [v for v in links[key] if owners[v] == net]
         if {key for key, owner in owners.items() if owner == net} - reached:
-            raise MapError(f"Разрыв цепи {net}")
+            raise MapError(f"Disconnected net: {net}")
     manifest = {
         "schema": 1, "top": netlist["top"], "map_hash": map_hash(cells),
         "profile": "GraphDLC-01232bd", "verified_against_current_game": False,

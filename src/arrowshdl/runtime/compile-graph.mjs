@@ -21,7 +21,7 @@ function drainTasks() {
     const task = queuedTasks.shift();
     while (!task.step(1e4)) {
       budget -= 1e4;
-      if (budget <= 0) throw new Error("\u041F\u0440\u0435\u0432\u044B\u0448\u0435\u043D \u0431\u044E\u0434\u0436\u0435\u0442 \u043F\u043E\u0438\u0441\u043A\u0430 \u043A\u043E\u043B\u0435\u0446; \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 --no-cycles");
+      if (budget <= 0) throw new Error("Cycle search budget exceeded; use --no-optimize-cycles");
     }
   }
 }
@@ -717,9 +717,9 @@ function compile(request) {
   const byCoords = /* @__PURE__ */ new Map();
   for (const cell of request.cells) {
     if (!Number.isInteger(cell.type) || cell.type < 1 || cell.type > 25)
-      throw new Error(`\u041D\u0435\u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u043C\u044B\u0439 \u044D\u043B\u0435\u043C\u0435\u043D\u0442 ${cell.type} \u0432 (${cell.x}, ${cell.y})`);
+      throw new Error(`Unsupported cell type ${cell.type} at (${cell.x}, ${cell.y})`);
     const key = `${cell.x},${cell.y}`;
-    if (byCoords.has(key)) throw new Error(`\u041F\u043E\u0432\u0442\u043E\u0440\u043D\u0430\u044F \u043A\u043B\u0435\u0442\u043A\u0430 ${key}`);
+    if (byCoords.has(key)) throw new Error(`Duplicate cell ${key}`);
     const node = {
       nodeIdx: nodes.length,
       chunkIdx: 0,
@@ -796,7 +796,7 @@ function compile(request) {
     additional: NodeTypes.isAdditionalUpdate(n.type)
   }));
   if (resultNodes.some((n) => n.links.length > 4 || n.detectors.length > 4))
-    throw new Error("\u0413\u0440\u0430\u0444 \u043F\u0440\u0435\u0432\u044B\u0448\u0430\u0435\u0442 \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u0438\u044F \u0447\u0438\u0441\u043B\u0430 \u0441\u0432\u044F\u0437\u0435\u0439 \u044F\u0434\u0440\u0430 GraphDLC");
+    throw new Error("Graph exceeds the GraphDLC engine link limits");
   return {
     nodes: resultNodes,
     cycles: cycles.filter(Boolean).map((c) => ({

@@ -2,52 +2,29 @@
 
 # Pulse Sequencer
 
-**Генератор импульсов с памятью выбора и историей сигнала.**
-Десять физических HDL-блоков: восемь `oscillator_*`, `selection_memory`
-и `history_display`. Верхний модуль связывает их через именованные сигналы.
-Геометрия хранится отдельно и сохраняет задержки реальных игровых тактов.
+Восемь кнопок переключают независимые биты памяти. `selection_memory`
+фиксирует фронт нажатия и выбирает младший активный режим; `oscillator_bank`
+содержит семь автономных генераторов; `waveform_selector` выбирает сигнал.
+TOML связывает модули и готовый дисплей `library:history64` из 64 стрелок.
+Библиотека I/O входит в пакет; предварительное содержимое `build/` не требуется.
 
-![Устройство секвенсора](visuals/architecture.png)
+Режим 0 отключает выход. Периоды режимов 1–7: 20, 24, 32, 40, 48, 64 и 80
+игровых тактов. Удержание кнопки даёт одно переключение; повторное нажатие
+выключает соответствующий бит. Индикаторы `active` и `selection` показывают
+состояние памяти и выбранный режим. История продвигается на одну клетку за такт.
 
-Кнопки 0…7 переключают независимые биты памяти. Удержание кнопки считается
-одним нажатием; повторное нажатие снимает выбор. При нескольких активных
-битах побеждает **младший индекс**. Режим 0 отключает выход.
+## Сборка и проверка
 
-| Выбранный режим | Период, игровые такты |
-|---:|---:|
-| 0 | Выход отключён |
-| 1 | 20 |
-| 2 | 24 |
-| 3 | 32 |
-| 4 | 40 |
-| 5 | 48 |
-| 6 | 64 |
-| 7 | 80 |
+```powershell
+arrowshdl build examples/pulse_sequencer/project.toml -o examples/pulse_sequencer/build/pulse_sequencer.json
+arrowshdl preview examples/pulse_sequencer/build/pulse_sequencer.json -o examples/pulse_sequencer/visuals/map.png
+python -m unittest tests.projects.examples.test_sequencer -v
+```
 
-`waveform` показывает выбранный сигнал; `selection[2:0]` — индекс.
-Дисплей из 64 пикселей хранит последние 64 такта, по одному такту на пиксель.
-
-## Сборка и воспроизведение трассы
-
-Из корня ArrowsHDL:
-
-~~~powershell
-arrowshdl build examples/pulse_sequencer/project.toml -o examples/pulse_sequencer/build
-arrowshdl simulate examples/pulse_sequencer/build/pulse_sequencer.save.txt examples/pulse_sequencer/scenario.json -o build/sequencer.trace.json
-python -m unittest tests.projects.examples.test_native_examples.NativeExampleTests.test_loop_mux8_held_simultaneous_masks_and_history -v
-~~~
-
-[Сохранение](build/pulse_sequencer.save.txt): **1381 стрелка, 126×118**.
-Кнопки находятся в `(-32, 24+4i)`, i=0…7; первый пиксель истории — `(14,18)`.
-[Manifest](build/pulse_sequencer.build.json) описывает формальные порты и контакты.
+[Готовая схема](build/pulse_sequencer.json) содержит карту, порты и задержки.
 [Отчёт](build/pulse_sequencer.report.json) проверяет все 256 масок памяти,
-все периоды, одновременные и повторные нажатия, удержание и все 64 пикселя.
+приоритет, удержание кнопок, периоды и каждую клетку истории.
 
-![Память после отпускания и выбранная частота](visuals/behavior.png)
+![Физическая временная диаграмма](visuals/behavior.png)
 
-`scenario.json` нажимает кнопку 2 на 40 тактов и проверяет ещё 2008 тактов
-после отпускания. Ожидания получены независимой моделью правил клеток.
-
-[Физическая карта](visuals/map.png) ·
-[Измеренная трасса с хешем](visuals/behavior.report.json).
-Визуализации воспроизводятся через `python tools/render_examples.py`.
+Воспроизведение изображений: `python tools/render_examples.py`.

@@ -1,0 +1,170 @@
+{
+  "modules": [
+    {
+      "name": "ingress0",
+      "hdl": "frame_check"
+    },
+    {
+      "name": "ingress1",
+      "hdl": "frame_check"
+    },
+    {
+      "name": "lane0",
+      "hdl": "output_lane",
+      "parameters": {
+        "DESTINATION": 0
+      }
+    },
+    {
+      "name": "lane1",
+      "hdl": "output_lane",
+      "parameters": {
+        "DESTINATION": 1
+      }
+    },
+    {
+      "name": "status",
+      "hdl": "router_status"
+    }
+  ],
+  "components": [],
+  "inputs": [
+    {
+      "name": "frame0",
+      "width": 6,
+      "widget": "button"
+    },
+    {
+      "name": "frame1",
+      "width": 6,
+      "widget": "button"
+    },
+    {
+      "name": "valid",
+      "width": 2,
+      "widget": "button"
+    },
+    {
+      "name": "ready",
+      "width": 2,
+      "widget": "button"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "data0",
+      "from": "lane0.data",
+      "widget": "binary"
+    },
+    {
+      "name": "data1",
+      "from": "lane1.data",
+      "widget": "binary"
+    },
+    {
+      "name": "output_valid",
+      "from": "status.output_valid",
+      "widget": "binary"
+    },
+    {
+      "name": "accepted",
+      "from": "status.accepted",
+      "widget": "binary"
+    },
+    {
+      "name": "error",
+      "from": "status.error",
+      "widget": "binary"
+    }
+  ],
+  "connections": [
+    {
+      "from": "frame0",
+      "to": "ingress0.frame"
+    },
+    {
+      "from": "valid[0]",
+      "to": "ingress0.valid"
+    },
+    {
+      "from": "frame0",
+      "to": "lane0.frame0"
+    },
+    {
+      "from": "frame0",
+      "to": "lane1.frame0"
+    },
+    {
+      "from": "ingress0.good",
+      "to": "lane0.good0"
+    },
+    {
+      "from": "ingress0.good",
+      "to": "lane1.good0"
+    },
+    {
+      "from": "ready[0]",
+      "to": "lane0.ready"
+    },
+    {
+      "from": "lane0.grant0",
+      "to": "status.lane0_grant0"
+    },
+    {
+      "from": "lane0.grant1",
+      "to": "status.lane0_grant1"
+    },
+    {
+      "from": "frame1",
+      "to": "ingress1.frame"
+    },
+    {
+      "from": "valid[1]",
+      "to": "ingress1.valid"
+    },
+    {
+      "from": "frame1",
+      "to": "lane0.frame1"
+    },
+    {
+      "from": "frame1",
+      "to": "lane1.frame1"
+    },
+    {
+      "from": "ingress1.good",
+      "to": "lane0.good1"
+    },
+    {
+      "from": "ingress1.good",
+      "to": "lane1.good1"
+    },
+    {
+      "from": "ready[1]",
+      "to": "lane1.ready"
+    },
+    {
+      "from": "lane1.grant0",
+      "to": "status.lane1_grant0"
+    },
+    {
+      "from": "lane1.grant1",
+      "to": "status.lane1_grant1"
+    },
+    {
+      "from": "lane0.valid",
+      "to": "status.lane0_valid"
+    },
+    {
+      "from": "lane1.valid",
+      "to": "status.lane1_valid"
+    },
+    {
+      "from": "ingress0.error",
+      "to": "status.error0"
+    },
+    {
+      "from": "ingress1.error",
+      "to": "status.error1"
+    }
+  ]
+}

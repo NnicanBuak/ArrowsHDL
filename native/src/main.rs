@@ -86,16 +86,16 @@ fn find_port(
         || (expected_type == 23 && port.values.iter().all(Option::is_none))
     {
         return Err(format!(
-            "Порт {:?}: нужны {samples} значений 0/1; null разрешён только для непроверяемого выхода, хотя бы один образец должен проверяться",
+            "Port {:?}: expected {samples} values of 0/1; null is allowed only for unchecked output samples, at least one sample must be checked",
             port.at
         ));
     }
     let index = nodes
         .iter()
         .position(|n| [n.x, n.y] == port.at)
-        .ok_or_else(|| format!("Порт {:?} отсутствует", port.at))?;
+        .ok_or_else(|| format!("Port {:?} is missing", port.at))?;
     if nodes[index].arrow_type != expected_type {
-        return Err(format!("Порт {:?}: требуется тип {expected_type}", port.at));
+        return Err(format!("Port {:?}: expected type {expected_type}", port.at));
     }
     Ok(index)
 }
@@ -107,14 +107,14 @@ fn run(request: Request) -> Result<Value, String> {
         test,
     } = request;
     if test.limits.nodes == 0 || test.limits.nodes > i32::MAX as usize || test.limits.ticks == 0 {
-        return Err("Лимиты должны быть положительными; nodes не больше 2147483647".into());
+        return Err("Limits must be positive; nodes must not exceed 2147483647".into());
     }
     if test.ticks == 0 || test.ticks > test.limits.ticks {
-        return Err(format!("Количество тактов должно быть от 1 до {}", test.limits.ticks));
+        return Err(format!("Tick count must be between 1 and {}", test.limits.ticks));
     }
     let hold = test.hold_ticks.unwrap_or(1);
     if hold == 0 || test.ticks % hold != 0 {
-        return Err("hold_ticks должен быть положительным делителем количества тактов".into());
+        return Err("hold_ticks must be a positive divisor of the tick count".into());
     }
     let samples = if let Some(frames) = &test.frame_ticks {
         if test.hold_ticks.is_some()
@@ -122,17 +122,17 @@ fn run(request: Request) -> Result<Value, String> {
             || frames.iter().any(|&v| v == 0 || v > test.ticks)
             || frames.iter().try_fold(0usize, |a, &b| a.checked_add(b)) != Some(test.ticks)
         {
-            return Err("frame_ticks: положительные длительности должны суммироваться в ticks; hold_ticks одновременно не допускается".into());
+            return Err("frame_ticks: positive durations must sum to ticks; hold_ticks cannot be used at the same time".into());
         }
         frames.len()
     } else {
         test.ticks / hold
     };
     if test.expect.is_empty() && test.observe.is_empty() {
-        return Err("Нужен хотя бы один проверяемый приёмник".into());
+        return Err("At least one checked receiver is required".into());
     }
     if nodes.len() > test.limits.nodes {
-        return Err("Слишком много узлов".into());
+        return Err("Too many nodes".into());
     }
     let mut inputs = Vec::new();
     let mut outputs = Vec::new();
@@ -140,10 +140,10 @@ fn run(request: Request) -> Result<Value, String> {
     for port in &test.inputs {
         let index = find_port(&nodes, port, 22, samples)?;
         if !used.insert(index) {
-            return Err("Повторный входной порт".into());
+            return Err("Duplicate input port".into());
         }
         if nodes[index].cycle_idx >= 0 {
-            return Err("Входной порт был включён в оптимизированное кольцо".into());
+            return Err("Input port was included in an optimized ring".into());
         }
         inputs.push(index);
     }
@@ -151,7 +151,7 @@ fn run(request: Request) -> Result<Value, String> {
     for port in &test.expect {
         let index = find_port(&nodes, port, 23, samples)?;
         if !used.insert(index) {
-            return Err("Повторный выходной порт".into());
+            return Err("Duplicate output port".into());
         }
         outputs.push(index);
     }
@@ -159,9 +159,9 @@ fn run(request: Request) -> Result<Value, String> {
     used.clear();
     for at in &test.observe {
         let index = nodes.iter().position(|n| [n.x, n.y] == *at)
-            .ok_or_else(|| format!("Наблюдаемая клетка {at:?} отсутствует"))?;
+            .ok_or_else(|| format!("Observed cell {at:?} is missing"))?;
         if !used.insert(index) {
-            return Err("Повторная наблюдаемая клетка".into());
+            return Err("Duplicate observed cell".into());
         }
         observed.push(index);
     }
@@ -176,7 +176,7 @@ fn run(request: Request) -> Result<Value, String> {
             || node.blocked >= len as i32
             || node.node_type > NODE_TYPE_DIRECTIONAL_BUTTON
         {
-            return Err("Некорректный граф".into());
+            return Err("Invalid graph".into());
         }
     }
     let mut cycle_ids = HashSet::new();
@@ -188,15 +188,15 @@ fn run(request: Request) -> Result<Value, String> {
             || cycle.index as usize >= nodes.len()
             || cycle.nodes.iter().chain(&cycle.heads).any(|&n| n >= len)
         {
-            return Err("Некорректное кольцо".into());
+            return Err("Invalid ring".into());
         }
     }
     for node in &nodes {
         if node.head_type > CYCLE_HEAD_TYPE_XOR_WRITE || node.cycle_idx < -1 {
-            return Err("Некорректная головка кольца".into());
+            return Err("Invalid ring head".into());
         }
         if node.cycle_idx >= 0 && !cycle_ids.contains(&(node.cycle_idx as u32)) {
-            return Err("Узел ссылается на отсутствующее кольцо".into());
+            return Err("Node references a missing ring".into());
         }
     }
     core::init(test.seed.unwrap_or(123456789));
@@ -320,7 +320,7 @@ fn main() {
             }
         }
         Err(error) => {
-            eprintln!("Ошибка: {error}");
+            eprintln!("Error: {error}");
             std::process::exit(2);
         }
     }

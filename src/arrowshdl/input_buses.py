@@ -4,18 +4,18 @@ from arrowshdl.arrowasm import MapError
 
 def configure(graph, groups, gap):
     if gap != 'auto' and (type(gap) is not int or gap < 0):
-        raise MapError('Промежуток шины: auto или целое число >= 0')
+        raise MapError('Bus gap must be auto or an integer >= 0')
     normalized, used = [], set()
     for group in groups or []:
         names = group.split(',') if isinstance(group, str) else list(group)
         names = [name.strip() for name in names]
         if not names or any(not name for name in names):
-            raise MapError('Пустая группа входов')
+            raise MapError('Empty input group')
         for name in names:
             if name not in graph['inputs']:
-                raise MapError(f'Неизвестный вход шины: {name}')
+                raise MapError(f'Unknown bus input: {name}')
             if name in used:
-                raise MapError(f'Вход указан в нескольких шинах: {name}')
+                raise MapError(f'Input belongs to multiple buses: {name}')
             used.add(name)
         normalized.append(names)
     return {'groups': normalized, 'gap': gap}
@@ -52,7 +52,7 @@ def apply_contacts(graph, contacts, core_points=None):
             else:
                 x,y=left,along
                 fixture,rotation=(x-1,y),1
-            if (x,y) in used:raise MapError('Шины пересекаются при выбранном размещении')
+            if (x,y) in used:raise MapError('Buses overlap in the selected placement')
             result[net] = (x,y,fixture,rotation)
             used.add((x, y))
         cursor += len(nets) * (gap + 1) + 2
@@ -149,7 +149,7 @@ def adapt_grouped_placement(graph,placement):
                 trial[net]=(*p,(p[0]+dx,p[1]+dy),rotation)
                 cost+=sum(abs(p[0]-q[0])+abs(p[1]-q[1]) for q in consumers[net]);previous=along
             if trial and (best is None or cost<best[0]):best=cost,trial
-        if best is None:raise MapError('Нет свободной внешней стороны для шины')
+        if best is None:raise MapError('No free exterior side for bus')
         contacts.update(best[1]);used.update((v[0],v[1]) for v in best[1].values())
     for i,v in enumerate(vertices):
         if v['kind']!='input':continue
@@ -189,7 +189,7 @@ def adaptive_placement(graph,placement):
                 cost=sum(abs(p[0]-t[0])+abs(p[1]-t[1]) for t in targets)
                 candidate=(cost,side,p,rotation)
                 if best is None or candidate<best:best=candidate
-        if best is None:raise MapError('Нет свободного внешнего контакта для входа')
+        if best is None:raise MapError('No free exterior input contact')
         _,side,p,rotation=best
         dx,dy={1:(-1,0),2:(0,-1),0:(0,1),3:(1,0)}[rotation]
         fixture=(p[0]+dx,p[1]+dy)
@@ -217,9 +217,10 @@ def verify_exterior(cells, meta):
     for kind in ('inputs','outputs'):
         for name, entries in meta[kind].items():
             for entry in entries:
+                if entry.get('panel'): continue
                 x,y=entry['contact']; fx,fy=entry['fixture']
                 outside=lambda p: p[0]<=fx if fx<x else p[0]>=fx if fx>x else p[1]<=fy if fy<y else p[1]>=fy
                 invalid=next((p for p in cells if outside(p)),None)
                 if invalid is not None:
-                    raise MapError(f'Трасса {invalid} находится за внешним портом {name}[{entry["index"]}] {entry["fixture"]}')
+                    raise MapError(f'Route {invalid} extends beyond exterior port {name}[{entry["index"]}] {entry["fixture"]}')
     meta['io_boundary_verified']=True

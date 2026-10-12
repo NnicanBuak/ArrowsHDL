@@ -23,14 +23,14 @@ def expand_logic(raw,top,template_path):
     template_path=Path(template_path).resolve()
     data=tomllib.loads(template_path.read_text(encoding='utf-8-sig'))
     if type(data.get('version')) is not int or data['version'] != 1:
-        raise MapError('Неизвестная версия шаблона размещения')
+        raise MapError('Unsupported placement template version')
     table(data,{'version','modules','instances','interfaces'},'physical template')
     definitions={}
     for item in data.get('modules',[]):
         table(item,{'hdl','geometry','source'},'template.modules')
         geometry=json.loads((template_path.parent/item['geometry']).read_text(encoding='utf-8-sig'))
         if geometry.get('version') != 1:
-            raise MapError('Неизвестная версия геометрии')
+            raise MapError('Unsupported geometry version')
         definitions[item['hdl']]=geometry
     origins={item['path']:item['at'] for item in data.get('instances',[])}
     modules=raw['modules'];records=[];counter=0;wire_union={}
@@ -42,13 +42,13 @@ def expand_logic(raw,top,template_path):
 
     def walk(kind,prefix,ports,origin,stack):
         nonlocal counter
-        if kind in stack:raise MapError('Рекурсивный модуль')
+        if kind in stack:raise MapError('Recursive module')
         module=modules[kind]
         original=module.get('attributes',{}).get('hdlname',kind).split(' ')[0]
         if original not in definitions:
             original=kind.split('$')[0]
         geometry=definitions.get(original)
-        if geometry is None:raise MapError(f'Для {kind} отсутствует геометрия')
+        if geometry is None:raise MapError(f'For {kind} has no geometry')
         coords=geometry.get('cells',{})
         views=geometry.get('presentation',[])
         wires=dict(ports)
@@ -58,7 +58,7 @@ def expand_logic(raw,top,template_path):
         def local(bit):
             seen=set()
             while bit in aliases:
-                if bit in seen:raise MapError('Цикл псевдонимов')
+                if bit in seen:raise MapError('Alias cycle')
                 seen.add(bit);bit=aliases[bit]
             return bit
         for key,value in ports.items():
@@ -71,7 +71,7 @@ def expand_logic(raw,top,template_path):
             nonlocal counter
             bit=local(bit)
             if type(bit) is str:
-                if bit not in ('0','1'):raise MapError('Неопределённый бит HDL')
+                if bit not in ('0','1'):raise MapError('Undefined HDL bit')
                 return bit
             if bit not in wires:counter+=1;wires[bit]=counter
             return wires[bit]
@@ -82,32 +82,32 @@ def expand_logic(raw,top,template_path):
             connections={p:[wire(v) for v in bits] for p,bits in cell['connections'].items()}
             if kind2=='arrows_logic':
                 layout=coords.get(name)
-                if layout is None:raise MapError(f'{full}: отсутствует размещение')
+                if layout is None:raise MapError(f'{full}: placement is missing')
                 used.add(name)
                 op=parameter(cell.get('parameters',{}).get('OP'),1)
                 if op != logic_operation(layout['type']):
-                    raise MapError(f'{full}: физический тип не реализует операцию HDL {op}')
+                    raise MapError(f'{full}: physical type does not implement HDL operation {op}')
                 records.append(dict(id=full,at=[layout['at'][0]+origin[0],layout['at'][1]+origin[1]],type=layout['type'],
                     rotation=layout['rotation'],mirrored=layout.get('mirrored',False),connections=connections))
             elif kind2 in modules and not modules[kind2].get('attributes',{}).get('blackbox'):
                 child=modules[kind2];mapping={}
                 for port,desc in child.get('ports',{}).items():
-                    if port not in connections or len(desc['bits'])!=len(connections[port]):raise MapError(f'{full}: несовместимый интерфейс')
+                    if port not in connections or len(desc['bits'])!=len(connections[port]):raise MapError(f'{full}: incompatible interface')
                     mapping.update((a,b) for a,b in zip(desc['bits'],connections[port]) if type(a) is int)
                 offset=origins.get(full,[0,0])
                 walk(kind2,full+'.',mapping,(origin[0]+offset[0],origin[1]+offset[1]),(*stack,kind))
-            else:raise MapError(f'{full}: ожидается стандартная нативная вычислительная операция')
-        if used != set(coords):raise MapError(f'{kind}: геометрия содержит отсутствующие вычисления')
+            else:raise MapError(f'{full}: expected a standard native computational operation')
+        if used != set(coords):raise MapError(f'{kind}: geometry references missing operations')
         for i,view in enumerate(views):
             port=view.get('port')
             if port:
                 desc=module.get('ports',{}).get(port)
-                if desc is None or desc['direction']!='input':raise MapError('Представление должно подавать сигнал на input HDL')
+                if desc is None or desc['direction']!='input':raise MapError('Presentation must drive an HDL input')
                 bit=wire(desc['bits'][view.get('index',0)])
                 connections=dict(I=['0']*11,B=['0']*11,S=['0'],O=[bit])
             else:
                 counter+=1;connections=dict(I=['0']*11,B=['0']*11,S=['0'],O=[counter])
-            if view['type'] not in (21,24,25):raise MapError('Представление не может добавлять вычислительные операции')
+            if view['type'] not in (21,24,25):raise MapError('Presentation cannot add computational operations')
             records.append(dict(id=prefix+'view:'+str(i),at=[view['at'][0]+origin[0],view['at'][1]+origin[1]],
                 type=view['type'],rotation=view['rotation'],mirrored=view.get('mirrored',False),connections=connections))
         return {name:dict(desc,bits=[wire(v) for v in desc['bits']]) for name,desc in module.get('ports',{}).items()}
@@ -126,7 +126,7 @@ def expand_logic(raw,top,template_path):
             for port in ('I','B','S'):
                 width=1 if port=='S' else 11
                 values=[signals[p] for p in sorted(links[tuple(item['at'])][port])]
-                if len(values)>width:raise MapError('Слишком много контактов у виджета')
+                if len(values)>width:raise MapError('Too many widget contacts')
                 item['connections'][port]=values+['0']*(width-len(values))
     return dict(schema=1,top=top,kind='physical',creator=raw.get('creator'),ports=port_map,nodes=records)
 
@@ -164,6 +164,6 @@ def elaborate_template(project,template_path,timeout):
             else:
                 module.get('attributes',{}).pop('top',None)
                 merged[name]=module
-    if project.top not in merged:raise MapError('В объектных модулях отсутствует верхняя логика')
+    if project.top not in merged:raise MapError('Object modules do not contain top-level logic')
     merged[project.top].setdefault('attributes',{})['top']='1'
     return {'modules':merged,'creator':creator},'\n'.join(logs)

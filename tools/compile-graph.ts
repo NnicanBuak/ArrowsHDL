@@ -10,9 +10,9 @@ function compile(request: any) {
   const byCoords = new Map<string, any>();
   for (const cell of request.cells) {
     if (!Number.isInteger(cell.type) || cell.type < 1 || cell.type > 25)
-      throw new Error(`Неподдерживаемый элемент ${cell.type} в (${cell.x}, ${cell.y})`);
+      throw new Error(`Unsupported cell type ${cell.type} at (${cell.x}, ${cell.y})`);
     const key = `${cell.x},${cell.y}`;
-    if (byCoords.has(key)) throw new Error(`Повторная клетка ${key}`);
+    if (byCoords.has(key)) throw new Error(`Duplicate cell ${key}`);
     const node = {
       nodeIdx: nodes.length, chunkIdx: 0, globalX: cell.x, globalY: cell.y,
       arrowType: cell.type, type: NodeTypes.fromArrowType(cell.type),
@@ -71,7 +71,7 @@ function compile(request: any) {
     entry: NodeTypes.isEntryPoint(n.type), additional: NodeTypes.isAdditionalUpdate(n.type),
   }));
   if (resultNodes.some(n => n.links.length > 4 || n.detectors.length > 4))
-    throw new Error('Граф превышает ограничения числа связей ядра GraphDLC');
+    throw new Error('Graph exceeds the GraphDLC engine link limits');
   return {
     nodes: resultNodes,
     cycles: cycles.filter(Boolean).map(c => ({ index: c.index, length: c.nodes.length,

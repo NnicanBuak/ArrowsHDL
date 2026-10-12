@@ -3,7 +3,7 @@
 # ALU Workbench
 
 **4-битная ALU из трёх HDL-модулей:** `arithmetic` реализует цепь переноса,
-`logic_unit` — булевы операции, `alu_workbench` — выбор результата и флаги.
+`logic_unit` — булевы операции, `alu_select` — выбор результата и флаги.
 Это пример параметров, иерархии, арифметики, шин и автоматической разводки.
 
 ![Устройство ALU](visuals/architecture.png)
@@ -30,19 +30,19 @@
 Из корня ArrowsHDL:
 
 ~~~powershell
-arrowshdl build examples/alu_workbench/project.toml --layout macro-grid -o examples/alu_workbench/build
-arrowshdl test examples/alu_workbench/build/alu_workbench.save.txt examples/alu_workbench/vectors.json --vectors --manifest examples/alu_workbench/build/alu_workbench.build.json -o build/alu-demo.report.json
+arrowshdl build examples/alu_workbench/project.toml -o examples/alu_workbench/build/alu_workbench.json
+arrowshdl test examples/alu_workbench/build/alu_workbench.json examples/alu_workbench/build/vectors.json --vectors -o build/alu-demo.report.json
 python -m unittest tests.projects.examples.test_showcases.ShowcaseTests.test_alu_all_2048_words -v
 ~~~
 
-[Сохранение](build/alu_workbench.save.txt): **16 942 стрелки, 235×713**.
+[Схема](build/alu_workbench.json): **4783 стрелок, 132×112**.
 Автоматические кнопки соответствуют битам входных портов; индикаторы —
-битам выходов. Точные координаты и порядок битов: [manifest](build/alu_workbench.build.json).
+битам выходов. Точные координаты и порядок битов: [описание схемы](build/alu_workbench.json).
 [Полный отчёт](build/alu_workbench.report.json) проверяет **2048** наборов независимой
 целочисленной моделью. `vectors.json` содержит короткую демонстрацию всех операций.
 
 ![Измеренные результаты](visuals/behavior.png)
 
 [Физическая карта стрелок](visuals/map.png) ·
-[Данные визуализации с хешем сохранения](visuals/behavior.report.json).
+[Данные визуализации с хешем сохранения](build/behavior.report.json).
 Визуализации воспроизводятся командой `python tools/render_examples.py`.

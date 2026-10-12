@@ -15,7 +15,7 @@ def parameter(value, default=0, signed=False):
     if isinstance(value, str) and set(value) <= {"0", "1"}:
         result = int(value, 2)
         return result - (1 << len(value)) if signed and value[0] == '1' else result
-    raise MapError(f"Неконстантный параметр нативного элемента: {value}")
+    raise MapError(f"Nonconstant native gate parameter: {value}")
 
 
 def normalize_physical(raw, top):
@@ -28,7 +28,7 @@ def normalize_physical(raw, top):
         declaration = raw['modules'].get(kind, {})
         native = kind == 'arrows_cell' or 'arrows_cell' in kind and kind.startswith('$paramod')
         if not native:
-            raise MapError(f"{name}: в структурной карте ожидается arrows_cell, получен {kind}. Логические модули компилируйте отдельно")
+            raise MapError(f"{name}: structural map requires arrows_cell, received {kind}. Compile logical modules separately")
         params = dict(declaration.get('parameter_default_values', {}), **item.get('parameters', {}))
         def get(key, default=0):
             return parameter(params.get(key), default, signed=key in ('X', 'Y'))
@@ -36,10 +36,10 @@ def normalize_physical(raw, top):
                   'rotation': get('ROTATION'), 'mirrored': bool(get('MIRRORED')),
                   'connections': item['connections']}
         if get('MIRRORED') not in (0, 1):
-            raise MapError(f"{name}: MIRRORED должен быть 0 или 1")
+            raise MapError(f"{name}: MIRRORED must be 0 or 1")
         records.append(record)
     if not records:
-        raise MapError('Структурная карта пуста')
+        raise MapError('Structural map is empty')
     return {'schema': 1, 'top': top, 'creator': raw.get('creator'), 'kind': 'physical',
             'ports': module.get('ports', {}), 'nodes': records}
 
@@ -56,20 +56,20 @@ def normalize_physical_hierarchy(raw, top):
     def walk(kind, prefix, bindings, origin, stack):
         nonlocal next_net
         if kind in stack:
-            raise MapError(f'Рекурсивное включение модуля {kind}')
+            raise MapError(f'Recursive module instantiation: {kind}')
         module, wires = modules[kind], dict(bindings)
         aliases = {}
         for item in module.get('cells', {}).values():
             if item['type'] == '$buf':
                 connections = item['connections']
                 if len(connections['A']) != len(connections['Y']):
-                    raise MapError(f'{prefix}: неправильная ширина $buf')
+                    raise MapError(f'{prefix}: invalid $buf width')
                 aliases.update(zip(connections['Y'], connections['A']))
         for internal, external in bindings.items():
             visited = set()
             while internal in aliases:
                 if internal in visited:
-                    raise MapError(f'{prefix}: цикл псевдонимов HDL')
+                    raise MapError(f'{prefix}: HDL alias cycle')
                 visited.add(internal)
                 internal = aliases[internal]
             if type(internal) is int:
@@ -80,12 +80,12 @@ def normalize_physical_hierarchy(raw, top):
             visited = set()
             while bit in aliases:
                 if bit in visited:
-                    raise MapError(f'{prefix}: цикл псевдонимов HDL')
+                    raise MapError(f'{prefix}: HDL alias cycle')
                 visited.add(bit)
                 bit = aliases[bit]
             if isinstance(bit, str):
                 if bit not in ('0', '1'):
-                    raise MapError(f'{prefix}: неопределённый бит {bit}')
+                    raise MapError(f'{prefix}: undefined bit {bit}')
                 return bit
             if bit not in wires:
                 wires[bit] = next_net
@@ -103,19 +103,19 @@ def normalize_physical_hierarchy(raw, top):
                 def get(key, default=0):
                     return parameter(params.get(key), default, signed=key in ('X', 'Y'))
                 if get('MIRRORED') not in (0, 1):
-                    raise MapError(f'{full}: MIRRORED должен быть 0 или 1')
+                    raise MapError(f'{full}: MIRRORED must be 0 or 1')
                 records.append(dict(id=full, at=[origin[0]+get('X'), origin[1]+get('Y')], type=get('TYPE', 1),
                                     rotation=get('ROTATION'), mirrored=bool(get('MIRRORED')), connections=connections))
                 continue
             if cell_kind not in modules or modules[cell_kind].get('attributes', {}).get('blackbox'):
-                raise MapError(f'{full}: неизвестный нативный модуль {cell_kind}')
+                raise MapError(f'{full}: unknown native module {cell_kind}')
             child = modules[cell_kind]
             mapping = {}
             if set(connections) != set(child.get('ports', {})):
-                raise MapError(f'{full}: неполный интерфейс модуля')
+                raise MapError(f'{full}: incomplete module interface')
             for port, desc in child.get('ports', {}).items():
                 if len(desc['bits']) != len(connections[port]):
-                    raise MapError(f'{full}.{port}: несовместимая ширина порта')
+                    raise MapError(f'{full}.{port}: incompatible port width')
                 for internal, external in zip(desc['bits'], connections[port]):
                     if type(internal) is int:
                         mapping[internal] = external
@@ -155,22 +155,22 @@ def _selector(pattern):
 
 def place_physical(graph, *, max_cells=1000000, constraints=None):
     if len(graph['nodes']) > max_cells:
-        raise MapError(f"Превышен предел {max_cells} клеток")
+        raise MapError(f"Exceeded limit: {max_cells} cells")
     cells, sources, records = {}, {}, {}
     for node in graph['nodes']:
         at = tuple(node['at'])
         cell = Cell(node['type'], node['rotation'], node['mirrored'])
         validate_cell(*at, cell)
         if not 1 <= cell.type <= 25:
-            raise MapError(f"{node['id']}: неизвестный физический тип {cell.type}")
+            raise MapError(f"{node['id']}: unknown physical type {cell.type}")
         if at in cells:
-            raise MapError(f"{node['id']}: пересечение элементов в {at}")
+            raise MapError(f"{node['id']}: overlapping cells at {at}")
         connections = node['connections']
         if set(connections) != {'I', 'B', 'S', 'O'} or len(connections['O']) != 1:
-            raise MapError(f"{node['id']}: неправильные порты arrows_cell")
+            raise MapError(f"{node['id']}: invalid arrows_cell ports")
         net = connections['O'][0]
         if type(net) is not int or net in sources:
-            raise MapError(f"{node['id']}: выход должен иметь отдельный провод")
+            raise MapError(f"{node['id']}: output must have a separate wire")
         sources[net] = at
         cells[at], records[at] = cell, node
     expected = dependencies(cells)
@@ -183,10 +183,10 @@ def place_physical(graph, *, max_cells=1000000, constraints=None):
                 if net == '0' or net in external and net not in sources:
                     continue
                 if net not in sources:
-                    raise MapError(f"{node['id']}.{port}: сигнал без нативного источника: {net}")
+                    raise MapError(f"{node['id']}.{port}: signal has no native driver: {net}")
                 actual.add(sources[net])
             if actual != expected[at][port]:
-                raise MapError(f"{node['id']}.{port}: HDL и геометрия расходятся в {at}: HDL {sorted(actual)}, карта {sorted(expected[at][port])}")
+                raise MapError(f"{node['id']}.{port}: HDL and geometry differ at {at}: HDL {sorted(actual)}, map {sorted(expected[at][port])}")
     _check_constraints(graph, constraints or {})
     ports = {direction: {} for direction in ('inputs', 'outputs')}
     for name, port in graph['ports'].items():
@@ -207,23 +207,23 @@ def _check_constraints(graph, constraints):
     for row in constraints.get('placements', []):
         points = groups.get(row['instance'])
         if not points:
-            raise MapError(f"layout.placements: отсутствует экземпляр {row['instance']}")
+            raise MapError(f"layout.placements: missing instance {row['instance']}")
         origin = [min(x for x,y in points), min(y for x,y in points)]
         if origin != row['at']:
-            raise MapError(f"{row['instance']}: начало {origin}, требовалось {row['at']}. Измените X/Y экземпляра в HDL")
+            raise MapError(f"{row['instance']}: origin {origin}, expected {row['at']}. Update instance X/Y in HDL")
     for row in constraints.get('grids', []):
         matcher = _selector(row['instances'])
         matches = [(name, matcher.fullmatch(name), points) for name,points in groups.items() if matcher.fullmatch(name)]
         if not matches:
-            raise MapError(f"layout.grids: нет экземпляров для {row['instances']}")
+            raise MapError(f"layout.grids: no matching instances for {row['instances']}")
         origin = row.get('origin', [0, 0])
         for name, match, points in matches:
             indices = list(map(int, match.groups()))
             if len(indices) != 2:
-                raise MapError('Прямоугольная сетка требует два индекса [*]: строка и столбец')
+                raise MapError('Rectangular grid requires two [*] indices: row and column')
             bounds = bounds_of(dict.fromkeys(points))
             expected = [origin[0]+indices[1]*row['step'][0], origin[1]+indices[0]*row['step'][1]]
             if bounds['min'] != expected:
-                raise MapError(f"{name}: начало {bounds['min']}, требовалось {expected}")
+                raise MapError(f"{name}: origin {bounds['min']}, expected {expected}")
             if 'max_cell_size' in row and (bounds['width'] > row['max_cell_size'][0] or bounds['height'] > row['max_cell_size'][1]):
-                raise MapError(f"{name}: превышен max_cell_size")
+                raise MapError(f"{name}: max_cell_size exceeded")

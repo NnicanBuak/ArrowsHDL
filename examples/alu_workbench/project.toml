@@ -1,6 +1,103 @@
-version = 1
-sources = ["alu_workbench.v", "arithmetic.v", "logic_unit.v"]
+version = 2
 top = "alu_workbench"
+sources = ["alu_workbench.v", "arithmetic.v", "logic_unit.v"]
 
 [language]
 standard = "1364-2005"
+
+[[modules]]
+name = "math"
+hdl = "arithmetic"
+parameters = { WIDTH = 4 }
+
+[[modules]]
+name = "logic"
+hdl = "logic_unit"
+parameters = { WIDTH = 4 }
+
+[[modules]]
+name = "select"
+hdl = "alu_select"
+
+[[inputs]]
+name = "a"
+width = 4
+widget = "button"
+
+[[inputs]]
+name = "b"
+width = 4
+widget = "button"
+
+[[inputs]]
+name = "operation"
+width = 3
+widget = "button"
+
+[[connections]]
+from = "a"
+to = "math.a"
+
+[[connections]]
+from = "a"
+to = "logic.a"
+
+[[connections]]
+from = "a"
+to = "select.a"
+
+[[connections]]
+from = "b"
+to = "math.b"
+
+[[connections]]
+from = "b"
+to = "logic.b"
+
+[[connections]]
+from = "b"
+to = "select.b"
+
+[[connections]]
+from = "operation"
+to = "math.operation"
+
+[[connections]]
+from = "operation"
+to = "logic.operation"
+
+[[connections]]
+from = "operation"
+to = "select.operation"
+
+[[connections]]
+from = "math.result"
+to = "select.arithmetic_result"
+
+[[connections]]
+from = "math.carry"
+to = "select.arithmetic_carry"
+
+[[connections]]
+from = "logic.result"
+to = "select.logical_result"
+
+[[outputs]]
+name = "result"
+from = "select.result"
+widget = "binary"
+
+[[outputs]]
+name = "carry"
+from = "select.carry"
+widget = "binary"
+
+[[outputs]]
+name = "zero"
+from = "select.zero"
+widget = "binary"
+
+[[outputs]]
+name = "equal"
+from = "select.equal"
+widget = "binary"

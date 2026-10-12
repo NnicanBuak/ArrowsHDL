@@ -9,11 +9,12 @@ from arrowshdl.arrowasm import Cell, MapError
 from arrowshdl.arrow_layout import bounds_of, destinations
 from arrowshdl.fixed_wiring import FixedWiring
 from arrowshdl.mapdata import map_hash, read_map, write_map, write_json, save_sha256
-from arrowshdl.manifest import load_project, table, pair
+from arrowshdl.manifest import load_project, table, pair, component_file
 from arrowshdl.presentation import attach_io, port_bits
 from arrowshdl.verilog_compile import compile_file
 from arrowshdl.components import move as _move, load_component, keepout
 from arrowshdl.execution import bounded
+from arrowshdl.progress import report
 
 
 def _combine(project, out, timeout, layout, max_cells):
@@ -25,19 +26,19 @@ def _combine(project, out, timeout, layout, max_cells):
                 defines=project.defines, parameters=mod.get('parameters', {}))
             at = mod.get('at', [i*200,0])
             part,meta = _move(part,meta,at)
-            if mod['name'] in blocks:raise MapError('Повторное имя экземпляра')
+            if mod['name'] in blocks:raise MapError('Duplicate instance name')
             if cells.keys() & part.keys() or reserved & part.keys():
-                raise MapError(f"Пересечение модуля {mod['name']}")
+                raise MapError(f"Overlapping module: {mod['name']}")
             cells.update(part)
             blocks[mod['name']] = meta
     for i,component in enumerate(project.components):
         name = component['name']
         if name in blocks:
-            raise MapError(f'Повторное имя экземпляра {name}')
-        part,meta = load_component(project.path.parent/component['file'], component.get('at', [0,200+100*i]), component.get('rotation',0))
+            raise MapError(f'Duplicate instance name: {name}')
+        part,meta = load_component(component_file(project.path.parent,component['file']), component.get('at', [0,200+100*i]), component.get('rotation',0))
         footprint=keepout(part)
         if cells.keys() & footprint or reserved & footprint:
-            raise MapError(f'Пересечение готового блока {name}')
+            raise MapError(f'Overlapping compiled block: {name}')
         cells.update(part)
         reserved.update(footprint)
         originals[name]=part
@@ -47,21 +48,21 @@ def _combine(project, out, timeout, layout, max_cells):
             for entries in meta[side].values():reserved.update(tuple(e['fixture']) for e in entries)
     def endpoint(value, side):
         if '.' not in value:
-            raise MapError(f'Ожидается экземпляр.порта: {value}')
+            raise MapError(f'Expected instance.port: {value}')
         block,port = value.split('.',1)
         if block not in blocks:
-            raise MapError(f'Неизвестный экземпляр {block}')
+            raise MapError(f'Unknown instance: {block}')
         return port_bits(blocks[block][side],port)
     router, driven, nets = FixedWiring(cells,reserved), set(), {}
     router.max_cells=max_cells
     for connection in project.connections:
         source,target = endpoint(connection['from'],'outputs'),endpoint(connection['to'],'inputs')
         if len(source) != len(target):
-            raise MapError(f"Несовместимая ширина {connection['from']} → {connection['to']}")
+            raise MapError(f"Incompatible width: {connection['from']} → {connection['to']}")
         for a,b in zip(source,target):
             contact = tuple(b['contact'])
             if contact in driven:
-                raise MapError(f'Несколько источников для {connection["to"]}')
+                raise MapError(f'Multiple drivers for {connection["to"]}')
             driven.add(contact)
             root = tuple(a['fixture'])
             nets.setdefault(root,[]).append((tuple(b['fixture']),contact))
@@ -100,7 +101,7 @@ def _combine(project, out, timeout, layout, max_cells):
                                          sensor=dict(at=list(sensor),rotation=rotation))
                             probe_reserved.update((sensor,fixture));found=True;break
                         if found:break
-                    if not found:raise MapError('Нет места для независимого пробника: разнесите модули')
+                    if not found:raise MapError('No space for an independent probe: increase module spacing')
             if all('sensor' not in e for e in free_outputs[name+'.'+port]):
                 default_outputs.append(dict(name=name+'.'+port,**{'from':name+'.'+port},widget='indicator'))
     meta = dict(schema=1,top=project.top,inputs=free_inputs,outputs=free_outputs,cells=len(cells),
@@ -109,7 +110,7 @@ def _combine(project, out, timeout, layout, max_cells):
                 instances={name:dict(inputs=m['inputs'],outputs=m['outputs']) for name,m in blocks.items()},
                 default_outputs=default_outputs)
     for name,part in originals.items():
-        if any(cells.get(p)!=c for p,c in part.items()):raise MapError(f'Изменена внутренняя схема {name}')
+        if any(cells.get(p)!=c for p,c in part.items()):raise MapError(f'Internal scheme was modified: {name}')
     meta['components']={n:dict(source_map_hash=blocks[n]['source_map_hash'],
                              placed_map_hash=blocks[n]['placed_map_hash'],cells=len(part),
                              interface=blocks[n]['interface']) for n,part in originals.items()}
@@ -118,10 +119,14 @@ def _combine(project, out, timeout, layout, max_cells):
 
 
 @bounded
-def build_scheme(path, out, *, timeout=600, layout='compact', max_cells=1000000, testing=False):
+def build_scheme(path, out, *, timeout=600, layout='auto', max_cells=1000000, testing=False,compact=False):
+    report(1, f'Reading project: {path}')
     project = load_project(Path(path))
     out = Path(out)
-    if project.modules or project.components:
+    if project.version==2:
+        from arrowshdl.compiled_graph import assemble
+        cells,meta = assemble(project,out,timeout,layout,max_cells,compact)
+    elif project.modules or project.components:
         cells,meta = _combine(project,out,timeout,layout,max_cells)
     else:
         if project.layout.get('template'):
@@ -136,11 +141,14 @@ def build_scheme(path, out, *, timeout=600, layout='compact', max_cells=1000000,
             cells,meta = compile_file(project.sources,project.top,out,timeout,max_cells,layout,
                 project.layout.get('input_buses'),project.layout.get('input_bus_gap','auto'),
                 standard=project.standard,include_dirs=project.include_dirs,defines=project.defines,
-                parameters=project.parameters,constraints=project.layout,bindings=project.bindings)
+                parameters=project.parameters,constraints=project.layout,bindings=project.bindings,compact=compact)
     if meta['layout'] != 'fixed-native-verilog':
-        cells,meta = attach_io(cells,meta,project.inputs,project.outputs,testing=testing)
+        report(92, 'Attaching input and output devices')
+        inputs = [dict(row,to=row['name']) for row in project.inputs] if project.version==2 else project.inputs
+        outputs = [dict(row,**{'from':row['name']}) for row in project.outputs] if project.version==2 else project.outputs
+        cells,meta = attach_io(cells,meta,inputs,outputs,testing=testing)
     elif project.inputs or project.outputs:
-        raise MapError('Виджеты для закреплённой структурной схемы подключаются через её подготовленный шаблон')
+        raise MapError('Fixed structural scheme widgets require its prepared template')
     elif testing:
         from arrowshdl.test_harness import add_fixture
         cells = add_fixture(cells,meta)
@@ -150,9 +158,10 @@ def build_scheme(path, out, *, timeout=600, layout='compact', max_cells=1000000,
         from arrowshdl.lettering import attach_labels
         cells,meta=attach_labels(cells,meta,project.labels,project.path.parent)
     if len(cells) > max_cells:
-        raise MapError('Схема превышает --max-cells')
-    meta['project_version'] = 1
+        raise MapError('Scheme exceeds --max-cells')
+    meta['project_version'] = project.version
     from arrowshdl.timing import verify_contracts
+    report(96, 'Checking timing contracts and writing scheme')
     meta['timing_contracts'] = verify_contracts(cells,meta,project.timing)
     write_map(out,project.top,cells)
     meta['save_sha256'] = save_sha256(out / f'{project.top}.save.txt')

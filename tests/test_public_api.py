@@ -3,6 +3,7 @@ from pathlib import Path
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 
 import arrowshdl
 from arrowshdl.test_harness import add_fixture
@@ -10,6 +11,25 @@ from arrowshdl.technology_mapping import merge_duplicate_logic
 
 
 class PublicApiTests(unittest.TestCase):
+    def test_optional_cycle_optimizer_failure_preserves_simulation(self):
+        from arrowshdl.simulation import simulate
+        from nodejs_wheel import node
+        from subprocess import CompletedProcess
+        cells={(0,0):arrowshdl.Cell(22,1),(1,0):arrowshdl.Cell(1,1),(2,0):arrowshdl.Cell(23,0)}
+        scenario=dict(ticks=40,hold_ticks=10,inputs=[dict(at=[0,0],values=[0,1,0,1])],
+                      expect=[dict(at=[2,0],values=[0,1,0,1])])
+        calls=0
+        def limited(*args,**kwargs):
+            nonlocal calls
+            calls+=1
+            if calls==1:return CompletedProcess(args,2,'','Error: Cycle search budget exceeded; use --no-optimize-cycles')
+            return node(*args,**kwargs)
+        with patch('nodejs_wheel.node',side_effect=limited):
+            result=simulate.__wrapped__(cells,scenario)
+        self.assertTrue(result['passed'],result['failures'])
+        self.assertFalse(result['cycle_optimization']['enabled'])
+        self.assertEqual(result['cycle_optimization']['fallback'],'cycle search budget exceeded')
+
     def test_native_exported_fanout_alias_input_and_constants(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);source=root/'ports.v'
@@ -17,7 +37,7 @@ class PublicApiTests(unittest.TestCase):
                 arrows_toggle t(a,q); arrows_toggle u(q,r);
                 assign alias_q=q; assign pass=a; assign zero=0; assign one=1;
                 endmodule''')
-            result=arrowshdl.compile(source,top='ports',out=root/'out',timeout=60)
+            result=arrowshdl.compile(source,top='ports',out=root/'out.json',timeout=60)
             fixture=add_fixture(result.cells,result.metadata)
             ports=result.ports['outputs']
             keys=('q','alias_q','r','pass','zero','one')
@@ -43,8 +63,8 @@ class PublicApiTests(unittest.TestCase):
                 arrows_timer #(.TICKS(4)) timer0(a,timer_y);
                 arrows_detector detector0(a,det_y); arrows_impulse pulse0(pulse);
                 endmodule''',encoding='utf-8')
-            result = arrowshdl.compile(source,top='native',out=root/'out',timeout=60)
-            self.assertTrue(result.artifacts['save.txt'].is_file())
+            result = arrowshdl.compile(source,top='native',out=root/'out.json',timeout=60)
+            self.assertTrue(result.artifacts['output'].is_file())
             labels = result.metadata['gate_labels']
             points = {n['op']:tuple(n['at']) for n in labels if n['native']}
             randoms = [n['at'] for n in labels if n['op']=='RANDOM']
@@ -93,12 +113,12 @@ class PublicApiTests(unittest.TestCase):
             root=Path(directory);source=root/'logic.v'
             source.write_text('module logic_unit(input a,b,output y); assign y=a&b; endmodule')
             started=time.monotonic()
-            with self.assertRaisesRegex(arrowshdl.MapError,'общий таймаут'):
-                arrowshdl.compile(source,top='logic_unit',out=root/'out',timeout=0.01)
+            with self.assertRaisesRegex(arrowshdl.MapError,'Overall timeout'):
+                arrowshdl.compile(source,top='logic_unit',out=root/'out.json',timeout=0.01)
             self.assertLess(time.monotonic()-started,5)
             for budget in (0,-1,float('nan')):
                 with self.assertRaises(arrowshdl.MapError):
-                    arrowshdl.build(root/'missing.toml',out=root/'out',timeout=budget)
+                    arrowshdl.build(root/'missing.toml',out=root/'out.json',timeout=budget)
 
 
 if __name__=='__main__':unittest.main()

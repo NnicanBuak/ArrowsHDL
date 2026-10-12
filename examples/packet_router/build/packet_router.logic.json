@@ -146,7 +146,7 @@
   },
   "nodes": [
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$114",
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$115",
       "op": "XOR",
       "inputs": [
         "n8",
@@ -157,7 +157,7 @@
       "scope": "ingress1"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$115",
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$116",
       "op": "XOR",
       "inputs": [
         "n10",
@@ -168,7 +168,7 @@
       "scope": "ingress1"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$124",
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$125",
       "op": "XOR",
       "inputs": [
         "n2",
@@ -179,7 +179,7 @@
       "scope": "ingress0"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$125",
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$126",
       "op": "XOR",
       "inputs": [
         "n4",
@@ -190,25 +190,27 @@
       "scope": "ingress0"
     },
     {
-      "id": "$auto$simplemap.cc:46:simplemap_not$78",
+      "id": "$auto$simplemap.cc:46:simplemap_not$100",
       "op": "NOT",
       "inputs": [
         "n13"
       ],
-      "output": "n46",
-      "origin": "source1.v:6.46-6.56"
+      "output": "n49",
+      "origin": "source3.v:5.28-5.50",
+      "scope": "lane0"
     },
     {
-      "id": "$auto$simplemap.cc:46:simplemap_not$79",
+      "id": "$auto$simplemap.cc:46:simplemap_not$99",
       "op": "NOT",
       "inputs": [
         "n7"
       ],
-      "output": "n47",
-      "origin": "source1.v:6.29-6.39"
+      "output": "n48",
+      "origin": "source3.v:4.28-4.50",
+      "scope": "lane0"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$117",
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$118",
       "op": "XOR",
       "inputs": [
         "n52",
@@ -219,7 +221,7 @@
       "scope": "ingress1"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$127",
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$128",
       "op": "XOR",
       "inputs": [
         "n55",
@@ -230,7 +232,7 @@
       "scope": "ingress0"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$119",
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$120",
       "op": "XOR",
       "inputs": [
         "n54",
@@ -241,7 +243,7 @@
       "scope": "ingress1"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$129",
+      "id": "$auto$simplemap.cc:157:simplemap_reduce$130",
       "op": "XOR",
       "inputs": [
         "n57",
@@ -252,7 +254,7 @@
       "scope": "ingress0"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$110",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$111",
       "op": "AND",
       "inputs": [
         "n15",
@@ -263,7 +265,7 @@
       "scope": "ingress1"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$120",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$121",
       "op": "AND",
       "inputs": [
         "n14",
@@ -274,7 +276,7 @@
       "scope": "ingress0"
     },
     {
-      "id": "$auto$simplemap.cc:46:simplemap_not$112",
+      "id": "$auto$simplemap.cc:46:simplemap_not$113",
       "op": "NOT",
       "inputs": [
         "n34"
@@ -284,7 +286,7 @@
       "scope": "ingress1"
     },
     {
-      "id": "$auto$simplemap.cc:46:simplemap_not$122",
+      "id": "$auto$simplemap.cc:46:simplemap_not$123",
       "op": "NOT",
       "inputs": [
         "n37"
@@ -294,7 +296,7 @@
       "scope": "ingress0"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$111",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$112",
       "op": "AND",
       "inputs": [
         "n15",
@@ -305,7 +307,7 @@
       "scope": "ingress1"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$121",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$122",
       "op": "AND",
       "inputs": [
         "n14",
@@ -334,130 +336,113 @@
       "origin": null
     },
     {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$79",
+      "op": "AND",
+      "inputs": [
+        "n39",
+        "n7"
+      ],
+      "output": "n44",
+      "origin": "source3.v:4.19-4.51",
+      "scope": "lane1"
+    },
+    {
       "id": "$auto$simplemap.cc:106:simplemap_bitop$80",
       "op": "AND",
       "inputs": [
         "n36",
         "n13"
       ],
-      "output": "n44",
-      "origin": "source1.v:8.39-8.54"
+      "output": "n45",
+      "origin": "source3.v:5.19-5.51",
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$81",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$94",
       "op": "AND",
       "inputs": [
         "n39",
-        "n7"
+        "n48"
       ],
-      "output": "n45",
-      "origin": "source1.v:8.23-8.38"
+      "output": "n32",
+      "origin": "source3.v:4.19-4.51",
+      "scope": "lane0"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$82",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$95",
       "op": "AND",
       "inputs": [
         "n36",
-        "n46"
+        "n49"
       ],
       "output": "n33",
-      "origin": "source1.v:6.40-6.56"
+      "origin": "source3.v:5.19-5.51",
+      "scope": "lane0"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$83",
-      "op": "AND",
-      "inputs": [
-        "n39",
-        "n47"
-      ],
-      "output": "n32",
-      "origin": "source1.v:6.23-6.39"
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$101",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$102",
       "op": "OR",
       "inputs": [
         "n32",
         "n33"
       ],
       "output": "n26",
-      "origin": "source3.v:4.18-4.35",
+      "origin": "source3.v:6.18-6.35",
       "scope": "lane0"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$84",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$81",
+      "op": "AND",
+      "inputs": [
+        "n17",
+        "n44"
+      ],
+      "output": "n41",
+      "origin": "source3.v:8.19-8.35",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$82",
       "op": "AND",
       "inputs": [
         "n17",
         "n45"
       ],
-      "output": "n43",
-      "origin": "source3.v:6.19-6.35",
+      "output": "n46",
+      "origin": "source3.v:9.19-9.35",
       "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:106:simplemap_bitop$85",
-      "op": "AND",
+      "op": "OR",
       "inputs": [
-        "n17",
-        "n44"
+        "n44",
+        "n45"
       ],
-      "output": "n48",
-      "origin": "source3.v:7.19-7.35",
+      "output": "n27",
+      "origin": "source3.v:6.18-6.35",
       "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$88",
-      "op": "OR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$96",
+      "op": "AND",
       "inputs": [
-        "n45",
-        "n44"
+        "n16",
+        "n32"
       ],
-      "output": "n27",
-      "origin": "source3.v:4.18-4.35",
-      "scope": "lane1"
+      "output": "n40",
+      "origin": "source3.v:8.19-8.35",
+      "scope": "lane0"
     },
     {
       "id": "$auto$simplemap.cc:106:simplemap_bitop$97",
       "op": "AND",
       "inputs": [
         "n16",
-        "n32"
-      ],
-      "output": "n42",
-      "origin": "source3.v:6.19-6.35",
-      "scope": "lane0"
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$98",
-      "op": "AND",
-      "inputs": [
-        "n16",
         "n33"
       ],
       "output": "n50",
-      "origin": "source3.v:7.19-7.35",
-      "scope": "lane0"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$102:select",
-      "op": "NOT",
-      "inputs": [
-        "n33"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$102:s",
-      "origin": "source3.v:5.36-5.59",
-      "scope": "lane0"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$102:b",
-      "op": "AND",
-      "inputs": [
-        "n8",
-        "n33"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$102:b",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:9.19-9.35",
       "scope": "lane0"
     },
     {
@@ -467,18 +452,18 @@
         "n33"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$103:s",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$103:b",
       "op": "AND",
       "inputs": [
-        "n9",
+        "n8",
         "n33"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$103:b",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
     },
     {
@@ -488,18 +473,18 @@
         "n33"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$104:s",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$104:b",
       "op": "AND",
       "inputs": [
-        "n10",
+        "n9",
         "n33"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$104:b",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
     },
     {
@@ -509,39 +494,39 @@
         "n33"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$105:s",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$105:b",
       "op": "AND",
       "inputs": [
-        "n11",
+        "n10",
         "n33"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$105:b",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$106:select",
       "op": "NOT",
       "inputs": [
-        "n32"
+        "n33"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$106:s",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$106:b",
       "op": "AND",
       "inputs": [
-        "n2",
-        "n32"
+        "n11",
+        "n33"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$106:b",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
     },
     {
@@ -551,18 +536,18 @@
         "n32"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$107:s",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane0"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$107:b",
       "op": "AND",
       "inputs": [
-        "n3",
+        "n2",
         "n32"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$107:b",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane0"
     },
     {
@@ -572,18 +557,18 @@
         "n32"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$108:s",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane0"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$108:b",
       "op": "AND",
       "inputs": [
-        "n4",
+        "n3",
         "n32"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$108:b",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane0"
     },
     {
@@ -593,39 +578,123 @@
         "n32"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$109:s",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane0"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$109:b",
       "op": "AND",
       "inputs": [
-        "n5",
+        "n4",
         "n32"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$109:b",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane0"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$110:select",
+      "op": "NOT",
+      "inputs": [
+        "n32"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$110:s",
+      "origin": "source3.v:7.17-7.71",
+      "scope": "lane0"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$110:b",
+      "op": "AND",
+      "inputs": [
+        "n5",
+        "n32"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$110:b",
+      "origin": "source3.v:7.17-7.71",
+      "scope": "lane0"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$86:select",
+      "op": "NOT",
+      "inputs": [
+        "n45"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$86:s",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$86:b",
+      "op": "AND",
+      "inputs": [
+        "n8",
+        "n45"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$86:b",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$87:select",
+      "op": "NOT",
+      "inputs": [
+        "n45"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$87:s",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$87:b",
+      "op": "AND",
+      "inputs": [
+        "n9",
+        "n45"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$87:b",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$88:select",
+      "op": "NOT",
+      "inputs": [
+        "n45"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$88:s",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$88:b",
+      "op": "AND",
+      "inputs": [
+        "n10",
+        "n45"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$88:b",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$89:select",
       "op": "NOT",
       "inputs": [
-        "n44"
+        "n45"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$89:s",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$89:b",
       "op": "AND",
       "inputs": [
-        "n8",
-        "n44"
+        "n11",
+        "n45"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$89:b",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane1"
     },
     {
@@ -635,18 +704,18 @@
         "n44"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$90:s",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$90:b",
       "op": "AND",
       "inputs": [
-        "n9",
+        "n2",
         "n44"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$90:b",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane1"
     },
     {
@@ -656,18 +725,18 @@
         "n44"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$91:s",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$91:b",
       "op": "AND",
       "inputs": [
-        "n10",
+        "n3",
         "n44"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$91:b",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane1"
     },
     {
@@ -677,165 +746,92 @@
         "n44"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$92:s",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$92:b",
       "op": "AND",
       "inputs": [
-        "n11",
+        "n4",
         "n44"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$92:b",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$93:select",
       "op": "NOT",
       "inputs": [
-        "n45"
+        "n44"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$93:s",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$93:b",
       "op": "AND",
       "inputs": [
-        "n2",
-        "n45"
+        "n5",
+        "n44"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$93:b",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$94:select",
-      "op": "NOT",
-      "inputs": [
-        "n45"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$94:s",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$94:b",
-      "op": "AND",
-      "inputs": [
-        "n3",
-        "n45"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$94:b",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$95:select",
-      "op": "NOT",
-      "inputs": [
-        "n45"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$95:s",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$95:b",
-      "op": "AND",
-      "inputs": [
-        "n4",
-        "n45"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$95:b",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$96:select",
-      "op": "NOT",
-      "inputs": [
-        "n45"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$96:s",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$96:b",
-      "op": "AND",
-      "inputs": [
-        "n5",
-        "n45"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$96:b",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:46:simplemap_not$100",
+      "id": "$auto$simplemap.cc:46:simplemap_not$101",
       "op": "NOT",
       "inputs": [
         "n32"
       ],
       "output": "n51",
-      "origin": "source3.v:7.38-7.47",
+      "origin": "source3.v:9.38-9.47",
       "scope": "lane0"
     },
     {
-      "id": "$auto$simplemap.cc:46:simplemap_not$87",
+      "id": "$auto$simplemap.cc:46:simplemap_not$84",
       "op": "NOT",
       "inputs": [
-        "n45"
+        "n44"
       ],
-      "output": "n49",
-      "origin": "source3.v:7.38-7.47",
+      "output": "n47",
+      "origin": "source3.v:9.38-9.47",
       "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:106:simplemap_bitop$77",
       "op": "OR",
       "inputs": [
-        "n42",
-        "n43"
+        "n40",
+        "n41"
       ],
       "output": "n28",
-      "origin": "source1.v:10.30-10.37"
+      "origin": "source1.v:5.48-5.73",
+      "scope": "status"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$86",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$83",
       "op": "AND",
       "inputs": [
-        "n48",
-        "n49"
+        "n46",
+        "n47"
       ],
-      "output": "n41",
-      "origin": "source3.v:7.19-7.47",
+      "output": "n43",
+      "origin": "source3.v:9.19-9.47",
       "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$99",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$98",
       "op": "AND",
       "inputs": [
         "n50",
         "n51"
       ],
-      "output": "n40",
-      "origin": "source3.v:7.19-7.47",
-      "scope": "lane0"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$102:a",
-      "op": "AND",
-      "inputs": [
-        "const0",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$102:s"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$102:a",
-      "origin": "source3.v:5.36-5.59",
+      "output": "n42",
+      "origin": "source3.v:9.19-9.47",
       "scope": "lane0"
     },
     {
@@ -846,7 +842,7 @@
         "tmp:$auto$simplemap.cc:298:simplemap_mux$103:s"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$103:a",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
     },
     {
@@ -857,7 +853,7 @@
         "tmp:$auto$simplemap.cc:298:simplemap_mux$104:s"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$104:a",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
     },
     {
@@ -868,8 +864,52 @@
         "tmp:$auto$simplemap.cc:298:simplemap_mux$105:s"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$105:a",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$106:a",
+      "op": "AND",
+      "inputs": [
+        "const0",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$106:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$106:a",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane0"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$86:a",
+      "op": "AND",
+      "inputs": [
+        "const0",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$86:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$86:a",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$87:a",
+      "op": "AND",
+      "inputs": [
+        "const0",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$87:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$87:a",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$88:a",
+      "op": "AND",
+      "inputs": [
+        "const0",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$88:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$88:a",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$89:a",
@@ -879,40 +919,7 @@
         "tmp:$auto$simplemap.cc:298:simplemap_mux$89:s"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$89:a",
-      "origin": "source3.v:5.36-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$90:a",
-      "op": "AND",
-      "inputs": [
-        "const0",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$90:s"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$90:a",
-      "origin": "source3.v:5.36-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$91:a",
-      "op": "AND",
-      "inputs": [
-        "const0",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$91:s"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$91:a",
-      "origin": "source3.v:5.36-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$92:a",
-      "op": "AND",
-      "inputs": [
-        "const0",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$92:s"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$92:a",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane1"
     },
     {
@@ -934,25 +941,15 @@
       "origin": null
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$76",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$78",
       "op": "OR",
       "inputs": [
-        "n40",
-        "n41"
+        "n42",
+        "n43"
       ],
       "output": "n29",
-      "origin": "source1.v:10.22-10.29"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$102",
-      "op": "OR",
-      "inputs": [
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$102:a",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$102:b"
-      ],
-      "output": "n58",
-      "origin": "source3.v:5.36-5.59",
-      "scope": "lane0"
+      "origin": "source1.v:5.22-5.47",
+      "scope": "status"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$103",
@@ -961,8 +958,8 @@
         "tmp:$auto$simplemap.cc:298:simplemap_mux$103:a",
         "tmp:$auto$simplemap.cc:298:simplemap_mux$103:b"
       ],
-      "output": "n59",
-      "origin": "source3.v:5.36-5.59",
+      "output": "n58",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
     },
     {
@@ -972,8 +969,8 @@
         "tmp:$auto$simplemap.cc:298:simplemap_mux$104:a",
         "tmp:$auto$simplemap.cc:298:simplemap_mux$104:b"
       ],
-      "output": "n60",
-      "origin": "source3.v:5.36-5.59",
+      "output": "n59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
     },
     {
@@ -983,9 +980,53 @@
         "tmp:$auto$simplemap.cc:298:simplemap_mux$105:a",
         "tmp:$auto$simplemap.cc:298:simplemap_mux$105:b"
       ],
-      "output": "n61",
-      "origin": "source3.v:5.36-5.59",
+      "output": "n60",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane0"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$106",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$106:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$106:b"
+      ],
+      "output": "n61",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane0"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$86",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$86:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$86:b"
+      ],
+      "output": "n62",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$87",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$87:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$87:b"
+      ],
+      "output": "n63",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$88",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$88:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$88:b"
+      ],
+      "output": "n64",
+      "origin": "source3.v:7.42-7.71",
+      "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$89",
@@ -994,41 +1035,8 @@
         "tmp:$auto$simplemap.cc:298:simplemap_mux$89:a",
         "tmp:$auto$simplemap.cc:298:simplemap_mux$89:b"
       ],
-      "output": "n62",
-      "origin": "source3.v:5.36-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$90",
-      "op": "OR",
-      "inputs": [
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$90:a",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$90:b"
-      ],
-      "output": "n63",
-      "origin": "source3.v:5.36-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$91",
-      "op": "OR",
-      "inputs": [
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$91:a",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$91:b"
-      ],
-      "output": "n64",
-      "origin": "source3.v:5.36-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$92",
-      "op": "OR",
-      "inputs": [
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$92:a",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$92:b"
-      ],
       "output": "n65",
-      "origin": "source3.v:5.36-5.59",
+      "origin": "source3.v:7.42-7.71",
       "scope": "lane1"
     },
     {
@@ -1041,91 +1049,91 @@
       "origin": null
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$106:a",
-      "op": "AND",
-      "inputs": [
-        "n58",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$106:s"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$106:a",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane0"
-    },
-    {
       "id": "$auto$simplemap.cc:298:simplemap_mux$107:a",
       "op": "AND",
       "inputs": [
-        "n59",
+        "n58",
         "tmp:$auto$simplemap.cc:298:simplemap_mux$107:s"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$107:a",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane0"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$108:a",
       "op": "AND",
       "inputs": [
-        "n60",
+        "n59",
         "tmp:$auto$simplemap.cc:298:simplemap_mux$108:s"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$108:a",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane0"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$109:a",
       "op": "AND",
       "inputs": [
-        "n61",
+        "n60",
         "tmp:$auto$simplemap.cc:298:simplemap_mux$109:s"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$109:a",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane0"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$110:a",
+      "op": "AND",
+      "inputs": [
+        "n61",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$110:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$110:a",
+      "origin": "source3.v:7.17-7.71",
+      "scope": "lane0"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$90:a",
+      "op": "AND",
+      "inputs": [
+        "n62",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$90:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$90:a",
+      "origin": "source3.v:7.17-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$91:a",
+      "op": "AND",
+      "inputs": [
+        "n63",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$91:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$91:a",
+      "origin": "source3.v:7.17-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$92:a",
+      "op": "AND",
+      "inputs": [
+        "n64",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$92:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$92:a",
+      "origin": "source3.v:7.17-7.71",
+      "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$93:a",
       "op": "AND",
       "inputs": [
-        "n62",
+        "n65",
         "tmp:$auto$simplemap.cc:298:simplemap_mux$93:s"
       ],
       "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$93:a",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$94:a",
-      "op": "AND",
-      "inputs": [
-        "n63",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$94:s"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$94:a",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$95:a",
-      "op": "AND",
-      "inputs": [
-        "n64",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$95:s"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$95:a",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$96:a",
-      "op": "AND",
-      "inputs": [
-        "n65",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$96:s"
-      ],
-      "output": "tmp:$auto$simplemap.cc:298:simplemap_mux$96:a",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane1"
     },
     {
@@ -1138,25 +1146,14 @@
       "origin": null
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$106",
-      "op": "OR",
-      "inputs": [
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$106:a",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$106:b"
-      ],
-      "output": "n18",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane0"
-    },
-    {
       "id": "$auto$simplemap.cc:298:simplemap_mux$107",
       "op": "OR",
       "inputs": [
         "tmp:$auto$simplemap.cc:298:simplemap_mux$107:a",
         "tmp:$auto$simplemap.cc:298:simplemap_mux$107:b"
       ],
-      "output": "n19",
-      "origin": "source3.v:5.17-5.59",
+      "output": "n18",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane0"
     },
     {
@@ -1166,8 +1163,8 @@
         "tmp:$auto$simplemap.cc:298:simplemap_mux$108:a",
         "tmp:$auto$simplemap.cc:298:simplemap_mux$108:b"
       ],
-      "output": "n20",
-      "origin": "source3.v:5.17-5.59",
+      "output": "n19",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane0"
     },
     {
@@ -1177,9 +1174,53 @@
         "tmp:$auto$simplemap.cc:298:simplemap_mux$109:a",
         "tmp:$auto$simplemap.cc:298:simplemap_mux$109:b"
       ],
-      "output": "n21",
-      "origin": "source3.v:5.17-5.59",
+      "output": "n20",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane0"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$110",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$110:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$110:b"
+      ],
+      "output": "n21",
+      "origin": "source3.v:7.17-7.71",
+      "scope": "lane0"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$90",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$90:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$90:b"
+      ],
+      "output": "n22",
+      "origin": "source3.v:7.17-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$91",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$91:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$91:b"
+      ],
+      "output": "n23",
+      "origin": "source3.v:7.17-7.71",
+      "scope": "lane1"
+    },
+    {
+      "id": "$auto$simplemap.cc:298:simplemap_mux$92",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$92:a",
+        "tmp:$auto$simplemap.cc:298:simplemap_mux$92:b"
+      ],
+      "output": "n24",
+      "origin": "source3.v:7.17-7.71",
+      "scope": "lane1"
     },
     {
       "id": "$auto$simplemap.cc:298:simplemap_mux$93",
@@ -1188,41 +1229,8 @@
         "tmp:$auto$simplemap.cc:298:simplemap_mux$93:a",
         "tmp:$auto$simplemap.cc:298:simplemap_mux$93:b"
       ],
-      "output": "n22",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$94",
-      "op": "OR",
-      "inputs": [
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$94:a",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$94:b"
-      ],
-      "output": "n23",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$95",
-      "op": "OR",
-      "inputs": [
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$95:a",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$95:b"
-      ],
-      "output": "n24",
-      "origin": "source3.v:5.17-5.59",
-      "scope": "lane1"
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$96",
-      "op": "OR",
-      "inputs": [
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$96:a",
-        "tmp:$auto$simplemap.cc:298:simplemap_mux$96:b"
-      ],
       "output": "n25",
-      "origin": "source3.v:5.17-5.59",
+      "origin": "source3.v:7.17-7.71",
       "scope": "lane1"
     },
     {
@@ -1304,28 +1312,35 @@
       "module": "frame_check",
       "rtlil_module": "frame_check",
       "source": "source2.v:2.1-5.10",
-      "instance_source": "source1.v:4.17-4.57"
+      "instance_source": "source4.v:50.14-50.98"
     },
     {
       "name": "ingress1",
       "module": "frame_check",
       "rtlil_module": "frame_check",
       "source": "source2.v:2.1-5.10",
-      "instance_source": "source1.v:5.17-5.57"
+      "instance_source": "source4.v:51.14-51.98"
     },
     {
       "name": "lane0",
       "module": "output_lane",
-      "rtlil_module": "output_lane",
-      "source": "source3.v:2.1-8.10",
-      "instance_source": "source1.v:6.17-7.62"
+      "rtlil_module": "$paramod\\output_lane\\DESTINATION=s32'00000000000000000000000000000000",
+      "source": "source3.v:2.1-10.10",
+      "instance_source": "source4.v:52.32-52.212"
     },
     {
       "name": "lane1",
       "module": "output_lane",
-      "rtlil_module": "output_lane",
-      "source": "source3.v:2.1-8.10",
-      "instance_source": "source1.v:8.17-9.62"
+      "rtlil_module": "$paramod\\output_lane\\DESTINATION=s32'00000000000000000000000000000001",
+      "source": "source3.v:2.1-10.10",
+      "instance_source": "source4.v:53.32-53.212"
+    },
+    {
+      "name": "status",
+      "module": "router_status",
+      "rtlil_module": "router_status",
+      "source": "source1.v:2.1-8.10",
+      "instance_source": "source4.v:54.16-54.285"
     }
   ],
   "wire_names": {
@@ -1437,40 +1452,382 @@
         "net": "n13"
       }
     ],
-    "g00": [
+    "graph_0_0": [
       {
         "index": 0,
-        "net": "n42"
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      },
+      {
+        "index": 2,
+        "net": "n4"
+      },
+      {
+        "index": 3,
+        "net": "n5"
+      },
+      {
+        "index": 4,
+        "net": "n6"
+      },
+      {
+        "index": 5,
+        "net": "n7"
       }
     ],
-    "g01": [
+    "graph_0_1": [
       {
         "index": 0,
-        "net": "n40"
+        "net": "n14"
       }
     ],
-    "g10": [
-      {
-        "index": 0,
-        "net": "n43"
-      }
-    ],
-    "g11": [
-      {
-        "index": 0,
-        "net": "n41"
-      }
-    ],
-    "good0": [
+    "graph_0_2": [
       {
         "index": 0,
         "net": "n39"
       }
     ],
-    "good1": [
+    "graph_0_3": [
+      {
+        "index": 0,
+        "net": "n30"
+      }
+    ],
+    "graph_1_0": [
+      {
+        "index": 0,
+        "net": "n8"
+      },
+      {
+        "index": 1,
+        "net": "n9"
+      },
+      {
+        "index": 2,
+        "net": "n10"
+      },
+      {
+        "index": 3,
+        "net": "n11"
+      },
+      {
+        "index": 4,
+        "net": "n12"
+      },
+      {
+        "index": 5,
+        "net": "n13"
+      }
+    ],
+    "graph_1_1": [
+      {
+        "index": 0,
+        "net": "n15"
+      }
+    ],
+    "graph_1_2": [
       {
         "index": 0,
         "net": "n36"
+      }
+    ],
+    "graph_1_3": [
+      {
+        "index": 0,
+        "net": "n31"
+      }
+    ],
+    "graph_2_0": [
+      {
+        "index": 0,
+        "net": "n39"
+      }
+    ],
+    "graph_2_1": [
+      {
+        "index": 0,
+        "net": "n36"
+      }
+    ],
+    "graph_2_2": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      },
+      {
+        "index": 2,
+        "net": "n4"
+      },
+      {
+        "index": 3,
+        "net": "n5"
+      },
+      {
+        "index": 4,
+        "net": "n6"
+      },
+      {
+        "index": 5,
+        "net": "n7"
+      }
+    ],
+    "graph_2_3": [
+      {
+        "index": 0,
+        "net": "n8"
+      },
+      {
+        "index": 1,
+        "net": "n9"
+      },
+      {
+        "index": 2,
+        "net": "n10"
+      },
+      {
+        "index": 3,
+        "net": "n11"
+      },
+      {
+        "index": 4,
+        "net": "n12"
+      },
+      {
+        "index": 5,
+        "net": "n13"
+      }
+    ],
+    "graph_2_4": [
+      {
+        "index": 0,
+        "net": "n16"
+      }
+    ],
+    "graph_2_5": [
+      {
+        "index": 0,
+        "net": "n26"
+      }
+    ],
+    "graph_2_6": [
+      {
+        "index": 0,
+        "net": "n18"
+      },
+      {
+        "index": 1,
+        "net": "n19"
+      },
+      {
+        "index": 2,
+        "net": "n20"
+      },
+      {
+        "index": 3,
+        "net": "n21"
+      }
+    ],
+    "graph_2_7": [
+      {
+        "index": 0,
+        "net": "n40"
+      }
+    ],
+    "graph_2_8": [
+      {
+        "index": 0,
+        "net": "n42"
+      }
+    ],
+    "graph_3_0": [
+      {
+        "index": 0,
+        "net": "n39"
+      }
+    ],
+    "graph_3_1": [
+      {
+        "index": 0,
+        "net": "n36"
+      }
+    ],
+    "graph_3_2": [
+      {
+        "index": 0,
+        "net": "n2"
+      },
+      {
+        "index": 1,
+        "net": "n3"
+      },
+      {
+        "index": 2,
+        "net": "n4"
+      },
+      {
+        "index": 3,
+        "net": "n5"
+      },
+      {
+        "index": 4,
+        "net": "n6"
+      },
+      {
+        "index": 5,
+        "net": "n7"
+      }
+    ],
+    "graph_3_3": [
+      {
+        "index": 0,
+        "net": "n8"
+      },
+      {
+        "index": 1,
+        "net": "n9"
+      },
+      {
+        "index": 2,
+        "net": "n10"
+      },
+      {
+        "index": 3,
+        "net": "n11"
+      },
+      {
+        "index": 4,
+        "net": "n12"
+      },
+      {
+        "index": 5,
+        "net": "n13"
+      }
+    ],
+    "graph_3_4": [
+      {
+        "index": 0,
+        "net": "n17"
+      }
+    ],
+    "graph_3_5": [
+      {
+        "index": 0,
+        "net": "n27"
+      }
+    ],
+    "graph_3_6": [
+      {
+        "index": 0,
+        "net": "n22"
+      },
+      {
+        "index": 1,
+        "net": "n23"
+      },
+      {
+        "index": 2,
+        "net": "n24"
+      },
+      {
+        "index": 3,
+        "net": "n25"
+      }
+    ],
+    "graph_3_7": [
+      {
+        "index": 0,
+        "net": "n41"
+      }
+    ],
+    "graph_3_8": [
+      {
+        "index": 0,
+        "net": "n43"
+      }
+    ],
+    "graph_4_0": [
+      {
+        "index": 0,
+        "net": "n40"
+      }
+    ],
+    "graph_4_1": [
+      {
+        "index": 0,
+        "net": "n42"
+      }
+    ],
+    "graph_4_10": [
+      {
+        "index": 0,
+        "net": "n30"
+      },
+      {
+        "index": 1,
+        "net": "n31"
+      }
+    ],
+    "graph_4_2": [
+      {
+        "index": 0,
+        "net": "n41"
+      }
+    ],
+    "graph_4_3": [
+      {
+        "index": 0,
+        "net": "n43"
+      }
+    ],
+    "graph_4_4": [
+      {
+        "index": 0,
+        "net": "n26"
+      }
+    ],
+    "graph_4_5": [
+      {
+        "index": 0,
+        "net": "n27"
+      }
+    ],
+    "graph_4_6": [
+      {
+        "index": 0,
+        "net": "n30"
+      }
+    ],
+    "graph_4_7": [
+      {
+        "index": 0,
+        "net": "n31"
+      }
+    ],
+    "graph_4_8": [
+      {
+        "index": 0,
+        "net": "n28"
+      },
+      {
+        "index": 1,
+        "net": "n29"
+      }
+    ],
+    "graph_4_9": [
+      {
+        "index": 0,
+        "net": "n26"
+      },
+      {
+        "index": 1,
+        "net": "n27"
       }
     ],
     "ingress0.error": [
@@ -1579,7 +1936,7 @@
         "net": "n21"
       }
     ],
-    "lane0.data0": [
+    "lane0.frame0": [
       {
         "index": 0,
         "net": "n2"
@@ -1595,9 +1952,17 @@
       {
         "index": 3,
         "net": "n5"
+      },
+      {
+        "index": 4,
+        "net": "n6"
+      },
+      {
+        "index": 5,
+        "net": "n7"
       }
     ],
-    "lane0.data1": [
+    "lane0.frame1": [
       {
         "index": 0,
         "net": "n8"
@@ -1613,18 +1978,38 @@
       {
         "index": 3,
         "net": "n11"
+      },
+      {
+        "index": 4,
+        "net": "n12"
+      },
+      {
+        "index": 5,
+        "net": "n13"
+      }
+    ],
+    "lane0.good0": [
+      {
+        "index": 0,
+        "net": "n39"
+      }
+    ],
+    "lane0.good1": [
+      {
+        "index": 0,
+        "net": "n36"
       }
     ],
     "lane0.grant0": [
       {
         "index": 0,
-        "net": "n42"
+        "net": "n40"
       }
     ],
     "lane0.grant1": [
       {
         "index": 0,
-        "net": "n40"
+        "net": "n42"
       }
     ],
     "lane0.ready": [
@@ -1669,7 +2054,7 @@
         "net": "n25"
       }
     ],
-    "lane1.data0": [
+    "lane1.frame0": [
       {
         "index": 0,
         "net": "n2"
@@ -1685,9 +2070,17 @@
       {
         "index": 3,
         "net": "n5"
+      },
+      {
+        "index": 4,
+        "net": "n6"
+      },
+      {
+        "index": 5,
+        "net": "n7"
       }
     ],
-    "lane1.data1": [
+    "lane1.frame1": [
       {
         "index": 0,
         "net": "n8"
@@ -1703,18 +2096,38 @@
       {
         "index": 3,
         "net": "n11"
+      },
+      {
+        "index": 4,
+        "net": "n12"
+      },
+      {
+        "index": 5,
+        "net": "n13"
+      }
+    ],
+    "lane1.good0": [
+      {
+        "index": 0,
+        "net": "n39"
+      }
+    ],
+    "lane1.good1": [
+      {
+        "index": 0,
+        "net": "n36"
       }
     ],
     "lane1.grant0": [
       {
         "index": 0,
-        "net": "n43"
+        "net": "n41"
       }
     ],
     "lane1.grant1": [
       {
         "index": 0,
-        "net": "n41"
+        "net": "n43"
       }
     ],
     "lane1.ready": [
@@ -1726,13 +2139,13 @@
     "lane1.request0": [
       {
         "index": 0,
-        "net": "n45"
+        "net": "n44"
       }
     ],
     "lane1.request1": [
       {
         "index": 0,
-        "net": "n44"
+        "net": "n45"
       }
     ],
     "lane1.valid": [
@@ -1761,6 +2174,84 @@
         "net": "n17"
       }
     ],
+    "status.accepted": [
+      {
+        "index": 0,
+        "net": "n28"
+      },
+      {
+        "index": 1,
+        "net": "n29"
+      }
+    ],
+    "status.error": [
+      {
+        "index": 0,
+        "net": "n30"
+      },
+      {
+        "index": 1,
+        "net": "n31"
+      }
+    ],
+    "status.error0": [
+      {
+        "index": 0,
+        "net": "n30"
+      }
+    ],
+    "status.error1": [
+      {
+        "index": 0,
+        "net": "n31"
+      }
+    ],
+    "status.lane0_grant0": [
+      {
+        "index": 0,
+        "net": "n40"
+      }
+    ],
+    "status.lane0_grant1": [
+      {
+        "index": 0,
+        "net": "n42"
+      }
+    ],
+    "status.lane0_valid": [
+      {
+        "index": 0,
+        "net": "n26"
+      }
+    ],
+    "status.lane1_grant0": [
+      {
+        "index": 0,
+        "net": "n41"
+      }
+    ],
+    "status.lane1_grant1": [
+      {
+        "index": 0,
+        "net": "n43"
+      }
+    ],
+    "status.lane1_valid": [
+      {
+        "index": 0,
+        "net": "n27"
+      }
+    ],
+    "status.output_valid": [
+      {
+        "index": 0,
+        "net": "n26"
+      },
+      {
+        "index": 1,
+        "net": "n27"
+      }
+    ],
     "valid": [
       {
         "index": 0,
@@ -1778,7 +2269,7 @@
       "module": "frame_check",
       "rtlil_module": "frame_check",
       "source": "source2.v:2.1-5.10",
-      "instance_source": "source1.v:4.17-4.57",
+      "instance_source": "source4.v:50.14-50.98",
       "inputs": {
         "frame": [
           {
@@ -1828,13 +2319,13 @@
         ]
       },
       "nodes": [
-        "$auto$simplemap.cc:106:simplemap_bitop$120",
         "$auto$simplemap.cc:106:simplemap_bitop$121",
-        "$auto$simplemap.cc:157:simplemap_reduce$124",
+        "$auto$simplemap.cc:106:simplemap_bitop$122",
         "$auto$simplemap.cc:157:simplemap_reduce$125",
-        "$auto$simplemap.cc:157:simplemap_reduce$127",
-        "$auto$simplemap.cc:157:simplemap_reduce$129",
-        "$auto$simplemap.cc:46:simplemap_not$122"
+        "$auto$simplemap.cc:157:simplemap_reduce$126",
+        "$auto$simplemap.cc:157:simplemap_reduce$128",
+        "$auto$simplemap.cc:157:simplemap_reduce$130",
+        "$auto$simplemap.cc:46:simplemap_not$123"
       ]
     },
     {
@@ -1842,7 +2333,7 @@
       "module": "frame_check",
       "rtlil_module": "frame_check",
       "source": "source2.v:2.1-5.10",
-      "instance_source": "source1.v:5.17-5.57",
+      "instance_source": "source4.v:51.14-51.98",
       "inputs": {
         "frame": [
           {
@@ -1892,35 +2383,35 @@
         ]
       },
       "nodes": [
-        "$auto$simplemap.cc:106:simplemap_bitop$110",
         "$auto$simplemap.cc:106:simplemap_bitop$111",
-        "$auto$simplemap.cc:157:simplemap_reduce$114",
+        "$auto$simplemap.cc:106:simplemap_bitop$112",
         "$auto$simplemap.cc:157:simplemap_reduce$115",
-        "$auto$simplemap.cc:157:simplemap_reduce$117",
-        "$auto$simplemap.cc:157:simplemap_reduce$119",
-        "$auto$simplemap.cc:46:simplemap_not$112"
+        "$auto$simplemap.cc:157:simplemap_reduce$116",
+        "$auto$simplemap.cc:157:simplemap_reduce$118",
+        "$auto$simplemap.cc:157:simplemap_reduce$120",
+        "$auto$simplemap.cc:46:simplemap_not$113"
       ]
     },
     {
       "name": "lane0",
       "module": "output_lane",
-      "rtlil_module": "output_lane",
-      "source": "source3.v:2.1-8.10",
-      "instance_source": "source1.v:6.17-7.62",
+      "rtlil_module": "$paramod\\output_lane\\DESTINATION=s32'00000000000000000000000000000000",
+      "source": "source3.v:2.1-10.10",
+      "instance_source": "source4.v:52.32-52.212",
       "inputs": {
-        "request0": [
+        "good0": [
           {
             "index": 0,
-            "net": "n32"
+            "net": "n39"
           }
         ],
-        "request1": [
+        "good1": [
           {
             "index": 0,
-            "net": "n33"
+            "net": "n36"
           }
         ],
-        "data0": [
+        "frame0": [
           {
             "index": 0,
             "net": "n2"
@@ -1936,9 +2427,17 @@
           {
             "index": 3,
             "net": "n5"
+          },
+          {
+            "index": 4,
+            "net": "n6"
+          },
+          {
+            "index": 5,
+            "net": "n7"
           }
         ],
-        "data1": [
+        "frame1": [
           {
             "index": 0,
             "net": "n8"
@@ -1954,6 +2453,14 @@
           {
             "index": 3,
             "net": "n11"
+          },
+          {
+            "index": 4,
+            "net": "n12"
+          },
+          {
+            "index": 5,
+            "net": "n13"
           }
         ],
         "ready": [
@@ -1991,25 +2498,23 @@
         "grant0": [
           {
             "index": 0,
-            "net": "n42"
+            "net": "n40"
           }
         ],
         "grant1": [
           {
             "index": 0,
-            "net": "n40"
+            "net": "n42"
           }
         ]
       },
       "nodes": [
-        "$auto$simplemap.cc:106:simplemap_bitop$101",
+        "$auto$simplemap.cc:106:simplemap_bitop$102",
+        "$auto$simplemap.cc:106:simplemap_bitop$94",
+        "$auto$simplemap.cc:106:simplemap_bitop$95",
+        "$auto$simplemap.cc:106:simplemap_bitop$96",
         "$auto$simplemap.cc:106:simplemap_bitop$97",
         "$auto$simplemap.cc:106:simplemap_bitop$98",
-        "$auto$simplemap.cc:106:simplemap_bitop$99",
-        "$auto$simplemap.cc:298:simplemap_mux$102",
-        "$auto$simplemap.cc:298:simplemap_mux$102:a",
-        "$auto$simplemap.cc:298:simplemap_mux$102:b",
-        "$auto$simplemap.cc:298:simplemap_mux$102:select",
         "$auto$simplemap.cc:298:simplemap_mux$103",
         "$auto$simplemap.cc:298:simplemap_mux$103:a",
         "$auto$simplemap.cc:298:simplemap_mux$103:b",
@@ -2038,29 +2543,35 @@
         "$auto$simplemap.cc:298:simplemap_mux$109:a",
         "$auto$simplemap.cc:298:simplemap_mux$109:b",
         "$auto$simplemap.cc:298:simplemap_mux$109:select",
-        "$auto$simplemap.cc:46:simplemap_not$100"
+        "$auto$simplemap.cc:298:simplemap_mux$110",
+        "$auto$simplemap.cc:298:simplemap_mux$110:a",
+        "$auto$simplemap.cc:298:simplemap_mux$110:b",
+        "$auto$simplemap.cc:298:simplemap_mux$110:select",
+        "$auto$simplemap.cc:46:simplemap_not$100",
+        "$auto$simplemap.cc:46:simplemap_not$101",
+        "$auto$simplemap.cc:46:simplemap_not$99"
       ]
     },
     {
       "name": "lane1",
       "module": "output_lane",
-      "rtlil_module": "output_lane",
-      "source": "source3.v:2.1-8.10",
-      "instance_source": "source1.v:8.17-9.62",
+      "rtlil_module": "$paramod\\output_lane\\DESTINATION=s32'00000000000000000000000000000001",
+      "source": "source3.v:2.1-10.10",
+      "instance_source": "source4.v:53.32-53.212",
       "inputs": {
-        "request0": [
+        "good0": [
           {
             "index": 0,
-            "net": "n45"
+            "net": "n39"
           }
         ],
-        "request1": [
+        "good1": [
           {
             "index": 0,
-            "net": "n44"
+            "net": "n36"
           }
         ],
-        "data0": [
+        "frame0": [
           {
             "index": 0,
             "net": "n2"
@@ -2076,9 +2587,17 @@
           {
             "index": 3,
             "net": "n5"
+          },
+          {
+            "index": 4,
+            "net": "n6"
+          },
+          {
+            "index": 5,
+            "net": "n7"
           }
         ],
-        "data1": [
+        "frame1": [
           {
             "index": 0,
             "net": "n8"
@@ -2094,6 +2613,14 @@
           {
             "index": 3,
             "net": "n11"
+          },
+          {
+            "index": 4,
+            "net": "n12"
+          },
+          {
+            "index": 5,
+            "net": "n13"
           }
         ],
         "ready": [
@@ -2131,21 +2658,35 @@
         "grant0": [
           {
             "index": 0,
-            "net": "n43"
+            "net": "n41"
           }
         ],
         "grant1": [
           {
             "index": 0,
-            "net": "n41"
+            "net": "n43"
           }
         ]
       },
       "nodes": [
-        "$auto$simplemap.cc:106:simplemap_bitop$84",
+        "$auto$simplemap.cc:106:simplemap_bitop$79",
+        "$auto$simplemap.cc:106:simplemap_bitop$80",
+        "$auto$simplemap.cc:106:simplemap_bitop$81",
+        "$auto$simplemap.cc:106:simplemap_bitop$82",
+        "$auto$simplemap.cc:106:simplemap_bitop$83",
         "$auto$simplemap.cc:106:simplemap_bitop$85",
-        "$auto$simplemap.cc:106:simplemap_bitop$86",
-        "$auto$simplemap.cc:106:simplemap_bitop$88",
+        "$auto$simplemap.cc:298:simplemap_mux$86",
+        "$auto$simplemap.cc:298:simplemap_mux$86:a",
+        "$auto$simplemap.cc:298:simplemap_mux$86:b",
+        "$auto$simplemap.cc:298:simplemap_mux$86:select",
+        "$auto$simplemap.cc:298:simplemap_mux$87",
+        "$auto$simplemap.cc:298:simplemap_mux$87:a",
+        "$auto$simplemap.cc:298:simplemap_mux$87:b",
+        "$auto$simplemap.cc:298:simplemap_mux$87:select",
+        "$auto$simplemap.cc:298:simplemap_mux$88",
+        "$auto$simplemap.cc:298:simplemap_mux$88:a",
+        "$auto$simplemap.cc:298:simplemap_mux$88:b",
+        "$auto$simplemap.cc:298:simplemap_mux$88:select",
         "$auto$simplemap.cc:298:simplemap_mux$89",
         "$auto$simplemap.cc:298:simplemap_mux$89:a",
         "$auto$simplemap.cc:298:simplemap_mux$89:b",
@@ -2166,20 +2707,105 @@
         "$auto$simplemap.cc:298:simplemap_mux$93:a",
         "$auto$simplemap.cc:298:simplemap_mux$93:b",
         "$auto$simplemap.cc:298:simplemap_mux$93:select",
-        "$auto$simplemap.cc:298:simplemap_mux$94",
-        "$auto$simplemap.cc:298:simplemap_mux$94:a",
-        "$auto$simplemap.cc:298:simplemap_mux$94:b",
-        "$auto$simplemap.cc:298:simplemap_mux$94:select",
-        "$auto$simplemap.cc:298:simplemap_mux$95",
-        "$auto$simplemap.cc:298:simplemap_mux$95:a",
-        "$auto$simplemap.cc:298:simplemap_mux$95:b",
-        "$auto$simplemap.cc:298:simplemap_mux$95:select",
-        "$auto$simplemap.cc:298:simplemap_mux$96",
-        "$auto$simplemap.cc:298:simplemap_mux$96:a",
-        "$auto$simplemap.cc:298:simplemap_mux$96:b",
-        "$auto$simplemap.cc:298:simplemap_mux$96:select",
-        "$auto$simplemap.cc:46:simplemap_not$87"
+        "$auto$simplemap.cc:46:simplemap_not$84"
+      ]
+    },
+    {
+      "name": "status",
+      "module": "router_status",
+      "rtlil_module": "router_status",
+      "source": "source1.v:2.1-8.10",
+      "instance_source": "source4.v:54.16-54.285",
+      "inputs": {
+        "lane0_grant0": [
+          {
+            "index": 0,
+            "net": "n40"
+          }
+        ],
+        "lane0_grant1": [
+          {
+            "index": 0,
+            "net": "n42"
+          }
+        ],
+        "lane1_grant0": [
+          {
+            "index": 0,
+            "net": "n41"
+          }
+        ],
+        "lane1_grant1": [
+          {
+            "index": 0,
+            "net": "n43"
+          }
+        ],
+        "lane0_valid": [
+          {
+            "index": 0,
+            "net": "n26"
+          }
+        ],
+        "lane1_valid": [
+          {
+            "index": 0,
+            "net": "n27"
+          }
+        ],
+        "error0": [
+          {
+            "index": 0,
+            "net": "n30"
+          }
+        ],
+        "error1": [
+          {
+            "index": 0,
+            "net": "n31"
+          }
+        ]
+      },
+      "outputs": {
+        "accepted": [
+          {
+            "index": 0,
+            "net": "n28"
+          },
+          {
+            "index": 1,
+            "net": "n29"
+          }
+        ],
+        "output_valid": [
+          {
+            "index": 0,
+            "net": "n26"
+          },
+          {
+            "index": 1,
+            "net": "n27"
+          }
+        ],
+        "error": [
+          {
+            "index": 0,
+            "net": "n30"
+          },
+          {
+            "index": 1,
+            "net": "n31"
+          }
+        ]
+      },
+      "nodes": [
+        "$auto$simplemap.cc:106:simplemap_bitop$77",
+        "$auto$simplemap.cc:106:simplemap_bitop$78"
       ]
     }
-  ]
+  ],
+  "_input_bus_config": {
+    "groups": [],
+    "gap": "auto"
+  }
 }

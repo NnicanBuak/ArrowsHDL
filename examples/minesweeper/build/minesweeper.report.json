@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "save_sha256": "c9710342211cd808d55efe7b8b9331c37ddf4eb27e1162a85976d851d6b5e824",
+  "checked_samples": 2820,
+  "seeds": 2,
+  "safe_first": true,
+  "flood": true,
+  "seven_segment": true,
+  "victory": true,
+  "defeat": true,
+  "late_clicks": true,
+  "reset": true,
+  "text_displays": [
+    "WIN",
+    "LOSE"
+  ],
+  "snapshots": [
+    {
+      "seed": 123456789,
+      "first": 0,
+      "mines": [
+        4,
+        8,
+        11,
+        12,
+        17,
+        20
+      ],
+      "opened": [
+        0,
+        1,
+        2,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "seed": 987654321,
+      "first": 12,
+      "mines": [
+        15
+      ],
+      "opened": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        17,
+        18,
+        19,
+        21,
+        22,
+        23,
+        24
+      ]
+    }
+  ],
+  "oracle": "independent Python eight-neighbor board and digit masks"
+}

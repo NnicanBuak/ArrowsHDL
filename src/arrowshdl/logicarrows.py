@@ -16,19 +16,19 @@ def main():
     # Stable CLI encoding, including diagnostics in Windows subprocess pipes.
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
-    parser = argparse.ArgumentParser(description="Автотесты карт Стрелочек через GraphDLC без браузера")
+    parser = argparse.ArgumentParser(description="Test Logic Arrows maps with GraphDLC")
     source = parser.add_mutually_exclusive_group(required=True)
-    source.add_argument("--save", type=Path, help="Файл сохранения Base64 v0")
-    source.add_argument("--code", help="Строка сохранения Base64 v0")
-    source.add_argument("--map", type=Path, help="Модель карты JSON schema=1")
-    parser.add_argument("--test", required=True, type=Path, help="JSON сценарий сигналов")
-    parser.add_argument("--no-cycles", action="store_true", help="Отключить оптимизацию кольцевой памяти")
+    source.add_argument("--save", type=Path, help="Base64 v0 game save file")
+    source.add_argument("--code", help="Base64 v0 game save string")
+    source.add_argument("--map", type=Path, help="JSON map model (schema=1)")
+    parser.add_argument("--test", required=True, type=Path, help="JSON signal scenario")
+    parser.add_argument("--no-cycles", action="store_true", help="Disable ring memory optimization")
     parser.add_argument("--report", type=Path)
-    parser.add_argument("--timeout", type=float, default=60, help="Ограничение каждой стадии, секунды")
+    parser.add_argument("--timeout", type=float, default=60, help="Timeout per stage in seconds")
     args = parser.parse_args()
     try:
         if not 0 < args.timeout < float("inf"):
-            raise MapError("Таймаут должен быть положительным")
+            raise MapError("Timeout must be positive")
         cells = read_map(args.map) if args.map else decode(args.save.read_text(encoding="utf-8-sig") if args.save else args.code)
         scenario = json.loads(args.test.read_text(encoding="utf-8-sig"))
         report = simulate(cells, scenario, not args.no_cycles, args.timeout)
@@ -38,7 +38,7 @@ def main():
         print(output, end="")
         return 1 if report["passed"] is False else 0
     except (OSError, MapError, ValueError, subprocess.TimeoutExpired) as error:
-        print(f"Ошибка: {error}", file=sys.stderr)
+        print(f"Error: {error}", file=sys.stderr)
         return 2
 
 

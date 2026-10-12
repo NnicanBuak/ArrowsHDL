@@ -5,7 +5,7 @@ import sys
 import unittest
 
 ROOT=Path(__file__).resolve().parents[3]
-PROJECT=ROOT/'examples/minesweeper'
+PROJECT=ROOT/'tests/fixtures/historical/minesweeper'
 
 
 class MinesweeperRegressionTests(unittest.TestCase):

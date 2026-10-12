@@ -1,1413 +1,2752 @@
 {
   "schema": 1,
   "top": "packet_router",
-  "layout": "macro-grid-v1",
-  "cells": 11221,
-  "logic_nodes": 110,
-  "map_hash": "34a02e1735739c9a51ff6c425ba018c7b570d700b642881e934effa47c2d57d1",
-  "bounds": {
-    "min": [
-      -10,
-      0
-    ],
-    "max": [
-      193,
-      504
-    ],
-    "width": 204,
-    "height": 505,
-    "area": 103020
-  },
+  "layout": "compiled-module-assembly-v1",
   "inputs": {
     "frame0": [
       {
         "index": 0,
         "contact": [
-          -8,
-          440
+          51,
+          -5
         ],
         "fixture": [
-          -9,
-          440
+          51,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 1,
         "contact": [
-          -8,
-          444
+          53,
+          -5
         ],
         "fixture": [
-          -9,
-          444
+          53,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 2,
         "contact": [
-          -8,
-          448
+          55,
+          -5
         ],
         "fixture": [
-          -9,
-          448
+          55,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 3,
         "contact": [
-          -8,
-          452
+          57,
+          -5
         ],
         "fixture": [
-          -9,
-          452
+          57,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 4,
         "contact": [
-          -8,
-          456
+          59,
+          -5
         ],
         "fixture": [
-          -9,
-          456
+          59,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 5,
         "contact": [
-          -8,
-          460
+          61,
+          -5
         ],
         "fixture": [
-          -9,
-          460
+          61,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       }
     ],
     "frame1": [
       {
         "index": 0,
         "contact": [
-          -8,
-          464
+          -5,
+          47
         ],
         "fixture": [
-          -9,
-          464
+          -6,
+          47
         ],
-        "rotation": 1
+        "rotation": 1,
+        "side": "left"
       },
       {
         "index": 1,
         "contact": [
-          -8,
-          468
+          -5,
+          49
         ],
         "fixture": [
-          -9,
-          468
+          -6,
+          49
         ],
-        "rotation": 1
+        "rotation": 1,
+        "side": "left"
       },
       {
         "index": 2,
         "contact": [
-          -8,
-          472
+          -5,
+          51
         ],
         "fixture": [
-          -9,
-          472
+          -6,
+          51
         ],
-        "rotation": 1
+        "rotation": 1,
+        "side": "left"
       },
       {
         "index": 3,
         "contact": [
-          -8,
-          476
+          -5,
+          53
         ],
         "fixture": [
-          -9,
-          476
+          -6,
+          53
         ],
-        "rotation": 1
+        "rotation": 1,
+        "side": "left"
       },
       {
         "index": 4,
         "contact": [
-          -8,
-          480
+          -5,
+          55
         ],
         "fixture": [
-          -9,
-          480
+          -6,
+          55
         ],
-        "rotation": 1
+        "rotation": 1,
+        "side": "left"
       },
       {
         "index": 5,
         "contact": [
-          -8,
-          484
+          -5,
+          57
         ],
         "fixture": [
-          -9,
-          484
+          -6,
+          57
         ],
-        "rotation": 1
-      }
-    ],
-    "ready": [
-      {
-        "index": 0,
-        "contact": [
-          -8,
-          488
-        ],
-        "fixture": [
-          -9,
-          488
-        ],
-        "rotation": 1
-      },
-      {
-        "index": 1,
-        "contact": [
-          -8,
-          492
-        ],
-        "fixture": [
-          -9,
-          492
-        ],
-        "rotation": 1
+        "rotation": 1,
+        "side": "left"
       }
     ],
     "valid": [
       {
         "index": 0,
         "contact": [
-          -8,
-          496
+          -5,
+          40
         ],
         "fixture": [
-          -9,
-          496
+          -6,
+          40
         ],
-        "rotation": 1
+        "rotation": 1,
+        "side": "left"
       },
       {
         "index": 1,
         "contact": [
-          -8,
-          500
+          -5,
+          42
         ],
         "fixture": [
-          -9,
-          500
+          -6,
+          42
         ],
-        "rotation": 1
+        "rotation": 1,
+        "side": "left"
+      }
+    ],
+    "ready": [
+      {
+        "index": 0,
+        "contact": [
+          70,
+          -5
+        ],
+        "fixture": [
+          70,
+          -6
+        ],
+        "rotation": 2,
+        "side": "top"
+      },
+      {
+        "index": 1,
+        "contact": [
+          72,
+          -5
+        ],
+        "fixture": [
+          72,
+          -6
+        ],
+        "rotation": 2,
+        "side": "top"
       }
     ]
   },
   "outputs": {
-    "accepted": [
-      {
-        "index": 0,
-        "contact": [
-          192,
-          0
-        ],
-        "fixture": [
-          193,
-          0
-        ],
-        "rotation": 0
-      },
-      {
-        "index": 1,
-        "contact": [
-          192,
-          4
-        ],
-        "fixture": [
-          193,
-          4
-        ],
-        "rotation": 0
-      }
-    ],
     "data0": [
       {
         "index": 0,
         "contact": [
-          192,
-          8
+          53,
+          99
         ],
         "fixture": [
-          193,
-          8
+          53,
+          100
         ],
-        "rotation": 0
+        "rotation": 2,
+        "side": "bottom"
       },
       {
         "index": 1,
         "contact": [
-          192,
-          12
+          55,
+          99
         ],
         "fixture": [
-          193,
-          12
+          55,
+          100
         ],
-        "rotation": 0
+        "rotation": 2,
+        "side": "bottom"
       },
       {
         "index": 2,
         "contact": [
-          192,
-          16
+          57,
+          99
         ],
         "fixture": [
-          193,
-          16
+          57,
+          100
         ],
-        "rotation": 0
+        "rotation": 2,
+        "side": "bottom"
       },
       {
         "index": 3,
         "contact": [
-          192,
-          20
+          59,
+          99
         ],
         "fixture": [
-          193,
-          20
+          59,
+          100
         ],
-        "rotation": 0
+        "rotation": 2,
+        "side": "bottom"
       }
     ],
     "data1": [
       {
         "index": 0,
         "contact": [
-          192,
-          24
+          62,
+          99
         ],
         "fixture": [
-          193,
-          24
+          62,
+          100
         ],
-        "rotation": 0
+        "rotation": 2,
+        "side": "bottom"
       },
       {
         "index": 1,
         "contact": [
-          192,
-          28
+          64,
+          99
         ],
         "fixture": [
-          193,
-          28
+          64,
+          100
         ],
-        "rotation": 0
+        "rotation": 2,
+        "side": "bottom"
       },
       {
         "index": 2,
         "contact": [
-          192,
-          32
+          66,
+          99
         ],
         "fixture": [
-          193,
-          32
+          66,
+          100
         ],
-        "rotation": 0
+        "rotation": 2,
+        "side": "bottom"
       },
       {
         "index": 3,
         "contact": [
-          192,
-          36
+          68,
+          99
         ],
         "fixture": [
-          193,
-          36
+          68,
+          100
         ],
-        "rotation": 0
-      }
-    ],
-    "error": [
-      {
-        "index": 0,
-        "contact": [
-          192,
-          40
-        ],
-        "fixture": [
-          193,
-          40
-        ],
-        "rotation": 0
-      },
-      {
-        "index": 1,
-        "contact": [
-          192,
-          44
-        ],
-        "fixture": [
-          193,
-          44
-        ],
-        "rotation": 0
+        "rotation": 2,
+        "side": "bottom"
       }
     ],
     "output_valid": [
       {
         "index": 0,
         "contact": [
-          192,
-          48
+          22,
+          -5
         ],
         "fixture": [
-          193,
-          48
+          22,
+          -6
         ],
-        "rotation": 0
+        "rotation": 0,
+        "side": "top"
       },
       {
         "index": 1,
         "contact": [
-          192,
-          52
+          24,
+          -5
         ],
         "fixture": [
-          193,
-          52
+          24,
+          -6
         ],
-        "rotation": 0
+        "rotation": 0,
+        "side": "top"
+      }
+    ],
+    "accepted": [
+      {
+        "index": 0,
+        "contact": [
+          -5,
+          23
+        ],
+        "fixture": [
+          -6,
+          23
+        ],
+        "rotation": 3,
+        "side": "left"
+      },
+      {
+        "index": 1,
+        "contact": [
+          -5,
+          25
+        ],
+        "fixture": [
+          -6,
+          25
+        ],
+        "rotation": 3,
+        "side": "left"
+      }
+    ],
+    "error": [
+      {
+        "index": 0,
+        "contact": [
+          26,
+          -5
+        ],
+        "fixture": [
+          26,
+          -6
+        ],
+        "rotation": 0,
+        "side": "top"
+      },
+      {
+        "index": 1,
+        "contact": [
+          28,
+          -5
+        ],
+        "fixture": [
+          28,
+          -6
+        ],
+        "rotation": 0,
+        "side": "top"
       }
     ]
   },
-  "settle_ticks": 864,
+  "cells": 4021,
+  "bounds": {
+    "min": [
+      -7,
+      -9
+    ],
+    "max": [
+      116,
+      102
+    ],
+    "width": 124,
+    "height": 112,
+    "area": 13888
+  },
+  "map_hash": "7e5754de66d80ee17244397958bbe4af137e0664bf861c393a804aa1636d0c98",
   "gate_labels": [
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$114",
+      "id": "ingress0.$auto$simplemap.cc:157:simplemap_reduce$73",
       "op": "XOR",
       "at": [
-        8,
-        8
+        109,
+        11
       ],
-      "native": false
+      "native": false,
+      "scope": "ingress0"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$115",
+      "id": "ingress0.$auto$simplemap.cc:157:simplemap_reduce$74",
       "op": "XOR",
       "at": [
-        24,
-        8
+        103,
+        5
       ],
-      "native": false
+      "native": false,
+      "scope": "ingress0"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$124",
+      "id": "ingress0.$auto$simplemap.cc:157:simplemap_reduce$76",
       "op": "XOR",
       "at": [
-        40,
-        8
+        109,
+        5
       ],
-      "native": false
+      "native": false,
+      "scope": "ingress0"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$125",
+      "id": "ingress0.$auto$simplemap.cc:157:simplemap_reduce$78",
       "op": "XOR",
       "at": [
-        56,
-        8
+        97,
+        5
       ],
-      "native": false
+      "native": false,
+      "scope": "ingress0"
     },
     {
-      "id": "$auto$simplemap.cc:46:simplemap_not$78",
+      "id": "ingress0.$auto$simplemap.cc:106:simplemap_bitop$81",
+      "op": "AND",
+      "at": [
+        103,
+        11
+      ],
+      "native": false,
+      "scope": "ingress0"
+    },
+    {
+      "id": "ingress0.$auto$simplemap.cc:46:simplemap_not$79",
       "op": "NOT",
       "at": [
-        72,
-        8
+        97,
+        10
       ],
-      "native": false
+      "native": false,
+      "scope": "ingress0"
     },
     {
-      "id": "$auto$simplemap.cc:46:simplemap_not$79",
-      "op": "NOT",
+      "id": "ingress0.$auto$simplemap.cc:106:simplemap_bitop$80",
+      "op": "AND",
       "at": [
-        88,
-        8
+        97,
+        17
       ],
-      "native": false
+      "native": false,
+      "scope": "ingress0"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$117",
+      "id": "ingress0.port:error:0",
+      "op": "BUF",
+      "at": [
+        103,
+        16
+      ],
+      "native": false,
+      "scope": "ingress0"
+    },
+    {
+      "id": "ingress0.port:good:0",
+      "op": "BUF",
+      "at": [
+        109,
+        16
+      ],
+      "native": false,
+      "scope": "ingress0"
+    },
+    {
+      "id": "ingress1.$auto$simplemap.cc:157:simplemap_reduce$73",
       "op": "XOR",
       "at": [
-        104,
-        8
+        17,
+        64
       ],
-      "native": false
+      "native": false,
+      "scope": "ingress1"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$127",
+      "id": "ingress1.$auto$simplemap.cc:157:simplemap_reduce$74",
       "op": "XOR",
       "at": [
-        120,
-        8
+        11,
+        58
       ],
-      "native": false
+      "native": false,
+      "scope": "ingress1"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$119",
+      "id": "ingress1.$auto$simplemap.cc:157:simplemap_reduce$76",
       "op": "XOR",
       "at": [
-        136,
-        8
+        17,
+        58
       ],
-      "native": false
+      "native": false,
+      "scope": "ingress1"
     },
     {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$129",
+      "id": "ingress1.$auto$simplemap.cc:157:simplemap_reduce$78",
       "op": "XOR",
       "at": [
-        152,
-        8
+        5,
+        58
       ],
-      "native": false
+      "native": false,
+      "scope": "ingress1"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$110",
+      "id": "ingress1.$auto$simplemap.cc:106:simplemap_bitop$81",
       "op": "AND",
       "at": [
-        168,
-        8
+        11,
+        64
       ],
-      "native": false
+      "native": false,
+      "scope": "ingress1"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$120",
+      "id": "ingress1.$auto$simplemap.cc:46:simplemap_not$79",
+      "op": "NOT",
+      "at": [
+        5,
+        63
+      ],
+      "native": false,
+      "scope": "ingress1"
+    },
+    {
+      "id": "ingress1.$auto$simplemap.cc:106:simplemap_bitop$80",
       "op": "AND",
       "at": [
-        8,
+        5,
+        70
+      ],
+      "native": false,
+      "scope": "ingress1"
+    },
+    {
+      "id": "ingress1.port:error:0",
+      "op": "BUF",
+      "at": [
+        11,
+        69
+      ],
+      "native": false,
+      "scope": "ingress1"
+    },
+    {
+      "id": "ingress1.port:good:0",
+      "op": "BUF",
+      "at": [
+        17,
+        69
+      ],
+      "native": false,
+      "scope": "ingress1"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:46:simplemap_not$82",
+      "op": "NOT",
+      "at": [
+        45,
+        5
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:46:simplemap_not$83",
+      "op": "NOT",
+      "at": [
+        63,
+        5
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:106:simplemap_bitop$87",
+      "op": "AND",
+      "at": [
+        45,
+        12
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:106:simplemap_bitop$88",
+      "op": "AND",
+      "at": [
+        57,
+        6
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:106:simplemap_bitop$80",
+      "op": "OR",
+      "at": [
+        51,
+        12
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:106:simplemap_bitop$85",
+      "op": "AND",
+      "at": [
+        45,
+        18
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:106:simplemap_bitop$86",
+      "op": "AND",
+      "at": [
+        69,
+        6
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$72:select",
+      "op": "NOT",
+      "at": [
+        57,
+        23
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$72:b",
+      "op": "AND",
+      "at": [
+        69,
+        12
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$73:b",
+      "op": "AND",
+      "at": [
+        57,
+        18
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$74:b",
+      "op": "AND",
+      "at": [
+        39,
+        6
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$75:b",
+      "op": "AND",
+      "at": [
+        57,
+        12
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$76:select",
+      "op": "NOT",
+      "at": [
+        63,
+        11
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$76:b",
+      "op": "AND",
+      "at": [
+        75,
+        12
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$77:b",
+      "op": "AND",
+      "at": [
+        39,
+        12
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$78:b",
+      "op": "AND",
+      "at": [
+        39,
+        18
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$79:b",
+      "op": "AND",
+      "at": [
+        45,
         24
       ],
-      "native": false
+      "native": false,
+      "scope": "lane0"
     },
     {
-      "id": "$auto$simplemap.cc:46:simplemap_not$112",
-      "op": "NOT",
+      "id": "lane0.$auto$simplemap.cc:106:simplemap_bitop$84",
+      "op": "AND",
       "at": [
-        24,
+        51,
+        18
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$76:a",
+      "op": "AND",
+      "at": [
+        63,
+        18
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.port:grant0:0",
+      "op": "BUF",
+      "at": [
+        75,
+        5
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.port:valid:0",
+      "op": "BUF",
+      "at": [
+        51,
+        5
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$76",
+      "op": "OR",
+      "at": [
+        75,
+        18
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$77",
+      "op": "OR",
+      "at": [
+        69,
+        18
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$78",
+      "op": "OR",
+      "at": [
+        39,
         24
       ],
-      "native": false
+      "native": false,
+      "scope": "lane0"
     },
     {
-      "id": "$auto$simplemap.cc:46:simplemap_not$122",
-      "op": "NOT",
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$79",
+      "op": "OR",
       "at": [
-        40,
+        45,
+        30
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.port:grant1:0",
+      "op": "BUF",
+      "at": [
+        51,
+        23
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$72:a",
+      "op": "AND",
+      "at": [
+        69,
         24
       ],
-      "native": false
+      "native": false,
+      "scope": "lane0"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$111",
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$73:a",
       "op": "AND",
       "at": [
-        56,
+        63,
         24
       ],
-      "native": false
+      "native": false,
+      "scope": "lane0"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$121",
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$74:a",
       "op": "AND",
       "at": [
-        72,
+        39,
+        30
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$75:a",
+      "op": "AND",
+      "at": [
+        51,
+        30
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$72",
+      "op": "OR",
+      "at": [
+        75,
         24
       ],
-      "native": false
+      "native": false,
+      "scope": "lane0"
     },
     {
-      "id": "port:error:0",
-      "op": "BUF",
-      "at": [
-        88,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "port:error:1",
-      "op": "BUF",
-      "at": [
-        104,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$80",
-      "op": "AND",
-      "at": [
-        120,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$81",
-      "op": "AND",
-      "at": [
-        136,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$82",
-      "op": "AND",
-      "at": [
-        152,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$83",
-      "op": "AND",
-      "at": [
-        168,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$101",
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$73",
       "op": "OR",
       "at": [
-        8,
-        40
+        57,
+        30
       ],
-      "native": false
+      "native": false,
+      "scope": "lane0"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$84",
-      "op": "AND",
-      "at": [
-        24,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$85",
-      "op": "AND",
-      "at": [
-        40,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$88",
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$74",
       "op": "OR",
       "at": [
-        56,
-        40
+        39,
+        36
       ],
-      "native": false
+      "native": false,
+      "scope": "lane0"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$97",
+      "id": "lane0.$auto$simplemap.cc:298:simplemap_mux$75",
+      "op": "OR",
+      "at": [
+        57,
+        36
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.port:data:0",
+      "op": "BUF",
+      "at": [
+        75,
+        29
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.port:data:1",
+      "op": "BUF",
+      "at": [
+        63,
+        29
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.port:data:2",
+      "op": "BUF",
+      "at": [
+        45,
+        35
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane0.port:data:3",
+      "op": "BUF",
+      "at": [
+        51,
+        35
+      ],
+      "native": false,
+      "scope": "lane0"
+    },
+    {
+      "id": "lane1.$auto$simplemap.cc:106:simplemap_bitop$85",
       "op": "AND",
       "at": [
-        72,
-        40
+        51,
+        65
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$98",
+      "id": "lane1.$auto$simplemap.cc:106:simplemap_bitop$86",
       "op": "AND",
       "at": [
-        88,
-        40
+        45,
+        65
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$102:select",
+      "id": "lane1.$auto$simplemap.cc:106:simplemap_bitop$80",
+      "op": "OR",
+      "at": [
+        39,
+        65
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.$auto$simplemap.cc:106:simplemap_bitop$83",
+      "op": "AND",
+      "at": [
+        57,
+        65
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.$auto$simplemap.cc:106:simplemap_bitop$84",
+      "op": "AND",
+      "at": [
+        69,
+        65
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$72:select",
       "op": "NOT",
       "at": [
-        104,
-        40
+        45,
+        82
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$102:b",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$72:b",
       "op": "AND",
       "at": [
-        120,
-        40
+        57,
+        59
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$103:select",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$73:b",
+      "op": "AND",
+      "at": [
+        51,
+        59
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$74:b",
+      "op": "AND",
+      "at": [
+        39,
+        77
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$75:b",
+      "op": "AND",
+      "at": [
+        45,
+        59
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$76:select",
       "op": "NOT",
       "at": [
-        136,
-        40
+        57,
+        70
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$103:b",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$76:b",
       "op": "AND",
       "at": [
-        152,
-        40
+        69,
+        59
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$104:select",
-      "op": "NOT",
-      "at": [
-        168,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$104:b",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$77:b",
       "op": "AND",
       "at": [
-        8,
-        56
+        39,
+        71
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$105:select",
-      "op": "NOT",
-      "at": [
-        24,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$105:b",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$78:b",
       "op": "AND",
       "at": [
-        40,
-        56
+        51,
+        71
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$106:select",
-      "op": "NOT",
-      "at": [
-        56,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$106:b",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$79:b",
       "op": "AND",
       "at": [
-        72,
-        56
+        63,
+        65
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$107:select",
-      "op": "NOT",
-      "at": [
-        88,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$107:b",
+      "id": "lane1.$auto$simplemap.cc:106:simplemap_bitop$82",
       "op": "AND",
       "at": [
-        104,
-        56
+        69,
+        83
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$108:select",
-      "op": "NOT",
-      "at": [
-        120,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$108:b",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$76:a",
       "op": "AND",
       "at": [
-        136,
-        56
+        63,
+        71
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$109:select",
-      "op": "NOT",
+      "id": "lane1.port:grant0:0",
+      "op": "BUF",
       "at": [
-        152,
-        56
+        69,
+        70
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$109:b",
+      "id": "lane1.port:valid:0",
+      "op": "BUF",
+      "at": [
+        39,
+        58
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$76",
+      "op": "OR",
+      "at": [
+        63,
+        59
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$77",
+      "op": "OR",
+      "at": [
+        45,
+        71
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$78",
+      "op": "OR",
+      "at": [
+        51,
+        77
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$79",
+      "op": "OR",
+      "at": [
+        63,
+        77
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.port:grant1:0",
+      "op": "BUF",
+      "at": [
+        69,
+        76
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$72:a",
       "op": "AND",
       "at": [
-        168,
-        56
+        57,
+        83
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$89:select",
-      "op": "NOT",
-      "at": [
-        8,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$89:b",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$73:a",
       "op": "AND",
       "at": [
-        24,
-        72
+        45,
+        77
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$90:select",
-      "op": "NOT",
-      "at": [
-        40,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$90:b",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$74:a",
       "op": "AND",
       "at": [
-        56,
-        72
+        39,
+        83
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$91:select",
-      "op": "NOT",
-      "at": [
-        72,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$91:b",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$75:a",
       "op": "AND",
       "at": [
-        88,
-        72
+        51,
+        83
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$92:select",
-      "op": "NOT",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$72",
+      "op": "OR",
       "at": [
-        104,
-        72
+        57,
+        89
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$92:b",
-      "op": "AND",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$73",
+      "op": "OR",
       "at": [
-        120,
-        72
+        57,
+        77
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$93:select",
-      "op": "NOT",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$74",
+      "op": "OR",
       "at": [
-        136,
-        72
+        39,
+        89
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$93:b",
-      "op": "AND",
+      "id": "lane1.$auto$simplemap.cc:298:simplemap_mux$75",
+      "op": "OR",
       "at": [
-        152,
-        72
+        51,
+        89
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$94:select",
-      "op": "NOT",
+      "id": "lane1.port:data:0",
+      "op": "BUF",
       "at": [
-        168,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$94:b",
-      "op": "AND",
-      "at": [
-        8,
+        63,
         88
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$95:select",
-      "op": "NOT",
+      "id": "lane1.port:data:1",
+      "op": "BUF",
       "at": [
-        24,
+        63,
+        82
+      ],
+      "native": false,
+      "scope": "lane1"
+    },
+    {
+      "id": "lane1.port:data:2",
+      "op": "BUF",
+      "at": [
+        45,
         88
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$95:b",
-      "op": "AND",
+      "id": "lane1.port:data:3",
+      "op": "BUF",
       "at": [
-        40,
+        69,
         88
       ],
-      "native": false
+      "native": false,
+      "scope": "lane1"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$96:select",
-      "op": "NOT",
-      "at": [
-        56,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$96:b",
-      "op": "AND",
-      "at": [
-        72,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:46:simplemap_not$100",
-      "op": "NOT",
-      "at": [
-        88,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:46:simplemap_not$87",
-      "op": "NOT",
-      "at": [
-        104,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$77",
+      "id": "status.$auto$simplemap.cc:106:simplemap_bitop$72",
       "op": "OR",
       "at": [
-        120,
-        88
+        5,
+        18
       ],
-      "native": false
+      "native": false,
+      "scope": "status"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$86",
-      "op": "AND",
+      "id": "status.$auto$simplemap.cc:106:simplemap_bitop$73",
+      "op": "OR",
       "at": [
-        136,
-        88
+        11,
+        6
       ],
-      "native": false
+      "native": false,
+      "scope": "status"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$99",
-      "op": "AND",
-      "at": [
-        152,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$102:a",
-      "op": "AND",
-      "at": [
-        168,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$103:a",
-      "op": "AND",
-      "at": [
-        8,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$104:a",
-      "op": "AND",
-      "at": [
-        24,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$105:a",
-      "op": "AND",
-      "at": [
-        40,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$89:a",
-      "op": "AND",
-      "at": [
-        56,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$90:a",
-      "op": "AND",
-      "at": [
-        72,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$91:a",
-      "op": "AND",
-      "at": [
-        88,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$92:a",
-      "op": "AND",
-      "at": [
-        104,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "port:output_valid:0",
+      "id": "status.port:error:0",
       "op": "BUF",
       "at": [
-        120,
-        104
+        17,
+        5
       ],
-      "native": false
+      "native": false,
+      "scope": "status"
     },
     {
-      "id": "port:output_valid:1",
+      "id": "status.port:error:1",
       "op": "BUF",
       "at": [
-        136,
-        104
+        5,
+        11
       ],
-      "native": false
+      "native": false,
+      "scope": "status"
     },
     {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$76",
-      "op": "OR",
-      "at": [
-        152,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$102",
-      "op": "OR",
-      "at": [
-        168,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$103",
-      "op": "OR",
-      "at": [
-        8,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$104",
-      "op": "OR",
-      "at": [
-        24,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$105",
-      "op": "OR",
-      "at": [
-        40,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$89",
-      "op": "OR",
-      "at": [
-        56,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$90",
-      "op": "OR",
-      "at": [
-        72,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$91",
-      "op": "OR",
-      "at": [
-        88,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$92",
-      "op": "OR",
-      "at": [
-        104,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "port:accepted:0",
+      "id": "status.port:output_valid:0",
       "op": "BUF",
       "at": [
-        120,
-        120
+        11,
+        11
       ],
-      "native": false
+      "native": false,
+      "scope": "status"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$106:a",
-      "op": "AND",
-      "at": [
-        136,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$107:a",
-      "op": "AND",
-      "at": [
-        152,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$108:a",
-      "op": "AND",
-      "at": [
-        168,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$109:a",
-      "op": "AND",
-      "at": [
-        8,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$93:a",
-      "op": "AND",
-      "at": [
-        24,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$94:a",
-      "op": "AND",
-      "at": [
-        40,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$95:a",
-      "op": "AND",
-      "at": [
-        56,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$96:a",
-      "op": "AND",
-      "at": [
-        72,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "port:accepted:1",
+      "id": "status.port:output_valid:1",
       "op": "BUF",
       "at": [
-        88,
-        136
+        17,
+        11
       ],
-      "native": false
+      "native": false,
+      "scope": "status"
     },
     {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$106",
-      "op": "OR",
-      "at": [
-        104,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$107",
-      "op": "OR",
-      "at": [
-        120,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$108",
-      "op": "OR",
-      "at": [
-        136,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$109",
-      "op": "OR",
-      "at": [
-        152,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$93",
-      "op": "OR",
-      "at": [
-        168,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$94",
-      "op": "OR",
-      "at": [
-        8,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$95",
-      "op": "OR",
-      "at": [
-        24,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$96",
-      "op": "OR",
-      "at": [
-        40,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "port:data0:0",
+      "id": "status.port:accepted:0",
       "op": "BUF",
       "at": [
-        56,
-        152
+        5,
+        5
       ],
-      "native": false
+      "native": false,
+      "scope": "status"
     },
     {
-      "id": "port:data0:1",
+      "id": "status.port:accepted:1",
       "op": "BUF",
       "at": [
-        72,
-        152
+        11,
+        17
       ],
-      "native": false
-    },
-    {
-      "id": "port:data0:2",
-      "op": "BUF",
-      "at": [
-        88,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "port:data0:3",
-      "op": "BUF",
-      "at": [
-        104,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "port:data1:0",
-      "op": "BUF",
-      "at": [
-        120,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "port:data1:1",
-      "op": "BUF",
-      "at": [
-        136,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "port:data1:2",
-      "op": "BUF",
-      "at": [
-        152,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "port:data1:3",
-      "op": "BUF",
-      "at": [
-        168,
-        152
-      ],
-      "native": false
+      "native": false,
+      "scope": "status"
     }
   ],
-  "profile": "GraphDLC-01232bd",
-  "verified_against_current_game": false,
+  "settle_ticks": 442,
   "timing": {
     "model": "game-ticks",
-    "state_boundaries": [],
-    "contract": "settle_ticks bounds propagation between state boundaries; stateful outputs need tick scenarios"
+    "state_boundaries": []
   },
+  "compiled_modules": [
+    {
+      "key": "678959945c8269d14339fe1c8290be219e33ea11b7fafaeb8ac209382a07ac63",
+      "reused": false,
+      "path": "modules/678959945c8269d14339fe1c8290be219e33ea11b7fafaeb8ac209382a07ac63"
+    },
+    {
+      "key": "9ac559d10a6831c4ebf6a59dad49d55765f504d79688270ea22ab182c71fd24b",
+      "reused": false,
+      "path": "modules/9ac559d10a6831c4ebf6a59dad49d55765f504d79688270ea22ab182c71fd24b"
+    },
+    {
+      "key": "906315fc1e6edb419ab40af7b0c38f43d6cf53357f04ff1e5d814fcb19f4df53",
+      "reused": false,
+      "path": "modules/906315fc1e6edb419ab40af7b0c38f43d6cf53357f04ff1e5d814fcb19f4df53"
+    },
+    {
+      "key": "2fb7ff01a91d565bc1c64733faf7616e59b2e110fe47587338321eacd9828be1",
+      "reused": false,
+      "path": "modules/2fb7ff01a91d565bc1c64733faf7616e59b2e110fe47587338321eacd9828be1"
+    }
+  ],
+  "instances": {
+    "ingress0": {
+      "inputs": {
+        "frame": [
+          {
+            "index": 0,
+            "contact": [
+              98,
+              0
+            ],
+            "fixture": [
+              98,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 1,
+            "contact": [
+              100,
+              0
+            ],
+            "fixture": [
+              100,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 2,
+            "contact": [
+              102,
+              0
+            ],
+            "fixture": [
+              102,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 3,
+            "contact": [
+              104,
+              0
+            ],
+            "fixture": [
+              104,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 4,
+            "contact": [
+              106,
+              0
+            ],
+            "fixture": [
+              106,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 5,
+            "contact": [
+              108,
+              0
+            ],
+            "fixture": [
+              108,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "valid": [
+          {
+            "index": 0,
+            "contact": [
+              92,
+              14
+            ],
+            "fixture": [
+              91,
+              14
+            ],
+            "rotation": 1,
+            "side": "left"
+          }
+        ]
+      },
+      "outputs": {
+        "error": [
+          {
+            "index": 0,
+            "contact": [
+              103,
+              22
+            ],
+            "fixture": [
+              103,
+              23
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          }
+        ],
+        "good": [
+          {
+            "index": 0,
+            "contact": [
+              114,
+              16
+            ],
+            "fixture": [
+              115,
+              16
+            ],
+            "rotation": 1,
+            "side": "right"
+          }
+        ]
+      },
+      "map_hash": "17b220bfd9ed5a4ee34b48a869d2ce7491def5d3ea057bc974507de487e2faeb",
+      "cells": 116
+    },
+    "ingress1": {
+      "inputs": {
+        "frame": [
+          {
+            "index": 0,
+            "contact": [
+              6,
+              53
+            ],
+            "fixture": [
+              6,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 1,
+            "contact": [
+              8,
+              53
+            ],
+            "fixture": [
+              8,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 2,
+            "contact": [
+              10,
+              53
+            ],
+            "fixture": [
+              10,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 3,
+            "contact": [
+              12,
+              53
+            ],
+            "fixture": [
+              12,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 4,
+            "contact": [
+              14,
+              53
+            ],
+            "fixture": [
+              14,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 5,
+            "contact": [
+              16,
+              53
+            ],
+            "fixture": [
+              16,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "valid": [
+          {
+            "index": 0,
+            "contact": [
+              0,
+              67
+            ],
+            "fixture": [
+              -1,
+              67
+            ],
+            "rotation": 1,
+            "side": "left"
+          }
+        ]
+      },
+      "outputs": {
+        "error": [
+          {
+            "index": 0,
+            "contact": [
+              11,
+              75
+            ],
+            "fixture": [
+              11,
+              76
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          }
+        ],
+        "good": [
+          {
+            "index": 0,
+            "contact": [
+              22,
+              69
+            ],
+            "fixture": [
+              23,
+              69
+            ],
+            "rotation": 1,
+            "side": "right"
+          }
+        ]
+      },
+      "map_hash": "4b1cd4fd28b78d0d06ffad8c5f38e044da6218764927101e44855e3c06736fe1",
+      "cells": 116
+    },
+    "lane0": {
+      "inputs": {
+        "frame0": [
+          {
+            "index": 0,
+            "contact": [
+              51,
+              0
+            ],
+            "fixture": [
+              51,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 1,
+            "contact": [
+              53,
+              0
+            ],
+            "fixture": [
+              53,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 2,
+            "contact": [
+              55,
+              0
+            ],
+            "fixture": [
+              55,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 3,
+            "contact": [
+              57,
+              0
+            ],
+            "fixture": [
+              57,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 4,
+            "contact": [
+              59,
+              0
+            ],
+            "fixture": [
+              59,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 5,
+            "contact": [
+              61,
+              0
+            ],
+            "fixture": [
+              61,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "frame1": [
+          {
+            "index": 0,
+            "contact": [
+              34,
+              11
+            ],
+            "fixture": [
+              33,
+              11
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 1,
+            "contact": [
+              34,
+              13
+            ],
+            "fixture": [
+              33,
+              13
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 2,
+            "contact": [
+              34,
+              15
+            ],
+            "fixture": [
+              33,
+              15
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 3,
+            "contact": [
+              34,
+              17
+            ],
+            "fixture": [
+              33,
+              17
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 4,
+            "contact": [
+              34,
+              19
+            ],
+            "fixture": [
+              33,
+              19
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 5,
+            "contact": [
+              34,
+              21
+            ],
+            "fixture": [
+              33,
+              21
+            ],
+            "rotation": 1,
+            "side": "left"
+          }
+        ],
+        "good0": [
+          {
+            "index": 0,
+            "contact": [
+              64,
+              0
+            ],
+            "fixture": [
+              64,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "good1": [
+          {
+            "index": 0,
+            "contact": [
+              44,
+              0
+            ],
+            "fixture": [
+              44,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "ready": [
+          {
+            "index": 0,
+            "contact": [
+              66,
+              0
+            ],
+            "fixture": [
+              66,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ]
+      },
+      "outputs": {
+        "data": [
+          {
+            "index": 0,
+            "contact": [
+              53,
+              41
+            ],
+            "fixture": [
+              53,
+              42
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 1,
+            "contact": [
+              55,
+              41
+            ],
+            "fixture": [
+              55,
+              42
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 2,
+            "contact": [
+              57,
+              41
+            ],
+            "fixture": [
+              57,
+              42
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 3,
+            "contact": [
+              59,
+              41
+            ],
+            "fixture": [
+              59,
+              42
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          }
+        ],
+        "grant0": [
+          {
+            "index": 0,
+            "contact": [
+              80,
+              5
+            ],
+            "fixture": [
+              81,
+              5
+            ],
+            "rotation": 1,
+            "side": "right"
+          }
+        ],
+        "grant1": [
+          {
+            "index": 0,
+            "contact": [
+              34,
+              23
+            ],
+            "fixture": [
+              33,
+              23
+            ],
+            "rotation": 3,
+            "side": "left"
+          }
+        ],
+        "valid": [
+          {
+            "index": 0,
+            "contact": [
+              34,
+              5
+            ],
+            "fixture": [
+              33,
+              5
+            ],
+            "rotation": 3,
+            "side": "left"
+          }
+        ]
+      },
+      "map_hash": "c22595d74ade256eee8e3fcb99493357e7cbea167a67bc198a9f31716522fa17",
+      "cells": 612
+    },
+    "lane1": {
+      "inputs": {
+        "frame0": [
+          {
+            "index": 0,
+            "contact": [
+              34,
+              58
+            ],
+            "fixture": [
+              33,
+              58
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 1,
+            "contact": [
+              34,
+              60
+            ],
+            "fixture": [
+              33,
+              60
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 2,
+            "contact": [
+              34,
+              62
+            ],
+            "fixture": [
+              33,
+              62
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 3,
+            "contact": [
+              34,
+              64
+            ],
+            "fixture": [
+              33,
+              64
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 4,
+            "contact": [
+              34,
+              66
+            ],
+            "fixture": [
+              33,
+              66
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 5,
+            "contact": [
+              34,
+              68
+            ],
+            "fixture": [
+              33,
+              68
+            ],
+            "rotation": 1,
+            "side": "left"
+          }
+        ],
+        "frame1": [
+          {
+            "index": 0,
+            "contact": [
+              44,
+              53
+            ],
+            "fixture": [
+              44,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 1,
+            "contact": [
+              46,
+              53
+            ],
+            "fixture": [
+              46,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 2,
+            "contact": [
+              48,
+              53
+            ],
+            "fixture": [
+              48,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 3,
+            "contact": [
+              50,
+              53
+            ],
+            "fixture": [
+              50,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 4,
+            "contact": [
+              52,
+              53
+            ],
+            "fixture": [
+              52,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 5,
+            "contact": [
+              54,
+              53
+            ],
+            "fixture": [
+              54,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "good0": [
+          {
+            "index": 0,
+            "contact": [
+              34,
+              71
+            ],
+            "fixture": [
+              33,
+              71
+            ],
+            "rotation": 1,
+            "side": "left"
+          }
+        ],
+        "good1": [
+          {
+            "index": 0,
+            "contact": [
+              56,
+              53
+            ],
+            "fixture": [
+              56,
+              52
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "ready": [
+          {
+            "index": 0,
+            "contact": [
+              74,
+              65
+            ],
+            "fixture": [
+              75,
+              65
+            ],
+            "rotation": 3,
+            "side": "right"
+          }
+        ]
+      },
+      "outputs": {
+        "data": [
+          {
+            "index": 0,
+            "contact": [
+              62,
+              94
+            ],
+            "fixture": [
+              62,
+              95
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 1,
+            "contact": [
+              64,
+              94
+            ],
+            "fixture": [
+              64,
+              95
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 2,
+            "contact": [
+              66,
+              94
+            ],
+            "fixture": [
+              66,
+              95
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 3,
+            "contact": [
+              68,
+              94
+            ],
+            "fixture": [
+              68,
+              95
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          }
+        ],
+        "grant0": [
+          {
+            "index": 0,
+            "contact": [
+              74,
+              70
+            ],
+            "fixture": [
+              75,
+              70
+            ],
+            "rotation": 1,
+            "side": "right"
+          }
+        ],
+        "grant1": [
+          {
+            "index": 0,
+            "contact": [
+              74,
+              76
+            ],
+            "fixture": [
+              75,
+              76
+            ],
+            "rotation": 1,
+            "side": "right"
+          }
+        ],
+        "valid": [
+          {
+            "index": 0,
+            "contact": [
+              39,
+              53
+            ],
+            "fixture": [
+              39,
+              52
+            ],
+            "rotation": 0,
+            "side": "top"
+          }
+        ]
+      },
+      "map_hash": "cc5ab754f68f2f4fae6505931c3018f67c8d7a6b1fdf8ff596c754c354a15734",
+      "cells": 613
+    },
+    "status": {
+      "inputs": {
+        "error0": [
+          {
+            "index": 0,
+            "contact": [
+              16,
+              0
+            ],
+            "fixture": [
+              16,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "error1": [
+          {
+            "index": 0,
+            "contact": [
+              0,
+              11
+            ],
+            "fixture": [
+              -1,
+              11
+            ],
+            "rotation": 1,
+            "side": "left"
+          }
+        ],
+        "lane0_grant0": [
+          {
+            "index": 0,
+            "contact": [
+              10,
+              0
+            ],
+            "fixture": [
+              10,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "lane0_grant1": [
+          {
+            "index": 0,
+            "contact": [
+              0,
+              18
+            ],
+            "fixture": [
+              -1,
+              18
+            ],
+            "rotation": 1,
+            "side": "left"
+          }
+        ],
+        "lane0_valid": [
+          {
+            "index": 0,
+            "contact": [
+              0,
+              13
+            ],
+            "fixture": [
+              -1,
+              13
+            ],
+            "rotation": 1,
+            "side": "left"
+          }
+        ],
+        "lane1_grant0": [
+          {
+            "index": 0,
+            "contact": [
+              13,
+              0
+            ],
+            "fixture": [
+              13,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "lane1_grant1": [
+          {
+            "index": 0,
+            "contact": [
+              5,
+              23
+            ],
+            "fixture": [
+              5,
+              24
+            ],
+            "rotation": 0,
+            "side": "bottom"
+          }
+        ],
+        "lane1_valid": [
+          {
+            "index": 0,
+            "contact": [
+              22,
+              11
+            ],
+            "fixture": [
+              23,
+              11
+            ],
+            "rotation": 3,
+            "side": "right"
+          }
+        ]
+      },
+      "outputs": {
+        "accepted": [
+          {
+            "index": 0,
+            "contact": [
+              7,
+              23
+            ],
+            "fixture": [
+              7,
+              24
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 1,
+            "contact": [
+              9,
+              23
+            ],
+            "fixture": [
+              9,
+              24
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          }
+        ],
+        "error": [
+          {
+            "index": 0,
+            "contact": [
+              22,
+              7
+            ],
+            "fixture": [
+              23,
+              7
+            ],
+            "rotation": 1,
+            "side": "right"
+          },
+          {
+            "index": 1,
+            "contact": [
+              22,
+              9
+            ],
+            "fixture": [
+              23,
+              9
+            ],
+            "rotation": 1,
+            "side": "right"
+          }
+        ],
+        "output_valid": [
+          {
+            "index": 0,
+            "contact": [
+              22,
+              14
+            ],
+            "fixture": [
+              23,
+              14
+            ],
+            "rotation": 1,
+            "side": "right"
+          },
+          {
+            "index": 1,
+            "contact": [
+              22,
+              16
+            ],
+            "fixture": [
+              23,
+              16
+            ],
+            "rotation": 1,
+            "side": "right"
+          }
+        ]
+      },
+      "map_hash": "ebe8e2a7f09cba8a922ab769b49abd321b116c6af437c18de81d2ef4f79a61dc",
+      "cells": 108
+    }
+  },
+  "components": {},
   "optimization": {
-    "native_macros_preserved": true,
-    "boolean_optimization": false
+    "mode": "default",
+    "templates": false,
+    "compiled_cells_immutable": true,
+    "unique_modules": 4,
+    "instances": 5,
+    "assembly_gap": 8,
+    "rejected_placements": []
   },
+  "project_graph": {
+    "modules": [
+      {
+        "name": "ingress0",
+        "hdl": "frame_check"
+      },
+      {
+        "name": "ingress1",
+        "hdl": "frame_check"
+      },
+      {
+        "name": "lane0",
+        "hdl": "output_lane",
+        "parameters": {
+          "DESTINATION": 0
+        }
+      },
+      {
+        "name": "lane1",
+        "hdl": "output_lane",
+        "parameters": {
+          "DESTINATION": 1
+        }
+      },
+      {
+        "name": "status",
+        "hdl": "router_status"
+      }
+    ],
+    "components": [],
+    "inputs": [
+      {
+        "name": "frame0",
+        "width": 6,
+        "widget": "button"
+      },
+      {
+        "name": "frame1",
+        "width": 6,
+        "widget": "button"
+      },
+      {
+        "name": "valid",
+        "width": 2,
+        "widget": "button"
+      },
+      {
+        "name": "ready",
+        "width": 2,
+        "widget": "button"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "data0",
+        "from": "lane0.data",
+        "widget": "binary"
+      },
+      {
+        "name": "data1",
+        "from": "lane1.data",
+        "widget": "binary"
+      },
+      {
+        "name": "output_valid",
+        "from": "status.output_valid",
+        "widget": "binary"
+      },
+      {
+        "name": "accepted",
+        "from": "status.accepted",
+        "widget": "binary"
+      },
+      {
+        "name": "error",
+        "from": "status.error",
+        "widget": "binary"
+      }
+    ],
+    "connections": [
+      {
+        "from": "frame0",
+        "to": "ingress0.frame"
+      },
+      {
+        "from": "valid[0]",
+        "to": "ingress0.valid"
+      },
+      {
+        "from": "frame0",
+        "to": "lane0.frame0"
+      },
+      {
+        "from": "frame0",
+        "to": "lane1.frame0"
+      },
+      {
+        "from": "ingress0.good",
+        "to": "lane0.good0"
+      },
+      {
+        "from": "ingress0.good",
+        "to": "lane1.good0"
+      },
+      {
+        "from": "ready[0]",
+        "to": "lane0.ready"
+      },
+      {
+        "from": "lane0.grant0",
+        "to": "status.lane0_grant0"
+      },
+      {
+        "from": "lane0.grant1",
+        "to": "status.lane0_grant1"
+      },
+      {
+        "from": "frame1",
+        "to": "ingress1.frame"
+      },
+      {
+        "from": "valid[1]",
+        "to": "ingress1.valid"
+      },
+      {
+        "from": "frame1",
+        "to": "lane0.frame1"
+      },
+      {
+        "from": "frame1",
+        "to": "lane1.frame1"
+      },
+      {
+        "from": "ingress1.good",
+        "to": "lane0.good1"
+      },
+      {
+        "from": "ingress1.good",
+        "to": "lane1.good1"
+      },
+      {
+        "from": "ready[1]",
+        "to": "lane1.ready"
+      },
+      {
+        "from": "lane1.grant0",
+        "to": "status.lane1_grant0"
+      },
+      {
+        "from": "lane1.grant1",
+        "to": "status.lane1_grant1"
+      },
+      {
+        "from": "lane0.valid",
+        "to": "status.lane0_valid"
+      },
+      {
+        "from": "lane1.valid",
+        "to": "status.lane1_valid"
+      },
+      {
+        "from": "ingress0.error",
+        "to": "status.error0"
+      },
+      {
+        "from": "ingress1.error",
+        "to": "status.error1"
+      }
+    ]
+  },
+  "project_sha256": "397c9a2154496c398b54b9e8fe549a7e616e29d5a4aaf591ad774207ddd43745",
   "sources": [
     {
       "name": "packet_router.v",
-      "sha256": "d3b247b109fe919df3cc9f598f48ae6ec62812a58728b249b20096477a433bd9"
+      "sha256": "4788ca506b7930701d296ec62eb0ee33fda7f7b74d2b9f29f296c81be5a1c12e"
     },
     {
       "name": "frame_check.v",
@@ -1415,16 +2754,9 @@
     },
     {
       "name": "output_lane.v",
-      "sha256": "67bf90365b216279e6b04af4f8acf1c78c96a968397d14add8f1d73011e275c4"
+      "sha256": "7969deb218a2f9303d4ce5ba186d5b2eb39720d09b40c9dc1da460a62c518233"
     }
   ],
-  "source": "packet_router.v",
-  "source_sha256": "d3b247b109fe919df3cc9f598f48ae6ec62812a58728b249b20096477a433bd9",
-  "compiler_version": "0.1.0",
-  "standard": "1364-2005",
-  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
-  "save_sha256": "c5efdde947b33a979e068fc7a08d3d34312e365c61c2285b23f354dde45d9f23",
-  "logic_sha256": "7dee00dbdc4d236225c0fe698acca0e77e20478ec5d85daad162cd6ce1b254ee",
   "io_devices": [
     {
       "name": "frame0",
@@ -1433,8 +2765,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        440
+        51,
+        -6
       ],
       "type": 24
     },
@@ -1445,8 +2777,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        444
+        53,
+        -6
       ],
       "type": 24
     },
@@ -1457,8 +2789,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        448
+        55,
+        -6
       ],
       "type": 24
     },
@@ -1469,8 +2801,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        452
+        57,
+        -6
       ],
       "type": 24
     },
@@ -1481,8 +2813,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        456
+        59,
+        -6
       ],
       "type": 24
     },
@@ -1493,8 +2825,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        460
+        61,
+        -6
       ],
       "type": 24
     },
@@ -1505,8 +2837,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        464
+        -6,
+        47
       ],
       "type": 24
     },
@@ -1517,8 +2849,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        468
+        -6,
+        49
       ],
       "type": 24
     },
@@ -1529,8 +2861,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        472
+        -6,
+        51
       ],
       "type": 24
     },
@@ -1541,8 +2873,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        476
+        -6,
+        53
       ],
       "type": 24
     },
@@ -1553,8 +2885,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        480
+        -6,
+        55
       ],
       "type": 24
     },
@@ -1565,32 +2897,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        484
-      ],
-      "type": 24
-    },
-    {
-      "name": "ready",
-      "port": "ready",
-      "index": 0,
-      "kind": "button",
-      "direction": "inputs",
-      "at": [
-        -9,
-        488
-      ],
-      "type": 24
-    },
-    {
-      "name": "ready",
-      "port": "ready",
-      "index": 1,
-      "kind": "button",
-      "direction": "inputs",
-      "at": [
-        -9,
-        492
+        -6,
+        57
       ],
       "type": 24
     },
@@ -1601,164 +2909,140 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        496
-      ],
-      "type": 24
-    },
-    {
-      "name": "valid",
-      "port": "valid",
-      "index": 1,
-      "kind": "button",
-      "direction": "inputs",
-      "at": [
-        -9,
-        500
-      ],
-      "type": 24
-    },
-    {
-      "name": "accepted",
-      "port": "accepted",
-      "index": 0,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        193,
-        0
-      ],
-      "type": 1
-    },
-    {
-      "name": "accepted",
-      "port": "accepted",
-      "index": 1,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        193,
-        4
-      ],
-      "type": 1
-    },
-    {
-      "name": "data0",
-      "port": "data0",
-      "index": 0,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        193,
-        8
-      ],
-      "type": 1
-    },
-    {
-      "name": "data0",
-      "port": "data0",
-      "index": 1,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        193,
-        12
-      ],
-      "type": 1
-    },
-    {
-      "name": "data0",
-      "port": "data0",
-      "index": 2,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        193,
-        16
-      ],
-      "type": 1
-    },
-    {
-      "name": "data0",
-      "port": "data0",
-      "index": 3,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        193,
-        20
-      ],
-      "type": 1
-    },
-    {
-      "name": "data1",
-      "port": "data1",
-      "index": 0,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        193,
-        24
-      ],
-      "type": 1
-    },
-    {
-      "name": "data1",
-      "port": "data1",
-      "index": 1,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        193,
-        28
-      ],
-      "type": 1
-    },
-    {
-      "name": "data1",
-      "port": "data1",
-      "index": 2,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        193,
-        32
-      ],
-      "type": 1
-    },
-    {
-      "name": "data1",
-      "port": "data1",
-      "index": 3,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        193,
-        36
-      ],
-      "type": 1
-    },
-    {
-      "name": "error",
-      "port": "error",
-      "index": 0,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        193,
+        -6,
         40
       ],
+      "type": 24
+    },
+    {
+      "name": "valid",
+      "port": "valid",
+      "index": 1,
+      "kind": "button",
+      "direction": "inputs",
+      "at": [
+        -6,
+        42
+      ],
+      "type": 24
+    },
+    {
+      "name": "ready",
+      "port": "ready",
+      "index": 0,
+      "kind": "button",
+      "direction": "inputs",
+      "at": [
+        70,
+        -6
+      ],
+      "type": 24
+    },
+    {
+      "name": "ready",
+      "port": "ready",
+      "index": 1,
+      "kind": "button",
+      "direction": "inputs",
+      "at": [
+        72,
+        -6
+      ],
+      "type": 24
+    },
+    {
+      "name": "data0",
+      "port": "data0",
+      "index": 0,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        53,
+        100
+      ],
       "type": 1
     },
     {
-      "name": "error",
-      "port": "error",
+      "name": "data0",
+      "port": "data0",
       "index": 1,
-      "kind": "indicator",
+      "kind": "binary",
       "direction": "outputs",
       "at": [
-        193,
-        44
+        55,
+        100
+      ],
+      "type": 1
+    },
+    {
+      "name": "data0",
+      "port": "data0",
+      "index": 2,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        57,
+        100
+      ],
+      "type": 1
+    },
+    {
+      "name": "data0",
+      "port": "data0",
+      "index": 3,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        59,
+        100
+      ],
+      "type": 1
+    },
+    {
+      "name": "data1",
+      "port": "data1",
+      "index": 0,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        62,
+        100
+      ],
+      "type": 1
+    },
+    {
+      "name": "data1",
+      "port": "data1",
+      "index": 1,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        64,
+        100
+      ],
+      "type": 1
+    },
+    {
+      "name": "data1",
+      "port": "data1",
+      "index": 2,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        66,
+        100
+      ],
+      "type": 1
+    },
+    {
+      "name": "data1",
+      "port": "data1",
+      "index": 3,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        68,
+        100
       ],
       "type": 1
     },
@@ -1766,11 +3050,11 @@
       "name": "output_valid",
       "port": "output_valid",
       "index": 0,
-      "kind": "indicator",
+      "kind": "binary",
       "direction": "outputs",
       "at": [
-        193,
-        48
+        22,
+        -6
       ],
       "type": 1
     },
@@ -1778,17 +3062,66 @@
       "name": "output_valid",
       "port": "output_valid",
       "index": 1,
-      "kind": "indicator",
+      "kind": "binary",
       "direction": "outputs",
       "at": [
-        193,
-        52
+        24,
+        -6
+      ],
+      "type": 1
+    },
+    {
+      "name": "accepted",
+      "port": "accepted",
+      "index": 0,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        -6,
+        23
+      ],
+      "type": 1
+    },
+    {
+      "name": "accepted",
+      "port": "accepted",
+      "index": 1,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        -6,
+        25
+      ],
+      "type": 1
+    },
+    {
+      "name": "error",
+      "port": "error",
+      "index": 0,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        26,
+        -6
+      ],
+      "type": 1
+    },
+    {
+      "name": "error",
+      "port": "error",
+      "index": 1,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        28,
+        -6
       ],
       "type": 1
     }
   ],
-  "core_map_hash": "bac83b79c182b667f7a2d8dc118262063374994be4ee03b48144318b20289164",
+  "core_map_hash": "0d63eba5d6c66aeb7645f36396e579c3656203d755e5eee778c599d3805baf4e",
   "build_target": "scheme",
-  "project_version": 1,
-  "timing_contracts": []
+  "project_version": 2,
+  "timing_contracts": [],
+  "save_sha256": "2439f04549e8d29128273c54a20ac261c5ab82a8655fb76fd9d89c6224bf4874"
 }

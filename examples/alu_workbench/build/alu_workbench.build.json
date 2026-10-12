@@ -1,1795 +1,2835 @@
 {
   "schema": 1,
   "top": "alu_workbench",
-  "layout": "macro-grid-v1",
-  "cells": 16942,
-  "logic_nodes": 167,
-  "map_hash": "84dc31f8191ec3ad9272523050480c33843662cb3cbc7e927b5532074bd9fbd7",
-  "bounds": {
-    "min": [
-      -9,
-      0
-    ],
-    "max": [
-      225,
-      712
-    ],
-    "width": 235,
-    "height": 713,
-    "area": 167555
-  },
+  "layout": "compiled-module-assembly-v1",
   "inputs": {
     "a": [
       {
         "index": 0,
         "contact": [
-          -8,
-          668
+          62,
+          -5
         ],
         "fixture": [
-          -9,
-          668
+          62,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 1,
         "contact": [
-          -8,
-          672
+          64,
+          -5
         ],
         "fixture": [
-          -9,
-          672
+          64,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 2,
         "contact": [
-          -8,
-          676
+          66,
+          -5
         ],
         "fixture": [
-          -9,
-          676
+          66,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 3,
         "contact": [
-          -8,
-          680
+          68,
+          -5
         ],
         "fixture": [
-          -9,
-          680
+          68,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       }
     ],
     "b": [
       {
         "index": 0,
         "contact": [
-          -8,
-          684
+          92,
+          -5
         ],
         "fixture": [
-          -9,
-          684
+          92,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 1,
         "contact": [
-          -8,
-          688
+          94,
+          -5
         ],
         "fixture": [
-          -9,
-          688
+          94,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 2,
         "contact": [
-          -8,
-          692
+          96,
+          -5
         ],
         "fixture": [
-          -9,
-          692
+          96,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 3,
         "contact": [
-          -8,
-          696
+          98,
+          -5
         ],
         "fixture": [
-          -9,
-          696
+          98,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       }
     ],
     "operation": [
       {
         "index": 0,
         "contact": [
-          -8,
-          700
+          73,
+          -5
         ],
         "fixture": [
-          -9,
-          700
+          73,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 1,
         "contact": [
-          -8,
-          704
+          75,
+          -5
         ],
         "fixture": [
-          -9,
-          704
+          75,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       },
       {
         "index": 2,
         "contact": [
-          -8,
-          708
+          77,
+          -5
         ],
         "fixture": [
-          -9,
-          708
+          77,
+          -6
         ],
-        "rotation": 1
+        "rotation": 2,
+        "side": "top"
       }
     ]
   },
   "outputs": {
-    "carry": [
-      {
-        "index": 0,
-        "contact": [
-          224,
-          0
-        ],
-        "fixture": [
-          225,
-          0
-        ],
-        "rotation": 0
-      }
-    ],
-    "equal": [
-      {
-        "index": 0,
-        "contact": [
-          224,
-          4
-        ],
-        "fixture": [
-          225,
-          4
-        ],
-        "rotation": 0
-      }
-    ],
     "result": [
       {
         "index": 0,
         "contact": [
-          224,
-          8
+          129,
+          51
         ],
         "fixture": [
-          225,
-          8
+          130,
+          51
         ],
-        "rotation": 0
+        "rotation": 1,
+        "side": "right"
       },
       {
         "index": 1,
         "contact": [
-          224,
-          12
+          129,
+          53
         ],
         "fixture": [
-          225,
-          12
+          130,
+          53
         ],
-        "rotation": 0
+        "rotation": 1,
+        "side": "right"
       },
       {
         "index": 2,
         "contact": [
-          224,
-          16
+          129,
+          55
         ],
         "fixture": [
-          225,
-          16
+          130,
+          55
         ],
-        "rotation": 0
+        "rotation": 1,
+        "side": "right"
       },
       {
         "index": 3,
         "contact": [
-          224,
-          20
+          129,
+          57
         ],
         "fixture": [
-          225,
-          20
+          130,
+          57
         ],
-        "rotation": 0
+        "rotation": 1,
+        "side": "right"
+      }
+    ],
+    "carry": [
+      {
+        "index": 0,
+        "contact": [
+          71,
+          -5
+        ],
+        "fixture": [
+          71,
+          -6
+        ],
+        "rotation": 0,
+        "side": "top"
       }
     ],
     "zero": [
       {
         "index": 0,
         "contact": [
-          224,
-          24
+          129,
+          60
         ],
         "fixture": [
-          225,
-          24
+          130,
+          60
         ],
-        "rotation": 0
+        "rotation": 1,
+        "side": "right"
+      }
+    ],
+    "equal": [
+      {
+        "index": 0,
+        "contact": [
+          79,
+          -5
+        ],
+        "fixture": [
+          79,
+          -6
+        ],
+        "rotation": 0,
+        "side": "top"
       }
     ]
   },
-  "settle_ticks": 1279,
-  "gate_labels": [
-    {
-      "id": "$auto$opt_expr.cc:607:replace_const_cells$293",
-      "op": "NOT",
-      "at": [
-        8,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$opt_expr.cc:607:replace_const_cells$295",
-      "op": "NOT",
-      "at": [
-        24,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$opt_expr.cc:607:replace_const_cells$303",
-      "op": "NOT",
-      "at": [
-        40,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$133",
-      "op": "XOR",
-      "at": [
-        56,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$134",
-      "op": "XOR",
-      "at": [
-        72,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$135",
-      "op": "XOR",
-      "at": [
-        88,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$136",
-      "op": "XOR",
-      "at": [
-        104,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$166",
-      "op": "XOR",
-      "at": [
-        120,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$167",
-      "op": "XOR",
-      "at": [
-        136,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$168",
-      "op": "XOR",
-      "at": [
-        152,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$169",
-      "op": "XOR",
-      "at": [
-        168,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$170",
-      "op": "AND",
-      "at": [
-        184,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$171",
-      "op": "AND",
-      "at": [
-        200,
-        8
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$172",
-      "op": "AND",
-      "at": [
-        8,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$173",
-      "op": "AND",
-      "at": [
-        24,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$201",
-      "op": "OR",
-      "at": [
-        40,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$202",
-      "op": "OR",
-      "at": [
-        56,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$203",
-      "op": "OR",
-      "at": [
-        72,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$204",
-      "op": "OR",
-      "at": [
-        88,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$290",
-      "op": "AND",
-      "at": [
-        104,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$194",
-      "op": "OR",
-      "at": [
-        120,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:46:simplemap_not$197",
-      "op": "NOT",
-      "at": [
-        136,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:46:simplemap_not$198",
-      "op": "NOT",
-      "at": [
-        152,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:46:simplemap_not$199",
-      "op": "NOT",
-      "at": [
-        168,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:46:simplemap_not$200",
-      "op": "NOT",
-      "at": [
-        184,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$146",
-      "op": "AND",
-      "at": [
-        200,
-        24
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$148",
-      "op": "AND",
-      "at": [
-        8,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$150",
-      "op": "AND",
-      "at": [
-        24,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$152",
-      "op": "AND",
-      "at": [
-        40,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$158",
-      "op": "XOR",
-      "at": [
-        56,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$159",
-      "op": "XOR",
-      "at": [
-        72,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$160",
-      "op": "XOR",
-      "at": [
-        88,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$161",
-      "op": "XOR",
-      "at": [
-        104,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$276",
-      "op": "AND",
-      "at": [
-        120,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$105",
-      "op": "AND",
-      "at": [
-        136,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$140",
-      "op": "OR",
-      "at": [
-        152,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$141",
-      "op": "OR",
-      "at": [
-        168,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$184",
-      "op": "OR",
-      "at": [
-        184,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:198:logic_reduce$175",
-      "op": "OR",
-      "at": [
-        200,
-        40
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$119:select",
-      "op": "NOT",
-      "at": [
-        8,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$120:select",
-      "op": "NOT",
-      "at": [
-        24,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$121:select",
-      "op": "NOT",
-      "at": [
-        40,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$122:select",
-      "op": "NOT",
-      "at": [
-        56,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$205:select",
-      "op": "NOT",
-      "at": [
-        72,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$205:b",
-      "op": "AND",
-      "at": [
-        88,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$206:select",
-      "op": "NOT",
-      "at": [
-        104,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$206:b",
-      "op": "AND",
-      "at": [
-        120,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$207:select",
-      "op": "NOT",
-      "at": [
-        136,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$207:b",
-      "op": "AND",
-      "at": [
-        152,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$208:select",
-      "op": "NOT",
-      "at": [
-        168,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$208:b",
-      "op": "AND",
-      "at": [
-        184,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$147",
-      "op": "AND",
-      "at": [
-        200,
-        56
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$162",
-      "op": "XOR",
-      "at": [
-        8,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$275",
-      "op": "OR",
-      "at": [
-        24,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$107",
-      "op": "AND",
-      "at": [
-        40,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$143",
-      "op": "OR",
-      "at": [
-        56,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$205:a",
-      "op": "AND",
-      "at": [
-        72,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$206:a",
-      "op": "AND",
-      "at": [
-        88,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$207:a",
-      "op": "AND",
-      "at": [
-        104,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$208:a",
-      "op": "AND",
-      "at": [
-        120,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$209:select",
-      "op": "NOT",
-      "at": [
-        136,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$210:select",
-      "op": "NOT",
-      "at": [
-        152,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$211:select",
-      "op": "NOT",
-      "at": [
-        168,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$212:select",
-      "op": "NOT",
-      "at": [
-        184,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$213:select",
-      "op": "NOT",
-      "at": [
-        200,
-        72
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$214:select",
-      "op": "NOT",
-      "at": [
-        8,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$215:select",
-      "op": "NOT",
-      "at": [
-        24,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$216:select",
-      "op": "NOT",
-      "at": [
-        40,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$124",
-      "op": "AND",
-      "at": [
-        56,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$154",
-      "op": "OR",
-      "at": [
-        72,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:227:simplemap_lognot$145",
-      "op": "NOT",
-      "at": [
-        88,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$111:select",
-      "op": "NOT",
-      "at": [
-        104,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$111:b",
-      "op": "AND",
-      "at": [
-        120,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$112:select",
-      "op": "NOT",
-      "at": [
-        136,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$112:b",
-      "op": "AND",
-      "at": [
-        152,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$113:select",
-      "op": "NOT",
-      "at": [
-        168,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$113:b",
-      "op": "AND",
-      "at": [
-        184,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$114:select",
-      "op": "NOT",
-      "at": [
-        200,
-        88
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$114:b",
-      "op": "AND",
-      "at": [
-        8,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$115:select",
-      "op": "NOT",
-      "at": [
-        24,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$116:select",
-      "op": "NOT",
-      "at": [
-        40,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$117:select",
-      "op": "NOT",
-      "at": [
-        56,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$118:select",
-      "op": "NOT",
-      "at": [
-        72,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$123:select",
-      "op": "NOT",
-      "at": [
-        88,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$205",
-      "op": "OR",
-      "at": [
-        104,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$206",
-      "op": "OR",
-      "at": [
-        120,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$207",
-      "op": "OR",
-      "at": [
-        136,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$208",
-      "op": "OR",
-      "at": [
-        152,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$209:a",
-      "op": "AND",
-      "at": [
-        168,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$210:a",
-      "op": "AND",
-      "at": [
-        184,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$211:a",
-      "op": "AND",
-      "at": [
-        200,
-        104
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$212:a",
-      "op": "AND",
-      "at": [
-        8,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$213:a",
-      "op": "AND",
-      "at": [
-        24,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$214:a",
-      "op": "AND",
-      "at": [
-        40,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$215:a",
-      "op": "AND",
-      "at": [
-        56,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$216:a",
-      "op": "AND",
-      "at": [
-        72,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$149",
-      "op": "AND",
-      "at": [
-        88,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$163",
-      "op": "XOR",
-      "at": [
-        104,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$111:a",
-      "op": "AND",
-      "at": [
-        120,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$112:a",
-      "op": "AND",
-      "at": [
-        136,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$113:a",
-      "op": "AND",
-      "at": [
-        152,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$114:a",
-      "op": "AND",
-      "at": [
-        168,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$115:a",
-      "op": "AND",
-      "at": [
-        184,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$123:b",
-      "op": "AND",
-      "at": [
-        200,
-        120
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$209:b",
-      "op": "AND",
-      "at": [
-        8,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$210:b",
-      "op": "AND",
-      "at": [
-        24,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$211:b",
-      "op": "AND",
-      "at": [
-        40,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$212:b",
-      "op": "AND",
-      "at": [
-        56,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "port:equal:0",
-      "op": "BUF",
-      "at": [
-        72,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$155",
-      "op": "OR",
-      "at": [
-        88,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$111",
-      "op": "OR",
-      "at": [
-        104,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$112",
-      "op": "OR",
-      "at": [
-        120,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$113",
-      "op": "OR",
-      "at": [
-        136,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$114",
-      "op": "OR",
-      "at": [
-        152,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$116:a",
-      "op": "AND",
-      "at": [
-        168,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$209",
-      "op": "OR",
-      "at": [
-        184,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$210",
-      "op": "OR",
-      "at": [
-        200,
-        136
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$211",
-      "op": "OR",
-      "at": [
-        8,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$212",
-      "op": "OR",
-      "at": [
-        24,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$151",
-      "op": "AND",
-      "at": [
-        40,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$164",
-      "op": "XOR",
-      "at": [
-        56,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$119:b",
-      "op": "AND",
-      "at": [
-        72,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$120:b",
-      "op": "AND",
-      "at": [
-        88,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$121:b",
-      "op": "AND",
-      "at": [
-        104,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$122:b",
-      "op": "AND",
-      "at": [
-        120,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$213:b",
-      "op": "AND",
-      "at": [
-        136,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$214:b",
-      "op": "AND",
-      "at": [
-        152,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$215:b",
-      "op": "AND",
-      "at": [
-        168,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$216:b",
-      "op": "AND",
-      "at": [
-        184,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$156",
-      "op": "OR",
-      "at": [
-        200,
-        152
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$117:a",
-      "op": "AND",
-      "at": [
-        8,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$213",
-      "op": "OR",
-      "at": [
-        24,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$214",
-      "op": "OR",
-      "at": [
-        40,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$215",
-      "op": "OR",
-      "at": [
-        56,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$216",
-      "op": "OR",
-      "at": [
-        72,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$153",
-      "op": "AND",
-      "at": [
-        88,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$165",
-      "op": "XOR",
-      "at": [
-        104,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$119:a",
-      "op": "AND",
-      "at": [
-        120,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$120:a",
-      "op": "AND",
-      "at": [
-        136,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$121:a",
-      "op": "AND",
-      "at": [
-        152,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$122:a",
-      "op": "AND",
-      "at": [
-        168,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:106:simplemap_bitop$157",
-      "op": "OR",
-      "at": [
-        184,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$118:a",
-      "op": "AND",
-      "at": [
-        200,
-        168
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$119",
-      "op": "OR",
-      "at": [
-        8,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$120",
-      "op": "OR",
-      "at": [
-        24,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$121",
-      "op": "OR",
-      "at": [
-        40,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$122",
-      "op": "OR",
-      "at": [
-        56,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$115:b",
-      "op": "AND",
-      "at": [
-        72,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$116:b",
-      "op": "AND",
-      "at": [
-        88,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$117:b",
-      "op": "AND",
-      "at": [
-        104,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$118:b",
-      "op": "AND",
-      "at": [
-        120,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$123:a",
-      "op": "AND",
-      "at": [
-        136,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$115",
-      "op": "OR",
-      "at": [
-        152,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$116",
-      "op": "OR",
-      "at": [
-        168,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$117",
-      "op": "OR",
-      "at": [
-        184,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$118",
-      "op": "OR",
-      "at": [
-        200,
-        184
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:298:simplemap_mux$123",
-      "op": "OR",
-      "at": [
-        8,
-        200
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$126",
-      "op": "OR",
-      "at": [
-        24,
-        200
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$127",
-      "op": "OR",
-      "at": [
-        40,
-        200
-      ],
-      "native": false
-    },
-    {
-      "id": "port:carry:0",
-      "op": "BUF",
-      "at": [
-        56,
-        200
-      ],
-      "native": false
-    },
-    {
-      "id": "port:result:0",
-      "op": "BUF",
-      "at": [
-        72,
-        200
-      ],
-      "native": false
-    },
-    {
-      "id": "port:result:1",
-      "op": "BUF",
-      "at": [
-        88,
-        200
-      ],
-      "native": false
-    },
-    {
-      "id": "port:result:2",
-      "op": "BUF",
-      "at": [
-        104,
-        200
-      ],
-      "native": false
-    },
-    {
-      "id": "port:result:3",
-      "op": "BUF",
-      "at": [
-        120,
-        200
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:157:simplemap_reduce$129",
-      "op": "OR",
-      "at": [
-        136,
-        200
-      ],
-      "native": false
-    },
-    {
-      "id": "$auto$simplemap.cc:227:simplemap_lognot$130",
-      "op": "NOT",
-      "at": [
-        152,
-        200
-      ],
-      "native": false
-    },
-    {
-      "id": "port:zero:0",
-      "op": "BUF",
-      "at": [
-        168,
-        200
-      ],
-      "native": false
-    }
-  ],
   "profile": "GraphDLC-01232bd",
   "verified_against_current_game": false,
+  "cells": 5192,
+  "bounds": {
+    "min": [
+      -4,
+      -12
+    ],
+    "max": [
+      131,
+      101
+    ],
+    "width": 136,
+    "height": 114,
+    "area": 15504
+  },
+  "map_hash": "f50f19213ad4e634c4c053bf590217935e1c800df371fe5dec7d6ea59841f07b",
+  "gate_labels": [
+    {
+      "id": "math.$auto$opt_expr.cc:607:replace_const_cells$109",
+      "op": "NOT",
+      "at": [
+        71,
+        70
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:157:simplemap_reduce$96",
+      "op": "OR",
+      "at": [
+        77,
+        71
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:157:simplemap_reduce$98",
+      "op": "OR",
+      "at": [
+        77,
+        77
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:227:simplemap_lognot$100",
+      "op": "NOT",
+      "at": [
+        89,
+        76
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:106:simplemap_bitop$72",
+      "op": "XOR",
+      "at": [
+        95,
+        71
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:106:simplemap_bitop$73",
+      "op": "XOR",
+      "at": [
+        89,
+        83
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:106:simplemap_bitop$74",
+      "op": "XOR",
+      "at": [
+        71,
+        77
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:106:simplemap_bitop$75",
+      "op": "XOR",
+      "at": [
+        83,
+        77
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:106:simplemap_bitop$79",
+      "op": "XOR",
+      "at": [
+        89,
+        71
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:106:simplemap_bitop$87",
+      "op": "MAJ",
+      "at": [
+        95,
+        77
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.port:result:0",
+      "op": "BUF",
+      "at": [
+        83,
+        70
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:106:simplemap_bitop$78",
+      "op": "XOR",
+      "at": [
+        95,
+        83
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:106:simplemap_bitop$86",
+      "op": "MAJ",
+      "at": [
+        83,
+        83
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.port:result:1",
+      "op": "BUF",
+      "at": [
+        95,
+        88
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:106:simplemap_bitop$77",
+      "op": "XOR",
+      "at": [
+        77,
+        83
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:106:simplemap_bitop$85",
+      "op": "MAJ",
+      "at": [
+        71,
+        83
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.port:result:2",
+      "op": "BUF",
+      "at": [
+        77,
+        88
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:106:simplemap_bitop$76",
+      "op": "XOR",
+      "at": [
+        83,
+        89
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.$auto$simplemap.cc:106:simplemap_bitop$84",
+      "op": "MAJ",
+      "at": [
+        71,
+        89
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.port:result:3",
+      "op": "BUF",
+      "at": [
+        89,
+        88
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "math.port:carry:0",
+      "op": "BUF",
+      "at": [
+        71,
+        94
+      ],
+      "native": false,
+      "scope": "math"
+    },
+    {
+      "id": "logic.$auto$opt_expr.cc:607:replace_const_cells$139",
+      "op": "NOT",
+      "at": [
+        23,
+        5
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$opt_expr.cc:607:replace_const_cells$143",
+      "op": "NOT",
+      "at": [
+        29,
+        5
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$opt_expr.cc:607:replace_const_cells$145",
+      "op": "NOT",
+      "at": [
+        17,
+        5
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:106:simplemap_bitop$135",
+      "op": "AND",
+      "at": [
+        5,
+        6
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:106:simplemap_bitop$136",
+      "op": "AND",
+      "at": [
+        5,
+        42
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:106:simplemap_bitop$137",
+      "op": "AND",
+      "at": [
+        53,
+        30
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:106:simplemap_bitop$138",
+      "op": "AND",
+      "at": [
+        5,
+        30
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:106:simplemap_bitop$72",
+      "op": "XOR",
+      "at": [
+        47,
+        6
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:106:simplemap_bitop$73",
+      "op": "XOR",
+      "at": [
+        35,
+        18
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:106:simplemap_bitop$74",
+      "op": "XOR",
+      "at": [
+        53,
+        12
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:106:simplemap_bitop$75",
+      "op": "XOR",
+      "at": [
+        53,
+        18
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:106:simplemap_bitop$88",
+      "op": "OR",
+      "at": [
+        11,
+        6
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:106:simplemap_bitop$89",
+      "op": "OR",
+      "at": [
+        29,
+        30
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:106:simplemap_bitop$90",
+      "op": "OR",
+      "at": [
+        29,
+        12
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:106:simplemap_bitop$91",
+      "op": "OR",
+      "at": [
+        47,
+        36
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:157:simplemap_reduce$104",
+      "op": "OR",
+      "at": [
+        11,
+        12
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:46:simplemap_not$92",
+      "op": "NOT",
+      "at": [
+        53,
+        5
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:46:simplemap_not$93",
+      "op": "NOT",
+      "at": [
+        5,
+        11
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:46:simplemap_not$94",
+      "op": "NOT",
+      "at": [
+        5,
+        23
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:46:simplemap_not$95",
+      "op": "NOT",
+      "at": [
+        11,
+        17
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:157:simplemap_reduce$106",
+      "op": "OR",
+      "at": [
+        17,
+        18
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:157:simplemap_reduce$117",
+      "op": "OR",
+      "at": [
+        35,
+        6
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:157:simplemap_reduce$130",
+      "op": "OR",
+      "at": [
+        23,
+        30
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:157:simplemap_reduce$119",
+      "op": "OR",
+      "at": [
+        35,
+        24
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:157:simplemap_reduce$132",
+      "op": "OR",
+      "at": [
+        23,
+        42
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$84:select",
+      "op": "NOT",
+      "at": [
+        47,
+        17
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$84:b",
+      "op": "AND",
+      "at": [
+        41,
+        6
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$85:b",
+      "op": "AND",
+      "at": [
+        5,
+        18
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$86:b",
+      "op": "AND",
+      "at": [
+        11,
+        24
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$87:b",
+      "op": "AND",
+      "at": [
+        17,
+        24
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$76:select",
+      "op": "NOT",
+      "at": [
+        11,
+        35
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$80:select",
+      "op": "NOT",
+      "at": [
+        29,
+        23
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$84:a",
+      "op": "AND",
+      "at": [
+        47,
+        12
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$85:a",
+      "op": "AND",
+      "at": [
+        41,
+        18
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$86:a",
+      "op": "AND",
+      "at": [
+        47,
+        24
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$87:a",
+      "op": "AND",
+      "at": [
+        53,
+        24
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$76:a",
+      "op": "AND",
+      "at": [
+        5,
+        36
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$77:a",
+      "op": "AND",
+      "at": [
+        11,
+        42
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$78:a",
+      "op": "AND",
+      "at": [
+        53,
+        36
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$79:a",
+      "op": "AND",
+      "at": [
+        11,
+        30
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$80:a",
+      "op": "AND",
+      "at": [
+        23,
+        12
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$81:a",
+      "op": "AND",
+      "at": [
+        17,
+        30
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$82:a",
+      "op": "AND",
+      "at": [
+        29,
+        18
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$83:a",
+      "op": "AND",
+      "at": [
+        41,
+        36
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$84",
+      "op": "OR",
+      "at": [
+        41,
+        12
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$85",
+      "op": "OR",
+      "at": [
+        23,
+        18
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$86",
+      "op": "OR",
+      "at": [
+        41,
+        24
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$87",
+      "op": "OR",
+      "at": [
+        47,
+        30
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$80:b",
+      "op": "AND",
+      "at": [
+        35,
+        12
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$81:b",
+      "op": "AND",
+      "at": [
+        23,
+        24
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$82:b",
+      "op": "AND",
+      "at": [
+        41,
+        30
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$83:b",
+      "op": "AND",
+      "at": [
+        35,
+        30
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$80",
+      "op": "OR",
+      "at": [
+        17,
+        12
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$81",
+      "op": "OR",
+      "at": [
+        17,
+        36
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$82",
+      "op": "OR",
+      "at": [
+        29,
+        36
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$83",
+      "op": "OR",
+      "at": [
+        35,
+        36
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$76:b",
+      "op": "AND",
+      "at": [
+        17,
+        42
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$77:b",
+      "op": "AND",
+      "at": [
+        23,
+        36
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$78:b",
+      "op": "AND",
+      "at": [
+        35,
+        42
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$79:b",
+      "op": "AND",
+      "at": [
+        29,
+        42
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$76",
+      "op": "OR",
+      "at": [
+        5,
+        48
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$77",
+      "op": "OR",
+      "at": [
+        23,
+        48
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$78",
+      "op": "OR",
+      "at": [
+        53,
+        42
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.$auto$simplemap.cc:298:simplemap_mux$79",
+      "op": "OR",
+      "at": [
+        29,
+        48
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.port:result:0",
+      "op": "BUF",
+      "at": [
+        11,
+        47
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.port:result:1",
+      "op": "BUF",
+      "at": [
+        17,
+        47
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.port:result:2",
+      "op": "BUF",
+      "at": [
+        47,
+        41
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "logic.port:result:3",
+      "op": "BUF",
+      "at": [
+        35,
+        47
+      ],
+      "native": false,
+      "scope": "logic"
+    },
+    {
+      "id": "select.$auto$opt_expr.cc:607:replace_const_cells$189",
+      "op": "NOT",
+      "at": [
+        107,
+        5
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:106:simplemap_bitop$123",
+      "op": "XOR",
+      "at": [
+        71,
+        12
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:106:simplemap_bitop$124",
+      "op": "XOR",
+      "at": [
+        77,
+        6
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:106:simplemap_bitop$125",
+      "op": "XOR",
+      "at": [
+        71,
+        6
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:106:simplemap_bitop$126",
+      "op": "XOR",
+      "at": [
+        89,
+        6
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:106:simplemap_bitop$186",
+      "op": "AND",
+      "at": [
+        113,
+        36
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:46:simplemap_not$90",
+      "op": "NOT",
+      "at": [
+        95,
+        5
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:106:simplemap_bitop$172",
+      "op": "AND",
+      "at": [
+        101,
+        6
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:157:simplemap_reduce$130",
+      "op": "OR",
+      "at": [
+        77,
+        12
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:157:simplemap_reduce$131",
+      "op": "OR",
+      "at": [
+        83,
+        6
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:157:simplemap_reduce$95",
+      "op": "AND",
+      "at": [
+        95,
+        12
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$111:select",
+      "op": "NOT",
+      "at": [
+        113,
+        11
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:106:simplemap_bitop$171",
+      "op": "OR",
+      "at": [
+        83,
+        24
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:157:simplemap_reduce$133",
+      "op": "OR",
+      "at": [
+        83,
+        12
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:157:simplemap_reduce$97",
+      "op": "AND",
+      "at": [
+        95,
+        18
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$111:a",
+      "op": "AND",
+      "at": [
+        119,
+        6
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$112:a",
+      "op": "AND",
+      "at": [
+        119,
+        12
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$113:a",
+      "op": "AND",
+      "at": [
+        113,
+        18
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$114:a",
+      "op": "AND",
+      "at": [
+        113,
+        6
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:106:simplemap_bitop$101",
+      "op": "AND",
+      "at": [
+        89,
+        18
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:227:simplemap_lognot$135",
+      "op": "NOT",
+      "at": [
+        83,
+        17
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$102:select",
+      "op": "NOT",
+      "at": [
+        77,
+        23
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$103:select",
+      "op": "NOT",
+      "at": [
+        95,
+        23
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$103:b",
+      "op": "AND",
+      "at": [
+        101,
+        30
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$104:b",
+      "op": "AND",
+      "at": [
+        101,
+        12
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$105:b",
+      "op": "AND",
+      "at": [
+        107,
+        12
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$106:b",
+      "op": "AND",
+      "at": [
+        89,
+        30
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$102:a",
+      "op": "AND",
+      "at": [
+        71,
+        24
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$102:b",
+      "op": "AND",
+      "at": [
+        77,
+        18
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$103:a",
+      "op": "AND",
+      "at": [
+        107,
+        24
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$104:a",
+      "op": "AND",
+      "at": [
+        89,
+        24
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$105:a",
+      "op": "AND",
+      "at": [
+        101,
+        18
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$106:a",
+      "op": "AND",
+      "at": [
+        95,
+        30
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$107:a",
+      "op": "AND",
+      "at": [
+        77,
+        30
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$108:a",
+      "op": "AND",
+      "at": [
+        83,
+        42
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$109:a",
+      "op": "AND",
+      "at": [
+        95,
+        36
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$110:a",
+      "op": "AND",
+      "at": [
+        77,
+        36
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.port:equal:0",
+      "op": "BUF",
+      "at": [
+        89,
+        11
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$102",
+      "op": "OR",
+      "at": [
+        71,
+        18
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$103",
+      "op": "OR",
+      "at": [
+        107,
+        30
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$104",
+      "op": "OR",
+      "at": [
+        101,
+        24
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$105",
+      "op": "OR",
+      "at": [
+        107,
+        18
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$106",
+      "op": "OR",
+      "at": [
+        89,
+        36
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$111:b",
+      "op": "AND",
+      "at": [
+        113,
+        30
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$112:b",
+      "op": "AND",
+      "at": [
+        113,
+        24
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$113:b",
+      "op": "AND",
+      "at": [
+        107,
+        36
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$114:b",
+      "op": "AND",
+      "at": [
+        83,
+        36
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.port:carry:0",
+      "op": "BUF",
+      "at": [
+        71,
+        29
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$111",
+      "op": "OR",
+      "at": [
+        119,
+        18
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$112",
+      "op": "OR",
+      "at": [
+        119,
+        24
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$113",
+      "op": "OR",
+      "at": [
+        113,
+        42
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$114",
+      "op": "OR",
+      "at": [
+        71,
+        36
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$107:b",
+      "op": "AND",
+      "at": [
+        119,
+        30
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$108:b",
+      "op": "AND",
+      "at": [
+        83,
+        30
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$109:b",
+      "op": "AND",
+      "at": [
+        101,
+        36
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$110:b",
+      "op": "AND",
+      "at": [
+        71,
+        42
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$107",
+      "op": "OR",
+      "at": [
+        119,
+        36
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$108",
+      "op": "OR",
+      "at": [
+        83,
+        48
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$109",
+      "op": "OR",
+      "at": [
+        101,
+        42
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:298:simplemap_mux$110",
+      "op": "OR",
+      "at": [
+        77,
+        42
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:157:simplemap_reduce$116",
+      "op": "OR",
+      "at": [
+        89,
+        42
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:157:simplemap_reduce$117",
+      "op": "OR",
+      "at": [
+        95,
+        42
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.port:result:0",
+      "op": "BUF",
+      "at": [
+        119,
+        41
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.port:result:1",
+      "op": "BUF",
+      "at": [
+        71,
+        47
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.port:result:2",
+      "op": "BUF",
+      "at": [
+        107,
+        41
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.port:result:3",
+      "op": "BUF",
+      "at": [
+        77,
+        47
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:157:simplemap_reduce$119",
+      "op": "OR",
+      "at": [
+        89,
+        48
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.$auto$simplemap.cc:227:simplemap_lognot$120",
+      "op": "NOT",
+      "at": [
+        95,
+        47
+      ],
+      "native": false,
+      "scope": "select"
+    },
+    {
+      "id": "select.port:zero:0",
+      "op": "BUF",
+      "at": [
+        101,
+        47
+      ],
+      "native": false,
+      "scope": "select"
+    }
+  ],
+  "settle_ticks": 412,
   "timing": {
     "model": "game-ticks",
-    "state_boundaries": [],
-    "contract": "settle_ticks bounds propagation between state boundaries; stateful outputs need tick scenarios"
+    "state_boundaries": []
   },
+  "compiled_modules": [
+    {
+      "key": "be36fe0c92a3173db9db18832e2f0213c999ca1b232a1c488fad06f526340432",
+      "reused": false,
+      "path": "modules/be36fe0c92a3173db9db18832e2f0213c999ca1b232a1c488fad06f526340432"
+    },
+    {
+      "key": "665238dfa822330316c78fdc0217a02167352ef09acf86034d7fcb4d12609796",
+      "reused": false,
+      "path": "modules/665238dfa822330316c78fdc0217a02167352ef09acf86034d7fcb4d12609796"
+    },
+    {
+      "key": "d874d19d25df899d7ad4d2636ac6a846c3197dc6369cbf2e02ea296de26ab9e2",
+      "reused": false,
+      "path": "modules/d874d19d25df899d7ad4d2636ac6a846c3197dc6369cbf2e02ea296de26ab9e2"
+    }
+  ],
+  "instances": {
+    "math": {
+      "inputs": {
+        "a": [
+          {
+            "index": 0,
+            "contact": [
+              66,
+              80
+            ],
+            "fixture": [
+              65,
+              80
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 1,
+            "contact": [
+              66,
+              82
+            ],
+            "fixture": [
+              65,
+              82
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 2,
+            "contact": [
+              66,
+              84
+            ],
+            "fixture": [
+              65,
+              84
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 3,
+            "contact": [
+              66,
+              86
+            ],
+            "fixture": [
+              65,
+              86
+            ],
+            "rotation": 1,
+            "side": "left"
+          }
+        ],
+        "b": [
+          {
+            "index": 0,
+            "contact": [
+              100,
+              72
+            ],
+            "fixture": [
+              101,
+              72
+            ],
+            "rotation": 3,
+            "side": "right"
+          },
+          {
+            "index": 1,
+            "contact": [
+              100,
+              74
+            ],
+            "fixture": [
+              101,
+              74
+            ],
+            "rotation": 3,
+            "side": "right"
+          },
+          {
+            "index": 2,
+            "contact": [
+              100,
+              76
+            ],
+            "fixture": [
+              101,
+              76
+            ],
+            "rotation": 3,
+            "side": "right"
+          },
+          {
+            "index": 3,
+            "contact": [
+              100,
+              78
+            ],
+            "fixture": [
+              101,
+              78
+            ],
+            "rotation": 3,
+            "side": "right"
+          }
+        ],
+        "operation": [
+          {
+            "index": 0,
+            "contact": [
+              73,
+              65
+            ],
+            "fixture": [
+              73,
+              64
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 1,
+            "contact": [
+              75,
+              65
+            ],
+            "fixture": [
+              75,
+              64
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 2,
+            "contact": [
+              77,
+              65
+            ],
+            "fixture": [
+              77,
+              64
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ]
+      },
+      "outputs": {
+        "carry": [
+          {
+            "index": 0,
+            "contact": [
+              71,
+              99
+            ],
+            "fixture": [
+              71,
+              100
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          }
+        ],
+        "result": [
+          {
+            "index": 0,
+            "contact": [
+              100,
+              83
+            ],
+            "fixture": [
+              101,
+              83
+            ],
+            "rotation": 1,
+            "side": "right"
+          },
+          {
+            "index": 1,
+            "contact": [
+              100,
+              85
+            ],
+            "fixture": [
+              101,
+              85
+            ],
+            "rotation": 1,
+            "side": "right"
+          },
+          {
+            "index": 2,
+            "contact": [
+              100,
+              87
+            ],
+            "fixture": [
+              101,
+              87
+            ],
+            "rotation": 1,
+            "side": "right"
+          },
+          {
+            "index": 3,
+            "contact": [
+              100,
+              89
+            ],
+            "fixture": [
+              101,
+              89
+            ],
+            "rotation": 1,
+            "side": "right"
+          }
+        ]
+      },
+      "map_hash": "0274b735956f334a72afdd27ea77c4b1cd1da620a0afbb8137d55ade37fd693b",
+      "cells": 352
+    },
+    "logic": {
+      "inputs": {
+        "a": [
+          {
+            "index": 0,
+            "contact": [
+              0,
+              16
+            ],
+            "fixture": [
+              -1,
+              16
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 1,
+            "contact": [
+              0,
+              18
+            ],
+            "fixture": [
+              -1,
+              18
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 2,
+            "contact": [
+              0,
+              20
+            ],
+            "fixture": [
+              -1,
+              20
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 3,
+            "contact": [
+              0,
+              22
+            ],
+            "fixture": [
+              -1,
+              22
+            ],
+            "rotation": 1,
+            "side": "left"
+          }
+        ],
+        "b": [
+          {
+            "index": 0,
+            "contact": [
+              34,
+              0
+            ],
+            "fixture": [
+              34,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 1,
+            "contact": [
+              36,
+              0
+            ],
+            "fixture": [
+              36,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 2,
+            "contact": [
+              38,
+              0
+            ],
+            "fixture": [
+              38,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 3,
+            "contact": [
+              40,
+              0
+            ],
+            "fixture": [
+              40,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "operation": [
+          {
+            "index": 0,
+            "contact": [
+              19,
+              0
+            ],
+            "fixture": [
+              19,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 1,
+            "contact": [
+              21,
+              0
+            ],
+            "fixture": [
+              21,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 2,
+            "contact": [
+              23,
+              0
+            ],
+            "fixture": [
+              23,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ]
+      },
+      "outputs": {
+        "result": [
+          {
+            "index": 0,
+            "contact": [
+              22,
+              53
+            ],
+            "fixture": [
+              22,
+              54
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 1,
+            "contact": [
+              24,
+              53
+            ],
+            "fixture": [
+              24,
+              54
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 2,
+            "contact": [
+              26,
+              53
+            ],
+            "fixture": [
+              26,
+              54
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 3,
+            "contact": [
+              28,
+              53
+            ],
+            "fixture": [
+              28,
+              54
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          }
+        ]
+      },
+      "map_hash": "aaf481766e705bfcc53c4bb6415131cdadfcdb170db86404e2d0906ac4076ed7",
+      "cells": 1226
+    },
+    "select": {
+      "inputs": {
+        "a": [
+          {
+            "index": 0,
+            "contact": [
+              84,
+              0
+            ],
+            "fixture": [
+              84,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 1,
+            "contact": [
+              86,
+              0
+            ],
+            "fixture": [
+              86,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 2,
+            "contact": [
+              88,
+              0
+            ],
+            "fixture": [
+              88,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 3,
+            "contact": [
+              90,
+              0
+            ],
+            "fixture": [
+              90,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "arithmetic_carry": [
+          {
+            "index": 0,
+            "contact": [
+              66,
+              24
+            ],
+            "fixture": [
+              65,
+              24
+            ],
+            "rotation": 1,
+            "side": "left"
+          }
+        ],
+        "arithmetic_result": [
+          {
+            "index": 0,
+            "contact": [
+              66,
+              31
+            ],
+            "fixture": [
+              65,
+              31
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 1,
+            "contact": [
+              66,
+              33
+            ],
+            "fixture": [
+              65,
+              33
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 2,
+            "contact": [
+              66,
+              35
+            ],
+            "fixture": [
+              65,
+              35
+            ],
+            "rotation": 1,
+            "side": "left"
+          },
+          {
+            "index": 3,
+            "contact": [
+              66,
+              37
+            ],
+            "fixture": [
+              65,
+              37
+            ],
+            "rotation": 1,
+            "side": "left"
+          }
+        ],
+        "b": [
+          {
+            "index": 0,
+            "contact": [
+              92,
+              0
+            ],
+            "fixture": [
+              92,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 1,
+            "contact": [
+              94,
+              0
+            ],
+            "fixture": [
+              94,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 2,
+            "contact": [
+              96,
+              0
+            ],
+            "fixture": [
+              96,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 3,
+            "contact": [
+              98,
+              0
+            ],
+            "fixture": [
+              98,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ],
+        "logical_result": [
+          {
+            "index": 0,
+            "contact": [
+              124,
+              8
+            ],
+            "fixture": [
+              125,
+              8
+            ],
+            "rotation": 3,
+            "side": "right"
+          },
+          {
+            "index": 1,
+            "contact": [
+              124,
+              10
+            ],
+            "fixture": [
+              125,
+              10
+            ],
+            "rotation": 3,
+            "side": "right"
+          },
+          {
+            "index": 2,
+            "contact": [
+              124,
+              12
+            ],
+            "fixture": [
+              125,
+              12
+            ],
+            "rotation": 3,
+            "side": "right"
+          },
+          {
+            "index": 3,
+            "contact": [
+              124,
+              14
+            ],
+            "fixture": [
+              125,
+              14
+            ],
+            "rotation": 3,
+            "side": "right"
+          }
+        ],
+        "operation": [
+          {
+            "index": 0,
+            "contact": [
+              100,
+              0
+            ],
+            "fixture": [
+              100,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 1,
+            "contact": [
+              102,
+              0
+            ],
+            "fixture": [
+              102,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          },
+          {
+            "index": 2,
+            "contact": [
+              104,
+              0
+            ],
+            "fixture": [
+              104,
+              -1
+            ],
+            "rotation": 2,
+            "side": "top"
+          }
+        ]
+      },
+      "outputs": {
+        "carry": [
+          {
+            "index": 0,
+            "contact": [
+              66,
+              29
+            ],
+            "fixture": [
+              65,
+              29
+            ],
+            "rotation": 3,
+            "side": "left"
+          }
+        ],
+        "equal": [
+          {
+            "index": 0,
+            "contact": [
+              66,
+              11
+            ],
+            "fixture": [
+              65,
+              11
+            ],
+            "rotation": 3,
+            "side": "left"
+          }
+        ],
+        "result": [
+          {
+            "index": 0,
+            "contact": [
+              87,
+              53
+            ],
+            "fixture": [
+              87,
+              54
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 1,
+            "contact": [
+              89,
+              53
+            ],
+            "fixture": [
+              89,
+              54
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 2,
+            "contact": [
+              91,
+              53
+            ],
+            "fixture": [
+              91,
+              54
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          },
+          {
+            "index": 3,
+            "contact": [
+              93,
+              53
+            ],
+            "fixture": [
+              93,
+              54
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          }
+        ],
+        "zero": [
+          {
+            "index": 0,
+            "contact": [
+              101,
+              53
+            ],
+            "fixture": [
+              101,
+              54
+            ],
+            "rotation": 2,
+            "side": "bottom"
+          }
+        ]
+      },
+      "map_hash": "608ff0ed9c4a4f488478a57c036c576f78c4c83e5b4de8db400a10b7299efdde",
+      "cells": 1272
+    }
+  },
+  "components": {},
   "optimization": {
-    "native_macros_preserved": true,
-    "boolean_optimization": false
+    "mode": "default",
+    "templates": false,
+    "compiled_cells_immutable": true,
+    "unique_modules": 3,
+    "instances": 3,
+    "assembly_gap": 8,
+    "rejected_placements": []
   },
+  "project_graph": {
+    "modules": [
+      {
+        "name": "math",
+        "hdl": "arithmetic",
+        "parameters": {
+          "WIDTH": 4
+        }
+      },
+      {
+        "name": "logic",
+        "hdl": "logic_unit",
+        "parameters": {
+          "WIDTH": 4
+        }
+      },
+      {
+        "name": "select",
+        "hdl": "alu_select"
+      }
+    ],
+    "components": [],
+    "inputs": [
+      {
+        "name": "a",
+        "width": 4,
+        "widget": "button"
+      },
+      {
+        "name": "b",
+        "width": 4,
+        "widget": "button"
+      },
+      {
+        "name": "operation",
+        "width": 3,
+        "widget": "button"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "from": "select.result",
+        "widget": "binary"
+      },
+      {
+        "name": "carry",
+        "from": "select.carry",
+        "widget": "binary"
+      },
+      {
+        "name": "zero",
+        "from": "select.zero",
+        "widget": "binary"
+      },
+      {
+        "name": "equal",
+        "from": "select.equal",
+        "widget": "binary"
+      }
+    ],
+    "connections": [
+      {
+        "from": "a",
+        "to": "math.a"
+      },
+      {
+        "from": "a",
+        "to": "logic.a"
+      },
+      {
+        "from": "a",
+        "to": "select.a"
+      },
+      {
+        "from": "b",
+        "to": "math.b"
+      },
+      {
+        "from": "b",
+        "to": "logic.b"
+      },
+      {
+        "from": "b",
+        "to": "select.b"
+      },
+      {
+        "from": "operation",
+        "to": "math.operation"
+      },
+      {
+        "from": "operation",
+        "to": "logic.operation"
+      },
+      {
+        "from": "operation",
+        "to": "select.operation"
+      },
+      {
+        "from": "math.result",
+        "to": "select.arithmetic_result"
+      },
+      {
+        "from": "math.carry",
+        "to": "select.arithmetic_carry"
+      },
+      {
+        "from": "logic.result",
+        "to": "select.logical_result"
+      }
+    ]
+  },
+  "project_sha256": "b06e60969f2b115ad33568fc99166f420307bae0212e5a6644110b3703a891b7",
   "sources": [
     {
       "name": "alu_workbench.v",
-      "sha256": "4c1f6572c1063e8c8ff7c8487dc9287cb4c9dab8df1978bf9543eb19827fc336"
+      "sha256": "c608da170af7c0702739a5280b12522a7364bfaa36b4c591d132993c98d1a355"
     },
     {
       "name": "arithmetic.v",
-      "sha256": "88cefd03709bf68b4f0fc1093ba63a3d99b261482e6b387c5bd9d7a3b48d0139"
+      "sha256": "5e104d4a2a03158316dbd04ab7e5c1045a8d3c4c42ded379d05676a4673aef8d"
     },
     {
       "name": "logic_unit.v",
-      "sha256": "50ade5bea9ac5ca3aecb0d8076feb2922686af925c89a44699cda99d38836bee"
+      "sha256": "70289aa9f330a4e4adbfd5ec18c3a3141a1493bb899619d3cec680a274fcead9"
     }
   ],
-  "source": "alu_workbench.v",
-  "source_sha256": "4c1f6572c1063e8c8ff7c8487dc9287cb4c9dab8df1978bf9543eb19827fc336",
-  "compiler_version": "0.1.0",
-  "standard": "1364-2005",
-  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
-  "save_sha256": "28665f9623af66d19c59a44ba220f0a4e2fcb66bb7b7b9a98963c68a0b9edabe",
-  "logic_sha256": "d8c4ff79e1b0dbf465474e2c1ad9f5622f93867814a79f40f79a6856edaddf1b",
   "io_devices": [
     {
       "name": "a",
@@ -1798,8 +2838,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        668
+        62,
+        -6
       ],
       "type": 24
     },
@@ -1810,8 +2850,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        672
+        64,
+        -6
       ],
       "type": 24
     },
@@ -1822,8 +2862,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        676
+        66,
+        -6
       ],
       "type": 24
     },
@@ -1834,8 +2874,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        680
+        68,
+        -6
       ],
       "type": 24
     },
@@ -1846,8 +2886,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        684
+        92,
+        -6
       ],
       "type": 24
     },
@@ -1858,8 +2898,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        688
+        94,
+        -6
       ],
       "type": 24
     },
@@ -1870,8 +2910,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        692
+        96,
+        -6
       ],
       "type": 24
     },
@@ -1882,8 +2922,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        696
+        98,
+        -6
       ],
       "type": 24
     },
@@ -1894,8 +2934,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        700
+        73,
+        -6
       ],
       "type": 24
     },
@@ -1906,8 +2946,8 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        704
+        75,
+        -6
       ],
       "type": 24
     },
@@ -1918,80 +2958,68 @@
       "kind": "button",
       "direction": "inputs",
       "at": [
-        -9,
-        708
+        77,
+        -6
       ],
       "type": 24
+    },
+    {
+      "name": "result",
+      "port": "result",
+      "index": 0,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        130,
+        51
+      ],
+      "type": 1
+    },
+    {
+      "name": "result",
+      "port": "result",
+      "index": 1,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        130,
+        53
+      ],
+      "type": 1
+    },
+    {
+      "name": "result",
+      "port": "result",
+      "index": 2,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        130,
+        55
+      ],
+      "type": 1
+    },
+    {
+      "name": "result",
+      "port": "result",
+      "index": 3,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        130,
+        57
+      ],
+      "type": 1
     },
     {
       "name": "carry",
       "port": "carry",
       "index": 0,
-      "kind": "indicator",
+      "kind": "binary",
       "direction": "outputs",
       "at": [
-        225,
-        0
-      ],
-      "type": 1
-    },
-    {
-      "name": "equal",
-      "port": "equal",
-      "index": 0,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        225,
-        4
-      ],
-      "type": 1
-    },
-    {
-      "name": "result",
-      "port": "result",
-      "index": 0,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        225,
-        8
-      ],
-      "type": 1
-    },
-    {
-      "name": "result",
-      "port": "result",
-      "index": 1,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        225,
-        12
-      ],
-      "type": 1
-    },
-    {
-      "name": "result",
-      "port": "result",
-      "index": 2,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        225,
-        16
-      ],
-      "type": 1
-    },
-    {
-      "name": "result",
-      "port": "result",
-      "index": 3,
-      "kind": "indicator",
-      "direction": "outputs",
-      "at": [
-        225,
-        20
+        71,
+        -6
       ],
       "type": 1
     },
@@ -1999,17 +3027,30 @@
       "name": "zero",
       "port": "zero",
       "index": 0,
-      "kind": "indicator",
+      "kind": "binary",
       "direction": "outputs",
       "at": [
-        225,
-        24
+        130,
+        60
+      ],
+      "type": 1
+    },
+    {
+      "name": "equal",
+      "port": "equal",
+      "index": 0,
+      "kind": "binary",
+      "direction": "outputs",
+      "at": [
+        79,
+        -6
       ],
       "type": 1
     }
   ],
-  "core_map_hash": "d1c0c9fec205d695f8f5a95612f61b6e73e6e323b2bf158a9b8b909f6b02ba6d",
+  "core_map_hash": "eb9bb99ffa2dcab5f3ed217d68e37a995db52ee739539d26eec83bb593ec4dbd",
   "build_target": "scheme",
-  "project_version": 1,
-  "timing_contracts": []
+  "project_version": 2,
+  "timing_contracts": [],
+  "save_sha256": "3d4e1250cbb9086e3203e46d452c42f81d5db1fd390d416436953e3283ba5509"
 }

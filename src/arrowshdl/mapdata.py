@@ -27,26 +27,26 @@ def to_document(cells: ArrowMap) -> dict:
 
 def from_document(document: dict) -> ArrowMap:
     if not isinstance(document, dict) or set(document) != {"schema", "cells"} or type(document["schema"]) is not int or document["schema"] != 1:
-        raise MapError("Ожидается модель карты schema=1 с полем cells")
+        raise MapError("Expected a schema=1 map model with cells")
     if not isinstance(document["cells"], list):
-        raise MapError("cells должен быть списком групп")
+        raise MapError("cells must be a list of groups")
     cells = {}
     for group in document["cells"]:
         if not isinstance(group, dict) or not {"type", "at"} <= set(group) or set(group) - {"type", "dir", "mirrored", "at"}:
-            raise MapError("Группа карты: type, at, необязательные dir и mirrored")
+            raise MapError("Map group: type, at, optional dir and mirrored")
         type_id = IDS.get(group["type"]) if isinstance(group["type"], str) else group["type"]
         direction = group.get("dir", "up")
         mirrored = group.get("mirrored", False)
         if type(type_id) is not int or direction not in DIRECTIONS or type(mirrored) is not bool or not isinstance(group["at"], list):
-            raise MapError("Неверный тип, направление, отражение или координаты группы")
+            raise MapError("Invalid group type, direction, mirroring or coordinates")
         cell = Cell(type_id, DIRECTIONS.index(direction), mirrored)
         for position in group["at"]:
             if not isinstance(position, list) or len(position) != 2 or any(type(v) is not int for v in position):
-                raise MapError("Координата должна быть парой целых чисел")
+                raise MapError("Coordinate must be a pair of integers")
             key = tuple(position)
             validate_cell(*key, cell)
             if key in cells:
-                raise MapError(f"Повторная клетка {key}")
+                raise MapError(f"Duplicate cell {key}")
             cells[key] = cell
     return cells
 
@@ -57,7 +57,11 @@ def write_json(path: Path, document: dict) -> None:
 
 def read_map(path: Path) -> ArrowMap:
     if path.name.endswith(".json"):
-        return from_document(json.loads(path.read_text(encoding="utf-8-sig")))
+        data = json.loads(path.read_text(encoding="utf-8-sig"))
+        if isinstance(data,dict) and data.get('format') == 'arrowshdl-compiled-scheme':
+            from arrowshdl.artifacts import unpack
+            return unpack(data)[0]
+        return from_document(data)
     return decode(path.read_text(encoding="utf-8-sig"))
 
 

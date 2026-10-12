@@ -51,11 +51,11 @@ class Program:
 
 def validate_cell(x: int, y: int, cell: Cell) -> None:
     if not 1 <= cell.type <= 255:
-        raise MapError("Тип элемента должен быть от 1 до 255")
+        raise MapError("Cell type must be between 1 and 255")
     if not 0 <= cell.rotation <= 3:
-        raise MapError("Поворот должен быть от 0 до 3")
+        raise MapError("Rotation must be between 0 and 3")
     if any(not -32767 <= value // 16 <= 32767 for value in (x, y)):
-        raise MapError("Координаты выходят за пределы формата v0")
+        raise MapError("Coordinates exceed the v0 format limits")
 
 
 def parse(text: str) -> Program:
@@ -68,31 +68,31 @@ def parse(text: str) -> Program:
         try:
             if words[0].upper() == "FORMAT":
                 if len(words) != 2 or version is not None or instructions:
-                    raise MapError("FORMAT 0 должен быть первой и единственной директивой формата")
+                    raise MapError("FORMAT 0 must be the first and only format directive")
                 version = int(words[1])
                 if version != 0:
-                    raise MapError("Поддерживается только FORMAT 0")
+                    raise MapError("Only FORMAT 0 is supported")
                 continue
             if words[0].upper() != "PLACE" or len(words) not in (5, 6):
-                raise MapError("Ожидается PLACE тип x y направление [mirrored]")
+                raise MapError("Expected PLACE type x y direction [mirrored]")
             if len(words) == 6 and words[5] != "mirrored":
-                raise MapError("Неизвестный флаг: ожидается mirrored")
+                raise MapError("Unknown flag: expected mirrored")
             name = words[1]
             if name in IDS:
                 type_id = IDS[name]
             elif name.startswith("type_"):
                 type_id = int(name[5:])
             else:
-                raise MapError(f"Неизвестный тип: {name}; числовой тип записывается как type_N")
+                raise MapError(f"Unknown type: {name}; use type_N for numeric types")
             x, y = int(words[2]), int(words[3])
             if words[4] not in DIRECTIONS:
-                raise MapError("Направление: up, right, down или left")
+                raise MapError("Direction must be up, right, down or left")
             cell = Cell(type_id, DIRECTIONS.index(words[4]), len(words) == 6)
             validate_cell(x, y, cell)
             instructions.append(Place(x, y, cell, line))
         except ValueError as error:
-            message = str(error) if isinstance(error, MapError) else "Неверное целое число"
-            raise MapError(f"Строка {line}: {message}") from error
+            message = str(error) if isinstance(error, MapError) else "Invalid integer"
+            raise MapError(f"Line {line}: {message}") from error
     return Program(version if version is not None else 0, tuple(instructions))
 
 
@@ -101,7 +101,7 @@ def lower(program: Program) -> dict[tuple[int, int], Cell]:
     for instruction in program.instructions:
         key = instruction.x, instruction.y
         if key in cells:
-            raise MapError(f"Строка {instruction.line}: клетка {key} уже занята")
+            raise MapError(f"Line {instruction.line}: cell {key} is already occupied")
         cells[key] = instruction.cell
     return cells
 
@@ -113,7 +113,7 @@ def encode(cells: dict[tuple[int, int], Cell]) -> str:
         groups = chunks.setdefault((x // 16, y // 16), {})
         groups.setdefault(cell.type, []).append(((x % 16) | ((y % 16) << 4), cell))
     if len(chunks) > 65535:
-        raise MapError("В формате v0 допускается не более 65535 чанков")
+        raise MapError("The v0 format supports at most 65535 chunks")
     data = bytearray(struct.pack("<HH", 0, len(chunks)))
     for (cx, cy), groups in sorted(chunks.items()):
         sx = abs(cx) | (0x8000 if cx < 0 else 0)
@@ -130,49 +130,49 @@ def decode(save: str) -> dict[tuple[int, int], Cell]:
     try:
         data = base64.b64decode("".join(save.lstrip("\ufeff").split()), validate=True)
     except (binascii.Error, ValueError) as error:
-        raise MapError("Сохранение должно быть строкой Base64 формата v0") from error
+        raise MapError("Expected a Base64 v0 game save") from error
     offset = 0
 
     def take(count: int) -> bytes:
         nonlocal offset
         if offset + count > len(data):
-            raise MapError(f"Сохранение обрезано на байте {offset}")
+            raise MapError(f"Truncated game save at byte {offset}")
         result = data[offset:offset + count]
         offset += count
         return result
 
     version, count = struct.unpack("<HH", take(4))
     if version != 0:
-        raise MapError(f"Версия сохранения {version} не поддерживается; ожидается 0")
+        raise MapError(f"Game save version {version} is unsupported; expected 0")
     cells, seen_chunks = {}, set()
     for _ in range(count):
         cx, cy, groups = struct.unpack("<HHB", take(5))
         cx = -(cx & 0x7FFF) if cx & 0x8000 else cx
         cy = -(cy & 0x7FFF) if cy & 0x8000 else cy
         if (cx, cy) in seen_chunks:
-            raise MapError("Повторный чанк в сохранении")
+            raise MapError("Duplicate chunk in game save")
         seen_chunks.add((cx, cy))
         seen_types = set()
         for _ in range(groups + 1):
             type_id, size = take(2)
             if type_id == 0 or type_id in seen_types:
-                raise MapError("Пустой или повторный тип элемента в чанке")
+                raise MapError("Empty or duplicate cell type in chunk")
             seen_types.add(type_id)
             for _ in range(size + 1):
                 position, flags = take(2)
                 if flags & ~7:
-                    raise MapError("Неизвестные биты поворота/отражения")
+                    raise MapError("Unknown rotation or mirroring bits")
                 key = cx * 16 + (position & 15), cy * 16 + (position >> 4)
                 if key in cells:
-                    raise MapError("Повторная клетка в сохранении")
+                    raise MapError("Duplicate cell in game save")
                 cells[key] = Cell(type_id, flags & 3, bool(flags & 4))
     if offset != len(data):
-        raise MapError("Лишние байты в конце сохранения")
+        raise MapError("Trailing bytes after the game save")
     return cells
 
 
 def disassemble(cells: dict[tuple[int, int], Cell]) -> str:
-    lines = ["FORMAT 0", "; PLACE тип x y направление [mirrored]"]
+    lines = ["FORMAT 0", "; PLACE type x y direction [mirrored]"]
     for (x, y), cell in sorted(cells.items(), key=lambda item: (item[0][1], item[0][0])):
         name = NAMES.get(cell.type, f"type_{cell.type}")
         flags = " mirrored" if cell.mirrored else ""
@@ -181,15 +181,15 @@ def disassemble(cells: dict[tuple[int, int], Cell]) -> str:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Ассемблер и дизассемблер карт Стрелочек (формат v0)")
+    parser = argparse.ArgumentParser(description="Logic Arrows map assembler and disassembler (v0 format)")
     parser.add_argument("operation", choices=("assemble", "disassemble"))
     parser.add_argument("input", type=Path)
     parser.add_argument("-o", "--output", required=True, type=Path)
     parser.add_argument("--strip-test-ports", action="store_true",
-                        help="Исключить LevelSource/LevelTarget из собираемой карты")
+                        help="Remove LevelSource/LevelTarget from the assembled map")
     args = parser.parse_args()
     if args.strip_test_ports and args.operation != "assemble":
-        parser.error("--strip-test-ports применяется только к assemble")
+        parser.error("--strip-test-ports requires assemble")
     try:
         source = args.input.read_text(encoding="utf-8-sig")
         if args.operation == "assemble":
@@ -201,7 +201,7 @@ def main() -> int:
             result = disassemble(decode(source))
         args.output.write_text(result, encoding="utf-8")
     except (OSError, MapError) as error:
-        print(f"Ошибка: {error}", file=sys.stderr)
+        print(f"Error: {error}", file=sys.stderr)
         return 1
     return 0
 

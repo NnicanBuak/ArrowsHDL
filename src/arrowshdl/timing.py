@@ -26,7 +26,7 @@ def causal_depths(cells, memories=(), sources=None, *, source_times=None):
         for q in targets:degree[q]+=1
     if source_times is not None:sources=source_times
     selected=set(cells) if sources is None else set(map(tuple,sources))
-    if selected-set(cells):raise MapError('Источник анализа отсутствует в карте')
+    if selected-set(cells):raise MapError('Analysis source is missing from map')
     depths={p:(source_times[p] if source_times is not None else 1) if p in selected else None for p in cells}
     queue=deque(p for p,d in degree.items() if d==0);seen=0
     while queue:
@@ -37,7 +37,7 @@ def causal_depths(cells, memories=(), sources=None, *, source_times=None):
                 depths[q]=max(depths[q] or 0,candidate)
             degree[q]-=1
             if degree[q]==0:queue.append(q)
-    if seen!=len(cells):raise MapError('Неожиданная комбинационная обратная связь')
+    if seen!=len(cells):raise MapError('Unexpected combinational feedback')
     return depths
 
 
@@ -72,9 +72,9 @@ def level_arrivals(cells, sources, memories=()):
 def propagation_bound(cells, memories=(), *, sources=None, sinks=None, margin=10):
     depths=causal_depths(cells,memories,sources)
     targets=cells if sinks is None else list(map(tuple,sinks))
-    if set(targets)-set(cells):raise MapError('Приёмник анализа отсутствует в карте')
+    if set(targets)-set(cells):raise MapError('Analysis sink is missing from map')
     values=[depths[p] for p in targets if depths[p] is not None]
-    if not values:raise MapError('Нет причинного пути от источников к приёмникам')
+    if not values:raise MapError('No causal path from sources to sinks')
     return max(values)+margin
 
 
@@ -91,6 +91,6 @@ def verify_contracts(cells, metadata, contracts):
         sinks = endpoint(contract['to'],'outputs')
         actual = propagation_bound(cells, contract.get('states',()),sources=sources,sinks=sinks,margin=0)
         if actual > contract['max_ticks']:
-            raise MapError(f"timing {contract['name']}: {actual} тактов, предел {contract['max_ticks']}")
+            raise MapError(f"timing {contract['name']}: {actual} ticks, limit {contract['max_ticks']}")
         results.append(dict(contract, actual_max_ticks=actual, passed=True))
     return results

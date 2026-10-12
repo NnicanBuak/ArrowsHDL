@@ -18,6 +18,15 @@ examples/**/build/*
 !examples/**/build/*.bindings.json
 !examples/**/build/*.layout.json
 !examples/**/build/*.report.json
+!examples/**/build/digit.json
+!examples/**/build/history.json
+!examples/**/build/vectors.json
+!examples/**/build/scenario.json
+!examples/**/build/visualization.json
+!examples/alu_workbench/build/alu_workbench.json
+!examples/packet_router/build/packet_router.json
+!examples/pulse_sequencer/build/pulse_sequencer.json
+!examples/minesweeper/build/minesweeper.json
 !examples/**/build/regression.json
 !examples/minesweeper/v2/build/minesweeper_5x5.demo.json
 !examples/minesweeper/v2/build/minesweeper_5x5.defeat.demo.json

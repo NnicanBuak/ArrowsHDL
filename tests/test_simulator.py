@@ -201,11 +201,11 @@ class SimulatorTests(unittest.TestCase):
             result, report = execute(cells, bad)
             self.assertEqual(result.returncode, 2)
             self.assertIsNone(report)
-            self.assertIn("Ошибка:", result.stderr)
+            self.assertIn("Error:", result.stderr)
         result, report = execute({**cells, (10,10): asm.Cell(255,0)}, scenario)
         self.assertEqual(result.returncode, 2)
         self.assertIsNone(report)
-        self.assertIn("Неподдерживаемый элемент", result.stderr)
+        self.assertIn("Unsupported cell type", result.stderr)
 
 
 if __name__ == "__main__":

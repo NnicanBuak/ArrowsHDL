@@ -1,0 +1,64 @@
+{
+  "modules": [
+    {
+      "name": "memory",
+      "hdl": "selection_memory"
+    },
+    {
+      "name": "clocks",
+      "hdl": "oscillator_bank"
+    },
+    {
+      "name": "selector",
+      "hdl": "waveform_selector"
+    }
+  ],
+  "components": [
+    {
+      "name": "history",
+      "file": "build/history.component.json"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "controls",
+      "width": 8,
+      "widget": "button"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "active",
+      "from": "memory.active",
+      "widget": "binary"
+    },
+    {
+      "name": "selection",
+      "from": "memory.selection",
+      "widget": "binary"
+    },
+    {
+      "name": "waveform",
+      "from": "selector.waveform",
+      "widget": "indicator"
+    }
+  ],
+  "connections": [
+    {
+      "from": "controls",
+      "to": "memory.controls"
+    },
+    {
+      "from": "memory.selection",
+      "to": "selector.selection"
+    },
+    {
+      "from": "clocks.waves",
+      "to": "selector.waves"
+    },
+    {
+      "from": "selector.waveform",
+      "to": "history.signal"
+    }
+  ]
+}

@@ -29,10 +29,10 @@ def net_color(index):
 
 def view_data(cells, manifest):
     if map_hash(cells) != manifest['map_hash']:
-        raise MapError('Цветной предпросмотр: карта не соответствует метаданным')
+        raise MapError('Signal preview: map does not match metadata')
     signals = manifest.get('signals')
     if not signals:
-        raise MapError('Цветной предпросмотр: нет описания сигналов')
+        raise MapError('Signal preview: signal description is missing')
     nets = [dict(net, color=net_color(i)) for i,net in enumerate(signals['nets'])]
     buses = signals['input_buses']
     sources=[{'id':f"{bus['name']}:{bit}",'bus':bus['name'],'bit':bit,
@@ -40,7 +40,7 @@ def view_data(cells, manifest):
     for i,source in enumerate(sources):source['color']=net_color(len(nets)+2+i)
     net_at = {tuple(point):i for i,net in enumerate(nets) for point in net['cells']}
     if sum(len(net['cells']) for net in nets)!=len(cells) or set(net_at) != set(cells):
-        raise MapError('Каждая стрелка должна принадлежать ровно одному сигналу')
+        raise MapError('Each arrow must belong to exactly one signal')
     for source in sources:
         entry=next(e for e in manifest['inputs'][source['bus']] if e['index']==source['bit'])
         source['net']=nets[net_at[tuple(entry['contact'])]]['id']
@@ -193,7 +193,7 @@ def export_views(cells, manifest, folder, stem):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description='Цветные PNG и HTML из сохранения и build.json')
+    parser=argparse.ArgumentParser(description='Render signal PNG and HTML from a game save and metadata')
     parser.add_argument('save',type=Path);parser.add_argument('manifest',type=Path)
     parser.add_argument('--out',required=True,type=Path)
     args=parser.parse_args();args.out.mkdir(parents=True,exist_ok=True)

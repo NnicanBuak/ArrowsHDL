@@ -161,7 +161,7 @@ def _route_with_outputs(graph, placement, max_cells, routed_seed=None):
                 ps[i]=point
             try:
                 if any(ps[i] in preserved for i in outputs):
-                    raise MapError('Внешний контакт вывода занят сохранённой разводкой')
+                    raise MapError('Exterior output contact is occupied by preserved wiring')
                 # The core was optimized above. Output-face trials must keep
                 # those chosen gate directions and internal routes frozen.
                 router=Router(dict(graph,_route_optimization=False),1,max_cells,candidate)
@@ -170,7 +170,7 @@ def _route_with_outputs(graph, placement, max_cells, routed_seed=None):
                     router.roots.update({net:p for net,p in seed.roots.items() if p in seed.outs})
                 for p in preserved:
                     if p in router.cells and router.owners[p]!=seed.owners[p]:
-                        raise MapError('Внешний вывод пересекает фиксированное ядро')
+                        raise MapError('Exterior output overlaps fixed core')
                     router.cells[p]=seed.cells[p]
                     router.owners[p]=seed.owners[p]
                     if p in seed.outs:router.outs[p]=set(seed.outs[p])-terminals
@@ -181,16 +181,16 @@ def _route_with_outputs(graph, placement, max_cells, routed_seed=None):
                 metrics=logic_core_metrics(cells,router.gates,router.output_nets)
                 actual_links=edges(cells)
                 if any(cells[p]!=seed.cells[p] for p in internal if p not in seed.flexible_gates):
-                    raise MapError('Подключение вывода изменило ядро')
+                    raise MapError('Connecting output modified the core')
                 if any({q for q in actual_links[p] if q in fixed}!={q for q in links[p] if q in fixed} for p in fixed):
-                    raise MapError('Подключение вывода изменило внутренние соединения')
+                    raise MapError('Connecting output modified internal connections')
                 trials.append((cells,router,{'side':side,'align':align,'offset':offset,'core':metrics,
                                             'bounds':exterior_bounds(cells,router.inputs,router.outputs),
                                             'ticks':depth_of(cells)+2}))
             except MapError as error:
                 failures.append({'side':side,'align':align,'offset':offset,'reason':str(error)})
     if not trials:
-        raise MapError(f'Вывод не подключён к фиксированному ядру: {failures[-1]["reason"]}')
+        raise MapError(f'Output is not connected to fixed core: {failures[-1]["reason"]}')
     cells,router,selected=min(trials,key=lambda t:(t[2]['core']['cells'],t[2]['core']['bounds']['area'],
                                                   t[2]['bounds']['area'],len(t[0]),t[2]['ticks']))
     selected=dict(selected,cells=len(cells))

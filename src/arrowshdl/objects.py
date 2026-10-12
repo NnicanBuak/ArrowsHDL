@@ -32,10 +32,10 @@ def link_objects(paths, top, timeout=90):
     for path in paths:
         obj = json.loads(Path(path).read_text(encoding='utf-8-sig'))
         if obj.get('format') != 'arrowshdl-object' or type(obj.get('version')) is not int or obj['version'] != OBJECT_VERSION:
-            raise MapError(f'{path}: несовместимая версия объектного файла')
+            raise MapError(f'{path}: incompatible object file version')
         check_standard(obj.get('standard'))
         if standard and standard != obj['standard']:
-            raise MapError('Объекты собраны для разных стандартов HDL')
+            raise MapError('Objects use incompatible HDL standards')
         standard = obj['standard']
         for name, module in obj['rtlil']['modules'].items():
             module = deepcopy(module)
@@ -51,11 +51,11 @@ def link_objects(paths, top, timeout=90):
                     _check_interface(name,module,previous)
                     continue
                 else:
-                    raise MapError(f'Конфликт определения модуля {name}')
+                    raise MapError(f'Conflicting module definition: {name}')
             else:
                 merged[name] = module
     if top not in merged:
-        raise MapError(f'В объектах отсутствует верхний модуль {top}')
+        raise MapError(f'Objects do not contain top module {top}')
     merged[top].setdefault('attributes', {})['top'] = '1'
     graph, log = synthesize_raw({'modules': merged, 'creator': f'ArrowsHDL {__version__}'}, top, timeout)
     return graph, log, standard
@@ -65,4 +65,4 @@ def _check_interface(name,a,b):
     def signature(module):
         return {n:(p['direction'],len(p['bits']),p.get('offset',0),p.get('upto',0))
                 for n,p in module.get('ports',{}).items()}
-    if signature(a)!=signature(b):raise MapError(f'Несовместимые интерфейсы модуля {name}')
+    if signature(a)!=signature(b):raise MapError(f'Incompatible module interfaces: {name}')

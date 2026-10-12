@@ -4,7 +4,7 @@ from tests.projects.examples.catalog import ROOT
 from arrowshdl.mapdata import read_map,write_json,save_sha256
 from arrowshdl.arrowasm import Cell
 from arrowshdl.simulation import simulate
-HERE=ROOT/'examples/pulse_sequencer'
+HERE=ROOT/'tests/fixtures/historical/pulse_sequencer'
 STEM='pulse_sequencer'
 REQUESTS=[(-32,24+4*i) for i in range(8)]
 LATCHES=[(-27,25+4*i) for i in range(8)]

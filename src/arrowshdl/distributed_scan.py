@@ -15,18 +15,18 @@ def parallelize_or_scan(graph, *, value, row, north_carry, east_row, carry_port)
     nodes={n['output']:n for n in result['nodes']}
     root=nodes.get(row)
     if not root or root['op']!='OR' or len(root['inputs'])!=2 or east_row not in root['inputs']:
-        raise MapError('Не найден обратный OR-скан с указанным входом')
+        raise MapError('Reverse OR scan with the specified input not found')
     end=nodes.get(next(net for net in root['inputs'] if net!=east_row))
     if not end or end['op']!='AND' or len(end['inputs'])!=2:
-        raise MapError('Не найден граничный AND обратного скана')
+        raise MapError('Boundary AND of reverse scan not found')
     uses=[n['output'] for n in result['nodes'] if end['output'] in n['inputs']]
-    if uses!=[row]:raise MapError('Граничный AND имеет посторонних потребителей')
+    if uses!=[row]:raise MapError('Boundary AND has unexpected consumers')
     port=result['outputs'].get(carry_port)
     if not port or len(port)!=1:
-        raise MapError('Не найден единственный порт вертикального переноса')
+        raise MapError('Unique vertical carry port not found')
     driver=nodes.get(port[0]['net'])
     if not driver or driver['op']!='BUF' or driver['inputs']!=[row]:
-        raise MapError('Вертикальный перенос не соответствует контракту скана')
+        raise MapError('Vertical carry does not match the scan contract')
     root['inputs']=[value,east_row]
     end.update(op='OR',inputs=[row,north_carry])
     driver['inputs']=[end['output']]

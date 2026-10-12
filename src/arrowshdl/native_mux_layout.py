@@ -357,7 +357,7 @@ def mux_candidate(graph, max_cells, columns, snake, bank):
     cells,router=route_with_outputs(technology,(vertices,positions,sources),max_cells,routed_seed=router)
     core = logic_core_metrics(cells, router.gates, router.output_nets)
     if not folded and core['bounds']['height'] != 2:
-        raise MapError('Размещение мультиплексора вышло за две строки')
+        raise MapError('Multiplexer placement exceeds two rows')
     meta = {'schema': 1, 'top': graph['top'], 'map_hash': map_hash(cells),
             'profile': 'GraphDLC-01232bd', 'verified_against_current_game': False,
             'inputs': router.inputs, 'outputs': router.outputs,

@@ -7,6 +7,35 @@ from collections import Counter,defaultdict
 from copy import deepcopy
 
 
+def fold_or_cones(netlist):
+    """A native red receiver is an OR; a NOT receiver is a multi-input NOR.
+
+    Fold only unobserved, single-consumer Boolean intermediates. Native state
+    boundaries, independently observed signals and two-input ANDs are retained.
+    """
+    graph=deepcopy(netlist);rewrites=[]
+    observed={e['net'] for entries in graph['outputs'].values() for e in entries}
+    while True:
+        by_net={n['output']:n for n in graph['nodes']}
+        uses=Counter(net for n in graph['nodes'] for net in n['inputs'])
+        removed=set()
+        for node in graph['nodes']:
+            if node.get('native') or node['op'] not in ('OR','NOT'):continue
+            for net in node['inputs'][:]:
+                child=by_net.get(net)
+                if not child or child.get('native') or child['op']!='OR' or uses[net]!=1 or net in observed or child['id'] in removed:continue
+                inputs=list(dict.fromkeys(n for n in node['inputs'] if n!=net))
+                inputs.extend(n for n in child['inputs'] if n not in inputs)
+                if len(inputs)>6:continue
+                node['inputs']=inputs;removed.add(child['id'])
+                rewrites.append(dict(kind='native-or' if node['op']=='OR' else 'native-nor',removed=child['id'],kept=node['id']))
+        if not removed:break
+        graph['nodes']=[n for n in graph['nodes'] if n['id'] not in removed]
+    kept={n['id'] for n in graph['nodes']}
+    for instance in graph.get('instances',[]):instance['nodes']=[i for i in instance['nodes'] if i in kept]
+    return graph,rewrites
+
+
 def merge_duplicate_logic(netlist):
     """Share equivalent combinational cells, retaining every output terminal."""
     graph=deepcopy(netlist)
@@ -26,6 +55,10 @@ def merge_duplicate_logic(netlist):
             canonical.setdefault(key,node)
             kept.append(node)
     graph['nodes']=kept
+    # Stateful nodes precede their combinational input cones in tick graphs.
+    # Resolve aliases again after all Boolean sharing decisions are known.
+    for node in kept:
+        node['inputs']=[aliases.get(net,net) for net in node['inputs']]
     for entries in graph.get('wire_names',{}).values():
         for entry in entries:entry['net']=aliases.get(entry['net'],entry['net'])
     for instance in graph.get('instances',[]):
@@ -77,7 +110,9 @@ def map_native_gates(netlist):
     graph['nodes']=[replacements.get(n['id'],n) for n in graph['nodes'] if n['id'] not in removed]
     # Re-establish dependency order after replacing cones, independently of Yosys IDs.
     available={e['net'] for es in graph['inputs'].values() for e in es}|{'const0','const1'}
-    pending,ordered=graph['nodes'][:],[]
+    native=[n for n in graph['nodes'] if n.get('native')] if graph.get('kind')=='tick' else []
+    available.update(n['output'] for n in native)
+    pending,ordered=[n for n in graph['nodes'] if n not in native],native[:]
     while pending:
         ready=[n for n in pending if set(n['inputs'])<=available]
         if not ready:raise ValueError('Native technology mapping left an undriven net')

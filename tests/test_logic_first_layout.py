@@ -86,7 +86,7 @@ class LogicFirstTests(unittest.TestCase):
         router.ripups=0
         original=router.path
         with patch.object(router,'path',side_effect=original) as calls:
-            with self.assertRaisesRegex(MapError,'повторно конфликтует'):
+            with self.assertRaisesRegex(MapError,'repeatedly conflicts'):
                 router.route_phase({'a':{(4,0)},'b':{(2,2)}})
             self.assertLess(calls.call_count,80)
 
