@@ -152,7 +152,15 @@ def main():
         top='tile' if name=='minesweeper' else name
         base=folder/'v2/build' if name=='minesweeper' else folder/'build'
         render_cells(read_map(base/f'{top}.save.txt'),folder/'visuals/map.png',read(base/f'{top}.build.json'))
-        if name=='minesweeper':board(folder)
+        if name=='minesweeper':
+            board(folder)
+            for version,size,target in (
+                ('v1',3,folder/'v1/visuals/map.png'),
+                ('v2',5,folder/'visuals/board.png'),
+            ):
+                saved=folder/version/'build';stem=f'minesweeper_{size}x{size}'
+                target.parent.mkdir(exist_ok=True)
+                render_cells(read_map(saved/f'{stem}.save.txt'),target,read(saved/f'{stem}.build.json'))
         elif name=='pulse_sequencer':waveform(folder)
         else:measured_table(folder,top,spec)
         print('PASS:',name,'diagram, actual map, measured behavior')

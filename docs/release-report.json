@@ -243,8 +243,10 @@
   },
   "cleanup": {
     "no_example_scripts": true,
-    "local_document_links": 61,
-    "obsolete_sequencer_sources_removed": true
+    "local_document_links": 67,
+    "obsolete_sequencer_sources_removed": true,
+    "compiled_previews_before_headings": 6,
+    "visualization_images": 14
   },
   "wheel": {
     "file": "arrowshdl-0.1.0-py3-none-win_amd64.whl",

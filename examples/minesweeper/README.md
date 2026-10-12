@@ -1,3 +1,5 @@
+![Скомпилированное поле Minesweeper V2 5×5](visuals/board.png)
+
 # Minesweeper — пример ArrowsHDL
 
 Игра «Сапёр» на стрелках: безопасный первый клик, случайное

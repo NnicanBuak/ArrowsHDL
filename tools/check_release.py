@@ -59,6 +59,21 @@ def main():
     executable={'.py','.pyw','.ps1','.bat','.cmd','.sh','.js','.mjs','.ts','.exe'}
     assert not [p for p in (ROOT/'examples').rglob('*') if p.is_file() and p.suffix in executable]
     assert not (ROOT/'examples/pulse_sequencer/loop_mux8.v').exists()
+    compiled_previews={
+        'alu_workbench/README.md':'visuals/map.png',
+        'packet_router/README.md':'visuals/map.png',
+        'pulse_sequencer/README.md':'visuals/map.png',
+        'minesweeper/README.md':'visuals/board.png',
+        'minesweeper/v1/README.md':'visuals/map.png',
+        'minesweeper/v2/README.md':'../visuals/board.png',
+    }
+    for name,target in compiled_previews.items():
+        path=ROOT/'examples'/name
+        lines=path.read_text(encoding='utf-8-sig').splitlines()
+        assert lines[0].startswith('![') and lines[0].endswith(f']({target})'),name
+        assert not lines[1] and lines[2].startswith('# '),name
+        assert (path.parent/target).is_file(),name
+    image_count=sum(p.parent.name=='visuals' for p in (ROOT/'examples').rglob('*.png'))
     files=list(ROOT.glob('*.md'))+list((ROOT/'docs').glob('*.md'))+list((ROOT/'examples').rglob('*.md'))
     links=0
     for file in files:
@@ -84,13 +99,14 @@ def main():
             additional_sequencer_rebuild_verified=True),
         examples=examples,minesweeper=games,visualizations=visual,
         independence=dict(all_test_assets_local=True,minesweeper_mandatory=True,no_sibling_checkout_required=True),
-        cleanup=dict(no_example_scripts=True,local_document_links=links,obsolete_sequencer_sources_removed=True),
+        cleanup=dict(no_example_scripts=True,local_document_links=links,obsolete_sequencer_sources_removed=True,
+            compiled_previews_before_headings=len(compiled_previews),visualization_images=image_count),
         wheel=dict(file=wheel.name,sha256=sha(wheel)),
         limitations=['Experimental HDL subset; arbitrary sequential HDL is unsupported',
                      'V1 preserves historical limitations documented in examples/minesweeper',
                      'Game sprites and teaching fixture rights need confirmation before publication'])
     path=ROOT/'docs/release-report.json'
     path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    print(f'PASS: 4 independent projects, {suite["tests"]+2} distinct tests, 12 visualizations, {links} local links')
+    print(f'PASS: 4 independent projects, {suite["tests"]+2} distinct tests, {image_count} visualizations, {links} local links')
 
 if __name__=='__main__':main()

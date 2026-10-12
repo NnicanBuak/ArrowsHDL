@@ -1,3 +1,5 @@
+![Скомпилированная схема ALU Workbench](visuals/map.png)
+
 # ALU Workbench
 
 **4-битная ALU из трёх HDL-модулей:** `arithmetic` реализует цепь переноса,
