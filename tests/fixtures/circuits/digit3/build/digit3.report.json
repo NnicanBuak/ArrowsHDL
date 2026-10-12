@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "save_sha256": "e832300b3f07ac5283ee129358cb3a14efd04eefe9d96ed27099a1ffa125a658",
+  "all_64_transitions": true,
+  "steady_window_ticks": 24,
+  "checked_samples": 67200,
+  "cycle_modes": [
+    false,
+    true
+  ]
+}

@@ -7,13 +7,12 @@ import tempfile
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'src'))
-from compact_layout import arrange_buses,router_manifest,place_packed
-from input_buses import configure,apply_placement,verify_exterior
-from mapdata import read_map,write_map
-from output_layout import route_with_outputs
-from physical_compaction import compact_manifest
-from test_harness import run_vectors
+from arrowshdl.compact_layout import arrange_buses,router_manifest,place_packed
+from arrowshdl.input_buses import configure,apply_placement,verify_exterior
+from arrowshdl.mapdata import read_map,write_map
+from arrowshdl.output_layout import route_with_outputs
+from arrowshdl.physical_compaction import compact_manifest
+from arrowshdl.test_harness import run_vectors
 
 
 def make_graph(operations,results):
@@ -42,9 +41,9 @@ def vectors(graph):
 class PhysicalCompactionTests(unittest.TestCase):
     def test_general_packer_matches_adder_size_without_adder_backend(self):
         import random
-        from technology_mapping import map_native_gates,merge_duplicate_logic
-        from verilog_frontend import synthesize
-        graph,_=synthesize(ROOT/'examples/hdl/adder8/adder8.v','adder8')
+        from arrowshdl.technology_mapping import map_native_gates,merge_duplicate_logic
+        from arrowshdl.verilog_frontend import synthesize
+        graph,_=synthesize(ROOT/'tests/fixtures/circuits/hdl/adder8/adder8.v','adder8')
         mapped,_=map_native_gates(graph);mapped,_=merge_duplicate_logic(mapped)
         cells,meta=place_packed(dict(mapped,_physical_optimize=True),10000)
         self.assertEqual(meta['layout'],'compact-connected-modules-v1')

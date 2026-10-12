@@ -5,15 +5,14 @@ import sys
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'src'))
-from compact_layout import Router
-from arrow_layout import bounds_of,depth_of,logic_core_metrics
-from mapdata import map_hash
-from signal_metadata import describe_signals
-from simulation import simulate
-from test_harness import add_fixture,make_scenario
-from packed_layout import arrange_packed
-from input_buses import apply_placement
+from arrowshdl.compact_layout import Router
+from arrowshdl.arrow_layout import bounds_of,depth_of,logic_core_metrics
+from arrowshdl.mapdata import map_hash
+from arrowshdl.signal_metadata import describe_signals
+from arrowshdl.simulation import simulate
+from arrowshdl.test_harness import add_fixture,make_scenario
+from arrowshdl.packed_layout import arrange_packed
+from arrowshdl.input_buses import apply_placement
 
 
 def metadata(router,cells):

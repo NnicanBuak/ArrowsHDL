@@ -1,0 +1,6 @@
+version = 1
+sources = ["mul2.v"]
+top = "mul2"
+
+[language]
+standard = "1800-2023"

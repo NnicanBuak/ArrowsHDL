@@ -7,12 +7,11 @@ import tempfile
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'src'))
-from input_buses import verify_exterior
-from placement_search import search_placement
-from technology_mapping import merge_duplicate_logic,map_native_gates
-from test_harness import run_vectors
-from verilog_frontend import synthesize
+from arrowshdl.input_buses import verify_exterior
+from arrowshdl.placement_search import search_placement
+from arrowshdl.technology_mapping import merge_duplicate_logic,map_native_gates
+from arrowshdl.test_harness import run_vectors
+from arrowshdl.verilog_frontend import synthesize
 
 
 class PlacementSearchTests(unittest.TestCase):

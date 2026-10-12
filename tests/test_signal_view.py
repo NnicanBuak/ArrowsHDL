@@ -1,3 +1,4 @@
+from arrowshdl.resources import SPRITES
 """Net boundaries, independent input ancestry, and exact save-based views."""
 from copy import deepcopy
 import base64
@@ -10,16 +11,15 @@ import unittest
 from PIL import Image
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'src'))
-from arrowasm import Cell,MapError
-from arrow_layout import bounds_of,depth_of
-from compact_layout import Router,router_manifest
-from mapdata import map_hash
-from signal_metadata import describe_signals
-from signal_view import export_views,view_data,render_poster
-from simulation import simulate
-from technology_mapping import merge_duplicate_logic
-from test_harness import add_fixture,make_scenario
+from arrowshdl.arrowasm import Cell,MapError
+from arrowshdl.arrow_layout import bounds_of,depth_of
+from arrowshdl.compact_layout import Router,router_manifest
+from arrowshdl.mapdata import map_hash
+from arrowshdl.signal_metadata import describe_signals
+from arrowshdl.signal_view import export_views,view_data,render_poster
+from arrowshdl.simulation import simulate
+from arrowshdl.technology_mapping import merge_duplicate_logic
+from arrowshdl.test_harness import add_fixture,make_scenario
 
 
 class SignalViewTests(unittest.TestCase):
@@ -40,7 +40,7 @@ class SignalViewTests(unittest.TestCase):
         self.assertEqual(net['origins'],[{'bus':'a','bit':0},{'bus':'a','bit':1}])
         for kind,uri in data['sprites'].items():
             sprite=Image.open(BytesIO(base64.b64decode(uri.split(',')[1]))).convert('RGBA')
-            original=Image.open(ROOT/f'assets/sprites/arrow{kind}.png').convert('RGBA')
+            original=Image.open(SPRITES/f'arrow{kind}.png').convert('RGBA')
             self.assertEqual(sprite.tobytes(),original.tobytes())
         self.assertEqual(len(data['markers']),sum(len(entries) for ports in (manifest['inputs'],manifest['outputs']) for entries in ports.values()))
 

@@ -6,14 +6,13 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'src'))
-from arrow_layout import place
-from arrowasm import Cell, MapError
-from native_mux_layout import recognize_mux, mux_candidate, tree_candidate
-from technology_mapping import merge_duplicate_logic
-from test_harness import run_vectors
-from verilog_compile import compile_file
-from verilog_frontend import synthesize
+from arrowshdl.arrow_layout import place
+from arrowshdl.arrowasm import Cell, MapError
+from arrowshdl.native_mux_layout import recognize_mux, mux_candidate, tree_candidate
+from arrowshdl.technology_mapping import merge_duplicate_logic
+from arrowshdl.test_harness import run_vectors
+from arrowshdl.verilog_compile import compile_file
+from arrowshdl.verilog_frontend import synthesize
 
 
 class NativeMuxTests(unittest.TestCase):
@@ -21,7 +20,7 @@ class NativeMuxTests(unittest.TestCase):
         for count, old_cells in ((2, 20), (4, 63), (8, 286)):
             with self.subTest(count=count), tempfile.TemporaryDirectory() as d:
                 folder = Path(d)
-                source = ROOT / f'examples/hdl/multiplexer/mux{count}/mux{count}.v'
+                source = ROOT / f'tests/fixtures/circuits/hdl/multiplexer/mux{count}/mux{count}.v'
                 graph, _ = synthesize(source, f'mux{count}')
                 before = deepcopy(graph)
                 cells, meta = place(graph, input_buses=['data,sel'], input_bus_gap=0)
@@ -48,13 +47,13 @@ class NativeMuxTests(unittest.TestCase):
                 broken = dict(cells)
                 p = next(tuple(g['at']) for g in meta['gate_labels'] if g['op'] == 'AND')
                 broken[p] = Cell(1, broken[p].rotation)
-                from mapdata import map_hash
+                from arrowshdl.mapdata import map_hash
                 broken_meta = dict(meta, map_hash=map_hash(broken))
                 _, bad = run_vectors(broken, broken_meta, vectors, folder / 'broken', 'mux', compressed=True)
                 self.assertFalse(bad['passed'])
 
     def test_output_candidates_keep_core_and_remain_exterior(self):
-        source=ROOT/'examples/hdl/multiplexer/mux4/mux4.v'
+        source=ROOT/'tests/fixtures/circuits/hdl/multiplexer/mux4/mux4.v'
         with tempfile.TemporaryDirectory() as d:
             folder=Path(d)
             cells,meta=compile_file(source,'mux4',folder,input_buses=['data,sel'],input_bus_gap=0)
@@ -69,7 +68,7 @@ class NativeMuxTests(unittest.TestCase):
                 self.assertEqual(candidate['core']['ticks'],core['ticks'])
             best=min(search['candidates'],key=lambda c:(c['bounds']['area'],c['cells'],c['ticks']))
             self.assertEqual(search['selected']['bounds'],best['bounds'])
-            from output_layout import exterior_bounds
+            from arrowshdl.output_layout import exterior_bounds
             self.assertEqual(search['selected']['bounds'],exterior_bounds(cells,meta['inputs'],meta['outputs']))
             self.assert_exterior_ports(cells,meta)
             vectors=[{'inputs':{'data':v,'sel':s},'expect':{'y':(v>>s)&1}} for v in range(16) for s in range(4)]
@@ -77,9 +76,9 @@ class NativeMuxTests(unittest.TestCase):
             self.assertTrue(report['passed'],report['failures'])
 
     def test_initial_output_anchor_does_not_change_core_or_result(self):
-        from output_layout import route_with_outputs
-        from arrow_layout import depth_of
-        from mapdata import map_hash
+        from arrowshdl.output_layout import route_with_outputs
+        from arrowshdl.arrow_layout import depth_of
+        from arrowshdl.mapdata import map_hash
         gate={'id':'negate','op':'NOT','inputs':['a'],'output':'inverted'}
         terminal={'id':'port:y','op':'BUF','inputs':['inverted'],'output':'port:y'}
         graph={'top':'anchor','inputs':{'a':[{'index':0,'net':'a'}]},
@@ -105,11 +104,11 @@ class NativeMuxTests(unittest.TestCase):
             self.assertTrue(report['passed'],report['failures'])
 
     def test_three_by_two_blocks_and_touching_stages(self):
-        from input_buses import configure
+        from arrowshdl.input_buses import configure
         with tempfile.TemporaryDirectory() as d:
             folder = Path(d)
             for count in (2, 4):
-                graph, _ = synthesize(ROOT / f'examples/hdl/multiplexer/mux{count}/mux{count}.v', f'mux{count}')
+                graph, _ = synthesize(ROOT / f'tests/fixtures/circuits/hdl/multiplexer/mux{count}/mux{count}.v', f'mux{count}')
                 graph, _ = merge_duplicate_logic(graph)
                 graph['_input_bus_config'] = configure(graph, ['data,sel'], 0)
                 for margin in (3,4,5,6,8):
@@ -151,7 +150,7 @@ class NativeMuxTests(unittest.TestCase):
                 self.assertTrue(all(px<=x if fx>x else px>=x if fx<x else py<=y if fy>y else py>=y for px,py in cells))
 
     def test_rotated_candidates_and_optional_two_row_strip(self):
-        source = ROOT / 'examples/hdl/multiplexer/mux4/mux4.v'
+        source = ROOT / 'tests/fixtures/circuits/hdl/multiplexer/mux4/mux4.v'
         graph, _ = synthesize(source, 'mux4')
         graph, _ = merge_duplicate_logic(graph)
         graph['_input_bus_config'] = {'groups': [['data', 'sel']], 'gap': 0}
@@ -165,7 +164,7 @@ class NativeMuxTests(unittest.TestCase):
                 _, report = run_vectors(cells, meta, vectors, folder / str(mirrored), 'mux', compressed=True)
                 self.assertTrue(report['passed'], report['failures'])
             graph.pop('_input_bus_config')
-            small,_=synthesize(ROOT/'examples/hdl/multiplexer/mux2/mux2.v','mux2')
+            small,_=synthesize(ROOT/'tests/fixtures/circuits/hdl/multiplexer/mux2/mux2.v','mux2')
             small,_=merge_duplicate_logic(small)
             cells, meta = mux_candidate(small, 100000, 2, False, 'left')
             self.assertEqual(meta['logic_core']['bounds']['height'], 2)
@@ -174,7 +173,7 @@ class NativeMuxTests(unittest.TestCase):
             self.assertTrue(report['passed'], report['failures'])
 
     def test_explicit_groups_gap_validation_and_free_inputs(self):
-        source = ROOT / 'examples/hdl/multiplexer/mux4/mux4.v'
+        source = ROOT / 'tests/fixtures/circuits/hdl/multiplexer/mux4/mux4.v'
         vectors = [{'inputs': {'data': v, 'sel': s}, 'expect': {'y': (v >> s) & 1}}
                    for v in range(16) for s in range(4)]
         with tempfile.TemporaryDirectory() as d:
@@ -201,20 +200,20 @@ class NativeMuxTests(unittest.TestCase):
             folder = Path(d)
             source = folder / 'generic.v'
             source.write_text('module generic(input [1:0] data,input enable,output y); assign y=data[0]^data[1]^enable; endmodule', encoding='utf-8')
-            result = subprocess.run([sys.executable, str(ROOT / 'src/verilog_compile.py'), str(source),
+            result = subprocess.run([sys.executable, '-m', 'arrowshdl', 'compile', str(source),
                                      '--out', str(folder), '--input-bus', 'data,enable', '--input-bus-gap', '0'],
                                     capture_output=True, text=True, encoding='utf-8')
             self.assertEqual(result.returncode, 0, result.stderr)
             meta = json.loads((folder / 'generic.build.json').read_text(encoding='utf-8'))
             self.assert_input_bus(meta)
-            from mapdata import read_map
+            from arrowshdl.mapdata import read_map
             vectors = [{'inputs': {'data': v, 'enable': e}, 'expect': {'y': (v & 1) ^ (v >> 1) ^ e}}
                        for v in range(4) for e in range(2)]
             _, report = run_vectors(read_map(folder / 'generic.save.txt'), meta, vectors, folder, 'generic', compressed=True)
             self.assertTrue(report['passed'], report['failures'])
 
     def test_auto_bus_spacing_preserves_order_and_exterior(self):
-        source=ROOT/'examples/hdl/multiplexer/mux8/mux8.v'
+        source=ROOT/'tests/fixtures/circuits/hdl/multiplexer/mux8/mux8.v'
         with tempfile.TemporaryDirectory() as d:
             folder=Path(d)
             cells,meta=compile_file(source,'mux8',folder,input_buses=['data,sel'],input_bus_gap='auto')
@@ -231,7 +230,7 @@ class NativeMuxTests(unittest.TestCase):
             self.assertEqual(len({p[1-axis] for p in bus['fixtures']}),1)
             self.assertTrue(all(b[axis]>a[axis] for a,b in zip(bus['fixtures'],bus['fixtures'][1:])))
             self.assert_exterior_ports(cells,meta)
-            from input_buses import verify_exterior
+            from arrowshdl.input_buses import verify_exterior
             broken=dict(cells)
             x,y=bus['fixtures'][0]
             rotation=bus['rotation']
@@ -246,7 +245,7 @@ class NativeMuxTests(unittest.TestCase):
     def test_auto_separate_buses_and_generic_spacing(self):
         with tempfile.TemporaryDirectory() as d:
             folder=Path(d)
-            source=ROOT/'examples/hdl/multiplexer/mux4/mux4.v'
+            source=ROOT/'tests/fixtures/circuits/hdl/multiplexer/mux4/mux4.v'
             cells,meta=compile_file(source,'mux4',folder,input_buses=['data','sel'],input_bus_gap='auto')
             self.assertEqual([bus['ports'] for bus in meta['input_buses']],[['data'],['sel']])
             self.assert_exterior_ports(cells,meta)
@@ -277,7 +276,7 @@ class NativeMuxTests(unittest.TestCase):
             self.assertTrue(report['passed'], report['failures'])
 
     def test_non_mux_and_observed_internal_nodes_are_rejected(self):
-        source = ROOT / 'examples/hdl/multiplexer/mux4/mux4.v'
+        source = ROOT / 'tests/fixtures/circuits/hdl/multiplexer/mux4/mux4.v'
         graph, _ = synthesize(source, 'mux4')
         graph, _ = merge_duplicate_logic(graph)
         self.assertIsNotNone(recognize_mux(graph))

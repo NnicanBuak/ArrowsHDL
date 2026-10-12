@@ -1,0 +1,6 @@
+version = 1
+sources = ["adder8.v"]
+top = "adder8"
+
+[language]
+standard = "1800-2023"

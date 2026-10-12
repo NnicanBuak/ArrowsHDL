@@ -1,0 +1,6 @@
+include VERSION LICENSE NOTICE THIRD_PARTY_NOTICES.md
+recursive-include native *.toml *.lock *.rs
+recursive-include vendor/graphdlc *.rs *.toml *.ts *.json LICENSE
+recursive-include tools *.ts *.mjs *.json
+recursive-exclude native/target *
+recursive-exclude tools/node_modules *

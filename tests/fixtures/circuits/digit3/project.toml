@@ -1,0 +1,10 @@
+version = 1
+sources = ["digit3.v"]
+top = "digit3"
+bindings = "bindings.json"
+
+[language]
+standard = "1800-2023"
+
+[placement]
+template = "digit3.physical.toml"

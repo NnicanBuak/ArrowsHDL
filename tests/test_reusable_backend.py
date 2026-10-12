@@ -3,13 +3,12 @@ from pathlib import Path
 import sys
 import unittest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
-from arrowasm import Cell, MapError
-from compact_layout import Router
-from negotiated_routing import NegotiatedRouter
-from native_macros import adder_groups, verify_macros,replace_native_cells
-from simulation import simulate
-from incremental_routing import changed_nets,restore_wires
+from arrowshdl.arrowasm import Cell, MapError
+from arrowshdl.compact_layout import Router
+from arrowshdl.negotiated_routing import NegotiatedRouter
+from arrowshdl.native_macros import adder_groups, verify_macros,replace_native_cells
+from arrowshdl.simulation import simulate
+from arrowshdl.incremental_routing import changed_nets,restore_wires
 
 
 class ReusableBackendTests(unittest.TestCase):
@@ -34,7 +33,7 @@ class ReusableBackendTests(unittest.TestCase):
         with self.assertRaises(MapError):Router(graph,4,1000,(vertices,positions,{}))
 
     def test_external_wiring_respects_empty_reserved_module_space(self):
-        from fixed_wiring import FixedWiring
+        from arrowshdl.fixed_wiring import FixedWiring
         fixed={(-2,0):Cell(22,1),(-1,0):Cell(10,1),(0,0):Cell(23,0),(8,0):Cell(23,0)}
         reserved={(x,y) for x in range(2,7) for y in range(-2,3)}
         router=FixedWiring(fixed,reserved=reserved)

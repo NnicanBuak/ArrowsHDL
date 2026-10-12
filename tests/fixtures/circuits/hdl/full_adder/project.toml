@@ -1,0 +1,6 @@
+version = 1
+sources = ["full_adder.v"]
+top = "full_adder"
+
+[language]
+standard = "1800-2023"

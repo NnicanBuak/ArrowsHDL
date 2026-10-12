@@ -1,0 +1,347 @@
+{
+  "schema": 1,
+  "top": "mux8",
+  "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "inputs": {
+    "data": [
+      {
+        "index": 0,
+        "net": "n3"
+      },
+      {
+        "index": 1,
+        "net": "n4"
+      },
+      {
+        "index": 2,
+        "net": "n5"
+      },
+      {
+        "index": 3,
+        "net": "n6"
+      },
+      {
+        "index": 4,
+        "net": "n7"
+      },
+      {
+        "index": 5,
+        "net": "n8"
+      },
+      {
+        "index": 6,
+        "net": "n9"
+      },
+      {
+        "index": 7,
+        "net": "n10"
+      }
+    ],
+    "sel": [
+      {
+        "index": 0,
+        "net": "n11"
+      },
+      {
+        "index": 1,
+        "net": "n12"
+      },
+      {
+        "index": 2,
+        "net": "n13"
+      }
+    ]
+  },
+  "outputs": {
+    "y": [
+      {
+        "index": 0,
+        "net": "port:y:0"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$73:select",
+      "op": "NOT",
+      "inputs": [
+        "n11"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$73:s",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$73:b",
+      "op": "AND",
+      "inputs": [
+        "n4",
+        "n11"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$73:b",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$74:select",
+      "op": "NOT",
+      "inputs": [
+        "n11"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$74:s",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$74:b",
+      "op": "AND",
+      "inputs": [
+        "n6",
+        "n11"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$74:b",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$75:select",
+      "op": "NOT",
+      "inputs": [
+        "n11"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$75:s",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$75:b",
+      "op": "AND",
+      "inputs": [
+        "n8",
+        "n11"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$75:b",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$76:select",
+      "op": "NOT",
+      "inputs": [
+        "n11"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$76:s",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$76:b",
+      "op": "AND",
+      "inputs": [
+        "n10",
+        "n11"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$76:b",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$78:select",
+      "op": "NOT",
+      "inputs": [
+        "n12"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$78:s",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$79:select",
+      "op": "NOT",
+      "inputs": [
+        "n12"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$79:s",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$81:select",
+      "op": "NOT",
+      "inputs": [
+        "n13"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$81:s",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$73:a",
+      "op": "AND",
+      "inputs": [
+        "n3",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$73:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$73:a",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$74:a",
+      "op": "AND",
+      "inputs": [
+        "n5",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$74:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$74:a",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$75:a",
+      "op": "AND",
+      "inputs": [
+        "n7",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$75:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$75:a",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$76:a",
+      "op": "AND",
+      "inputs": [
+        "n9",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$76:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$76:a",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$73",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$73:a",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$73:b"
+      ],
+      "output": "n14",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$74",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$74:a",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$74:b"
+      ],
+      "output": "n15",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$75",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$75:a",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$75:b"
+      ],
+      "output": "n16",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$76",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$76:a",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$76:b"
+      ],
+      "output": "n17",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$78:a",
+      "op": "AND",
+      "inputs": [
+        "n14",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$78:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$78:a",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$78:b",
+      "op": "AND",
+      "inputs": [
+        "n15",
+        "n12"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$78:b",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$79:a",
+      "op": "AND",
+      "inputs": [
+        "n16",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$79:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$79:a",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$79:b",
+      "op": "AND",
+      "inputs": [
+        "n17",
+        "n12"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$79:b",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$78",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$78:a",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$78:b"
+      ],
+      "output": "n18",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$79",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$79:a",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$79:b"
+      ],
+      "output": "n19",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$81:a",
+      "op": "AND",
+      "inputs": [
+        "n18",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$81:s"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$81:a",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$81:b",
+      "op": "AND",
+      "inputs": [
+        "n19",
+        "n13"
+      ],
+      "output": "tmp:$auto$simplemap.cc:349:simplemap_bmux$81:b",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "$auto$simplemap.cc:349:simplemap_bmux$81",
+      "op": "OR",
+      "inputs": [
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$81:a",
+        "tmp:$auto$simplemap.cc:349:simplemap_bmux$81:b"
+      ],
+      "output": "n2",
+      "origin": "source1.v:3.16-3.25"
+    },
+    {
+      "id": "port:y:0",
+      "op": "BUF",
+      "inputs": [
+        "n2"
+      ],
+      "output": "port:y:0",
+      "origin": null
+    }
+  ]
+}

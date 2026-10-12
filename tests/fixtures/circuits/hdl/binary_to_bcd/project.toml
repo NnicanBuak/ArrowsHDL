@@ -1,0 +1,6 @@
+version = 1
+sources = ["binary_to_bcd.v"]
+top = "bcd4"
+
+[language]
+standard = "1800-2023"

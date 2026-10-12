@@ -1,0 +1,40 @@
+{
+  "failure_count": 0,
+  "failures": [],
+  "nodes": 13,
+  "optimized_cycles": 1,
+  "outputs": [
+    {
+      "at": [
+        4,
+        1
+      ],
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "passed": true,
+  "profile": "GraphDLC-01232bd",
+  "ticks": 20,
+  "verified_against_current_game": false
+}

@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "cells": [
+    {"type": "arrow", "dir": "up", "at": [
+      [5, 2], [11, 2], [14, 2], [15, 2], [5, 3], [11, 3], [14, 3], [15, 3], [14, 4], [15, 4], [14, 5],
+      [7, 6], [4, 10], [7, 10]
+    ]},
+    {"type": "arrow", "dir": "right", "at": [
+      [14, 6], [10, 9]
+    ]},
+    {"type": "arrow", "dir": "down", "at": [
+      [4, 3], [7, 3], [4, 8], [7, 8]
+    ]},
+    {"type": "splitter_up_right", "dir": "up", "at": [
+      [4, 6]
+    ]},
+    {"type": "blue_arrow", "dir": "up", "at": [
+      [5, 5], [11, 5], [6, 6], [15, 6], [14, 7], [14, 8], [5, 9]
+    ]},
+    {"type": "blue_arrow", "dir": "right", "at": [
+      [6, 4], [8, 4], [2, 6], [5, 6], [11, 6], [8, 7], [8, 9], [11, 9], [5, 10]
+    ]},
+    {"type": "blue_arrow", "dir": "down", "at": [
+      [3, 5], [6, 5], [8, 5]
+    ]},
+    {"type": "diagonal", "dir": "up", "at": [
+      [5, 7]
+    ]},
+    {"type": "diagonal", "dir": "right", "at": [
+      [3, 7], [6, 7]
+    ]},
+    {"type": "blue_splitter_up_up", "dir": "up", "at": [
+      [10, 7], [13, 9]
+    ]},
+    {"type": "blue_splitter_up_up", "dir": "down", "at": [
+      [10, 4], [13, 6]
+    ]},
+    {"type": "blue_splitter_up_diagonal", "dir": "up", "at": [
+      [4, 11]
+    ]},
+    {"type": "blue_splitter_up_diagonal", "dir": "down", "at": [
+      [4, 4], [7, 4]
+    ]},
+    {"type": "and", "dir": "right", "at": [
+      [4, 5], [7, 5], [10, 6], [13, 8], [4, 9], [7, 9]
+    ]},
+    {"type": "xor", "dir": "right", "at": [
+      [10, 5], [13, 7]
+    ]},
+    {"type": "directional_button", "dir": "up", "at": [
+      [4, 12]
+    ]},
+    {"type": "directional_button", "dir": "right", "at": [
+      [1, 6]
+    ]},
+    {"type": "directional_button", "dir": "down", "at": [
+      [4, 2], [7, 2]
+    ]}
+  ]
+}

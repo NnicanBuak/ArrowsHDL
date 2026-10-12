@@ -7,22 +7,20 @@ import tempfile
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'src'))
-sys.path.insert(0,str(ROOT/'examples/reference_adder8'))
-from arrowasm import Cell,MapError
-from mapdata import read_map
-from simulation import simulate
-from test_harness import add_fixture,run_vectors
-from verilog_compile import compile_file
-from technology_mapping import map_native_gates
-from protocol import manifest,scenario
-from recognize import recognize
-from testbench import core
+from arrowshdl.arrowasm import Cell,MapError
+from arrowshdl.mapdata import read_map
+from arrowshdl.simulation import simulate
+from arrowshdl.test_harness import add_fixture,run_vectors
+from arrowshdl.verilog_compile import compile_file
+from arrowshdl.technology_mapping import map_native_gates
+from tests.helpers.reference_adder8.protocol import manifest,scenario
+from tests.helpers.reference_adder8.recognize import recognize
+from tests.helpers.reference_adder8.testbench import core
 
 
 class ReferenceTests(unittest.TestCase):
     def test_image_reconstruction_and_register_transitions(self):
-        path=ROOT/'examples/reference_adder8/build/reference.map.json'
+        path=ROOT/'tests/fixtures/circuits/reference_adder8/build/reference.map.json'
         expected=read_map(path)
         cells,_=recognize()
         self.assertEqual(cells,expected)
@@ -43,7 +41,7 @@ class ReferenceTests(unittest.TestCase):
         self.assertFalse(simulate(fixture,wrong,optimize_cycles=False)['passed'])
 
     def test_reference_core_is_an_exact_subset(self):
-        cells=read_map(ROOT/'examples/reference_adder8/build/reference.map.json')
+        cells=read_map(ROOT/'tests/fixtures/circuits/reference_adder8/build/reference.map.json')
         part,meta=core(cells)
         self.assertEqual(len(part),56)
         self.assertTrue(all(cells[p]==c for p,c in part.items()))

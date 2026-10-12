@@ -2,12 +2,11 @@
 from pathlib import Path
 import sys
 import unittest
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
-from arrowasm import Cell,MapError
-from native_rules import dependency_links,validate_gate_rule,remove_passive_walls
-from timing import causal_depths,level_arrivals
-from simulation import simulate
-from test_simulator import oracle
+from arrowshdl.arrowasm import Cell,MapError
+from arrowshdl.native_rules import dependency_links,validate_gate_rule,remove_passive_walls
+from arrowshdl.timing import causal_depths,level_arrivals
+from arrowshdl.simulation import simulate
+from tests.test_simulator import oracle
 
 
 class NativeRuleTests(unittest.TestCase):
@@ -29,8 +28,8 @@ class NativeRuleTests(unittest.TestCase):
             with self.assertRaises(MapError):validate_gate_rule(dict(op=op,inputs=['i']*count))
         for op,count in (('AND',2),('MAJ',3),('ATLEAST2',11),('XOR',11),('NOT',11)):
             validate_gate_rule(dict(op=op,inputs=['i']*count))
-        from compact_layout import Router
-        from arrow_layout import place_sparse
+        from arrowshdl.compact_layout import Router
+        from arrowshdl.arrow_layout import place_sparse
         node=dict(id='out',op='AND',inputs=['a','b','c'],output='out')
         graph=dict(inputs={n:[dict(index=0,net=n)] for n in ('a','b','c')},
                    outputs={'out':[dict(index=0,net='out')]},nodes=[node])
@@ -38,9 +37,9 @@ class NativeRuleTests(unittest.TestCase):
         with self.assertRaises(MapError):place_sparse(graph)
 
     def test_all_eleven_receiver_contacts_and_assignment_conflicts(self):
-        from pin_planning import incoming_contacts,choose_input_contacts
-        from compact_layout import wire_cell
-        from arrow_layout import destinations
+        from arrowshdl.pin_planning import incoming_contacts,choose_input_contacts
+        from arrowshdl.compact_layout import wire_cell
+        from arrowshdl.arrow_layout import destinations
         contacts=incoming_contacts((0,0),excluded=[(1,0)])
         self.assertEqual(len(contacts),11)
         for p in contacts:self.assertEqual(list(destinations(p,wire_cell(p,{(0,0)}))),[(0,0)])

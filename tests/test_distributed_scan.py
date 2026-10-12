@@ -3,12 +3,11 @@ from copy import deepcopy
 from pathlib import Path
 import sys
 import unittest
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
-from distributed_scan import parallelize_or_scan
-from native_macros import level_timer,timer_latency_bounds,harness,validate_template
-from simulation import simulate
-from timing import causal_depths,level_arrivals,propagation_bound
-from arrowasm import Cell,MapError
+from arrowshdl.distributed_scan import parallelize_or_scan
+from arrowshdl.native_macros import level_timer,timer_latency_bounds,harness,validate_template
+from arrowshdl.simulation import simulate
+from arrowshdl.timing import causal_depths,level_arrivals,propagation_bound
+from arrowshdl.arrowasm import Cell,MapError
 
 
 def scan_graph():

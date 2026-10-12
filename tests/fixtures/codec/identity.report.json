@@ -1,0 +1,28 @@
+{
+  "failure_count": 0,
+  "failures": [],
+  "nodes": 3,
+  "optimized_cycles": 0,
+  "outputs": [
+    {
+      "at": [
+        2,
+        0
+      ],
+      "values": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "passed": true,
+  "profile": "GraphDLC-01232bd",
+  "ticks": 8,
+  "verified_against_current_game": false
+}

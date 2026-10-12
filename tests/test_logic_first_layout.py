@@ -6,13 +6,12 @@ import unittest
 from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'src'))
-from arrowasm import Cell,MapError
-from arrow_layout import depth_of,logic_core_metrics,place
-from compact_layout import Router,arrange_buses
-from mapdata import map_hash
-from simulation import simulate
-from test_harness import add_fixture,make_scenario
+from arrowshdl.arrowasm import Cell,MapError
+from arrowshdl.arrow_layout import depth_of,logic_core_metrics,place
+from arrowshdl.compact_layout import Router,arrange_buses
+from arrowshdl.mapdata import map_hash
+from arrowshdl.simulation import simulate
+from arrowshdl.test_harness import add_fixture,make_scenario
 
 
 class LogicFirstTests(unittest.TestCase):
@@ -67,7 +66,7 @@ class LogicFirstTests(unittest.TestCase):
         router.reserved={(50+dx*distance,50+dy*distance)
                          for dx,dy in ((1,0),(0,1),(-1,0),(0,-1),(1,1),(-1,1),(1,-1),(-1,-1))
                          for distance in ((1,) if dx and dy else (1,2))}
-        with patch('compact_layout.heappop',side_effect=AssertionError('isolated sink should not flood A*')):
+        with patch('arrowshdl.compact_layout.heappop',side_effect=AssertionError('isolated sink should not flood A*')):
             self.assertIsNone(router.path({(0,0)},(50,50),3))
 
     def test_conflicting_nets_do_not_repeat_until_global_budget(self):

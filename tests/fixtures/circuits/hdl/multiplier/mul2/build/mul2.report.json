@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "top": "mul2",
+  "save_sha256": "b27cfb48e1d999557aee8ed41b9245d6399a541739cc9bbb66c76338d8d69746",
+  "map_hash": "12430638d9abb31c2b50c3b868712735029729ade8eb734a0d3e6602a1295d5a",
+  "simulated_map_hash": "a859e899d50507c45edded9c730aa682c932ed53864e84e26948bc7ed3880a8c",
+  "vectors": 16,
+  "checked_samples": 64,
+  "batches": 1,
+  "oracle": "independent integer arithmetic / Boolean equations",
+  "failures": []
+}

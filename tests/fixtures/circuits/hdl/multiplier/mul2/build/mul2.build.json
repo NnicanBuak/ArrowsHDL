@@ -1,0 +1,2471 @@
+{
+  "schema": 1,
+  "top": "mul2",
+  "map_hash": "12430638d9abb31c2b50c3b868712735029729ade8eb734a0d3e6602a1295d5a",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "inputs": {
+    "a": [
+      {
+        "index": 0,
+        "contact": [
+          4,
+          3
+        ],
+        "fixture": [
+          4,
+          2
+        ],
+        "rotation": 2
+      },
+      {
+        "index": 1,
+        "contact": [
+          7,
+          3
+        ],
+        "fixture": [
+          7,
+          2
+        ],
+        "rotation": 2
+      }
+    ],
+    "b": [
+      {
+        "index": 0,
+        "contact": [
+          2,
+          6
+        ],
+        "fixture": [
+          1,
+          6
+        ],
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "contact": [
+          4,
+          11
+        ],
+        "fixture": [
+          4,
+          12
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "outputs": {
+    "product": [
+      {
+        "index": 0,
+        "contact": [
+          5,
+          3
+        ],
+        "fixture": [
+          5,
+          2
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "contact": [
+          11,
+          3
+        ],
+        "fixture": [
+          11,
+          2
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "contact": [
+          14,
+          3
+        ],
+        "fixture": [
+          14,
+          2
+        ],
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "contact": [
+          15,
+          3
+        ],
+        "fixture": [
+          15,
+          2
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "settle_ticks": 23,
+  "routing_limits": [
+    2,
+    3,
+    null,
+    11
+  ],
+  "physical_compaction": {
+    "removed_relays": 0,
+    "coordinate_cuts": 0,
+    "selected": "original",
+    "rejected": "optimized candidate increases cells or area",
+    "exact_edges_verified": true,
+    "bus_constraints_preserved": true
+  },
+  "route_optimization": {
+    "backend": "ArrowsHDL.route_optimization",
+    "before_cells": 45,
+    "after_cells": 45,
+    "passes": 2,
+    "trials": 48,
+    "rejected_trials": 22,
+    "accepted_nets": 1,
+    "changes": [
+      {
+        "net": "n5",
+        "before": [
+          45,
+          33,
+          6
+        ],
+        "after": [
+          45,
+          32,
+          6
+        ],
+        "rotation_before": null,
+        "rotation_after": null,
+        "rerouted_neighbors": []
+      }
+    ],
+    "objective": "min_cells_then_sum_all_receiver_ticks_then_longest_receiver_ticks",
+    "gate_directions": 4,
+    "fixed_native_blocks": true,
+    "fixed_receiver_contacts": true
+  },
+  "output_search": {
+    "core_frozen": true,
+    "core_connections_verified": true,
+    "selected": {
+      "side": "top",
+      "align": "driver",
+      "offset": 0,
+      "core": {
+        "cells": 23,
+        "gates": 8,
+        "bounds": {
+          "min": [
+            4,
+            4
+          ],
+          "max": [
+            13,
+            9
+          ],
+          "width": 10,
+          "height": 6,
+          "area": 60
+        },
+        "ticks": 11,
+        "excluded_io_cells": 31
+      },
+      "bounds": {
+        "min": [
+          1,
+          2
+        ],
+        "max": [
+          15,
+          12
+        ],
+        "width": 15,
+        "height": 11,
+        "area": 165
+      },
+      "ticks": 23,
+      "cells": 54
+    },
+    "objective": "min_core_then_full_area_then_cells_and_ticks",
+    "candidates": [
+      {
+        "side": "bottom",
+        "align": "end",
+        "offset": 0,
+        "core": {
+          "cells": 23,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              4,
+              4
+            ],
+            "max": [
+              13,
+              9
+            ],
+            "width": 10,
+            "height": 6,
+            "area": 60
+          },
+          "ticks": 11,
+          "excluded_io_cells": 50
+        },
+        "bounds": {
+          "min": [
+            1,
+            2
+          ],
+          "max": [
+            20,
+            12
+          ],
+          "width": 20,
+          "height": 11,
+          "area": 220
+        },
+        "ticks": 25,
+        "cells": 73
+      },
+      {
+        "side": "bottom",
+        "align": "end",
+        "offset": 1,
+        "core": {
+          "cells": 23,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              4,
+              4
+            ],
+            "max": [
+              13,
+              9
+            ],
+            "width": 10,
+            "height": 6,
+            "area": 60
+          },
+          "ticks": 11,
+          "excluded_io_cells": 50
+        },
+        "bounds": {
+          "min": [
+            1,
+            2
+          ],
+          "max": [
+            20,
+            12
+          ],
+          "width": 20,
+          "height": 11,
+          "area": 220
+        },
+        "ticks": 25,
+        "cells": 73
+      },
+      {
+        "side": "top",
+        "align": "driver",
+        "offset": 0,
+        "core": {
+          "cells": 23,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              4,
+              4
+            ],
+            "max": [
+              13,
+              9
+            ],
+            "width": 10,
+            "height": 6,
+            "area": 60
+          },
+          "ticks": 11,
+          "excluded_io_cells": 31
+        },
+        "bounds": {
+          "min": [
+            1,
+            2
+          ],
+          "max": [
+            15,
+            12
+          ],
+          "width": 15,
+          "height": 11,
+          "area": 165
+        },
+        "ticks": 23,
+        "cells": 54
+      },
+      {
+        "side": "top",
+        "align": "end",
+        "offset": 0,
+        "core": {
+          "cells": 23,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              4,
+              4
+            ],
+            "max": [
+              13,
+              9
+            ],
+            "width": 10,
+            "height": 6,
+            "area": 60
+          },
+          "ticks": 11,
+          "excluded_io_cells": 45
+        },
+        "bounds": {
+          "min": [
+            1,
+            2
+          ],
+          "max": [
+            20,
+            12
+          ],
+          "width": 20,
+          "height": 11,
+          "area": 220
+        },
+        "ticks": 25,
+        "cells": 68
+      },
+      {
+        "side": "top",
+        "align": "driver",
+        "offset": 1,
+        "core": {
+          "cells": 23,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              4,
+              4
+            ],
+            "max": [
+              13,
+              9
+            ],
+            "width": 10,
+            "height": 6,
+            "area": 60
+          },
+          "ticks": 11,
+          "excluded_io_cells": 31
+        },
+        "bounds": {
+          "min": [
+            1,
+            2
+          ],
+          "max": [
+            15,
+            12
+          ],
+          "width": 15,
+          "height": 11,
+          "area": 165
+        },
+        "ticks": 23,
+        "cells": 54
+      },
+      {
+        "side": "top",
+        "align": "end",
+        "offset": 1,
+        "core": {
+          "cells": 23,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              4,
+              4
+            ],
+            "max": [
+              13,
+              9
+            ],
+            "width": 10,
+            "height": 6,
+            "area": 60
+          },
+          "ticks": 11,
+          "excluded_io_cells": 45
+        },
+        "bounds": {
+          "min": [
+            1,
+            2
+          ],
+          "max": [
+            20,
+            12
+          ],
+          "width": 20,
+          "height": 11,
+          "area": 220
+        },
+        "ticks": 25,
+        "cells": 68
+      }
+    ],
+    "rejected": [
+      {
+        "side": "right",
+        "align": "driver",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "right",
+        "align": "center",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "right",
+        "align": "end",
+        "offset": 0,
+        "reason": "Контакты ввода/вывода не образуют внешнюю границу схемы"
+      },
+      {
+        "side": "right",
+        "align": "driver",
+        "offset": 1,
+        "reason": "Нет совместимых контактов у элемента port:product:1"
+      },
+      {
+        "side": "right",
+        "align": "center",
+        "offset": 1,
+        "reason": "Конфликт компактного размещения в (14, 7)"
+      },
+      {
+        "side": "right",
+        "align": "end",
+        "offset": 1,
+        "reason": "Контакты ввода/вывода не образуют внешнюю границу схемы"
+      },
+      {
+        "side": "bottom",
+        "align": "driver",
+        "offset": 0,
+        "reason": "Внешний вывод пересекает фиксированное ядро"
+      },
+      {
+        "side": "bottom",
+        "align": "center",
+        "offset": 0,
+        "reason": "Нет совместимых контактов у элемента port:product:0"
+      },
+      {
+        "side": "bottom",
+        "align": "driver",
+        "offset": 1,
+        "reason": "Внешний вывод пересекает фиксированное ядро"
+      },
+      {
+        "side": "bottom",
+        "align": "center",
+        "offset": 1,
+        "reason": "Нет совместимых контактов у элемента port:product:0"
+      },
+      {
+        "side": "top",
+        "align": "center",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "top",
+        "align": "center",
+        "offset": 1,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "left",
+        "align": "driver",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "left",
+        "align": "center",
+        "offset": 0,
+        "reason": "Контакты ввода/вывода не образуют внешнюю границу схемы"
+      },
+      {
+        "side": "left",
+        "align": "end",
+        "offset": 0,
+        "reason": "Контакты ввода/вывода не образуют внешнюю границу схемы"
+      },
+      {
+        "side": "left",
+        "align": "driver",
+        "offset": 1,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "left",
+        "align": "center",
+        "offset": 1,
+        "reason": "Контакты ввода/вывода не образуют внешнюю границу схемы"
+      },
+      {
+        "side": "left",
+        "align": "end",
+        "offset": 1,
+        "reason": "Контакты ввода/вывода не образуют внешнюю границу схемы"
+      }
+    ]
+  },
+  "cells": 62,
+  "logic_nodes": 12,
+  "layout": "compact-connected-modules-v1",
+  "bounds": {
+    "min": [
+      1,
+      2
+    ],
+    "max": [
+      15,
+      12
+    ],
+    "width": 15,
+    "height": 11,
+    "area": 165
+  },
+  "port_layout": "fixed-sides",
+  "rerouted_nets": 0,
+  "io_conflict_fallback": false,
+  "logic_core": {
+    "cells": 23,
+    "gates": 8,
+    "bounds": {
+      "min": [
+        4,
+        4
+      ],
+      "max": [
+        13,
+        9
+      ],
+      "width": 10,
+      "height": 6,
+      "area": 60
+    },
+    "ticks": 11,
+    "excluded_io_cells": 31
+  },
+  "direct_gate_links": 0,
+  "shared_input_contacts": 4,
+  "gate_labels": [
+    {
+      "at": [
+        4,
+        5
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$88",
+      "scope": "core"
+    },
+    {
+      "at": [
+        4,
+        9
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$85",
+      "scope": "core"
+    },
+    {
+      "at": [
+        7,
+        5
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$89",
+      "scope": "core"
+    },
+    {
+      "at": [
+        10,
+        5
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$142",
+      "scope": "core"
+    },
+    {
+      "at": [
+        10,
+        6
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$138",
+      "scope": "core"
+    },
+    {
+      "at": [
+        7,
+        9
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$86",
+      "scope": "core"
+    },
+    {
+      "at": [
+        13,
+        7
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$94",
+      "scope": "core"
+    },
+    {
+      "at": [
+        13,
+        8
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$151",
+      "scope": "core"
+    },
+    {
+      "at": [
+        5,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:product:0",
+      "scope": "core"
+    },
+    {
+      "at": [
+        11,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:product:1",
+      "scope": "core"
+    },
+    {
+      "at": [
+        14,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:product:2",
+      "scope": "core"
+    },
+    {
+      "at": [
+        15,
+        3
+      ],
+      "op": "BUF",
+      "id": "port:product:3",
+      "scope": "core"
+    }
+  ],
+  "signals": {
+    "schema": 1,
+    "input_buses": [
+      {
+        "name": "a",
+        "bits": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "b",
+        "bits": [
+          0,
+          1
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "n10",
+        "label": "n10",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "n2",
+          "n5"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$85",
+          "op": "AND",
+          "at": [
+            4,
+            9
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            4,
+            9
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            10,
+            4
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              9
+            ],
+            [
+              5,
+              9
+            ]
+          ],
+          [
+            [
+              5,
+              7
+            ],
+            [
+              6,
+              6
+            ]
+          ],
+          [
+            [
+              5,
+              9
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          [
+            [
+              6,
+              4
+            ],
+            [
+              8,
+              4
+            ]
+          ],
+          [
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              4
+            ]
+          ],
+          [
+            [
+              8,
+              4
+            ],
+            [
+              10,
+              4
+            ]
+          ],
+          [
+            [
+              10,
+              4
+            ],
+            [
+              10,
+              5
+            ]
+          ],
+          [
+            [
+              10,
+              4
+            ],
+            [
+              10,
+              6
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n11",
+        "label": "n11",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n3",
+          "n4"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$89",
+          "op": "AND",
+          "at": [
+            7,
+            5
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            7,
+            5
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            10,
+            7
+          ]
+        ],
+        "edges": [
+          [
+            [
+              7,
+              5
+            ],
+            [
+              8,
+              5
+            ]
+          ],
+          [
+            [
+              8,
+              5
+            ],
+            [
+              8,
+              7
+            ]
+          ],
+          [
+            [
+              8,
+              7
+            ],
+            [
+              10,
+              7
+            ]
+          ],
+          [
+            [
+              10,
+              7
+            ],
+            [
+              10,
+              6
+            ]
+          ],
+          [
+            [
+              10,
+              7
+            ],
+            [
+              10,
+              5
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n12",
+        "label": "n12",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "n10",
+          "n11"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$138",
+          "op": "AND",
+          "at": [
+            10,
+            6
+          ],
+          "scope": "core",
+          "source": "/share/techmap.v:292.26-292.70|/share/techmap.v:205.26-205.31"
+        },
+        "cells": [
+          [
+            10,
+            6
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            13,
+            6
+          ]
+        ],
+        "edges": [
+          [
+            [
+              10,
+              6
+            ],
+            [
+              11,
+              6
+            ]
+          ],
+          [
+            [
+              11,
+              6
+            ],
+            [
+              13,
+              6
+            ]
+          ],
+          [
+            [
+              13,
+              6
+            ],
+            [
+              13,
+              7
+            ]
+          ],
+          [
+            [
+              13,
+              6
+            ],
+            [
+              13,
+              8
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n13",
+        "label": "n13",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "n3",
+          "n5"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$86",
+          "op": "AND",
+          "at": [
+            7,
+            9
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            9
+          ],
+          [
+            11,
+            9
+          ],
+          [
+            13,
+            9
+          ]
+        ],
+        "edges": [
+          [
+            [
+              7,
+              9
+            ],
+            [
+              8,
+              9
+            ]
+          ],
+          [
+            [
+              8,
+              9
+            ],
+            [
+              10,
+              9
+            ]
+          ],
+          [
+            [
+              10,
+              9
+            ],
+            [
+              11,
+              9
+            ]
+          ],
+          [
+            [
+              11,
+              9
+            ],
+            [
+              13,
+              9
+            ]
+          ],
+          [
+            [
+              13,
+              9
+            ],
+            [
+              13,
+              8
+            ]
+          ],
+          [
+            [
+              13,
+              9
+            ],
+            [
+              13,
+              7
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n2",
+        "label": "a[0]",
+        "aliases": [
+          "a[0]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "edges": [
+          [
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          [
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              8
+            ]
+          ],
+          [
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              4
+            ]
+          ],
+          [
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          [
+            [
+              4,
+              4
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          [
+            [
+              4,
+              8
+            ],
+            [
+              4,
+              9
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n3",
+        "label": "a[1]",
+        "aliases": [
+          "a[1]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 1
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "edges": [
+          [
+            [
+              6,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ],
+          [
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ]
+          ],
+          [
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              4
+            ]
+          ],
+          [
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              5
+            ]
+          ],
+          [
+            [
+              7,
+              4
+            ],
+            [
+              6,
+              5
+            ]
+          ],
+          [
+            [
+              7,
+              8
+            ],
+            [
+              7,
+              9
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n4",
+        "label": "b[0]",
+        "aliases": [
+          "b[0]"
+        ],
+        "origins": [
+          {
+            "bus": "b",
+            "bit": 0
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            2,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            6
+          ]
+        ],
+        "edges": [
+          [
+            [
+              2,
+              6
+            ],
+            [
+              4,
+              6
+            ]
+          ],
+          [
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          [
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          [
+            [
+              5,
+              6
+            ],
+            [
+              7,
+              6
+            ]
+          ],
+          [
+            [
+              7,
+              6
+            ],
+            [
+              7,
+              5
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n5",
+        "label": "b[1]",
+        "aliases": [
+          "b[1]"
+        ],
+        "origins": [
+          {
+            "bus": "b",
+            "bit": 1
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            4,
+            10
+          ],
+          [
+            4,
+            11
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            7,
+            10
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              10
+            ],
+            [
+              4,
+              9
+            ]
+          ],
+          [
+            [
+              4,
+              11
+            ],
+            [
+              4,
+              10
+            ]
+          ],
+          [
+            [
+              4,
+              11
+            ],
+            [
+              5,
+              10
+            ]
+          ],
+          [
+            [
+              5,
+              10
+            ],
+            [
+              7,
+              10
+            ]
+          ],
+          [
+            [
+              7,
+              10
+            ],
+            [
+              7,
+              9
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n6",
+        "label": "n6",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n2",
+          "n4"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$88",
+          "op": "AND",
+          "at": [
+            4,
+            5
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          [
+            [
+              5,
+              5
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n7",
+        "label": "n7",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "n10",
+          "n11"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$142",
+          "op": "XOR",
+          "at": [
+            10,
+            5
+          ],
+          "scope": "core",
+          "source": "/share/techmap.v:292.26-292.70|/share/techmap.v:205.14-205.19"
+        },
+        "cells": [
+          [
+            10,
+            5
+          ],
+          [
+            11,
+            5
+          ]
+        ],
+        "edges": [
+          [
+            [
+              10,
+              5
+            ],
+            [
+              11,
+              5
+            ]
+          ],
+          [
+            [
+              11,
+              5
+            ],
+            [
+              11,
+              3
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n8",
+        "label": "n8",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "n13",
+          "n12"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$94",
+          "op": "XOR",
+          "at": [
+            13,
+            7
+          ],
+          "scope": "core",
+          "source": "/share/techmap.v:296.13-296.25"
+        },
+        "cells": [
+          [
+            13,
+            7
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            14,
+            5
+          ],
+          [
+            14,
+            7
+          ]
+        ],
+        "edges": [
+          [
+            [
+              13,
+              7
+            ],
+            [
+              14,
+              7
+            ]
+          ],
+          [
+            [
+              14,
+              4
+            ],
+            [
+              14,
+              3
+            ]
+          ],
+          [
+            [
+              14,
+              5
+            ],
+            [
+              14,
+              4
+            ]
+          ],
+          [
+            [
+              14,
+              7
+            ],
+            [
+              14,
+              5
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n9",
+        "label": "n9",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "n13",
+          "n12"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$151",
+          "op": "AND",
+          "at": [
+            13,
+            8
+          ],
+          "scope": "core",
+          "source": "/share/techmap.v:293.27-293.63|/share/techmap.v:248.19-248.41"
+        },
+        "cells": [
+          [
+            13,
+            8
+          ],
+          [
+            14,
+            6
+          ],
+          [
+            14,
+            8
+          ],
+          [
+            15,
+            4
+          ],
+          [
+            15,
+            6
+          ]
+        ],
+        "edges": [
+          [
+            [
+              13,
+              8
+            ],
+            [
+              14,
+              8
+            ]
+          ],
+          [
+            [
+              14,
+              6
+            ],
+            [
+              15,
+              6
+            ]
+          ],
+          [
+            [
+              14,
+              8
+            ],
+            [
+              14,
+              6
+            ]
+          ],
+          [
+            [
+              15,
+              4
+            ],
+            [
+              15,
+              3
+            ]
+          ],
+          [
+            [
+              15,
+              6
+            ],
+            [
+              15,
+              4
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "port:product:0",
+        "label": "product[0]",
+        "aliases": [
+          "product[0]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n6"
+        ],
+        "driver": {
+          "id": "port:product:0",
+          "op": "BUF",
+          "at": [
+            5,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            5,
+            3
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:product:1",
+        "label": "product[1]",
+        "aliases": [
+          "product[1]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "n7"
+        ],
+        "driver": {
+          "id": "port:product:1",
+          "op": "BUF",
+          "at": [
+            11,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            11,
+            3
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:product:2",
+        "label": "product[2]",
+        "aliases": [
+          "product[2]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "n8"
+        ],
+        "driver": {
+          "id": "port:product:2",
+          "op": "BUF",
+          "at": [
+            14,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            14,
+            3
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:product:3",
+        "label": "product[3]",
+        "aliases": [
+          "product[3]"
+        ],
+        "origins": [
+          {
+            "bus": "a",
+            "bit": 0
+          },
+          {
+            "bus": "a",
+            "bit": 1
+          },
+          {
+            "bus": "b",
+            "bit": 0
+          },
+          {
+            "bus": "b",
+            "bit": 1
+          }
+        ],
+        "inputs": [
+          "n9"
+        ],
+        "driver": {
+          "id": "port:product:3",
+          "op": "BUF",
+          "at": [
+            15,
+            3
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            15,
+            3
+          ]
+        ],
+        "edges": []
+      }
+    ]
+  },
+  "module_blocks": [
+    {
+      "id": "core",
+      "at": [
+        4,
+        4
+      ],
+      "width": 11,
+      "height": 7,
+      "expansion": 1,
+      "units": 6,
+      "operators": 8
+    }
+  ],
+  "fixed_port_banks": false,
+  "bus_search_gap": null,
+  "packing": {
+    "aspect": 1.4,
+    "local_expansion": {
+      "core": 1
+    },
+    "corridor": 0,
+    "port_margin": 4,
+    "fixed_frame": [
+      96,
+      96
+    ]
+  },
+  "optimization": {
+    "objective": "connected_units_then_min_core_cells_and_ticks",
+    "io_in_objective": false,
+    "routing_order": "internal_then_fixed_io_with_conflict_fallback",
+    "path_search": "multi_source_A_star",
+    "local_growth": true,
+    "attempts": [
+      {
+        "aspect": 0.5,
+        "local_expansion": {},
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": null,
+        "reason": "Не удалось изолировать неиспользуемый контакт (5, 5)"
+      },
+      {
+        "aspect": 0.5,
+        "local_expansion": {
+          "core": 1
+        },
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          96,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 25,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              8,
+              17
+            ],
+            "width": 5,
+            "height": 13,
+            "area": 65
+          },
+          "ticks": 11,
+          "excluded_io_cells": 49
+        }
+      },
+      {
+        "aspect": 1.0,
+        "local_expansion": {},
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": "n11",
+        "reason": "Цепь n11 повторно конфликтует: исчерпан лимит 6 перестроений"
+      },
+      {
+        "aspect": 1.0,
+        "local_expansion": {
+          "core": 1
+        },
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": null,
+        "reason": "Не удалось изолировать неиспользуемый контакт (8, 9)"
+      },
+      {
+        "aspect": 1.0,
+        "local_expansion": {
+          "core": 2
+        },
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          96,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 25,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              4,
+              4
+            ],
+            "max": [
+              13,
+              10
+            ],
+            "width": 10,
+            "height": 7,
+            "area": 70
+          },
+          "ticks": 12,
+          "excluded_io_cells": 43
+        }
+      },
+      {
+        "aspect": 1.4,
+        "local_expansion": {},
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": "n4",
+        "reason": "Цепь n4 повторно конфликтует: исчерпан лимит 6 перестроений"
+      },
+      {
+        "aspect": 1.4,
+        "local_expansion": {
+          "core": 1
+        },
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          96,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 23,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              4,
+              4
+            ],
+            "max": [
+              13,
+              9
+            ],
+            "width": 10,
+            "height": 6,
+            "area": 60
+          },
+          "ticks": 11,
+          "excluded_io_cells": 31
+        }
+      },
+      {
+        "aspect": 2.5,
+        "local_expansion": {},
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": "n10",
+        "reason": "Цепь n10 повторно конфликтует: исчерпан лимит 6 перестроений"
+      },
+      {
+        "aspect": 2.5,
+        "local_expansion": {
+          "core": 1
+        },
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          96,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 23,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              4,
+              4
+            ],
+            "max": [
+              18,
+              7
+            ],
+            "width": 15,
+            "height": 4,
+            "area": 60
+          },
+          "ticks": 12,
+          "excluded_io_cells": 32
+        }
+      },
+      {
+        "aspect": 4.0,
+        "local_expansion": {},
+        "corridor": 0,
+        "status": "rejected",
+        "group": "core",
+        "net": "n10",
+        "reason": "Цепь n10 повторно конфликтует: исчерпан лимит 6 перестроений"
+      },
+      {
+        "aspect": 4.0,
+        "local_expansion": {
+          "core": 1
+        },
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          96,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 23,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              4,
+              4
+            ],
+            "max": [
+              18,
+              7
+            ],
+            "width": 15,
+            "height": 4,
+            "area": 60
+          },
+          "ticks": 12,
+          "excluded_io_cells": 32
+        }
+      }
+    ],
+    "aspect_candidates": [
+      0.5,
+      1.0,
+      1.4,
+      2.5,
+      4.0
+    ],
+    "initial_corridor": 0,
+    "area_factor": 1.25,
+    "max_attempts_per_net_per_phase": 6
+  },
+  "backend_search": {
+    "selected": "compact-connected-modules-v1",
+    "candidates": [
+      {
+        "layout": "compact-connected-modules-v1",
+        "cells": 54,
+        "core": {
+          "cells": 23,
+          "gates": 8,
+          "bounds": {
+            "min": [
+              4,
+              4
+            ],
+            "max": [
+              13,
+              9
+            ],
+            "width": 10,
+            "height": 6,
+            "area": 60
+          },
+          "ticks": 11,
+          "excluded_io_cells": 31
+        },
+        "bounds": {
+          "min": [
+            2,
+            3
+          ],
+          "max": [
+            15,
+            11
+          ],
+          "width": 14,
+          "height": 9,
+          "area": 126
+        },
+        "ticks": 23,
+        "no_size_regression": true
+      }
+    ],
+    "rejected": []
+  },
+  "technology_nodes": 12,
+  "technology_mapping": [],
+  "shared_logic": [],
+  "input_buses": [],
+  "sources": [
+    {
+      "name": "mul2.v",
+      "sha256": "73e790e3c7fab5c9342c3c4587e0056384eadfacc2af00ec81ed8981d049c5fb"
+    }
+  ],
+  "source": "mul2.v",
+  "source_sha256": "73e790e3c7fab5c9342c3c4587e0056384eadfacc2af00ec81ed8981d049c5fb",
+  "compiler_version": "0.1.0",
+  "standard": "1800-2023",
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "io_boundary_verified": true,
+  "save_sha256": "b27cfb48e1d999557aee8ed41b9245d6399a541739cc9bbb66c76338d8d69746",
+  "logic_sha256": "098dc3f89cb13d4947a21c0c61848a5e42cf6f12fc6bdd92abc4a6a5358be9bd",
+  "io_devices": [
+    {
+      "name": "a",
+      "port": "a",
+      "index": 0,
+      "kind": "button",
+      "direction": "inputs",
+      "at": [
+        4,
+        2
+      ],
+      "type": 24
+    },
+    {
+      "name": "a",
+      "port": "a",
+      "index": 1,
+      "kind": "button",
+      "direction": "inputs",
+      "at": [
+        7,
+        2
+      ],
+      "type": 24
+    },
+    {
+      "name": "b",
+      "port": "b",
+      "index": 0,
+      "kind": "button",
+      "direction": "inputs",
+      "at": [
+        1,
+        6
+      ],
+      "type": 24
+    },
+    {
+      "name": "b",
+      "port": "b",
+      "index": 1,
+      "kind": "button",
+      "direction": "inputs",
+      "at": [
+        4,
+        12
+      ],
+      "type": 24
+    },
+    {
+      "name": "product",
+      "port": "product",
+      "index": 0,
+      "kind": "indicator",
+      "direction": "outputs",
+      "at": [
+        5,
+        2
+      ],
+      "type": 1
+    },
+    {
+      "name": "product",
+      "port": "product",
+      "index": 1,
+      "kind": "indicator",
+      "direction": "outputs",
+      "at": [
+        11,
+        2
+      ],
+      "type": 1
+    },
+    {
+      "name": "product",
+      "port": "product",
+      "index": 2,
+      "kind": "indicator",
+      "direction": "outputs",
+      "at": [
+        14,
+        2
+      ],
+      "type": 1
+    },
+    {
+      "name": "product",
+      "port": "product",
+      "index": 3,
+      "kind": "indicator",
+      "direction": "outputs",
+      "at": [
+        15,
+        2
+      ],
+      "type": 1
+    }
+  ],
+  "core_map_hash": "b2c51594b23f553e62e26e8a1ca6f94e553b33f53828e4dd12252e4c43525994",
+  "build_target": "scheme",
+  "project_version": 1,
+  "timing_contracts": []
+}

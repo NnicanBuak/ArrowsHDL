@@ -7,21 +7,20 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
-from arrowasm import Cell, MapError, decode, encode
-from arrow_layout import place
-from mapdata import from_document, map_hash, read_map, to_document
-from simulation import simulate
-from test_harness import add_fixture, make_scenario, run_vectors
-from verilog_compile import compile_file
-from verilog_frontend import synthesize
+from arrowshdl.arrowasm import Cell, MapError, decode, encode
+from arrowshdl.arrow_layout import place
+from arrowshdl.mapdata import from_document, map_hash, read_map, to_document
+from arrowshdl.simulation import simulate
+from arrowshdl.test_harness import add_fixture, make_scenario, run_vectors
+from arrowshdl.verilog_compile import compile_file
+from arrowshdl.verilog_frontend import synthesize
 
 
 class CompilerTests(unittest.TestCase):
     def test_half_adder_source_production_and_fixture(self):
         with tempfile.TemporaryDirectory() as directory:
             folder = Path(directory)
-            cells, manifest = compile_file(ROOT / "examples/hdl/half_adder/half_adder.v", "half_adder", folder)
+            cells, manifest = compile_file(ROOT / "tests/fixtures/circuits/hdl/half_adder/half_adder.v", "half_adder", folder)
             self.assertFalse(any(cell.type in (22, 23) for cell in cells.values()))
             self.assertEqual(read_map(folder / "half_adder.map.json"), cells)
             self.assertEqual(read_map(folder / "half_adder.save.txt"), cells)
@@ -55,7 +54,7 @@ class CompilerTests(unittest.TestCase):
     def test_full_adder_table_and_every_transition(self):
         with tempfile.TemporaryDirectory() as directory:
             folder = Path(directory)
-            cells, manifest = compile_file(ROOT / "examples/hdl/full_adder/full_adder.v", "full_adder", folder)
+            cells, manifest = compile_file(ROOT / "tests/fixtures/circuits/hdl/full_adder/full_adder.v", "full_adder", folder)
             vectors = [{"inputs": {"i_bit1": a, "i_bit2": b, "i_carry": c}, "expect": {"o_sum": (a+b+c) % 2, "o_carry": (a+b+c) // 2}} for a, b, c in product((0, 1), repeat=3)]
             transitions = [v for before in vectors for after in vectors for v in (before, after)]
             _, report = run_vectors(cells, manifest, vectors + transitions, folder, "full_adder")
@@ -142,7 +141,7 @@ class CompilerTests(unittest.TestCase):
                 simulate(cells, scenario)
 
     def test_determinism_and_explicit_cell_limit(self):
-        source = ROOT / "examples/hdl/half_adder/half_adder.v"
+        source = ROOT / "tests/fixtures/circuits/hdl/half_adder/half_adder.v"
         first, _ = synthesize(source, "half_adder")
         second, _ = synthesize(source, "half_adder")
         self.assertEqual(first, second)

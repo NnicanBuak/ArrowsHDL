@@ -6,10 +6,7 @@ import sys
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location("arrowasm", ROOT / "src" / "arrowasm.py")
-asm = importlib.util.module_from_spec(spec)
-sys.modules[spec.name] = asm
-spec.loader.exec_module(asm)
+from arrowshdl import arrowasm as asm
 
 
 class CodecTests(unittest.TestCase):
@@ -24,15 +21,15 @@ class CodecTests(unittest.TestCase):
         self.assertEqual(asm.lower(asm.parse(asm.disassemble(expected))), expected)
 
     def test_identity_uses_source_target(self):
-        source = (ROOT / "examples" / "identity.l.asm").read_text(encoding="utf-8")
-        save = (ROOT / "examples" / "identity.save.txt").read_text(encoding="utf-8")
+        source = (ROOT / "tests/fixtures/codec" / "identity.l.asm").read_text(encoding="utf-8")
+        save = (ROOT / "tests/fixtures/codec" / "identity.save.txt").read_text(encoding="utf-8")
         expected = {(0, 0): asm.Cell(22, 1), (1, 0): asm.Cell(1, 1), (2, 0): asm.Cell(23, 0)}
         self.assertEqual(asm.lower(asm.parse(source)), expected)
         self.assertEqual(asm.decode(save), expected)
         self.assertEqual(asm.decode(asm.encode(expected)), expected)
 
     def test_user_TEST_sample(self):
-        save = (ROOT / "examples" / "test.save.txt").read_text(encoding="utf-8")
+        save = (ROOT / "tests/fixtures/codec" / "test.save.txt").read_text(encoding="utf-8")
         cells = asm.decode(save)
         expected_rows = ["###.###.###.###", ".#..#...#....#.", ".#..###.###..#.", ".#..#.....#..#.", ".#..###.###..#."]
         expected = {(x, y): asm.Cell(2, 0) for y, row in enumerate(expected_rows) for x, char in enumerate(row) if char == "#"}

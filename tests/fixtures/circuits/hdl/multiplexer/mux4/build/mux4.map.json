@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "cells": [
+    {"type": "arrow", "dir": "up", "at": [
+      [1, 3], [4, 5], [2, 6], [5, 10]
+    ]},
+    {"type": "arrow", "dir": "right", "at": [
+      [-2, 2], [3, 4]
+    ]},
+    {"type": "arrow", "dir": "down", "at": [
+      [-1, 0], [1, 0], [2, 1], [4, 2], [5, 3], [0, 4], [1, 4], [5, 8], [5, 9]
+    ]},
+    {"type": "splitter_up_right", "dir": "right", "at": [
+      [0, 5]
+    ]},
+    {"type": "blue_arrow", "dir": "up", "at": [
+      [-2, 6], [1, 8]
+    ]},
+    {"type": "blue_arrow", "dir": "right", "at": [
+      [2, 2], [-2, 3], [-1, 3], [0, 3], [-1, 4], [2, 5]
+    ]},
+    {"type": "blue_arrow", "dir": "down", "at": [
+      [-1, -2], [1, -2], [-2, -1], [-2, 0], [-2, 1], [-1, 2], [5, 4], [5, 6]
+    ]},
+    {"type": "blue_arrow", "dir": "left", "at": [
+      [0, -1], [2, -1], [0, 0]
+    ]},
+    {"type": "diagonal", "dir": "up", "at": [
+      [-2, 4]
+    ]},
+    {"type": "diagonal", "dir": "down", "at": [
+      [2, -2], [3, -2], [1, -1]
+    ]},
+    {"type": "diagonal", "dir": "left", "at": [
+      [-1, 7], [0, 8], [1, 9], [2, 9]
+    ]},
+    {"type": "blue_splitter_right_up", "dir": "down", "mirrored": true, "at": [
+      [0, 2]
+    ]},
+    {"type": "blue_splitter_up_diagonal", "dir": "right", "at": [
+      [-1, 1], [2, 3]
+    ]},
+    {"type": "not", "dir": "right", "at": [
+      [0, 1], [3, 3], [0, 6]
+    ]},
+    {"type": "and", "dir": "right", "at": [
+      [1, 1], [1, 2], [4, 3], [4, 4], [1, 5], [1, 6]
+    ]},
+    {"type": "directional_button", "dir": "up", "at": [
+      [1, 10], [2, 10]
+    ]},
+    {"type": "directional_button", "dir": "down", "at": [
+      [-1, -3], [1, -3], [2, -3], [3, -3]
+    ]}
+  ]
+}

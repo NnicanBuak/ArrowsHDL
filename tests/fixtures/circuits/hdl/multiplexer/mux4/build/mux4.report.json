@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "top": "mux4",
+  "save_sha256": "6653d669c7a6e8c23e272a1b875e93e7be4186c08342757a3deb7d6810ef4a0d",
+  "map_hash": "bec83eeb515aa9f4a6398b3a3af1f3736d2545cd54ac9e2ffc7f989d827049b5",
+  "simulated_map_hash": "18ee61ed1274c1f58d0c4feb0c34bc43511782746e5ebac35316fa8c9b6ea06e",
+  "vectors": 64,
+  "checked_samples": 64,
+  "batches": 1,
+  "oracle": "independent integer arithmetic / Boolean equations",
+  "failures": []
+}

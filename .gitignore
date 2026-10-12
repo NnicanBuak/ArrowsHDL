@@ -1,4 +1,29 @@
 .venv/
 native/target/
 tools/node_modules/
+docs/
 
+*.egg-info/
+dist/
+__pycache__/
+build/
+
+# Финальные карты и фикстуры нужны после обычного clone.
+!examples/**/build/
+examples/**/build/*
+!examples/**/build/*.save.txt
+!examples/**/build/*.map.json
+!examples/**/build/*.build.json
+!examples/**/build/*.logic.json
+!examples/**/build/*.bindings.json
+!examples/**/build/*.layout.json
+!examples/**/build/*.report.json
+!examples/**/build/regression.json
+!examples/minesweeper/v2/build/minesweeper_5x5.demo.json
+!examples/minesweeper/v2/build/minesweeper_5x5.defeat.demo.json
+!tests/fixtures/**/build/
+tests/fixtures/**/build/*
+!tests/fixtures/**/build/*.save.txt
+!tests/fixtures/**/build/*.map.json
+!tests/fixtures/**/build/*.build.json
+!tests/fixtures/**/build/*.bindings.json

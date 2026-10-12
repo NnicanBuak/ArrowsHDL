@@ -1,0 +1,130 @@
+[
+  {
+    "inputs": {
+      "binary": 0
+    },
+    "expect": {
+      "bcd": 0
+    }
+  },
+  {
+    "inputs": {
+      "binary": 1
+    },
+    "expect": {
+      "bcd": 1
+    }
+  },
+  {
+    "inputs": {
+      "binary": 2
+    },
+    "expect": {
+      "bcd": 2
+    }
+  },
+  {
+    "inputs": {
+      "binary": 3
+    },
+    "expect": {
+      "bcd": 3
+    }
+  },
+  {
+    "inputs": {
+      "binary": 4
+    },
+    "expect": {
+      "bcd": 4
+    }
+  },
+  {
+    "inputs": {
+      "binary": 5
+    },
+    "expect": {
+      "bcd": 5
+    }
+  },
+  {
+    "inputs": {
+      "binary": 6
+    },
+    "expect": {
+      "bcd": 6
+    }
+  },
+  {
+    "inputs": {
+      "binary": 7
+    },
+    "expect": {
+      "bcd": 7
+    }
+  },
+  {
+    "inputs": {
+      "binary": 8
+    },
+    "expect": {
+      "bcd": 8
+    }
+  },
+  {
+    "inputs": {
+      "binary": 9
+    },
+    "expect": {
+      "bcd": 9
+    }
+  },
+  {
+    "inputs": {
+      "binary": 10
+    },
+    "expect": {
+      "bcd": 16
+    }
+  },
+  {
+    "inputs": {
+      "binary": 11
+    },
+    "expect": {
+      "bcd": 17
+    }
+  },
+  {
+    "inputs": {
+      "binary": 12
+    },
+    "expect": {
+      "bcd": 18
+    }
+  },
+  {
+    "inputs": {
+      "binary": 13
+    },
+    "expect": {
+      "bcd": 19
+    }
+  },
+  {
+    "inputs": {
+      "binary": 14
+    },
+    "expect": {
+      "bcd": 20
+    }
+  },
+  {
+    "inputs": {
+      "binary": 15
+    },
+    "expect": {
+      "bcd": 21
+    }
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "cells": [
+    {"type": "arrow", "dir": "up", "at": [
+      [3, 8]
+    ]},
+    {"type": "arrow", "dir": "down", "at": [
+      [4, 7]
+    ]},
+    {"type": "arrow", "dir": "left", "at": [
+      [6, 5], [5, 7], [4, 8]
+    ]},
+    {"type": "blue_arrow", "dir": "down", "at": [
+      [4, 4], [5, 4]
+    ]},
+    {"type": "blue_splitter_right_up", "dir": "right", "at": [
+      [4, 5]
+    ]},
+    {"type": "not", "dir": "down", "at": [
+      [5, 5]
+    ]},
+    {"type": "and", "dir": "down", "at": [
+      [4, 6], [5, 6]
+    ]},
+    {"type": "directional_button", "dir": "right", "at": [
+      [3, 4], [3, 5]
+    ]},
+    {"type": "directional_button", "dir": "down", "at": [
+      [5, 3]
+    ]}
+  ]
+}

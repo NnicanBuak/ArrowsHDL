@@ -1,11 +1,10 @@
 import sys
 import unittest
 from pathlib import Path
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
-from arrowasm import Cell,MapError
-from netlist_optimization import prune_outputs,forward_monotone_latches,fold_or_trees,compress_three_counts,forward_output_levels
-from incremental_routing import prune_dead_wires
-from simulation import simulate
+from arrowshdl.arrowasm import Cell,MapError
+from arrowshdl.netlist_optimization import prune_outputs,forward_monotone_latches,fold_or_trees,compress_three_counts,forward_output_levels
+from arrowshdl.incremental_routing import prune_dead_wires
+from arrowshdl.simulation import simulate
 
 
 class PruningTests(unittest.TestCase):

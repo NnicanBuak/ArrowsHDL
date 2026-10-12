@@ -4,11 +4,10 @@ from pathlib import Path
 import sys
 import unittest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
-from arrowasm import Cell
-from negotiated_routing import NegotiatedRouter
-from simulation import simulate
-from route_optimization import optimize_router
+from arrowshdl.arrowasm import Cell
+from arrowshdl.negotiated_routing import NegotiatedRouter
+from arrowshdl.simulation import simulate
+from arrowshdl.route_optimization import optimize_router
 
 
 def circuit(optimize, blocked=(),first_input='a'):
@@ -109,7 +108,7 @@ class RouteOptimizationTests(unittest.TestCase):
             self.assertEqual(sum(trace), 2, 'Each input edge must produce exactly one one-tick pulse')
 
     def test_optimized_directions_survive_frozen_output_face_search(self):
-        from output_layout import route_with_outputs
+        from arrowshdl.output_layout import route_with_outputs
         logic=dict(id='logic',output='logic',op='AND',inputs=['a','b'])
         neg=dict(id='neg',output='neg',op='NOT',inputs=['logic'])
         out=dict(id='out',output='out',op='BUF',inputs=['neg'])

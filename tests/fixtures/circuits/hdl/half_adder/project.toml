@@ -1,0 +1,6 @@
+version = 1
+sources = ["half_adder.v"]
+top = "half_adder"
+
+[language]
+standard = "1800-2023"

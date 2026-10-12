@@ -7,14 +7,13 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
-from arrowasm import Cell, MapError
-from arrow_layout import place
-from mapdata import read_map
-from simulation import simulate
-from test_harness import add_fixture, make_scenario, run_vectors, run_vector_batches
-from verilog_compile import compile_file
-from verilog_frontend import synthesize
+from arrowshdl.arrowasm import Cell, MapError
+from arrowshdl.arrow_layout import place
+from arrowshdl.mapdata import read_map
+from arrowshdl.simulation import simulate
+from arrowshdl.test_harness import add_fixture, make_scenario, run_vectors, run_vector_batches
+from arrowshdl.verilog_compile import compile_file
+from arrowshdl.verilog_frontend import synthesize
 
 
 def adder_vector(a, b, ci):
@@ -24,7 +23,7 @@ def adder_vector(a, b, ci):
 
 class CompactTests(unittest.TestCase):
     def test_unchanged_graph_size_and_exhaustive_adder8(self):
-        graph, _ = synthesize(ROOT / "examples/hdl/adder8/adder8.v", "adder8")
+        graph, _ = synthesize(ROOT / "tests/fixtures/circuits/hdl/adder8/adder8.v", "adder8")
         original = repr(graph)
         cells, compact = place(graph)
         sparse, baseline = place(graph, layout="sparse")
@@ -98,7 +97,7 @@ class CompactTests(unittest.TestCase):
         self.assertFalse(simulate(cells, wrong)["passed"])
 
     def test_deterministic_generic_layout_and_validated_options(self):
-        graph, _ = synthesize(ROOT / "examples/hdl/adder8/adder8.v", "adder8")
+        graph, _ = synthesize(ROOT / "tests/fixtures/circuits/hdl/adder8/adder8.v", "adder8")
         first = place(graph)
         self.assertEqual(first, place(graph))
         add_fixture(*first)

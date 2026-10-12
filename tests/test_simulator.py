@@ -9,10 +9,7 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location("arrowasm_simtests", ROOT / "src/arrowasm.py")
-asm = importlib.util.module_from_spec(spec)
-sys.modules[spec.name] = asm
-spec.loader.exec_module(asm)
+from arrowshdl import arrowasm as asm
 
 
 def oracle(cells, scenario):
@@ -89,7 +86,7 @@ def execute(cells, scenario, optimized=True):
         root = Path(folder)
         (root / "map.txt").write_text(asm.encode(cells), encoding="utf-8")
         (root / "case.json").write_text(json.dumps(scenario), encoding="utf-8")
-        cmd = [sys.executable, str(ROOT / "src/logicarrows.py"), "--save", str(root / "map.txt"), "--test", str(root / "case.json")]
+        cmd = [sys.executable, '-m', 'arrowshdl.logicarrows', "--save", str(root / "map.txt"), "--test", str(root / "case.json")]
         if not optimized:
             cmd.append("--no-cycles")
         result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", timeout=30)
@@ -126,8 +123,8 @@ class SimulatorTests(unittest.TestCase):
         return report
 
     def test_identity_and_failure_exit(self):
-        cells = asm.lower(asm.parse((ROOT / "examples/identity.l.asm").read_text(encoding="utf-8")))
-        scenario = json.loads((ROOT / "examples/identity.test.json").read_text())
+        cells = asm.lower(asm.parse((ROOT / "tests/fixtures/codec/identity.l.asm").read_text(encoding="utf-8")))
+        scenario = json.loads((ROOT / "tests/fixtures/codec/identity.test.json").read_text())
         result, report = execute(cells, scenario)
         self.assertEqual(result.returncode, 0, (result.stderr, report))
         scenario["expect"][0]["values"][2] = 0
@@ -136,8 +133,8 @@ class SimulatorTests(unittest.TestCase):
         self.assertEqual(report["failures"], [{"tick": 3, "at": [2,0], "expected": 0, "actual": 1}])
 
     def test_ring_optimization(self):
-        cells = asm.lower(asm.parse((ROOT / "examples/ring.l.asm").read_text(encoding="utf-8")))
-        scenario = json.loads((ROOT / "examples/ring.test.json").read_text())
+        cells = asm.lower(asm.parse((ROOT / "tests/fixtures/codec/ring.l.asm").read_text(encoding="utf-8")))
+        scenario = json.loads((ROOT / "tests/fixtures/codec/ring.test.json").read_text())
         optimized = self.verify_oracle(cells, scenario)
         plain = self.verify_oracle(cells, scenario, False)
         self.assertEqual(optimized["optimized_cycles"], 1)
@@ -146,7 +143,7 @@ class SimulatorTests(unittest.TestCase):
 
     def test_ring_write_clear_and_xor(self):
         rng = random.Random(845)
-        original = asm.lower(asm.parse((ROOT / "examples/ring.l.asm").read_text(encoding="utf-8")))
+        original = asm.lower(asm.parse((ROOT / "tests/fixtures/codec/ring.l.asm").read_text(encoding="utf-8")))
         for mode in (1, 3, 17):
             cells = dict(original)
             if mode == 3:
@@ -161,7 +158,7 @@ class SimulatorTests(unittest.TestCase):
                 self.assertEqual(fast["outputs"], slow["outputs"])
 
     def test_input_port_not_bypassed_by_ring_optimizer(self):
-        cells = asm.lower(asm.parse((ROOT / "examples/ring.l.asm").read_text(encoding="utf-8")))
+        cells = asm.lower(asm.parse((ROOT / "tests/fixtures/codec/ring.l.asm").read_text(encoding="utf-8")))
         del cells[(1,-2)]
         cells[(1,-1)] = asm.Cell(22,2)
         scenario = {"ticks": 20, "inputs": [{"at": [1,-1], "values": [1]+[0]*19}, {"at": [3,0], "values": [1]*20}], "expect": [{"at": [4,1]}]}

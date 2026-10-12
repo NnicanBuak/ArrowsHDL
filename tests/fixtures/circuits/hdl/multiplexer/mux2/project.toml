@@ -1,0 +1,6 @@
+version = 1
+sources = ["mux2.v"]
+top = "mux2"
+
+[language]
+standard = "1800-2023"

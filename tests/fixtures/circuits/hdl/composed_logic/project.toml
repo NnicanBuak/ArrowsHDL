@@ -1,0 +1,6 @@
+version = 1
+sources = ["composed_logic.v"]
+top = "composed_logic"
+
+[language]
+standard = "1800-2023"

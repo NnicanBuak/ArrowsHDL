@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "top": "full_adder",
+  "save_sha256": "880c2ac3afc1af6543d9cd1d1441cdade7625a6db30c30a26a32108fa3cd19da",
+  "map_hash": "c816b866dfe78190764909b60e03be561b5339813f9de73b398938c39ce9e502",
+  "simulated_map_hash": "3c26caa9eaa01f356a66f4bf2eb6ac1a67523516ed6a93105ba7f8fd9310f29d",
+  "vectors": 8,
+  "checked_samples": 16,
+  "batches": 1,
+  "oracle": "independent integer arithmetic / Boolean equations",
+  "failures": []
+}

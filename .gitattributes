@@ -1,0 +1,6 @@
+# Сохранения и входные данные сборки проверяются по точным байтам SHA-256.
+*.save.txt -text whitespace=cr-at-eol
+*.v -text whitespace=-blank-at-eof,cr-at-eol
+*.sv -text whitespace=-blank-at-eof,cr-at-eol
+*.json -text whitespace=cr-at-eol
+*.toml -text whitespace=cr-at-eol

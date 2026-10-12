@@ -6,10 +6,7 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location("arrowasm_modes", ROOT / "src/arrowasm.py")
-asm = importlib.util.module_from_spec(spec)
-sys.modules[spec.name] = asm
-spec.loader.exec_module(asm)
+from arrowshdl import arrowasm as asm
 
 
 class AssemblyModeTests(unittest.TestCase):
@@ -22,7 +19,7 @@ class AssemblyModeTests(unittest.TestCase):
             maps = []
             for flags in ([], ["--strip-test-ports"]):
                 output = root / ("production.txt" if flags else "test.txt")
-                result = subprocess.run([sys.executable, "-X", "utf8", str(ROOT / "src/arrowasm.py"), "assemble", str(input_path), "-o", str(output), *flags], capture_output=True, text=True, encoding="utf-8", timeout=10)
+                result = subprocess.run([sys.executable, "-X", "utf8", str(ROOT / "src/arrowshdl/arrowasm.py"), "assemble", str(input_path), "-o", str(output), *flags], capture_output=True, text=True, encoding="utf-8", timeout=10)
                 self.assertEqual(result.returncode, 0, result.stderr)
                 maps.append(asm.decode(output.read_text(encoding="utf-8")))
             self.assertEqual(maps[0], asm.lower(asm.parse(source)))
@@ -34,7 +31,7 @@ class AssemblyModeTests(unittest.TestCase):
             input_path = root / "map.txt"
             input_path.write_text("AAAAAA==", encoding="utf-8")
             output = root / "map.l.asm"
-            result = subprocess.run([sys.executable, "-X", "utf8", str(ROOT / "src/arrowasm.py"), "disassemble", str(input_path), "-o", str(output), "--strip-test-ports"], capture_output=True, text=True, encoding="utf-8", timeout=10)
+            result = subprocess.run([sys.executable, "-X", "utf8", str(ROOT / "src/arrowshdl/arrowasm.py"), "disassemble", str(input_path), "-o", str(output), "--strip-test-ports"], capture_output=True, text=True, encoding="utf-8", timeout=10)
             self.assertEqual(result.returncode, 2)
             self.assertFalse(output.exists())
 

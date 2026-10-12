@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "save_sha256": "6677836fe95c4b1f9a7b7a38d2ce0509959e7969ac67fe2f57eae1fa4697ec34",
+  "vectors": 65536,
+  "checked_samples": 589824,
+  "oracle": "independent Python integer a+b",
+  "operation_ticks": 160,
+  "batches": 16,
+  "failures": []
+}

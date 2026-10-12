@@ -6,11 +6,10 @@ import tempfile
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'src'))
-from arrowasm import MapError
-from test_harness import run_vectors
-from verilog_compile import compile_file
-from verilog_frontend import normalize,synthesize
+from arrowshdl.arrowasm import MapError
+from arrowshdl.test_harness import run_vectors
+from arrowshdl.verilog_compile import compile_file
+from arrowshdl.verilog_frontend import normalize,synthesize
 
 
 class HierarchyTests(unittest.TestCase):

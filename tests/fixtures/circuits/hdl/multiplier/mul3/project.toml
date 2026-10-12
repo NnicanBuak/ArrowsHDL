@@ -1,0 +1,6 @@
+version = 1
+sources = ["mul3.v"]
+top = "mul3"
+
+[language]
+standard = "1800-2023"

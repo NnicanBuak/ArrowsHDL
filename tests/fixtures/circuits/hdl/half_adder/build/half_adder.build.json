@@ -1,0 +1,1286 @@
+{
+  "schema": 1,
+  "top": "half_adder",
+  "map_hash": "0a8eb3194e8b93d34b2f0f074a65e23edaeb88dff837e85e3571d63ab7b21215",
+  "profile": "GraphDLC-01232bd",
+  "verified_against_current_game": false,
+  "inputs": {
+    "i_bit1": [
+      {
+        "index": 0,
+        "contact": [
+          4,
+          4
+        ],
+        "fixture": [
+          4,
+          3
+        ],
+        "rotation": 2
+      }
+    ],
+    "i_bit2": [
+      {
+        "index": 0,
+        "contact": [
+          4,
+          7
+        ],
+        "fixture": [
+          4,
+          8
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "outputs": {
+    "o_carry": [
+      {
+        "index": 0,
+        "contact": [
+          5,
+          6
+        ],
+        "fixture": [
+          6,
+          6
+        ],
+        "rotation": 0
+      }
+    ],
+    "o_sum": [
+      {
+        "index": 0,
+        "contact": [
+          5,
+          5
+        ],
+        "fixture": [
+          6,
+          5
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "settle_ticks": 5,
+  "routing_limits": [
+    null,
+    4,
+    5,
+    7
+  ],
+  "physical_compaction": {
+    "removed_relays": 0,
+    "coordinate_cuts": 0,
+    "selected": "original",
+    "rejected": "optimized candidate increases cells or area",
+    "exact_edges_verified": true,
+    "bus_constraints_preserved": true
+  },
+  "route_optimization": {
+    "backend": "ArrowsHDL.route_optimization",
+    "before_cells": 6,
+    "after_cells": 6,
+    "passes": 1,
+    "trials": 2,
+    "rejected_trials": 0,
+    "accepted_nets": 0,
+    "changes": [],
+    "objective": "min_cells_then_sum_all_receiver_ticks_then_longest_receiver_ticks",
+    "gate_directions": 4,
+    "fixed_native_blocks": true,
+    "fixed_receiver_contacts": true
+  },
+  "output_search": {
+    "core_frozen": true,
+    "core_connections_verified": true,
+    "selected": {
+      "side": "right",
+      "align": "driver",
+      "offset": 1,
+      "core": {
+        "cells": 2,
+        "gates": 2,
+        "bounds": {
+          "min": [
+            4,
+            5
+          ],
+          "max": [
+            4,
+            6
+          ],
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        "ticks": 1,
+        "excluded_io_cells": 4
+      },
+      "bounds": {
+        "min": [
+          4,
+          3
+        ],
+        "max": [
+          6,
+          8
+        ],
+        "width": 3,
+        "height": 6,
+        "area": 18
+      },
+      "ticks": 5,
+      "cells": 6
+    },
+    "objective": "min_core_then_full_area_then_cells_and_ticks",
+    "candidates": [
+      {
+        "side": "right",
+        "align": "driver",
+        "offset": 1,
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 4
+        },
+        "bounds": {
+          "min": [
+            4,
+            3
+          ],
+          "max": [
+            6,
+            8
+          ],
+          "width": 3,
+          "height": 6,
+          "area": 18
+        },
+        "ticks": 5,
+        "cells": 6
+      },
+      {
+        "side": "bottom",
+        "align": "driver",
+        "offset": 0,
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 7
+        },
+        "bounds": {
+          "min": [
+            4,
+            3
+          ],
+          "max": [
+            6,
+            8
+          ],
+          "width": 3,
+          "height": 6,
+          "area": 18
+        },
+        "ticks": 7,
+        "cells": 9
+      },
+      {
+        "side": "bottom",
+        "align": "end",
+        "offset": 0,
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 8
+        },
+        "bounds": {
+          "min": [
+            4,
+            3
+          ],
+          "max": [
+            7,
+            8
+          ],
+          "width": 4,
+          "height": 6,
+          "area": 24
+        },
+        "ticks": 8,
+        "cells": 10
+      },
+      {
+        "side": "bottom",
+        "align": "driver",
+        "offset": 1,
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 7
+        },
+        "bounds": {
+          "min": [
+            4,
+            3
+          ],
+          "max": [
+            6,
+            8
+          ],
+          "width": 3,
+          "height": 6,
+          "area": 18
+        },
+        "ticks": 7,
+        "cells": 9
+      },
+      {
+        "side": "bottom",
+        "align": "end",
+        "offset": 1,
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 8
+        },
+        "bounds": {
+          "min": [
+            4,
+            3
+          ],
+          "max": [
+            7,
+            8
+          ],
+          "width": 4,
+          "height": 6,
+          "area": 24
+        },
+        "ticks": 8,
+        "cells": 10
+      },
+      {
+        "side": "top",
+        "align": "driver",
+        "offset": 0,
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 6
+        },
+        "bounds": {
+          "min": [
+            4,
+            3
+          ],
+          "max": [
+            6,
+            8
+          ],
+          "width": 3,
+          "height": 6,
+          "area": 18
+        },
+        "ticks": 6,
+        "cells": 8
+      },
+      {
+        "side": "top",
+        "align": "end",
+        "offset": 0,
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 7
+        },
+        "bounds": {
+          "min": [
+            4,
+            3
+          ],
+          "max": [
+            7,
+            8
+          ],
+          "width": 4,
+          "height": 6,
+          "area": 24
+        },
+        "ticks": 7,
+        "cells": 9
+      },
+      {
+        "side": "top",
+        "align": "driver",
+        "offset": 1,
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 6
+        },
+        "bounds": {
+          "min": [
+            4,
+            3
+          ],
+          "max": [
+            6,
+            8
+          ],
+          "width": 3,
+          "height": 6,
+          "area": 18
+        },
+        "ticks": 6,
+        "cells": 8
+      },
+      {
+        "side": "top",
+        "align": "end",
+        "offset": 1,
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 7
+        },
+        "bounds": {
+          "min": [
+            4,
+            3
+          ],
+          "max": [
+            7,
+            8
+          ],
+          "width": 4,
+          "height": 6,
+          "area": 24
+        },
+        "ticks": 7,
+        "cells": 9
+      }
+    ],
+    "rejected": [
+      {
+        "side": "right",
+        "align": "driver",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "right",
+        "align": "center",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "right",
+        "align": "end",
+        "offset": 0,
+        "reason": "Конфликт компактного размещения в (4, 8)"
+      },
+      {
+        "side": "right",
+        "align": "center",
+        "offset": 1,
+        "reason": "Конфликт компактного размещения в (5, 5)"
+      },
+      {
+        "side": "right",
+        "align": "end",
+        "offset": 1,
+        "reason": "Контакты ввода/вывода не образуют внешнюю границу схемы"
+      },
+      {
+        "side": "bottom",
+        "align": "center",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "bottom",
+        "align": "center",
+        "offset": 1,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "top",
+        "align": "center",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "top",
+        "align": "center",
+        "offset": 1,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "left",
+        "align": "driver",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "left",
+        "align": "center",
+        "offset": 0,
+        "reason": "Внешний контакт вывода занят сохранённой разводкой"
+      },
+      {
+        "side": "left",
+        "align": "end",
+        "offset": 0,
+        "reason": "Конфликт компактного размещения в (4, 8)"
+      },
+      {
+        "side": "left",
+        "align": "driver",
+        "offset": 1,
+        "reason": "Нет совместимых контактов у элемента port:o_carry:0"
+      },
+      {
+        "side": "left",
+        "align": "center",
+        "offset": 1,
+        "reason": "Нет совместимых контактов у элемента port:o_carry:0"
+      },
+      {
+        "side": "left",
+        "align": "end",
+        "offset": 1,
+        "reason": "Нет совместимых контактов у элемента port:o_carry:0"
+      }
+    ]
+  },
+  "cells": 10,
+  "logic_nodes": 4,
+  "layout": "compact-connected-modules-v1",
+  "bounds": {
+    "min": [
+      4,
+      3
+    ],
+    "max": [
+      6,
+      8
+    ],
+    "width": 3,
+    "height": 6,
+    "area": 18
+  },
+  "port_layout": "fixed-sides",
+  "rerouted_nets": 0,
+  "io_conflict_fallback": false,
+  "logic_core": {
+    "cells": 2,
+    "gates": 2,
+    "bounds": {
+      "min": [
+        4,
+        5
+      ],
+      "max": [
+        4,
+        6
+      ],
+      "width": 1,
+      "height": 2,
+      "area": 2
+    },
+    "ticks": 1,
+    "excluded_io_cells": 4
+  },
+  "direct_gate_links": 2,
+  "shared_input_contacts": 2,
+  "gate_labels": [
+    {
+      "at": [
+        4,
+        5
+      ],
+      "op": "XOR",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$73",
+      "scope": "core"
+    },
+    {
+      "at": [
+        4,
+        6
+      ],
+      "op": "AND",
+      "id": "$auto$simplemap.cc:106:simplemap_bitop$72",
+      "scope": "core"
+    },
+    {
+      "at": [
+        5,
+        6
+      ],
+      "op": "BUF",
+      "id": "port:o_carry:0",
+      "scope": "core"
+    },
+    {
+      "at": [
+        5,
+        5
+      ],
+      "op": "BUF",
+      "id": "port:o_sum:0",
+      "scope": "core"
+    }
+  ],
+  "signals": {
+    "schema": 1,
+    "input_buses": [
+      {
+        "name": "i_bit1",
+        "bits": [
+          0
+        ]
+      },
+      {
+        "name": "i_bit2",
+        "bits": [
+          0
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "n2",
+        "label": "i_bit1[0]",
+        "aliases": [
+          "i_bit1[0]"
+        ],
+        "origins": [
+          {
+            "bus": "i_bit1",
+            "bit": 0
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            4,
+            4
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          [
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              6
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n3",
+        "label": "i_bit2[0]",
+        "aliases": [
+          "i_bit2[0]"
+        ],
+        "origins": [
+          {
+            "bus": "i_bit2",
+            "bit": 0
+          }
+        ],
+        "inputs": [],
+        "driver": null,
+        "cells": [
+          [
+            4,
+            7
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              6
+            ]
+          ],
+          [
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n4",
+        "label": "n4",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "i_bit1",
+            "bit": 0
+          },
+          {
+            "bus": "i_bit2",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n2",
+          "n3"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$73",
+          "op": "XOR",
+          "at": [
+            4,
+            5
+          ],
+          "scope": "core",
+          "source": "source1.v:4.18-4.33"
+        },
+        "cells": [
+          [
+            4,
+            5
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "n5",
+        "label": "n5",
+        "aliases": [],
+        "origins": [
+          {
+            "bus": "i_bit1",
+            "bit": 0
+          },
+          {
+            "bus": "i_bit2",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n2",
+          "n3"
+        ],
+        "driver": {
+          "id": "$auto$simplemap.cc:106:simplemap_bitop$72",
+          "op": "AND",
+          "at": [
+            4,
+            6
+          ],
+          "scope": "core",
+          "source": "source1.v:5.20-5.35"
+        },
+        "cells": [
+          [
+            4,
+            6
+          ]
+        ],
+        "edges": [
+          [
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              6
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "port:o_carry:0",
+        "label": "o_carry[0]",
+        "aliases": [
+          "o_carry[0]"
+        ],
+        "origins": [
+          {
+            "bus": "i_bit1",
+            "bit": 0
+          },
+          {
+            "bus": "i_bit2",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n5"
+        ],
+        "driver": {
+          "id": "port:o_carry:0",
+          "op": "BUF",
+          "at": [
+            5,
+            6
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            5,
+            6
+          ]
+        ],
+        "edges": []
+      },
+      {
+        "id": "port:o_sum:0",
+        "label": "o_sum[0]",
+        "aliases": [
+          "o_sum[0]"
+        ],
+        "origins": [
+          {
+            "bus": "i_bit1",
+            "bit": 0
+          },
+          {
+            "bus": "i_bit2",
+            "bit": 0
+          }
+        ],
+        "inputs": [
+          "n4"
+        ],
+        "driver": {
+          "id": "port:o_sum:0",
+          "op": "BUF",
+          "at": [
+            5,
+            5
+          ],
+          "scope": "core",
+          "source": null
+        },
+        "cells": [
+          [
+            5,
+            5
+          ]
+        ],
+        "edges": []
+      }
+    ]
+  },
+  "module_blocks": [
+    {
+      "id": "core",
+      "at": [
+        4,
+        4
+      ],
+      "width": 2,
+      "height": 4,
+      "expansion": 0,
+      "units": 1,
+      "operators": 2
+    }
+  ],
+  "fixed_port_banks": false,
+  "bus_search_gap": null,
+  "packing": {
+    "aspect": 0.5,
+    "local_expansion": {},
+    "corridor": 0,
+    "port_margin": 4,
+    "fixed_frame": [
+      96,
+      96
+    ]
+  },
+  "optimization": {
+    "objective": "connected_units_then_min_core_cells_and_ticks",
+    "io_in_objective": false,
+    "routing_order": "internal_then_fixed_io_with_conflict_fallback",
+    "path_search": "multi_source_A_star",
+    "local_growth": true,
+    "attempts": [
+      {
+        "aspect": 0.5,
+        "local_expansion": {},
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          96,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 4
+        }
+      },
+      {
+        "aspect": 1.0,
+        "local_expansion": {},
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          96,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 4
+        }
+      },
+      {
+        "aspect": 1.4,
+        "local_expansion": {},
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          96,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 4
+        }
+      },
+      {
+        "aspect": 2.5,
+        "local_expansion": {},
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          96,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 4
+        }
+      },
+      {
+        "aspect": 4.0,
+        "local_expansion": {},
+        "corridor": 0,
+        "port_margin": 4,
+        "fixed_frame": [
+          96,
+          96
+        ],
+        "status": "valid",
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 4
+        }
+      }
+    ],
+    "aspect_candidates": [
+      0.5,
+      1.0,
+      1.4,
+      2.5,
+      4.0
+    ],
+    "initial_corridor": 0,
+    "area_factor": 1.25,
+    "max_attempts_per_net_per_phase": 6
+  },
+  "backend_search": {
+    "selected": "compact-connected-modules-v1",
+    "candidates": [
+      {
+        "layout": "compact-native-adder-v1",
+        "cells": 8,
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              0,
+              1
+            ],
+            "max": [
+              0,
+              2
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 6
+        },
+        "bounds": {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            2,
+            3
+          ],
+          "width": 3,
+          "height": 4,
+          "area": 12
+        },
+        "ticks": 6,
+        "no_size_regression": true
+      },
+      {
+        "layout": "compact-connected-modules-v1",
+        "cells": 6,
+        "core": {
+          "cells": 2,
+          "gates": 2,
+          "bounds": {
+            "min": [
+              4,
+              5
+            ],
+            "max": [
+              4,
+              6
+            ],
+            "width": 1,
+            "height": 2,
+            "area": 2
+          },
+          "ticks": 1,
+          "excluded_io_cells": 4
+        },
+        "bounds": {
+          "min": [
+            4,
+            4
+          ],
+          "max": [
+            5,
+            7
+          ],
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        "ticks": 5,
+        "no_size_regression": true
+      }
+    ],
+    "rejected": []
+  },
+  "adder_bits": 1,
+  "technology_nodes": 4,
+  "technology_mapping": [],
+  "shared_logic": [],
+  "input_buses": [],
+  "sources": [
+    {
+      "name": "half_adder.v",
+      "sha256": "8f5d9fe5ba316ec0d0de2366c45377a16d319cb088aff06d3a8ac9d01cdeaff5"
+    }
+  ],
+  "source": "half_adder.v",
+  "source_sha256": "8f5d9fe5ba316ec0d0de2366c45377a16d319cb088aff06d3a8ac9d01cdeaff5",
+  "compiler_version": "0.1.0",
+  "standard": "1800-2023",
+  "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "io_boundary_verified": true,
+  "save_sha256": "fd1e36125819e5a5c29d0d9616f10ef561633277a807cadb9ff08225c09223c6",
+  "logic_sha256": "aec9e8a4a6fbf8f560ad4a7284db63e84d69686be3adb27e277f8ec411181270",
+  "io_devices": [
+    {
+      "name": "i_bit1",
+      "port": "i_bit1",
+      "index": 0,
+      "kind": "button",
+      "direction": "inputs",
+      "at": [
+        4,
+        3
+      ],
+      "type": 24
+    },
+    {
+      "name": "i_bit2",
+      "port": "i_bit2",
+      "index": 0,
+      "kind": "button",
+      "direction": "inputs",
+      "at": [
+        4,
+        8
+      ],
+      "type": 24
+    },
+    {
+      "name": "o_carry",
+      "port": "o_carry",
+      "index": 0,
+      "kind": "indicator",
+      "direction": "outputs",
+      "at": [
+        6,
+        6
+      ],
+      "type": 1
+    },
+    {
+      "name": "o_sum",
+      "port": "o_sum",
+      "index": 0,
+      "kind": "indicator",
+      "direction": "outputs",
+      "at": [
+        6,
+        5
+      ],
+      "type": 1
+    }
+  ],
+  "core_map_hash": "d87b526396ccb164c9e3663f8350db91b9184f2b2ad16adecf7e3756e9484457",
+  "build_target": "scheme",
+  "project_version": 1,
+  "timing_contracts": []
+}
