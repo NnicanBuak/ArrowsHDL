@@ -168,6 +168,9 @@ def route_project(project,blocks,names,origins,frames,cache_records,out,max_cell
     def source(reference):
         bits=public_bits(reference)
         if bits is not None: return [(bit['net'],bit['index']) for bit in bits]
+        output_sources=getattr(project,'output_sources',{})
+        if reference in output_sources:
+            return [bit for item in output_sources[reference] for bit in source(item)]
         if reference in ('0','1'):
             if reference not in constants:
                 p=(frame['min'][0]+2+int(reference)*3,frame['min'][1]-3)
@@ -248,6 +251,8 @@ def route_project(project,blocks,names,origins,frames,cache_records,out,max_cell
         timing=dict(model='game-ticks',state_boundaries=memories),
         compiled_modules=cache_records,instances={name:dict(inputs=desc['inputs'],outputs=desc['outputs'],
             map_hash=map_hash(originals[name]),cells=len(originals[name]),panel=desc.get('panel')) for name,desc in placed.items()},
+        module_blocks=[dict(id=name,at=list(origin),width=frame['width'],height=frame['height'])
+                       for name,origin,frame in zip(names,origins,frames)],
         components={row['name']:dict(inputs=placed[row['name']]['inputs'],outputs=placed[row['name']]['outputs'],
                     interface=placed[row['name']].get('interface',{}),display=placed[row['name']].get('display'),
                     source_map_hash=placed[row['name']]['source_map_hash']) for row in project.components},

@@ -24,7 +24,7 @@ def compiled_module(project,module,out,timeout,layout,max_cells,compact):
     headers = {}
     for directory in (*project.include_dirs,*{p.parent for p in project.sources}):
         for path in sorted(directory.rglob('*')):
-            if path.is_file() and path.suffix in ('.vh','.svh','.h','.inc'):
+            if path.is_file() and path.suffix in ('.vh','.svh','.h','.inc','.v','.sv'):
                 headers[str(path)] = hashlib.sha256(path.read_bytes()).hexdigest()
     compiler = hashlib.sha256()
     for path in sorted(Path(__file__).parent.glob('*.py')):
@@ -32,7 +32,9 @@ def compiled_module(project,module,out,timeout,layout,max_cells,compact):
         compiler.update(path.read_bytes())
     compiler.update((Path(__file__).parent/'library/arrows.v').read_bytes())
     identity = dict(version=__version__,compiler=compiler.hexdigest(),hdl=module['hdl'],
+        rtlil_kind=module.get('rtlil_kind'),
         sources=[dict(name=p.name,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in project.sources],
+        include_dirs=[str(Path(path).resolve()) for path in project.include_dirs],
         headers=headers,parameters=module.get('parameters',{}),standard=project.standard,
         defines=list(project.defines),layout=layout,compact=compact,panel=module.get('panel'))
     key = hashlib.sha256(json.dumps(identity,sort_keys=True).encode()).hexdigest()
@@ -51,10 +53,25 @@ def compiled_module(project,module,out,timeout,layout,max_cells,compact):
         except (ValueError, KeyError, MapError):
             pass
     with tempfile.TemporaryDirectory(prefix='arrowshdl-module-') as directory:
-        cells,meta = compile_file(project.sources,module['hdl'],directory,timeout,max_cells,layout,
-            standard=project.standard,include_dirs=project.include_dirs,defines=project.defines,
-            parameters=module.get('parameters',{}),compact=compact,
-            constraints={'panel':module['panel'],'base':str(project.path.parent)} if module.get('panel') else None)
+        constraints={'panel':module['panel'],'base':str(project.path.parent)} if module.get('panel') else None
+        if module.get('rtlil_kind') and getattr(project,'hierarchy_raw',None):
+            from copy import deepcopy
+            from arrowshdl.verilog_frontend import synthesize_raw
+            from arrowshdl.verilog_compile import emit_build
+            raw=deepcopy(project.hierarchy_raw)
+            original=module['rtlil_kind']; specialized='__arrowshdl_specialized_top'
+            definition=raw['modules'].pop(original)
+            raw['modules'][specialized]=definition
+            for owner in raw['modules'].values():
+                for cell in owner.get('cells',{}).values():
+                    if cell['type']==original: cell['type']=specialized
+            netlist,log=synthesize_raw(raw,specialized,timeout)
+            cells,meta=emit_build(netlist,project.sources,module['hdl'],Path(directory),log,
+                max_cells=max_cells,layout=layout,constraints=constraints,standard=project.standard,compact=compact)
+        else:
+            cells,meta = compile_file(project.sources,module['hdl'],directory,timeout,max_cells,layout,
+                standard=project.standard,include_dirs=project.include_dirs,defines=project.defines,
+                parameters=module.get('parameters',{}),compact=compact,constraints=constraints)
     folder.mkdir(parents=True,exist_ok=True)
     temporary = folder/f'{key}.{os.getpid()}.tmp'
     write_json(temporary,dict(identity=identity,key=key,scheme=document(cells,meta)))

@@ -1,51 +1,7 @@
-version = 2
+version = 3
 top = "pulse_sequencer"
-sources = ["selection_memory.v", "oscillator_bank.v", "waveform_selector.v"]
+sources = ["pulse_sequencer.v", "selection_memory.v", "oscillator_bank.v", "waveform_selector.v"]
+design = "design.toml"
 
 [language]
 standard = "1364-2005"
-
-[[modules]]
-name = "memory"
-hdl = "selection_memory"
-[[modules]]
-name = "clocks"
-hdl = "oscillator_bank"
-[[modules]]
-name = "selector"
-hdl = "waveform_selector"
-
-[[components]]
-name = "history"
-file = "library:history64"
-
-[[inputs]]
-name = "controls"
-width = 8
-widget = "button"
-
-[[connections]]
-from = "controls"
-to = "memory.controls"
-[[connections]]
-from = "memory.selection"
-to = "selector.selection"
-[[connections]]
-from = "clocks.waves"
-to = "selector.waves"
-[[connections]]
-from = "selector.waveform"
-to = "history.signal"
-
-[[outputs]]
-name = "active"
-from = "memory.active"
-widget = "binary"
-[[outputs]]
-name = "selection"
-from = "memory.selection"
-widget = "binary"
-[[outputs]]
-name = "waveform"
-from = "selector.waveform"
-widget = "indicator"

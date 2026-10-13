@@ -5,6 +5,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from PIL import Image
 
 from arrowshdl.mapdata import read_map
 
@@ -32,6 +33,8 @@ class CliArtifactTests(unittest.TestCase):
             cli('test',output,vectors,'--vectors','-o',root/'report.json')
             self.assertTrue(json.loads((root/'report.json').read_text())['passed'])
             cli('preview',output,'-o',root/'preview.png')
+            cli('preview',output,'--style','logical','-o',root/'logical.png')
+            with Image.open(root/'logical.png') as preview:preview.verify()
             cli('compile',source,'--top','xor_unit','-o',root/'save'/'xor.save.txt')
             self.assertEqual(read_map(output),read_map(root/'save'/'xor.save.txt'))
             self.assertEqual(len(list((root/'save').iterdir())),1)
@@ -61,8 +64,11 @@ class CliArtifactTests(unittest.TestCase):
         from arrowshdl.manifest import load_project
         from arrowshdl.arrowasm import MapError
         with tempfile.TemporaryDirectory() as directory:
-            path=Path(directory)/'project.toml'
-            path.write_text('version=2\ntop="demo"\n[[components]]\nname="display"\nfile="build/display.json"\n')
+            root=Path(directory)
+            path=root/'project.toml'
+            (root/'demo.v').write_text('module demo(input a,output y); assign y=a; endmodule')
+            path.write_text('version=3\ntop="demo"\nsources=["demo.v"]\ndesign="design.toml"\n')
+            (root/'design.toml').write_text('version=1\n[[components]]\nname="display"\nfile="build/display.json"\n')
             with self.assertRaisesRegex(MapError,'display.json'):
                 load_project(path)
 
@@ -77,7 +83,9 @@ class CliArtifactTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             project=root/'bad.toml'
-            project.write_text('version=2\ntop="bad"\n[[components]]\nname="screen"\nfile="missing.json"\n')
+            (root/'source.v').write_text('module bad(input a,output y); assign y=a; endmodule')
+            project.write_text('version=3\ntop="bad"\nsources=["source.v"]\ndesign="design.toml"\n')
+            (root/'design.toml').write_text('version=1\n[[components]]\nname="screen"\nfile="missing.json"\n')
             result=cli('build',str(project),'-o',str(root/'result.json'))
             self.assertEqual(result.returncode,2)
             self.assertIn('Error: Component file not found:',result.stderr)
@@ -90,3 +98,17 @@ class CliArtifactTests(unittest.TestCase):
             result=cli('simulate',str(root/'demo.json'),str(scenario),'-o',str(root/'trace.json'))
             self.assertEqual(result.returncode,2)
             self.assertFalse(any('\u0400'<=c<='\u04ff' for c in result.stderr))
+
+    def test_malformed_object_has_a_cli_error_without_traceback(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            obj=root/'malformed.aho.json'
+            obj.write_text(json.dumps({
+                'format':'arrowshdl-object','version':1,'standard':'1800-2023','top':'demo',
+            }))
+            result=subprocess.run([sys.executable,'-m','arrowshdl','link',str(obj),
+                '--top','demo','-o',str(root/'result.json')],
+                capture_output=True,text=True,encoding='utf-8',timeout=30)
+            self.assertEqual(result.returncode,2)
+            self.assertIn('malformed ArrowsHDL object: rtlil must be an object',result.stderr)
+            self.assertNotIn('Traceback',result.stderr)

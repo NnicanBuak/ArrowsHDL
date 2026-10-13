@@ -123,7 +123,12 @@ def build_scheme(path, out, *, timeout=600, layout='auto', max_cells=1000000, te
     report(1, f'Reading project: {path}')
     project = load_project(Path(path))
     out = Path(out)
-    if project.version==2:
+    if project.version==3:
+        from arrowshdl.hdl_project import derive_project
+        from arrowshdl.compiled_graph import assemble
+        assembly_project=derive_project(project,timeout)
+        cells,meta=assemble(assembly_project,out,timeout,layout,max_cells,compact)
+    elif project.version==2:
         from arrowshdl.compiled_graph import assemble
         cells,meta = assemble(project,out,timeout,layout,max_cells,compact)
     elif project.modules or project.components:
@@ -144,8 +149,11 @@ def build_scheme(path, out, *, timeout=600, layout='auto', max_cells=1000000, te
                 parameters=project.parameters,constraints=project.layout,bindings=project.bindings,compact=compact)
     if meta['layout'] != 'fixed-native-verilog':
         report(92, 'Attaching input and output devices')
-        inputs = [dict(row,to=row['name']) for row in project.inputs] if project.version==2 else project.inputs
-        outputs = [dict(row,**{'from':row['name']}) for row in project.outputs] if project.version==2 else project.outputs
+        if project.version==3:
+            inputs,outputs=_design_io(project,meta)
+        else:
+            inputs = [dict(row,to=row['name']) for row in project.inputs] if project.version==2 else project.inputs
+            outputs = [dict(row,**{'from':row['name']}) for row in project.outputs] if project.version==2 else project.outputs
         cells,meta = attach_io(cells,meta,inputs,outputs,testing=testing)
     elif project.inputs or project.outputs:
         raise MapError('Fixed structural scheme widgets require its prepared template')
@@ -156,7 +164,8 @@ def build_scheme(path, out, *, timeout=600, layout='auto', max_cells=1000000, te
         meta.update(map_hash=map_hash(cells),cells=len(cells),bounds=bounds_of(cells),testing=True)
     if project.labels:
         from arrowshdl.lettering import attach_labels
-        cells,meta=attach_labels(cells,meta,project.labels,project.path.parent)
+        label_base=project.design_path.parent if project.version==3 and project.design_path else project.path.parent
+        cells,meta=attach_labels(cells,meta,project.labels,label_base)
     if len(cells) > max_cells:
         raise MapError('Scheme exceeds --max-cells')
     meta['project_version'] = project.version
@@ -167,3 +176,40 @@ def build_scheme(path, out, *, timeout=600, layout='auto', max_cells=1000000, te
     meta['save_sha256'] = save_sha256(out / f'{project.top}.save.txt')
     write_json(out/f'{project.top}.build.json',meta)
     return cells,meta
+
+
+def _design_io(project,meta):
+    """Resolve interface defaults and sidecar overrides against HDL ports."""
+    from arrowshdl.presentation import port_bits
+    design=project.design or {}
+    overrides={}
+    for row in design.get('ports',()):
+        matches=[]
+        for side in ('inputs','outputs'):
+            try: matches.append((side,port_bits(meta[side],row['path'])))
+            except MapError: pass
+        if len(matches)!=1: raise MapError(f"design.ports.path is missing or ambiguous: {row['path']}")
+        side,entries=matches[0]
+        if side=='inputs' and row.get('widget','button') not in ('button',):
+            raise MapError(f"{row['path']}: HDL inputs support only the button widget")
+        if side=='outputs' and row.get('widget','indicator') not in ('indicator','binary'):
+            raise MapError(f"{row['path']}: HDL outputs support indicator or binary widgets")
+        for entry in entries:
+            key=(side,row['path'].split('[',1)[0],entry['index'])
+            if key in overrides: raise MapError(f"Conflicting design port rules: {row['path']}")
+            overrides[key]=dict(hidden=row.get('hidden',False),widget=row.get('widget'),size=row.get('size'))
+
+    result={}
+    for side in ('inputs','outputs'):
+        rows=[]
+        default='button' if side=='inputs' else 'indicator'
+        for name,entries in meta[side].items():
+            for entry in entries:
+                config=overrides.get((side,name,entry['index']),{})
+                if config.get('hidden'): continue
+                row={'name':f'{name}[{entry["index"]}]','widget':config.get('widget') or default}
+                row['to' if side=='inputs' else 'from']=row['name']
+                if side=='inputs' and config.get('size'): row['size']=config['size']
+                rows.append(row)
+        result[side]=rows
+    return result['inputs'],result['outputs']

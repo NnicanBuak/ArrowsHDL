@@ -1,0 +1,43 @@
+version = 1
+
+[[ports]]
+path = "new_game"
+widget = "button"
+
+[[ports]]
+path = "selected"
+widget = "button"
+size = [7, 7]
+
+[[ports]]
+path = "opened"
+hidden = true
+
+[[ports]]
+path = "mine"
+hidden = true
+
+[[ports]]
+path = "first_selected"
+hidden = true
+
+[[views]]
+select = "cells[*].u_cell"
+button = "selected"
+size = [7, 7]
+left = { port = "segments", component = "library:seven_segment" }
+right = { port = "visible_mine", bitmap = ["...#...", ".#.#.#.", "..###..", "#######", "..###..", ".#.#.#.", "...#..."] }
+
+[[components]]
+name = "win_message"
+kind = "text"
+text = "WIN"
+font = "library:arrow4"
+bind = "game.victory"
+
+[[components]]
+name = "loss_message"
+kind = "text"
+text = "LOSE"
+font = "library:arrow4"
+bind = "game.defeat"

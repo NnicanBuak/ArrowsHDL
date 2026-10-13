@@ -1,7 +1,10 @@
 """Logical graph composition validates interfaces before physical placement."""
+import json
+import os
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import arrowshdl
 from arrowshdl.test_harness import add_fixture,make_scenario
@@ -9,66 +12,11 @@ from arrowshdl.manifest import load_project
 
 
 class ProjectGraphTests(unittest.TestCase):
-    def test_compiled_component_build_needs_no_source_and_repeated_modules_compile_once(self):
+    def test_legacy_graph_manifest_is_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
-            root=Path(directory);source=root/'invert.v'
-            source.write_text('module invert(input [1:0] a,output [1:0] y); assign y=~a; endmodule')
-            arrowshdl.compile(source,top='invert',out=root/'unit.json',compact=True)
-            path=root/'map.toml'
-            path.write_text('''version=2
-top="reused"
-[[components]]
-name="unit"
-file="unit.json"
-[[inputs]]
-name="a"
-width=2
-[[connections]]
-from="a"
-to="unit.a"
-[[outputs]]
-name="y"
-from="unit.y"
-''')
-            source.unlink()
-            result=arrowshdl.build(path,out=root/'assembled.json')
-            self.assertFalse(result.metadata['compiled_modules'])
-            report=arrowshdl.simulate(add_fixture(result.cells,result.metadata),make_scenario(result.metadata,
-                [dict(inputs={'a':i},expect={'y':3^i}) for i in range(4)]))
-            self.assertTrue(report['passed'],report['failures'])
-            source.write_text('module invert(input [1:0] a,output [1:0] y); assign y=~a; endmodule')
-            path.write_text('''version=2
-top="chain"
-sources=["invert.v"]
-[[modules]]
-name="first"
-hdl="invert"
-[[modules]]
-name="second"
-hdl="invert"
-[[inputs]]
-name="a"
-width=2
-[[connections]]
-from="a"
-to="first.a"
-[[connections]]
-from="first.y"
-to="second.a"
-[[outputs]]
-name="y"
-from="second.y"
-''')
-            result=arrowshdl.build(path,out=root/'chain.json')
-            self.assertEqual(len(result.metadata['compiled_modules']),1)
-            self.assertEqual(result.metadata['optimization']['instances'],2)
-            warm=arrowshdl.build(path,out=root/'chain.json')
-            self.assertTrue(warm.metadata['compiled_modules'][0]['reused'])
-            self.assertEqual(result.cells,warm.cells)
-            source.write_text(source.read_text().replace('~a','a'))
-            changed=arrowshdl.build(path,out=root/'chain.json')
-            self.assertFalse(changed.metadata['compiled_modules'][0]['reused'])
-            self.assertNotEqual(result.metadata['compiled_modules'][0]['key'],changed.metadata['compiled_modules'][0]['key'])
+            path=Path(directory)/'project.toml'
+            path.write_text('version=2\ntop="legacy"\n')
+            with self.assertRaises(arrowshdl.MapError): arrowshdl.build(path,out=Path(directory)/'out.json')
 
     def test_native_register_and_latch_retain_state_after_control_release(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -87,54 +35,97 @@ from="second.y"
             root=Path(directory)
             (root/'logic.v').write_text('''module invert #(parameter N=2)(input [N-1:0] a,output [N-1:0] y);
                 assign y=~a; endmodule
-                module parity(input [1:0] a,output y); assign y=^a; endmodule''')
+                module parity(input [1:0] a,output y); assign y=^a; endmodule
+                module demo(input [3:0] data,output [3:0] word,output parity_bit);
+                    wire [3:0] inverse;
+                    invert #(.N(4)) inverter(data,inverse);
+                    parity check(inverse[3:2],parity_bit);
+                    assign word=inverse;
+                endmodule''')
             path=root/'project.toml'
-            path.write_text('''version=2
+            path.write_text('''version=3
 top="demo"
 sources=["logic.v"]
-[[modules]]
-name="inverter"
-hdl="invert"
-parameters={N=4}
-[[modules]]
-name="check"
-hdl="parity"
-[[inputs]]
-name="data"
-width=4
-[[connections]]
-from="data"
-to="inverter.a"
-[[connections]]
-from="inverter.y[3:2]"
-to="check.a"
-[[outputs]]
-name="word"
-from="inverter.y"
-[[outputs]]
-name="parity"
-from="check.y"
+design="design.toml"
 ''')
+            (root/'design.toml').write_text('version=1\n')
             result=arrowshdl.build(path,out=root/'out.json',timeout=30)
-            self.assertEqual(result.metadata['project_version'],2)
-            self.assertEqual(result.metadata['optimization']['mode'],'default')
-            vectors=[dict(inputs={'data':i},expect={'word':15^i,'parity':((15^i)>>2).bit_count()%2}) for i in range(16)]
-            report=arrowshdl.simulate(add_fixture(result.cells,result.metadata),make_scenario(result.metadata,vectors))
-            self.assertTrue(report['passed'],report['failures'])
+            self.assertEqual(result.metadata['project_version'],3)
             self.assertTrue((root/'out.json').is_file())
-            self.assertIn('connections', result.metadata['project_graph'])
+            self.assertEqual(result.metadata['optimization']['instances'],2)
             self.assertEqual(len(result.metadata['compiled_modules']),2)
             warm=arrowshdl.build(path,out=root/'out.json',timeout=30)
             self.assertTrue(all(row['reused'] for row in warm.metadata['compiled_modules']))
             self.assertEqual(warm.cells,result.cells)
-            text=path.read_text()
-            for altered in (text.replace('to="check.a"','to="inverter.a"'),
-                            text.replace('from="inverter.y[3:2]"','from="inverter.y[5:4]"'),
-                            text.replace('from="inverter.y[3:2]"','from="inverter.y"'),
-                            text.replace('from="data"','from="inverter.a"'),
-                            text.replace('hdl="parity"','hdl="parity"\nat=[0,0]')):
-                path.write_text(altered)
-                with self.assertRaises(arrowshdl.MapError): arrowshdl.build(path,out=root/'invalid.json',timeout=30)
+
+    def test_single_module_project_connects_root_ports_to_its_logic(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'logic.v').write_text(
+                'module dut(input a, output y); assign y=~a; endmodule',
+                encoding='utf-8',
+            )
+            project = root / 'project.toml'
+            project.write_text('version=3\ntop="dut"\nsources=["logic.v"]\n', encoding='utf-8')
+
+            result = arrowshdl.build(project, out=root / 'out.json', timeout=30)
+            from arrowshdl.map_preview import render_cells
+            preview=root/'logical.png'
+            render_cells(result.cells,preview,result.metadata,style='logical')
+            self.assertTrue(preview.is_file())
+            self.assertEqual([block['id'] for block in result.metadata['module_blocks']],['dut'])
+
+            vectors = [
+                dict(inputs={'a': value}, expect={'y': 1 - value})
+                for value in (0, 1)
+            ]
+            report = arrowshdl.simulate(
+                add_fixture(result.cells, result.metadata),
+                make_scenario(result.metadata, vectors),
+            )
+            self.assertTrue(report['passed'], report['failures'])
+
+    def test_include_search_order_is_part_of_compiled_module_cache_key(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            cache = root / 'cache'
+            source = root / 'logic.v'
+            source.write_text(
+                'module gate(input a,b, output y);\n'
+                '`include "choice.vh"\n'
+                'endmodule\n'
+                'module top(input a,b, output y); gate unit(a,b,y); endmodule',
+                encoding='utf-8',
+            )
+            for name, operator in (('and', '&'), ('or', '|')):
+                folder = root / name
+                folder.mkdir()
+                (folder / 'choice.vh').write_text(
+                    f'assign y=a{operator}b;\n', encoding='utf-8'
+                )
+
+            records = []
+            with patch.dict(os.environ, {'ARROWSHDL_CACHE_DIR': str(cache)}):
+                for directories, expected in ((('and', 'or'), 0), (('or', 'and'), 1)):
+                    project = root / 'project.toml'
+                    project.write_text(
+                        'version=3\ntop="top"\nsources=["logic.v"]\n'
+                        f'include_dirs={json.dumps(list(directories))}\n',
+                        encoding='utf-8',
+                    )
+                    result = arrowshdl.build(project, out=root / 'out.json', timeout=30)
+                    scenario = make_scenario(
+                        result.metadata,
+                        [dict(inputs={'a': 0, 'b': 1}, expect={'y': expected})],
+                    )
+                    report = arrowshdl.simulate(
+                        add_fixture(result.cells, result.metadata), scenario
+                    )
+                    self.assertTrue(report['passed'], report['failures'])
+                    records.extend(result.metadata['compiled_modules'])
+
+            self.assertNotEqual(records[0]['key'], records[1]['key'])
+            self.assertFalse(records[1]['reused'])
 
     def test_default_has_no_circuit_templates_and_compact_never_grows_complete_map(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -158,7 +149,8 @@ from="check.y"
         root=Path(__file__).resolve().parents[1]/'examples'
         for folder in root.iterdir():
             if not folder.is_dir(): continue
-            self.assertEqual(len(list(folder.glob('*.toml'))),1,folder.name)
+            self.assertTrue((folder/'project.toml').is_file(),folder.name)
+            self.assertTrue(set(path.name for path in folder.glob('*.toml')) <= {'project.toml','design.toml'},folder.name)
             for path in folder.iterdir():
                 self.assertTrue((path.is_dir() and path.name in ('build','visuals')) or
                                 (path.is_file() and (path.name=='README.md' or path.suffix in ('.v','.sv','.toml'))),str(path))

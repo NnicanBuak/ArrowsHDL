@@ -56,7 +56,7 @@ class NativeMuxTests(unittest.TestCase):
         source=ROOT/'tests/fixtures/circuits/hdl/multiplexer/mux4/mux4.v'
         with tempfile.TemporaryDirectory() as d:
             folder=Path(d)
-            cells,meta=compile_file(source,'mux4',folder,input_buses=['data,sel'],input_bus_gap=0)
+            cells,meta=compile_file(source,'mux4',folder,layout='compact',input_buses=['data,sel'],input_bus_gap=0)
             search=meta['output_search']
             self.assertTrue(search['core_frozen'])
             self.assertTrue(search['core_connections_verified'])
@@ -200,23 +200,26 @@ class NativeMuxTests(unittest.TestCase):
             folder = Path(d)
             source = folder / 'generic.v'
             source.write_text('module generic(input [1:0] data,input enable,output y); assign y=data[0]^data[1]^enable; endmodule', encoding='utf-8')
+            output = folder / 'generic.json'
             result = subprocess.run([sys.executable, '-m', 'arrowshdl', 'compile', str(source),
-                                     '--out', str(folder), '--input-bus', 'data,enable', '--input-bus-gap', '0'],
+                                     '--out', str(output), '--input-bus', 'data,enable', '--input-bus-gap', '0'],
                                     capture_output=True, text=True, encoding='utf-8')
             self.assertEqual(result.returncode, 0, result.stderr)
-            meta = json.loads((folder / 'generic.build.json').read_text(encoding='utf-8'))
+            from arrowshdl.artifacts import read_metadata
+            from arrowshdl.mapdata import read_map
+            meta = read_metadata(output)
             self.assert_input_bus(meta)
             from arrowshdl.mapdata import read_map
             vectors = [{'inputs': {'data': v, 'enable': e}, 'expect': {'y': (v & 1) ^ (v >> 1) ^ e}}
                        for v in range(4) for e in range(2)]
-            _, report = run_vectors(read_map(folder / 'generic.save.txt'), meta, vectors, folder, 'generic', compressed=True)
+            _, report = run_vectors(read_map(output), meta, vectors, folder, 'generic', compressed=True)
             self.assertTrue(report['passed'], report['failures'])
 
     def test_auto_bus_spacing_preserves_order_and_exterior(self):
         source=ROOT/'tests/fixtures/circuits/hdl/multiplexer/mux8/mux8.v'
         with tempfile.TemporaryDirectory() as d:
             folder=Path(d)
-            cells,meta=compile_file(source,'mux8',folder,input_buses=['data,sel'],input_bus_gap='auto')
+            cells,meta=compile_file(source,'mux8',folder,layout='compact',input_buses=['data,sel'],input_bus_gap='auto')
             self.assertLess(len(cells),178)
             self.assertLess(meta['settle_ticks'],47)
             self.assertTrue(meta['optimization']['automatic_input_buses'])
@@ -246,7 +249,7 @@ class NativeMuxTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             folder=Path(d)
             source=ROOT/'tests/fixtures/circuits/hdl/multiplexer/mux4/mux4.v'
-            cells,meta=compile_file(source,'mux4',folder,input_buses=['data','sel'],input_bus_gap='auto')
+            cells,meta=compile_file(source,'mux4',folder,layout='compact',input_buses=['data','sel'],input_bus_gap='auto')
             self.assertEqual([bus['ports'] for bus in meta['input_buses']],[['data'],['sel']])
             self.assert_exterior_ports(cells,meta)
             vectors=[{'inputs':{'data':v,'sel':s},'expect':{'y':(v>>s)&1}} for v in range(16) for s in range(4)]
@@ -254,7 +257,7 @@ class NativeMuxTests(unittest.TestCase):
             self.assertTrue(report['passed'],report['failures'])
             generic=folder/'generic.v'
             generic.write_text('module generic(input [1:0] data,input enable,output y); assign y=data[0]^data[1]^enable; endmodule',encoding='utf-8')
-            cells,meta=compile_file(generic,'generic',folder,input_buses=['data,enable'],input_bus_gap='auto')
+            cells,meta=compile_file(generic,'generic',folder,layout='compact',input_buses=['data,enable'],input_bus_gap='auto')
             self.assertTrue(meta['optimization']['automatic_input_buses'])
             self.assertGreater(len({c['gap'] for c in meta['optimization']['bus_candidates']}),1)
             self.assert_exterior_ports(cells,meta)
@@ -267,7 +270,7 @@ class NativeMuxTests(unittest.TestCase):
             folder = Path(d)
             source = folder / 'renamed.v'
             source.write_text('module renamed(input [0:3] payload, input [1:0] address, output result); assign result=payload[address]; endmodule', encoding='utf-8')
-            cells, meta = compile_file(source, 'renamed', folder)
+            cells, meta = compile_file(source, 'renamed', folder, layout='compact')
             self.assertEqual(meta['mux_inputs'], 4)
             self.assertEqual([e['index'] for e in meta['inputs']['payload']], [3, 2, 1, 0])
             vectors = [{'inputs': {'payload': value, 'address': s}, 'expect': {'result': (value >> (3 - s)) & 1}}

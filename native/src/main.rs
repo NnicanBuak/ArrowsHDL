@@ -63,7 +63,10 @@ struct Limits {
 }
 impl Default for Limits {
     fn default() -> Self {
-        Self { nodes: 1_000_000, ticks: 1_000_000 }
+        Self {
+            nodes: 1_000_000,
+            ticks: 1_000_000,
+        }
     }
 }
 #[derive(Deserialize)]
@@ -110,7 +113,10 @@ fn run(request: Request) -> Result<Value, String> {
         return Err("Limits must be positive; nodes must not exceed 2147483647".into());
     }
     if test.ticks == 0 || test.ticks > test.limits.ticks {
-        return Err(format!("Tick count must be between 1 and {}", test.limits.ticks));
+        return Err(format!(
+            "Tick count must be between 1 and {}",
+            test.limits.ticks
+        ));
     }
     let hold = test.hold_ticks.unwrap_or(1);
     if hold == 0 || test.ticks % hold != 0 {
@@ -158,7 +164,9 @@ fn run(request: Request) -> Result<Value, String> {
     let mut observed = Vec::new();
     used.clear();
     for at in &test.observe {
-        let index = nodes.iter().position(|n| [n.x, n.y] == *at)
+        let index = nodes
+            .iter()
+            .position(|n| [n.x, n.y] == *at)
             .ok_or_else(|| format!("Observed cell {at:?} is missing"))?;
         if !used.insert(index) {
             return Err("Duplicate observed cell".into());
@@ -279,7 +287,9 @@ fn run(request: Request) -> Result<Value, String> {
             }
         }
         for (p, &index) in observed.iter().enumerate() {
-            observations[p].push(u8::from(core::get_node_signal_export(index as u32) == NODE_SIGNAL_ACTIVE));
+            observations[p].push(u8::from(
+                core::get_node_signal_export(index as u32) == NODE_SIGNAL_ACTIVE,
+            ));
         }
         sample += 1;
         if sample < samples {

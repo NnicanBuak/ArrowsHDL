@@ -25,14 +25,14 @@
 
 ~~~powershell
 arrowshdl build examples/packet_router/project.toml -o examples/packet_router/build/packet_router.json
-arrowshdl test examples/packet_router/build/packet_router.json examples/packet_router/build/vectors.json --vectors -o build/router-demo.report.json
+arrowshdl test examples/packet_router/build/packet_router.json tests/fixtures/examples/packet_router/vectors.json --vectors -o build/router-demo.report.json
 python -m unittest tests.projects.examples.test_showcases.ShowcaseTests.test_router_all_65536_frames_controls_and_backpressure -v
 ~~~
 
 [Схема](build/packet_router.json): **3487 стрелок, 124×106**.
 Кнопки задают биты входов; индикаторы показывают данные, valid, accepted и error.
 Порядок битов, контакты и `settle_ticks`: [описание схемы](build/packet_router.json).
-[Полный отчёт](build/packet_router.report.json) проверяет **65 536** наборов:
+Регрессионная проверка охватывает **65 536** наборов:
 все кадры, valid и ready. Модель ожиданий независимо описана в tests.
 
 ![Чётность, конкуренция и backpressure](visuals/behavior.png)
@@ -41,6 +41,5 @@ python -m unittest tests.projects.examples.test_showcases.ShowcaseTests.test_rou
 одного выхода, повреждённый кадр, отсутствие valid и приоритет входа 0.
 Битовые маски приведены десятичными числами: например, 3 означает два активных бита.
 
-[Физическая карта](visuals/map.png) ·
-[Измерения с хешем сохранения](build/behavior.report.json).
+[Физическая карта](visuals/map.png).
 Воспроизведение изображений: `python tools/render_examples.py`.

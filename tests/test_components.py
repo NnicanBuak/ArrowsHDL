@@ -20,26 +20,19 @@ class ComponentTests(unittest.TestCase):
         path.write_text(f'version=1\nmap="{name}.save.txt"\n'+ports,encoding='utf-8')
         return path
 
-    def test_component_only_link_keeps_internal_cells_and_holes(self):
+    def test_legacy_component_graph_is_rejected_and_component_geometry_is_preserved(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             original={(0,0):Cell(1,1),(0,2):Cell(25,0),(2,2):Cell(25,0)}
-            self.component(root,'source',original,'[[ports.inputs.key]]\nindex=0\ncontact=[0,0]\nfixture=[-1,0]\nrotation=1\n'
+            source=self.component(root,'source',original,'[[ports.inputs.key]]\nindex=0\ncontact=[0,0]\nfixture=[-1,0]\nrotation=1\n'
                 '[[ports.outputs.bit]]\nindex=0\ncontact=[0,0]\nfixture=[1,0]\nrotation=1\n')
-            self.component(root,'display',{(0,0):Cell(1,1),(1,0):Cell(1,1)},
-                '[[ports.inputs.pixel]]\nindex=0\ncontact=[0,0]\nfixture=[-1,0]\nrotation=1\n')
+            loaded,meta=load_component(source,(5,7))
+            self.assertEqual({(x-5,y-7):cell for (x,y),cell in loaded.items()},original)
+            self.assertEqual(meta['source_map_hash'],map_hash(original))
             scheme=root/'scheme.toml'
-            scheme.write_text('version=1\ntop="linked"\noutputs=[]\n[[components]]\nname="keys"\nfile="source.toml"\nat=[0,0]\n'
-                '[[components]]\nname="screen"\nfile="display.toml"\nat=[12,0]\n'
-                '[[connections]]\nfrom="keys.bit"\nto="screen.pixel"\n',encoding='utf-8')
-            cells,meta=build_scheme(scheme,root/'out')
-            for p,c in original.items():self.assertEqual(cells[p],c)
-            self.assertNotIn((1,1),cells)
-            self.assertEqual(meta['components']['keys']['source_map_hash'],map_hash(original))
-            tested,meta=build_scheme(scheme,root/'test',testing=True)
-            source=meta['inputs']['keys.key'][0]['fixture']
-            report=simulate(tested,dict(ticks=120,hold_ticks=40,inputs=[dict(at=source,values=[0,1,0])],expect=[],observe=[[13,0]]),optimize_cycles=False)
-            self.assertEqual(report['observations'][0]['values'],[0,1,0])
+            scheme.write_text('version=1\ntop="linked"\n',encoding='utf-8')
+            with self.assertRaisesRegex(MapError,'unsupported'):
+                build_scheme(scheme,root/'out')
 
     def test_rotation_and_interface_metadata(self):
         with tempfile.TemporaryDirectory() as directory:

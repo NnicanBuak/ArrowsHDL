@@ -1,0 +1,29 @@
+version = 1
+
+[[ports]]
+path = "a"
+widget = "button"
+
+[[ports]]
+path = "b"
+widget = "button"
+
+[[ports]]
+path = "operation"
+widget = "button"
+
+[[ports]]
+path = "result"
+widget = "binary"
+
+[[ports]]
+path = "carry"
+widget = "binary"
+
+[[ports]]
+path = "zero"
+widget = "indicator"
+
+[[ports]]
+path = "equal"
+widget = "indicator"

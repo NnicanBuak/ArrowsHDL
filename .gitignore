@@ -1,7 +1,8 @@
 .venv/
 native/target/
 tools/node_modules/
-docs/
+/docs/release-checklist.md
+/docs/release-report.json
 
 *.egg-info/
 dist/
@@ -11,25 +12,14 @@ build/
 # Финальные карты и фикстуры нужны после обычного clone.
 !examples/**/build/
 examples/**/build/*
-!examples/**/build/*.save.txt
-!examples/**/build/*.map.json
-!examples/**/build/*.build.json
-!examples/**/build/*.logic.json
-!examples/**/build/*.bindings.json
-!examples/**/build/*.layout.json
-!examples/**/build/*.report.json
-!examples/**/build/digit.json
-!examples/**/build/history.json
-!examples/**/build/vectors.json
-!examples/**/build/scenario.json
-!examples/**/build/visualization.json
+!examples/alu_workbench/build/alu_workbench.save.txt
+!examples/packet_router/build/packet_router.save.txt
+!examples/pulse_sequencer/build/pulse_sequencer.save.txt
+!examples/minesweeper/build/minesweeper.save.txt
 !examples/alu_workbench/build/alu_workbench.json
 !examples/packet_router/build/packet_router.json
 !examples/pulse_sequencer/build/pulse_sequencer.json
 !examples/minesweeper/build/minesweeper.json
-!examples/**/build/regression.json
-!examples/minesweeper/v2/build/minesweeper_5x5.demo.json
-!examples/minesweeper/v2/build/minesweeper_5x5.defeat.demo.json
 !tests/fixtures/**/build/
 tests/fixtures/**/build/*
 !tests/fixtures/**/build/*.save.txt

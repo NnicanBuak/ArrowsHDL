@@ -1,15 +1,18 @@
 """Reproduce diagrams and measured behavior from the repository's final saves."""
 import json
+import sys
 from pathlib import Path
 
 from PIL import Image, ImageDraw
 from arrowshdl.map_preview import font, render_cells
-from arrowshdl.mapdata import read_map, save_sha256, write_json
+from arrowshdl.mapdata import read_map, save_sha256
 from arrowshdl.simulation import simulate
 from arrowshdl.artifacts import read_metadata
 from arrowshdl.test_harness import add_fixture, make_scenario
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
+from tests.projects.examples.artifacts import save_artifact
 INK, MUTED, BLUE, GREEN = '#172b46', '#586a80', '#2774d4', '#157d68'
 
 
@@ -47,7 +50,8 @@ def diagram(spec, path):
 def measured_table(folder, top, spec):
     saved = folder/'build'/f'{top}.json'
     meta = read_metadata(saved)
-    vectors = read(folder/'build/vectors.json')
+    vectors_file=ROOT/'tests/fixtures/examples'/folder.name/'vectors.json'
+    vectors = read(vectors_file)
     report = simulate(add_fixture(read_map(saved),meta), make_scenario(meta,vectors,compressed=True))
     assert report['passed'], report['failures']
     trace = {tuple(row['at']):row['values'] for row in report['outputs']}
@@ -73,14 +77,17 @@ def measured_table(folder, top, spec):
     digest=save_sha256(saved)
     d.text((44,im.height-40),'PASS · save SHA-256: '+digest[:20]+'…',font=font(18),fill=GREEN)
     im.save(folder/'visuals/behavior.png')
-    write_json(folder/'build/behavior.report.json',dict(passed=True,save_sha256=digest,
-               vectors_sha256=save_sha256(folder/'build/vectors.json'),rows=rows,checked_samples=report['checked_samples']))
+    save_artifact(folder.name,'behavior.report.json',dict(passed=True,save_sha256=digest,
+               vectors_sha256=save_sha256(vectors_file),rows=rows,checked_samples=report['checked_samples']))
 
 
 def waveform(folder):
     saved=folder/'build/pulse_sequencer.json'
     meta=read_metadata(saved)
-    scenario=read(folder/'build/scenario.json')
+    hold=max(300,meta['settle_ticks']);values=[4]*hold+[0]*(hold+500)
+    scenario=dict(ticks=len(values),inputs=[dict(at=e['fixture'],values=[(v>>i)&1 for v in values])
+        for i,e in enumerate(meta['inputs']['controls'])],expect=[],
+        observe=[e['fixture'] for name in ('active','selection','waveform') for e in meta['outputs'][name]])
     report=simulate(add_fixture(read_map(saved),meta),scenario,optimize_cycles=False)
     assert report['passed'] is not False,report['failures']
     traces={tuple(row['at']):row['values'] for row in report['observations']}
@@ -102,8 +109,8 @@ def waveform(folder):
             line.append((x,y+25-24*value))
         d.line(line,fill=BLUE,width=3)
     im.save(folder/'visuals/behavior.png')
-    write_json(folder/'build/behavior.report.json',dict(passed=True,save_sha256=save_sha256(saved),
-        scenario_sha256=save_sha256(folder/'build/scenario.json'),start_tick=start,end_tick=end,
+    save_artifact(folder.name,'behavior.report.json',dict(passed=True,save_sha256=save_sha256(saved),
+        start_tick=start,end_tick=end,
         observations=[dict(at=p,values=traces[tuple(p)][start:end]) for p in points]))
 
 
@@ -115,7 +122,7 @@ def main():
         meta=read_metadata(saved)
         (folder/'visuals').mkdir(exist_ok=True)
         render_cells(read_map(saved),folder/'visuals/map.png',meta)
-        specfile=folder/'build/visualization.json'
+        specfile=ROOT/'tests/fixtures/examples'/name/'visualization.json'
         if specfile.is_file():
             spec=read(specfile);diagram(spec,folder/'visuals/architecture.png')
             if name in ('alu_workbench','packet_router'):measured_table(folder,name,spec)
@@ -139,7 +146,10 @@ def main():
             cursor=0
             for view in views:status.paste(view,(0,cursor));cursor+=view.height
             status.save(folder/'visuals/status.png')
-            game=read(folder/'build/minesweeper.report.json')
+            from tests.projects.examples.test_minesweeper import MinesweeperTests
+            check=MinesweeperTests('test_safe_first_flood_count_win_lose_and_reset')
+            check.test_safe_first_flood_count_win_lose_and_reset()
+            game=check.report
             assert game['passed'] and game['save_sha256']==save_sha256(saved)
             state=game['snapshots'][0];mines=set(state['mines']);opened=set(state['opened'])
             im,d=canvas('Minesweeper · verified game states','Physical simulation · safe first click, victory and defeat',670)
@@ -157,8 +167,8 @@ def main():
                     d.text((px+23,py+13),value,font=font(28),fill=BLUE)
             d.text((44,615),'Verified map SHA-256: '+save_sha256(saved)[:24],font=font(18),fill=GREEN)
             im.save(folder/'visuals/behavior.png')
-            write_json(folder/'build/behavior.report.json',dict(passed=True,save_sha256=save_sha256(saved),
-                regression_sha256=save_sha256(folder/'build/minesweeper.report.json'),snapshots=game['snapshots']))
+            save_artifact(folder.name,'behavior.report.json',dict(passed=True,save_sha256=save_sha256(saved),
+                snapshots=game['snapshots']))
         print('Rendered:',name,'from',saved)
 
 

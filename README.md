@@ -9,36 +9,32 @@ ArrowsHDL — компилятор Verilog/SystemVerilog в физические
 ## Требования
 
 - Python 3.11 или новее.
-- Rust/Cargo для сборки и установки из исходников.
+- pip для установки пакета и его зависимостей.
+- Готовый wheel для вашей операционной системы и архитектуры.
 
-Yosys и Node.js устанавливаются как зависимости pip. Платформенный wheel
-содержит скомпилированный симулятор и не требует Rust/Cargo при установке.
+Yosys (`yowasp-yosys`), Node.js (`nodejs-wheel-binaries`) и Pillow
+устанавливаются автоматически через pip. Готовый wheel содержит
+скомпилированный симулятор; **Rust/Cargo для его установки и запуска не требуется**.
 
 ## Установка
 
-### Из исходников
+1. Откройте [страницу релизов ArrowsHDL](https://github.com/NnicanBuak/ArrowsHDL/releases).
+2. В разделе **Assets** выбранного релиза скачайте файл `.whl` для вашей
+   операционной системы и архитектуры. Например, тег `win_amd64` обозначает
+   Windows x64. Архивы **Source code** для этой установки не нужны.
+3. Установите скачанный файл через pip и проверьте работоспособность:
 
-Команды выполняются из корня репозитория.
+В команде ниже замените `ПОЛНЫЙ_ПУТЬ_К_СКАЧАННОМУ_WHEEL.whl` фактическим
+путём к файлу, который вы скачали из релиза. Команды можно выполнить из любого каталога.
 
 ~~~powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-python -m pip install .
+python -m pip install "ПОЛНЫЙ_ПУТЬ_К_СКАЧАННОМУ_WHEEL.whl"
 arrowshdl health
 ~~~
 
-### Из wheel
-
-~~~powershell
-python -m pip install .\dist\arrowshdl-0.1.0-py3-none-win_amd64.whl
-arrowshdl health
-~~~
-
-Имя файла приведено для Windows x64. Сборка wheel из исходников:
-
-~~~powershell
-python -m pip wheel . --no-deps -w dist
-~~~
+**На 13 октября 2026 года опубликованных релизов нет.** Скачать готовый
+wheel по этой инструкции можно будет после публикации релиза с подходящим
+файлом `.whl` в Assets. Успешная проверка `arrowshdl health` завершается с кодом **0**.
 
 ## Быстрый старт
 
@@ -47,8 +43,9 @@ python -m pip wheel . --no-deps -w dist
 
 ~~~powershell
 arrowshdl build examples/alu_workbench/project.toml -o build/alu.json
-arrowshdl test build/alu.json examples/alu_workbench/build/vectors.json --vectors -o build/alu/report.json
+arrowshdl test build/alu.json tests/fixtures/examples/alu_workbench/vectors.json --vectors -o build/alu/report.json
 arrowshdl preview build/alu.json -o build/alu/map.png
+arrowshdl preview build/alu.json --style logical -o build/alu/logical.png
 ~~~
 
 `*.save.txt` — игровой код сохранения для импорта в Logic Arrows;
@@ -94,11 +91,11 @@ arrowshdl build examples/packet_router/project.toml -o build/router.json
 arrowshdl build examples/minesweeper/project.toml -o build/mines.json
 ~~~
 
-TOML v2 задаёт исходники, экземпляры HDL-модулей, параметры, связи портов,
-кнопки и готовые схемы дисплеев. Имена `library:seven_segment` и
-`library:history64` в `components.file` подключают I/O из установленного пакета;
-их сборка не зависит от ранее созданных файлов в `build/`. Каждая уникальная специализация HDL-модуля компилируется один раз;
-готовые карты экземпляров размещаются и соединяются по графу TOML.
+TOML v3 задаёт верхний HDL-модуль, исходники и параметры. Иерархия экземпляров
+и связи портов берутся из HDL; необязательный `design.toml` отдельно задаёт
+кнопки, дисплеи и размещение компонентов. Каждая уникальная специализация
+HDL-модуля компилируется один раз, а готовые карты экземпляров соединяются по
+иерархии исходного проекта.
 Параметры `compile`: `-I каталог` для include, `-D NAME=VALUE` для макроса,
 `-G NAME=VALUE` для параметра верхнего модуля, `-L файл.v` для библиотеки.
 Стандартная нативная библиотека подключается автоматически.
@@ -177,9 +174,9 @@ arrowshdl link build/math.aho.json --top arithmetic -o build/linked.json
 ### Проверка логики и симуляция по тактам
 
 ~~~powershell
-arrowshdl test build/alu.json examples/alu_workbench/build/vectors.json --vectors -o build/alu/report.json
+arrowshdl test build/alu.json tests/fixtures/examples/alu_workbench/vectors.json --vectors -o build/alu/report.json
 arrowshdl build examples/pulse_sequencer/project.toml -o build/sequencer.json
-arrowshdl simulate build/sequencer.json examples/pulse_sequencer/build/scenario.json -o build/sequencer/trace.json
+arrowshdl simulate build/sequencer.json tests/fixtures/examples/pulse_sequencer/scenario.json -o build/sequencer/trace.json
 ~~~
 
 Векторы — массив объектов `{"inputs": {...}, "expect": {...}}`, шины заданы
@@ -208,11 +205,32 @@ arrowshdl health
 `decode` читает сохранение, `encode` записывает его из JSON,
 `graph` экспортирует клетки и физические зависимости,
 `preview` рисует реальные стрелки; `health` проверяет работоспособность установленного пакета.
+Флаг `--style logical` накладывает цветные линии графа сигналов на реальную
+схему, подкрашивает клетки стрелок по цвету сигнала, обводит логические модули
+и выделяет I/O. Линии проходят внутри рамок модулей, но прерываются на клетках
+логических операторов. Возле каждого входа и выхода показано имя порта с индексом.
+Цвет линии меняется при прохождении через логический узел и сохраняется через
+буферы. Кроме заголовка схемы, на изображении есть только подписи портов.
+По умолчанию используется `--style default`.
+Логический вид требует метаданные схемы, поэтому передавайте скомпилированную
+`.json`-схему или файл `build.json` для сохранения `.txt`.
+
+Небольшая схема из двух логических модулей нагляднее показывает этот режим:
+
+![Логический вид небольшой схемы](examples/logical_preview/visuals/logical.png)
+
+Её можно собрать и визуализировать командами:
+
+~~~powershell
+arrowshdl build examples/logical_preview/project.toml -o build/logical_preview.json
+arrowshdl preview build/logical_preview.json --style logical -o build/logical_preview.png
+~~~
 
 ## Примеры
 
 | Проект | Описание |
 |---|---|
+| [Logical Preview](examples/logical_preview/README.md) | Небольшая схема для просмотра графа сигналов и границ модулей |
 | [Minesweeper](examples/minesweeper/README.md) | Игра с безопасным первым кликом, каскадным открытием, счётчиками и статусом |
 | [ALU Workbench](examples/alu_workbench/README.md) | Иерархическая ALU с восемью операциями и флагами результата |
 | [Packet Router](examples/packet_router/README.md) | Маршрутизатор с проверкой чётности, арбитражем и backpressure |
@@ -224,6 +242,8 @@ arrowshdl health
 реализации сохранены в `tests/fixtures/historical`.
 
 ## Разработка и тестирование
+
+Для установки из исходников при разработке дополнительно требуется Rust/Cargo:
 
 ~~~powershell
 python -m pip install -e ".[test]"

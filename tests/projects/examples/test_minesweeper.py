@@ -3,7 +3,8 @@ from pathlib import Path
 import unittest
 
 from arrowshdl.artifacts import read_metadata
-from arrowshdl.mapdata import read_map,save_sha256,write_json
+from arrowshdl.mapdata import read_map,save_sha256
+from tests.projects.examples.artifacts import save_artifact
 from arrowshdl.simulation import simulate
 from arrowshdl.test_harness import add_fixture
 
@@ -34,9 +35,11 @@ class MinesweeperTests(unittest.TestCase):
         for i in range(25):
             for name in ('mine','opened','first_selected'):
                 points[f'{i}:{name}']=meta['instances'][f'cell_{i}']['outputs'][name][0]['contact']
-            for bit,e in enumerate(meta['instances'][f'cell_{i}']['panel']['displays']['left']['inputs']['segments']):
+            panel=meta['instances'][f'cell_{i}'].get('panel')
+            digit=panel['displays']['left'] if panel else meta['components'][f'digit_{i}']
+            for bit,e in enumerate(digit['inputs']['segments']):
                 points[f'{i}:segment{bit}']=e['contact']
-            for bit,pixel in enumerate(meta['instances'][f'cell_{i}']['panel']['displays']['right']['pixels']):
+            for bit,pixel in enumerate(panel['displays']['right']['pixels'] if panel else []):
                 points[f'{i}:mine_pixel{bit}']=pixel
         for name in ('started','victory','defeat'):
             points[name]=meta['instances']['game']['outputs'][name][0]['contact']
@@ -88,15 +91,16 @@ class MinesweeperTests(unittest.TestCase):
                 self.assertFalse(board(lost[-1],'opened'))
                 for name in ('win_message','loss_message'):
                     self.assertFalse(any(lost[-1][k] for k in points if k.startswith(name+':')))
-                write_json(saved.parent/'defeat.scenario.json',scenario)
+                save_artifact('minesweeper','defeat.scenario.json',scenario)
             remaining=set(range(25))-mines-opened
             selection=sum(1<<i for i in remaining)
             actions=base+[(0,selection,4),(0,0,1),(0,sum(1<<i for i in mines),2),(0,0,1)]
             won,scenario=run(actions,seed)
             check(won[5],mines,set(range(25))-mines,1,0)
             check(won[7],mines,set(range(25))-mines,1,0)
-            write_json(saved.parent/'victory.scenario.json',scenario)
-        write_json(saved.parent/'minesweeper.report.json',dict(passed=True,save_sha256=save_sha256(saved),
+            save_artifact('minesweeper','victory.scenario.json',scenario)
+        self.report=dict(passed=True,save_sha256=save_sha256(saved),
             checked_samples=checks,seeds=2,safe_first=True,flood=True,seven_segment=True,
             victory=True,defeat=True,late_clicks=True,reset=True,text_displays=['WIN','LOSE'],snapshots=snapshots,
-            oracle='independent Python eight-neighbor board and digit masks'))
+            oracle='independent Python eight-neighbor board and digit masks')
+        save_artifact('minesweeper','minesweeper.report.json',self.report)

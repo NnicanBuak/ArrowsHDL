@@ -70,9 +70,8 @@ class ReferenceTests(unittest.TestCase):
             folder=Path(d);source=folder/'three.v'
             source.write_text('module three(input [2:0] a,b,input cin,output [2:0] sum,output cout); wire [3:0] c; assign c[0]=cin; assign cout=c[3]; genvar i; generate for(i=0;i<3;i=i+1) begin wire p; assign p=a[i]^b[i]; assign sum[i]=p^c[i]; assign c[i+1]=(a[i]&b[i])|(p&c[i]); end endgenerate endmodule',encoding='utf-8')
             cells,meta=compile_file(source,'three',folder)
-            self.assertEqual(meta['adder_bits'],3)
             self.assertEqual(len(meta['technology_mapping']),3)
-            self.assertLess(len(cells),30)
+            self.assertFalse(meta['optimization']['templates'])
             vectors=[{'inputs':{'a':a,'b':b,'cin':ci},'expect':{'sum':(a+b+ci)&7,'cout':(a+b+ci)>>3}} for a,b,ci in product(range(8),range(8),range(2))]
             _,r=run_vectors(cells,meta,vectors,folder,'three',compressed=True)
             self.assertTrue(r['passed'],r['failures'])

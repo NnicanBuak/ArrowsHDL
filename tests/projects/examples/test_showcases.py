@@ -1,7 +1,8 @@
 from itertools import islice
 import json
 import unittest
-from arrowshdl.mapdata import read_map,save_sha256,write_json,map_hash
+from arrowshdl.mapdata import read_map,save_sha256,map_hash
+from tests.projects.examples.artifacts import save_artifact
 from arrowshdl.test_harness import add_fixture,make_scenario
 from arrowshdl.simulation import simulate
 from tests.projects.examples.catalog import ROOT
@@ -27,7 +28,7 @@ class ShowcaseTests(unittest.TestCase):
             summary['checked_samples']+=report['checked_samples'];summary['batches']+=1
             summary['failures']+=report['failures'][:10]
             self.assertTrue(report['passed'],report['failures'])
-        write_json(folder/'build'/f'{top}.report.json',summary)
+        save_artifact(top,f'{top}.report.json',summary)
 
     def test_alu_all_2048_words(self):self.check_project('alu_workbench')
     def test_router_all_65536_frames_controls_and_backpressure(self):self.check_project('packet_router')

@@ -3,7 +3,8 @@ import json
 from pathlib import Path
 import unittest
 
-from arrowshdl.mapdata import read_map,write_json,save_sha256
+from arrowshdl.mapdata import read_map,save_sha256
+from tests.projects.examples.artifacts import save_artifact
 from arrowshdl.simulation import simulate
 from arrowshdl.test_harness import add_fixture
 from arrowshdl.artifacts import read_metadata
@@ -41,8 +42,8 @@ def run():
             assert traces[tuple(p)][-300:]==traces[tuple(pixels[0])][-300-i:len(controls)-i],(mode,i)
         checks+=len(points)*len(controls)
         if mode==2:
-            write_json(build/'scenario.json',scenario)
-            write_json(build/'waveform.trace.json',report)
+            save_artifact('pulse_sequencer','scenario.json',scenario)
+            save_artifact('pulse_sequencer','waveform.trace.json',report)
         snapshots.append(dict(mode=mode,period_ticks=period))
     masks=[];frames=[];pressed=0
     for mask in range(256):
@@ -67,7 +68,7 @@ def run():
     summary=dict(passed=True,save_sha256=save_sha256(build/'pulse_sequencer.json'),
         all_256_latched_masks_verified=True,held_clicks=True,history_pixels=64,modes=snapshots,
         checked_samples=checks+256*11,oracle='independent periods, priority encoder and one-tick history relation')
-    write_json(build/'pulse_sequencer.report.json',summary)
+    save_artifact('pulse_sequencer','pulse_sequencer.report.json',summary)
     return summary
 
 

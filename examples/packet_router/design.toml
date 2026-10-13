@@ -1,0 +1,37 @@
+version = 1
+
+[[ports]]
+path = "frame0"
+widget = "button"
+
+[[ports]]
+path = "frame1"
+widget = "button"
+
+[[ports]]
+path = "valid"
+widget = "button"
+
+[[ports]]
+path = "ready"
+widget = "button"
+
+[[ports]]
+path = "data0"
+widget = "binary"
+
+[[ports]]
+path = "data1"
+widget = "binary"
+
+[[ports]]
+path = "output_valid"
+widget = "binary"
+
+[[ports]]
+path = "accepted"
+widget = "binary"
+
+[[ports]]
+path = "error"
+widget = "binary"

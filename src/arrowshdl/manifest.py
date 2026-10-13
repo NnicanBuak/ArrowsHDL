@@ -102,8 +102,9 @@ def _load_v3(path, data):
         except tomllib.TOMLDecodeError as exc:
             raise MapError(f'{design_path}: invalid TOML: {exc}') from exc
         design = _load_design(design_path, document)
+    labels=tuple(dict(row,io=row['path']) for row in design['labels'])
     return replace(base, version=3, modules=(), components=(), connections=(),
-                   inputs=None, outputs=None, labels=tuple(design['labels']),
+                   inputs=None, outputs=None, labels=labels,
                    layout=design['placement'], design_path=design_path, design=design)
 
 
@@ -150,7 +151,10 @@ def _load_design(path, data):
                         raise MapError(f'design.views.{side}.port: an HDL output is required')
                     if ('component' in item) == ('bitmap' in item):
                         raise MapError(f'design.views.{side}: specify component or bitmap')
-                    if 'component' in item: component_file(path.parent, item['component'])
+                    if 'component' in item:
+                        component_file(path.parent, item['component'])
+                        if not item['component'].startswith('library:'):
+                            item['component']=str((path.parent/item['component']).resolve())
                     if 'bitmap' in item and (not isinstance(item['bitmap'], list) or not item['bitmap'] or
                                               any(not isinstance(line, str) or not line for line in item['bitmap']) or
                                               len({len(line) for line in item['bitmap']}) != 1 or
@@ -169,8 +173,17 @@ def _load_design(path, data):
                         raise MapError('design.components.font: expected a font filename')
                 else:
                     component_file(path.parent, row.get('file'))
-                if 'bind' in row and not isinstance(row['bind'], str):
-                    raise MapError('design.components.bind: expected an HDL signal path')
+                if 'bind' in row and not (isinstance(row['bind'], str) or
+                        isinstance(row['bind'],dict) and row['bind'] and
+                        all(isinstance(k,str) and k and isinstance(v,str) and v for k,v in row['bind'].items())):
+                    raise MapError('design.components.bind: expected an HDL signal path or port-to-signal table')
+                if 'file' in row and not row['file'].startswith('library:'):
+                    component_file(path.parent,row['file'])
+                    row['file']=str((path.parent/row['file']).resolve())
+                if row.get('kind')=='text' and row.get('font','library:arrow4')!='library:arrow4':
+                    font=(path.parent/row['font']).resolve()
+                    if not font.is_file(): raise MapError(f'Font file not found: {font}')
+                    row['font']=str(font)
             else:
                 if not isinstance(row.get('text'),str) or not row['text'] or not isinstance(row.get('font'),str) or not row['font']:
                     raise MapError('design.labels: text and font are required')
@@ -179,6 +192,13 @@ def _load_design(path, data):
                 if 'at' in row: pair(row['at'],'design.labels.at')
                 if 'offset' in row: pair(row['offset'],'design.labels.offset')
                 if 'at' in row and 'offset' in row: raise MapError('design.labels: specify at or offset')
+                if row['font']=='library:arrow4':
+                    from arrowshdl.resources import PACKAGE
+                    row['font']=str(PACKAGE/'data/fonts/arrow4.json')
+                else:
+                    font=(path.parent/row['font']).resolve()
+                    if not font.is_file(): raise MapError(f'Font file not found: {font}')
+                    row['font']=str(font)
         result[category] = tuple(rows)
     placement = data.get('placement', {})
     table(placement, {'input_buses','input_bus_gap','grids','placements','template'}, 'design.placement')

@@ -3,9 +3,6 @@ import argparse
 import json
 import os
 from pathlib import Path
-import shutil
-import subprocess
-import sys
 
 from arrowshdl.scheme import build_scheme
 from arrowshdl.mapdata import map_hash,read_map,write_json,save_sha256
@@ -30,7 +27,7 @@ def main():
             cells=read_map(output/(top+'.save.txt'))
             meta=json.loads((output/(top+'.build.json')).read_text(encoding='utf-8'))
         else:
-            subprocess.run([sys.executable,'-m','arrowshdl','build',str(source/manifest),'--out',str(output),'--timeout','600'],check=True)
+            cells,meta=build_scheme(source/manifest,output,timeout=600)
             cells=read_map(output/(top+'.save.txt'))
             meta=json.loads((output/(top+'.build.json')).read_text(encoding='utf-8'))
         # Legacy layout records are observations, never an input arrow map.

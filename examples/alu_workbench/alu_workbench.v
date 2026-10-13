@@ -8,3 +8,13 @@ module alu_select(input [3:0] a,b,input [2:0] operation,
     assign zero=~|result;
     assign equal=a==b;
 endmodule
+
+module alu_workbench(input [3:0] a,b,input [2:0] operation,
+    output [3:0] result,output carry,zero,equal);
+    wire [3:0] arithmetic_result,logical_result;
+    wire arithmetic_carry;
+    arithmetic #(.WIDTH(4)) math(a,b,operation,arithmetic_result,arithmetic_carry);
+    logic_unit #(.WIDTH(4)) logic(a,b,operation,logical_result);
+    alu_select select(a,b,operation,arithmetic_result,logical_result,arithmetic_carry,
+                      result,carry,zero,equal);
+endmodule

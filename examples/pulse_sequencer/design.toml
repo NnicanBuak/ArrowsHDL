@@ -1,0 +1,22 @@
+version = 1
+
+[[ports]]
+path = "controls"
+widget = "button"
+
+[[ports]]
+path = "active"
+widget = "binary"
+
+[[ports]]
+path = "selection"
+widget = "binary"
+
+[[ports]]
+path = "waveform"
+widget = "indicator"
+
+[[components]]
+name = "history"
+file = "library:history64"
+bind = "waveform"

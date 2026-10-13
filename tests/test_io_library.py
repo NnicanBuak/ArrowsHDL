@@ -23,7 +23,7 @@ class IoLibraryTests(unittest.TestCase):
                         shutil.copy2(source,root/source.name)
                 self.assertFalse((root/'build').exists())
                 project=load_project(root/'project.toml')
-                for row in project.components:
+                for row in project.design['components']:
                     if row.get('kind')=='text':
                         from arrowshdl.text_display import compile_display
                         self.assertTrue(compile_display(root,row)[0])
@@ -68,44 +68,34 @@ class IoLibraryTests(unittest.TestCase):
         from arrowshdl.test_harness import make_scenario
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
-            (root/'controller.v').write_text('module controller(input win,loss,output victory,defeat); assign victory=win; assign defeat=loss; endmodule')
+            (root/'controller.v').write_text('module controller(input win,loss,output victory,defeat); assign victory=win&~loss; assign defeat=loss&~win; endmodule')
             project=root/'project.toml'
-            project.write_text('''version=2
-top="text_demo"
+            project.write_text('''version=3
+top="controller"
 sources=["controller.v"]
-[[modules]]
-name="game"
-hdl="controller"
+design="design.toml"
+''',encoding='utf-8')
+            (root/'design.toml').write_text('''version=1
 [[components]]
 name="win_display"
 kind="text"
 text="WIN"
+bind="victory"
 [[components]]
 name="loss_display"
 kind="text"
 text="LOSE"
-[[inputs]]
-name="win"
-[[inputs]]
-name="loss"
-[[connections]]
-from="win"
-to="game.win"
-[[connections]]
-from="loss"
-to="game.loss"
-[[connections]]
-from="game.victory"
-to="win_display.signal"
-[[connections]]
-from="game.defeat"
-to="loss_display.signal"
+bind="defeat"
 ''',encoding='utf-8')
             result=arrowshdl.build(project,out=root/'result.json')
             fixture=add_fixture(result.cells,result.metadata)
             sequence=[(0,0),(1,0),(0,1),(1,1),(0,0)]
-            scenario=make_scenario(result.metadata,[dict(inputs={'win':w,'loss':l},expect={}) for w,l in sequence],compressed=True)
-            scenario['assert']=[dict(at=p,values=[row[index] for row in sequence])
+            vectors=[dict(inputs={'win':w,'loss':loss},expect={
+                'victory':w & (1-loss),'defeat':loss & (1-w),
+            }) for w,loss in sequence]
+            scenario=make_scenario(result.metadata,vectors,compressed=True)
+            scenario['assert']=[dict(at=p,values=[
+                vector['expect']['victory' if index==0 else 'defeat'] for vector in vectors])
                 for index,name in enumerate(('win_display','loss_display'))
                 for p in result.metadata['components'][name]['display']['pixels']]
             report=simulate(fixture,scenario,optimize_cycles=False)

@@ -13,6 +13,9 @@ import tempfile
 from arrowshdl.arrowasm import MapError
 
 ROOT = Path(__file__).resolve().parents[2]
+_HEADER_SUFFIXES = ('.vh', '.svh', '.h', '.inc', '.v', '.sv')
+_SIMULATION_ONLY_WORDS = re.compile(r"\b(?:initial|specify|real|realtime|force|release)\b")
+_NON_CODE = re.compile(r'"(?:\\.|[^"\\])*"|//[^\r\n]*|/\*.*?\*/|\\[^\s]+', re.S)
 
 
 def find_yosys() -> str:
@@ -37,17 +40,60 @@ def _quoted(path):
     return '"' + value + '"'
 
 
-def _validate_sources(sources):
-    # Frontends must never silently erase simulation timing or initialization.
-    # Combinational processes, macros and standard elaboration are allowed.
-    for source in sources:
-        code = re.sub(r"/\*.*?\*/|//[^\n]*", "", source.read_text(encoding="utf-8-sig"), flags=re.S)
-        if re.search(r"\b(initial|specify|real|realtime|force|release)\b", code):
-            raise MapError(f"{source}: simulation-only initialization/timing is unsupported")
-        if re.search(r"#\s*(?:[0-9]|'|[A-Za-z_])", code):
-            raise MapError(f"{source}: simulation delays are unsupported")
-        if re.search(r'\b(?:assign|buf|not|and|or|xor|nand|nor|xnor)\s*#', code):
-            raise MapError(f'{source}: operator and primitive delays are unsupported')
+def _contains_unsupported_syntax(code):
+    """Flag possible simulation-only syntax after removing comments and literals."""
+    code = _NON_CODE.sub(
+        lambda match: ''.join('\n' if char == '\n' else ' ' for char in match.group()),
+        code,
+    )
+    return bool(
+        _SIMULATION_ONLY_WORDS.search(code)
+        or re.search(r"#\s*(?:[0-9]|'|[A-Za-z_])", code)
+        or re.search(r'\b(?:assign|buf|not|and|or|xor|nand|nor|xnor)\s*#', code)
+    )
+
+
+def _active_verilog_sources(output):
+    return re.findall(
+        r'-- Verilog code after preprocessor --\r?\n(.*?)\r?\n-- END OF DUMP --',
+        output,
+        flags=re.S,
+    )
+
+
+def _validate_verilog_preprocessor(output):
+    code_blocks = _active_verilog_sources(output)
+    if not code_blocks:
+        raise MapError('Yosys did not return preprocessed Verilog for validation')
+    if any(_contains_unsupported_syntax(code) for code in code_blocks):
+        raise MapError('Simulation-only constructs and delays are unsupported')
+
+
+def _slang_ast_contains_unsupported_node(ast):
+    if isinstance(ast, dict):
+        if ast.get('procedureKind') in ('Initial', 'Final'):
+            return True
+        if ast.get('kind') in ('SpecifyBlock', 'ForceStatement', 'ReleaseStatement',
+                               'DelayControl', 'Delay2', 'Delay3'):
+            return True
+        if ast.get('type') in ('real', 'realtime'):
+            return True
+        return any(_slang_ast_contains_unsupported_node(value) for value in ast.values())
+    if isinstance(ast, list):
+        return any(_slang_ast_contains_unsupported_node(value) for value in ast)
+    return False
+
+
+def _validate_slang_ast(output):
+    tree_start = re.search(r'(?m)^\{\s*\r?\n\s*"name"\s*:', output)
+    if not tree_start:
+        raise MapError('Slang did not return its preprocessed syntax tree for validation')
+    try:
+        ast, _ = json.JSONDecoder().raw_decode(output, tree_start.start())
+    except json.JSONDecodeError as error:
+        raise MapError('Slang returned a malformed syntax tree during validation') from error
+    if _slang_ast_contains_unsupported_node(ast):
+        raise MapError('Simulation-only constructs and delays are unsupported')
 
 
 def elaborate(sources, top, timeout=90, *, standard="1800-2023", include_dirs=(), defines=(), parameters=None, blackbox_modules=()):
@@ -59,7 +105,6 @@ def elaborate(sources, top, timeout=90, *, standard="1800-2023", include_dirs=()
     if not sources:
         raise MapError("No source files specified")
     sources = [p.resolve() for p in sources]
-    _validate_sources(sources)
     library = Path(__file__).parent / "library/arrows.v"
     params = parameters or {}
     if any(not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", k) or not re.fullmatch(r"[-+0-9A-Za-z_'\[\]:]+", str(v)) for k,v in params.items()):
@@ -76,7 +121,7 @@ def elaborate(sources, top, timeout=90, *, standard="1800-2023", include_dirs=()
             target = stage / f"include{index}"
             target.mkdir()
             for header in parent.rglob('*'):
-                if header.is_file() and header.suffix in ('.vh', '.svh', '.h', '.inc'):
+                if header.is_file() and header.suffix in _HEADER_SUFFIXES:
                     destination = target / header.relative_to(parent)
                     destination.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copyfile(header, destination)
@@ -85,15 +130,29 @@ def elaborate(sources, top, timeout=90, *, standard="1800-2023", include_dirs=()
             name = f"source{index}{source.suffix}"
             (stage / name).write_text(source.read_text(encoding='utf-8-sig'), encoding='utf-8')
             stage_paths.append(name)
-        return _elaborate_staged(stage, stage_paths, stage_includes, top, timeout, standard, defines, params, blackbox_modules)
+        candidate_paths = [stage / name for name in stage_paths]
+        candidate_paths.extend(
+            path for path in stage.rglob('*')
+            if path.is_file() and path.suffix in _HEADER_SUFFIXES
+        )
+        validate_sources = any(
+            _contains_unsupported_syntax(path.read_text(encoding='utf-8-sig'))
+            for path in candidate_paths
+        )
+        return _elaborate_staged(
+            stage, stage_paths, stage_includes, top, timeout, standard, defines, params,
+            blackbox_modules, validate_sources=validate_sources,
+        )
 
 
-def _elaborate_staged(stage, files, include_dirs, top, timeout, standard, defines, params, blackbox_modules=()):
-    inc = ' '.join('-I ' + (_quoted(p) if standard == '1364-2005' else p) for p in include_dirs)
+def _elaborate_staged(stage, files, include_dirs, top, timeout, standard, defines, params,
+                      blackbox_modules=(), *, validate_sources=False):
+    inc = ' '.join('-I ' + p for p in include_dirs)
     defs = ' '.join('-D ' + v for v in defines)
     paths = ' '.join(_quoted(p) if standard == '1364-2005' else p for p in files)
     if standard == "1364-2005":
-        read = f"read_verilog {inc} {defs} {paths}; "
+        dump = '-ppdump ' if validate_sources else ''
+        read = f"read_verilog {dump}{inc} {defs} {paths}; "
         for key,value in params.items():
             read += f"chparam -set {key} {value} {top}; "
         for module in blackbox_modules:
@@ -101,12 +160,18 @@ def _elaborate_staged(stage, files, include_dirs, top, timeout, standard, define
     else:
         overrides = ' '.join(f'-G {k}={v}' for k,v in params.items())
         boxes = ' '.join('--blackboxed-module '+v for v in blackbox_modules)
-        read = f"read_slang -j 1 --std {standard} --keep-hierarchy --empty-blackboxes --top {top} {inc} {defs} {overrides} {boxes} {paths}; "
+        dump = '--dump-ast ' if validate_sources else ''
+        read = f"read_slang -j 1 --std {standard} --keep-hierarchy --empty-blackboxes --top {top} {dump}{inc} {defs} {overrides} {boxes} {paths}; "
     script = read + ("proc; write_json hierarchy.json" if blackbox_modules else
                      f"hierarchy -check -top {top}; proc; check -assert; write_json hierarchy.json")
     result = subprocess.run([find_yosys(), "-Q", "-T", "-p", script], cwd=stage, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout)
     if result.returncode:
         raise MapError("Yosys: " + result.stdout[-3000:].strip() + "\n" + result.stderr[-3000:].strip())
+    if validate_sources:
+        if standard == '1364-2005':
+            _validate_verilog_preprocessor(result.stdout)
+        else:
+            _validate_slang_ast(result.stdout)
     raw = json.loads((stage / "hierarchy.json").read_text(encoding="utf-8"))
     # Slang reports connected widths before Yosys can silently resize them.
     for module in raw['modules'].values():

@@ -31,18 +31,17 @@
 
 ~~~powershell
 arrowshdl build examples/alu_workbench/project.toml -o examples/alu_workbench/build/alu_workbench.json
-arrowshdl test examples/alu_workbench/build/alu_workbench.json examples/alu_workbench/build/vectors.json --vectors -o build/alu-demo.report.json
+arrowshdl test examples/alu_workbench/build/alu_workbench.json tests/fixtures/examples/alu_workbench/vectors.json --vectors -o build/alu-demo.report.json
 python -m unittest tests.projects.examples.test_showcases.ShowcaseTests.test_alu_all_2048_words -v
 ~~~
 
 [Схема](build/alu_workbench.json): **4783 стрелок, 132×112**.
 Автоматические кнопки соответствуют битам входных портов; индикаторы —
 битам выходов. Точные координаты и порядок битов: [описание схемы](build/alu_workbench.json).
-[Полный отчёт](build/alu_workbench.report.json) проверяет **2048** наборов независимой
+Регрессионная проверка охватывает **2048** наборов независимой
 целочисленной моделью. `vectors.json` содержит короткую демонстрацию всех операций.
 
 ![Измеренные результаты](visuals/behavior.png)
 
-[Физическая карта стрелок](visuals/map.png) ·
-[Данные визуализации с хешем сохранения](build/behavior.report.json).
+[Физическая карта стрелок](visuals/map.png).
 Визуализации воспроизводятся командой `python tools/render_examples.py`.

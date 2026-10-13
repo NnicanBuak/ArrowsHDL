@@ -1,0 +1,6 @@
+version = 3
+top = "logical_preview"
+sources = ["logical_preview.v"]
+
+[language]
+standard = "1364-2005"

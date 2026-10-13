@@ -79,6 +79,8 @@ def main(argv=None):
     preview.add_argument('map', type=Path)
     preview.add_argument('manifest', nargs='?', type=Path)
     preview.add_argument('-o', '--out', required=True, type=Path)
+    preview.add_argument('--style','--preview-style',dest='style',choices=('default','logical'),default='default',
+                         help='Preview style: default cell map or logical graph overlay')
     args = parser.parse_args(argv)
     os.environ['ARROWSHDL_PROGRESS'] = '1'
     from arrowshdl.progress import report, reset
@@ -170,7 +172,8 @@ def main(argv=None):
             args.out.parent.mkdir(parents=True, exist_ok=True)
             from arrowshdl.map_preview import render_cells
             from arrowshdl.artifacts import read_metadata
-            render_cells(read_map(args.map), args.out, _json(args.manifest) if args.manifest else read_metadata(args.map))
+            render_cells(read_map(args.map), args.out,
+                         _json(args.manifest) if args.manifest else read_metadata(args.map),style=args.style)
             report(100, f'Preview written: {args.out}')
             return 0
         report(100, f'Output written: {args.out}')

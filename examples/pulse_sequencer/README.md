@@ -22,7 +22,7 @@ python -m unittest tests.projects.examples.test_sequencer -v
 ```
 
 [Готовая схема](build/pulse_sequencer.json) содержит карту, порты и задержки.
-[Отчёт](build/pulse_sequencer.report.json) проверяет все 256 масок памяти,
+Регрессионная проверка охватывает все 256 масок памяти,
 приоритет, удержание кнопок, периоды и каждую клетку истории.
 
 ![Физическая временная диаграмма](visuals/behavior.png)

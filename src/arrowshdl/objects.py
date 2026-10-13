@@ -30,10 +30,14 @@ def compile_object(sources, top, output=None, timeout=90, **options):
 def link_objects(paths, top, timeout=90):
     merged, standard = {}, None
     for path in paths:
-        obj = json.loads(Path(path).read_text(encoding='utf-8-sig'))
-        if obj.get('format') != 'arrowshdl-object' or type(obj.get('version')) is not int or obj['version'] != OBJECT_VERSION:
+        try:
+            obj = json.loads(Path(path).read_text(encoding='utf-8-sig'))
+        except (json.JSONDecodeError, UnicodeDecodeError) as error:
+            raise MapError(f'{path}: invalid object JSON: {error}') from error
+        if not isinstance(obj, dict) or obj.get('format') != 'arrowshdl-object' or type(obj.get('version')) is not int or obj['version'] != OBJECT_VERSION:
             raise MapError(f'{path}: incompatible object file version')
-        check_standard(obj.get('standard'))
+        _validate_object(path, obj)
+        check_standard(obj['standard'])
         if standard and standard != obj['standard']:
             raise MapError('Objects use incompatible HDL standards')
         standard = obj['standard']
@@ -59,6 +63,46 @@ def link_objects(paths, top, timeout=90):
     merged[top].setdefault('attributes', {})['top'] = '1'
     graph, log = synthesize_raw({'modules': merged, 'creator': f'ArrowsHDL {__version__}'}, top, timeout)
     return graph, log, standard
+
+
+def _validate_object(path, obj):
+    """Reject malformed object documents before linking can index into them."""
+    def require(condition, field, expected):
+        if not condition:
+            raise MapError(f'{path}: malformed ArrowsHDL object: {field} {expected}')
+
+    require(isinstance(obj, dict), 'root', 'must be an object')
+    require(isinstance(obj.get('standard'), str), 'standard', 'must be a string')
+
+    rtlil = obj.get('rtlil')
+    require(isinstance(rtlil, dict), 'rtlil', 'must be an object')
+    modules = rtlil.get('modules')
+    require(isinstance(modules, dict) and bool(modules), 'rtlil.modules', 'must be a nonempty object')
+    top = obj.get('top')
+    require(isinstance(top, str) and top in modules, 'top', 'must name a module in rtlil.modules')
+    for module_name, module in modules.items():
+        require(isinstance(module_name, str) and isinstance(module, dict),
+                f'rtlil.modules[{module_name!r}]', 'must be an object')
+        for field in ('attributes', 'ports', 'cells'):
+            require(field not in module or isinstance(module[field], dict),
+                    f'rtlil.modules[{module_name!r}].{field}', 'must be an object')
+        for port_name, port in module.get('ports', {}).items():
+            location = f'rtlil.modules[{module_name!r}].ports[{port_name!r}]'
+            require(isinstance(port, dict), location, 'must be an object')
+            require(port.get('direction') in ('input', 'output', 'inout'),
+                    f'{location}.direction', 'must be input, output or inout')
+            require(isinstance(port.get('bits'), list), f'{location}.bits', 'must be an array')
+        for cell_name, cell in module.get('cells', {}).items():
+            location = f'rtlil.modules[{module_name!r}].cells[{cell_name!r}]'
+            require(isinstance(cell, dict), location, 'must be an object')
+            require(isinstance(cell.get('type'), str), f'{location}.type', 'must be a string')
+            require(isinstance(cell.get('connections'), dict),
+                    f'{location}.connections', 'must be an object')
+            require(all(isinstance(bits, list) for bits in cell['connections'].values()),
+                    f'{location}.connections', 'values must be arrays')
+            for field in ('attributes', 'parameters', 'port_directions'):
+                require(field not in cell or isinstance(cell[field], dict),
+                        f'{location}.{field}', 'must be an object')
 
 
 def _check_interface(name,a,b):

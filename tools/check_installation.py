@@ -19,7 +19,7 @@ source.write_text('module logic_unit(input logic a,b,output logic y); always_com
 cli('--version');cli('health')
 cli('compile',source,'--top','logic_unit','-o',root/'compiled.json')
 cli('build',repo/'examples/alu_workbench/project.toml','-o',root/'alu.json')
-cli('test',root/'alu.json',repo/'examples/alu_workbench/build/vectors.json',
+cli('test',root/'alu.json',repo/'tests/fixtures/examples/alu_workbench/vectors.json',
     '--vectors','-o',root/'alu/report.json')
 cli('build',repo/'tests/fixtures/circuits/hdl/half_adder/project.toml','-o',root/'scheme.json')
 cli('test',root/'scheme.json',repo/'tests/fixtures/circuits/hdl/half_adder/vectors.json',

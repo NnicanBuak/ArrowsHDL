@@ -71,6 +71,12 @@ def attach_io(cells, manifest, inputs=None, outputs=None, *, testing=False):
                 if key in occupied_ports:
                     raise MapError(f'Duplicate widget connection to {reference}')
                 occupied_ports.add(key)
+                if direction == 'inputs' and entry.get('panel'):
+                    if widget != 'button':
+                        raise MapError(f'Panel input {reference} requires the button widget')
+                    devices.append(dict(name=row.get('name', reference), port=reference, index=entry['index'],
+                                        kind=widget, direction=direction, at=list(entry['fixture']), type=24))
+                    continue
                 at = tuple(entry['fixture'])
                 if at in cells:
                     raise MapError(f'Widget position is occupied: {at}')

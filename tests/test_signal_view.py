@@ -4,7 +4,9 @@ from copy import deepcopy
 import base64
 from io import BytesIO
 from itertools import product
+import os
 from pathlib import Path
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -14,15 +16,28 @@ ROOT=Path(__file__).resolve().parents[1]
 from arrowshdl.arrowasm import Cell,MapError
 from arrowshdl.arrow_layout import bounds_of,depth_of
 from arrowshdl.compact_layout import Router,router_manifest
-from arrowshdl.mapdata import map_hash
+from arrowshdl.mapdata import map_hash,write_json,write_map
 from arrowshdl.signal_metadata import describe_signals
-from arrowshdl.signal_view import export_views,view_data,render_poster
+from arrowshdl.signal_view import (edge_crosses_cells,export_views,logical_port_labels,
+                                   logical_view_data,signal_tile_color,view_data,render_poster)
 from arrowshdl.simulation import simulate
 from arrowshdl.technology_mapping import merge_duplicate_logic
 from arrowshdl.test_harness import add_fixture,make_scenario
 
 
 class SignalViewTests(unittest.TestCase):
+    def test_logical_overlay_runs_inside_modules_and_avoids_operator_cells(self):
+        logic_cells={(2,3)}
+        self.assertFalse(edge_crosses_cells((0,2),(4,2),logic_cells))
+        self.assertTrue(edge_crosses_cells((0,3),(4,3),logic_cells))
+        self.assertTrue(edge_crosses_cells((2,1),(2,4),logic_cells))
+        self.assertEqual(signal_tile_color('#0000ff'),'#adadff')
+        markers=[{'at':[-1,0],'contact':[0,0],'label':'data[0]','kind':'inputs'},
+                 {'at':[4,3],'contact':[3,3],'label':'result[0]','kind':'outputs'}]
+        labels=logical_port_labels(markers)
+        self.assertEqual([item['label'] for item in labels],['data[0]','result[0]'])
+        self.assertEqual([item['side'] for item in labels],['left','right'])
+
     def test_each_input_bit_has_its_own_colour_and_sprites_keep_original_colours(self):
         graph={'top':'parity','inputs':{'a':[{'index':i,'net':f'a{i}'} for i in range(2)],'b':[{'index':0,'net':'b0'}]},
                'outputs':{'y':[{'index':0,'net':'port:y'}]},'nodes':[
@@ -90,9 +105,20 @@ class SignalViewTests(unittest.TestCase):
         self.assertNotEqual(nets['a']['color'],nets['n']['color'])
         self.assertEqual(nets['n']['origins'],[{'bus':'a','bit':0}])
         self.assertEqual(nets['n']['inputs'],['a'])
+        self.assertNotEqual(nets['a']['route_color'],nets['n']['route_color'])
+        self.assertEqual(nets['n']['route_color'],nets['port:y']['route_color'])
         self.assertIn([[0,0],[1,0]],nets['a']['edges'])
         self.assertEqual(len(data['cells']),len(cells))
         self.assertEqual(nets['n']['driver']['at'],[1,0])
+        physical_manifest=deepcopy(manifest);physical_manifest.pop('signals')
+        physical=logical_view_data(cells,physical_manifest)
+        physical_nets={net['id']:net for net in physical['nets']}
+        input_net=physical_nets['input:a:0'];gate_net=physical_nets['gate:core:inv']
+        self.assertNotEqual(input_net['route_color'],gate_net['route_color'])
+        self.assertIn([[0,0],[1,0]],input_net['edges'])
+        gate_index=next(i for i,net in enumerate(physical['nets']) if net['id']==gate_net['id'])
+        self.assertTrue(any(marker['kind']=='outputs' and marker['net']==gate_index
+                            for marker in physical['markers']))
         with tempfile.TemporaryDirectory() as folder:
             path=Path(folder)/'routing.png'
             render_poster(cells,manifest,path,'routing',whole=True)
@@ -102,6 +128,43 @@ class SignalViewTests(unittest.TestCase):
                 return image.getpixel((24+(at[0]-left+2)*34+2,56+(at[1]-top+2)*34+2))
             self.assertEqual(border((1,0)),(255,255,255))
             self.assertNotEqual(border((7,0)),(255,255,255))
+            logical=Path(folder)/'logical.png'
+            render_poster(cells,manifest,logical,'logical',whole=True)
+            with Image.open(logical).convert('RGB') as image:
+                expected_height=56+(data['bounds']['height']+4)*34+24
+                self.assertEqual(image.height,expected_height)  # no legend or footer text
+                minx,miny=data['bounds']['min']
+                minx-=2;miny-=2
+                px=24+(0-minx)*34+17
+                py=56+(0-miny)*34+17
+                expected=tuple(int(nets['a']['route_color'][i:i+2],16) for i in (1,3,5))
+                self.assertEqual(image.getpixel((px,py)),expected)  # the thin overlay crosses the real arrows
+                fill=signal_tile_color(nets['a']['route_color'])
+                expected_fill=tuple(int(fill[i:i+2],16) for i in (1,3,5))
+                colors={color for _,color in image.getcolors(image.width*image.height)}
+                self.assertIn(expected_fill,colors)
+                self.assertNotIn((207,213,222),colors)  # wire arrows no longer use a shared gray fill
+            write_map(Path(folder),'invert',cells)
+            manifest_path=Path(folder)/'invert.build.json'
+            write_json(manifest_path,physical_manifest)
+            output=Path(folder)/'cli-logical.png'
+            environment=os.environ.copy()
+            environment['PYTHONPATH']=str(ROOT/'src')+os.pathsep+environment.get('PYTHONPATH','')
+            result=subprocess.run([sys.executable,'-m','arrowshdl','preview',
+                str(Path(folder)/'invert.save.txt'),str(manifest_path),'--preview-style','logical','-o',str(output)],
+                capture_output=True,text=True,encoding='utf-8',env=environment,timeout=30)
+            self.assertEqual(result.returncode,0,result.stderr)
+            with Image.open(output) as image:image.verify()
+            default=subprocess.run([sys.executable,'-m','arrowshdl','preview',
+                str(Path(folder)/'invert.save.txt'),str(manifest_path),'--style','default','-o',str(Path(folder)/'default.png')],
+                capture_output=True,text=True,encoding='utf-8',env=environment,timeout=30)
+            self.assertEqual(default.returncode,0,default.stderr)
+            with Image.open(Path(folder)/'default.png') as image:image.verify()
+            missing=subprocess.run([sys.executable,'-m','arrowshdl','preview',
+                str(Path(folder)/'invert.save.txt'),'--style','logical','-o',str(Path(folder)/'no-metadata.png')],
+                capture_output=True,text=True,encoding='utf-8',env=environment,timeout=30)
+            self.assertEqual(missing.returncode,2)
+            self.assertIn('requires signal or gate metadata',missing.stderr)
         with self.assertRaises(MapError):view_data({**cells,(20,20):Cell(1,1)},manifest)
 
     def test_constant_only_view_uses_board_bounds_when_core_is_empty(self):
