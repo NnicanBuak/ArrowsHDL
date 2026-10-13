@@ -1,275 +1,149 @@
 # ArrowsHDL
 
-ArrowsHDL — компилятор Verilog/SystemVerilog в физические схемы Logic Arrows.
-Пакет предоставляет CLI и Python API для компиляции, компоновки, симуляции,
-проверки и экспорта игровых сохранений.
+ArrowsHDL компилирует Verilog/SystemVerilog в физические схемы Logic Arrows. Он предоставляет CLI и Python API для сборки, симуляции и проверки схем.
 
-Версия: **0.1.0**, экспериментальная.
+## Требования и установка
 
-## Требования
-
-- Python 3.11 или новее.
-- pip для установки пакета и его зависимостей.
-- Готовый wheel для вашей операционной системы и архитектуры.
-
-Yosys (`yowasp-yosys`), Node.js (`nodejs-wheel-binaries`) и Pillow
-устанавливаются автоматически через pip. Готовый wheel содержит
-скомпилированный симулятор; **Rust/Cargo для его установки и запуска не требуется**.
-
-## Установка
+Для установки готового пакета нужны Python 3.11 или новее и pip. Yosys, Node.js и Pillow устанавливаются как зависимости; wheel содержит скомпилированный симулятор, поэтому Rust/Cargo для установки готового пакета не нужен.
 
 1. Откройте [страницу релизов ArrowsHDL](https://github.com/NnicanBuak/ArrowsHDL/releases).
-2. В разделе **Assets** выбранного релиза скачайте файл `.whl` для вашей
-   операционной системы и архитектуры. Например, тег `win_amd64` обозначает
-   Windows x64. Архивы **Source code** для этой установки не нужны.
-3. Установите скачанный файл через pip и проверьте работоспособность:
-
-В команде ниже замените `ПОЛНЫЙ_ПУТЬ_К_СКАЧАННОМУ_WHEEL.whl` фактическим
-путём к файлу, который вы скачали из релиза. Команды можно выполнить из любого каталога.
+2. В разделе Assets нужного релиза скачайте wheel для своей ОС и архитектуры. Архивы Source code для установки не подходят.
+3. Установите скачанный файл и проверьте пакет:
 
 ~~~powershell
-python -m pip install "ПОЛНЫЙ_ПУТЬ_К_СКАЧАННОМУ_WHEEL.whl"
+python -m pip install "ПОЛНЫЙ_ПУТЬ_К_WHEEL.whl"
 arrowshdl health
 ~~~
 
-**На 13 октября 2026 года опубликованных релизов нет.** Скачать готовый
-wheel по этой инструкции можно будет после публикации релиза с подходящим
-файлом `.whl` в Assets. Успешная проверка `arrowshdl health` завершается с кодом **0**.
+Релиз [v0.1.0](https://github.com/NnicanBuak/ArrowsHDL/releases/tag/v0.1.0) содержит wheel для Windows x64, Linux x64 и macOS 14+ (Intel и Apple Silicon), а также файл контрольных сумм SHA256SUMS.txt. Успешная команда health завершается кодом 0.
 
 ## Быстрый старт
 
-Команды выполняются из корня репозитория после установки пакета.
-`python -m arrowshdl` эквивалентен `arrowshdl`.
+Проект содержит HDL-исходники и обязательный файл проекта; описание интерфейса и размещения подключается при необходимости.
+
+- HDL-файлы .v и .sv задают модули, экземпляры и электрические соединения.
+- project.toml выбирает верхний модуль, исходники и параметры сборки.
+- design.toml необязателен; в нём можно задать виджеты, дисплеи и координаты экземпляров.
 
 ~~~powershell
-arrowshdl build examples/alu_workbench/project.toml -o build/alu.json
-arrowshdl test build/alu.json tests/fixtures/examples/alu_workbench/vectors.json --vectors -o build/alu/report.json
-arrowshdl preview build/alu.json -o build/alu/map.png
-arrowshdl preview build/alu.json --style logical -o build/alu/logical.png
+arrowshdl build examples/alu_workbench/project.toml -o build/alu.save.txt --preview build/alu.png
+arrowshdl test examples/alu_workbench/project.toml tests/fixtures/examples/alu_workbench/vectors.json --vectors -o build/alu.report.json
 ~~~
 
-`*.save.txt` — игровой код сохранения для импорта в Logic Arrows;
-`*.map.json` — карта клеток; `*.build.json` — геометрия, порты, задержка и хеш;
-`*.logic.json` — логический граф автоматического размещения.
-Тестовые источники и пробники добавляются в копию карты.
+Команда build создаёт игровое сохранение .save.txt; параметр --preview дополнительно создаёт PNG из той же сборки. Команда test компилирует исходный проект в памяти и проверяет физическую схему по векторам. Проверка не зависит от заранее собранного сохранения.
 
-## Использование CLI
+Справочник: [структура TOML-проекта](docs/reference.md#toml-v3-hdl-проект-и-описание-схемы), [CLI](docs/reference.md#cli), [поддерживаемый HDL](docs/reference.md#поддерживаемый-hdl), [нативные модули](docs/reference.md#нативная-библиотека), [полный минимальный проект](docs/reference.md#минимальный-проект-от-hdl-до-проверки).
 
-Общая справка: `arrowshdl --help`; справка команды: `arrowshdl compile --help`.
-**`-o` / `--out`** задаёт каталог результатов сборки либо имя объекта,
-отчёта, преобразованного файла или PNG.
+## HDL и Verilog
 
-### Проверка работоспособности
+**HDL (Hardware Description Language)** — язык описания аппаратуры. Он описывает цифровые схемы через модули, сигналы, логические операции, связи и поведение, которое затем можно симулировать или синтезировать в физическую схему.
 
-~~~powershell
-arrowshdl health
-~~~
+**Verilog** — язык описания аппаратуры для проектирования, моделирования и синтеза цифровых схем. **SystemVerilog** — расширение Verilog с дополнительными средствами RTL-проектирования и проверки.
 
-Команда проверяет запуск Node.js, наличие исполняемого файла симулятора,
-компиляцию встроенной схемы, экспорт и чтение сохранения, результаты
-физической симуляции и создание PNG. Проверки выполняются во временном
-каталоге. Вывод на английском содержит статус каждого компонента;
-код завершения **0** означает успех, **1** — сбой проверки.
+### Материалы для изучения
 
-### Компиляция HDL и проект TOML
+- [Hardware description language (HDL)](https://en.wikipedia.org/wiki/Hardware_description_language) — общее описание HDL и области применения.
+- [HDLBits](https://hdlbits.01xz.net/wiki/Main_Page) — практические задачи по цифровой логике и Verilog.
+- [Verilog Design Guide](https://verilogguide.readthedocs.io/en/latest/) — учебное руководство по синтаксису и основным конструкциям Verilog.
+- [IEEE Verilog/SystemVerilog standards](https://standards.ieee.org/ieee/1364/2052/) — официальная справочная информация по стандартам языка.
 
-`-o FILE` задаёт путь к **одному выходному файлу**. Расширение `.json` сохраняет
-скомпилированную схему вместе с портами, временными характеристиками и метаданными.
-Расширение `.txt` сохраняет код импорта в игру. Каталог в `-o` не допускается.
-Предпросмотр и отчёт создаются отдельными командами.
+## Документация ArrowsHDL
 
-Процессы выводят этапы и процент выполнения в stderr. Процент относится
-к этапам операции; трассировщик дополнительно сообщает число обработанных
-цепей, оставшиеся цепи и перестроения. Повторные попытки размещения могут
-увеличивать длительность этапа. 100% выводится после успешного завершения. Все встроенные сообщения CLI,
-справка и диагностика ошибок выводятся на английском языке.
-
-
-~~~powershell
-arrowshdl compile examples/alu_workbench/arithmetic.v --top arithmetic --std 1364-2005 -G WIDTH=4 -o build/compiled.json
-arrowshdl build examples/packet_router/project.toml -o build/router.json
-arrowshdl build examples/minesweeper/project.toml -o build/mines.json
-~~~
-
-TOML v3 задаёт верхний HDL-модуль, исходники и параметры. Иерархия экземпляров
-и связи портов берутся из HDL; необязательный `design.toml` отдельно задаёт
-кнопки, дисплеи и размещение компонентов. Каждая уникальная специализация
-HDL-модуля компилируется один раз, а готовые карты экземпляров соединяются по
-иерархии исходного проекта.
-Параметры `compile`: `-I каталог` для include, `-D NAME=VALUE` для макроса,
-`-G NAME=VALUE` для параметра верхнего модуля, `-L файл.v` для библиотеки.
-Стандартная нативная библиотека подключается автоматически.
-`--timeout` ограничивает время **всей операции** в секундах (по умолчанию 600),
-`--max-cells` — число клеток (по умолчанию 1 000 000).
-
-По умолчанию используется **`--layout auto`**: размещение по связям графа,
-сокращение эквивалентной комбинационной логики и разводка. Шины сохраняют
-порядок битов; входы размещаются ближе к потребителям, выходы — к источникам.
-Размер скомпилированного модуля оценивается целиком, включая его порты. Геометрические шаблоны
-арифметических блоков в этом режиме не используются.
-
-**`--compact`** включает дополнительные формы размещения и эвристический
-поиск. Он требует больше времени; скомпилированный модуль содержит не больше
-стрелок и занимает не большую площадь, чем обычная компиляция того же модуля.
-Поиск не гарантирует глобальный минимум.
-
-~~~powershell
-arrowshdl build examples/packet_router/project.toml --compact -o build/router-small.json
-arrowshdl compile examples/alu_workbench/arithmetic.v --top arithmetic --compact -o build/math-small.json
-~~~
-
-| Режим | Назначение |
+| Материал | Что содержит |
 | --- | --- |
-| `--layout auto` | Автоматическое размещение по графу, включая нативную память и панели управления. Используется по умолчанию. |
-| `--compact` | Дополнительный поиск расположений в режиме `auto`; выбирается проверенный вариант с меньшим числом стрелок и площадью. |
-| `--layout compact` | Прежний поисковый алгоритм для комбинационной логики. |
-| `--layout sparse` | Разреженная разводка комбинационной логики; увеличивает расстояния и размер карты. |
-| `--layout macro-grid` | Диагностическая сетка нативных элементов без поиска компактного размещения. |
-| `--layout fixed` | Структурная схема с заранее подготовленной физической геометрией. |
+| [Справочник](docs/reference.md) | CLI, `project.toml`, `design.toml`, поддерживаемый HDL, API, тесты и симуляция |
+| [Правила нативных модулей](docs/native-rules.md) | Контакты и ограничения встроенных компонентов ArrowsHDL |
+| [Оптимизация нативной симуляции](docs/native-simulation-optimization.md) | Детали производительности и прохождения игровых тактов |
+| [Архитектура](ARCHITECTURE.md) | Внутренние стадии компиляции и основные компоненты проекта |
+| [Симулятор](SIMULATOR.md) | Формат и правила физической симуляции |
+| [Примеры](examples/) | Готовые проекты с HDL, конфигурацией, схемами и проверками |
 
-`--layout compact` и `sparse` не поддерживают нативные элементы памяти.
-Панели управления требуют `auto`. `--compact` применяется с `--layout auto`.
+Для быстрого старта достаточно открыть [минимальный проект от HDL до проверки](docs/reference.md#минимальный-проект-от-hdl-до-проверки), а затем посмотреть [ограничения поддерживаемого HDL](docs/reference.md#поддерживаемый-hdl). ArrowsHDL поддерживает **синтезируемый поднабор Verilog/SystemVerilog**, а не весь стандарт: произвольная последовательностная логика и VHDL не поддерживаются.
 
-### Повторное использование скомпилированных схем
+## Сборка из командной строки
 
-`build` хранит готовые модули в системном каталоге кеша ArrowsHDL.
-На Windows это `%LOCALAPPDATA%/ArrowsHDL/cache`; переменная
-`ARROWSHDL_CACHE_DIR` задаёт другой каталог. Ключ учитывает
-исходники, include-файлы, параметры, стандарт, определения и настройки
-компилятора. Одинаковые экземпляры используют одну скомпилированную карту;
-повторный `build` читает её из кеша. Изменение входных данных создаёт новую
-сборку. Внутренние клетки готовой схемы при сборке карты сохраняются.
-
-Для явной двухэтапной сборки:
+Полная компиляция файла без project.toml и сборка проекта выглядят так:
 
 ~~~powershell
-arrowshdl compile examples/minesweeper/mine_cell.v examples/minesweeper/seven_segment.v --top mine_cell --std 1364-2005 --compact -o build/tile.json
+arrowshdl compile examples/alu_workbench/arithmetic.v --top arithmetic -G WIDTH=4 -o build/arithmetic.save.txt --preview build/arithmetic.png
+arrowshdl build examples/packet_router/project.toml --layout compact -o build/router.save.txt
 ~~~
 
-Команда создаёт один файл `build/tile.json`, содержащий готовую карту, порты и метаданные.
-TOML проекта может подключить готовый результат без исходников:
-
-~~~toml
-[[components]]
-name = "cell_0"
-file = "build/tile.json"
-~~~
-
-Путь file задаётся относительно TOML. Добавление нескольких components с
-разными name и одним file размещает копии одной готовой схемы. `--compact`
-применяется при компиляции модуля; готовые components повторно не синтезируются.
-Время и размер межмодульной разводки зависят от связей проекта.
-
-### Объектная компиляция и компоновка
+Для build, compile и link выходной файл -o должен быть игровым сохранением .txt. Флаг --preview PATH при полной компиляции создаёт ещё один файл PNG. Предпросмотр уже готовой карты можно получить отдельной командой:
 
 ~~~powershell
-arrowshdl compile -c examples/alu_workbench/arithmetic.v --top arithmetic -o build/math.aho.json
-arrowshdl link build/math.aho.json --top arithmetic -o build/linked.json
+arrowshdl preview build/router.save.txt -o build/router.png
 ~~~
 
-`-c` сохраняет объект RTLIL без размещения. `link` принимает несколько
-объектов, объединяет модули и строит карту. Для раздельной компиляции
-`compile -c --extern имя` оставляет объявленный интерфейс до компоновки.
+По умолчанию используется --layout auto. Единственный публичный выбор компактного размещения — --layout compact. Он использует современный автоматический алгоритм с дополнительным поиском. Также доступны sparse, fixed и macro-grid там, где их поддерживает команда. Автоматический поиск ограничен таймаутом и не гарантирует глобальный минимум.
 
-### Проверка логики и симуляция по тактам
+Для раздельной компиляции компилятор может сохранить внутренний объект RTLIL, который затем принимает link:
 
 ~~~powershell
-arrowshdl test build/alu.json tests/fixtures/examples/alu_workbench/vectors.json --vectors -o build/alu/report.json
-arrowshdl build examples/pulse_sequencer/project.toml -o build/sequencer.json
-arrowshdl simulate build/sequencer.json tests/fixtures/examples/pulse_sequencer/scenario.json -o build/sequencer/trace.json
+arrowshdl compile -c examples/alu_workbench/arithmetic.v --top arithmetic -o build/arithmetic.aho.json
+arrowshdl link build/arithmetic.aho.json --top arithmetic -o build/linked.save.txt
 ~~~
 
-Векторы — массив объектов `{"inputs": {...}, "expect": {...}}`, шины заданы
-целыми числами. `--vectors --manifest` добавляет тестовые контакты и определяет
-время установления комбинационной схемы.
+Файл .aho.json предназначен только для промежуточного объекта компиляции. Обычные compile/build/link выдают игровое сохранение.
 
-Физический сценарий задаёт `ticks`, `inputs` для тестовых источников,
-`controls` для кнопок, `probes` для свободных приёмников, `observe` для
-считывания существующих клеток и `assert` / `expect` для проверок.
-Значения — `0`, `1`, а `null` в проверке пропускает отсчёт.
-`simulate` и `test` используют один физический симулятор. Отчёт содержит
-трассы и SHA-256 входного сохранения. Код завершения: **0** — успех или
-трасса без проверок, **1** — провал проверки, **2** — ошибка команды.
-`--no-optimize-cycles` отключает оптимизацию циклов.
+Повторные сборки проекта используют системный кеш скомпилированных HDL-модулей. Ключ зависит от исходников, include-файлов, параметров, стандарта и настроек компилятора; переменная ARROWSHDL_CACHE_DIR позволяет выбрать другой каталог кеша.
 
-### Сохранения, граф и изображения
+## Проверка и симуляция
+
+Векторы задаются JSON-массивом объектов inputs/expect. Пример и команды находятся в [минимальном проекте](docs/reference.md#минимальный-проект-от-hdl-до-проверки). Тест запускается от проекта или исходника:
 
 ~~~powershell
-arrowshdl decode build/alu.json -o build/alu/decoded.json
-arrowshdl encode build/alu/decoded.json -o build/alu/roundtrip.save.txt
-arrowshdl graph build/alu/roundtrip.save.txt -o build/alu/graph.json
-arrowshdl preview build/alu/roundtrip.save.txt -o build/alu/preview.png
-arrowshdl health
+arrowshdl test project.toml vectors.json --vectors -o build/report.json
+arrowshdl test logic.v vectors.json --top logic_unit --vectors -o build/report.json
 ~~~
 
-`decode` читает сохранение, `encode` записывает его из JSON,
-`graph` экспортирует клетки и физические зависимости,
-`preview` рисует реальные стрелки; `health` проверяет работоспособность установленного пакета.
-Флаг `--style logical` накладывает цветные линии графа сигналов на реальную
-схему, подкрашивает клетки стрелок по цвету сигнала, обводит логические модули
-и выделяет I/O. Линии проходят внутри рамок модулей, но прерываются на клетках
-логических операторов. Возле каждого входа и выхода показано имя порта с индексом.
-Цвет линии меняется при прохождении через логический узел и сохраняется через
-буферы. Кроме заголовка схемы, на изображении есть только подписи портов.
-По умолчанию используется `--style default`.
-Логический вид требует метаданные схемы, поэтому передавайте скомпилированную
-`.json`-схему или файл `build.json` для сохранения `.txt`.
-
-Небольшая схема из двух логических модулей нагляднее показывает этот режим:
-
-![Логический вид небольшой схемы](examples/logical_preview/visuals/logical.png)
-
-Её можно собрать и визуализировать командами:
+Для сценария с кнопками, наблюдениями и игровыми тактами используйте test с исходным проектом либо simulate с готовым сохранением:
 
 ~~~powershell
-arrowshdl build examples/logical_preview/project.toml -o build/logical_preview.json
-arrowshdl preview build/logical_preview.json --style logical -o build/logical_preview.png
+arrowshdl test project.toml scenario.json -o build/game.report.json
+arrowshdl simulate build/game.save.txt scenario.json -o build/trace.json
+~~~
+
+Отчёт теста содержит результат проверок и хеш исходной физической карты. Выходы тестов и симуляций — JSON-отчёты; они не являются файлами сборки. Код завершения test: 0 — проверки пройдены, 1 — ожидания не выполнены, 2 — ошибка команды.
+
+Запустить регрессионные тесты из исходного репозитория можно отдельно:
+
+~~~powershell
+arrowshdl test --suite tests -o build/regression.json
 ~~~
 
 ## Примеры
 
-| Проект | Описание |
-|---|---|
-| [Logical Preview](examples/logical_preview/README.md) | Небольшая схема для просмотра графа сигналов и границ модулей |
-| [Minesweeper](examples/minesweeper/README.md) | Игра с безопасным первым кликом, каскадным открытием, счётчиками и статусом |
-| [ALU Workbench](examples/alu_workbench/README.md) | Иерархическая ALU с восемью операциями и флагами результата |
-| [Packet Router](examples/packet_router/README.md) | Маршрутизатор с проверкой чётности, арбитражем и backpressure |
-| [Pulse Sequencer](examples/pulse_sequencer/README.md) | Семь генераторов, восемь режимов, память выбора и история сигнала на 64 такта |
+| Проект | Что показывает |
+| --- | --- |
+| [Minesweeper V2](examples/minesweeper/README.md) | Игра 10×10, физическая сетка экземпляров и проверка поведения |
+| [ALU Workbench](examples/alu_workbench/README.md) | Иерархия модулей, параметры, арифметика и векторы |
+| [Packet Router](examples/packet_router/README.md) | Соединение HDL-блоков и проверка протокола |
+| [Pulse Sequencer](examples/pulse_sequencer/README.md) | Нативная память, генераторы, история сигнала и временная симуляция |
 
-Корень каждого примера содержит README, один TOML и Verilog-модули.
-`build/` содержит выходные карты,
-сценарии, отчёты и JSON; `visuals/` — изображения. Исторические клеточные
-реализации сохранены в `tests/fixtures/historical`.
+В каждом каталоге примера находятся HDL, project.toml, иногда design.toml, README и PNG-изображения собранной схемы. Проверки запускаются отдельно от сборки и компилируют проект непосредственно из исходников.
 
-## Разработка и тестирование
+## Python API и разработка
 
-Для установки из исходников при разработке дополнительно требуется Rust/Cargo:
+~~~python
+import arrowshdl
+
+result = arrowshdl.build("project.toml", layout="compact")
+print(len(result.cells), result.metadata["settle_ticks"])
+report = arrowshdl.test("project.toml", "vectors.json", vectors=True)
+~~~
+
+Без параметра out API возвращает клетки, порты и метаданные в памяти. Если передать out, API сохранит только игровой файл .txt. Параметр preview позволяет дополнительно записать PNG.
+
+Для установки из исходного дерева разработки необходим Rust/Cargo:
 
 ~~~powershell
 python -m pip install -e ".[test]"
 arrowshdl test --suite tests -o build/regression.json
 ~~~
 
-Регрессионные тесты расположены в `tests`, тестовые данные — в
-`tests/fixtures`. Набор включает проверки компилятора, симулятора,
-публичного API и проектов из `examples`.
-
-Генерация визуализаций примеров:
-
-~~~powershell
-python tools/render_examples.py
-~~~
-
 ## Ограничения
 
-Поддерживается синтезируемый поднабор Verilog/SystemVerilog.
-Произвольная поведенческая последовательная логика не поддерживается;
-память реализуется нативными модулями библиотеки. Автоматическое размещение
-ограничено заданным бюджетом времени и числом клеток.
+Поддерживается синтезируемый поднабор Verilog/SystemVerilog. Произвольная поведенческая последовательная логика не поддерживается; память и таймеры задаются нативными модулями ArrowsHDL. Сложная автоматическая разводка ограничена таймаутом и бюджетом клеток.
 
-## Документация и лицензия
-
-Подробные форматы и Python API: [справочник](docs/reference.md).
-Устройство компилятора: [ARCHITECTURE.md](ARCHITECTURE.md).
-Собственный код: [PolyForm Noncommercial 1.0.0](LICENSE), [NOTICE](NOTICE).
-Сторонние материалы: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Подробности: [справочник](docs/reference.md). Лицензия: [PolyForm Noncommercial 1.0.0](LICENSE). Сведения о сторонних материалах: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
