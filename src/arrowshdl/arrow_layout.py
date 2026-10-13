@@ -112,24 +112,21 @@ def validate_connections(cells,owners,gates,pins,roots):
 
 
 def place(netlist, max_cells=100_000, layout="compact", input_buses=None, input_bus_gap='auto'):
-    from arrowshdl.native_rules import validate_gate_rule
-    for node in netlist['nodes']:validate_gate_rule(node)
     from copy import deepcopy
     from arrowshdl.input_buses import configure, describe
     config = configure(netlist, input_buses, input_bus_gap)
-    if config['groups']:
-        if layout != 'compact':
-            raise MapError('Input grouping requires compact layout')
+    if layout in ('auto', 'compact'):
+        from arrowshdl.auto_layout import place_auto
         netlist = deepcopy(netlist)
         netlist['_input_bus_config'] = config
+        cells, meta = place_auto(netlist, max_cells=max_cells, compact=layout=='compact')
+        describe(netlist, meta)
+        return cells, meta
+    if config['groups']:
+        raise MapError('Input grouping requires auto or compact layout')
     if layout == "sparse":
         return place_sparse(netlist, max_cells)
-    if layout != "compact":
-        raise MapError(f"Unknown layout algorithm: {layout}")
-    from arrowshdl.compact_layout import place_compact
-    cells, meta = place_compact(netlist, max_cells)
-    describe(netlist, meta)
-    return cells, meta
+    raise MapError(f"Unknown layout algorithm: {layout}")
 
 
 def place_sparse(netlist, max_cells=100_000):

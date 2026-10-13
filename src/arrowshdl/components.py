@@ -49,28 +49,19 @@ def move(cells, manifest, at):
 def load_component(path,at=(0,0),rotation=0):
     path=Path(path).resolve()
     data=(json.loads if path.suffix=='.json' else tomllib.loads)(path.read_text(encoding='utf-8-sig'))
-    embedded = None
-    if data.get('format') == 'arrowshdl-compiled-scheme':
-        from arrowshdl.artifacts import unpack
-        from arrowshdl.module_cache import component_document
-        embedded, metadata = unpack(data)
-        data = component_document(metadata['top'], metadata)
-    table(data,{'version','map','ports','interface','settle_ticks','state_boundaries','panel',
-                'display_pixels','segment_pixels'},str(path))
+    table(data,{'version','map','ports','interface','settle_ticks','state_boundaries','panel','segment_pixels','display','io_devices','display_pixels'},str(path))
     if type(data.get('version')) is not int or data['version']!=1:
         raise MapError(f'{path}: unsupported compiled module descriptor version')
     if not isinstance(data.get('map'),str) or not data['map']:
         raise MapError('Compiled module must reference map JSON or a game save')
-    cells=embedded if embedded is not None else read_map(path.parent/data['map'])
+    cells=read_map(path.parent/data['map'])
     if not cells:raise MapError('Compiled module is empty')
     ports=data.get('ports',{})
     table(ports,{'inputs','outputs'},'ports')
     meta=dict(inputs=deepcopy(ports.get('inputs',{})),outputs=deepcopy(ports.get('outputs',{})),state_boundaries=data.get('state_boundaries',[]))
     if data.get('panel'):meta['panel']=deepcopy(data['panel'])
-    if data.get('segment_pixels'):meta['segment_pixels']=deepcopy(data['segment_pixels'])
-    if data.get('display_pixels'):meta['display_pixels']=deepcopy(data['display_pixels'])
-    if embedded is not None and metadata.get('segment_pixels'):meta['segment_pixels']=deepcopy(metadata['segment_pixels'])
-    if embedded is not None and metadata.get('display'):meta['display']=deepcopy(metadata['display'])
+    for key in ('segment_pixels','display','io_devices','display_pixels'):
+        if key in data:meta[key]=deepcopy(data[key])
     for point in meta['state_boundaries']: pair(point,'state_boundaries')
     contacts=set()
     for side in ('inputs','outputs'):

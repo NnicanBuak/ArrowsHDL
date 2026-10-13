@@ -11,6 +11,41 @@ from arrowshdl.technology_mapping import merge_duplicate_logic
 
 
 class PublicApiTests(unittest.TestCase):
+    def test_physical_project_preserves_bindings_for_vectors_and_preview(self):
+        import json
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            source=root/'dut.v'
+            source.write_text('''(* arrowshdl_settle_ticks = 8 *) module dut(input a, output y);
+                arrows_cell #(.TYPE(1),.X(0),.Y(0),.ROTATION(1)) cell0
+                (.I(a),.B(1'b0),.S(1'b0),.O(y)); endmodule''')
+            bindings=dict(inputs={'a':[dict(index=0,contact=[0,0],fixture=[-1,0],rotation=1)]},
+                outputs={'y':[dict(index=0,contact=[0,0],fixture=[1,0],rotation=1)]},settle_ticks=8)
+            (root/'bindings.json').write_text(json.dumps(bindings))
+            project=root/'project.toml'
+            project.write_text('version=3\ntop="dut"\nsources=["dut.v"]\nbindings="bindings.json"\n')
+            result=arrowshdl.build(project,out=root/'dut.save.txt',preview=root/'dut.png')
+            self.assertEqual(result.ports['inputs'],bindings['inputs'])
+            self.assertEqual(result.ports['outputs'],bindings['outputs'])
+            self.assertEqual(result.metadata['settle_ticks'],8)
+            self.assertTrue(result.metadata['bindings_sha256'])
+            self.assertTrue((root/'dut.png').is_file())
+            report=arrowshdl.test(project,[dict(inputs={'a':v},expect={'y':v}) for v in (0,1,0,1)],vectors=True)
+            self.assertTrue(report['passed'],report['failures'])
+
+    def test_physical_preview_accepts_ports_without_test_fixtures(self):
+        from PIL import Image
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            source=root/'dut.v'
+            source.write_text('''module dut(output y);
+                arrows_cell #(.TYPE(2),.X(0),.Y(0),.ROTATION(1)) c0
+                (.I(1'b0),.B(1'b0),.S(1'b0),.O(y)); endmodule''')
+            result=arrowshdl.compile(source,top='dut',out=root/'dut.save.txt',preview=root/'dut.png')
+            self.assertNotIn('fixture',result.ports['outputs']['y'][0])
+            with Image.open(root/'dut.png') as picture: picture.verify()
+            self.assertTrue((root/'dut.save.txt').is_file())
+
     def test_optional_cycle_optimizer_failure_preserves_simulation(self):
         from arrowshdl.simulation import simulate
         from nodejs_wheel import node
@@ -116,9 +151,13 @@ class PublicApiTests(unittest.TestCase):
             with self.assertRaisesRegex(arrowshdl.MapError,'Overall timeout'):
                 arrowshdl.compile(source,top='logic_unit',out=root/'out.save.txt',timeout=0.01)
             self.assertLess(time.monotonic()-started,5)
+            with self.assertRaisesRegex(arrowshdl.MapError,r'Overall timeout.*\(test\)'):
+                arrowshdl.test(source,dict(ticks=1),top='logic_unit',timeout=0.01)
             for budget in (0,-1,float('nan')):
                 with self.assertRaises(arrowshdl.MapError):
                     arrowshdl.build(root/'missing.toml',out=root/'out.save.txt',timeout=budget)
+                with self.assertRaises(arrowshdl.MapError):
+                    arrowshdl.test(source,dict(ticks=1),timeout=budget)
 
 
 if __name__=='__main__':unittest.main()

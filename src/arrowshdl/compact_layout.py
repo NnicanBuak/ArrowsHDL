@@ -596,59 +596,6 @@ class Router:
                 raise MapError(f"Disconnected net: {net}")
 
 
-def place_compact(netlist, max_cells=100_000):
-    from arrowshdl.technology_mapping import map_native_gates,merge_duplicate_logic
-    from arrowshdl.native_adder_layout import try_native_adder
-    from arrowshdl.native_mux_layout import try_native_mux
-    graph,rewrites=map_native_gates(netlist)
-    graph,sharing=merge_duplicate_logic(graph)
-    graph=dict(graph,_physical_optimize=True,_route_optimization=graph.get('_route_optimization', {'passes': 2}))
-    result=try_native_adder(graph,rewrites,max_cells) if not graph.get('_input_bus_config') else None
-    mux_failure=None
-    if result is None:
-        try:
-            result=try_native_mux(graph,max_cells)
-        except MapError as error:
-            mux_failure=str(error)
-    from arrowshdl.physical_compaction import compact_manifest, no_size_regression
-    candidates=[];failures=[]
-    if result is not None:
-        cells,meta=result
-        if not meta.get('physical_compaction'):cells,meta=compact_manifest(cells,meta,graph)
-        candidates.append((cells,meta))
-    # Templates contribute initial candidates; they no longer exclude the
-    # general graph placer. Both use the same physical compaction and checks.
-    try:
-        cells,meta=place_packed(graph,max_cells)
-        if not meta.get('physical_compaction'):cells,meta=compact_manifest(cells,meta,graph)
-        candidates.append((cells,meta))
-    except MapError as error:
-        failures.append({'layout':'general','reason':str(error)})
-    from arrowshdl.placement_search import search_placement
-    try:
-        searched=search_placement(graph,max_cells)
-        if searched is not None:candidates.append(searched)
-    except MapError as error:failures.append({'layout':'graph-search','reason':str(error)})
-    if not candidates:raise MapError(f'Could not assemble graph: {failures[-1]["reason"]}')
-    eligible=[candidate for candidate in candidates if no_size_regression(candidate,candidates[0])]
-    cells,meta=min(eligible,key=lambda cm:(cm[1]['logic_core']['cells'],cm[1]['logic_core']['bounds']['area'],
-                                          len(cm[0]),cm[1]['bounds']['area'],cm[1]['settle_ticks']))
-    meta['backend_search']={'selected':meta['layout'],'candidates':[
-        {'layout':m['layout'],'cells':len(c),'core':m['logic_core'],'bounds':m['bounds'],
-         'ticks':m['settle_ticks'],'no_size_regression':no_size_regression((c,m),candidates[0])}
-        for c,m in candidates], 'rejected':failures}
-    if result is not None:
-        for key in ('adder_bits','mux_inputs'):
-            if key in result[1]:meta[key]=result[1][key]
-    meta['logic_nodes']=len(netlist['nodes'])
-    meta['technology_nodes']=meta.get('mapped_logic_nodes',len(graph['nodes']))
-    if mux_failure is not None:
-        meta['native_mux_rejected']=mux_failure
-    meta['technology_mapping']=rewrites
-    meta['shared_logic']=sharing
-    return cells,meta
-
-
 def router_manifest(graph,router,cells,layout):
     from arrowshdl.signal_metadata import describe_signals
     return {'schema':1,'top':graph['top'],'map_hash':map_hash(cells),

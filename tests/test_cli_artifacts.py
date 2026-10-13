@@ -1,17 +1,70 @@
 """Public CLI exports exactly one file and streams progress during work."""
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
-from PIL import Image
 
 from arrowshdl.mapdata import read_map
+from arrowshdl.test_harness import add_fixture, make_scenario
+import arrowshdl
 
 
 class CliArtifactTests(unittest.TestCase):
-    def test_compile_writes_one_encoded_save_and_source_preview_needs_no_sidecar(self):
+    def test_compact_compile_build_and_link_preserve_native_memory_and_cache(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            source=root/'memory.v'
+            source.write_text('''module stored_bit(input load,d,output q);
+                arrows_register memory(.load(load),.D(d),.Q(q)); endmodule
+                module memory_top(input load,d,output q);
+                stored_bit bit0(load,d,q); endmodule''')
+            project=root/'project.toml'
+            project.write_text('version=3\ntop="memory_top"\nsources=["memory.v"]\n')
+            environment=dict(os.environ)
+            def cli(*args):
+                result=subprocess.run([sys.executable,'-m','arrowshdl',*map(str,args)],
+                    env=environment,capture_output=True,text=True,encoding='utf-8',timeout=60)
+                self.assertEqual(result.returncode,0,result.stderr)
+                return result
+            obj=root/'memory.aho.json'
+            cli('compile',source,'--top','memory_top','-c','-o',obj)
+            outputs=[]
+            for command,arguments in (('compile',(source,)),('build',(project,)),('link',(obj,))):
+                output=root/f'{command}.save.txt'
+                top=() if command=='build' else ('--top','memory_top')
+                cli(command,*arguments,*top,'--layout','compact','-o',output)
+                if command=='compile': compiled=arrowshdl.compile(source,top='memory_top',layout='compact')
+                elif command=='build': compiled=arrowshdl.build(project,layout='compact')
+                else: compiled=arrowshdl.link([obj],top='memory_top',layout='compact')
+                self.assertEqual(read_map(output),compiled.cells)
+                metadata=compiled.metadata
+                self.assertEqual(metadata['optimization']['mode'],'compact')
+                self.assertTrue(metadata['timing']['state_boundaries'])
+                outputs.append(metadata)
+                help_result=cli(command,'--help')
+                self.assertNotIn('--compact',help_result.stdout)
+                rejected=subprocess.run([sys.executable,'-m','arrowshdl',command,*map(str,arguments),
+                    *top,'--compact','-o',str(root/'rejected.save.txt')],env=environment,
+                    capture_output=True,text=True,encoding='utf-8',timeout=30)
+                self.assertEqual(rejected.returncode,2)
+                self.assertIn('unrecognized arguments: --compact',rejected.stderr)
+                vectors=[dict(inputs={'load':load,'d':data},expect={'q':q})
+                         for load,data,q in ((0,0,0),(1,1,1),(0,1,1),(0,0,1),(1,0,0))]
+                report=arrowshdl.simulate(add_fixture(read_map(output),metadata),
+                    make_scenario(metadata,vectors,settle_ticks=100))
+                self.assertTrue(report['passed'],report['failures'])
+            cli('build',project,'--layout','compact','-o',root/'warm.save.txt')
+            warm=arrowshdl.build(project,layout='compact').metadata
+            self.assertTrue(all(row['reused'] for row in warm['compiled_modules']))
+            cli('build',project,'-o',root/'auto.save.txt')
+            ordinary=arrowshdl.build(project).metadata
+            self.assertNotEqual({row['key'] for row in warm['compiled_modules']},
+                                {row['key'] for row in ordinary['compiled_modules']})
+
+    def test_one_file_metadata_vectors_preview_and_save(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             source=root/'xor.v'
@@ -23,12 +76,29 @@ class CliArtifactTests(unittest.TestCase):
                 self.assertEqual(result.returncode,0,result.stderr)
                 self.assertIn('[100.0%]',result.stderr)
                 return result
-            result=cli('compile',source,'--top','xor_unit','-o',output)
+            png=root/'images'/'preview.png'
+            result=cli('compile',source,'--top','xor_unit','-o',output,'--preview',png)
             self.assertIn('Synthesizing',result.stderr)
             self.assertEqual(list(output.parent.iterdir()),[output])
-            cli('preview',source,'--top','xor_unit','-o',root/'preview.png')
-            cli('preview',source,'--top','xor_unit','--style','logical','-o',root/'logical.png')
-            with Image.open(root/'logical.png') as preview:preview.verify()
+            self.assertEqual(read_map(output),arrowshdl.compile(source,top='xor_unit').cells)
+            from PIL import Image
+            with Image.open(png) as picture: picture.verify()
+            blocked_parent=root/'blocked-parent'
+            blocked_parent.write_text('file, not a directory')
+            failed_save=root/'failed-preview.save.txt'
+            for bad_preview in (blocked_parent/'preview.png', blocked_parent/'nested'/'preview.png'):
+                failed=subprocess.run([sys.executable,'-m','arrowshdl','compile',str(source),
+                    '--top','xor_unit','-o',str(failed_save),'--preview',str(bad_preview)],
+                    capture_output=True,text=True,encoding='utf-8')
+                self.assertEqual(failed.returncode,2)
+                self.assertIn('Preview parent must be a directory',failed.stderr)
+                self.assertFalse(failed_save.exists())
+            vectors=root/'vectors.json'
+            vectors.write_text(json.dumps([dict(inputs={'a':a,'b':b},expect={'y':a^b})
+                for a in (0,1) for b in (0,1)]))
+            cli('test',source,vectors,'--top','xor_unit','--vectors','-o',root/'report.json')
+            self.assertTrue(json.loads((root/'report.json').read_text())['passed'])
+            cli('preview',output,'-o',root/'preview.png')
             cli('compile',source,'--top','xor_unit','-o',root/'save'/'xor.save.txt')
             self.assertEqual(read_map(output),read_map(root/'save'/'xor.save.txt'))
             self.assertEqual(len(list((root/'save').iterdir())),1)
@@ -37,6 +107,16 @@ class CliArtifactTests(unittest.TestCase):
             self.assertEqual(rejected.returncode,2)
             self.assertIn('Output must be a file',rejected.stderr)
             self.assertEqual(list(output.parent.iterdir()),[output])
+            project=root/'project.toml'
+            project.write_text('version=3\ntop="xor_unit"\nsources=["xor.v"]\n')
+            built=root/'project.save.txt'
+            cli('build',project,'-o',built,'--preview',root/'project.png')
+            cli('test',project,vectors,'--vectors','-o',root/'project.report.json')
+            self.assertTrue(json.loads((root/'project.report.json').read_text())['passed'])
+            invalid=subprocess.run([sys.executable,'-m','arrowshdl','compile',str(source),
+                '--top','xor_unit','-o',str(root/'forbidden.json')],capture_output=True,text=True,encoding='utf-8')
+            self.assertEqual(invalid.returncode,2)
+            self.assertFalse((root/'forbidden.json').exists())
 
     def test_progress_is_visible_before_process_finishes(self):
         process=subprocess.Popen([sys.executable,'-m','arrowshdl','health'],

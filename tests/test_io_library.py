@@ -6,6 +6,7 @@ import unittest
 
 from arrowshdl.components import load_component
 from arrowshdl.manifest import component_file, load_project
+from arrowshdl.mapdata import read_map,map_hash
 from arrowshdl.simulation import simulate
 from arrowshdl.test_harness import add_fixture
 
@@ -31,8 +32,9 @@ class IoLibraryTests(unittest.TestCase):
 
     def test_all_seven_segment_patterns_on_physical_display(self):
         path=component_file(Path.cwd(),'library:seven_segment')
-        cells,meta=load_component(path)
-        cells=add_fixture(cells,meta)
+        production,meta=load_component(path)
+        meta['map_hash']=map_hash(production)
+        cells=add_fixture(production,meta)
         hold=meta['settle_ticks']
         scenario=dict(ticks=128*hold,hold_ticks=hold,expect=[],
             inputs=[dict(at=e['fixture'],values=[(value>>e['index'])&1 for value in range(128)])

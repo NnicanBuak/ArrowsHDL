@@ -11,18 +11,10 @@ from arrowshdl.resources import SPRITES
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def render_cells(cells, path, manifest=None, *, style='default'):
+def render_cells(cells, path, manifest=None):
     """Portable PNG from Cell geometry, including native maps without signals."""
     from arrowshdl.arrow_layout import bounds_of
     manifest = manifest or {}
-    if style not in ('default', 'logical'):
-        raise MapError(f"Unknown preview style: {style!r}; expected 'default' or 'logical'")
-    if style == 'logical':
-        if not (manifest.get('signals') or manifest.get('gate_labels')):
-            raise MapError('Logical preview requires signal or gate metadata; pass a compiled scheme or its build manifest')
-        from arrowshdl.signal_view import render_poster
-        production={p:c for p,c in cells.items() if c.type not in (22,23)}
-        return render_poster(production,manifest,path,mode='logical',whole=True)
     b = bounds_of(cells) if cells else {'min':[0,0],'width':1,'height':1}
     size = max(1, min(24, 5000//max(b['width'],b['height'])))
     ports = [(kind,name,entries) for kind in ('inputs','outputs') for name,entries in manifest.get(kind,{}).items()]
@@ -57,7 +49,7 @@ def render_cells(cells, path, manifest=None, *, style='default'):
         else:
             picture.paste(sprite,at,sprite)
     for kind,name,entry in labels:
-        x,y = entry['fixture']; cx,cy = entry['contact']
+        x,y = entry.get('fixture', entry['contact']); cx,cy = entry['contact']
         px = (x-b['min'][0]+0.5)*size+(width-b['width']*size)//2
         py = (y-b['min'][1]+0.5)*size+64+padding
         color = '#157d68' if kind=='inputs' else '#a15b15'

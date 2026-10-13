@@ -66,6 +66,10 @@ def derive_project(project, timeout):
     raw, _ = elaborate(project.sources, project.top, timeout, standard=project.standard,
         include_dirs=project.include_dirs, defines=project.defines, parameters=project.parameters)
     if project.top not in raw.get('modules',{}): raise MapError(f'HDL top module not found: {project.top}')
+    if any(cell['type']=='arrows_cell' or cell['type'].startswith('$paramod') and 'arrows_cell' in cell['type']
+           for module in raw['modules'].values() for cell in module.get('cells',{}).values()):
+        from arrowshdl.physical import normalize_physical_hierarchy
+        return SimpleNamespace(physical_graph=normalize_physical_hierarchy(raw,project.top,project.layout))
     modules = raw['modules']; signals = _Signals()
     leaves=[]; active=[]
     def descend(kind, scope, port_bindings, stack):

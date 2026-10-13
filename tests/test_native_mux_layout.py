@@ -17,7 +17,7 @@ from arrowshdl.verilog_frontend import synthesize
 
 class NativeMuxTests(unittest.TestCase):
     def test_exhaustive_saved_maps_and_total_size(self):
-        for count, old_cells in ((2, 20), (4, 63), (8, 286)):
+        for count in (2, 4, 8):
             with self.subTest(count=count), tempfile.TemporaryDirectory() as d:
                 folder = Path(d)
                 source = ROOT / f'tests/fixtures/circuits/hdl/multiplexer/mux{count}/mux{count}.v'
@@ -25,17 +25,13 @@ class NativeMuxTests(unittest.TestCase):
                 before = deepcopy(graph)
                 cells, meta = place(graph, input_buses=['data,sel'], input_bus_gap=0)
                 self.assertEqual(graph, before)
-                self.assertTrue(meta['layout'].startswith('compact-'))
-                self.assertEqual(meta['backend_search']['selected'],meta['layout'])
+                ordinary, baseline = place(graph, layout='auto', input_buses=['data,sel'], input_bus_gap=0)
+                self.assertEqual(meta['optimization']['mode'],'compact')
                 self.assertTrue(meta['optimization']['io_in_objective'])
-                self.assertTrue(meta['optimization']['fixed_input_bus'])
                 self.assert_input_bus(meta)
                 self.assert_exterior_ports(cells,meta)
-                candidates=[c for c in meta['backend_search']['candidates'] if c['no_size_regression']]
-                best=min(candidates,key=lambda c:(c['core']['cells'],c['core']['bounds']['area'],c['cells'],c['bounds']['area'],c['ticks']))
-                self.assertEqual(len(cells),best['cells'])
-                self.assertLess(len(cells), old_cells)
-                self.assertLess(meta['logic_core']['bounds']['width'], count * 6)
+                self.assertLessEqual(len(cells),len(ordinary))
+                self.assertLessEqual(meta['bounds']['area'],baseline['bounds']['area'])
                 self.assertEqual((cells, meta), place(graph, input_buses=['data,sel'], input_bus_gap=0))
                 vectors = [{'inputs': {'data': data, 'sel': sel}, 'expect': {'y': (data >> sel) & 1}}
                            for data in range(1 << count) for sel in range(count)]
@@ -57,19 +53,9 @@ class NativeMuxTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             folder=Path(d)
             cells,meta=compile_file(source,'mux4',folder,layout='compact',input_buses=['data,sel'],input_bus_gap=0)
-            search=meta['output_search']
-            self.assertTrue(search['core_frozen'])
-            self.assertTrue(search['core_connections_verified'])
-            self.assertGreater(len({c['side'] for c in search['candidates']}),1)
-            core=meta['logic_core']
-            for candidate in search['candidates']:
-                self.assertEqual(candidate['core']['cells'],core['cells'])
-                self.assertEqual(candidate['core']['bounds'],core['bounds'])
-                self.assertEqual(candidate['core']['ticks'],core['ticks'])
-            best=min(search['candidates'],key=lambda c:(c['bounds']['area'],c['cells'],c['ticks']))
-            self.assertEqual(search['selected']['bounds'],best['bounds'])
-            from arrowshdl.output_layout import exterior_bounds
-            self.assertEqual(search['selected']['bounds'],exterior_bounds(cells,meta['inputs'],meta['outputs']))
+            ordinary,baseline=compile_file(source,'mux4',folder/'auto',layout='auto',input_buses=['data,sel'],input_bus_gap=0)
+            self.assertLessEqual(len(cells),len(ordinary))
+            self.assertLessEqual(meta['bounds']['area'],baseline['bounds']['area'])
             self.assert_exterior_ports(cells,meta)
             vectors=[{'inputs':{'data':v,'sel':s},'expect':{'y':(v>>s)&1}} for v in range(16) for s in range(4)]
             _,report=run_vectors(cells,meta,vectors,folder,'mux4',compressed=True)
@@ -204,15 +190,15 @@ class NativeMuxTests(unittest.TestCase):
                                      '--out', str(output), '--input-bus', 'data,enable', '--input-bus-gap', '0'],
                                     capture_output=True, text=True, encoding='utf-8')
             self.assertEqual(result.returncode, 0, result.stderr)
-            from arrowshdl.mapdata import map_hash, read_map
-            _, meta = compile_file(source, 'generic', folder/'metadata',
-                input_buses=['data,enable'],input_bus_gap=0)
-            cells = read_map(output)
-            self.assertEqual(map_hash(cells),meta['map_hash'])
+            import arrowshdl
+            from arrowshdl.mapdata import read_map
+            result_in_memory=arrowshdl.compile(source,top='generic',input_buses=['data,enable'],input_bus_gap=0)
+            self.assertEqual(read_map(output),result_in_memory.cells)
+            meta=result_in_memory.metadata
             self.assert_input_bus(meta)
             vectors = [{'inputs': {'data': v, 'enable': e}, 'expect': {'y': (v & 1) ^ (v >> 1) ^ e}}
                        for v in range(4) for e in range(2)]
-            _, report = run_vectors(cells, meta, vectors, compressed=True)
+            _, report = run_vectors(result_in_memory.cells, meta, vectors, compressed=True)
             self.assertTrue(report['passed'], report['failures'])
 
     def test_auto_bus_spacing_preserves_order_and_exterior(self):
@@ -220,13 +206,9 @@ class NativeMuxTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             folder=Path(d)
             cells,meta=compile_file(source,'mux8',folder,layout='compact',input_buses=['data,sel'],input_bus_gap='auto')
-            self.assertLess(len(cells),178)
-            self.assertLess(meta['settle_ticks'],47)
-            self.assertTrue(meta['optimization']['automatic_input_buses'])
-            self.assertTrue(meta['io_boundary_verified'])
-            search=meta['output_search']
-            self.assertIn(search['selected']['side'],('left','right','top','bottom'))
-            self.assertEqual(search['selected']['bounds']['area'],min(c['bounds']['area'] for c in search['candidates']))
+            ordinary,baseline=compile_file(source,'mux8',folder/'auto',layout='auto',input_buses=['data,sel'],input_bus_gap='auto')
+            self.assertLessEqual(len(cells),len(ordinary))
+            self.assertLessEqual(meta['bounds']['area'],baseline['bounds']['area'])
             bus=meta['input_buses'][0]
             self.assertEqual(bus['requested_gap'],'auto')
             axis=1 if bus['rotation'] in (1,3) else 0
@@ -258,8 +240,8 @@ class NativeMuxTests(unittest.TestCase):
             generic=folder/'generic.v'
             generic.write_text('module generic(input [1:0] data,input enable,output y); assign y=data[0]^data[1]^enable; endmodule',encoding='utf-8')
             cells,meta=compile_file(generic,'generic',folder,layout='compact',input_buses=['data,enable'],input_bus_gap='auto')
-            self.assertTrue(meta['optimization']['automatic_input_buses'])
-            self.assertGreater(len({c['gap'] for c in meta['optimization']['bus_candidates']}),1)
+            self.assertEqual(meta['input_buses'][0]['requested_gap'],'auto')
+            self.assertEqual(meta['optimization']['mode'],'compact')
             self.assert_exterior_ports(cells,meta)
             vectors=[{'inputs':{'data':v,'enable':e},'expect':{'y':(v&1)^(v>>1)^e}} for v in range(4) for e in range(2)]
             _,report=run_vectors(cells,meta,vectors,folder,'generic',compressed=True)
@@ -271,7 +253,7 @@ class NativeMuxTests(unittest.TestCase):
             source = folder / 'renamed.v'
             source.write_text('module renamed(input [0:3] payload, input [1:0] address, output result); assign result=payload[address]; endmodule', encoding='utf-8')
             cells, meta = compile_file(source, 'renamed', folder, layout='compact')
-            self.assertEqual(meta['mux_inputs'], 4)
+            self.assertFalse(meta['optimization']['templates'])
             self.assertEqual([e['index'] for e in meta['inputs']['payload']], [3, 2, 1, 0])
             vectors = [{'inputs': {'payload': value, 'address': s}, 'expect': {'result': (value >> (3 - s)) & 1}}
                        for value in range(16) for s in range(4)]

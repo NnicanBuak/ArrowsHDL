@@ -19,7 +19,8 @@ from arrowshdl.timing import propagation_bound
 from arrowshdl.progress import report, phase
 
 
-def assemble(project,out,timeout,layout,max_cells,compact):
+def assemble(project,out,timeout,layout,max_cells):
+    compact=layout=='compact'
     blocks={}; compiled={}; cache_records=[]
     total = len({(row['hdl'],json.dumps(row.get('parameters',{}),sort_keys=True),json.dumps(row.get('panel'),sort_keys=True)) for row in project.modules})
     for row in project.modules:
@@ -27,7 +28,7 @@ def assemble(project,out,timeout,layout,max_cells,compact):
         if specialization not in compiled:
             index = len(compiled)
             with phase(5+60*index/max(1,total),5+60*(index+1)/max(1,total),f"Compiling module {index+1}/{total}: {row['hdl']}"):
-                part,desc,record=compiled_module(project,row,out,timeout,layout,max_cells,compact)
+                part,desc,record=compiled_module(project,row,out,timeout,layout,max_cells)
             compiled[specialization]=(part,desc)
             cache_records.append(record)
         blocks[row['name']]=compiled[specialization]
@@ -51,8 +52,10 @@ def assemble(project,out,timeout,layout,max_cells,compact):
                         raise MapError(f'{name}.{port}[{entry["index"]}]: connection fixture is inside the immutable block footprint; expose the port at its outer boundary')
     report(67, f'Placing {len(blocks)} compiled instances')
     names=list(blocks); connections=defaultdict(set)
+    def owner(reference):
+        return next((name for name in sorted(names,key=len,reverse=True) if reference.startswith(name+'.')),None)
     for row in project.connections:
-        source=row['from'].partition('.')[0];target=row['to'].partition('.')[0]
+        source=owner(row['from']);target=owner(row['to'])
         if source in blocks and source!=target: connections[target].add(source)
     graph=dict(nodes=[dict(id=name,output=name,inputs=sorted(connections[name])) for name in names])
     frames=[bounds_of(part) for part,desc in blocks.values()]
@@ -64,6 +67,7 @@ def assemble(project,out,timeout,layout,max_cells,compact):
             macros.append(({(0,0):None,(frame['width']-1+gap,frame['height']-1+gap):None},[],(0,0)))
         origins=repeated_module_layout(project,blocks,names,frames,connections,gap)
         if origins is None: origins=arrange(graph,macros,pitch=8,cluster=False)
+        origins=apply_module_constraints(project,names,frames,origins)
         try:
             with phase(67,90,f'Routing assembly, spacing {gap}'):
                 cells,meta=route_project(project,blocks,names,origins,frames,cache_records,out,max_cells,compact,
@@ -74,6 +78,43 @@ def assemble(project,out,timeout,layout,max_cells,compact):
         except (MapError,ValueError) as error:
             failures.append(dict(gap=gap,reason=str(error)))
     raise MapError('Could not route compiled modules: '+failures[-1]['reason'])
+
+
+def apply_module_constraints(project,names,frames,origins):
+    """Apply declared grid coordinates to complete compiled HDL instances."""
+    import re
+    positions=dict(zip(names,origins))
+    sizes=dict(zip(names,frames))
+    fixed={}
+    for row in project.layout.get('grids',()):
+        pattern=re.escape(row['instances']).replace(r'\[\*\]',r'\[(\d+)\]')
+        matches=[(name,re.fullmatch(pattern,name)) for name in names]
+        matches=[(name,match) for name,match in matches if match]
+        if not matches:
+            raise MapError(f"placement.grids: no matching HDL instances for {row['instances']}")
+        for name,match in matches:
+            indices=list(map(int,match.groups()))
+            if len(indices)!=2:
+                raise MapError('placement.grids: a rectangular grid requires row and column [*] indices')
+            frame=sizes[name]
+            limit=row.get('max_cell_size')
+            if limit and (frame['width']>limit[0] or frame['height']>limit[1]):
+                raise MapError(f"{name}: compiled block {frame['width']}x{frame['height']} exceeds max_cell_size {limit[0]}x{limit[1]}")
+            origin=row.get('origin',[0,0])
+            position=(origin[0]+indices[1]*row['step'][0],origin[1]+indices[0]*row['step'][1])
+            if name in fixed and fixed[name]!=position:
+                raise MapError(f'Conflicting placement constraints for {name}')
+            fixed[name]=position
+    for row in project.layout.get('placements',()):
+        name=row['instance']
+        if name not in positions:
+            raise MapError(f'placement.placements: missing HDL instance {name}')
+        position=tuple(row['at'])
+        if name in fixed and fixed[name]!=position:
+            raise MapError(f'Conflicting placement constraints for {name}')
+        fixed[name]=position
+    positions.update(fixed)
+    return [positions[name] for name in names]
 
 
 def repeated_module_layout(project,blocks,names,frames,parents,gap):
@@ -242,16 +283,15 @@ def route_project(project,blocks,names,origins,frames,cache_records,out,max_cell
         if sinks: router.connection(net,roots[net],sinks)
     cells=router.route_all() if any(targets.values()) else cells
     for name,part in originals.items():
-        if any(cells.get(p)!=c for p,c in part.items()): raise MapError('Compiled scheme was modified: '+name)
+        if any(cells.get(p)!=c for p,c in part.items()): raise MapError('Compiled block was modified: '+name)
     meta=dict(schema=1,top=project.top,layout='compiled-module-assembly-v1',inputs=inputs,outputs=output_ports,
         profile='GraphDLC-01232bd',verified_against_current_game=False,
         cells=len(cells),bounds=bounds_of(cells),map_hash=map_hash(cells),gate_labels=labels,
         settle_ticks=propagation_bound(cells,memories,margin=2),
         timing=dict(model='game-ticks',state_boundaries=memories),
         compiled_modules=cache_records,instances={name:dict(inputs=desc['inputs'],outputs=desc['outputs'],
-            map_hash=map_hash(originals[name]),cells=len(originals[name]),panel=desc.get('panel')) for name,desc in placed.items()},
-        module_blocks=[dict(id=name,at=list(origin),width=frame['width'],height=frame['height'])
-                       for name,origin,frame in zip(names,origins,frames)],
+            map_hash=map_hash(originals[name]),cells=len(originals[name]),bounds=bounds_of(originals[name]),
+            panel=desc.get('panel')) for name,desc in placed.items()},
         components={row['name']:dict(inputs=placed[row['name']]['inputs'],outputs=placed[row['name']]['outputs'],
                     interface=placed[row['name']].get('interface',{}),display=placed[row['name']].get('display'),
                     source_map_hash=placed[row['name']]['source_map_hash']) for row in project.components},

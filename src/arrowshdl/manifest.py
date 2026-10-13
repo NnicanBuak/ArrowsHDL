@@ -87,7 +87,7 @@ def _load_v3(path, data):
                  'parameters','timing','bindings','design'}, 'project v3')
     base_fields = {'version','sources','libraries','top','language','include_dirs','defines',
                    'parameters','timing','bindings'}
-    base = _load_v1(path, {key: value for key,value in data.items() if key in base_fields} | {'version': 1})
+    base = _load_base(path, {key: value for key,value in data.items() if key in base_fields})
     design_path = None
     design = {'ports': (), 'views': (), 'components': (), 'labels': (), 'placement': {}}
     if 'design' in data:
@@ -223,72 +223,12 @@ def _load_design(path, data):
     return result
 
 
-def _load_v2(path,data):
-    """A logical graph: geometry and optimization are compiler decisions."""
-    table(data,{'version','sources','libraries','top','language','include_dirs','defines',
-                'modules','components','connections','inputs','outputs'},'project v2')
-    base = _load_v1(path,dict(data,version=1,modules=[],components=[],connections=[],inputs=[],outputs=[]),allow_empty_sources=True)
-    if not (data.get('modules') or data.get('components')):
-        raise MapError('project v2: modules or compiled components are required')
-    definitions = {'modules':{'name','hdl','parameters','panel'},'components':{'name','file','kind','text','font','size'},
-                   'connections':{'from','to'},'inputs':{'name','width','widget','size'},
-                   'outputs':{'name','from','widget','length'}}
-    rows = {}
-    names = set()
-    for category,allowed in definitions.items():
-        value = data.get(category,[])
-        if not isinstance(value,list): raise MapError(category+': expected a list')
-        for row in value:
-            table(row,allowed,category)
-            if category!='connections':
-                import re
-                name = row.get('name')
-                if not isinstance(name,str) or not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*',name) or name in names:
-                    raise MapError(category+': a unique HDL identifier is required')
-                names.add(name)
-            if category=='modules':
-                if not isinstance(row.get('hdl'),str): raise MapError('modules.hdl: expected a Verilog module name')
-                params = row.get('parameters',{})
-                if not isinstance(params,dict) or any(type(v) not in (int,str) for v in params.values()):
-                    raise MapError('modules.parameters: expected a table of HDL constants')
-                if 'panel' in row:
-                    panel=row['panel'];table(panel,{'button','size','left','right'},'modules.panel')
-                    if not isinstance(panel.get('button'),str) or not panel['button']: raise MapError('panel.button: expected an HDL input')
-                    pair(panel.get('size',[7,7]),'panel.size',positive=True)
-                    for side in ('left','right'):
-                        if side not in panel: continue
-                        item=panel[side];table(item,{'file','port','bitmap'},'panel.'+side)
-                        if not isinstance(item.get('port'),str) or not item['port']: raise MapError('panel.'+side+'.port: expected an HDL output')
-                        if ('file' in item)==('bitmap' in item): raise MapError('panel.'+side+': specify file or bitmap')
-                        if 'file' in item: component_file(path.parent,item['file'])
-            if category=='components':
-                if row.get('kind')=='text':
-                    if 'file' in row: raise MapError('Text component cannot also specify file')
-                    if not isinstance(row.get('text'),str) or not row['text']: raise MapError('Text component requires nonempty text')
-                    if type(row.get('size',1)) is not int or row.get('size',1)<1: raise MapError('Text size must be a positive integer')
-                    if not isinstance(row.get('font','library:arrow4'),str) or not row.get('font','library:arrow4'):
-                        raise MapError('Text font must be a filename or library:arrow4')
-                else:
-                    if set(row)-{'name','file'}: raise MapError('Component requires file or kind="text"')
-                    component_file(path.parent,row.get('file'))
-            if category=='inputs':
-                if type(row.get('width',1)) is not int or not 1<=row.get('width',1)<=65536:
-                    raise MapError('inputs.width: expected a positive width up to 65536 bits')
-                if 'size' in row: pair(row['size'],'inputs.size',positive=True)
-            for key in ({'connections':('from','to'),'outputs':('from',)}.get(category,())):
-                if not isinstance(row.get(key),str) or not row[key]: raise MapError(category+'.'+key+': a port is required')
-        rows[category] = tuple(value)
-    if rows['modules'] and not base.sources: raise MapError('HDL modules require source files')
-    return replace(base,version=2,modules=rows['modules'],components=rows['components'],
-                   connections=rows['connections'],inputs=rows['inputs'],outputs=rows['outputs'])
-
-
-def _load_v1(path, data, *, allow_empty_sources=False):
-    table(data, {"version", "sources", "libraries", "top", "language", "include_dirs", "defines", "parameters", "placement", "timing", "bindings", "inputs", "outputs", "modules", "components", "connections", "labels"}, "project v1")
+def _load_base(path, data):
+    table(data, {"version", "sources", "libraries", "top", "language", "include_dirs", "defines", "parameters", "placement", "timing", "bindings", "inputs", "outputs", "modules", "components", "connections", "labels"}, "project")
     sources = strings(data.get("sources", []), "sources") + strings(data.get('libraries', []), 'libraries')
     if not isinstance(data.get("top"), str) or not data["top"]:
         raise MapError("A nonempty top module name is required")
-    if not sources and (data.get('modules') or not data.get('components')) and not allow_empty_sources:
+    if not sources:
         raise MapError("Sources or compiled components are required")
     language = data.get("language", {})
     table(language, {"standard"}, "language")

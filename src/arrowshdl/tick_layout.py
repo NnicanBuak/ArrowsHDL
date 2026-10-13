@@ -73,7 +73,7 @@ def place_tick(graph, *, max_cells=1000000, constraints=None, automatic=False,
     macros = [macro(n) for n in nodes]
     panel=None
     if (constraints or {}).get('panel'):
-        if not automatic: raise MapError('Module panels require --layout auto or --compact')
+        if not automatic: raise MapError('Module panels require --layout auto or --layout compact')
         from arrowshdl.panel_layout import prepare_panel
         panel=prepare_panel(graph,constraints['panel'],constraints['base'])
         cells.update(panel['cells']);expected.update(panel['expected'])

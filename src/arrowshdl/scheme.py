@@ -119,7 +119,7 @@ def _combine(project, out, timeout, layout, max_cells):
 
 
 @bounded
-def build_scheme(path, out, *, timeout=600, layout='auto', max_cells=1000000, testing=False,compact=False):
+def build_scheme(path, out, *, timeout=600, layout='auto', max_cells=1000000, testing=False):
     report(1, f'Reading project: {path}')
     project = load_project(Path(path))
     out = Path(out)
@@ -127,10 +127,16 @@ def build_scheme(path, out, *, timeout=600, layout='auto', max_cells=1000000, te
         from arrowshdl.hdl_project import derive_project
         from arrowshdl.compiled_graph import assemble
         assembly_project=derive_project(project,timeout)
-        cells,meta=assemble(assembly_project,out,timeout,layout,max_cells,compact)
+        if hasattr(assembly_project,'physical_graph'):
+            from arrowshdl.verilog_compile import emit_build
+            cells,meta=emit_build(assembly_project.physical_graph,list(project.sources),project.top,out,
+                max_cells=max_cells,layout=layout,constraints=project.layout,standard=project.standard,
+                bindings=project.bindings)
+        else:
+            cells,meta=assemble(assembly_project,out,timeout,layout,max_cells)
     elif project.version==2:
         from arrowshdl.compiled_graph import assemble
-        cells,meta = assemble(project,out,timeout,layout,max_cells,compact)
+        cells,meta = assemble(project,out,timeout,layout,max_cells)
     elif project.modules or project.components:
         cells,meta = _combine(project,out,timeout,layout,max_cells)
     else:
@@ -146,7 +152,7 @@ def build_scheme(path, out, *, timeout=600, layout='auto', max_cells=1000000, te
             cells,meta = compile_file(project.sources,project.top,out,timeout,max_cells,layout,
                 project.layout.get('input_buses'),project.layout.get('input_bus_gap','auto'),
                 standard=project.standard,include_dirs=project.include_dirs,defines=project.defines,
-                parameters=project.parameters,constraints=project.layout,bindings=project.bindings,compact=compact)
+                parameters=project.parameters,constraints=project.layout,bindings=project.bindings)
     if meta['layout'] != 'fixed-native-verilog':
         report(92, 'Attaching input and output devices')
         if project.version==3:

@@ -3,6 +3,7 @@ import hashlib
 import json
 import os
 import tempfile
+from importlib.metadata import version
 from pathlib import Path
 
 from arrowshdl import __version__
@@ -20,7 +21,7 @@ def component_document(top,meta):
     return result
 
 
-def compiled_module(project,module,out,timeout,layout,max_cells,compact):
+def compiled_module(project,module,out,timeout,layout,max_cells):
     headers = {}
     for directory in (*project.include_dirs,*{p.parent for p in project.sources}):
         for path in sorted(directory.rglob('*')):
@@ -31,12 +32,12 @@ def compiled_module(project,module,out,timeout,layout,max_cells,compact):
         if path.name in ('compiled_graph.py','project_graph.py','graph_components.py'): continue
         compiler.update(path.read_bytes())
     compiler.update((Path(__file__).parent/'library/arrows.v').read_bytes())
-    identity = dict(version=__version__,compiler=compiler.hexdigest(),hdl=module['hdl'],
+    identity = dict(version=__version__,compiler=compiler.hexdigest(),yosys=version('yowasp-yosys'),hdl=module['hdl'],
         rtlil_kind=module.get('rtlil_kind'),
         sources=[dict(name=p.name,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in project.sources],
         include_dirs=[str(Path(path).resolve()) for path in project.include_dirs],
         headers=headers,parameters=module.get('parameters',{}),standard=project.standard,
-        defines=list(project.defines),layout=layout,compact=compact,panel=module.get('panel'))
+        defines=list(project.defines),layout=layout,panel=module.get('panel'))
     key = hashlib.sha256(json.dumps(identity,sort_keys=True).encode()).hexdigest()
     from arrowshdl.progress import report
     default = Path(os.environ.get('LOCALAPPDATA', Path.home()/'.cache'))/'ArrowsHDL'/'cache'
@@ -66,11 +67,11 @@ def compiled_module(project,module,out,timeout,layout,max_cells,compact):
                     if cell['type']==original: cell['type']=specialized
             netlist,log=synthesize_raw(raw,specialized,timeout)
             cells,meta=emit_build(netlist,project.sources,module['hdl'],Path(directory),log,
-                max_cells=max_cells,layout=layout,constraints=constraints,standard=project.standard,compact=compact)
+                max_cells=max_cells,layout=layout,constraints=constraints,standard=project.standard)
         else:
             cells,meta = compile_file(project.sources,module['hdl'],directory,timeout,max_cells,layout,
                 standard=project.standard,include_dirs=project.include_dirs,defines=project.defines,
-                parameters=module.get('parameters',{}),compact=compact,constraints=constraints)
+                parameters=module.get('parameters',{}),constraints=constraints)
     folder.mkdir(parents=True,exist_ok=True)
     temporary = folder/f'{key}.{os.getpid()}.tmp'
     write_json(temporary,dict(identity=identity,key=key,save=encode(cells),metadata=meta))

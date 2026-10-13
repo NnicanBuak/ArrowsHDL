@@ -31,7 +31,8 @@ def main(argv=None):
     compile = commands.add_parser('compile', help='Compile HDL sources')
     compile.add_argument('sources', nargs='+', type=Path)
     compile.add_argument('--top')
-    compile.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='Encoded game scheme (.txt)')
+    compile.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='One .txt game save, or a module object with -c')
+    compile.add_argument('--preview',type=Path,metavar='PNG',help='Also render the compiled game save to this PNG path')
     compile.add_argument('-c', action='store_true', help='Write a reusable RTLIL module object (.aho.json)')
     compile.add_argument('--std', choices=SUPPORTED_STANDARDS, default=DEFAULT_STANDARD)
     compile.add_argument('-I', dest='includes', action='append', default=[], type=Path)
@@ -39,36 +40,46 @@ def main(argv=None):
     compile.add_argument('-D', dest='defines', action='append', default=[])
     compile.add_argument('-G', dest='parameters', action='append', default=[], metavar='NAME=VALUE')
     compile.add_argument('--extern', action='append',default=[],help='Declared module interface resolved at link time; requires -c')
-    compile.add_argument('--layout', choices=('auto','compact', 'sparse', 'fixed', 'macro-grid'), default='auto')
-    compile.add_argument('--compact',action='store_true',help='Search additional graph placements for fewer arrows and a smaller complete map')
+    compile.add_argument('--layout', choices=('auto','compact', 'sparse', 'fixed', 'macro-grid'), default='auto',
+                         help='Placement mode: compact searches additional automatic placements')
     compile.add_argument('--input-bus', action='append', default=[])
     compile.add_argument('--input-bus-gap', default='auto')
     compile.add_argument('--timeout', type=float, default=600)
     compile.add_argument('--max-cells', type=int, default=1000000)
     build = commands.add_parser('build', help='Build a scheme from a TOML project')
     build.add_argument('project', type=Path)
-    build.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='Encoded game scheme (.txt)')
+    build.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='One .txt game save')
+    build.add_argument('--preview',type=Path,metavar='PNG',help='Also render the compiled game save to this PNG path')
     build.add_argument('--timeout', type=float, default=600)
-    build.add_argument('--layout', choices=('auto','compact', 'sparse', 'macro-grid'), default='auto', help='Compiler layout algorithm')
-    build.add_argument('--compact',action='store_true',help='Search additional graph placements for fewer arrows and a smaller complete map')
+    build.add_argument('--layout', choices=('auto','compact', 'sparse', 'macro-grid'), default='auto',
+                       help='Placement mode: compact searches additional automatic placements')
     build.add_argument('--max-cells', type=int, default=1000000)
     build.add_argument('--test', action='store_true', help='Replace buttons with test sources and preserve displays')
     link = commands.add_parser('link', help='Link RTLIL objects into a scheme')
     link.add_argument('objects', nargs='+', type=Path)
     link.add_argument('--top', required=True)
-    link.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='Encoded game scheme (.txt)')
+    link.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='One .txt game save')
+    link.add_argument('--preview',type=Path,metavar='PNG',help='Also render the compiled game save to this PNG path')
     link.add_argument('--timeout', type=float, default=600)
-    link.add_argument('--layout', choices=('auto','compact', 'sparse', 'fixed', 'macro-grid'), default='auto')
-    link.add_argument('--compact',action='store_true',help='Search additional graph placements for fewer arrows and a smaller complete map')
+    link.add_argument('--layout', choices=('auto','compact', 'sparse', 'fixed', 'macro-grid'), default='auto',
+                      help='Placement mode: compact searches additional automatic placements')
     for name in ('simulate', 'test'):
         sim = commands.add_parser(name, help='Run the physical simulator')
-        sim.add_argument('map', nargs='?', type=Path)
+        sim.add_argument('source' if name=='test' else 'map', nargs='?', type=Path)
         sim.add_argument('scenario', nargs='?', type=Path)
         sim.add_argument('-o', '--out', type=Path)
         if name == 'test':
             sim.add_argument('--suite', type=Path, help='Run repository unittest regressions')
-        sim.add_argument('--manifest', type=Path)
-        sim.add_argument('--timeout', type=float, default=120)
+        if name=='test':
+            sim.add_argument('--vectors', action='store_true', help='Compile source and check named inputs/expect vectors on the physical circuit')
+            sim.add_argument('--top',help='Top HDL module for a .v/.sv input; projects declare it in TOML')
+            sim.add_argument('--layout',choices=('auto','compact','sparse','fixed','macro-grid'),default='auto')
+            sim.add_argument('--std',choices=SUPPORTED_STANDARDS,default=DEFAULT_STANDARD)
+            sim.add_argument('-I',dest='includes',action='append',default=[],type=Path)
+            sim.add_argument('-D',dest='defines',action='append',default=[])
+            sim.add_argument('-G',dest='parameters',action='append',default=[],metavar='NAME=VALUE')
+            sim.add_argument('-L',dest='libraries',action='append',default=[],type=Path)
+        sim.add_argument('--timeout', type=float, default=600 if name=='test' else 120)
         sim.add_argument('--no-optimize-cycles', action='store_true')
     for name in ('encode', 'decode', 'graph'):
         codec = commands.add_parser(name, help='Convert maps and game saves')
@@ -78,10 +89,6 @@ def main(argv=None):
     preview.add_argument('map', type=Path)
     preview.add_argument('manifest', nargs='?', type=Path)
     preview.add_argument('-o', '--out', required=True, type=Path)
-    preview.add_argument('--style','--preview-style',dest='style',choices=('default','logical'),default='default',
-                         help='Preview style: default cell map or logical graph overlay')
-    preview.add_argument('--top', help='Top module when previewing HDL source')
-    preview.add_argument('--timeout', type=float, default=600)
     args = parser.parse_args(argv)
     os.environ['ARROWSHDL_PROGRESS'] = '1'
     from arrowshdl.progress import report, reset
@@ -101,6 +108,7 @@ def main(argv=None):
                 parameters[name] = value
             opts = dict(standard=args.std, include_dirs=args.includes, defines=args.defines, parameters=parameters)
             if args.c:
+                if args.preview: raise MapError('--preview requires full compilation; it cannot be combined with -c')
                 from arrowshdl.objects import compile_object
                 compile_object([*args.sources, *args.libraries], top, args.out, args.timeout, blackbox_modules=args.extern,**opts)
                 report(100, f'Object written: {args.out}')
@@ -109,33 +117,43 @@ def main(argv=None):
             gap = args.input_bus_gap if args.input_bus_gap == 'auto' else int(args.input_bus_gap)
             result = api.compile(args.sources, top=top, out=args.out, timeout=args.timeout,
                 libraries=args.libraries, max_cells=args.max_cells, layout=args.layout,
-                input_buses=args.input_bus, input_bus_gap=gap,compact=args.compact, **opts)
+                input_buses=args.input_bus, input_bus_gap=gap,preview=args.preview, **opts)
             cells, manifest = result.cells, result.metadata
         elif args.command == 'build':
             result = api.build(args.project,out=args.out,timeout=args.timeout,layout=args.layout,
-                               max_cells=args.max_cells,testing=args.test,compact=args.compact)
+                               max_cells=args.max_cells,testing=args.test,preview=args.preview)
             cells, manifest = result.cells, result.metadata
         elif args.command == 'link':
-            result = api.link(args.objects, top=args.top, out=args.out, timeout=args.timeout, layout=args.layout,compact=args.compact)
+            result = api.link(args.objects, top=args.top, out=args.out, timeout=args.timeout, layout=args.layout,preview=args.preview)
             cells, manifest = result.cells, result.metadata
         elif args.command in ('simulate', 'test'):
             if getattr(args,'suite',None):
                 from arrowshdl.checks import check_suite
                 return check_suite(args.suite,args.out)
-            if not args.map or not args.scenario or not args.out:
-                raise MapError('Specify map, scenario and --out, or use test --suite')
+            source=args.source if args.command=='test' else args.map
+            if not source or not args.scenario or not args.out:
+                raise MapError('Specify source, scenario and --out, or use test --suite' if args.command=='test'
+                               else 'Specify game save, scenario and --out')
             from arrowshdl.simulation import simulate
-            from arrowshdl.test_harness import add_fixture
-            cells = read_map(args.map)
-            from arrowshdl.artifacts import read_metadata
-            metadata = _json(args.manifest) if args.manifest else read_metadata(args.map)
             scenario = _json(args.scenario)
-            if metadata:
-                cells = add_fixture(cells, metadata)
-            report = simulate(cells, scenario, timeout=args.timeout, optimize_cycles=not args.no_optimize_cycles)
+            if args.command=='test':
+                options={}
+                if source.suffix.lower() in ('.v','.sv'):
+                    parameters={}
+                    for pair in args.parameters:
+                        if '=' not in pair: raise MapError('-G: expected NAME=VALUE')
+                        name,value=pair.split('=',1);parameters[name]=value
+                    options=dict(standard=args.std,include_dirs=args.includes,defines=args.defines,
+                                 parameters=parameters,libraries=args.libraries)
+                report=api.test(source,scenario,top=args.top,vectors=args.vectors,layout=args.layout,
+                    timeout=args.timeout,optimize_cycles=not args.no_optimize_cycles,**options)
+            else:
+                report = simulate(read_map(source), scenario, timeout=args.timeout, optimize_cycles=not args.no_optimize_cycles)
             from arrowshdl.mapdata import save_sha256, map_hash
-            report.update(save_sha256=save_sha256(args.map), source_map_hash=map_hash(read_map(args.map)),
-                          scenario_sha256=save_sha256(args.scenario))
+            if args.command=='simulate':
+                report.update(save_sha256=save_sha256(source),source_map_hash=map_hash(read_map(source)))
+            else: report['source_sha256']=save_sha256(source)
+            report['scenario_sha256']=save_sha256(args.scenario)
             args.out.parent.mkdir(parents=True, exist_ok=True)
             write_json(args.out, report)
             from arrowshdl.progress import report as log_progress
@@ -166,25 +184,7 @@ def main(argv=None):
         elif args.command == 'preview':
             args.out.parent.mkdir(parents=True, exist_ok=True)
             from arrowshdl.map_preview import render_cells
-            if args.map.suffix.lower() == '.toml':
-                from arrowshdl.scheme import build_scheme
-                import tempfile
-                report(5, 'Compiling project for preview')
-                with tempfile.TemporaryDirectory(prefix='arrowshdl-preview-') as directory:
-                    cells, metadata = build_scheme(args.map, directory, timeout=args.timeout)
-                    render_cells(cells, args.out, metadata, style=args.style)
-            elif args.map.suffix.lower() in ('.v', '.sv'):
-                from arrowshdl.verilog_compile import compile_file
-                import tempfile
-                report(5, 'Compiling HDL for preview')
-                with tempfile.TemporaryDirectory(prefix='arrowshdl-preview-') as directory:
-                    cells, metadata = compile_file(args.map, args.top or args.map.stem, directory, timeout=args.timeout)
-                    render_cells(cells, args.out, metadata, style=args.style)
-            else:
-                report(25, 'Rendering placed arrows and ports')
-                from arrowshdl.artifacts import read_metadata
-                metadata = _json(args.manifest) if args.manifest else read_metadata(args.map)
-                render_cells(read_map(args.map), args.out, metadata, style=args.style)
+            render_cells(read_map(args.map), args.out, _json(args.manifest) if args.manifest else None)
             report(100, f'Preview written: {args.out}')
             return 0
         report(100, f'Output written: {args.out}')

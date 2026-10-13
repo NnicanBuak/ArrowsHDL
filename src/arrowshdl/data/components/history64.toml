@@ -1,14 +1,6 @@
-version = 1
-map = "history64.save.txt"
-settle_ticks = 64
-state_boundaries = []
-
-[interface]
-kind = "history64"
-protocol = "native game ticks"
-bit_order = "port indices"
-
-[ports.inputs]
-signal = [{ index = 0, contact = [0, 0], fixture = [-1, 0], rotation = 1 }]
-
-[ports.outputs]
+"version" = 1
+"map" = "history64.save.txt"
+"ports" = {"inputs" = {"signal" = [{"index" = 0, "contact" = [0, 0], "fixture" = [-1, 0], "rotation" = 1}]}, "outputs" = {}}
+"settle_ticks" = 64
+"state_boundaries" = []
+"interface" = {"kind" = "compiled HDL module", "protocol" = "native game ticks", "bit_order" = "port indices"}

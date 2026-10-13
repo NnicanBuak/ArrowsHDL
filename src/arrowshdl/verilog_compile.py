@@ -16,7 +16,7 @@ from arrowshdl.progress import report, phase
 
 
 @bounded
-def compile_file(source, top, folder, timeout=600, max_cells=1_000_000, layout="auto", input_buses=None, input_bus_gap='auto', *, standard='1800-2023', include_dirs=(), defines=(), parameters=None, constraints=None, bindings=None, preview=False, compact=False):
+def compile_file(source, top, folder, timeout=600, max_cells=1_000_000, layout="auto", input_buses=None, input_bus_gap='auto', *, standard='1800-2023', include_dirs=(), defines=(), parameters=None, constraints=None, bindings=None, preview=False):
     if not math.isfinite(timeout) or timeout <= 0:
         raise MapError("Timeout must be positive")
     sources = [Path(source)] if isinstance(source, (str, Path)) else list(map(Path, source))
@@ -26,26 +26,24 @@ def compile_file(source, top, folder, timeout=600, max_cells=1_000_000, layout="
     with phase(25,98,f'Placing and routing {top}'):
         result = emit_build(netlist, sources, top, Path(folder), log, max_cells=max_cells, layout=layout,
                             input_buses=input_buses, input_bus_gap=input_bus_gap, constraints=constraints,
-                            bindings=bindings, preview=preview, standard=standard,compact=compact)
+                            bindings=bindings, preview=preview, standard=standard)
     report(98, f'Compiled {top}')
     return result
 
 
-def emit_build(netlist, sources, top, folder, log='', *, max_cells=1_000_000, layout='auto', input_buses=None, input_bus_gap='auto', constraints=None, bindings=None, preview=False, standard='1800-2023',compact=False):
+def emit_build(netlist, sources, top, folder, log='', *, max_cells=1_000_000, layout='auto', input_buses=None, input_bus_gap='auto', constraints=None, bindings=None, preview=False, standard='1800-2023'):
     from arrowshdl import __version__
     from arrowshdl.physical import place_physical
     physical = netlist.get('kind') == 'physical'
-    if compact and layout != 'auto':
-        raise MapError('--compact requires --layout auto')
-    if not physical and layout == 'auto':
+    if not physical and layout in ('auto','compact'):
         from arrowshdl.auto_layout import place_auto
         from arrowshdl.input_buses import configure,describe
         netlist = dict(netlist,_input_bus_config=configure(netlist,input_buses,input_bus_gap))
-        cells,manifest = place_auto(netlist,max_cells=max_cells,constraints=constraints,compact=compact)
+        cells,manifest = place_auto(netlist,max_cells=max_cells,constraints=constraints,compact=layout=='compact')
         describe(netlist,manifest)
     elif netlist.get('kind') == 'tick':
         if layout != 'macro-grid':
-            raise MapError(f'Layout {layout!r} does not support native stateful primitives; use --layout auto, --compact or --layout macro-grid')
+            raise MapError(f'Layout {layout!r} does not support native stateful primitives; use --layout auto, --layout compact or --layout macro-grid')
         from arrowshdl.tick_layout import place_tick
         cells, manifest = place_tick(netlist, max_cells=max_cells, constraints=constraints)
     elif layout == 'macro-grid' and not physical:
@@ -69,7 +67,7 @@ def emit_build(netlist, sources, top, folder, log='', *, max_cells=1_000_000, la
     manifest["yosys"] = netlist["creator"]
     from arrowshdl.input_buses import verify_exterior
     physical = physical or netlist.get('kind') == 'tick'
-    if not physical and layout not in ('macro-grid','auto'):
+    if not physical and layout not in ('macro-grid','auto','compact'):
         verify_exterior(cells,manifest)
     write_map(folder, top, cells)
     manifest['save_sha256'] = save_sha256(folder / f'{top}.save.txt')
@@ -102,7 +100,7 @@ def main():
     parser.add_argument("--top")
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--timeout", type=float, default=90)
-    parser.add_argument("--layout", choices=("compact", "sparse"), default="compact")
+    parser.add_argument("--layout", choices=("auto", "compact", "sparse"), default="auto")
     parser.add_argument('--input-bus', action='append', default=[], metavar='PORT[,PORT]', help='Group inputs into a bus; may be repeated')
     parser.add_argument('--input-bus-gap', default='auto', help='auto or the number of empty cells between sources')
     parser.add_argument("--trace-layout", action="store_true", help="Show placement attempts and rejection reasons")

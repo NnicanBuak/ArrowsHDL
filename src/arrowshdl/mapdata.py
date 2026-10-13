@@ -58,9 +58,6 @@ def write_json(path: Path, document: dict) -> None:
 def read_map(path: Path) -> ArrowMap:
     if path.name.endswith(".json"):
         data = json.loads(path.read_text(encoding="utf-8-sig"))
-        if isinstance(data,dict) and data.get('format') == 'arrowshdl-compiled-scheme':
-            from arrowshdl.artifacts import unpack
-            return unpack(data)[0]
         return from_document(data)
     return decode(path.read_text(encoding="utf-8-sig"))
 
