@@ -17,7 +17,7 @@ class HealthTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             result = subprocess.run([sys.executable,'-m','arrowshdl','health'],
                                     cwd=directory,capture_output=True,text=True,
-                                    encoding='utf-8',timeout=60)
+                                    encoding='utf-8',timeout=180)
             self.assertEqual(result.returncode,0,result.stderr)
             for component in ('Node.js runtime','HDL compiler','Save codec',
                               'Physical simulator','Preview renderer'):

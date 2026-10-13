@@ -27,7 +27,7 @@ environment['PATH'] = str(scripts) + os.pathsep + str(Path(sys.executable).paren
 def cli(*args):
     executable = scripts / ('arrowshdl.exe' if os.name == 'nt' else 'arrowshdl')
     completed = subprocess.run([str(executable), *map(str, args)], env=environment,
-        capture_output=True, text=True, encoding='utf-8', timeout=120)
+        capture_output=True, text=True, encoding='utf-8', timeout=180)
     assert completed.returncode == 0, (args, completed.stdout, completed.stderr)
     commands.append(dict(command=list(map(str, args)), passed=True))
 

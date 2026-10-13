@@ -1,8 +1,10 @@
 """Build one platform wheel containing the simulator; source installs need Cargo."""
 from pathlib import Path
 import os
+import platform as host_platform
 import shutil
 import subprocess
+import sys
 
 from setuptools import Distribution,setup
 from setuptools.command.build_py import build_py
@@ -36,6 +38,9 @@ class PlatformDistribution(Distribution):
 class PlatformWheel(bdist_wheel):
     def get_tag(self):
         _,_,platform=super().get_tag()
+        if sys.platform=='darwin':
+            # CPython may be universal2, while Cargo builds one native engine.
+            platform='_'.join(platform.split('_')[:3])+'_'+host_platform.machine()
         return 'py3','none',platform
 
 

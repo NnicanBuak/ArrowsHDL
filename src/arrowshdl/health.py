@@ -37,7 +37,8 @@ def health():
             stage = 'HDL compiler'
             from arrowshdl.api import compile
             with phase(10,40,'Checking HDL compiler'):
-                built = compile(source, top='health_test', out=root/'scheme.save.txt', timeout=30)
+                # The first YoWASP run also compiles its WebAssembly runtime.
+                built = compile(source, top='health_test', out=root/'scheme.save.txt', timeout=120)
             print(f'[OK] {stage}: built-in circuit compiled', flush=True)
 
             stage = 'Save codec'
@@ -73,7 +74,10 @@ def health():
             print(f'[OK] {stage}: PNG generated and validated', flush=True)
 
     except Exception as error:
-        detail = str(error) if isinstance(error,_HealthError) else f'Check failed ({type(error).__name__}).'
+        if str(error).startswith('Overall timeout exceeded:'):
+            detail = str(error)
+        else:
+            detail = str(error) if isinstance(error,_HealthError) else f'Check failed ({type(error).__name__}).'
         print(f'[FAIL] {stage}: {detail}', file=sys.stderr)
         print('Health status: FAILED', file=sys.stderr)
         return 1
