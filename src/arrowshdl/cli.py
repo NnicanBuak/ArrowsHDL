@@ -94,7 +94,9 @@ def main(argv=None):
     compile.add_argument('--max-cells', type=int, default=1000000)
     build = commands.add_parser('build', help='Build a scheme from a TOML project or one HDL source')
     build.add_argument('project', nargs='?', type=Path, metavar='PROJECT_OR_SOURCE')
-    build.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='One .txt game save')
+    build.add_argument('-o', '--out', type=Path, metavar='FILE',help='One .txt game save')
+    build.add_argument('--clipboard', action='store_true',
+                       help='Copy the game save to the system clipboard')
     build.add_argument('--preview',type=Path,metavar='PNG',help='Also render the compiled game save to this PNG path')
     build.add_argument('--top', help='Top HDL module for a single .v/.sv source; defaults to the filename stem')
     build.add_argument('--std', choices=SUPPORTED_STANDARDS, default=DEFAULT_STANDARD)
@@ -141,6 +143,8 @@ def main(argv=None):
     preview.add_argument('manifest', nargs='?', type=Path)
     preview.add_argument('-o', '--out', required=True, type=Path)
     args = parser.parse_args(argv)
+    if args.command == 'build' and args.out is None and not args.clipboard:
+        parser.error('build requires -o/--out or --clipboard')
     os.environ['ARROWSHDL_PROGRESS'] = '1'
     from arrowshdl.progress import report, reset
     reset()
@@ -261,7 +265,12 @@ def main(argv=None):
             render_cells(read_map(args.map), args.out, _json(args.manifest) if args.manifest else None)
             report(100, f'Preview written: {args.out}')
             return 0
-        report(100, f'Output written: {args.out}')
+        if args.command == 'build' and args.clipboard:
+            from arrowshdl.clipboard import copy_text
+            copy_text(encode(cells) + '\n')
+            report(100, 'Save copied to clipboard')
+        else:
+            report(100, f'Output written: {args.out}')
         print(f"{manifest['top']}: {len(cells)} arrows, {manifest['bounds']['width']}×{manifest['bounds']['height']}")
         return 0
     except (MapError, OSError, ValueError, subprocess.TimeoutExpired,subprocess.CalledProcessError) as exc:

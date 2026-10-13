@@ -9,6 +9,7 @@ arrowshdl init PATH NAME [--design none|empty|ports|grid]
 arrowshdl compile logic.v --top logic_unit -o build/logic.save.txt
 arrowshdl build logic.v --top logic_unit -o build/logic.save.txt
 arrowshdl build -o build/logic.save.txt
+arrowshdl build --clipboard
 arrowshdl build project.toml -o build/logic.save.txt --preview build/logic.png
 arrowshdl link module.aho.json --top logic_unit -o build/linked.save.txt
 arrowshdl test project.toml vectors.json --vectors -o build/report.json
@@ -38,6 +39,10 @@ stem имени исходного файла.
 проектный TOML (`version`, `top`, `sources`) имеет приоритет над HDL-файлами;
 если проектного TOML нет, используется единственный `.v` или `.sv`. При нуле или
 нескольких подходящих файлах путь нужно указать явно.
+
+Флаг `build --clipboard` копирует текст игрового сохранения в системный буфер
+обмена и делает `-o` необязательным. `--clipboard` можно сочетать с `-o`; при
+использовании `--preview` файл сохранения всё равно обязателен.
 
 Справка команд доступна через arrowshdl --help и arrowshdl NAME --help. Для compile доступны --std, -I, -D, -G, -L, --timeout, --max-cells, --input-bus и --input-bus-gap. Параметры -I, -D, -G и -L также доступны test при компиляции отдельных .v/.sv-исходников. Для project.toml верхний модуль и параметры задаются внутри файла проекта.
 

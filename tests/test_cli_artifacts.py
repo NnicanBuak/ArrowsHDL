@@ -6,6 +6,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from arrowshdl.mapdata import read_map
 from arrowshdl.test_harness import add_fixture, make_scenario
@@ -13,6 +14,21 @@ import arrowshdl
 
 
 class CliArtifactTests(unittest.TestCase):
+    def test_build_clipboard_option_and_output_requirement(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root/'logic.v'
+            source.write_text('module logic(input a, output y); assign y = ~a; endmodule')
+            missing = subprocess.run([sys.executable, '-m', 'arrowshdl', 'build', source],
+                capture_output=True, text=True, encoding='utf-8', timeout=30)
+            self.assertEqual(missing.returncode, 2)
+            self.assertIn('build requires -o/--out or --clipboard', missing.stderr)
+            from arrowshdl.clipboard import copy_text
+            with patch('arrowshdl.clipboard.subprocess.run') as run:
+                copy_text('save text\n')
+            run.assert_called_once()
+            self.assertEqual(run.call_args.kwargs['input'], 'save text\n')
+
     def test_init_creates_project_source_and_design_presets(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
