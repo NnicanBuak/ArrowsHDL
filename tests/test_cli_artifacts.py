@@ -13,6 +13,57 @@ import arrowshdl
 
 
 class CliArtifactTests(unittest.TestCase):
+    def test_init_creates_project_source_and_design_presets(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            result = subprocess.run([sys.executable, '-m', 'arrowshdl', 'init', root, 'demo',
+                '--standard', '1364-2005', '--design', 'ports', '--port', 'input_signal=button',
+                '--port', 'output_signal=binary', '--define', 'TRACE', '--parameter', 'WIDTH=4'],
+                capture_output=True, text=True, encoding='utf-8', timeout=30)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            project = root / 'demo' / 'project.toml'
+            source = root / 'demo' / 'demo.v'
+            design = root / 'demo' / 'design.toml'
+            self.assertTrue(project.is_file())
+            self.assertTrue(source.is_file())
+            self.assertTrue(design.is_file())
+            from arrowshdl.manifest import load_project
+            loaded = load_project(project)
+            self.assertEqual(loaded.top, 'demo')
+            self.assertEqual(loaded.standard, '1364-2005')
+            self.assertEqual([row['path'] for row in loaded.design['ports']],
+                             ['input_signal', 'output_signal'])
+            built = root / 'demo.save.txt'
+            build = subprocess.run([sys.executable, '-m', 'arrowshdl', 'build', project, '-o', built],
+                capture_output=True, text=True, encoding='utf-8', timeout=60)
+            self.assertEqual(build.returncode, 0, build.stderr)
+
+    def test_init_refuses_overwrite_without_force(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first = subprocess.run([sys.executable, '-m', 'arrowshdl', 'init', root, 'demo'],
+                capture_output=True, text=True, encoding='utf-8', timeout=30)
+            self.assertEqual(first.returncode, 0, first.stderr)
+            source = root / 'demo' / 'demo.v'
+            source.write_text('keep', encoding='utf-8')
+            second = subprocess.run([sys.executable, '-m', 'arrowshdl', 'init', root, 'demo'],
+                capture_output=True, text=True, encoding='utf-8', timeout=30)
+            self.assertEqual(second.returncode, 2)
+            self.assertIn('--force', second.stderr)
+            self.assertEqual(source.read_text(encoding='utf-8'), 'keep')
+
+    def test_init_grid_design_preset_builds(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            result = subprocess.run([sys.executable, '-m', 'arrowshdl', 'init', root, 'grid_demo',
+                '--design', 'grid'], capture_output=True, text=True, encoding='utf-8', timeout=30)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            project = root / 'grid_demo' / 'project.toml'
+            built = root / 'grid_demo.save.txt'
+            result = subprocess.run([sys.executable, '-m', 'arrowshdl', 'build', project, '-o', built],
+                capture_output=True, text=True, encoding='utf-8', timeout=60)
+            self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_compact_compile_build_and_link_preserve_native_memory_and_cache(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)

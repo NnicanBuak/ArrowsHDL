@@ -39,6 +39,19 @@ arrowshdl preview build/alu.save.txt -o build/alu-preview.png
 той же карты. По умолчанию действует `--layout auto`; `--layout compact` добавляет
 поиск компактного размещения, включая нативную память и интерфейсы.
 
+Новый проект можно создать командой `init`:
+
+~~~powershell
+arrowshdl init C:/Users/you/projects xor_demo --design ports --standard 1364-2005
+~~~
+
+Команда создаёт каталог `xor_demo` с `project.toml`, `xor_demo.v` и выбранным
+`design.toml`. Доступны preset-варианты `--design none|empty|ports|grid`.
+Параметры проекта можно задать флагами `--standard`, `-I`, `-D` и `-G`, а
+настройки портов — повторяемым `--port NAME=WIDGET`, где `WIDGET` это
+`button`, `indicator` или `binary`. Существующие сгенерированные файлы защищены
+от перезаписи; для явной замены используется `--force`.
+
 `project.toml` **версии 3** задаёт верхний HDL-модуль и исходники.
 Необязательный `design.toml` описывает кнопки, дисплеи и размещение.
 Повторяемые модули компилируются один раз и сохраняются в системном кеше.

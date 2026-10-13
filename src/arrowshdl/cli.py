@@ -13,6 +13,7 @@ from arrowshdl.mapdata import read_map, to_document, write_json
 from arrowshdl.manifest import load_project
 from arrowshdl.standards import DEFAULT_STANDARD, SUPPORTED_STANDARDS
 from arrowshdl.verilog_compile import compile_file, emit_build
+from arrowshdl.project_init import create_project
 
 
 def _json(path):
@@ -28,6 +29,24 @@ def main(argv=None):
     commands = parser.add_subparsers(dest='command', required=True)
     commands.add_parser('health', help='Check ArrowsHDL operational health',
                         description='Check runtimes, compilation, save codec, simulation and preview rendering.')
+    init = commands.add_parser('init', help='Create a starter HDL project')
+    init.add_argument('path', type=Path, help='Parent directory for the project')
+    init.add_argument('name', help='Project directory and top HDL module name')
+    init.add_argument('--standard', choices=SUPPORTED_STANDARDS, default=DEFAULT_STANDARD,
+                      help='HDL language standard written to project.toml')
+    init.add_argument('--design', choices=('none', 'empty', 'ports', 'grid'), default='none',
+                      help='design.toml preset: none, empty, ports or grid')
+    init.add_argument('--port', action='append', default=[], metavar='NAME=WIDGET',
+                      help='Add a design port; widget is button, indicator or binary')
+    init.add_argument('--input-bus-gap', default='auto', metavar='VALUE',
+                      help='design.toml input bus gap: auto or a nonnegative integer')
+    init.add_argument('-I', '--include-dir', dest='includes', action='append', default=[], metavar='DIR',
+                      help='Add an include directory to project.toml')
+    init.add_argument('-D', '--define', dest='defines', action='append', default=[], metavar='NAME',
+                      help='Add a Verilog define to project.toml')
+    init.add_argument('-G', '--parameter', dest='parameters', action='append', default=[], metavar='NAME=VALUE',
+                      help='Add a top-module parameter to project.toml')
+    init.add_argument('--force', action='store_true', help='Replace generated files if they already exist')
     compile = commands.add_parser('compile', help='Compile HDL sources')
     compile.add_argument('sources', nargs='+', type=Path)
     compile.add_argument('--top')
@@ -98,6 +117,14 @@ def main(argv=None):
         if args.command=='health':
             from arrowshdl.health import health
             return health()
+        elif args.command == 'init':
+            generated = create_project(args.path, args.name, standard=args.standard, design=args.design,
+                defines=args.defines, includes=args.includes, parameters=args.parameters, ports=args.port,
+                input_bus_gap=args.input_bus_gap, force=args.force)
+            report(100, f'Project initialized: {generated[0].parent}')
+            for path in generated:
+                print(path)
+            return 0
         elif args.command == 'compile':
             top = args.top or args.sources[0].stem
             parameters = {}

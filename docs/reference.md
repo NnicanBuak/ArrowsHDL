@@ -5,6 +5,7 @@ ArrowsHDL компилирует синтезируемый поднабор Ver
 ## CLI
 
 ~~~powershell
+arrowshdl init PATH NAME [--design none|empty|ports|grid]
 arrowshdl compile logic.v --top logic_unit -o build/logic.save.txt
 arrowshdl build project.toml -o build/logic.save.txt --preview build/logic.png
 arrowshdl link module.aho.json --top logic_unit -o build/linked.save.txt
@@ -19,6 +20,13 @@ arrowshdl health
 Команды compile, build и link создают одно игровое сохранение .txt. Параметр --preview PATH при compile/build/link записывает ещё и PNG из той же физической карты. Отдельная команда preview может прочитать сохранение. Команды test и simulate создают JSON-отчёты; тестовые векторы и сценарии также задаются отдельными JSON-файлами.
 
 Команды decode, encode и graph служат для явного преобразования или диагностики сохранения. Их JSON-выходы не являются результатом обычной сборки. Исключение для компиляции — compile -c: он сохраняет промежуточный RTLIL-объект .aho.json для последующего link.
+
+`init` создаёт новый каталог проекта, базовый `project.toml` и стартовый
+`NAME.v`. По умолчанию создаётся только минимальный проект; `--design` выбирает
+заготовку `design.toml`: `empty`, `ports` или `grid` (значение `none` оставляет
+sidecar-файл отключённым). Настройки project TOML задаются через `--standard`,
+`-I`, `-D` и `-G`; порты design TOML добавляются через повторяемый
+`--port NAME=WIDGET`. Команда не перезаписывает существующие файлы без `--force`.
 
 Справка команд доступна через arrowshdl --help и arrowshdl NAME --help. Для compile доступны --std, -I, -D, -G, -L, --timeout, --max-cells, --input-bus и --input-bus-gap. Параметры -I, -D, -G и -L также доступны test при компиляции отдельных .v/.sv-исходников. Для project.toml верхний модуль и параметры задаются внутри файла проекта.
 
