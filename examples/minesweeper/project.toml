@@ -1,7 +1,7 @@
 version = 3
 top = "minesweeper"
-sources = ["minesweeper.v", "mine_cell.v", "game_controller.v", "seven_segment.v"]
+sources = ["mine_cell.v", "minesweeper.v"]
 design = "design.toml"
 
 [language]
-standard = "1364-2005"
+standard = "1800-2023"

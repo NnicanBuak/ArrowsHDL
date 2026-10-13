@@ -2,9 +2,11 @@
 import argparse
 import json
 import os
+import shutil
 from pathlib import Path
 
 from arrowshdl.scheme import build_scheme
+from arrowshdl.arrow_layout import bounds_of
 from arrowshdl.mapdata import map_hash,read_map,save_sha256
 
 
@@ -15,6 +17,7 @@ def main():
     parser.add_argument('--version',choices=('v1','v2'),default='v2')
     parser.add_argument('--sizes',nargs='+',type=int,default=[3,5,10])
     parser.add_argument('--matrix',action='store_true')
+    parser.add_argument('--reuse',action='store_true',help='Verify preserved saves from historical projects')
     args=parser.parse_args()
     source=args.project/args.version
     args.sizes=[size for size in args.sizes if (source/f'minesweeper_{size}x{size}.toml').is_file()]
@@ -22,8 +25,16 @@ def main():
     output.mkdir(parents=True,exist_ok=True)
     built={}
     for top,manifest in [('tile','cell.toml')]+[(f'minesweeper_{size}x{size}',f'minesweeper_{size}x{size}.toml') for size in args.sizes]:
-        cells,meta=build_scheme(source/manifest,output,timeout=600)
-        assert read_map(output/(top+'.save.txt'))==cells
+        saved=output/(top+'.save.txt')
+        if args.reuse:
+            original=source/'build'/(top+'.save.txt')
+            if original.resolve()!=saved.resolve():
+                shutil.copyfile(original,saved)
+            cells=read_map(saved)
+            meta=dict(map_hash=map_hash(cells),bounds=bounds_of(cells))
+        else:
+            cells,meta=build_scheme(source/manifest,output,timeout=600)
+            assert read_map(saved)==cells
         # Legacy layout records are observations, never an input arrow map.
         binding=source/('cell.bindings.json' if top=='tile' else top+'.bindings.json')
         layout=json.loads(binding.read_text(encoding='utf-8'))

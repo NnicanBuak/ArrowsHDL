@@ -4,17 +4,17 @@
 
 Версия компактной ячейки **56×64, 2164 стрелки**.
 Логика описана в `cell.v`, `cell_top.v`, исходниках полей и контроллера;
-геометрия — в JSON и физическом TOML. Карты собирает общий ArrowsHDL.
+геометрия — в JSON и физическом TOML старого формата. Готовые карты сохранены
+как исторические регрессионные фикстуры.
 
 Из корня ArrowsHDL с установленным ArrowsHDL:
 
 ```powershell
-arrowshdl build examples/minesweeper/v2/cell.toml -o examples/minesweeper/v2/build
-arrowshdl build examples/minesweeper/v2/minesweeper_3x3.toml -o examples/minesweeper/v2/build
-arrowshdl build examples/minesweeper/v2/minesweeper_10x10.toml -o examples/minesweeper/v2/build
+python -m unittest tests.projects.minesweeper.test_saved_maps.MinesweeperRegressionTests.test_v2_compact_maps_and_preparation_arbitration -v
 ```
 
-Поле 5×5: `arrowshdl build examples/minesweeper/v2/minesweeper_5x5.toml -o examples/minesweeper/v2/build`.
+Проверка включает поля 3×3, 5×5 и 10×10. Компиляция HDL v3 показана в
+[текущем примере](../../../../../examples/minesweeper/README.md).
 Полный проверяемый запуск и ограничения: [описание проекта](../README.md).
 Проверки создают сценарии и отчёты в памяти; папка сборки содержит только
 итоговые сохранения схем.

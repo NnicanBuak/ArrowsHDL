@@ -4,14 +4,13 @@
 
 Версия исходной ячейки **112×112**.
 Логика описана в `cell.v`, `cell_top.v`, исходниках полей и контроллера;
-геометрия — в JSON и физическом TOML. Карты собирает общий ArrowsHDL.
+геометрия — в JSON и физическом TOML старого формата. Готовые карты сохранены
+как исторические регрессионные фикстуры.
 
 Из корня ArrowsHDL с установленным ArrowsHDL:
 
 ```powershell
-arrowshdl build examples/minesweeper/v1/cell.toml -o examples/minesweeper/v1/build
-arrowshdl build examples/minesweeper/v1/minesweeper_3x3.toml -o examples/minesweeper/v1/build
-arrowshdl build examples/minesweeper/v1/minesweeper_10x10.toml -o examples/minesweeper/v1/build
+python -m unittest tests.projects.minesweeper.test_saved_maps.MinesweeperRegressionTests.test_v1_historical_112_maps -v
 ```
 
 Сохранения V1 побайтно воспроизводят исходный комплект previous-112:

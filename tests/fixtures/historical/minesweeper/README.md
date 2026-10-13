@@ -1,6 +1,6 @@
 ![Скомпилированное поле Minesweeper V2 5×5](visuals/board.png)
 
-# Minesweeper — пример ArrowsHDL
+# Minesweeper — исторические схемы
 
 Игра «Сапёр» на стрелках: безопасный первый клик, случайное
 размещение мин, подсчёт соседей, каскад нулей, память открытых клеток,
@@ -13,13 +13,12 @@ Verilog описывает вычисления и связи; физическ�
 полевых связей и панели статуса. Это пример крупных нативных проектов,
 двумерного generate и проверки протокола на сохранённых клетках.
 
-## Собрать и играть
+## Импортировать и играть
 
 Из корня ArrowsHDL после установки пакета:
 
 ~~~powershell
-arrowshdl build examples/minesweeper/v2/minesweeper_5x5.toml -o build/mines
-arrowshdl preview build/mines/minesweeper_5x5.save.txt -o build/mines/board.png
+arrowshdl preview tests/fixtures/historical/minesweeper/v2/build/minesweeper_5x5.save.txt -o build/mines/board.png
 ~~~
 
 Для запуска игры код из `minesweeper_5x5.save.txt` импортируется в Logic Arrows.
@@ -47,7 +46,9 @@ arrowshdl preview build/mines/minesweeper_5x5.save.txt -o build/mines/board.png
 | V2 | [5×5](v2/build/minesweeper_5x5.save.txt) | 60068 | 404×492 |
 | V2 | [10×10](v2/build/minesweeper_10x10.save.txt) | 233969 | 684×842 |
 
-Исходники и команды: [V1](v1/README.md), [V2](v2/README.md).
+Исторические исходники и проверки: [V1](v1/README.md), [V2](v2/README.md).
+Их TOML относятся к старому формату; текущая компиляция v3 показана в
+[основном примере](../../../../examples/minesweeper/README.md).
 **V1 сохранена побайтно**: [эталонные хеши](v1/preservation.json).
 Её исторические ограничения: нет общей панели статуса и раскрытия всех мин;
 показывается только открытая мина. Центральный первый клик на 3×3 защищает
@@ -56,11 +57,10 @@ arrowshdl preview build/mines/minesweeper_5x5.save.txt -o build/mines/board.png
 ## Тестирование
 
 ~~~powershell
-python -m tests.projects.minesweeper.run --project examples/minesweeper --version v1 --sizes 3 10
-python -m tests.projects.minesweeper.run --project examples/minesweeper --version v2 --matrix
+python -m unittest tests.projects.minesweeper.test_saved_maps -v
 ~~~
 
-Команды заново собирают карты из исходников и проверяют их в памяти; сценарии,
+Команда проверяет сохранённые исторические карты в памяти; сценарии,
 стрелки тестовых контактов и результаты не сохраняются отдельными JSON-файлами.
 Проверки выполняют 256 масок соседей, 512 переходов, счётчики, все квадраты кнопок,
 два seed, безопасный первый клик, каскад, победу, поражение и блокировку.
@@ -68,6 +68,6 @@ V2 дополнительно проверяет одновременные пе
 подготовки, все пиксели статуса и раскрытие мин. При одновременном выборе
 побеждает первый запрос по порядку контроллера.
 
-Воспроизведение визуализаций: `python tools/render_examples.py`.
+Воспроизведение визуализаций текущих примеров: `python tools/render_examples.py`.
 Собственный код: PolyForm Noncommercial 1.0.0, Copyright 2026 Nnican.
 Авторство правил и ресурсов Logic Arrows сохраняется.
