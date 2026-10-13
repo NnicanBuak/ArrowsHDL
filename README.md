@@ -35,6 +35,15 @@ arrowshdl build examples/alu_workbench/project.toml --layout compact -o build/al
 arrowshdl preview build/alu.save.txt -o build/alu-preview.png
 ~~~
 
+Для одного HDL-файла без `project.toml` можно использовать ту же команду:
+
+~~~powershell
+arrowshdl build logic.v -o build/logic.save.txt
+~~~
+
+В этом режиме верхний модуль по умолчанию совпадает с именем файла; другой
+модуль задаётся через `--top`.
+
 Сборка записывает одно игровое сохранение `.txt`; `--preview PNG` создаёт изображение
 той же карты. По умолчанию действует `--layout auto`; `--layout compact` добавляет
 поиск компактного размещения, включая нативную память и интерфейсы.

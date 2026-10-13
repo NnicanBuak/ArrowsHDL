@@ -65,10 +65,15 @@ def main(argv=None):
     compile.add_argument('--input-bus-gap', default='auto')
     compile.add_argument('--timeout', type=float, default=600)
     compile.add_argument('--max-cells', type=int, default=1000000)
-    build = commands.add_parser('build', help='Build a scheme from a TOML project')
-    build.add_argument('project', type=Path)
+    build = commands.add_parser('build', help='Build a scheme from a TOML project or one HDL source')
+    build.add_argument('project', type=Path, metavar='PROJECT_OR_SOURCE')
     build.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='One .txt game save')
     build.add_argument('--preview',type=Path,metavar='PNG',help='Also render the compiled game save to this PNG path')
+    build.add_argument('--top', help='Top HDL module for a single .v/.sv source; defaults to the filename stem')
+    build.add_argument('--std', choices=SUPPORTED_STANDARDS, default=DEFAULT_STANDARD)
+    build.add_argument('-I', dest='includes', action='append', default=[], type=Path)
+    build.add_argument('-D', dest='defines', action='append', default=[])
+    build.add_argument('-G', dest='parameters', action='append', default=[], metavar='NAME=VALUE')
     build.add_argument('--timeout', type=float, default=600)
     build.add_argument('--layout', choices=('auto','compact', 'sparse', 'macro-grid'), default='auto',
                        help='Placement mode: compact searches additional automatic placements')
@@ -147,8 +152,22 @@ def main(argv=None):
                 input_buses=args.input_bus, input_bus_gap=gap,preview=args.preview, **opts)
             cells, manifest = result.cells, result.metadata
         elif args.command == 'build':
-            result = api.build(args.project,out=args.out,timeout=args.timeout,layout=args.layout,
-                               max_cells=args.max_cells,testing=args.test,preview=args.preview)
+            if args.project.suffix.lower() in ('.v', '.sv'):
+                if args.test:
+                    raise MapError('--test is available only for TOML projects')
+                parameters = {}
+                for pair in args.parameters:
+                    if '=' not in pair:
+                        raise MapError('-G: expected NAME=VALUE')
+                    name, value = pair.split('=', 1)
+                    parameters[name] = value
+                result = api.compile(args.project, top=args.top or args.project.stem, out=args.out,
+                    timeout=args.timeout, preview=args.preview, standard=args.std,
+                    include_dirs=args.includes, defines=args.defines, parameters=parameters,
+                    max_cells=args.max_cells, layout=args.layout)
+            else:
+                result = api.build(args.project,out=args.out,timeout=args.timeout,layout=args.layout,
+                                   max_cells=args.max_cells,testing=args.test,preview=args.preview)
             cells, manifest = result.cells, result.metadata
         elif args.command == 'link':
             result = api.link(args.objects, top=args.top, out=args.out, timeout=args.timeout, layout=args.layout,preview=args.preview)

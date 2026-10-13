@@ -7,6 +7,7 @@ ArrowsHDL компилирует синтезируемый поднабор Ver
 ~~~powershell
 arrowshdl init PATH NAME [--design none|empty|ports|grid]
 arrowshdl compile logic.v --top logic_unit -o build/logic.save.txt
+arrowshdl build logic.v --top logic_unit -o build/logic.save.txt
 arrowshdl build project.toml -o build/logic.save.txt --preview build/logic.png
 arrowshdl link module.aho.json --top logic_unit -o build/linked.save.txt
 arrowshdl test project.toml vectors.json --vectors -o build/report.json
@@ -27,6 +28,10 @@ arrowshdl health
 sidecar-файл отключённым). Настройки project TOML задаются через `--standard`,
 `-I`, `-D` и `-G`; порты design TOML добавляются через повторяемый
 `--port NAME=WIDGET`. Команда не перезаписывает существующие файлы без `--force`.
+
+`build` также принимает один `.v` или `.sv` без зависимостей. В этом режиме
+используются `--top`, `--std`, `-I`, `-D` и `-G`; если `--top` не указан, берётся
+stem имени исходного файла.
 
 Справка команд доступна через arrowshdl --help и arrowshdl NAME --help. Для compile доступны --std, -I, -D, -G, -L, --timeout, --max-cells, --input-bus и --input-bus-gap. Параметры -I, -D, -G и -L также доступны test при компиляции отдельных .v/.sv-исходников. Для project.toml верхний модуль и параметры задаются внутри файла проекта.
 

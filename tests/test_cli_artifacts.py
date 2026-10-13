@@ -153,6 +153,9 @@ class CliArtifactTests(unittest.TestCase):
             cli('compile',source,'--top','xor_unit','-o',root/'save'/'xor.save.txt')
             self.assertEqual(read_map(output),read_map(root/'save'/'xor.save.txt'))
             self.assertEqual(len(list((root/'save').iterdir())),1)
+            single_build = root/'single-build.save.txt'
+            cli('build', source, '--top', 'xor_unit', '-o', single_build, '--preview', root/'single-build.png')
+            self.assertEqual(read_map(output), read_map(single_build))
             rejected=subprocess.run([sys.executable,'-m','arrowshdl','compile',str(source),
                 '--top','xor_unit','-o',str(output.parent)],capture_output=True,text=True,encoding='utf-8')
             self.assertEqual(rejected.returncode,2)
