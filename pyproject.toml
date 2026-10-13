@@ -11,11 +11,11 @@ requires-python = ">=3.11"
 license = "PolyForm-Noncommercial-1.0.0"
 license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_NOTICES.md"]
 authors = [{name = "Nnican"}]
-dependencies = ["yowasp-yosys==0.69.0.0.post1233", "Pillow==12.3.0", "nodejs-wheel-binaries==24.19.0"]
+dependencies = ["yowasp-yosys==0.70.0.0.post1259", "Pillow==12.3.0", "nodejs-wheel-binaries==24.19.0"]
 classifiers = ["Development Status :: 3 - Alpha", "Programming Language :: Python :: 3", "Topic :: Software Development :: Compilers"]
 
 [project.optional-dependencies]
-test = ["numpy==2.4.1"]
+test = ["numpy==2.5.4"]
 
 [project.scripts]
 arrowshdl = "arrowshdl.cli:main"

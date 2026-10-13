@@ -1,15 +1,18 @@
 """Audit source-built saves, visual evidence, packaged data and local links."""
 from pathlib import Path
+import argparse
 import re
 import subprocess
 from tempfile import TemporaryDirectory
 from urllib.parse import unquote
-import zipfile
 
 ROOT=Path(__file__).resolve().parent.parent
 
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--wheels',type=Path,help='Directory of freshly built platform wheels')
+    args=parser.parse_args()
     from arrowshdl import compile
     from arrowshdl.mapdata import map_hash,read_map
     with TemporaryDirectory(prefix='arrowshdl-release-smoke-') as directory:
@@ -48,7 +51,9 @@ def main():
         assert (path.parent/target).is_file(),name
 
     image_count=sum(p.parent.name=='visuals' for p in (ROOT/'examples').rglob('*.png'))
-    files=list(ROOT.glob('*.md'))+list((ROOT/'docs').glob('*.md'))+list((ROOT/'examples').rglob('*.md'))
+    documentation=subprocess.run(['git','ls-files','*.md'],cwd=ROOT,
+        capture_output=True,text=True,check=True).stdout.splitlines()
+    files=[ROOT/name for name in documentation if (ROOT/name).is_file()]
     links=0
     for file in files:
         content=file.read_text(encoding='utf-8-sig')
@@ -60,15 +65,9 @@ def main():
             assert (file.parent/target).exists(),(str(file.relative_to(ROOT)),target)
             links+=1
 
-    wheels=list((ROOT/'dist').glob('arrowshdl-0.1.0-*.whl')) if (ROOT/'dist').exists() else []
-    if wheels:
-        with zipfile.ZipFile(wheels[0]) as archive:
-            names=archive.namelist()
-            assert any(n.endswith('arrowshdl-engine.exe') for n in names)
-            assert not any('examples/' in n or 'tests/' in n for n in names)
-            assert any(n.endswith('data/components/seven_segment.toml') for n in names)
-            assert any(n.endswith('data/components/seven_segment.save.txt') for n in names)
-            assert not any(n.endswith('data/components/seven_segment.json') for n in names)
+    if args.wheels:
+        from tools.release import verify
+        verify(args.wheels)
 
     print(f'PASS: 1 lightweight source build, {image_count} visualizations, {links} local links')
 

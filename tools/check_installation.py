@@ -1,74 +1,94 @@
-"""Smoke-test the installed wheel from an unrelated working directory."""
+"""Exercise the installed wheel and public commands outside the checkout."""
 from pathlib import Path
 import json
 import os
 import subprocess
 import sys
+import sysconfig
 
 import arrowshdl
-from arrowshdl.mapdata import read_map,save_sha256
-from arrowshdl.test_harness import add_fixture,make_scenario
+from arrowshdl.mapdata import read_map, save_sha256, write_map
+from arrowshdl.test_harness import add_fixture, make_scenario
 
-root=Path.cwd()
-repo=Path(sys.argv[1])
-assert not str(Path(arrowshdl.__file__).resolve()).startswith(str(repo/'src'))
-commands=[]
+root = Path.cwd().resolve()
+repo = Path(sys.argv[1]).resolve()
+package = Path(arrowshdl.__file__).resolve()
+assert not package.is_relative_to(repo / 'src'), package
+assert not root.is_relative_to(repo), 'Run this smoke test outside the checkout'
+commands = []
+environment = dict(os.environ, PYTHONUTF8='1')
+environment.pop('PYTHONPATH', None)
+scripts = Path(sysconfig.get_path('scripts'))
+environment['PATH'] = str(scripts) + os.pathsep + str(Path(sys.executable).parent) + os.pathsep + (
+    str(Path(os.environ.get('SystemRoot', 'C:/Windows')) / 'System32')
+    if os.name == 'nt' else '/usr/bin:/bin')
 
 
 def cli(*args):
-    executable=Path(sys.executable).with_name('arrowshdl.exe' if os.name=='nt' else 'arrowshdl')
-    completed=subprocess.run([str(executable),*map(str,args)],capture_output=True,text=True,
-                             encoding='utf-8',timeout=120)
-    assert completed.returncode==0,(args,completed.stdout,completed.stderr)
-    commands.append(tuple(map(str,args)))
+    executable = scripts / ('arrowshdl.exe' if os.name == 'nt' else 'arrowshdl')
+    completed = subprocess.run([str(executable), *map(str, args)], env=environment,
+        capture_output=True, text=True, encoding='utf-8', timeout=120)
+    assert completed.returncode == 0, (args, completed.stdout, completed.stderr)
+    commands.append(dict(command=list(map(str, args)), passed=True))
 
 
-source=root/'logic.sv'
-source.write_text('module logic_unit(input logic a,b,output logic y); always_comb y=a^b; endmodule')
+source = root / 'logic.sv'
+source.write_text('module logic_unit(input logic a,b,output logic y); always_comb y=a^b; endmodule', encoding='utf-8')
+project = root / 'project.toml'
+project.write_text('version=3\ntop="logic_unit"\nsources=["logic.sv"]\n', encoding='utf-8')
+vectors = [dict(inputs=dict(a=a, b=b), expect=dict(y=a ^ b)) for a in (0, 1) for b in (0, 1)]
+vector_file = root / 'vectors.json'
+vector_file.write_text(json.dumps(vectors), encoding='utf-8')
+
 cli('--version')
+module = subprocess.run([sys.executable, '-m', 'arrowshdl', '--version'], env=environment,
+    capture_output=True, text=True, encoding='utf-8', timeout=30)
+assert module.returncode == 0 and arrowshdl.__version__ in module.stdout
 cli('health')
+cli('compile', source, '--top', 'logic_unit', '-o', root / 'compiled.save.txt', '--preview', root / 'compiled.png')
+cli('build', project, '-o', root / 'scheme.save.txt')
+cli('test', project, vector_file, '--vectors', '-o', root / 'project.report.json')
+cli('test', source, vector_file, '--top', 'logic_unit', '--vectors', '-o', root / 'source.report.json')
+assert all(json.loads((root / name).read_text())['passed'] for name in ('project.report.json', 'source.report.json'))
+cli('compile', '-c', source, '--top', 'logic_unit', '-o', root / 'logic.aho.json')
+cli('link', root / 'logic.aho.json', '--top', 'logic_unit', '-o', root / 'linked.save.txt')
+cli('decode', root / 'compiled.save.txt', '-o', root / 'decoded.json')
+cli('encode', root / 'decoded.json', '-o', root / 'roundtrip.save.txt')
+assert read_map(root / 'roundtrip.save.txt') == read_map(root / 'compiled.save.txt')
+cli('graph', root / 'roundtrip.save.txt', '-o', root / 'graph.json')
+cli('preview', root / 'roundtrip.save.txt', '-o', root / 'preview.png')
+assert (root / 'preview.png').stat().st_size > 100
 
-compiled=root/'compiled.save.txt'
-cli('compile',source,'--top','logic_unit','-o',compiled)
-scheme=root/'scheme.save.txt'
-cli('build',repo/'tests/fixtures/circuits/hdl/half_adder/project.toml','-o',scheme)
-scenario_path=root/'identity.scenario.json'
-scenario_path.write_text(json.dumps({'ticks':8,'inputs':[{'at':[0,0],'values':[1,0,1,1,0,0,0,0]}],
-    'expect':[{'at':[2,0],'values':[0,0,1,0,1,1,0,0]}]}),encoding='utf-8')
-cli('test',repo/'tests/fixtures/codec/identity.save.txt',scenario_path,'-o',root/'test.report.json')
+result = arrowshdl.compile(source, top='logic_unit', out=root / 'api.save.txt')
+fixture = add_fixture(result.cells, result.metadata)
+scenario = make_scenario(result.metadata, vectors, compressed=True)
+assert arrowshdl.simulate(fixture, scenario, optimize_cycles=False)['passed']
+write_map(root, 'fixture', fixture)
+(root / 'scenario.json').write_text(json.dumps(scenario), encoding='utf-8')
+cli('simulate', root / 'fixture.save.txt', root / 'scenario.json', '-o', root / 'simulated.report.json')
+assert json.loads((root / 'simulated.report.json').read_text())['passed']
+arrowshdl.compile_object(source, top='logic_unit', out=root / 'api.aho.json')
+assert arrowshdl.link([root / 'api.aho.json'], top='logic_unit').cells == result.cells
+built = arrowshdl.build(project)
+assert arrowshdl.simulate(add_fixture(built.cells, built.metadata),
+    make_scenario(built.metadata, vectors, compressed=True))['passed']
 
-obj=root/'logic.object.json'
-cli('compile','-c',source,'--top','logic_unit','-o',obj)
-linked=root/'linked.save.txt'
-cli('link',obj,'--top','logic_unit','-o',linked)
-decoded=root/'decoded.json'
-roundtrip=root/'roundtrip.save.txt'
-cli('decode',compiled,'-o',decoded)
-cli('encode',decoded,'-o',roundtrip)
-assert read_map(roundtrip)==read_map(compiled)
-cli('graph',roundtrip,'-o',root/'graph.json')
-cli('preview',roundtrip,'-o',root/'preview.png')
-assert (root/'preview.png').stat().st_size>100
+native = root / 'native.v'
+native.write_text('module native(input a,output q); arrows_toggle t(a,q); endmodule', encoding='utf-8')
+native_result = arrowshdl.compile(native, top='native')
+trace = arrowshdl.simulate(add_fixture(native_result.cells, native_result.metadata), dict(ticks=80,
+    inputs=[dict(at=native_result.ports['inputs']['a'][0]['fixture'], values=[1] * 80)], expect=[],
+    observe=[native_result.ports['outputs']['q'][0]['fixture']]), optimize_cycles=False)
+assert set(trace['observations'][0]['values'][-40:]) == {0, 1}
+from arrowshdl.components import load_component
+from arrowshdl.manifest import component_file
+for name in ('history64', 'seven_segment'):
+    assert load_component(component_file(root, 'library:' + name))[0]
 
-result=arrowshdl.compile(source,top='logic_unit',out=root/'api.save.txt')
-vectors=[dict(inputs=dict(a=a,b=b),expect=dict(y=a^b)) for a,b in ((0,0),(1,0),(1,1),(0,1))]
-scenario=make_scenario(result.metadata,vectors,compressed=True)
-fixture=add_fixture(read_map(result.artifacts['output']),result.metadata)
-assert arrowshdl.simulate(fixture,scenario,optimize_cycles=False)['passed']
-
-native=root/'native.v'
-native.write_text('module native(input a,output q,r); arrows_toggle t(a,q); arrows_random n(a,r); endmodule')
-native_result=arrowshdl.compile(native,top='native',out=root/'native.save.txt')
-arrowshdl.simulate(add_fixture(native_result.cells,native_result.metadata),dict(ticks=20,
-    inputs=[dict(at=native_result.ports['inputs']['a'][0]['fixture'],values=[1]*20)],expect=[],
-    observe=[native_result.ports['outputs']['q'][0]['fixture']]))
-
-arrowshdl.compile_object(source,top='logic_unit',out=root/'api.object.json')
-api_linked=arrowshdl.link([root/'api.object.json'],top='logic_unit',out=root/'api-linked.save.txt')
-assert api_linked.cells==result.cells
-api_built=arrowshdl.build(repo/'tests/fixtures/circuits/hdl/half_adder/project.toml',
-                          out=root/'api-built.save.txt')
-assert api_built.cells
-
-assert save_sha256(compiled)
-print('PASS: clean wheel, external cwd, minimal PATH, public commands and in-memory test fixtures')
+data = dict(passed=True, version=arrowshdl.__version__, package=str(package), cwd=str(root),
+    commands=commands, python_api=True, native_library=True, external_cwd=True, minimal_path=True,
+    save_sha256=save_sha256(root / 'compiled.save.txt'))
+output = repo / 'build/clean-smoke.report.json'
+output.parent.mkdir(parents=True, exist_ok=True)
+output.write_text(json.dumps(data, indent=2) + '\n', encoding='utf-8')
+print('PASS: installed wheel, external cwd, minimal PATH, public commands and Python API')

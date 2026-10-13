@@ -13,12 +13,20 @@ ROOT=Path(__file__).resolve().parent
 
 class BuildWithEngine(build_py):
     def run(self):
-        subprocess.run(['cargo','build','--release','--locked','--manifest-path',str(ROOT/'native/Cargo.toml')],check=True)
+        environment=dict(os.environ)
+        if os.name=='nt':
+            environment['RUSTFLAGS']=environment.get('RUSTFLAGS','')+' -C target-feature=+crt-static'
+        subprocess.run(['cargo','build','--release','--locked','--manifest-path',str(ROOT/'native/Cargo.toml')],
+                       check=True,env=environment)
         super().run()
         suffix='.exe' if os.name=='nt' else ''
         target=Path(self.build_lib)/'arrowshdl/data/native'
         target.mkdir(parents=True,exist_ok=True)
-        shutil.copy2(ROOT/f'native/target/release/logic-arrows-cli{suffix}',target/f'arrowshdl-engine{suffix}')
+        cargo_target=os.environ.get('CARGO_BUILD_TARGET')
+        release=ROOT/'native/target'
+        if cargo_target:
+            release=release/cargo_target
+        shutil.copy2(release/f'release/logic-arrows-cli{suffix}',target/f'arrowshdl-engine{suffix}')
 
 
 class PlatformDistribution(Distribution):
