@@ -16,13 +16,6 @@ examples/**/build/*
 !examples/packet_router/build/packet_router.save.txt
 !examples/pulse_sequencer/build/pulse_sequencer.save.txt
 !examples/minesweeper/build/minesweeper.save.txt
-!examples/alu_workbench/build/alu_workbench.json
-!examples/packet_router/build/packet_router.json
-!examples/pulse_sequencer/build/pulse_sequencer.json
-!examples/minesweeper/build/minesweeper.json
 !tests/fixtures/**/build/
 tests/fixtures/**/build/*
 !tests/fixtures/**/build/*.save.txt
-!tests/fixtures/**/build/*.map.json
-!tests/fixtures/**/build/*.build.json
-!tests/fixtures/**/build/*.bindings.json

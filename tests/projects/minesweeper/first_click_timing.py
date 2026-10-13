@@ -3,7 +3,7 @@ from .snap_verify import *
 
 
 def verify(stem='minesweeper_10x10'):
-    meta=json.loads((BUILD/(stem+'.layout.json')).read_text())
+    meta=load_layout(stem)
     size=meta['size'];first=(size//2)*size+size//2;second=0;cold=30000;ticks=65000
     tile=[moved(meta['cell'],*t['origin']) for t in meta['tiles']]
     gates={n['net']:n['at'] for n in meta['cell']['gate_positions']}
@@ -41,7 +41,6 @@ def verify(stem='minesweeper_10x10'):
     result=dict(passed=True,map_hash=meta['map_hash'],size=size,first=first,second=second,
                 events_after_click=dict(zip(('busy_second','choose_second','choose_first','ready_first'),[t-cold for t in events])),
                 cases=results)
-    write_json(BUILD/(stem+'.first-click-timing.json'),result)
     print('Late preparation clicks passed:',size,len(cases),result['events_after_click'],flush=True)
     return result
 

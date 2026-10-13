@@ -2,7 +2,6 @@
 from collections import defaultdict
 from copy import deepcopy
 import hashlib
-from pathlib import Path
 import time
 import math
 import json
@@ -12,7 +11,7 @@ from arrowshdl.arrow_layout import bounds_of,destinations
 from arrowshdl.auto_placement import arrange,fit_ports
 from arrowshdl.components import load_component,move,keepout
 from arrowshdl.fixed_wiring import FixedWiring
-from arrowshdl.mapdata import map_hash,write_json
+from arrowshdl.mapdata import map_hash
 from arrowshdl.module_cache import compiled_module
 from arrowshdl.presentation import port_bits
 from arrowshdl.manifest import component_file
@@ -263,8 +262,4 @@ def route_project(project,blocks,names,origins,frames,cache_records,out,max_cell
             inputs=list(project.inputs),outputs=list(project.outputs),connections=list(project.connections)),
         project_sha256=hashlib.sha256(project.path.read_bytes()).hexdigest(),
         sources=[dict(name=p.name,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in project.sources])
-    Path(out).mkdir(parents=True,exist_ok=True)
-    write_json(Path(out)/f'{project.top}.layout.json',meta['project_graph'])
-    write_json(Path(out)/f'{project.top}.logic.json',dict(format='arrowshdl-module-graph',version=2,
-        **meta['project_graph'],compiled_modules=cache_records))
     return cells,meta

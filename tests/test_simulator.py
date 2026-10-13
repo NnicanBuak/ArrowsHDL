@@ -124,7 +124,8 @@ class SimulatorTests(unittest.TestCase):
 
     def test_identity_and_failure_exit(self):
         cells = asm.lower(asm.parse((ROOT / "tests/fixtures/codec/identity.l.asm").read_text(encoding="utf-8")))
-        scenario = json.loads((ROOT / "tests/fixtures/codec/identity.test.json").read_text())
+        scenario = {"ticks":8,"inputs":[{"at":[0,0],"values":[1,0,1,1,0,0,0,0]}],
+                    "expect":[{"at":[2,0],"values":[0,0,1,0,1,1,0,0]}]}
         result, report = execute(cells, scenario)
         self.assertEqual(result.returncode, 0, (result.stderr, report))
         scenario["expect"][0]["values"][2] = 0
@@ -134,7 +135,10 @@ class SimulatorTests(unittest.TestCase):
 
     def test_ring_optimization(self):
         cells = asm.lower(asm.parse((ROOT / "tests/fixtures/codec/ring.l.asm").read_text(encoding="utf-8")))
-        scenario = json.loads((ROOT / "tests/fixtures/codec/ring.test.json").read_text())
+        scenario = {"ticks":20,"inputs":[
+            {"at":[1,-2],"values":[1]+[0]*19},
+            {"at":[3,0],"values":[1]*20}],
+            "expect":[{"at":[4,1],"values":[0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0]}]}
         optimized = self.verify_oracle(cells, scenario)
         plain = self.verify_oracle(cells, scenario, False)
         self.assertEqual(optimized["optimized_cycles"], 1)

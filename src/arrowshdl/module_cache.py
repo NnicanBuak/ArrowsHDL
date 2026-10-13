@@ -6,13 +6,13 @@ import tempfile
 from pathlib import Path
 
 from arrowshdl import __version__
-from arrowshdl.arrowasm import MapError
+from arrowshdl.arrowasm import MapError, decode, encode
 from arrowshdl.mapdata import read_map,map_hash,write_json
 from arrowshdl.verilog_compile import compile_file
 
 
 def component_document(top,meta):
-    result=dict(version=1,map=f'{top}.map.json',ports={side:{name:[{key:e[key] for key in ('index','contact','fixture','rotation','panel') if key in e} for e in entries]
+    result=dict(version=1,map=f'{top}.save.txt',ports={side:{name:[{key:e[key] for key in ('index','contact','fixture','rotation','panel') if key in e} for e in entries]
         for name,entries in meta[side].items()} for side in ('inputs','outputs')},
         settle_ticks=meta['settle_ticks'],state_boundaries=meta.get('timing',{}).get('state_boundaries',[]),
         interface=dict(kind='compiled HDL module',protocol='native game ticks',bit_order='port indices'))
@@ -38,7 +38,6 @@ def compiled_module(project,module,out,timeout,layout,max_cells,compact):
         headers=headers,parameters=module.get('parameters',{}),standard=project.standard,
         defines=list(project.defines),layout=layout,compact=compact,panel=module.get('panel'))
     key = hashlib.sha256(json.dumps(identity,sort_keys=True).encode()).hexdigest()
-    from arrowshdl.artifacts import document, unpack
     from arrowshdl.progress import report
     default = Path(os.environ.get('LOCALAPPDATA', Path.home()/'.cache'))/'ArrowsHDL'/'cache'
     folder = Path(os.environ.get('ARROWSHDL_CACHE_DIR', default)).expanduser()
@@ -46,7 +45,7 @@ def compiled_module(project,module,out,timeout,layout,max_cells,compact):
     if cached.is_file():
         try:
             info = json.loads(cached.read_text(encoding='utf-8'))
-            cells,meta = unpack(info['scheme'])
+            cells,meta = decode(info['save']),info['metadata']
             if info.get('identity')==identity and map_hash(cells)==meta['map_hash'] and len(cells)<=max_cells:
                 report(100, f"Reused compiled module {module['hdl']}")
                 return cells,meta,dict(key=key,reused=True,path=str(cached))
@@ -74,6 +73,6 @@ def compiled_module(project,module,out,timeout,layout,max_cells,compact):
                 parameters=module.get('parameters',{}),compact=compact,constraints=constraints)
     folder.mkdir(parents=True,exist_ok=True)
     temporary = folder/f'{key}.{os.getpid()}.tmp'
-    write_json(temporary,dict(identity=identity,key=key,scheme=document(cells,meta)))
+    write_json(temporary,dict(identity=identity,key=key,save=encode(cells),metadata=meta))
     temporary.replace(cached)
     return cells,meta,dict(key=key,reused=False,path=str(cached))

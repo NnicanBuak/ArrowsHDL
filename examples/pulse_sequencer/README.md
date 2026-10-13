@@ -16,12 +16,13 @@ TOML связывает модули и готовый дисплей `library:h
 ## Сборка и проверка
 
 ```powershell
-arrowshdl build examples/pulse_sequencer/project.toml -o examples/pulse_sequencer/build/pulse_sequencer.json
-arrowshdl preview examples/pulse_sequencer/build/pulse_sequencer.json -o examples/pulse_sequencer/visuals/map.png
+arrowshdl build examples/pulse_sequencer/project.toml -o examples/pulse_sequencer/build/pulse_sequencer.save.txt
+arrowshdl preview examples/pulse_sequencer/project.toml -o examples/pulse_sequencer/visuals/map.png
 python -m unittest tests.projects.examples.test_sequencer -v
 ```
 
-[Готовая схема](build/pulse_sequencer.json) содержит карту, порты и задержки.
+[Готовая игровая схема](build/pulse_sequencer.save.txt) содержит итоговую карту.
+Порты и задержки возвращаются API как метаданные сборки.
 Регрессионная проверка охватывает все 256 масок памяти,
 приоритет, удержание кнопок, периоды и каждую клетку истории.
 

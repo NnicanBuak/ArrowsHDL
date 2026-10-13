@@ -16,13 +16,13 @@
 ## Сборка
 
 ```powershell
-arrowshdl build examples/minesweeper/project.toml --compact -o examples/minesweeper/build/minesweeper.json
-arrowshdl encode examples/minesweeper/build/minesweeper.json -o examples/minesweeper/build/minesweeper.save.txt
-arrowshdl preview examples/minesweeper/build/minesweeper.json -o examples/minesweeper/visuals/map.png
+arrowshdl build examples/minesweeper/project.toml --compact -o examples/minesweeper/build/minesweeper.save.txt
+arrowshdl preview examples/minesweeper/project.toml -o examples/minesweeper/visuals/map.png
 ```
 
-Каждая команда записывает один файл. JSON сохраняет карту и метаданные;
-TXT содержит код импорта в игру. Процент и этапы выполнения выводятся в stderr.
+Каждая команда записывает один файл. Сборка сразу сохраняет схему в формате
+импорта игры; метаданные остаются в памяти. Процент и этапы выполнения выводятся
+в stderr.
 
 ## Управление
 

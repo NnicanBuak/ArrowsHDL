@@ -16,14 +16,14 @@ class ProjectGraphTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path=Path(directory)/'project.toml'
             path.write_text('version=2\ntop="legacy"\n')
-            with self.assertRaises(arrowshdl.MapError): arrowshdl.build(path,out=Path(directory)/'out.json')
+            with self.assertRaises(arrowshdl.MapError): arrowshdl.build(path,out=Path(directory)/'out.save.txt')
 
     def test_native_register_and_latch_retain_state_after_control_release(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);source=root/'state.v'
             source.write_text('''module state(input load,set,clear,input [2:0] data,output [2:0] q,output state);
                 arrows_register #(.WIDTH(3)) register(load,data,q); arrows_latch latch(set,clear,state); endmodule''')
-            result=arrowshdl.compile(source,top='state',out=root/'out.json')
+            result=arrowshdl.compile(source,top='state',out=root/'out.save.txt')
             sequence=[(0,0,1,0,0,0),(1,0,0,3,3,0),(0,0,0,3,3,0),(0,0,0,5,3,0),
                       (1,0,0,5,5,0),(0,0,0,5,5,0),(0,1,0,2,5,1),(0,0,0,7,5,1),(0,0,1,7,5,0)]
             vectors=[dict(inputs=dict(load=l,set=s,clear=c,data=d),expect=dict(q=q,state=t)) for l,s,c,d,q,t in sequence]
@@ -49,12 +49,12 @@ sources=["logic.v"]
 design="design.toml"
 ''')
             (root/'design.toml').write_text('version=1\n')
-            result=arrowshdl.build(path,out=root/'out.json',timeout=30)
+            result=arrowshdl.build(path,out=root/'out.save.txt',timeout=30)
             self.assertEqual(result.metadata['project_version'],3)
-            self.assertTrue((root/'out.json').is_file())
+            self.assertTrue((root/'out.save.txt').is_file())
             self.assertEqual(result.metadata['optimization']['instances'],2)
             self.assertEqual(len(result.metadata['compiled_modules']),2)
-            warm=arrowshdl.build(path,out=root/'out.json',timeout=30)
+            warm=arrowshdl.build(path,out=root/'out.save.txt',timeout=30)
             self.assertTrue(all(row['reused'] for row in warm.metadata['compiled_modules']))
             self.assertEqual(warm.cells,result.cells)
 
@@ -68,7 +68,7 @@ design="design.toml"
             project = root / 'project.toml'
             project.write_text('version=3\ntop="dut"\nsources=["logic.v"]\n', encoding='utf-8')
 
-            result = arrowshdl.build(project, out=root / 'out.json', timeout=30)
+            result = arrowshdl.build(project, out=root / 'out.save.txt', timeout=30)
             from arrowshdl.map_preview import render_cells
             preview=root/'logical.png'
             render_cells(result.cells,preview,result.metadata,style='logical')
@@ -113,7 +113,7 @@ design="design.toml"
                         f'include_dirs={json.dumps(list(directories))}\n',
                         encoding='utf-8',
                     )
-                    result = arrowshdl.build(project, out=root / 'out.json', timeout=30)
+                    result = arrowshdl.build(project, out=root / 'out.save.txt', timeout=30)
                     scenario = make_scenario(
                         result.metadata,
                         [dict(inputs={'a': 0, 'b': 1}, expect={'y': expected})],
@@ -132,8 +132,8 @@ design="design.toml"
             root=Path(directory); source=root/'unnamed.v'
             source.write_text('''module unnamed(input [3:0] a,b,input select,output [3:0] y);
                 assign y=select ? a+b : a^b; endmodule''')
-            ordinary=arrowshdl.compile(source,top='unnamed',out=root/'normal.json',timeout=30)
-            compact=arrowshdl.compile(source,top='unnamed',out=root/'small.json',timeout=30,compact=True)
+            ordinary=arrowshdl.compile(source,top='unnamed',out=root/'normal.save.txt',timeout=30)
+            compact=arrowshdl.compile(source,top='unnamed',out=root/'small.save.txt',timeout=30,compact=True)
             self.assertFalse(ordinary.metadata['optimization']['templates'])
             self.assertEqual(len(ordinary.metadata['optimization']['attempts']),1)
             self.assertGreater(len(compact.metadata['optimization']['attempts']),1)

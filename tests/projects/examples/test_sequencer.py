@@ -1,21 +1,28 @@
 """Periods, held clicks, priority and history are independent functional checks."""
-import json
 from pathlib import Path
+import tempfile
 import unittest
 
+from arrowshdl import build
 from arrowshdl.mapdata import read_map,save_sha256
-from tests.projects.examples.artifacts import save_artifact
 from arrowshdl.simulation import simulate
 from arrowshdl.test_harness import add_fixture
-from arrowshdl.artifacts import read_metadata
 
 ROOT=Path(__file__).resolve().parents[3]
 
 
 def run():
-    folder=ROOT/'examples/pulse_sequencer'; build=folder/'build'
-    meta=read_metadata(build/'pulse_sequencer.json')
-    cells=add_fixture(read_map(build/'pulse_sequencer.json'),meta)
+    folder=ROOT/'examples/pulse_sequencer'
+    with tempfile.TemporaryDirectory(prefix='arrowshdl-sequencer-') as directory:
+        saved=Path(directory)/'pulse_sequencer.save.txt'
+        result=build(folder/'project.toml',out=saved)
+        return verify(saved,result.cells,result.metadata)
+
+
+def verify(saved,production_cells,meta):
+    cells=read_map(saved)
+    assert cells==production_cells
+    cells=add_fixture(cells,meta)
     coordinates={name:[e['fixture'] for e in es] for name,es in meta['outputs'].items()}
     display=meta['components']['history']['inputs']['signal'][0]['contact']
     pixels=[[display[0]+i,display[1]] for i in range(64)]
@@ -41,9 +48,6 @@ def run():
         for i,p in enumerate(pixels):
             assert traces[tuple(p)][-300:]==traces[tuple(pixels[0])][-300-i:len(controls)-i],(mode,i)
         checks+=len(points)*len(controls)
-        if mode==2:
-            save_artifact('pulse_sequencer','scenario.json',scenario)
-            save_artifact('pulse_sequencer','waveform.trace.json',report)
         snapshots.append(dict(mode=mode,period_ticks=period))
     masks=[];frames=[];pressed=0
     for mask in range(256):
@@ -65,10 +69,9 @@ def run():
             active=sum(traces[i][t]<<i for i in range(8)); code=sum(traces[8+i][t]<<i for i in range(3))
             assert active==mask,(mask,active)
             assert code==((mask&-mask).bit_length()-1 if mask else 0),(mask,code)
-    summary=dict(passed=True,save_sha256=save_sha256(build/'pulse_sequencer.json'),
+    summary=dict(passed=True,save_sha256=save_sha256(saved),
         all_256_latched_masks_verified=True,held_clicks=True,history_pixels=64,modes=snapshots,
         checked_samples=checks+256*11,oracle='independent periods, priority encoder and one-tick history relation')
-    save_artifact('pulse_sequencer','pulse_sequencer.report.json',summary)
     return summary
 
 

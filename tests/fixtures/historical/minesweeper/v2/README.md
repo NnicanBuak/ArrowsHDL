@@ -16,4 +16,5 @@ arrowshdl build examples/minesweeper/v2/minesweeper_10x10.toml -o examples/mines
 
 Поле 5×5: `arrowshdl build examples/minesweeper/v2/minesweeper_5x5.toml -o examples/minesweeper/v2/build`.
 Полный проверяемый запуск и ограничения: [описание проекта](../README.md).
-[Итоговый отчёт](build/regression.json). По одному финальному комплекту на карту.
+Проверки создают сценарии и отчёты в памяти; папка сборки содержит только
+итоговые сохранения схем.

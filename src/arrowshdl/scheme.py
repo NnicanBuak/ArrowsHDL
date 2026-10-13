@@ -8,7 +8,7 @@ import tomllib
 from arrowshdl.arrowasm import Cell, MapError
 from arrowshdl.arrow_layout import bounds_of, destinations
 from arrowshdl.fixed_wiring import FixedWiring
-from arrowshdl.mapdata import map_hash, read_map, write_map, write_json, save_sha256
+from arrowshdl.mapdata import map_hash, write_map, save_sha256
 from arrowshdl.manifest import load_project, table, pair, component_file
 from arrowshdl.presentation import attach_io, port_bits
 from arrowshdl.verilog_compile import compile_file
@@ -174,7 +174,6 @@ def build_scheme(path, out, *, timeout=600, layout='auto', max_cells=1000000, te
     meta['timing_contracts'] = verify_contracts(cells,meta,project.timing)
     write_map(out,project.top,cells)
     meta['save_sha256'] = save_sha256(out / f'{project.top}.save.txt')
-    write_json(out/f'{project.top}.build.json',meta)
     return cells,meta
 
 

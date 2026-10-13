@@ -1,10 +1,10 @@
 """Independent board oracle and signal-driven WIN/LOSE checks on saved cells."""
 from pathlib import Path
+import tempfile
 import unittest
 
-from arrowshdl.artifacts import read_metadata
+from arrowshdl import build
 from arrowshdl.mapdata import read_map,save_sha256
-from tests.projects.examples.artifacts import save_artifact
 from arrowshdl.simulation import simulate
 from arrowshdl.test_harness import add_fixture
 
@@ -29,8 +29,14 @@ def flood(mines,selected):
 
 class MinesweeperTests(unittest.TestCase):
     def test_safe_first_flood_count_win_lose_and_reset(self):
-        saved=ROOT/'examples/minesweeper/build/minesweeper.json'
-        meta=read_metadata(saved);cells=add_fixture(read_map(saved),meta)
+        with tempfile.TemporaryDirectory(prefix='arrowshdl-minesweeper-') as directory:
+            saved=Path(directory)/'minesweeper.save.txt'
+            result=build(ROOT/'examples/minesweeper/project.toml',out=saved)
+            self.assertEqual(read_map(saved),result.cells)
+            self.report=self.verify(result.cells,result.metadata,save_sha256(saved))
+
+    def verify(self,production_cells,meta,digest):
+        cells=add_fixture(production_cells,meta)
         hold=max(1000,2*meta['settle_ticks']);points={}
         for i in range(25):
             for name in ('mine','opened','first_selected'):
@@ -84,23 +90,21 @@ class MinesweeperTests(unittest.TestCase):
             if mines and not win:
                 hit=min(mines)
                 actions=base+[(0,1<<hit,3),(0,0,1),(0,(1<<25)-1,2),(0,0,1),(1,0,2)]
-                lost,scenario=run(actions,seed)
+                lost,_=run(actions,seed)
                 check(lost[5],mines,opened,0,1)
                 check(lost[7],mines,opened,0,1)
                 self.assertEqual([lost[-1][k] for k in ('started','victory','defeat')],[0,0,0])
                 self.assertFalse(board(lost[-1],'opened'))
                 for name in ('win_message','loss_message'):
                     self.assertFalse(any(lost[-1][k] for k in points if k.startswith(name+':')))
-                save_artifact('minesweeper','defeat.scenario.json',scenario)
             remaining=set(range(25))-mines-opened
             selection=sum(1<<i for i in remaining)
             actions=base+[(0,selection,4),(0,0,1),(0,sum(1<<i for i in mines),2),(0,0,1)]
-            won,scenario=run(actions,seed)
+            won,_=run(actions,seed)
             check(won[5],mines,set(range(25))-mines,1,0)
             check(won[7],mines,set(range(25))-mines,1,0)
-            save_artifact('minesweeper','victory.scenario.json',scenario)
-        self.report=dict(passed=True,save_sha256=save_sha256(saved),
+        report=dict(passed=True,save_sha256=digest,
             checked_samples=checks,seeds=2,safe_first=True,flood=True,seven_segment=True,
             victory=True,defeat=True,late_clicks=True,reset=True,text_displays=['WIN','LOSE'],snapshots=snapshots,
             oracle='independent Python eight-neighbor board and digit masks')
-        save_artifact('minesweeper','minesweeper.report.json',self.report)
+        return report

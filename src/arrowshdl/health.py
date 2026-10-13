@@ -37,7 +37,7 @@ def health():
             stage = 'HDL compiler'
             from arrowshdl.api import compile
             with phase(10,40,'Checking HDL compiler'):
-                built = compile(source, top='health_test', out=root/'scheme.json', timeout=30)
+                built = compile(source, top='health_test', out=root/'scheme.save.txt', timeout=30)
             print(f'[OK] {stage}: built-in circuit compiled', flush=True)
 
             stage = 'Save codec'

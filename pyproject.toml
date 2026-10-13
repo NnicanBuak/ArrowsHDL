@@ -25,7 +25,7 @@ where = ["src"]
 include = ["arrowshdl*"]
 
 [tool.setuptools.package-data]
-arrowshdl = ["library/*.v", "runtime/*.mjs", "data/templates/*.html", "data/sprites/*.png", "data/components/*.json", "data/fonts/*.json", "data/native/*", "data/licenses/*"]
+arrowshdl = ["library/*.v", "runtime/*.mjs", "data/templates/*.html", "data/sprites/*.png", "data/components/*.toml", "data/components/*.save.txt", "data/fonts/*.json", "data/native/*", "data/licenses/*"]
 
 [project.urls]
 Repository = "https://github.com/NnicanBuak/ArrowsHDL"

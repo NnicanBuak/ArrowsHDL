@@ -1,5 +1,4 @@
 """Reimported save verification for mechanically stackable modules."""
-import json
 from .context import *
 from .context import EXPECTED
 from .context import simulate
@@ -53,7 +52,7 @@ def segment_probes(cells,meta):
     return out
 
 def verify_cell(stem='tile'):
-    cells=read_map(BUILD/(stem+'.save.txt'));meta=json.loads((BUILD/(stem+'.layout.json')).read_text())
+    cells=read_map(BUILD/(stem+'.save.txt'));meta=load_layout(stem)
     mine_ports=AGGREGATE_MINE_PORTS if meta.get('aggregate_neighbors') else DIAGONAL_MINE_PORTS if meta.get('diagonal_contacts') else MINE_PORTS
     inp=sources(cells,meta,list(mine_ports)+['N:ready','button0'])
     seg=segment_probes(cells,meta);states={name:tuple(p) for name,p in meta['states'].items()}
@@ -89,7 +88,6 @@ def verify_cell(stem='tile'):
         assert button_report['observations'][0]['values']==[1,0],('button square',p)
     result=dict(passed=True,neighbor_masks=256,transition_vectors=512,segment_checks=7*512,checked_samples=r['checked_samples']+len(states)*len(masks),read_only_state_checks=True,button_squares=len(buttons),button_press_release_checks=2*len(buttons),side=meta['side'],map_hash=meta['map_hash'])
     result['save_sha256']=save_sha256(BUILD/(stem+'.save.txt'))
-    write_json(BUILD/(stem+'.verification.json'),result)
     print('Framed cell verified:',result,flush=True)
     return result
 
@@ -105,7 +103,7 @@ def verify_board(size=10,seed=123456789,first=None,stem=None):
     from .context import simulate as run_native
     from .reference_model import flood
     stem=stem or f'minesweeper_{size}x{size}'
-    cells=read_map(BUILD/(stem+'.save.txt'));meta=json.loads((BUILD/(stem+'.layout.json')).read_text())
+    cells=read_map(BUILD/(stem+'.save.txt'));meta=load_layout(stem)
     first=(size//2)*size+size//2 if first is None else first
     ports={};buttons=[];mine_pixels={}
     for i,t in enumerate(meta['tiles']):
@@ -123,7 +121,6 @@ def verify_board(size=10,seed=123456789,first=None,stem=None):
     observed.update(mine_pixels)
     for name,display in meta.get('status',{}).get('displays',{}).items():
         for j,p in enumerate(display['pixels']):observed[f'{name}:pixel{j}']=tuple(p)
-    status_frames={}
     wait=max(50000,meta['full_settle_bound']*2+meta['logic_settle_bound']*2)
     initial=[max(2000,meta['logic_settle_bound']),64,wait]
     def run(events=()):
@@ -139,13 +136,11 @@ def verify_board(size=10,seed=123456789,first=None,stem=None):
             samples=r['observations'][len(ports)+j]['values']
             assert samples[0]==0,('indicator lit before game',name)
             values[name]=samples[-1]
-        status_frames['cold']={name:r['observations'][len(ports)+j]['values'][0] for j,name in enumerate(observed)}
         return values
     v=run();mines={i for i in range(size*size) if v[f'{i}:mine']}
     if size>=5:assert mines,'Fixed verification seed must produce mines'
     opened=flood(size,mines,set(),[first])
     selected={i for i in range(size*size) if v[f'{i}:selected']}
-    write_json(BUILD/(stem+'.observed.json'),v)
     assert selected=={first},('selection',selected)
     x,y=first%size,first//size
     protected={first}|{(y+dy)*size+x+dx for dx,dy in DIRECTIONS if 0<=x+dx<size and 0<=y+dy<size}
@@ -168,19 +163,12 @@ def verify_board(size=10,seed=123456789,first=None,stem=None):
             for j in range(len(display['pixels'])):
                 assert values[f'{name}:pixel{j}']==values[name],('status pixel',name,j)
     check(v,opened)
-    status_frames['first_move']={name:v[name] for name in observed}
-    write_json(BUILD/(stem+'.demo.json'),dict(size=size,first=first,mines=sorted(mines),opened=sorted(opened),measured=v))
     cases=['first-safe','neighbor-counts','cascade','closed-blank','visible-zero','stacked-connectors']
     if mines:
         mine=min(mines);dv=run([{mine},set(range(size*size))-mines-opened]);check(dv,opened|{mine},True)
-        write_json(BUILD/(stem+'.defeat.demo.json'),dict(size=size,first=first,mines=sorted(mines),
-                   opened=sorted(opened|{mine}),clicked_mine=mine,measured=dv))
-        status_frames['defeat']={name:dv[name] for name in observed}
         cases+=['mine-defeat','blocked-after-defeat','safe-cells-stay-closed-after-defeat']
         if marker:cases+=['all-mines-revealed']
     vv=run([set(range(size*size))-mines,mines]);check(vv,set(range(size*size))-mines)
-    status_frames['victory']={name:vv[name] for name in observed}
-    write_json(BUILD/(stem+'.status.observed.json'),dict(map_hash=meta['map_hash'],frames=status_frames))
     cases+=['victory','blocked-after-victory']
     if meta.get('status'):cases+=['status-blank-before-start','win-lose-all-pixels']
     result=dict(passed=True,size=size,seed=seed,first=first,mines=sorted(mines),first_opened=sorted(opened),scenarios=cases,map_hash=meta['map_hash'],
@@ -188,7 +176,6 @@ def verify_board(size=10,seed=123456789,first=None,stem=None):
         mine_indicator_pixels=len(mine_pixels),
         wait_ticks=wait,identical_modules=True,connection_wires_added=meta.get('connection_wires_added',0))
     result['save_sha256']=save_sha256(BUILD/(stem+'.save.txt'))
-    write_json(BUILD/(stem+'.verification.json'),result)
     print('Snap board verified:',result,flush=True)
     return result
 
@@ -201,5 +188,4 @@ if __name__=='__main__':
         if a.two_seeds:
             assert a.size==10,'Two-seed delivery audit uses the base 10x10 board'
             runs=[verify_board(10,123456789,55),verify_board(10,987654321,0)]
-            write_json(BUILD/'minesweeper-10x10.seeds.verification.json',dict(passed=True,runs=runs))
         else:verify_board(a.size,a.seed,a.first)

@@ -1,4 +1,4 @@
-"""Verilog -> logic graph -> placed cell data -> JSON and Base64."""
+"""Compile Verilog directly into placed cells and an encoded game save."""
 import argparse
 import hashlib
 import math
@@ -9,7 +9,7 @@ import sys
 
 from arrowshdl.arrowasm import MapError
 from arrowshdl.arrow_layout import place
-from arrowshdl.mapdata import read_map, write_json, write_map, save_sha256
+from arrowshdl.mapdata import write_map, save_sha256
 from arrowshdl.verilog_frontend import synthesize
 from arrowshdl.execution import bounded
 from arrowshdl.progress import report, phase
@@ -73,10 +73,6 @@ def emit_build(netlist, sources, top, folder, log='', *, max_cells=1_000_000, la
         verify_exterior(cells,manifest)
     write_map(folder, top, cells)
     manifest['save_sha256'] = save_sha256(folder / f'{top}.save.txt')
-    if not physical:
-        if layout not in ('macro-grid','auto'):verify_exterior(read_map(folder / f'{top}.save.txt'),manifest)
-        write_json(folder / f"{top}.logic.json", netlist)
-        manifest["logic_sha256"] = hashlib.sha256((folder / f"{top}.logic.json").read_bytes()).hexdigest()
     if bindings:
         import json
         metadata = json.loads(Path(bindings).read_text(encoding='utf-8-sig'))
@@ -88,14 +84,10 @@ def emit_build(netlist, sources, top, folder, log='', *, max_cells=1_000_000, la
             for key in ('inputs','outputs','io_devices','profile','settle_ticks'):
                 if key in metadata:
                     manifest[key] = metadata[key]
-        write_json(folder / f'{top}.bindings.json', metadata)
         manifest['bindings_sha256'] = hashlib.sha256(Path(bindings).read_bytes()).hexdigest()
-    write_json(folder / f"{top}.build.json", manifest)
-    from arrowshdl.module_cache import component_document
-    write_json(folder/f'{top}.component.json',component_document(top,manifest))
     if preview and manifest.get('signals'):
         from arrowshdl.signal_view import export_views
-        export_views(read_map(folder / f'{top}.save.txt'), manifest, folder, top)
+        export_views(cells, manifest, folder, top)
     elif preview:
         from arrowshdl.map_preview import render_cells
         render_cells(cells,folder/f'{top}.preview.png',manifest)

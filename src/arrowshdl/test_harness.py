@@ -1,10 +1,9 @@
 """Named-port testbench: Source/Target are added to a copy of the production map."""
 from itertools import islice
-from pathlib import Path
 
 from arrowshdl.arrowasm import Cell, MapError
 from arrowshdl.arrow_layout import destinations, depth_of, edges
-from arrowshdl.mapdata import map_hash, read_map, write_json, write_map
+from arrowshdl.mapdata import map_hash
 from arrowshdl.simulation import simulate
 
 
@@ -90,18 +89,12 @@ def make_scenario(manifest, vectors, settle_ticks=None, compressed=False):
     return scenario
 
 
-def run_vectors(cells, manifest, vectors, folder: Path, stem: str, compressed=False):
+def run_vectors(cells, manifest, vectors, folder=None, stem=None, compressed=False):
     test_cells = add_fixture(cells, manifest)
     if depth_of(test_cells) > manifest["settle_ticks"]:
         raise MapError("Test fixture exceeds the computed settling time")
     scenario = make_scenario(manifest, vectors, compressed=compressed)
-    write_map(folder, stem + ".test", test_cells)
-    write_json(folder / f"{stem}.scenario.json", scenario)
-    # Execute the exported/imported cells, rather than the Boolean synthesis graph.
-    imported = read_map(folder / f"{stem}.test.save.txt")
-    if imported != test_cells or read_map(folder / f"{stem}.test.map.json") != test_cells:
-        raise MapError("Export modified the test map")
-    report = simulate(imported, scenario, optimize_cycles=False)
+    report = simulate(test_cells, scenario, optimize_cycles=False)
     hold = manifest["settle_ticks"]
     measured = {tuple(trace["at"]): trace["values"] for trace in report["outputs"]}
     rows = []
@@ -109,26 +102,20 @@ def run_vectors(cells, manifest, vectors, folder: Path, stem: str, compressed=Fa
         sample = i if compressed else (i + 1) * hold - 1
         actual = {name: sum(measured[tuple(entry["fixture"])][sample] << bit for bit, entry in enumerate(entries)) for name, entries in manifest["outputs"].items()}
         rows.append({"inputs": vector["inputs"], "expected": vector["expect"], "actual": actual, "passed": actual == vector["expect"]})
-    from arrowshdl.mapdata import save_sha256
     report.update({"vectors": len(vectors), "settle_ticks": hold, "truth_table": rows, "production_cells": len(cells), "fixture_cells": len(test_cells) - len(cells),
-                   "save_sha256":save_sha256(folder/f'{stem}.test.save.txt'),"production_map_hash":map_hash(cells)})
-    write_json(folder / f"{stem}.report.json", report)
+                   "production_map_hash":map_hash(cells)})
     return test_cells, report
 
 
-def run_vector_batches(cells, manifest, vectors, folder: Path, stem: str, batch_size=4096, progress=None):
+def run_vector_batches(cells, manifest, vectors, folder=None, stem=None, batch_size=4096, progress=None):
     """Exhaustive physical simulation without materializing per-tick JSON arrays.
 
 Each batch starts from reset, then keeps state across its successive vectors.
-The same exported/imported fixture map is executed for every batch.
+    The same in-memory fixture map is executed for every batch.
     """
     test_cells = add_fixture(cells, manifest)
     if depth_of(test_cells) > manifest["settle_ticks"]:
         raise MapError("Test fixture exceeds the computed settling time")
-    write_map(folder, stem + ".test", test_cells)
-    imported = read_map(folder / f"{stem}.test.save.txt")
-    if imported != test_cells or read_map(folder / f"{stem}.test.map.json") != test_cells:
-        raise MapError("Export modified the test map")
     hold = manifest["settle_ticks"]
     if type(batch_size) is not int or batch_size < 1:
         raise MapError("Batch size must be positive")
@@ -140,11 +127,9 @@ The same exported/imported fixture map is executed for every batch.
                "production_cells": len(cells), "fixture_cells": len(test_cells) - len(cells),
                "profile": manifest["profile"], "map_hash": manifest["map_hash"],
                "verified_against_current_game": False}
-    from arrowshdl.mapdata import save_sha256
-    summary['save_sha256'] = save_sha256(folder/f'{stem}.test.save.txt')
     iterator = iter(vectors)
     while batch := list(islice(iterator, batch_size)):
-        report = simulate(imported, make_scenario(manifest, batch, compressed=True), optimize_cycles=False)
+        report = simulate(test_cells, make_scenario(manifest, batch, compressed=True), optimize_cycles=False)
         summary["passed"] &= report["passed"]
         summary["vectors"] += len(batch)
         summary["checked_samples"] += report["checked_samples"]
@@ -158,5 +143,4 @@ The same exported/imported fixture map is executed for every batch.
             progress(summary)
     if not summary["vectors"]:
         raise MapError("No test vectors")
-    write_json(folder / f"{stem}.exhaustive.report.json", summary)
     return summary

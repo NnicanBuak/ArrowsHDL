@@ -1,4 +1,4 @@
-"""Opaque placed modules: decode storage, transform coordinates, expose declared pins.
+"""Opaque placed modules: load game saves, transform coordinates, expose declared pins.
 
 No synthesis, simplification or reconstruction of a component's computation.
 """
@@ -28,6 +28,8 @@ def move(cells, manifest, at):
     for gate in meta.get('gate_labels',[]): gate['at']=[gate['at'][0]+dx,gate['at'][1]+dy]
     if meta.get('display'):
         meta['display']['pixels']=[[p[0]+dx,p[1]+dy] for p in meta['display']['pixels']]
+    if meta.get('display_pixels'):
+        meta['display_pixels']=[[p[0]+dx,p[1]+dy] for p in meta['display_pixels']]
     if meta.get('segment_pixels'):
         meta['segment_pixels']=[[[p[0]+dx,p[1]+dy] for p in row] for row in meta['segment_pixels']]
     if meta.get('panel'):
@@ -53,7 +55,8 @@ def load_component(path,at=(0,0),rotation=0):
         from arrowshdl.module_cache import component_document
         embedded, metadata = unpack(data)
         data = component_document(metadata['top'], metadata)
-    table(data,{'version','map','ports','interface','settle_ticks','state_boundaries','panel'},str(path))
+    table(data,{'version','map','ports','interface','settle_ticks','state_boundaries','panel',
+                'display_pixels','segment_pixels'},str(path))
     if type(data.get('version')) is not int or data['version']!=1:
         raise MapError(f'{path}: unsupported compiled module descriptor version')
     if not isinstance(data.get('map'),str) or not data['map']:
@@ -64,6 +67,8 @@ def load_component(path,at=(0,0),rotation=0):
     table(ports,{'inputs','outputs'},'ports')
     meta=dict(inputs=deepcopy(ports.get('inputs',{})),outputs=deepcopy(ports.get('outputs',{})),state_boundaries=data.get('state_boundaries',[]))
     if data.get('panel'):meta['panel']=deepcopy(data['panel'])
+    if data.get('segment_pixels'):meta['segment_pixels']=deepcopy(data['segment_pixels'])
+    if data.get('display_pixels'):meta['display_pixels']=deepcopy(data['display_pixels'])
     if embedded is not None and metadata.get('segment_pixels'):meta['segment_pixels']=deepcopy(metadata['segment_pixels'])
     if embedded is not None and metadata.get('display'):meta['display']=deepcopy(metadata['display'])
     for point in meta['state_boundaries']: pair(point,'state_boundaries')
@@ -106,6 +111,7 @@ def load_component(path,at=(0,0),rotation=0):
         cells={tuple(turn(p)):Cell(c.type,(c.rotation+rotation)%4,c.mirrored) for p,c in cells.items()}
         if meta.get('segment_pixels'):meta['segment_pixels']=[[turn(p) for p in row] for row in meta['segment_pixels']]
         if meta.get('display'):meta['display']['pixels']=[turn(p) for p in meta['display']['pixels']]
+        if meta.get('display_pixels'):meta['display_pixels']=[turn(p) for p in meta['display_pixels']]
         for side in ('inputs','outputs'):
             for entries in meta[side].values():
                 for e in entries:
@@ -113,7 +119,8 @@ def load_component(path,at=(0,0),rotation=0):
                     e['rotation']=(e['rotation']+rotation)%4
         meta['state_boundaries']=[turn(p) for p in meta['state_boundaries']]
     cells,meta=move(cells,meta,at)
-    meta.update(component_version=1,source_map_hash=source_hash,placed_map_hash=map_hash(cells),
+    placed_hash=map_hash(cells)
+    meta.update(component_version=1,source_map_hash=source_hash,placed_map_hash=placed_hash,map_hash=placed_hash,
                 interface=interface,settle_ticks=ticks,bounds=bounds_of(cells),file=str(path))
     return cells,meta
 

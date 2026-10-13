@@ -3,7 +3,7 @@ from .snap_verify import *
 
 
 def verify(stem='minesweeper_10x10'):
-    meta=json.loads((BUILD/(stem+'.layout.json')).read_text());size=meta['size']
+    meta=load_layout(stem);size=meta['size']
     center=(size//2)*size+size//2
     cases=[(0,size*size-1),(center,center+1),(size-1,size*(size-1)),
            ((size//2-1)*size+size//2,(size//2)*size+size//2-1),(size*size-1,)]
@@ -28,7 +28,7 @@ def verify(stem='minesweeper_10x10'):
         assert values[first,'opened']==1
         results.append(dict(pressed=list(pressed),selected=sorted(chosen),protected=sorted(protected),passed=True))
     result=dict(passed=True,map_hash=meta['map_hash'],cold_ticks=1,cases=results)
-    write_json(BUILD/(stem+'.first-click-matrix.json'),result);print(result,flush=True)
+    print(result,flush=True)
     return result
 
 

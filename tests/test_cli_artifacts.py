@@ -11,12 +11,12 @@ from arrowshdl.mapdata import read_map
 
 
 class CliArtifactTests(unittest.TestCase):
-    def test_one_file_metadata_vectors_preview_and_save(self):
+    def test_compile_writes_one_encoded_save_and_source_preview_needs_no_sidecar(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             source=root/'xor.v'
             source.write_text('module xor_unit(input a,b,output y); assign y=a^b; endmodule')
-            output=root/'out'/'unit.json'
+            output=root/'out'/'unit.save.txt'
             def cli(*args):
                 result=subprocess.run([sys.executable,'-m','arrowshdl',*map(str,args)],
                     capture_output=True,text=True,encoding='utf-8',timeout=30)
@@ -26,14 +26,8 @@ class CliArtifactTests(unittest.TestCase):
             result=cli('compile',source,'--top','xor_unit','-o',output)
             self.assertIn('Synthesizing',result.stderr)
             self.assertEqual(list(output.parent.iterdir()),[output])
-            self.assertEqual(json.loads(output.read_text())['format'],'arrowshdl-compiled-scheme')
-            vectors=root/'vectors.json'
-            vectors.write_text(json.dumps([dict(inputs={'a':a,'b':b},expect={'y':a^b})
-                for a in (0,1) for b in (0,1)]))
-            cli('test',output,vectors,'--vectors','-o',root/'report.json')
-            self.assertTrue(json.loads((root/'report.json').read_text())['passed'])
-            cli('preview',output,'-o',root/'preview.png')
-            cli('preview',output,'--style','logical','-o',root/'logical.png')
+            cli('preview',source,'--top','xor_unit','-o',root/'preview.png')
+            cli('preview',source,'--top','xor_unit','--style','logical','-o',root/'logical.png')
             with Image.open(root/'logical.png') as preview:preview.verify()
             cli('compile',source,'--top','xor_unit','-o',root/'save'/'xor.save.txt')
             self.assertEqual(read_map(output),read_map(root/'save'/'xor.save.txt'))
@@ -86,16 +80,16 @@ class CliArtifactTests(unittest.TestCase):
             (root/'source.v').write_text('module bad(input a,output y); assign y=a; endmodule')
             project.write_text('version=3\ntop="bad"\nsources=["source.v"]\ndesign="design.toml"\n')
             (root/'design.toml').write_text('version=1\n[[components]]\nname="screen"\nfile="missing.json"\n')
-            result=cli('build',str(project),'-o',str(root/'result.json'))
+            result=cli('build',str(project),'-o',str(root/'result.save.txt'))
             self.assertEqual(result.returncode,2)
             self.assertIn('Error: Component file not found:',result.stderr)
             self.assertFalse(any('\u0400'<=c<='\u04ff' for c in result.stderr))
             source=root/'source.v'
             source.write_text('module demo(input a,output y); assign y=a; endmodule')
-            cli('compile',str(source),'--top','demo','-o',str(root/'demo.json'))
+            cli('compile',str(source),'--top','demo','-o',str(root/'demo.save.txt'))
             scenario=root/'bad-scenario.json'
             scenario.write_text('{"ticks":0,"inputs":[],"expect":[],"observe":[[0,0]]}')
-            result=cli('simulate',str(root/'demo.json'),str(scenario),'-o',str(root/'trace.json'))
+            result=cli('simulate',str(root/'demo.save.txt'),str(scenario),'-o',str(root/'trace.json'))
             self.assertEqual(result.returncode,2)
             self.assertFalse(any('\u0400'<=c<='\u04ff' for c in result.stderr))
 
@@ -107,7 +101,7 @@ class CliArtifactTests(unittest.TestCase):
                 'format':'arrowshdl-object','version':1,'standard':'1800-2023','top':'demo',
             }))
             result=subprocess.run([sys.executable,'-m','arrowshdl','link',str(obj),
-                '--top','demo','-o',str(root/'result.json')],
+                '--top','demo','-o',str(root/'result.save.txt')],
                 capture_output=True,text=True,encoding='utf-8',timeout=30)
             self.assertEqual(result.returncode,2)
             self.assertIn('malformed ArrowsHDL object: rtlil must be an object',result.stderr)

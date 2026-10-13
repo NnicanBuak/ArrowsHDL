@@ -1,4 +1,4 @@
-"""Data model of placed cells, with JSON and game-save representations."""
+"""Data model of placed cells and the game-save representation."""
 from __future__ import annotations
 
 from collections import defaultdict
@@ -70,25 +70,9 @@ def map_hash(cells: ArrowMap) -> str:
 
 
 def write_map(folder: Path, stem: str, cells: ArrowMap) -> None:
-    (folder / f"{stem}.map.json").parent.mkdir(parents=True, exist_ok=True)
-    groups = to_document(cells)["cells"]
-    lines = ['{', '  "schema": 1,', '  "cells": [']
-    for index, group in enumerate(groups):
-        header = json.dumps({key: value for key, value in group.items() if key != "at"}, ensure_ascii=False)
-        lines.append("    " + header[:-1] + ', "at": [')
-        row = "      "
-        for i, position in enumerate(group["at"]):
-            item = json.dumps(position) + ("," if i + 1 < len(group["at"]) else "")
-            if len(row) + len(item) > 105:
-                lines.append(row.rstrip())
-                row = "      "
-            row += item + " "
-        if row.strip():
-            lines.append(row.rstrip())
-        lines.append("    ]}" + ("," if index + 1 < len(groups) else ""))
-    lines += ["  ]", "}"]
-    (folder / f"{stem}.map.json").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    (folder / f"{stem}.save.txt").write_text(encode(cells) + "\n", encoding="ascii")
+    path = folder / f"{stem}.save.txt"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(encode(cells) + "\n", encoding="ascii")
 
 
 def save_sha256(path):

@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 import json
 from pathlib import Path
+import shutil
 import tempfile
 
 from arrowshdl.arrowasm import Cell
@@ -16,9 +17,11 @@ class BuildResult:
     artifacts: dict[str, Path]
 
 
-def _result(cells, metadata, output):
-    from arrowshdl.artifacts import export
-    path = export(output, cells, metadata)
+def _result(cells, metadata, output, staged_save):
+    from arrowshdl.artifacts import validate_output
+    path = validate_output(output)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(staged_save, path)
     return BuildResult(cells, {side: metadata[side] for side in ('inputs', 'outputs')}, metadata, {'output': path})
 
 
@@ -30,7 +33,8 @@ def compile(sources, *, top, out, timeout=600, libraries=(), **options):
     files = [sources] if isinstance(sources, (str, Path)) else list(sources)
     with tempfile.TemporaryDirectory(prefix='arrowshdl-compile-') as directory:
         cells, meta = compile_file([*files, *libraries], top, directory, timeout=timeout, **options)
-    return _result(cells, meta, out)
+        staged = Path(directory) / f'{meta["top"]}.save.txt'
+        return _result(cells, meta, out, staged)
 
 
 @bounded
@@ -40,7 +44,8 @@ def build(project, *, out, timeout=600, **options):
     validate_output(out)
     with tempfile.TemporaryDirectory(prefix='arrowshdl-build-') as directory:
         cells, meta = build_scheme(project, directory, timeout=timeout, **options)
-    return _result(cells, meta, out)
+        staged = Path(directory) / f'{meta["top"]}.save.txt'
+        return _result(cells, meta, out, staged)
 
 
 @bounded
@@ -52,7 +57,8 @@ def link(objects, *, top, out, timeout=600, **options):
     graph, log, standard = link_objects(objects, top, timeout)
     with tempfile.TemporaryDirectory(prefix='arrowshdl-link-') as directory:
         cells, meta = emit_build(graph, [], top, Path(directory), log, standard=standard, **options)
-    return _result(cells, meta, out)
+        staged = Path(directory) / f'{meta["top"]}.save.txt'
+        return _result(cells, meta, out, staged)
 
 
 def compile_object(sources, *, top, out=None, timeout=90, libraries=(), **options):

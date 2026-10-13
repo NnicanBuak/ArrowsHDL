@@ -4,10 +4,8 @@ import shutil
 import tempfile
 import unittest
 
-from arrowshdl.artifacts import read_metadata
 from arrowshdl.components import load_component
 from arrowshdl.manifest import component_file, load_project
-from arrowshdl.mapdata import read_map
 from arrowshdl.simulation import simulate
 from arrowshdl.test_harness import add_fixture
 
@@ -33,8 +31,8 @@ class IoLibraryTests(unittest.TestCase):
 
     def test_all_seven_segment_patterns_on_physical_display(self):
         path=component_file(Path.cwd(),'library:seven_segment')
-        meta=read_metadata(path)
-        cells=add_fixture(read_map(path),meta)
+        cells,meta=load_component(path)
+        cells=add_fixture(cells,meta)
         hold=meta['settle_ticks']
         scenario=dict(ticks=128*hold,hold_ticks=hold,expect=[],
             inputs=[dict(at=e['fixture'],values=[(value>>e['index'])&1 for value in range(128)])
@@ -87,7 +85,7 @@ kind="text"
 text="LOSE"
 bind="defeat"
 ''',encoding='utf-8')
-            result=arrowshdl.build(project,out=root/'result.json')
+            result=arrowshdl.build(project,out=root/'result.save.txt')
             fixture=add_fixture(result.cells,result.metadata)
             sequence=[(0,0),(1,0),(0,1),(1,1),(0,0)]
             vectors=[dict(inputs={'win':w,'loss':loss},expect={

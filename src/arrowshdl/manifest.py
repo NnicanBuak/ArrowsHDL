@@ -37,7 +37,7 @@ def component_file(base, reference):
         name=reference.partition(':')[2]
         if name not in ('seven_segment','history64'):
             raise MapError(f'Unknown I/O library component: {name}')
-        path=PACKAGE/'data/components'/f'{name}.json'
+        path=PACKAGE/'data/components'/f'{name}.toml'
     else:
         path=Path(base)/reference
     if not path.is_file():

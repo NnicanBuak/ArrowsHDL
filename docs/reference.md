@@ -8,13 +8,13 @@ Verilog/SystemVerilog в физическую карту Logic Arrows. Все к
 
 | Команда | Назначение |
 |---|---|
-| `compile a.v b.v --top top -o scheme.json` | Полная компиляция без TOML |
+| `compile a.v b.v --top top -o scheme.save.txt` | Полная компиляция без TOML |
 | `compile -c a.v --top part -o part.object.json` | Раздельная компиляция |
-| `link part.object.json top.object.json --top top -o scheme.json` | Связывание и размещение |
-| `build project.toml -o scheme.json` | HDL, размещение, компоненты и виджеты |
+| `link part.object.json top.object.json --top top -o scheme.save.txt` | Связывание и размещение |
+| `build project.toml -o scheme.save.txt` | HDL, размещение, компоненты и виджеты |
 | `test map.save.txt scenario.json -o report.json` | Симуляция с проверкой ожиданий |
 | `simulate map.save.txt scenario.json -o trace.json` | Тот же движок; наблюдения допустимы без ожиданий |
-| `test --suite tests -o report.json` | Регрессии из исходного репозитория |
+| `test --suite tests` | Регрессии из исходного репозитория |
 | `health` | Проверка работоспособности установленного пакета |
 | `decode map.save.txt -o map.json` | Декодирование клеток |
 | `encode map.json -o map.save.txt` | Игровое сохранение v0 |
@@ -38,9 +38,8 @@ Verilog/SystemVerilog в физическую карту Logic Arrows. Все к
 `build`: `--layout auto|compact|sparse|macro-grid`, `--compact`, `--timeout`, `--max-cells`, `--test`.
 Последний параметр формирует тестовую копию с источниками и приёмниками;
 дисплеи сохраняются. Для закреплённой карты требуется корректный интерфейс
-fixture в bindings. `test`/`simulate`: `--manifest build.json`, `--vectors`,
-`--timeout`, `--no-optimize-cycles`. С `--vectors` входной JSON — список
-`{"inputs":{"a":0},"expect":{"y":1}}`; manifest обязателен.
+fixture в bindings. `test`/`simulate` принимают физический сценарий JSON и
+не создают тестовых схем или метаданных рядом с игровым сохранением.
 
 Код завершения: **0** — успех, **1** — неверный результат теста,
 **2** — ошибка входных данных или выполнения. Общий таймаут включает
@@ -53,20 +52,22 @@ fixture в bindings. `test`/`simulate`: `--manifest build.json`, `--vectors`,
 ```python
 from arrowshdl import compile, build, compile_object, link, simulate
 
-result = compile(["top.sv", "part.v"], top="top", out="build/top.json", timeout=600)
-result = build("project.toml", out="build/top.json")
+result = compile(["top.sv", "part.v"], top="top", out="build/top.save.txt", timeout=600)
+result = build("project.toml", out="build/top.save.txt")
 obj = compile_object("part.v", top="part", out="part.object.json")
-result = link(["part.object.json", "top.object.json"], top="top", out="build/top.json")
-report = simulate("build/top.json", "scenario.json")
+result = link(["part.object.json", "top.object.json"], top="top", out="build/top.save.txt")
+report = simulate(result, scenario)
 ```
 
 `BuildResult.cells`: словарь `(x,y) → Cell(type,rotation,mirrored)`;
 `ports`: таблицы inputs/outputs; `metadata`: описание сборки;
 `artifacts`: ключ `output` → абсолютный
-`Path`. `compile_object` возвращает документ объекта и может не записывать файл.
-`simulate` принимает клетки, путь карты или BuildResult и сценарий либо путь JSON.
-Для логических векторов нужны функции `arrowshdl.test_harness.add_fixture`
-и `make_scenario`: публичный `simulate` сам не создаёт тестовые контакты.
+`Path`. Схема кодируется в `.save.txt` непосредственно из размещённых клеток;
+карта и метаданные не экспортируются в промежуточный compiled JSON.
+`compile_object` возвращает документ RTLIL и может не записывать файл.
+`simulate` принимает клетки, путь `.save.txt` или BuildResult и сценарий либо
+путь JSON. Для тестов в коде `arrowshdl.test_harness.run_vectors` строит
+источники и пробники в памяти и симулирует итоговые клетки.
 Ошибки входа представлены `MapError`; ошибки внешних процессов сохраняют
 диагностику. `encode`/`decode` доступны из `arrowshdl`.
 
@@ -225,14 +226,15 @@ File также принимает описание блока JSON или TOML 
 
 В v2 отсутствуют координаты, placement, чанки и настройки оптимизации.
 Стандарт задаётся в `[language] standard`; include_dirs, defines и libraries
-имеют тот же смысл, что в v1. Выходной JSON содержит карту, порты, временные
-характеристики, граф проекта и сведения о скомпилированных модулях.
+имеют тот же смысл, что в v1. Метаданные сборки, порты, граф проекта и сведения
+о скомпилированных модулях возвращаются Python API в памяти.
 Каждая специализация модуля компилируется один раз и сохраняется в системном
 каталоге кеша. `ARROWSHDL_CACHE_DIR` задаёт другой каталог. Ключ учитывает
 исходники, include-файлы, параметры, стандарт и флаги.
 
-`compile -o module.json` создаёт один самодостаточный файл готовой схемы.
-Он подключается через components как готовая схема без исходников.
+`compile -o module.save.txt` создаёт один файл готовой игровой схемы.
+Его можно подключить через components без HDL-исходников, если рядом задано
+описание блока TOML с портами и метаданными.
 Сборщик переносит экземпляры и разводит связи, сохраняя внутренние клетки.
 Настройка compact влияет на компиляцию уникальных модулей, но не меняет
 внутренности ранее скомпилированных components.
@@ -311,26 +313,24 @@ interface, parameters, instances, timing и исходное RTLIL-предст�
 При связывании проверяются версии, стандарт, конфликты модулей и интерфейсы.
 Поле timing объектов пока пустое: контракт задаётся схемой TOML.
 
-`compile`, `build` и `link` записывают ровно один файл в `-o FILE`:
-`.json` — `format="arrowshdl-compiled-scheme"`, `version=1`, вложенная карта
-`map` и описание `metadata`; `.txt` — код импорта в игру Base64 v0.
-JSON можно подключить как готовый компонент без HDL-исходников. Внешние
-площадки его портов должны находиться за пределами защищённого контура.
-`test` и `simulate` создают один JSON-отчёт, `preview` — одно изображение.
+`compile`, `build` и `link` сразу записывают итоговый игровой код Base64 v0
+в один `.save.txt`; compiled-scheme JSON и файлы метаданных рядом не создаются.
+Метаданные остаются в `BuildResult.metadata`. Старые JSON-схемы принимаются
+только для чтения прежних компонентов и карт. Внешние площадки готового блока
+должны находиться за пределами защищённого контура. `test` и `simulate`
+создают JSON-отчёт только если явно передан `-o`; `preview` создаёт PNG.
 Для `preview` флаг `--style default|logical` выбирает обычную карту или
-логический граф поверх реальной схемы. Логический вид требует метаданные
-логики и портов: укажите собранную `.json`-схему или `build.json` как `manifest`.
+логический граф поверх реальной схемы. Логический вид для исходников получает
+метаданные напрямую из сборки; для сохранённой `.txt`-карты можно передать
+отдельный `manifest`.
 В нём выводятся имя схемы и подписи I/O; логические блоки обводятся рамками,
 а цвет заливки стрелок и тонких линий следует за сигналом. Линии проходят
 внутри блоков и прерываются на клетках логических операторов.
-Регрессии примеров не сохраняют сценарии, трассы и отчёты по умолчанию.
-Для явного экспорта этих данных задаётся `ARROWSHDL_TEST_OUTPUT` — каталог,
-в котором создаются подкаталоги с именами примеров. Входные векторы и настройки
-иллюстраций находятся в `tests/fixtures/examples`, отдельно от готовых схем.
-Для логических векторов и предпросмотра JSON-схема предоставляет метаданные
-автоматически; сохранение TXT требует отдельного `--manifest` при проверке
-векторов. `map_hash` — хеш канонической модели; `save_sha256` — SHA-256
-точных байтов игрового сохранения с завершающим переводом строки.
+Регрессии примеров строят тестовые стрелки, сценарии и ожидаемые значения
+в коде и в памяти; сами тесты используют клетки, декодированные из итогового
+`.save.txt`. Рядом со схемой не сохраняются специальные тестовые карты,
+сценарии или отчёты. `map_hash` — хеш канонической модели; `save_sha256` —
+SHA-256 точных байтов игрового сохранения с завершающим переводом строки.
 
 Все встроенные сообщения CLI, справка и диагностика ошибок — на английском.
 Этапы и процент выполнения выводятся в stderr во время работы. Процент

@@ -52,7 +52,8 @@ class CompactTests(unittest.TestCase):
             self.assertTrue(report["passed"], report["failures"])
             self.assertEqual(report["vectors"], 131072)
             self.assertEqual(report["checked_samples"], 131072 * 9)
-            self.assertEqual(len(read_map(folder / "adder8.test.save.txt")) - len(cells), 26)
+            self.assertEqual(report["fixture_cells"], 26)
+            self.assertFalse(list(folder.glob("*.test.*")))
             # The baseline is also a physical circuit, not just a count estimate.
             _, report = run_vectors(sparse, baseline, [adder_vector(255,0,1),adder_vector(0,0,0)], folder / "baseline", "adder8", compressed=True)
             self.assertTrue(report["passed"], report["failures"])

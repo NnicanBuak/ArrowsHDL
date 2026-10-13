@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 from arrowshdl.arrowasm import MapError, encode
-from arrowshdl.mapdata import from_document, to_document, write_json
+from arrowshdl.mapdata import from_document, to_document
 
 FORMAT = 'arrowshdl-compiled-scheme'
 
@@ -23,19 +23,16 @@ def unpack(data):
 def validate_output(path):
     path = Path(path)
     if path.is_dir():
-        raise MapError(f'Output must be a file, not a directory: {path}. Use {path / "scheme.json"}')
-    if path.suffix.lower() not in ('.json', '.txt'):
-        raise MapError('Output filename must end in .json (scheme with metadata) or .txt (game save)')
+        raise MapError(f'Output must be a file, not a directory: {path}. Use {path / "scheme.save.txt"}')
+    if path.suffix.lower() != '.txt':
+        raise MapError('Output filename must end in .txt (encoded game scheme)')
     return path
 
 
 def export(path, cells, metadata):
     path = validate_output(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    if path.suffix.lower() == '.json':
-        write_json(path, document(cells, metadata))
-    else:
-        path.write_text(encode(cells) + '\n', encoding='ascii')
+    path.write_text(encode(cells) + '\n', encoding='ascii')
     return path.resolve()
 
 

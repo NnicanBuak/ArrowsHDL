@@ -145,7 +145,7 @@ class SignalViewTests(unittest.TestCase):
                 self.assertIn(expected_fill,colors)
                 self.assertNotIn((207,213,222),colors)  # wire arrows no longer use a shared gray fill
             write_map(Path(folder),'invert',cells)
-            manifest_path=Path(folder)/'invert.build.json'
+            manifest_path=Path(folder)/'invert.manifest.json'
             write_json(manifest_path,physical_manifest)
             output=Path(folder)/'cli-logical.png'
             environment=os.environ.copy()

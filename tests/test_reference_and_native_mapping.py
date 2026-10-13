@@ -20,7 +20,7 @@ from tests.helpers.reference_adder8.testbench import core
 
 class ReferenceTests(unittest.TestCase):
     def test_image_reconstruction_and_register_transitions(self):
-        path=ROOT/'tests/fixtures/circuits/reference_adder8/build/reference.map.json'
+        path=ROOT/'tests/fixtures/circuits/reference_adder8/build/reference.save.txt'
         expected=read_map(path)
         cells,_=recognize()
         self.assertEqual(cells,expected)
@@ -41,7 +41,7 @@ class ReferenceTests(unittest.TestCase):
         self.assertFalse(simulate(fixture,wrong,optimize_cycles=False)['passed'])
 
     def test_reference_core_is_an_exact_subset(self):
-        cells=read_map(ROOT/'tests/fixtures/circuits/reference_adder8/build/reference.map.json')
+        cells=read_map(ROOT/'tests/fixtures/circuits/reference_adder8/build/reference.save.txt')
         part,meta=core(cells)
         self.assertEqual(len(part),56)
         self.assertTrue(all(cells[p]==c for p,c in part.items()))

@@ -67,7 +67,7 @@ def scenario(meta,cases,frame=FRAME):
 
 
 def run(cases):
-    cells=read_map(HERE/"build/reference.map.json")
+    cells=read_map(HERE/"build/reference.save.txt")
     meta=manifest(cells)
     test=add_fixture(cells,meta)
     case=scenario(meta,cases)

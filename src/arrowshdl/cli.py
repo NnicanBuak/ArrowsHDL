@@ -31,7 +31,7 @@ def main(argv=None):
     compile = commands.add_parser('compile', help='Compile HDL sources')
     compile.add_argument('sources', nargs='+', type=Path)
     compile.add_argument('--top')
-    compile.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='One output file: .json scheme or .txt game save')
+    compile.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='Encoded game scheme (.txt)')
     compile.add_argument('-c', action='store_true', help='Write a reusable RTLIL module object (.aho.json)')
     compile.add_argument('--std', choices=SUPPORTED_STANDARDS, default=DEFAULT_STANDARD)
     compile.add_argument('-I', dest='includes', action='append', default=[], type=Path)
@@ -47,7 +47,7 @@ def main(argv=None):
     compile.add_argument('--max-cells', type=int, default=1000000)
     build = commands.add_parser('build', help='Build a scheme from a TOML project')
     build.add_argument('project', type=Path)
-    build.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='One output file: .json scheme or .txt game save')
+    build.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='Encoded game scheme (.txt)')
     build.add_argument('--timeout', type=float, default=600)
     build.add_argument('--layout', choices=('auto','compact', 'sparse', 'macro-grid'), default='auto', help='Compiler layout algorithm')
     build.add_argument('--compact',action='store_true',help='Search additional graph placements for fewer arrows and a smaller complete map')
@@ -56,7 +56,7 @@ def main(argv=None):
     link = commands.add_parser('link', help='Link RTLIL objects into a scheme')
     link.add_argument('objects', nargs='+', type=Path)
     link.add_argument('--top', required=True)
-    link.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='One output file: .json scheme or .txt game save')
+    link.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='Encoded game scheme (.txt)')
     link.add_argument('--timeout', type=float, default=600)
     link.add_argument('--layout', choices=('auto','compact', 'sparse', 'fixed', 'macro-grid'), default='auto')
     link.add_argument('--compact',action='store_true',help='Search additional graph placements for fewer arrows and a smaller complete map')
@@ -68,7 +68,6 @@ def main(argv=None):
         if name == 'test':
             sim.add_argument('--suite', type=Path, help='Run repository unittest regressions')
         sim.add_argument('--manifest', type=Path)
-        sim.add_argument('--vectors', action='store_true', help='Read inputs/expect vectors; requires scheme metadata or --manifest')
         sim.add_argument('--timeout', type=float, default=120)
         sim.add_argument('--no-optimize-cycles', action='store_true')
     for name in ('encode', 'decode', 'graph'):
@@ -81,6 +80,8 @@ def main(argv=None):
     preview.add_argument('-o', '--out', required=True, type=Path)
     preview.add_argument('--style','--preview-style',dest='style',choices=('default','logical'),default='default',
                          help='Preview style: default cell map or logical graph overlay')
+    preview.add_argument('--top', help='Top module when previewing HDL source')
+    preview.add_argument('--timeout', type=float, default=600)
     args = parser.parse_args(argv)
     os.environ['ARROWSHDL_PROGRESS'] = '1'
     from arrowshdl.progress import report, reset
@@ -129,11 +130,6 @@ def main(argv=None):
             from arrowshdl.artifacts import read_metadata
             metadata = _json(args.manifest) if args.manifest else read_metadata(args.map)
             scenario = _json(args.scenario)
-            if args.vectors:
-                if not metadata:
-                    raise MapError('--vectors requires a compiled .json scheme or --manifest')
-                from arrowshdl.test_harness import make_scenario
-                scenario = make_scenario(metadata, scenario, compressed=True)
             if metadata:
                 cells = add_fixture(cells, metadata)
             report = simulate(cells, scenario, timeout=args.timeout, optimize_cycles=not args.no_optimize_cycles)
@@ -168,12 +164,27 @@ def main(argv=None):
             report(100, f'Output written: {args.out}')
             return 0
         elif args.command == 'preview':
-            report(25, 'Rendering placed arrows and ports')
             args.out.parent.mkdir(parents=True, exist_ok=True)
             from arrowshdl.map_preview import render_cells
-            from arrowshdl.artifacts import read_metadata
-            render_cells(read_map(args.map), args.out,
-                         _json(args.manifest) if args.manifest else read_metadata(args.map),style=args.style)
+            if args.map.suffix.lower() == '.toml':
+                from arrowshdl.scheme import build_scheme
+                import tempfile
+                report(5, 'Compiling project for preview')
+                with tempfile.TemporaryDirectory(prefix='arrowshdl-preview-') as directory:
+                    cells, metadata = build_scheme(args.map, directory, timeout=args.timeout)
+                    render_cells(cells, args.out, metadata, style=args.style)
+            elif args.map.suffix.lower() in ('.v', '.sv'):
+                from arrowshdl.verilog_compile import compile_file
+                import tempfile
+                report(5, 'Compiling HDL for preview')
+                with tempfile.TemporaryDirectory(prefix='arrowshdl-preview-') as directory:
+                    cells, metadata = compile_file(args.map, args.top or args.map.stem, directory, timeout=args.timeout)
+                    render_cells(cells, args.out, metadata, style=args.style)
+            else:
+                report(25, 'Rendering placed arrows and ports')
+                from arrowshdl.artifacts import read_metadata
+                metadata = _json(args.manifest) if args.manifest else read_metadata(args.map)
+                render_cells(read_map(args.map), args.out, metadata, style=args.style)
             report(100, f'Preview written: {args.out}')
             return 0
         report(100, f'Output written: {args.out}')

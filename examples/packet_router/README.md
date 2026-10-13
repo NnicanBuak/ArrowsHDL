@@ -24,14 +24,13 @@
 Из корня ArrowsHDL:
 
 ~~~powershell
-arrowshdl build examples/packet_router/project.toml -o examples/packet_router/build/packet_router.json
-arrowshdl test examples/packet_router/build/packet_router.json tests/fixtures/examples/packet_router/vectors.json --vectors -o build/router-demo.report.json
+arrowshdl build examples/packet_router/project.toml -o examples/packet_router/build/packet_router.save.txt
 python -m unittest tests.projects.examples.test_showcases.ShowcaseTests.test_router_all_65536_frames_controls_and_backpressure -v
 ~~~
 
-[Схема](build/packet_router.json): **3487 стрелок, 124×106**.
+[Итоговая игровая схема](build/packet_router.save.txt): **3487 стрелок, 124×106**.
 Кнопки задают биты входов; индикаторы показывают данные, valid, accepted и error.
-Порядок битов, контакты и `settle_ticks`: [описание схемы](build/packet_router.json).
+Тест генерирует источники и пробники в памяти, затем проверяет итоговую карту.
 Регрессионная проверка охватывает **65 536** наборов:
 все кадры, valid и ready. Модель ожиданий независимо описана в tests.
 

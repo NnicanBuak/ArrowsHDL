@@ -1,10 +1,9 @@
 """Reconstruct this supplied screenshot on its calibrated cell grid.
 
-Matching uses the game's actual sprites, not expected circuit behavior. An audit
-records competing matches; reviewed corrections, if any, live in overrides.json.
+Matching uses the game's actual sprites, not expected circuit behavior. Competing
+matches stay in memory; reviewed corrections, if any, live in overrides.json.
 """
 from collections import Counter
-import hashlib
 import json
 from pathlib import Path
 import sys
@@ -16,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[3]
 HERE = ROOT / 'tests/fixtures/circuits/reference_adder8'
 from arrowshdl.arrowasm import Cell, NAMES
 from arrowshdl.resources import SPRITES
-from arrowshdl.mapdata import write_json, write_map
+from arrowshdl.mapdata import write_map
 
 GRID = {"origin_pixel": [254.6, 171.15], "pitch_pixel": [17.812, 17.825], "sample_size": 24}
 
@@ -79,8 +78,6 @@ def recognize(out=None):
         out=Path(out)
         out.mkdir(parents=True,exist_ok=True)
         write_map(out,"reference",cells)
-        write_json(out/"recognition.audit.json",{"source_sha256":hashlib.sha256(source.read_bytes()).hexdigest(),"grid":GRID,
-            "cells":len(cells),"counts":dict(sorted(Counter(c.type for c in cells.values()).items())),"overrides":overrides,"matches":audit})
     print("cells",len(cells),"counts",dict(sorted(Counter(c.type for c in cells.values()).items())))
     print("lowest confidence",[(a["at"],a["match"]["name"],a["confidence_gap"]) for a in sorted(audit,key=lambda a:a["confidence_gap"])[:20]])
     return cells,audit

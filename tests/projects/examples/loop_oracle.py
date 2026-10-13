@@ -1,7 +1,6 @@
 """Independent scalar tick model and functional priority/oscillator checks."""
-import json
 from tests.projects.examples.catalog import ROOT
-from arrowshdl.mapdata import read_map,write_json,save_sha256
+from arrowshdl.mapdata import read_map,map_hash,save_sha256
 from arrowshdl.arrowasm import Cell
 from arrowshdl.simulation import simulate
 HERE=ROOT/'tests/fixtures/historical/pulse_sequencer'
@@ -72,8 +71,8 @@ def word(trace,ports,t):return sum(trace[p][t]<<i for i,p in enumerate(ports))
 
 
 def run():
-    folder=HERE/'build';meta=json.loads((folder/(STEM+'.build.json')).read_text())
-    cells=read_map(folder/f'{STEM}.save.txt');checks=0;modes=[]
+    folder=HERE/'build';saved=folder/f'{STEM}.save.txt'
+    cells=read_map(saved);checks=0;modes=[]
     for p in REQUESTS:cells[p]=Cell(22,cells[p].rotation)
     probes=[list(p) for p in DISPLAY+CODE+LATCHES if p not in cells]
     for p in probes:cells[tuple(p)]=Cell(23,0)
@@ -96,10 +95,6 @@ def run():
                 raise RuntimeError('Incorrect display history')
         modes.append({'mode':mode,'period_ticks':size,'output_disabled':mode==0})
         print(f'Mode {mode}: retained after release, period={size}',flush=True)
-        if mode==2:
-            scenario=dict(ticks=len(requests),controls=[dict(at=list(p),values=[int(bool(r&(1<<i))) for r in requests]) for i,p in enumerate(REQUESTS)],probes=probes,expect=[],assert_=[dict(at=list(p),values=v) for p,v in trace.items()])
-            scenario['assert']=scenario.pop('assert_')
-            write_json(HERE/'scenario.json',scenario)
     # Every possible latched mask, including simultaneous rising edges.
     schedule=[];samples=[];old=0
     for mask in range(256):
@@ -115,11 +110,10 @@ def run():
     trace,count=check(cells,[0]*250+[0b11000110]*80+[0]*250+[0b11000110]*80+[0]*250,'simultaneous');checks+=count
     if word(trace,LATCHES,550)!=0b11000110 or word(trace,CODE,550)!=1 or word(trace,LATCHES,-1)!=0:
         raise RuntimeError('Simultaneous toggles or second click failed')
-    report={'passed':True,'cells':meta['cells'],'map_hash':meta['map_hash'],'modes':modes,
+    report={'passed':True,'cells':len(cells),'map_hash':map_hash(cells),'modes':modes,
        'checked_samples':checks,'all_256_latched_masks_verified':True,
        'held_buttons_toggle_once':True,'second_click_toggles_off':True,
        'simultaneous_clicks_verified':True,
        'zero_disables_output':True,'display_pixels':64,'verified_against_current_game':False}
-    report['save_sha256']=save_sha256(folder/f'{STEM}.save.txt')
-    write_json(folder/f'{STEM}.report.json',report)
+    report['save_sha256']=save_sha256(saved)
     return report

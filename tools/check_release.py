@@ -1,78 +1,52 @@
-"""Audit independent examples, exact saves, visual evidence and local links."""
+"""Audit source-built saves, visual evidence, packaged data and local links."""
 from pathlib import Path
-import hashlib
-import json
 import re
+import subprocess
+from tempfile import TemporaryDirectory
 from urllib.parse import unquote
 import zipfile
 
 ROOT=Path(__file__).resolve().parent.parent
 
-def read(path):return json.loads(path.read_text(encoding='utf-8-sig'))
-def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 def main():
-    from tests.projects.examples.showcases import PROJECTS
+    from arrowshdl import compile
     from arrowshdl.mapdata import map_hash,read_map
-    examples=[]
-    for top,relative in PROJECTS.items():
-        folder=ROOT/'examples'/relative
-        saved=folder/'build'/f'{top}.save.txt'
-        meta=read(folder/'build'/f'{top}.build.json')
-        report=read(folder/'build'/f'{top}.report.json')
-        digest=sha(saved)
-        assert report['passed'] and report['save_sha256']==digest==meta['save_sha256'],top
-        assert map_hash(read_map(saved))==meta['map_hash']
-        for source in meta['sources']:assert source['sha256']==sha(folder/source['name']),source['name']
-        if top=='alu_workbench':assert report['vectors']==2048
-        if top=='packet_router':assert report['vectors']==65536
-        if top=='pulse_sequencer':assert report['all_256_latched_masks_verified']
-        examples.append(dict(top=top,cells=meta['cells'],bounds=meta['bounds'],save_sha256=digest,passed=True))
-    games={}
-    for version in ('v1','v2'):
-        base=ROOT/'examples/minesweeper'/version/'build'
-        game=read(base/'regression.json')
-        assert game['passed']
-        for top,data in game['compiled'].items():
-            assert data['save_sha256']==sha(base/(top+'.save.txt'))
-            assert read(base/(top+'.report.json'))['passed']
-        games[version]=game['compiled']
-    history=read(ROOT/'tests/projects/minesweeper/historical_v1.json')['sha256']
-    for top,digest in history.items():assert games['v1'][top]['save_sha256']==digest
-    tile=games['v2']['tile']
-    assert tile['cells']<=2164 and tile['bounds']['width']<=56 and tile['bounds']['height']<=64
-    for size,count,width,height in ((3,22638,292,352),(5,60068,404,492),(10,233969,684,842)):
-        data=games['v2'][f'minesweeper_{size}x{size}']
-        assert data['cells']<=count and data['bounds']['area']<=width*height
-    visual=[]
-    for name in (*PROJECTS,'minesweeper'):
-        folder=ROOT/'examples'/name
-        base=folder/'v2/build' if name=='minesweeper' else folder/'build'
-        top='minesweeper_5x5' if name=='minesweeper' else name
-        measured=read(folder/'visuals/behavior.report.json')
-        assert measured['passed'] and measured['save_sha256']==sha(base/f'{top}.save.txt')
-        if 'vectors_sha256' in measured:assert measured['vectors_sha256']==sha(folder/'vectors.json')
-        if 'scenario_sha256' in measured:assert measured['scenario_sha256']==sha(folder/'scenario.json')
-        for file,digest in measured.get('snapshots',{}).items():assert digest==sha(base/file)
-        for image in ('architecture.png','map.png','behavior.png'):assert (folder/'visuals'/image).stat().st_size>100
-        visual.append(dict(project=name,passed=True,save_sha256=measured['save_sha256']))
+    with TemporaryDirectory(prefix='arrowshdl-release-smoke-') as directory:
+        source=Path(directory)/'half_adder.sv'
+        source.write_text('module half_adder(input logic a,b,output logic sum,carry); '
+                          'assign sum=a^b; assign carry=a&b; endmodule',encoding='utf-8')
+        generated=Path(directory)/'half_adder.save.txt'
+        result=compile(source,top='half_adder',out=generated)
+        cells=read_map(generated)
+        assert cells==result.cells and 0<len(cells)<=128
+        assert map_hash(cells)==result.metadata['map_hash']
+
+    tracked=subprocess.run(['git','ls-files','examples','tests/fixtures'],cwd=ROOT,
+                           capture_output=True,text=True,check=True).stdout.splitlines()
+    stale=[path for path in tracked if path.endswith('.json') and
+           ('/build/' in path or path.endswith('.report.json'))]
+    assert not stale,stale
+
     executable={'.py','.pyw','.ps1','.bat','.cmd','.sh','.js','.mjs','.ts','.exe'}
     assert not [p for p in (ROOT/'examples').rglob('*') if p.is_file() and p.suffix in executable]
     assert not (ROOT/'examples/pulse_sequencer/loop_mux8.v').exists()
     compiled_previews={
-        'alu_workbench/README.md':'visuals/map.png',
-        'packet_router/README.md':'visuals/map.png',
-        'pulse_sequencer/README.md':'visuals/map.png',
-        'minesweeper/README.md':'visuals/board.png',
-        'minesweeper/v1/README.md':'visuals/map.png',
-        'minesweeper/v2/README.md':'../visuals/board.png',
+        'examples/alu_workbench/README.md':'visuals/map.png',
+        'examples/packet_router/README.md':'visuals/map.png',
+        'examples/pulse_sequencer/README.md':'visuals/map.png',
+        'examples/minesweeper/README.md':'visuals/map.png',
+        'tests/fixtures/historical/minesweeper/v1/README.md':'visuals/map.png',
+        'tests/fixtures/historical/minesweeper/v2/README.md':'../visuals/board.png',
     }
-    for name,target in compiled_previews.items():
-        path=ROOT/'examples'/name
+    for relative,target in compiled_previews.items():
+        path=ROOT/relative
+        name=relative
         lines=path.read_text(encoding='utf-8-sig').splitlines()
         assert lines[0].startswith('![') and lines[0].endswith(f']({target})'),name
         assert not lines[1] and lines[2].startswith('# '),name
         assert (path.parent/target).is_file(),name
+
     image_count=sum(p.parent.name=='visuals' for p in (ROOT/'examples').rglob('*.png'))
     files=list(ROOT.glob('*.md'))+list((ROOT/'docs').glob('*.md'))+list((ROOT/'examples').rglob('*.md'))
     links=0
@@ -85,28 +59,18 @@ def main():
             target=unquote(target.split('#')[0])
             assert (file.parent/target).exists(),(str(file.relative_to(ROOT)),target)
             links+=1
-    suite=read(ROOT/'build/independent-suite.json')
-    install=read(ROOT/'build/clean-smoke.report.json')
-    assert suite['passed'] and suite['skipped']==0 and install['passed'] and install['macro_grid']
-    wheel=next((ROOT/'dist').glob('arrowshdl-0.1.0-*.whl'))
-    with zipfile.ZipFile(wheel) as archive:
-        assert any(n.endswith('arrowshdl-engine.exe') for n in archive.namelist())
-        assert not any('examples/' in n or 'tests/' in n for n in archive.namelist())
-    report=dict(passed=True,version='0.1.0',platform='Windows x64',
-        installation=dict(passed=True,wheel_install=True,external_cwd=True,minimal_path=True,
-            public_commands=len(install['commands']),python_api=True,macro_grid=True),
-        regression=dict(baseline=suite,new_showcase_tests=2,total_distinct_tests=suite['tests']+2,
-            additional_sequencer_rebuild_verified=True),
-        examples=examples,minesweeper=games,visualizations=visual,
-        independence=dict(all_test_assets_local=True,minesweeper_mandatory=True,no_sibling_checkout_required=True),
-        cleanup=dict(no_example_scripts=True,local_document_links=links,obsolete_sequencer_sources_removed=True,
-            compiled_previews_before_headings=len(compiled_previews),visualization_images=image_count),
-        wheel=dict(file=wheel.name,sha256=sha(wheel)),
-        limitations=['Experimental HDL subset; arbitrary sequential HDL is unsupported',
-                     'V1 preserves historical limitations documented in examples/minesweeper',
-                     'Game sprites and teaching fixture rights need confirmation before publication'])
-    path=ROOT/'docs/release-report.json'
-    path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    print(f'PASS: 4 independent projects, {suite["tests"]+2} distinct tests, {image_count} visualizations, {links} local links')
+
+    wheels=list((ROOT/'dist').glob('arrowshdl-0.1.0-*.whl')) if (ROOT/'dist').exists() else []
+    if wheels:
+        with zipfile.ZipFile(wheels[0]) as archive:
+            names=archive.namelist()
+            assert any(n.endswith('arrowshdl-engine.exe') for n in names)
+            assert not any('examples/' in n or 'tests/' in n for n in names)
+            assert any(n.endswith('data/components/seven_segment.toml') for n in names)
+            assert any(n.endswith('data/components/seven_segment.save.txt') for n in names)
+            assert not any(n.endswith('data/components/seven_segment.json') for n in names)
+
+    print(f'PASS: 1 lightweight source build, {image_count} visualizations, {links} local links')
+
 
 if __name__=='__main__':main()

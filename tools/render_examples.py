@@ -2,17 +2,17 @@
 import json
 import sys
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from PIL import Image, ImageDraw
+from arrowshdl import build
 from arrowshdl.map_preview import font, render_cells
 from arrowshdl.mapdata import read_map, save_sha256
 from arrowshdl.simulation import simulate
-from arrowshdl.artifacts import read_metadata
 from arrowshdl.test_harness import add_fixture, make_scenario
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from tests.projects.examples.artifacts import save_artifact
 INK, MUTED, BLUE, GREEN = '#172b46', '#586a80', '#2774d4', '#157d68'
 
 
@@ -47,12 +47,17 @@ def diagram(spec, path):
     im.save(path)
 
 
-def measured_table(folder, top, spec):
-    saved = folder/'build'/f'{top}.json'
-    meta = read_metadata(saved)
-    vectors_file=ROOT/'tests/fixtures/examples'/folder.name/'vectors.json'
-    vectors = read(vectors_file)
-    report = simulate(add_fixture(read_map(saved),meta), make_scenario(meta,vectors,compressed=True))
+def measured_table(folder, top, spec, cells, meta):
+    if top == 'alu_workbench':
+        cases=((15,1,0),(3,5,1),(6,10,2),(6,10,3),(6,10,4),(6,0,5),(9,0,6),(0,13,7))
+        from tests.projects.examples.showcases import alu
+        vectors=[dict(inputs=dict(a=a,b=b,operation=op),expect=alu(a,b,op)) for a,b,op in cases]
+    else:
+        cases=((3,37,3,3),(3,5,3,3),(3,37,3,1),(1,37,3,3),(3,37,0,3),(35,37,3,2))
+        from tests.projects.examples.showcases import route
+        vectors=[dict(inputs=dict(frame0=f0,frame1=f1,valid=valid,ready=ready),
+                      expect=route(f0,f1,valid,ready)) for f0,f1,valid,ready in cases]
+    report = simulate(add_fixture(cells,meta), make_scenario(meta,vectors,compressed=True))
     assert report['passed'], report['failures']
     trace = {tuple(row['at']):row['values'] for row in report['outputs']}
     rows=[]
@@ -74,21 +79,17 @@ def measured_table(folder, top, spec):
             value=row[c['from']][c['key']]
             value=c.get('names',{}).get(str(value),str(value))
             d.text((x+10,y+9),value,font=font(21),fill=INK);x+=w
-    digest=save_sha256(saved)
+    digest=meta['save_sha256']
     d.text((44,im.height-40),'PASS · save SHA-256: '+digest[:20]+'…',font=font(18),fill=GREEN)
     im.save(folder/'visuals/behavior.png')
-    save_artifact(folder.name,'behavior.report.json',dict(passed=True,save_sha256=digest,
-               vectors_sha256=save_sha256(vectors_file),rows=rows,checked_samples=report['checked_samples']))
 
 
-def waveform(folder):
-    saved=folder/'build/pulse_sequencer.json'
-    meta=read_metadata(saved)
+def waveform(folder, cells, meta):
     hold=max(300,meta['settle_ticks']);values=[4]*hold+[0]*(hold+500)
     scenario=dict(ticks=len(values),inputs=[dict(at=e['fixture'],values=[(v>>i)&1 for v in values])
         for i,e in enumerate(meta['inputs']['controls'])],expect=[],
         observe=[e['fixture'] for name in ('active','selection','waveform') for e in meta['outputs'][name]])
-    report=simulate(add_fixture(read_map(saved),meta),scenario,optimize_cycles=False)
+    report=simulate(add_fixture(cells,meta),scenario,optimize_cycles=False)
     assert report['passed'] is not False,report['failures']
     traces={tuple(row['at']):row['values'] for row in report['observations']}
     points=[meta['outputs']['active'][2]['fixture']]+[e['fixture'] for e in meta['outputs']['selection']]+[meta['outputs']['waveform'][0]['fixture']]
@@ -109,67 +110,66 @@ def waveform(folder):
             line.append((x,y+25-24*value))
         d.line(line,fill=BLUE,width=3)
     im.save(folder/'visuals/behavior.png')
-    save_artifact(folder.name,'behavior.report.json',dict(passed=True,save_sha256=save_sha256(saved),
-        start_tick=start,end_tick=end,
-        observations=[dict(at=p,values=traces[tuple(p)][start:end]) for p in points]))
 
 
 def main():
     import sys
     names=sys.argv[1:] or ('alu_workbench','packet_router','pulse_sequencer','minesweeper')
     for name in names:
-        folder=ROOT/'examples'/name; saved=folder/'build'/f'{name}.json'
-        meta=read_metadata(saved)
+        folder=ROOT/'examples'/name
         (folder/'visuals').mkdir(exist_ok=True)
-        render_cells(read_map(saved),folder/'visuals/map.png',meta)
-        specfile=ROOT/'tests/fixtures/examples'/name/'visualization.json'
-        if specfile.is_file():
-            spec=read(specfile);diagram(spec,folder/'visuals/architecture.png')
-            if name in ('alu_workbench','packet_router'):measured_table(folder,name,spec)
-        if name=='pulse_sequencer':waveform(folder)
-        if name=='minesweeper':
-            from arrowshdl.text_display import compile_display
-            from arrowshdl.components import move
-            all_cells=read_map(saved)
-            views=[]
-            for row in meta['project_graph']['components']:
-                if row.get('kind')!='text':continue
-                part,desc=compile_display(folder,row)
-                self_port=desc['inputs']['signal'][0]['contact']
-                placed_port=meta['components'][row['name']]['inputs']['signal'][0]['contact']
-                part,desc=move(part,desc,[placed_port[0]-self_port[0],placed_port[1]-self_port[1]])
-                assert all(all_cells.get(p)==c for p,c in part.items())
-                target=folder/'visuals'/f'{row["name"]}.png'
-                render_cells({p:all_cells[p] for p in part},target,{'top':row['text']})
-                views.append(Image.open(target))
-            status=Image.new('RGB',(max(v.width for v in views),sum(v.height for v in views)),'#f6f8fb')
-            cursor=0
-            for view in views:status.paste(view,(0,cursor));cursor+=view.height
-            status.save(folder/'visuals/status.png')
-            from tests.projects.examples.test_minesweeper import MinesweeperTests
-            check=MinesweeperTests('test_safe_first_flood_count_win_lose_and_reset')
-            check.test_safe_first_flood_count_win_lose_and_reset()
-            game=check.report
-            assert game['passed'] and game['save_sha256']==save_sha256(saved)
-            state=game['snapshots'][0];mines=set(state['mines']);opened=set(state['opened'])
-            im,d=canvas('Minesweeper · verified game states','Physical simulation · safe first click, victory and defeat',670)
-            for col,(title,visible,loss) in enumerate((('First click',opened,False),('WIN',set(range(25))-mines,False),('LOSE',opened,True))):
-                offset=44+col*465;d.text((offset,143),title,font=font(25),fill=INK)
-                for i in range(25):
-                    y,x=divmod(i,5);px=offset+x*72;py=200+y*72
-                    value=''
-                    if loss and i in mines:value='X'
-                    elif i in visible:
-                        count=sum(j in mines for j in range(25) if j!=i and abs(j//5-y)<=1 and abs(j%5-x)<=1)
-                        value=str(count) if count else '.'
-                    fill='#fee1df' if loss and i in mines else 'white' if i in visible else '#afc6e2'
-                    d.rounded_rectangle((px,py,px+65,py+65),radius=7,fill=fill,outline='#839ab4')
-                    d.text((px+23,py+13),value,font=font(28),fill=BLUE)
-            d.text((44,615),'Verified map SHA-256: '+save_sha256(saved)[:24],font=font(18),fill=GREEN)
-            im.save(folder/'visuals/behavior.png')
-            save_artifact(folder.name,'behavior.report.json',dict(passed=True,save_sha256=save_sha256(saved),
-                snapshots=game['snapshots']))
-        print('Rendered:',name,'from',saved)
+        with TemporaryDirectory(prefix=f'arrowshdl-{name}-') as directory:
+            saved=Path(directory)/f'{name}.save.txt'
+            result=build(folder/'project.toml',out=saved,compact=(name=='minesweeper'))
+            cells=read_map(saved);meta=result.metadata
+            assert cells==result.cells
+            digest=save_sha256(saved)
+            render_cells(cells,folder/'visuals/map.png',meta)
+            specfile=ROOT/'tests/fixtures/examples'/name/'visualization.json'
+            if specfile.is_file():
+                spec=read(specfile);diagram(spec,folder/'visuals/architecture.png')
+                if name in ('alu_workbench','packet_router'):
+                    measured_table(folder,name,spec,cells,meta)
+            if name=='pulse_sequencer':waveform(folder,cells,meta)
+            if name=='minesweeper':
+                from arrowshdl.text_display import compile_display
+                from arrowshdl.components import move
+                views=[]
+                for row in meta['project_graph']['components']:
+                    if row.get('kind')!='text':continue
+                    part,desc=compile_display(folder,row)
+                    self_port=desc['inputs']['signal'][0]['contact']
+                    placed_port=meta['components'][row['name']]['inputs']['signal'][0]['contact']
+                    part,desc=move(part,desc,[placed_port[0]-self_port[0],placed_port[1]-self_port[1]])
+                    assert all(cells.get(p)==c for p,c in part.items())
+                    target=folder/'visuals'/f'{row["name"]}.png'
+                    render_cells({p:cells[p] for p in part},target,{'top':row['text']})
+                    views.append(Image.open(target))
+                status=Image.new('RGB',(max(v.width for v in views),sum(v.height for v in views)),'#f6f8fb')
+                cursor=0
+                for view in views:status.paste(view,(0,cursor));cursor+=view.height
+                status.save(folder/'visuals/status.png')
+                from tests.projects.examples.test_minesweeper import MinesweeperTests
+                check=MinesweeperTests('test_safe_first_flood_count_win_lose_and_reset')
+                game=check.verify(cells,meta,digest)
+                assert game['passed']
+                state=game['snapshots'][0];mines=set(state['mines']);opened=set(state['opened'])
+                im,d=canvas('Minesweeper · verified game states','Physical simulation · safe first click, victory and defeat',670)
+                for col,(title,visible,loss) in enumerate((('First click',opened,False),('WIN',set(range(25))-mines,False),('LOSE',opened,True))):
+                    offset=44+col*465;d.text((offset,143),title,font=font(25),fill=INK)
+                    for i in range(25):
+                        y,x=divmod(i,5);px=offset+x*72;py=200+y*72
+                        value=''
+                        if loss and i in mines:value='X'
+                        elif i in visible:
+                            count=sum(j in mines for j in range(25) if j!=i and abs(j//5-y)<=1 and abs(j%5-x)<=1)
+                            value=str(count) if count else '.'
+                        fill='#fee1df' if loss and i in mines else 'white' if i in visible else '#afc6e2'
+                        d.rounded_rectangle((px,py,px+65,py+65),radius=7,fill=fill,outline='#839ab4')
+                        d.text((px+23,py+13),value,font=font(28),fill=BLUE)
+                d.text((44,615),'Verified map SHA-256: '+digest[:24],font=font(18),fill=GREEN)
+                im.save(folder/'visuals/behavior.png')
+        print('Rendered:',name)
 
 
 if __name__=='__main__':main()

@@ -22,8 +22,8 @@ class CompilerTests(unittest.TestCase):
             folder = Path(directory)
             cells, manifest = compile_file(ROOT / "tests/fixtures/circuits/hdl/half_adder/half_adder.v", "half_adder", folder)
             self.assertFalse(any(cell.type in (22, 23) for cell in cells.values()))
-            self.assertEqual(read_map(folder / "half_adder.map.json"), cells)
             self.assertEqual(read_map(folder / "half_adder.save.txt"), cells)
+            self.assertEqual([path.name for path in folder.iterdir()], ["half_adder.save.txt"])
             vectors = [{"inputs": {"i_bit1": a, "i_bit2": b}, "expect": {"o_sum": (a+b) % 2, "o_carry": (a+b) // 2}} for a, b in product((0, 1), repeat=2)]
             transitions = [v for before in vectors for after in vectors for v in (before, after)]
             original = dict(cells)
@@ -116,7 +116,7 @@ class CompilerTests(unittest.TestCase):
             _, report = run_vectors(cells, manifest, vectors, folder, 'configured')
             self.assertTrue(report['passed'], report['failures'])
 
-    def test_json_model_roundtrip_and_invalid_data(self):
+    def test_legacy_json_map_reader_and_invalid_data(self):
         cells = {(-2, 3): Cell(255, 3, True), (0, 0): Cell(22, 1), (1, 0): Cell(23, 0)}
         self.assertEqual(from_document(to_document(cells)), cells)
         self.assertEqual(decode(encode(from_document(to_document(cells)))), cells)

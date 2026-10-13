@@ -194,25 +194,25 @@ class NativeMuxTests(unittest.TestCase):
                     place(graph, input_buses=groups, input_bus_gap=gap)
 
     def test_cli_and_generic_graph_grouping(self):
-        import json
         import subprocess
         with tempfile.TemporaryDirectory() as d:
             folder = Path(d)
             source = folder / 'generic.v'
             source.write_text('module generic(input [1:0] data,input enable,output y); assign y=data[0]^data[1]^enable; endmodule', encoding='utf-8')
-            output = folder / 'generic.json'
+            output = folder / 'generic.save.txt'
             result = subprocess.run([sys.executable, '-m', 'arrowshdl', 'compile', str(source),
                                      '--out', str(output), '--input-bus', 'data,enable', '--input-bus-gap', '0'],
                                     capture_output=True, text=True, encoding='utf-8')
             self.assertEqual(result.returncode, 0, result.stderr)
-            from arrowshdl.artifacts import read_metadata
-            from arrowshdl.mapdata import read_map
-            meta = read_metadata(output)
+            from arrowshdl.mapdata import map_hash, read_map
+            _, meta = compile_file(source, 'generic', folder/'metadata',
+                input_buses=['data,enable'],input_bus_gap=0)
+            cells = read_map(output)
+            self.assertEqual(map_hash(cells),meta['map_hash'])
             self.assert_input_bus(meta)
-            from arrowshdl.mapdata import read_map
             vectors = [{'inputs': {'data': v, 'enable': e}, 'expect': {'y': (v & 1) ^ (v >> 1) ^ e}}
                        for v in range(4) for e in range(2)]
-            _, report = run_vectors(read_map(output), meta, vectors, folder, 'generic', compressed=True)
+            _, report = run_vectors(cells, meta, vectors, compressed=True)
             self.assertTrue(report['passed'], report['failures'])
 
     def test_auto_bus_spacing_preserves_order_and_exterior(self):

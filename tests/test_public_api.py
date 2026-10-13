@@ -37,7 +37,7 @@ class PublicApiTests(unittest.TestCase):
                 arrows_toggle t(a,q); arrows_toggle u(q,r);
                 assign alias_q=q; assign pass=a; assign zero=0; assign one=1;
                 endmodule''')
-            result=arrowshdl.compile(source,top='ports',out=root/'out.json',timeout=60)
+            result=arrowshdl.compile(source,top='ports',out=root/'out.save.txt',timeout=60)
             fixture=add_fixture(result.cells,result.metadata)
             ports=result.ports['outputs']
             keys=('q','alias_q','r','pass','zero','one')
@@ -63,7 +63,7 @@ class PublicApiTests(unittest.TestCase):
                 arrows_timer #(.TICKS(4)) timer0(a,timer_y);
                 arrows_detector detector0(a,det_y); arrows_impulse pulse0(pulse);
                 endmodule''',encoding='utf-8')
-            result = arrowshdl.compile(source,top='native',out=root/'out.json',timeout=60)
+            result = arrowshdl.compile(source,top='native',out=root/'out.save.txt',timeout=60)
             self.assertTrue(result.artifacts['output'].is_file())
             labels = result.metadata['gate_labels']
             points = {n['op']:tuple(n['at']) for n in labels if n['native']}
@@ -114,11 +114,11 @@ class PublicApiTests(unittest.TestCase):
             source.write_text('module logic_unit(input a,b,output y); assign y=a&b; endmodule')
             started=time.monotonic()
             with self.assertRaisesRegex(arrowshdl.MapError,'Overall timeout'):
-                arrowshdl.compile(source,top='logic_unit',out=root/'out.json',timeout=0.01)
+                arrowshdl.compile(source,top='logic_unit',out=root/'out.save.txt',timeout=0.01)
             self.assertLess(time.monotonic()-started,5)
             for budget in (0,-1,float('nan')):
                 with self.assertRaises(arrowshdl.MapError):
-                    arrowshdl.build(root/'missing.toml',out=root/'out.json',timeout=budget)
+                    arrowshdl.build(root/'missing.toml',out=root/'out.save.txt',timeout=budget)
 
 
 if __name__=='__main__':unittest.main()

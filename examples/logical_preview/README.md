@@ -5,8 +5,7 @@
 свободными клетки логических операторов. Все четыре входа и оба выхода подписаны.
 
 ```powershell
-arrowshdl build examples/logical_preview/project.toml -o build/logical_preview.json
-arrowshdl preview build/logical_preview.json --style logical -o build/logical_preview.png
+arrowshdl preview examples/logical_preview/project.toml --style logical -o build/logical_preview.png
 ```
 
 Исходная схема находится в `logical_preview.v`. В ней два экземпляра `transform`
