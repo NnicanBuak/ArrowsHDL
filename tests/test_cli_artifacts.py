@@ -156,6 +156,14 @@ class CliArtifactTests(unittest.TestCase):
             single_build = root/'single-build.save.txt'
             cli('build', source, '--top', 'xor_unit', '-o', single_build, '--preview', root/'single-build.png')
             self.assertEqual(read_map(output), read_map(single_build))
+            auto_build = root/'auto-source.save.txt'
+            auto_source_dir = root/'auto-source'
+            auto_source_dir.mkdir()
+            auto_source = auto_source_dir/'auto_source.v'
+            auto_source.write_text('module auto_source(input a, output y); assign y = a; endmodule')
+            auto = subprocess.run([sys.executable, '-m', 'arrowshdl', 'build', '-o', auto_build],
+                cwd=auto_source_dir, capture_output=True, text=True, encoding='utf-8', timeout=30)
+            self.assertEqual(auto.returncode, 0, auto.stderr)
             rejected=subprocess.run([sys.executable,'-m','arrowshdl','compile',str(source),
                 '--top','xor_unit','-o',str(output.parent)],capture_output=True,text=True,encoding='utf-8')
             self.assertEqual(rejected.returncode,2)
@@ -165,6 +173,10 @@ class CliArtifactTests(unittest.TestCase):
             project.write_text('version=3\ntop="xor_unit"\nsources=["xor.v"]\n')
             built=root/'project.save.txt'
             cli('build',project,'-o',built,'--preview',root/'project.png')
+            project_auto = root/'auto-project.save.txt'
+            project_run = subprocess.run([sys.executable, '-m', 'arrowshdl', 'build', '-o', project_auto],
+                cwd=root, capture_output=True, text=True, encoding='utf-8', timeout=30)
+            self.assertEqual(project_run.returncode, 0, project_run.stderr)
             cli('test',project,vectors,'--vectors','-o',root/'project.report.json')
             self.assertTrue(json.loads((root/'project.report.json').read_text())['passed'])
             invalid=subprocess.run([sys.executable,'-m','arrowshdl','compile',str(source),

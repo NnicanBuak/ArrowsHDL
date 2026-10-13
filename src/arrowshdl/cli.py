@@ -5,6 +5,7 @@ from pathlib import Path
 import subprocess
 import sys
 import os
+import tomllib
 from arrowshdl import api
 
 from arrowshdl import __version__
@@ -18,6 +19,32 @@ from arrowshdl.project_init import create_project
 
 def _json(path):
     return json.loads(Path(path).read_text(encoding='utf-8-sig'))
+
+
+def _discover_build_input(folder):
+    """Find one project manifest or one HDL source in the working directory."""
+    folder = Path(folder).resolve()
+    project_candidates = []
+    for path in sorted(folder.glob('*.toml')):
+        try:
+            document = tomllib.loads(path.read_text(encoding='utf-8-sig'))
+        except (OSError, tomllib.TOMLDecodeError):
+            continue
+        if isinstance(document, dict) and {'version', 'top', 'sources'} <= set(document):
+            project_candidates.append(path)
+    if len(project_candidates) == 1:
+        return project_candidates[0]
+    if len(project_candidates) > 1:
+        names = ', '.join(path.name for path in project_candidates)
+        raise MapError(f'Build input is ambiguous: multiple project TOML files found ({names}); specify one explicitly')
+
+    sources = sorted([*folder.glob('*.v'), *folder.glob('*.sv')])
+    if len(sources) == 1:
+        return sources[0]
+    if len(sources) > 1:
+        names = ', '.join(path.name for path in sources)
+        raise MapError(f'Build input is ambiguous: multiple HDL sources found ({names}); specify one explicitly')
+    raise MapError('Build input was not specified and the current directory contains no project TOML or single .v/.sv source')
 
 
 def main(argv=None):
@@ -66,7 +93,7 @@ def main(argv=None):
     compile.add_argument('--timeout', type=float, default=600)
     compile.add_argument('--max-cells', type=int, default=1000000)
     build = commands.add_parser('build', help='Build a scheme from a TOML project or one HDL source')
-    build.add_argument('project', type=Path, metavar='PROJECT_OR_SOURCE')
+    build.add_argument('project', nargs='?', type=Path, metavar='PROJECT_OR_SOURCE')
     build.add_argument('-o', '--out', required=True, type=Path, metavar='FILE',help='One .txt game save')
     build.add_argument('--preview',type=Path,metavar='PNG',help='Also render the compiled game save to this PNG path')
     build.add_argument('--top', help='Top HDL module for a single .v/.sv source; defaults to the filename stem')
@@ -152,7 +179,8 @@ def main(argv=None):
                 input_buses=args.input_bus, input_bus_gap=gap,preview=args.preview, **opts)
             cells, manifest = result.cells, result.metadata
         elif args.command == 'build':
-            if args.project.suffix.lower() in ('.v', '.sv'):
+            build_input = args.project or _discover_build_input(Path.cwd())
+            if build_input.suffix.lower() in ('.v', '.sv'):
                 if args.test:
                     raise MapError('--test is available only for TOML projects')
                 parameters = {}
@@ -161,12 +189,12 @@ def main(argv=None):
                         raise MapError('-G: expected NAME=VALUE')
                     name, value = pair.split('=', 1)
                     parameters[name] = value
-                result = api.compile(args.project, top=args.top or args.project.stem, out=args.out,
+                result = api.compile(build_input, top=args.top or build_input.stem, out=args.out,
                     timeout=args.timeout, preview=args.preview, standard=args.std,
                     include_dirs=args.includes, defines=args.defines, parameters=parameters,
                     max_cells=args.max_cells, layout=args.layout)
             else:
-                result = api.build(args.project,out=args.out,timeout=args.timeout,layout=args.layout,
+                result = api.build(build_input,out=args.out,timeout=args.timeout,layout=args.layout,
                                    max_cells=args.max_cells,testing=args.test,preview=args.preview)
             cells, manifest = result.cells, result.metadata
         elif args.command == 'link':
