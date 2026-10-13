@@ -3,6 +3,8 @@ native/target/
 tools/node_modules/
 /docs/release-checklist.md
 /docs/release-report.json
+.codex-remote-attachments/
+.pytest_cache/
 
 *.egg-info/
 dist/
