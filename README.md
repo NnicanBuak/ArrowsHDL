@@ -3,7 +3,7 @@
 ArrowsHDL компилирует Verilog/SystemVerilog в физические схемы Logic Arrows.
 CLI и Python API позволяют собрать проект, проверить его поведение и экспортировать игровое сохранение.
 
-**Версия 0.1.0 экспериментальная.**
+**Версия 0.1.1 экспериментальная.**
 
 ## Установка
 
@@ -102,6 +102,8 @@ arrowshdl test logic.v vectors.json --top logic_unit --vectors -o build/source-r
 
 | Проект | Что показывает |
 | --- | --- |
+| [Mini Calculator](examples/mini_calculator/README.md) | Арифметика, логика, сдвиг, сохранение результата и семисегментный дисплей |
+| [8-bit Comparator](examples/comporator_8bit/README.md) | Сравнение двух байтовых операндов и физические кнопки |
 | [ALU Workbench](examples/alu_workbench/README.md) | 4-битная ALU, восемь операций, иерархия и флаги |
 | [Packet Router](examples/packet_router/README.md) | Чётность, арбитраж и backpressure |
 | [Pulse Sequencer](examples/pulse_sequencer/README.md) | Генераторы, память выбора и история на 64 такта |
@@ -131,9 +133,8 @@ arrowshdl test --suite tests -o build/regression.json
 
 Поддерживается синтезируемый поднабор Verilog/SystemVerilog; состояние задаётся
 нативными модулями библиотеки. Форматы, команды, Python API и границы HDL описаны
-в [справочнике](docs/reference.md). Устройство компилятора — в
-[ARCHITECTURE.md](ARCHITECTURE.md), изменения выпуска — в [CHANGELOG.md](CHANGELOG.md)
-и [заметках 0.1.0](docs/releases/v0.1.0.md).
+в [справочнике](docs/reference.md). Устройство компилятора описано в
+[ARCHITECTURE.md](ARCHITECTURE.md), история выпусков — в [CHANGELOG.md](CHANGELOG.md).
 
 Собственный код: [PolyForm Noncommercial 1.0.0](LICENSE), [NOTICE](NOTICE).
 Сторонние материалы: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

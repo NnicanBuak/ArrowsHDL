@@ -1,0 +1,37 @@
+version = 1
+
+[[ports]]
+path = "press_a"
+widget = "button"
+
+[[ports]]
+path = "press_b"
+widget = "button"
+
+[[ports]]
+path = "compare_button"
+widget = "button"
+
+[[ports]]
+path = "a_value"
+widget = "binary"
+
+[[ports]]
+path = "b_value"
+widget = "binary"
+
+[[ports]]
+path = "less"
+widget = "indicator"
+
+[[ports]]
+path = "equal"
+widget = "indicator"
+
+[[ports]]
+path = "more"
+widget = "indicator"
+
+[[ports]]
+path = "valid"
+widget = "indicator"

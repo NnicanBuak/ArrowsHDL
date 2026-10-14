@@ -1,0 +1,7 @@
+version = 3
+top = "comporator_8bit"
+sources = ["comporator_8bit.v"]
+design = "design.toml"
+
+[language]
+standard = "1800-2023"

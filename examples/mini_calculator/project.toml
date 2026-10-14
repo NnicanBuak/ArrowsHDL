@@ -1,0 +1,7 @@
+version = 3
+top = "mini_calculator"
+sources = ["mini_calculator.v", "arithmetic.v", "seven_segment.v"]
+design = "design.toml"
+
+[language]
+standard = "1364-2005"

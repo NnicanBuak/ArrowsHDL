@@ -2,7 +2,6 @@ name: Release wheels
 
 on:
   push:
-    branches: [v0.1.0]
     tags: ['v*']
   workflow_dispatch:
 
@@ -109,7 +108,7 @@ jobs:
       - name: Upload complete release assets
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: release-v0.1.0
+          name: release-${{ github.run_id }}
           path: dist/*
           if-no-files-found: error
 
@@ -127,7 +126,7 @@ jobs:
           python-version: '3.11'
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
-          name: release-v0.1.0
+          name: release-${{ github.run_id }}
           path: dist
       - name: Audit release and generate SHA-256 checksums
         env:
@@ -139,9 +138,11 @@ jobs:
         run: |
           if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
             gh release upload "$GITHUB_REF_NAME" dist/*.whl dist/SHA256SUMS.txt --clobber
+            gh release edit "$GITHUB_REF_NAME" --latest
           else
             gh release create "$GITHUB_REF_NAME" --verify-tag \
               --title "ArrowsHDL $GITHUB_REF_NAME" \
-              --notes-file "docs/releases/$GITHUB_REF_NAME.md" \
+              --latest \
+              --generate-notes \
               dist/*.whl dist/SHA256SUMS.txt
           fi

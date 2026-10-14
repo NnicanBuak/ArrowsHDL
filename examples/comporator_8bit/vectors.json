@@ -1,0 +1,15 @@
+[
+  {"inputs":{"press_a":0,"press_b":0,"compare_button":0},"expect":{"a_value":0,"b_value":0,"less":0,"equal":0,"more":0,"valid":0}},
+  {"inputs":{"press_a":1,"press_b":4,"compare_button":0},"expect":{"a_value":1,"b_value":4,"less":0,"equal":0,"more":0,"valid":0}},
+  {"inputs":{"press_a":0,"press_b":0,"compare_button":0},"expect":{"a_value":1,"b_value":4,"less":0,"equal":0,"more":0,"valid":0}},
+  {"inputs":{"press_a":0,"press_b":0,"compare_button":1},"expect":{"a_value":1,"b_value":4,"less":1,"equal":0,"more":0,"valid":1}},
+  {"inputs":{"press_a":0,"press_b":0,"compare_button":0},"expect":{"a_value":1,"b_value":4,"less":1,"equal":0,"more":0,"valid":1}},
+  {"inputs":{"press_a":4,"press_b":1,"compare_button":0},"expect":{"a_value":5,"b_value":4,"less":1,"equal":0,"more":0,"valid":0}},
+  {"inputs":{"press_a":0,"press_b":0,"compare_button":0},"expect":{"a_value":5,"b_value":5,"less":1,"equal":0,"more":0,"valid":0}},
+  {"inputs":{"press_a":0,"press_b":0,"compare_button":1},"expect":{"a_value":5,"b_value":5,"less":0,"equal":1,"more":0,"valid":1}},
+  {"inputs":{"press_a":0,"press_b":0,"compare_button":0},"expect":{"a_value":5,"b_value":5,"less":0,"equal":1,"more":0,"valid":1}},
+  {"inputs":{"press_a":12,"press_b":7,"compare_button":0},"expect":{"a_value":9,"b_value":3,"less":0,"equal":1,"more":0,"valid":0}},
+  {"inputs":{"press_a":0,"press_b":0,"compare_button":0},"expect":{"a_value":9,"b_value":2,"less":0,"equal":1,"more":0,"valid":0}},
+  {"inputs":{"press_a":0,"press_b":0,"compare_button":1},"expect":{"a_value":9,"b_value":2,"less":0,"equal":0,"more":1,"valid":1}},
+  {"inputs":{"press_a":0,"press_b":0,"compare_button":0},"expect":{"a_value":9,"b_value":2,"less":0,"equal":0,"more":1,"valid":1}}
+]

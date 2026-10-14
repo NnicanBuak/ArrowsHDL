@@ -117,7 +117,7 @@ def waveform(folder):
 
 def main():
     import sys
-    names=sys.argv[1:] or ('alu_workbench','packet_router','pulse_sequencer','minesweeper')
+    names=sys.argv[1:] or ('mini_calculator','alu_workbench','packet_router','pulse_sequencer','minesweeper')
     for name in names:
         folder=ROOT/'examples'/name; saved=folder/'build'/f'{name}.save.txt'
         compiled=arrowshdl.build(folder/'project.toml',out=saved,layout='compact' if name=='minesweeper' else 'auto')

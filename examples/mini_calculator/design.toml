@@ -1,0 +1,34 @@
+version = 1
+
+[[ports]]
+path = "operand"
+widget = "button"
+
+[[ports]]
+path = "operation"
+widget = "button"
+
+[[ports]]
+path = "store"
+widget = "button"
+
+[[ports]]
+path = "clear"
+widget = "button"
+
+[[ports]]
+path = "result"
+widget = "binary"
+
+[[ports]]
+path = "carry"
+widget = "indicator"
+
+[[ports]]
+path = "zero"
+widget = "indicator"
+
+[[components]]
+name = "result_display"
+file = "library:seven_segment"
+bind = { segments = "segments" }
